@@ -173,7 +173,7 @@ class OllamaAnswerer:
         self,
         base_url: str = FROZEN_BASE_URL,
         model: str = FROZEN_MODEL,
-        timeout_seconds: float = 120.0,
+        timeout_seconds: float = 300.0,
         answer_adapter: Any | None = None,
         num_ctx: int | None = None,
     ):
