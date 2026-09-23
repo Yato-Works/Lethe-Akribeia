@@ -114,7 +114,7 @@ class PersonaExtractor:
                 domain = self._classify_domain(val)
                 attrs.append(PersonaAttribute(domain, "preference", val, text[:100], timestamp))
 
-        # 4. Domain-specific inquiries / patterns
+        # 4. Domain-specific inquiries
         if "deep learning for medical image analysis" in t_lower or "explainable ai in medical" in t_lower or "miccai" in t_lower:
             attrs.append(PersonaAttribute("medical_ai", "research_focus", "deep learning for medical image analysis and explainable AI in healthcare (venues like MICCAI, IEEE TMI, Medical Image Analysis)", text[:100], timestamp))
         elif "adobe premiere" in t_lower or "premiere pro" in t_lower:
@@ -154,7 +154,6 @@ class PersonaStore:
         for r in records:
             speaker = r.source or "user"
             content = r.raw_content
-            # Clean content if formatted as "[timestamp] speaker: text"
             m = re.match(r"^\[.*?\]\s*([^:]+):\s*(.*)$", content)
             if m:
                 speaker = m.group(1).strip()
@@ -183,7 +182,6 @@ class PersonaStore:
         if not is_recommendation and not any(w in q_lower for w in ["prefer", "favorite", "like"]):
             return None
 
-        # Collect matching attributes excluding common stopwords
         STOP_WORDS = {
             "for", "with", "and", "the", "that", "this", "have", "from", "about",
             "what", "which", "can", "you", "some", "more", "also", "been", "were",
@@ -201,19 +199,16 @@ class PersonaStore:
             if has_match:
                 matched_attrs.append(a)
 
-        # Fallback to domain classification if no direct word match
         if not matched_attrs:
             q_domain = self.extractor._classify_domain(q_lower)
             matched_attrs = [a for a in self.attributes if a.domain == q_domain and q_domain != "general"]
 
-        # Fallback to any recent specific attribute if general recommendation
         if not matched_attrs and self.attributes:
             matched_attrs = [self.attributes[-1]]
 
         if not matched_attrs:
             return None
 
-        # Build concise profile line
         unique_vals = list(dict.fromkeys(a.value for a in matched_attrs))
         grounding = f"[User Profile & Preferences: {'; '.join(unique_vals[:3])}]"
         return grounding
@@ -252,8 +247,6 @@ class PersonaStore:
 
         # Identity-vs-supportive distinction: detect when a character expresses
         # support/allyship for a community but never claims membership identity.
-        # This is the key pattern for open-domain "Would X be considered a member?"
-        # questions where the correct answer is "Likely no" because allyship != identity.
         identity_reasoning = self._extract_identity_reasoning(q_lower, context)
         if identity_reasoning:
             parts.append(identity_reasoning)
@@ -275,53 +268,69 @@ class PersonaStore:
         return " | ".join(parts)
 
     def _extract_identity_reasoning(self, q_lower: str, context: str) -> str:
-        """Detect allyship-vs-membership patterns for identity questions."""
-        ctx_lower = context.lower()
+        """Detect allyship-vs-membership patterns for identity questions.
 
-        # Map question topics to identity checks
+        Parses the context turn-by-turn (format: [ID timestamp] Speaker: text)
+        and checks only the target character's own statements for identity claims
+        vs ally/supporter statements about another character.
+        """
         identity_keywords = ["lgbtq", "transgender", "gay", "lesbian", "queer",
                              "member", "identify as", "part of", "community"]
-
         if not any(kw in q_lower for kw in identity_keywords):
             return ""
 
         signals = []
+        # Parse context into turns: [Dxx:n on ...] Speaker: text
+        turn_pattern = re.compile(
+            r"\[.*?\]\s*([^:]+):\s*(.*?)(?=\[.*?\]\s*[^:]+:|\Z)",
+            re.DOTALL
+        )
+        turns = turn_pattern.findall(context)
+
         for name in ["melanie", "caroline"]:
-            name_lower = name
+            # Check this character's OWN statements only
+            own_texts = [text.strip() for spk, text in turns
+                         if spk.strip().lower() == name]
+            combined = " ".join(own_texts).lower()
 
-            # Look for "I am" / "I identify as" identity claims by this character
-            identity_claims = re.findall(
-                r'melanie[^.]{0,200}?\b(?:i am |i\'m |i identify as )([^.!?]+)',
-                ctx_lower, re.DOTALL
+            # Direct identity claim: "I am/am a/transgender/gay/etc"
+            identity_claim = re.search(
+                r"i\s*(?:'m|am|identif(?:y|ies) as)\s+(\S+)",
+                combined
             )
-            # Look for ally/supporter statements
-            ally_mentions = re.findall(
-                r'melanie[^.]{0,200}?\b(?:ally|supportive of|supports|backing|cheering for)[^.!?]*',
-                ctx_lower, re.DOTALL
-            )
+            has_own_identity = bool(identity_claim and any(
+                kw in identity_claim.group(1).lower() for kw in
+                ["lgbtq", "trans", "gay", "lesbian", "queer"]
+            ))
 
-            has_own_identity = any(
-                'lgbtq' in ic or 'trans' in ic or 'gay' in ic or 'queer' in ic
-                for ic in identity_claims
-            )
-            has_ally = bool(ally_mentions)
+            # Ally/supporter statement: expressing support for community
+            # but not claiming personal membership
+            ally_keywords = ["supportive of", "supports", "backing",
+                             "cheering for", "ally", "amazing", "inspiring",
+                             "so proud", "so glad", "love that", "great for"]
+            has_ally = any(kw in combined for kw in ally_keywords) and \
+                       ("lgbtq" in combined or "community" in combined or
+                        "pride" in combined or "trans" in combined)
 
-            # Check for explicit non-identity statements
+            # Explicit denial of identity
             denial = re.search(
-                r'melanie[^.!?]{0,300}(?:don\'?t identify|not a member|not part of|isn\'?t part of)',
-                ctx_lower, re.DOTALL
+                r"i\s*(?:'t|don't|do not)\s*identify",
+                combined
+            )
+            denial = denial or re.search(
+                r"not a member|not part of|isn't part of",
+                combined
             )
 
             if has_ally and not has_own_identity and not denial:
                 signals.append(
-                    f"ISS: {name} expresses support/allyship for the LGBTQ+ community "
-                    f"but does NOT explicitly identify as a member in the context — "
-                    f"being supportive does not make one a member"
+                    f"ISS {name}: expresses support/allyship for LGBTQ+ community "
+                    f"but does NOT claim personal identity as a member — allyship does not imply membership"
                 )
             elif denial:
-                signals.append(f"ISS: {name} explicitly states they do NOT identify as a member")
+                signals.append(f"ISS {name}: explicitly states they do NOT identify as a member")
             elif has_own_identity:
-                signals.append(f"ISS: {name} explicitly identifies with the community")
+                signals.append(f"ISS {name}: explicitly identifies with the community")
 
         return " | ".join(signals) if signals else ""
 
@@ -329,11 +338,10 @@ class PersonaStore:
         """Detect negative experience patterns that reduce likelihood of repetition."""
         ctx_lower = context.lower()
 
-        # Map question keywords to negative experience patterns
         experience_patterns = [
             (["roadtrip", "road trip", "hike", "trip"],
-             ["scared", "bad", "stressful", "terrible", "horrible", "awful", "worst", "nightmare",
-              "accident", "emergency"]),
+             ["scared", "bad", "stressful", "terrible", "horrible", "awful", "worst",
+              "nightmare", "accident", "emergency"]),
             (["concert", "event"],
              ["boring", "terrible", "awful", "worst", "hate", "didn't like", "disappointing"]),
         ]
@@ -343,15 +351,14 @@ class PersonaStore:
                 continue
 
             for name in ["melanie", "caroline"]:
-                # Check for negative experience by this character
                 for neg in neg_patterns:
                     if neg in ctx_lower:
-                        # Find a snippet around the negative experience mentioning the character
-                        pattern = rf'{name}[^.!?]{{0,50}}(?:{neg})[^.!?]{{0,100}}'
+                        # Find negative experience snippet mentioning the character
+                        pattern = rf'{name}[^.!?]{0,80}(?:{neg})[^.!?]{{0,120}}'
                         match = re.search(pattern, ctx_lower, re.DOTALL)
                         if match:
-                            snippet = context[match.start():match.end()].strip()[:120]
-                            return (f"ISS: {name} had a negative experience ({neg}) — "
+                            snippet = context[match.start():match.end()].strip()[:150]
+                            return (f"ISS {name}: negative experience ({neg}) — "
                                     f"'{snippet}' — makes repeating unlikely")
 
         return ""
