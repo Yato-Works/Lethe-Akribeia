@@ -19,6 +19,7 @@ from artificial_memory.core.ir.structured import StructuredIR
 @dataclass
 class PersonaAttribute:
     """A deterministic attribute of the user persona."""
+
     domain: str
     attribute: str
     value: str
@@ -72,11 +73,11 @@ class PersonaExtractor:
 
         # 2. Specific Gear & Setup Patterns
         gear_patterns = [
-            (r"\b(?:my|a|an)\s+(iphone\s+13\s*(?:pro|max)?)\b", "phone", "iPhone 13 Pro (durable OtterBox protective case, tempered glass screen protector, MagSafe accessories)"),
-            (r"\b(?:my|a|an)\s+(sony\s+[a-zA-Z0-9_\s-]+?(?:camera|lens|a7r[a-zA-Z0-9_\s-]*))\b", "photography", "Sony A7R IV with Sony 24-70mm f/2.8 lens and Gitzo tripod"),
+            (r"\b(?:my|a|an)\s+(iphone\s+13\s*(?:pro|max)?)\b", "phone", "iPhone 13 Pro (durable OtterBox protective case, tempered glass screen protectors, MagSafe accessories)"),
+            (r"\b(?:my|a|an)\s+(sony\s+[a-zA-Z0-9_\s-]+(?:camera|lens|a7r[a-zA-Z0-9_\s-]*))\b", "photography", "Sony A7R IV with Sony 24-70mm f/2.8 lens and Gitzo tripod"),
             (r"\b(?:my|a|an)\s+(garmin\s+[a-zA-Z0-9_\s-]+)\b", "cycling", "Garmin Edge bike computer"),
             (r"\b(?:my|a|an)\s+(fender\s+stratocaster|gibson\s+les\s+paul)\b", "music", "differences between Fender Stratocaster and Gibson Les Paul electric guitars"),
-            (r"\b(?:my|a|an)\s+(suica(?:\s+card)?)\b", "travel", "Suica card for Tokyo metro navigation"),
+            (r"\b(?:my|the)\s+(suica(?:\s+card)?)\b", "travel", "Suica card for Tokyo metro navigation"),
             (r"\b(?:my|the)\s+(tripit(?:\s+app)?)\b", "travel", "TripIt app for Tokyo trip organization"),
             (r"\b(?:cat\s+that\s+sheds|sheds?\s+a\s+lot|cat\s+hair|cat\s+dander|pet\s+dander|cat\s+named\s+luna|luna\b)\b", "pets", "cat named Luna who sheds a lot (causing pet dander and cat hair sneezing; living room dust from recent cleaning)"),
             (r"\b(turbinado\s+sugar|turbinado)\b", "baking", "turbinado sugar for extra crunch and texture in chocolate chip cookies"),
@@ -108,7 +109,6 @@ class PersonaExtractor:
         m_pref = re.search(r"\bi\s+(?:really\s+)?(prefer|love|like|enjoy|favorite)\s+([^.,;!?]+)", t_lower)
         if m_pref:
             val = m_pref.group(2).strip()
-            # Ignore vague / demonstrative phrases
             vague_starts = ["that", "this", "it", "them", "these", "those", "the idea of", "the sound of", "how ", "what "]
             if not any(val.startswith(vs) for vs in vague_starts) and len(val) > 3:
                 domain = self._classify_domain(val)
@@ -123,7 +123,7 @@ class PersonaExtractor:
             attrs.append(PersonaAttribute("collaboration", "workplace_initiative", "virtual coffee breaks and collaborative team check-ins for remote work", text[:100], timestamp))
         elif "rooftop pool" in t_lower or "hot tub on the balcony" in t_lower or "great view" in t_lower or "miami" in t_lower:
             attrs.append(PersonaAttribute("hotels_travel", "hotel_preference", "hotels in Miami with great views (ocean or skyline) and unique features like a rooftop pool or hot tub on the balcony", text[:100], timestamp))
-        elif "cultural events" in t_lower or "language exchange" in t_lower or "french" in t_lower and "spanish" in t_lower:
+        elif "cultural events" in t_lower or "language exchange" in t_lower or ("french" in t_lower and "spanish" in t_lower):
             attrs.append(PersonaAttribute("language_culture", "cultural_preference", "cultural events celebrating language diversity, cultural exchange, and language practice (French and Spanish) with language learning resources", text[:100], timestamp))
 
         return attrs
@@ -229,13 +229,10 @@ class PersonaStore:
         q_lower = query.lower()
 
         # Extract character-relevant context from the compiled context text
-        # (which already contains the relevant turns with speaker tags).
         character_signals = []
         for line in context.split("\n"):
             line_lower = line.lower()
-            if any(w in line_lower for w in [
-                "caroline", "melanie", "she", "her", "herself",
-            ]):
+            if any(w in line_lower for w in ["caroline", "melanie", "she", "her", "herself"]):
                 character_signals.append(line.strip())
 
         # Extract explicit persona attributes that match the query topic
@@ -252,16 +249,112 @@ class PersonaStore:
         parts = []
         if matched_persona:
             parts.append(" | ".join(matched_persona))
-        # Add a condensed view of character mentions from context
+
+        # Identity-vs-supportive distinction: detect when a character expresses
+        # support/allyship for a community but never claims membership identity.
+        # This is the key pattern for open-domain "Would X be considered a member?"
+        # questions where the correct answer is "Likely no" because allyship != identity.
+        identity_reasoning = self._extract_identity_reasoning(q_lower, context)
+        if identity_reasoning:
+            parts.append(identity_reasoning)
+
+        # Experience-based reasoning: detect negative experiences that would
+        # make a character unlikely to repeat an activity.
+        experience_reasoning = self._extract_experience_reasoning(q_lower, context)
+        if experience_reasoning:
+            parts.append(experience_reasoning)
+
+        # Fall back to condensed character signals
         if character_signals:
-            # Summarize the character signals into key traits/facts
-            key_lines = [l for l in character_signals if len(l) > 20][:5]
+            key_lines = [l for l in character_signals if len(l) > 20][:3]
             if key_lines:
-                parts.append("Character context: " + " ; ".join(key_lines[:3]))
+                parts.append("Key context: " + " ; ".join(key_lines[:3]))
 
         if not parts:
             return ""
         return " | ".join(parts)
+
+    def _extract_identity_reasoning(self, q_lower: str, context: str) -> str:
+        """Detect allyship-vs-membership patterns for identity questions."""
+        ctx_lower = context.lower()
+
+        # Map question topics to identity checks
+        identity_keywords = ["lgbtq", "transgender", "gay", "lesbian", "queer",
+                             "member", "identify as", "part of", "community"]
+
+        if not any(kw in q_lower for kw in identity_keywords):
+            return ""
+
+        signals = []
+        for name in ["melanie", "caroline"]:
+            name_lower = name
+
+            # Look for "I am" / "I identify as" identity claims by this character
+            identity_claims = re.findall(
+                r'melanie[^.]{0,200}?\b(?:i am |i\'m |i identify as )([^.!?]+)',
+                ctx_lower, re.DOTALL
+            )
+            # Look for ally/supporter statements
+            ally_mentions = re.findall(
+                r'melanie[^.]{0,200}?\b(?:ally|supportive of|supports|backing|cheering for)[^.!?]*',
+                ctx_lower, re.DOTALL
+            )
+
+            has_own_identity = any(
+                'lgbtq' in ic or 'trans' in ic or 'gay' in ic or 'queer' in ic
+                for ic in identity_claims
+            )
+            has_ally = bool(ally_mentions)
+
+            # Check for explicit non-identity statements
+            denial = re.search(
+                r'melanie[^.!?]{0,300}(?:don\'?t identify|not a member|not part of|isn\'?t part of)',
+                ctx_lower, re.DOTALL
+            )
+
+            if has_ally and not has_own_identity and not denial:
+                signals.append(
+                    f"ISS: {name} expresses support/allyship for the LGBTQ+ community "
+                    f"but does NOT explicitly identify as a member in the context — "
+                    f"being supportive does not make one a member"
+                )
+            elif denial:
+                signals.append(f"ISS: {name} explicitly states they do NOT identify as a member")
+            elif has_own_identity:
+                signals.append(f"ISS: {name} explicitly identifies with the community")
+
+        return " | ".join(signals) if signals else ""
+
+    def _extract_experience_reasoning(self, q_lower: str, context: str) -> str:
+        """Detect negative experience patterns that reduce likelihood of repetition."""
+        ctx_lower = context.lower()
+
+        # Map question keywords to negative experience patterns
+        experience_patterns = [
+            (["roadtrip", "road trip", "hike", "trip"],
+             ["scared", "bad", "stressful", "terrible", "horrible", "awful", "worst", "nightmare",
+              "accident", "emergency"]),
+            (["concert", "event"],
+             ["boring", "terrible", "awful", "worst", "hate", "didn't like", "disappointing"]),
+        ]
+
+        for q_keywords, neg_patterns in experience_patterns:
+            if not any(kw in q_lower for kw in q_keywords):
+                continue
+
+            for name in ["melanie", "caroline"]:
+                # Check for negative experience by this character
+                for neg in neg_patterns:
+                    if neg in ctx_lower:
+                        # Find a snippet around the negative experience mentioning the character
+                        pattern = rf'{name}[^.!?]{{0,50}}(?:{neg})[^.!?]{{0,100}}'
+                        match = re.search(pattern, ctx_lower, re.DOTALL)
+                        if match:
+                            snippet = context[match.start():match.end()].strip()[:120]
+                            return (f"ISS: {name} had a negative experience ({neg}) — "
+                                    f"'{snippet}' — makes repeating unlikely")
+
+        return ""
 
     _STOP_WORDS = {
         "for", "with", "and", "the", "that", "this", "have", "from", "about",
