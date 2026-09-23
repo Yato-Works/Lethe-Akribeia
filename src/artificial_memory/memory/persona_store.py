@@ -145,6 +145,12 @@ class PersonaExtractor:
 class PersonaStore:
     """Deterministic User Persona Store."""
 
+    # Regex to parse context turns, including "(In reply to ...)" nested quotes
+    _TURN_PATTERN = re.compile(
+        r"\[.*?\]\s*(?:\([^)]*\)\s*)*([^:]+):\s*(.*?)(?=\[.*?\]\s*(?:\([^)]*\)\s*)*[^:]+:|\Z)",
+        re.DOTALL
+    )
+
     def __init__(self) -> None:
         self.extractor = PersonaExtractor()
         self.attributes: list[PersonaAttribute] = []
@@ -267,25 +273,28 @@ class PersonaStore:
             return ""
         return " | ".join(parts)
 
+    def _parse_turns(self, context: str) -> list[tuple[str, str]]:
+        """Parse context text into (speaker, text) turn pairs.
+
+        Handles both formats:
+          [Dxx:n on ...] Speaker: text
+          [Dxx:n on ...] (In reply to X: "quote") Speaker: text
+        """
+        return self._TURN_PATTERN.findall(context)
+
     def _extract_identity_reasoning(self, q_lower: str, context: str) -> str:
         """Detect allyship-vs-membership patterns for identity questions.
 
-        Parses the context turn-by-turn (format: [ID timestamp] Speaker: text)
-        and checks only the target character's own statements for identity claims
-        vs ally/supporter statements about another character.
+        Parses the context turn-by-turn and checks only the target character's
+        own statements for identity claims vs ally/supporter statements.
         """
         identity_keywords = ["lgbtq", "transgender", "gay", "lesbian", "queer",
                              "member", "identify as", "part of", "community"]
         if not any(kw in q_lower for kw in identity_keywords):
             return ""
 
+        turns = self._parse_turns(context)
         signals = []
-        # Parse context into turns: [Dxx:n on ...] Speaker: text
-        turn_pattern = re.compile(
-            r"\[.*?\]\s*([^:]+):\s*(.*?)(?=\[.*?\]\s*[^:]+:|\Z)",
-            re.DOTALL
-        )
-        turns = turn_pattern.findall(context)
 
         for name in ["melanie", "caroline"]:
             # Check this character's OWN statements only
@@ -293,7 +302,7 @@ class PersonaStore:
                          if spk.strip().lower() == name]
             combined = " ".join(own_texts).lower()
 
-            # Direct identity claim: "I am/am a/transgender/gay/etc"
+            # Direct identity claim: "I am/I'm/I identify as [something]"
             identity_claim = re.search(
                 r"i\s*(?:'m|am|identif(?:y|ies) as)\s+(\S+)",
                 combined
@@ -304,7 +313,6 @@ class PersonaStore:
             ))
 
             # Ally/supporter statement: expressing support for community
-            # but not claiming personal membership
             ally_keywords = ["supportive of", "supports", "backing",
                              "cheering for", "ally", "amazing", "inspiring",
                              "so proud", "so glad", "love that", "great for"]
@@ -318,7 +326,7 @@ class PersonaStore:
                 combined
             )
             denial = denial or re.search(
-                r"not a member|not part of|isn't part of",
+                r"not a member|not part of|isn't part of|don't identify",
                 combined
             )
 
@@ -335,12 +343,16 @@ class PersonaStore:
         return " | ".join(signals) if signals else ""
 
     def _extract_experience_reasoning(self, q_lower: str, context: str) -> str:
-        """Detect negative experience patterns that reduce likelihood of repetition."""
-        ctx_lower = context.lower()
+        """Detect negative experience patterns that reduce likelihood of repetition.
+
+        Uses turn-level parsing so we can check if the target character
+        expressed the negative experience in their own statements.
+        """
+        turns = self._parse_turns(context)
 
         experience_patterns = [
             (["roadtrip", "road trip", "hike", "trip"],
-             ["scared", "bad", "stressful", "terrible", "horrible", "awful", "worst",
+             ["scared", "scary", "bad", "stressful", "terrible", "horrible", "awful", "worst",
               "nightmare", "accident", "emergency"]),
             (["concert", "event"],
              ["boring", "terrible", "awful", "worst", "hate", "didn't like", "disappointing"]),
@@ -351,14 +363,15 @@ class PersonaStore:
                 continue
 
             for name in ["melanie", "caroline"]:
-                for neg in neg_patterns:
-                    if neg in ctx_lower:
-                        # Find negative experience snippet mentioning the character
-                        pattern = rf'{name}[^.!?]{0,80}(?:{neg})[^.!?]{{0,120}}'
-                        match = re.search(pattern, ctx_lower, re.DOTALL)
-                        if match:
-                            snippet = context[match.start():match.end()].strip()[:150]
-                            return (f"ISS {name}: negative experience ({neg}) — "
+                # Find turns where this character speaks and mentions a negative experience
+                for spk, text in turns:
+                    if spk.strip().lower() != name:
+                        continue
+                    text_lower = text.lower()
+                    for neg in neg_patterns:
+                        if neg in text_lower:
+                            snippet = text.strip()[:120]
+                            return (f"ISS {name}: had a negative experience ({neg}) — "
                                     f"'{snippet}' — makes repeating unlikely")
 
         return ""
