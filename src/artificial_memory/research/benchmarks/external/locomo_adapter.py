@@ -563,7 +563,13 @@ class LoCoMoAdapter:
             prompt = (
                 f"[INSTRUCTION: EVIDENCE DIRECTOR - FACT EXTRACTION]\n"
                 f"Answer the question directly based on the dialogue context below.{guidance}\n"
-                f"- Extract the exact facts, names, numbers, or reasons concisely.\n\n"
+                f"- Extract the exact facts, names, numbers, or reasons concisely.\n"
+                f"- For 'what', 'when', 'how many', 'why' questions: answer with the\n"
+                f"  exact value from the context. Do NOT add extra information.\n"
+                f"- For 'how' questions: state the reason/purpose in your own words\n"
+                f"  ONLY if the context gives a clear reason.\n"
+                f"- If the context does not contain the answer, reply: {OFFICIAL_ABSTENTION_TEXT}\n"
+                f"- Answer in a maximum of 2 sentences.\n\n"
                 f"{pcc.context_text}"
             )
             ans = answerer.answer(question.question, prompt)
