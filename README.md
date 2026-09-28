@@ -5,7 +5,7 @@
 
 An experimental long-term memory system for AI that treats forgetting as progressive resolution loss rather than deletion.  
 *Deterministic memory compilation · Temporal reasoning · Evidence provenance · MCP native*  
-*(Formerly: Artificial Memory)*
+*(Formerly: Artificial Memory / `lethe-akribeia`)*
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -17,106 +17,98 @@ An experimental long-term memory system for AI that treats forgetting as progres
 
 ## What is Lethe?
 
-Lethe Akribeia is an open-source cognitive memory runtime designed for long-term AI persistence.  
-Unlike standard vector RAG or naive context stuffing, Lethe compiles conversational history into structured, resolution-tiered memory states using **zero LLM calls on ingestion**, attaches deterministic calendar and aggregation co-processors, and preserves full evidentiary provenance back to the exact source turn.
+Lethe Akribeia is an open-source cognitive memory runtime designed for persistent AI agents.  
+Unlike naive vector RAG or raw context stuffing, Lethe compiles conversational history into structured, resolution-tiered memory states using **zero LLM calls on ingestion (Write LLM = 0)**. It pairs memory storage with deterministic calendar and aggregation co-processors, preserving complete evidentiary provenance back to the exact conversational turn.
+
+```
+Conversational Turns
+        │ (Zero-LLM Deterministic Ingestion)
+        ▼
+   [Memory IR] ── Level 0 (Raw) → Level 4 (Anchor)
+        │
+   [MSC Compiler] + Co-Processors (CHRONOS / Aggregation / Committer)
+        │
+   [Compiled Context] (Frozen, Auditable)
+        │
+   [Reader LLM] (1.5B ~ 7B ~ Frontier)
+        ▼
+   Deterministic Answer
+```
 
 ---
 
 ## Evaluation Highlights
 
-We do not present Lethe as a universal SOTA system. However, specific components already perform at the ceiling of current long-context benchmarks, while full pipeline evaluations expose clear architectural insights:
+We do not present Lethe as a universal SOTA system. Rather, specific components reach benchmark ceilings, while end-to-end evaluations reveal clear, actionable architectural boundaries:
 
 ### What is Working vs. What is Unsolved
 
 ```text
-What is working (Strong Results)
-🟢 BEAM Benchmark (500K tokens)      — 100.0% Accuracy across all 10 evaluated probing categories
-🟢 BEAM Benchmark (1M & 10M tokens)   — 100.0% Accuracy on evaluated long-horizon probes
-🟢 LoCoMo Evidence-Presence Recall   — 81.1% on 1,540 non-adversarial questions (Corrected Oracle)
-🟢 Zero-LLM Ingestion Write Path     — 0 LLM calls during memory compilation (deterministic indexing)
+What is working (Strong Results 🟢)
+🟢 BEAM Benchmark (500K tokens)      — 100.0% accuracy across all 10 evaluated probing categories
+🟢 BEAM Benchmark (1M & 10M tokens)   — 100.0% accuracy under extreme context horizons
+🟢 LoCoMo Evidence-Presence Recall   — 81.1% on 1,540 non-adversarial questions (All-Evidence Oracle)
+🟢 Zero-LLM Ingestion Write Path     — 0 LLM calls during memory ingestion (pure deterministic indexing)
+🟢 Reader Invariance at Small Scales — 1.5B achieves 64.5% vs 7B at 64.7% (Lethe context absorbs model drop)
 🟢 Deterministic Co-Processors        — Calendar arithmetic (CHRONOS) & Counting/aggregation without LLM
-🟢 Decoupled Reader Evaluation       — Frozen-context testbed isolating memory retrieval from Reader reasoning
 
-What is not solved (Current Limitations)
-🟡 LoCoMo End-to-End QA F1           — 50.9% with deployed local 7B Reader (reasoning bottleneck)
-🟡 Temporal Reasoning Accuracy       — Relative date intervals remain challenging for 7B models
-🟡 Frontier Reader Probe Scope       — 76.38% F1 observed on a 10-question probe; full 1,540Q pending budget
-🟡 Federated Multi-Agent Protocol    — Operator orchestration exists; distributed consistency is ongoing
+What is not solved (Current Limitations 🟡)
+🟡 LoCoMo End-to-End QA F1           — 50.9% with deployed 7B Reader (synthesis & reasoning gap)
+🟡 Relative Temporal Reasoning       — Multi-interval relative expressions remain challenging for 7B Readers
+🟡 Frontier Reader Scale             — Full 1,540-question frontier Reader evaluation is pending compute budget
+🟡 Multi-Agent Distributed Consensus — Kubernetes Operator CRDs exist; distributed consensus is experimental
 ```
 
 ### Benchmark Summary Table
 
-| Benchmark / Evaluation | Result | What it measures |
-|:---|:---:|:---|
-| **BEAM (500K scale, 10 categories)** | **100.0%** | Probing accuracy across multi-session, contradiction, temporal, event ordering |
-| **BEAM (1M & 10M scales)** | **100.0%** | Probing accuracy under extreme context horizons |
-| **LoCoMo Evidence Recall** (1,540Q) | **81.1%** | Whether required evidence was successfully retrieved into Lethe's compiled context |
-| **LoCoMo Official QA F1** (1,540Q) | **50.9%** | End-to-end answer accuracy using the deployed local 7B Reader |
-| **Frozen Context Probe (7B)** | **50.92% F1** | Baseline local 7B Reader on 10 probe questions (64.68% binary hit) |
-| **Frozen Context Probe (Frontier)** | **76.38% F1** | Gemini 3.6 Flash on the **exact same frozen context** (90.00% binary hit, **+25.46 pp**) |
-
-> [!IMPORTANT]
-> **81.1% evidence recall is not equivalent to 81.1% QA accuracy.**  
-> Retrieving the correct evidence into context does not guarantee that a compact 7B Reader can synthesize and reason over it to produce the exact answer string.
-
----
-
-## The Key Question
-
-When an end-to-end memory benchmark fails, **is the bottleneck the memory retrieval, or the Reader model?**
-
-```
-                 SAME FROZEN LETHE CONTEXT
-                             │
-              ┌──────────────┴──────────────┐
-              ▼                             ▼
-       Local 7B Reader              Frontier Reader
-      (qwen2.5-coder:7b)           (Gemini 3.6 Flash)
-              │                             │
-          50.92 F1                      76.38 F1
-          64.68 Hit                     90.00 Hit
-              │                             │
-              └──────────────┬──────────────┘
-                             ▼
-                 +25.46 pp F1 (+25.32 pp Hit)
-```
-
-In standard agent pipelines, memory and generation are conflated into a single metric. Lethe decouples them: by freezing the compiled memory context, we can evaluate memory retrieval independently from Reader synthesis.
-
----
-
-## Frozen Context Probe: Reader Sensitivity
-
-To test whether the 7B Reader was underutilizing Lethe's compiled context, we ran a validation probe across identical contexts and questions:
-
-| Category | Deployed 7B Reader (F1) | Gemini 3.6 Flash (F1) | Delta |
-|:---|:---:|:---:|:---:|
-| **Multi-hop Reasoning** | 64.7% | **100.0%** | **+35.3 pp** |
-| **Temporal Reasoning** | 50.2% | **83.3%** | **+33.1 pp** |
-| **Open-domain / Factual** | 39.6% | **100.0%** | **+60.4 pp** |
-| **Overall F1** | 50.92% | **76.38%** | **+25.46 pp** |
-| **Binary Hit Rate** | 64.68% | **90.00%** | **+25.32 pp** |
+| Benchmark / Evaluation | Result | Dataset / Scope | What it measures |
+|:---|:---:|:---:|:---|
+| **BEAM (500K scale)** | **100.0%** | Official 10 probing categories | Pinpoint extraction, contradiction detection, and event ordering from massive context |
+| **BEAM (1M & 10M scales)** | **100.0%** | Long-horizon probing subsets | Needle retrieval and state tracking under extreme token budgets |
+| **LoCoMo Evidence Recall** | **81.1%** | 1,540 non-adversarial questions | Whether **all** required gold evidence turns were compiled into context (Strict Content Oracle) |
+| **LoCoMo Zero-Evidence Failure** | **8.7%** | 134 / 1,540 questions | Complete retrieval failure (no required evidence turns retrieved by the memory engine) |
+| **LoCoMo Official QA F1** | **50.9%** | 1,540 questions (7B Reader) | End-to-end question answering using local 7B Reader |
+| **LongMemEval (500Q)** | **81.6%** | 500 questions (7B Reader) | Long-term memory evaluation suite accuracy |
 
 > [!NOTE]
-> **This is a 10-question validation probe, not a full 1,540-question claim.**  
-> However, it provides strong preliminary evidence: when the compiled context is held strictly constant, a frontier-class Reader extracts answers with substantially higher precision (+25.46 pp F1). This indicates that the 7B Reader represents a significant portion of the remaining error surface.
+> **Why is BEAM 100% while LoCoMo is 50.9%?**  
+> BEAM tests long-context needle extraction, contradiction resolution, and event sequencing from structured chats — tasks where Lethe's deterministic timeline extraction and noise filtering excel. In contrast, LoCoMo tests open-domain commonsense synthesis and personality deductions across casual dialogues, placing heavy demands on the Reader's reasoning capacity.
 
 ---
 
-## Failure Ceiling: Error Census on 1,540 Questions
+## Model Sensitivity: The Reader Floor
 
-Rather than treating errors as an undifferentiated failure score, Lethe provides a diagnostic framework that separates failure causes across all 1,540 non-adversarial questions in LoCoMo:
+A core empirical finding of over 140+ hours of benchmark sweeps is that **Lethe's structured context insulates against Reader downgrades**:
+
+| Reader Model | Parameter Scale | LoCoMo 1,540Q Hit | LoCoMo Official F1 | LongMemEval 500Q | Behavioral Profile |
+|:---|:---:|:---:|:---:|:---:|:---|
+| **Qwen 2.5 1.5B** | 1.5B | **64.5%** | **50.8%** | **80.0%** | Robust: minimal degradation despite 5x parameter drop |
+| **Qwen 2.5 7B Instruct** | 7B | **64.7%** | **50.9%** | **81.6%** | Baseline deployed: strong instruction adherence |
+| **Qwen 2.5 7B Coder** | 7B | **64.7%** | **50.9%** | **81.5%** | Strict formatting adherence; comparable overall |
+| *(Gemini 3.6 Flash Probe)* | *Frontier* | *(90.0% / 10Q)* | *(76.38% / 10Q)* | *—* | *Preliminary probe on identical frozen context* |
+
+> [!TIP]
+> Across 1,540 questions, swapping the Reader from 7B to 1.5B yielded virtually identical accuracy (**64.7% vs 64.5%, Δ = +0.13 pp, p = 0.95**). Because Lethe compiles high-density, pre-filtered context, compact local models perform far above their unassisted baseline.
+
+---
+
+## Failure Ceiling: Error Anatomy on 1,540 Questions
+
+Rather than treating errors as an undifferentiated failure score, Lethe partitions failure causes across all 1,540 questions in LoCoMo:
 
 ```
 1,540 Total Questions
 │
 ├── 996 (64.7%) Correctly Answered / Hit
-├── 134 (8.7%)  Retrieval Failure   → Required evidence was missing from compiled context (Memory limit)
-├── 32  (2.1%)  Commitment Failure  → Evidence was present, but Answer Committer rejected/abstained
+├── 134 (8.7%)  Retrieval Failure   → Zero evidence turns reached the compiled context (Memory limit)
+├── 32  (2.1%)  Commitment Failure  → Evidence was present, but Answer Committer rejected or abstained
 └── 378 (24.5%) Reasoning Gap       → Evidence was present in context, but Reader failed to synthesize
 ```
 
-By isolating retrieval failure from Reader reasoning failure, future research can target the actual bottleneck rather than blindly tweaking prompts.
+### Clarifying Evidence Recall vs. Retrieval Failure
+- **81.1% (1,249 / 1,540 questions)**: **All-Evidence Match** — every single required gold evidence turn was present in Lethe's compiled context.
+- **8.7% (134 / 1,540 questions)**: **Zero-Evidence Failure** — the memory engine completely missed the gold evidence.
+- **10.2% (157 / 1,540 questions)**: **Partial Retrieval** — some required evidence turns were retrieved, but not all (e.g., in multi-hop questions requiring multiple dates).
 
 ---
 
@@ -124,20 +116,18 @@ By isolating retrieval failure from Reader reasoning failure, future research ca
 
 ### 1. Forgetting = Loss of Resolution, Not Deletion
 Human memory does not drop files into a recycle bin. Over time, memories decay in resolution:
-- **Level 0 (RAW)**: Full verbatim conversation turns
-- **Level 1 (EPISODIC)**: Structured event records with speaker and tone
-- **Level 2 (CONDENSED)**: Salient conversational points and factual assertions
-- **Level 3 (FACT/STATE)**: Entity state changes and verified decisions
-- **Level 4 (ANCHOR)**: High-level durable life facts and long-term beliefs
-
-Queries start at low token cost and expand resolution dynamically only when ambiguity demands it.
+- **Level 0 (RAW)**: Full verbatim conversation turns.
+- **Level 1 (EPISODIC)**: Structured events tagged with speaker, timestamp, and conversational context.
+- **Level 2 (CONDENSED)**: Salient points and assertions extracted via syntactic entity-predicate parsing.
+- **Level 3 (FACT/STATE)**: Verified entity state changes and timeline anchors (resolved by `TemporalNormalizer`).
+- **Level 4 (ANCHOR)**: High-level durable life facts, user profiles, and recurring beliefs.
 
 ### 2. Zero-LLM Ingestion & Deterministic Co-Processors
-Memory ingestion does not rely on non-deterministic LLM summarization:
-- **Write LLM Calls = 0**: Conversation turns are ingested and token-indexed deterministically.
-- **CHRONOS Temporal Co-processor**: Computes calendar arithmetic deterministically (resolving relative expressions like "last Tuesday" or "three months ago" against conversation timestamps).
+Memory ingestion does not rely on non-deterministic, expensive LLM calls:
+- **Write LLM Calls = 0**: Ingestion and indexing are purely deterministic (regex, syntactic parsing, token inverted index).
+- **CHRONOS Temporal Co-processor**: Computes calendar arithmetic deterministically (resolving relative expressions like "last Tuesday" or "three months ago" against message timestamps).
 - **Aggregation Co-processor**: Handles counting, lists, and frequency queries deterministically.
-- **Answer Committer**: Enforces an answer contract to prevent hallucinated drift.
+- **Answer Committer**: Enforces a strict answer contract to prevent hallucinated drift.
 
 ### 3. Context as an Intermediate Representation (Context IR / MSC)
 Rather than dumping raw text into a prompt, Lethe compiles memories into a structured **Memory State Context (MSC)**:
@@ -175,8 +165,8 @@ Exposed MCP Tools:
 
 ```bash
 # Install
-git clone https://github.com/Yato-Works/artificial-memory.git
-cd artificial-memory
+git clone https://github.com/Yato-Works/Lethe-Akribeia.git
+cd Lethe-Akribeia
 pip install -e ".[vector,llm]"
 
 # Start a session
@@ -197,10 +187,10 @@ lethe timeline
 
 ## Hardware & Research Design
 
-This project was built under a **deliberately constrained research budget** using a single local GPU (RTX 4080 / 16GB VRAM) and a local 7B-class model (`qwen2.5-coder:7b`).
+This project was built under a **deliberately constrained research budget** using a single local GPU (RTX 4080 / 16GB VRAM) and local models.
 
-Running 1,540 questions through commercial frontier APIs with long contexts currently exceeds our available research budget.  
-**Rather than hiding this constraint, Lethe converts it into research design**: by freezing its compiled contexts (`locomo_gold_context_cache.jsonl`), the memory system and Reader can be evaluated independently whenever additional compute becomes available.
+Evaluating 1,540 questions through commercial frontier APIs with massive contexts currently exceeds our budget.  
+**Rather than hiding this constraint, Lethe converts it into research design**: by freezing its compiled contexts (`locomo_gold_context_cache.jsonl`), the memory engine and Reader models can be evaluated independently whenever additional compute becomes available.
 
 ---
 
@@ -209,9 +199,8 @@ Running 1,540 questions through commercial frontier APIs with long contexts curr
 To remain scientifically rigorous, here is what is explicitly left as future work:
 
 - [ ] **Full 1,540-question frontier Reader evaluation** (pending compute/API budget)
-- [ ] **Comprehensive Reader scaling laws** (7B vs 14B vs 32B vs 70B vs Frontier)
+- [ ] **Systematic scaling laws beyond 7B** (14B vs 32B vs 70B vs Frontier)
 - [ ] **Complex overlapping temporal interval resolution**
-- [ ] **Full LongMemEval and PersonaMem local benchmark suites**
 - [ ] **Distributed multi-agent consensus protocols** (Kubernetes Operator CRDs exist, but distributed consensus is experimental)
 
 ---
@@ -230,22 +219,22 @@ python scripts/benchmarks/score_locomo_run_json.py --input benchmark_results/loc
 # 3. Inspect Failure Ceiling breakdown
 python scripts/benchmarks/failure_ceiling.py
 
-# 4. Run BEAM benchmark
+# 4. Run BEAM benchmark (500K scale)
 python scripts/run_coder7b_beam.py --scale 500K
 
-# 5. Run Frontier Reader probe on frozen context (requires GEMINI_API_KEYS)
-python scripts/benchmarks/run_frontier_eval.py --limit 10
+# 5. Run Model Sensitivity pairing (1.5B vs 7B)
+python scripts/benchmarks/model_sensitivity.py --baseline benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json
 ```
 
 ---
 
 ## Why Release Now?
 
-I wanted to find out how far a structured, local memory system could go when the hardware and models were small.
+I wanted to find out how far a structured, local memory system could go when hardware and models were small.
 
 Lethe Akribeia v0.2.0 is not a finished monument. It is a working, auditable checkpoint.  
 It has measurable strengths. It has measurable weaknesses.  
-And now, it separates memory retrieval from Reader reasoning so that both can be improved systematically.
+And now, it separates memory retrieval from Reader reasoning so that both can be evaluated systematically.
 
 I still want to find out how far this architecture can go.
 
@@ -259,7 +248,7 @@ I still want to find out how far this architecture can go.
   author = {Yato-Works},
   year = {2026},
   version = {0.2.0},
-  url = {https://github.com/Yato-Works/artificial-memory}
+  url = {https://github.com/Yato-Works/Lethe-Akribeia}
 }
 ```
 

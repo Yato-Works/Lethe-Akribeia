@@ -301,6 +301,8 @@ def evaluate_and_compare(answers: dict[str, str], baseline_path: Path):
     hit_rate = sum(r["correct"] for r in rows.values()) / n * 100 if n else 0.0
     official_f1 = scored["totals"]["official_f1"]["sum"] / n * 100 if n else 0.0
 
+    # Filter baseline to the EXACT SAME question IDs
+    paired_ref = [r for r in ref_results if r["question_id"] in rows]
     b_rows = {
         r["question_id"]: {
             "correct": r["is_correct"],
@@ -308,8 +310,9 @@ def evaluate_and_compare(answers: dict[str, str], baseline_path: Path):
             "prediction": r["prediction"],
             "ground_truth": r["ground_truth"],
         }
-        for r in ref_results
+        for r in paired_ref
     }
+
     b_scored = ls.score_run({"model": ref_data.get("model", "7B"), "rows": b_rows})
     b_n = len(b_rows)
     b_hit_rate = sum(r["correct"] for r in b_rows.values()) / b_n * 100 if b_n else 0.0
