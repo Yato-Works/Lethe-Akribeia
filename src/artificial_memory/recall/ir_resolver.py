@@ -8,11 +8,10 @@ and deterministic abstention.
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
-from artificial_memory.core.ir import IRRelation, IRStatus, StructuredIR
-from artificial_memory.research.benchmarks.llm import ABSTENTION_TEXT
+from artificial_memory.core.ir import IRRelation, StructuredIR
 
 
 @dataclass

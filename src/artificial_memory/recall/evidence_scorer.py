@@ -13,13 +13,10 @@ Decouples open-domain conversation retrieval from domain-specific engineering pr
 
 from __future__ import annotations
 
-import math
 import re
 from dataclasses import dataclass
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.memory_types import ApexMemoryUnit
-from artificial_memory.core.ir.structured import StructuredIR
 
 
 @dataclass
@@ -103,9 +100,9 @@ class UniversalEvidenceScorer:
         "seuss": ["classics", "kids' books", "children's books", "book", "books"],
         "symbol": ["rainbow", "flag", "mural", "necklace", "bowl", "art", "symbols"],
         "symbols": ["rainbow", "flag", "mural", "necklace", "bowl", "art", "symbol"],
-        "destress": ["running", "farther", "headspace", "calm", "relax", "mental health"],
         "de-stress": ["running", "farther", "headspace", "calm", "relax", "mental health"],
         "park": ["national park", "theme park", "beach", "camping", "nature", "trip", "parks"],
+
         "degree": ["diploma", "graduate", "university", "college", "major", "business administration", "counseling"],
     }
 
@@ -139,7 +136,7 @@ class UniversalEvidenceScorer:
         words = re.findall(r"\b[a-zA-Z0-9_\-\']+\b", text.lower())
         return [w for w in words if len(w) > 2 and w not in self.STOP_WORDS]
 
-    def extract_target_actor(self, query: str) -> Optional[str]:
+    def extract_target_actor(self, query: str) -> str | None:
         """Detect human subject/actor in query."""
         q_lower = query.lower()
         for actor in self.KNOWN_ACTORS:
@@ -169,8 +166,8 @@ class UniversalEvidenceScorer:
         self,
         query: str,
         unit: ApexMemoryUnit,
-        weights: Optional[EvidenceScoreWeights] = None,
-        doc_frequencies: Optional[dict[str, int]] = None,
+        weights: EvidenceScoreWeights | None = None,
+        doc_frequencies: dict[str, int] | None = None,
         total_docs: int = 400,
     ) -> EvidenceScoreBreakdown:
         """Compute the full multi-dimensional evidence score for a single memory unit."""

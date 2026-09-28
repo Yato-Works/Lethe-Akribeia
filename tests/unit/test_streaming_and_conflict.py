@@ -1,6 +1,5 @@
 """Unit tests for Streaming Dialogue Runner & Conflict State Management (Phase 5)."""
 
-import pytest
 
 from artificial_memory.core.ir.conflict_state import (
     ConflictResolutionStatus,
@@ -8,7 +7,6 @@ from artificial_memory.core.ir.conflict_state import (
     ConflictStateManager,
 )
 from artificial_memory.core.ir.structured import IRRelation, IRStatus, StructuredIR
-from artificial_memory.core.models import ResolutionLevel
 from artificial_memory.research.benchmarks.streaming_runner import (
     StreamingDialogueRunner,
     StreamingTurn,

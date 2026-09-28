@@ -17,7 +17,6 @@ import re
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Sequence
 
 from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
@@ -25,6 +24,8 @@ from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.recall.state_timeline import StateTimelineEngine
 from artificial_memory.research.benchmarks.external.lme_prompts import (
     ADOPTED as LME_PROMPT_FIXES,
+)
+from artificial_memory.research.benchmarks.external.lme_prompts import (
     build_prompt as build_lme_prompt,
 )
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
@@ -203,7 +204,7 @@ class LongMemEvalAdapter:
 
     def load_dataset(self) -> list[LongMemEvalItem]:
         """Load all 500 LongMemEval items."""
-        with open(self.dataset_path, "r", encoding="utf-8") as f:
+        with open(self.dataset_path, encoding="utf-8") as f:
             raw_data = json.load(f)
 
         items: list[LongMemEvalItem] = []
@@ -277,7 +278,8 @@ class LongMemEvalAdapter:
             prompt_context = pcc.context_text
             if item.question_type == "single-session-preference":
                 lines = pcc.context_text.split("\n")
-                pref_lines = [l for l in lines if l.startswith("[User Profile & Preferences:")]
+                pref_lines = [line for line in lines if line.startswith("[User Profile & Preferences:")]
+
                 pref_grounding = "\n".join(pref_lines) if pref_lines else ""
                 prompt_context = (
                     f"[USER PROFILE & PREFERENCES]\n{pref_grounding}\n\n"
@@ -381,7 +383,7 @@ class LongMemEvalAdapter:
                 temporal_skill_block = ""
                 if temporal_skill_result.success and temporal_skill_result.skill_block:
                     temporal_skill_block = temporal_skill_result.skill_block
-                
+
                 if t_grounding:
                     if "Time-Anchored Event" in t_grounding.grounding_text:
                         prompt_context = (

@@ -12,7 +12,7 @@ Achieves 3x higher information density per token, strictly maintaining token bud
 from __future__ import annotations
 
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 from artificial_memory.core.ir.structured import IRRelation, IRStatus, StructuredIR
 from artificial_memory.protein.temporal_supersession_protein import SupersededEvidenceGroup

@@ -7,10 +7,9 @@ into a single, structured proposition tuple:
 
 from __future__ import annotations
 
-import datetime
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import Any, Optional, Sequence
+from typing import Any
 
 
 class PropositionStatus(StrEnum):
@@ -28,7 +27,7 @@ class UnifiedProposition:
     subject: str                      # Entity / Actor (e.g., "Eli", "Caroline", "workstation")
     predicate: str                    # Action / Relation (e.g., "uses", "owns", "prefers", "moved_from", "graduated_from")
     object: str                       # Target / Value / Concept (e.g., "Sony A7R IV", "Sweden", "hotel with rooftop pool")
-    time_scope: Optional[str] = None  # Valid timestamp (e.g., "2023-01-08", "2023/05/29")
+    time_scope: str | None = None  # Valid timestamp (e.g., "2023-01-08", "2023/05/29")
     session_id: str = ""              # Session identifier (e.g., "session_14", "D4:3")
     source: str = "user"              # Speaker ("user", "assistant", "teammate")
     status: PropositionStatus = PropositionStatus.ACTIVE
@@ -36,7 +35,7 @@ class UnifiedProposition:
     raw_text: str = ""                # Original utterance snippet
     metadata: dict[str, Any] = field(default_factory=dict)
 
-    def to_tuple(self) -> tuple[str, str, str, Optional[str], str, str, str, float]:
+    def to_tuple(self) -> tuple[str, str, str, str | None, str, str, str, float]:
         return (
             self.subject,
             self.predicate,
@@ -67,7 +66,7 @@ class UnifiedProposition:
 class StateSnapshot:
     """A point-in-time value snapshot for an attribute."""
     value: str
-    timestamp: Optional[str]
+    timestamp: str | None
     session_id: str
     proposition_id: str
 
@@ -79,16 +78,16 @@ class StateHistory:
     attribute: str
     snapshots: list[StateSnapshot] = field(default_factory=list)
 
-    def add_snapshot(self, value: str, timestamp: Optional[str], session_id: str, prop_id: str) -> None:
+    def add_snapshot(self, value: str, timestamp: str | None, session_id: str, prop_id: str) -> None:
         self.snapshots.append(StateSnapshot(value, timestamp, session_id, prop_id))
         # Keep sorted chronologically if timestamps are parseable
         self.snapshots.sort(key=lambda s: s.timestamp or "")
 
-    def get_latest(self) -> Optional[StateSnapshot]:
+    def get_latest(self) -> StateSnapshot | None:
         """Return the most current state (for 'What do they use now?')."""
         return self.snapshots[-1] if self.snapshots else None
 
-    def get_previous(self) -> Optional[StateSnapshot]:
+    def get_previous(self) -> StateSnapshot | None:
         """Return the immediately preceding state (for 'What did they use before?')."""
         if len(self.snapshots) >= 2:
             return self.snapshots[-2]
@@ -102,7 +101,7 @@ class StateHistory:
             s = self.snapshots[0]
             t = f" as of {s.timestamp}" if s.timestamp else ""
             return f"For {self.entity}, {self.attribute} is {s.value}{t}."
-        
+
         prev = self.snapshots[-2]
         curr = self.snapshots[-1]
         prev_t = f" ({prev.timestamp})" if prev.timestamp else ""

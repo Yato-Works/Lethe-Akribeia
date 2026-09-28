@@ -15,17 +15,17 @@ Handles all core temporal reasoning paradigms:
 
 from __future__ import annotations
 
-import calendar
 import datetime
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 
 MONTH_MAP = {
     "jan": 1, "january": 1, "feb": 2, "february": 2, "mar": 3, "march": 3,
-    "apr": 4, "april": 4, "may": 5, "may": 5, "jun": 6, "june": 6,
+    "apr": 4, "april": 4, "may": 5, "jun": 6, "june": 6,
+
     "jul": 7, "july": 7, "aug": 8, "august": 8, "sep": 9, "september": 9,
     "oct": 10, "october": 10, "nov": 11, "november": 11, "dec": 12, "december": 12,
 }
@@ -41,7 +41,7 @@ ACTION_VERBS = [
 ]
 
 
-def parse_date(date_str: str | None) -> Optional[datetime.date]:
+def parse_date(date_str: str | None) -> datetime.date | None:
     """Parse various date string formats into datetime.date."""
     if not date_str:
         return None
@@ -114,7 +114,7 @@ class TemporalResolver:
         query: str,
         records: Sequence[StructuredIR],
         reference_date_str: str | None = None,
-    ) -> Optional[TemporalGrounding]:
+    ) -> TemporalGrounding | None:
         """Analyze temporal query, retrieve event dates, and compute deterministic grounding."""
         ql = query.lower()
         q_d = parse_date(reference_date_str)
@@ -452,7 +452,7 @@ class TemporalResolver:
 
         return None
 
-    def _parse_relative_time_anchor(self, ql: str, q_d: Optional[datetime.date]) -> Optional[datetime.date]:
+    def _parse_relative_time_anchor(self, ql: str, q_d: datetime.date | None) -> datetime.date | None:
         if "valentine's day" in ql or "valentines day" in ql:
             year = q_d.year if q_d else 2023
             return datetime.date(year, 2, 14)
@@ -503,8 +503,8 @@ class TemporalResolver:
         self,
         event_str: str,
         sessions_data: list,
-        exclude_date: Optional[datetime.date] = None,
-    ) -> Optional[datetime.date]:
+        exclude_date: datetime.date | None = None,
+    ) -> datetime.date | None:
         words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", event_str.lower()))
         words = {w for w in words if len(w) >= 3 and w not in ["the", "and", "that", "this", "with", "have", "from", "for", "day"]}
         PROPER_STOP = {"camping", "trip", "national", "park", "event", "events", "class", "classes", "meeting", "workshop", "webinar", "first", "second", "third", "when", "after", "before"}

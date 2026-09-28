@@ -1,6 +1,5 @@
 """Unit tests for Apex Memory Runtime: MSC & State Reconstruction (Apex Phase A & B)."""
 
-import pytest
 
 from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler

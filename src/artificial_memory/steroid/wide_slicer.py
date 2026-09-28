@@ -14,11 +14,11 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Sequence
 
-from artificial_memory.core.ir.memory_types import ApexMemoryUnit, MemoryRole
 from artificial_memory.core.ir.structured import StructuredIR
+
 
 @dataclass
 class WideSliceResult:

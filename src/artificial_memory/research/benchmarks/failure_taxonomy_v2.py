@@ -13,10 +13,8 @@ Classifies failure modes into 8 orthogonal causal categories:
 
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import Optional
 
 
 class FailureCategoryV2(StrEnum):
@@ -49,7 +47,7 @@ class FailureClassifierV2:
         oracle_recall: bool,
         is_correct: bool,
         question_type: str = "general",
-    ) -> Optional[FailureDiagnosisV2]:
+    ) -> FailureDiagnosisV2 | None:
         """Classify a question outcome into Failure Taxonomy v2."""
         if is_correct:
             return None

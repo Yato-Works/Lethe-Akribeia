@@ -16,8 +16,8 @@ Prunes the 30-100 wide candidates down to top 8-12 high-precision evidence units
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 

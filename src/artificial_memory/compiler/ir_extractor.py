@@ -7,7 +7,6 @@ hardcoding, using deterministic syntactic and semantic pattern resolution.
 from __future__ import annotations
 
 import re
-from typing import Any
 
 from artificial_memory.core.ir import IRRelation, IRStatus, StructuredIR
 

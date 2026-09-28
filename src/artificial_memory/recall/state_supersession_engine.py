@@ -8,11 +8,9 @@ Resolves dynamic knowledge updates, state transitions, and supersession historie
 
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass
-from typing import Optional
 
-from artificial_memory.core.ir.proposition import StateHistory, StateSnapshot
+from artificial_memory.core.ir.proposition import StateSnapshot
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
 from artificial_memory.recall.query_planner import QueryPlan
 
@@ -23,7 +21,7 @@ class StateResolution:
     target_entity: str
     target_attribute: str
     is_current_query: bool
-    resolved_snapshot: Optional[StateSnapshot]
+    resolved_snapshot: StateSnapshot | None
     grounding_certificate: str
 
 
@@ -34,7 +32,7 @@ class StateSupersessionEngine:
         self,
         plan: QueryPlan,
         graph: UnifiedPropositionGraph,
-    ) -> Optional[StateResolution]:
+    ) -> StateResolution | None:
         """Analyze query plan against state histories in proposition graph."""
         q_lower = plan.raw_query.lower()
         is_previous_query = any(w in q_lower for w in ["previous", "previously", "used to", "before", "old", "earlier"])

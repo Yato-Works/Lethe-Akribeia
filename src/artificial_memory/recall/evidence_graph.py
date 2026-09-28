@@ -16,8 +16,8 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.memory_types import ApexMemoryUnit
 

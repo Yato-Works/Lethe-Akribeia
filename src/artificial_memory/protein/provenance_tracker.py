@@ -14,8 +14,8 @@ from __future__ import annotations
 
 import hashlib
 import re
-from dataclasses import dataclass, field
-from typing import Sequence
+from collections.abc import Sequence
+from dataclasses import dataclass
 
 from artificial_memory.core.ir.structured import StructuredIR
 

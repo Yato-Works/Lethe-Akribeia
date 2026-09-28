@@ -9,13 +9,11 @@ Systematically diagnoses and attributes benchmark failures into four root causes
 
 from __future__ import annotations
 
-import json
-from dataclasses import dataclass, field
+from collections.abc import Sequence
+from dataclasses import dataclass
 from enum import StrEnum
-from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
-from artificial_memory.core.ir import StructuredIR
 from artificial_memory.recall.ir_resolver import ResolvedContext
 from artificial_memory.research.benchmarks.arena import ArenaQuestion
 from artificial_memory.research.benchmarks.scorer import QuestionScore, term_present

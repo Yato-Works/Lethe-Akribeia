@@ -13,23 +13,23 @@ Usage:
 
 from __future__ import annotations
 
+from .aggregation_skill import AggregationCalculation, AggregationSkill
 from .base import (
-    SkillResult,
     MemorySkill,
     SkillRegistry,
+    SkillResult,
+    dispatch_skills,
     get_global_registry,
     register_skill,
-    dispatch_skills,
 )
-from .temporal_skill import TemporalSkill, TemporalCalculation
-from .aggregation_skill import AggregationSkill, AggregationCalculation
+from .temporal_skill import TemporalCalculation, TemporalSkill
 
 # Lazy import to avoid circular dependencies
 _temporal_skill_instance = None
 _aggregation_skill_instance = None
 
 
-def get_temporal_skill() -> "TemporalSkill":
+def get_temporal_skill() -> TemporalSkill:
     """Get or create the global TemporalSkill instance."""
     global _temporal_skill_instance
     if _temporal_skill_instance is None:
@@ -39,7 +39,7 @@ def get_temporal_skill() -> "TemporalSkill":
     return _temporal_skill_instance
 
 
-def get_aggregation_skill() -> "AggregationSkill":
+def get_aggregation_skill() -> AggregationSkill:
     """Get or create the global AggregationSkill instance."""
     global _aggregation_skill_instance
     if _aggregation_skill_instance is None:

@@ -7,8 +7,8 @@ Conflict Annotation -> Current-State Prioritization -> Minimal Context Output.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Sequence
 
 from artificial_memory.core.ir.conflict_state import ConflictResolutionStatus, ConflictStateManager
 from artificial_memory.core.ir.structured import IRRelation, IRStatus, StructuredIR

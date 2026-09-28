@@ -7,11 +7,11 @@ should be invoked based on query patterns, categories, and content analysis.
 from __future__ import annotations
 
 import re
-from typing import Optional, Sequence
+from collections.abc import Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
-from .base import MemorySkill, SkillRegistry
 
+from .base import MemorySkill, SkillRegistry
 
 # ============================================================
 # LoCoMo Category Keywords (for fast category detection)
@@ -108,21 +108,21 @@ class SkillDetector:
     Analyzes queries using keyword matching, regex patterns, and category
     information to determine which skills should be invoked.
     """
-    
-    def __init__(self, registry: Optional["SkillRegistry"] = None):
+
+    def __init__(self, registry: SkillRegistry | None = None):
         self.registry = registry
         # Compile LoCoMo category patterns for fast matching
         self._cat_patterns = {}
         for cat, keywords in LOCOMO_CATEGORY_KEYWORDS.items():
             pattern = r"\b(" + "|".join(re.escape(k) for k in keywords) + r")\b"
             self._cat_patterns[cat] = re.compile(pattern, re.IGNORECASE)
-        
+
         # Compile LME type patterns
         self._lme_patterns = {}
         for qtype, keywords in LME_TYPE_KEYWORDS.items():
             pattern = r"\b(" + "|".join(re.escape(k) for k in keywords) + r")\b"
             self._lme_patterns[qtype] = re.compile(pattern, re.IGNORECASE)
-    
+
     def detect_category(self, question: str) -> list[int]:
         """Detect LoCoMo categories from question text.
         
@@ -135,7 +135,7 @@ class SkillDetector:
             if matches > 0:
                 scores[cat] = matches
         return sorted(scores.keys(), key=lambda c: -scores[c])
-    
+
     def detect_lme_type(self, question: str) -> list[str]:
         """Detect LongMemEval question types from question text."""
         q_lower = question.lower()
@@ -145,52 +145,52 @@ class SkillDetector:
             if matches > 0:
                 scores[qtype] = matches
         return sorted(scores.keys(), key=lambda t: -scores[t])
-    
+
     def is_temporal_query(self, question: str) -> bool:
         """Quick check if question is temporal in nature."""
         return bool(self._cat_patterns[2].search(question.lower()))
-    
+
     def is_multi_hop_query(self, question: str) -> bool:
         """Quick check if question requires multi-hop reasoning."""
         return bool(self._cat_patterns[1].search(question.lower()))
-    
+
     def is_abstention_query(self, question: str) -> bool:
         """Quick check if question is likely unanswerable (abstention)."""
         return bool(self._cat_patterns[5].search(question.lower()) or
                    self._lme_patterns["abstention"].search(question.lower()))
-    
+
     def find_applicable_skills(self, question: str, records: Sequence[StructuredIR],
-                               category: Optional[int] = None,
-                               question_type: Optional[str] = None,
-                               registry: Optional["SkillRegistry"] = None) -> list[MemorySkill]:
+                               category: int | None = None,
+                               question_type: str | None = None,
+                               registry: SkillRegistry | None = None) -> list[MemorySkill]:
         """Find all skills applicable to the query."""
         if registry is None:
             from .base import get_global_registry
             registry = get_global_registry()
-        
+
         # Use registry's built-in logic
         skills = registry.find_skills(question, records, category, question_type)
-        
+
         # Add auto-detection based on question content
         if category is None:
             detected_cats = self.detect_category(question)
             if detected_cats:
                 # Re-run with first detected category
                 skills = registry.find_skills(question, records, detected_cats[0], question_type)
-        
+
         if question_type is None:
             detected_types = self.detect_lme_type(question)
             if detected_types:
                 skills = registry.find_skills(question, records, category, detected_types[0])
-        
+
         return skills
 
 
 # Global detector instance
-_detector_instance: Optional[SkillDetector] = None
+_detector_instance: SkillDetector | None = None
 
 
-def get_skill_detector(registry: Optional["SkillRegistry"] = None) -> SkillDetector:
+def get_skill_detector(registry: SkillRegistry | None = None) -> SkillDetector:
     """Get or create the global SkillDetector instance."""
     global _detector_instance
     if _detector_instance is None:
@@ -220,8 +220,8 @@ def is_multi_hop_query(question: str) -> bool:
 
 
 def find_skills_for_query(question: str, records: Sequence[StructuredIR],
-                          category: Optional[int] = None,
-                          question_type: Optional[str] = None) -> list[MemorySkill]:
+                          category: int | None = None,
+                          question_type: str | None = None) -> list[MemorySkill]:
     """Find all applicable skills for a query."""
     return get_skill_detector().find_applicable_skills(question, records, category, question_type)
 
@@ -235,6 +235,6 @@ __all__ = [
     "detect_lme_type",
     "is_temporal_query",
     "is_multi_hop_query",
-    "is_abstention_query",
     "find_skills_for_query",
 ]
+

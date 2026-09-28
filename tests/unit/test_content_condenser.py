@@ -7,8 +7,8 @@ a substring test for that label inside ``context_text``.
 
 from artificial_memory.context.content_condenser import (
     CondenseOptions,
-    condense_turn,
     compact_header,
+    condense_turn,
     drop_redundant_quotes,
 )
 

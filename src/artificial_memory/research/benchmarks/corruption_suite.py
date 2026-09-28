@@ -12,7 +12,7 @@ from typing import Any
 
 from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir.conflict_state import ConflictResolutionStatus, ConflictStateManager
-from artificial_memory.core.ir.structured import IRRelation, IRStatus, StructuredIR
+from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.recall.ir_resolver import UniversalIRResolver
 
 
@@ -142,7 +142,7 @@ class MemoryCorruptionSuite:
         return CorruptionTestResult(
             case_name="Case D: Adversarial Memory Injection",
             passed=passed,
-            details=f"Adversarial injection safely neutralized into data, not control flow.",
+            details="Adversarial injection safely neutralized into data, not control flow.",
             injected_count=len(records),
             resolved_value="SQLite",
         )

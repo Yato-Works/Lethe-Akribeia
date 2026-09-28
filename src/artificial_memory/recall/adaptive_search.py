@@ -10,11 +10,14 @@ Executes bounded iterative search (max_hops = 3) over the UnifiedPropositionGrap
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.proposition import UnifiedProposition
-from artificial_memory.recall.evidence_sufficiency_gate import EvidenceSufficiencyGate, SufficiencyDecision
+from artificial_memory.recall.evidence_sufficiency_gate import (
+    EvidenceSufficiencyGate,
+    SufficiencyDecision,
+)
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
 from artificial_memory.recall.query_planner import QueryPlan
 
@@ -51,7 +54,7 @@ class AdaptiveEvidenceSearcher:
             text_lower = (prop.raw_text + " " + prop.object + " " + prop.subject).lower()
             prop_words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", text_lower))
             overlap = len(q_words & prop_words)
-            
+
             # Entity match bonus
             for ent in plan.target_entities:
                 if ent == prop.subject.lower() or ent in prop.object.lower():

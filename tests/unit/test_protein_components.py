@@ -1,13 +1,12 @@
 """Unit tests for AM Apex Protein Phase components."""
 
-import pytest
-from artificial_memory.core.ir.structured import StructuredIR, IRStatus, IRRelation
-from artificial_memory.protein.evidence_fuser import EvidenceFuser
-from artificial_memory.protein.temporal_supersession_protein import TemporalSupersessionProtein
-from artificial_memory.protein.evidence_ranker import EvidenceRanker
+from artificial_memory.core.ir.structured import IRStatus, StructuredIR
 from artificial_memory.protein.context_ir_compressor import ContextIRCompressor
-from artificial_memory.protein.provenance_tracker import ProvenanceTracker
+from artificial_memory.protein.evidence_fuser import EvidenceFuser
+from artificial_memory.protein.evidence_ranker import EvidenceRanker
 from artificial_memory.protein.protein_compiler import ProteinContextCompiler
+from artificial_memory.protein.provenance_tracker import ProvenanceTracker
+from artificial_memory.protein.temporal_supersession_protein import TemporalSupersessionProtein
 
 
 def test_evidence_fuser_deduplication():

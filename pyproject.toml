@@ -119,7 +119,12 @@ indent-style = "space"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "W"]
-ignore = ["E501"]
+ignore = ["E501", "W291", "W293", "F841"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["F401", "F841", "E402", "I001"]
+"scripts/*" = ["F401", "E402", "I001"]
+
 
 [tool.mypy]
 python_version = "3.11"

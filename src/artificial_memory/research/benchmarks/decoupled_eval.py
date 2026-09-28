@@ -7,7 +7,6 @@ downstream LLM reasoning (Test A: Retrieval-only evaluation).
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
 
 from artificial_memory.recall.ir_resolver import ResolvedContext
 from artificial_memory.research.benchmarks.arena import ArenaQuestion

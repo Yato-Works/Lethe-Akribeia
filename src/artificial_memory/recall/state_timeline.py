@@ -8,9 +8,8 @@ and generates a clean, proof-carrying state timeline certificate.
 
 from __future__ import annotations
 
-import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 
@@ -158,7 +157,7 @@ class StateTimelineEngine:
         self,
         question: str,
         records: Sequence[StructuredIR],
-    ) -> Optional[StateTimelineGrounding]:
+    ) -> StateTimelineGrounding | None:
         """Build an explicit state timeline certificate from records."""
         ql = question.lower()
         is_previous = any(w in ql for w in ["previous", "previously", "earlier", "before", "former", "initially"])

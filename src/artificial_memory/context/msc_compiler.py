@@ -12,10 +12,11 @@ Features:
 from __future__ import annotations
 
 import re
-from typing import Any, Optional, Sequence
+from collections.abc import Sequence
+from typing import Any
 
-from artificial_memory.context.content_condenser import CondenseOptions
 from artificial_memory.context.content_condenser import OFF as CONDENSE_OFF
+from artificial_memory.context.content_condenser import CondenseOptions
 from artificial_memory.context.temporal_normalizer import TemporalNormalizer
 from artificial_memory.core.ir.memory_types import (
     ApexMemoryUnit,
@@ -31,13 +32,13 @@ from artificial_memory.recall.answer_verifier import AnswerVerifier
 from artificial_memory.recall.hierarchical_evidence_index import HierarchicalEvidenceIndex
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
 from artificial_memory.recall.proposition_integrity_gate import PropositionIntegrityGate
-from artificial_memory.steroid.adaptive_graph_expander import AdaptiveGraphExpander
-from artificial_memory.steroid.wide_slicer import WideSlicer
 from artificial_memory.recall.query_planner import QueryPlanner
 from artificial_memory.recall.state_reconstructor import StateReconstructor
 from artificial_memory.recall.state_supersession_engine import StateSupersessionEngine
 from artificial_memory.recall.state_timeline import StateTimelineEngine
 from artificial_memory.recall.temporal_resolver import TemporalResolver
+from artificial_memory.steroid.adaptive_graph_expander import AdaptiveGraphExpander
+from artificial_memory.steroid.wide_slicer import WideSlicer
 
 
 class CoverageChecker:
@@ -263,7 +264,7 @@ class MinimumSufficientContextCompiler:
         candidate_units: list,
         working_records: Sequence[StructuredIR],
         graph: UnifiedPropositionGraph,
-        reference_date_str: Optional[str] = None,
+        reference_date_str: str | None = None,
     ) -> list:
         """Promote multi-channel / graph-expanded evidence into the selection window.
 
@@ -343,9 +344,9 @@ class MinimumSufficientContextCompiler:
         query: str,
         records: Sequence[StructuredIR],
         target_token_budget: int = 500,
-        weights: Optional[Any] = None,
-        enabled_temporal_rules: Optional[set[str]] = None,
-        reference_date_str: Optional[str] = None,
+        weights: Any | None = None,
+        enabled_temporal_rules: set[str] | None = None,
+        reference_date_str: str | None = None,
     ) -> ProofCarryingContext:
         """Compile MSC: Minimize tokens while strictly satisfying Coverage >= tau."""
         # Overdrive Core: Query Planning & Proposition Graph
@@ -473,7 +474,7 @@ class MinimumSufficientContextCompiler:
             if selected_units and (curr_tokens + u_tok > effective_budget):
                 # Never break prematurely: skip oversized units and continue searching for compact user turns!
                 continue
-            
+
             # Encourage session balance for aggregation or temporal multi-session queries:
             # For single-session queries, allow picking up to 6 units from the primary target session!
             is_multi_hop_query = is_aggregation or any(w in query.lower() for w in ["before", "after", "while", "during", "between", "both", "all", "most", "least", "which", "compare", "difference"])
@@ -481,13 +482,13 @@ class MinimumSufficientContextCompiler:
                 sid_match = re.search(r"\[([a-zA-Z0-9_-]+)(?:\s+on\s+[^\]]+)?\]", u.ir.raw_content)
                 if sid_match:
                     sid = sid_match.group(1)
-                    session_count = sum(1 for su in selected_units 
+                    session_count = sum(1 for su in selected_units
                                        if re.search(rf"\[{re.escape(sid)}(?:\s+on\s+[^\]]+)?\]", su.ir.raw_content))
                     max_per_sess = 1 if is_aggregation else 2 if any(w in query.lower() for w in ["most", "least", "which", "compare", "difference"]) else 4
                     if session_count >= max_per_sess:
                         continue
                     seen_sessions.add(sid)
-            
+
             selected_units.append(u)
             curr_tokens += u_tok
             cert = self.checker.check(query, intent, selected_units)
@@ -505,7 +506,7 @@ class MinimumSufficientContextCompiler:
             from artificial_memory.protein.session_fuser import SessionFuser
             fuser = SessionFuser()
             unit = fuser.determine_unit(query)
-            
+
             # Keywords that indicate aggregation evidence for this unit type
             agg_evidence_keywords = {
                 "$": ["spent", "cost", "paid", "price", "$", "dollar", "expense", "bought", "purchased"],
@@ -572,19 +573,19 @@ class MinimumSufficientContextCompiler:
             }
 
             keywords = agg_evidence_keywords.get(unit, agg_evidence_keywords["items"])
-            
+
             # Refresh seen_sessions from current selection
             seen_sessions = set()
             for u in selected_units:
                 m = re.search(r"\[([a-zA-Z0-9_-]+)(?:\s+on\s+[^\]]+)?\]", u.ir.raw_content)
                 if m:
                     seen_sessions.add(m.group(1))
-            
+
             # Search ALL candidates for aggregation evidence from new sessions
             # Use a generous budget for aggregation (target + 800 tokens)
             agg_budget = target_token_budget + 800
             added = 0
-            
+
             # Extract query-specific topic keywords for better filtering
             query_words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", query.lower()))
             stop_words = {
@@ -598,7 +599,7 @@ class MinimumSufficientContextCompiler:
                 expanded_topic_words.add(w)
                 if "-" in w:
                     expanded_topic_words.update(w.split("-"))
-            
+
             def _agg_priority(cu):
                 cl = cu.ir.raw_content.lower()
                 cl_body = re.sub(r"^\[.*?\]\s*(?:user|assistant)?:\s*", "", cl)
@@ -634,7 +635,7 @@ class MinimumSufficientContextCompiler:
                 u_tok = min(raw_words, 35) if is_ast else min(raw_words, 120)
                 if curr_tokens + u_tok > agg_budget:
                     continue
-                
+
                 content_lower = extra.ir.raw_content.lower()
                 content_body = re.sub(r"^\[.*?\]\s*(?:user|assistant)?:\s*", "", content_lower)
                 # Check if this unit has aggregation evidence (generic keywords)
@@ -648,13 +649,13 @@ class MinimumSufficientContextCompiler:
                 )
                 # Check for query-specific topic relevance
                 has_topic = any(tw in content_lower for tw in expanded_topic_words) if expanded_topic_words else True
-                
+
                 # If target unit is specific (e.g. furniture, clothing, weddings, etc.), evidence match is primary
                 if unit != "items":
                     match_condition = has_evidence or (has_topic and has_numbers)
                 else:
                     match_condition = (has_topic and has_numbers) or (has_evidence and has_numbers)
-                
+
                 if match_condition:
                     m = re.search(r"\[([a-zA-Z0-9_-]+)(?:\s+on\s+[^\]]+)?\]", extra.ir.raw_content)
                     if m:

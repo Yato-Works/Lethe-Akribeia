@@ -22,7 +22,6 @@ from artificial_memory.recall.engine import BasicRecallEngine
 from artificial_memory.recall.retrieval_cache import (
     FULL,
     REINDEX,
-    REUSE,
     HierarchicalGate,
     RetrievalPlanCache,
 )

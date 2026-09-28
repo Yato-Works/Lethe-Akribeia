@@ -1,6 +1,5 @@
 """Unit tests for Memory Corruption & Mutation Stress Suite (Phase 6-A)."""
 
-import pytest
 
 from artificial_memory.research.benchmarks.corruption_suite import MemoryCorruptionSuite
 

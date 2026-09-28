@@ -1,10 +1,9 @@
 """Unit tests for Evidence Sufficiency Gate and Associative Graph Navigation (Phase X.6)."""
 
-import pytest
 
 from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir.memory_types import ApexMemoryUnit, MemoryRole
-from artificial_memory.recall.evidence_graph import EvidenceGraph, extract_informative_phrases
+from artificial_memory.recall.evidence_graph import extract_informative_phrases
 from artificial_memory.recall.evidence_sufficiency_gate import EvidenceSufficiencyGate
 from artificial_memory.recall.state_reconstructor import StateReconstructor
 

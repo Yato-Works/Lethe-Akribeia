@@ -10,8 +10,8 @@ without requiring write-side LLM calls ($0.00 cost, purely deterministic).
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 

@@ -20,8 +20,9 @@ Coordinates the full Protein Phase pipeline:
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from enum import StrEnum
-from typing import Any, Optional, Sequence
+from typing import Any
 
 from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.memory_types import (
@@ -109,13 +110,13 @@ class ProteinContextCompiler(MinimumSufficientContextCompiler):
         query: str,
         records: Sequence[StructuredIR],
         target_token_budget: int = 150,
-        weights: Optional[Any] = None,
-        enabled_temporal_rules: Optional[set[str]] = None,
-        reference_date_str: Optional[str] = None,
-        policy: Optional[ContextPolicy] = None,
-        ranker_weights: Optional[dict[str, float]] = None,
-        top_k: Optional[int] = None,
-        enable_state_synthesis: Optional[bool] = None,
+        weights: Any | None = None,
+        enabled_temporal_rules: set[str] | None = None,
+        reference_date_str: str | None = None,
+        policy: ContextPolicy | None = None,
+        ranker_weights: dict[str, float] | None = None,
+        top_k: int | None = None,
+        enable_state_synthesis: bool | None = None,
     ) -> ProofCarryingContext:
         """Compile high-density Context IR using Steroid + Protein pipeline."""
         budget = target_token_budget or self.target_token_budget

@@ -10,16 +10,13 @@ Maintains complete separation from the frozen baseline MinimumSufficientContextC
 
 from __future__ import annotations
 
-import re
-from typing import Any, Optional, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.memory_types import (
-    ApexMemoryUnit,
     CoverageCertificate,
-    MemoryRole,
     ProofCarryingContext,
-    QueryIntent,
 )
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
@@ -40,9 +37,9 @@ class SteroidContextCompiler(MinimumSufficientContextCompiler):
         query: str,
         records: Sequence[StructuredIR],
         target_token_budget: int = 240,
-        weights: Optional[Any] = None,
-        enabled_temporal_rules: Optional[set[str]] = None,
-        reference_date_str: Optional[str] = None,
+        weights: Any | None = None,
+        enabled_temporal_rules: set[str] | None = None,
+        reference_date_str: str | None = None,
     ) -> ProofCarryingContext:
         """Compile context using Wide Slicing and Adaptive Graph Expansion."""
         # Step 1: Wide Slicing (Multi-channel union)

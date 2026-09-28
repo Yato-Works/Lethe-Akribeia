@@ -15,8 +15,8 @@ Features:
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph

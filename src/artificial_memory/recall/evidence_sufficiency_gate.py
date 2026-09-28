@@ -19,8 +19,8 @@ Examples of Insufficient / Partial Evidence:
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 from artificial_memory.core.ir.memory_types import ApexMemoryUnit
 

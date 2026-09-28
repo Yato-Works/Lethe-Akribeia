@@ -8,7 +8,7 @@ the world at the exact resolution and cognitive slice required.
 from __future__ import annotations
 
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 from artificial_memory.core.ir.memory_types import (
     ApexMemoryUnit,
@@ -117,8 +117,9 @@ class StateReconstructor:
         self,
         query: str,
         records: Sequence[StructuredIR],
-        weights: Optional[EvidenceScoreWeights] = None,
+        weights: EvidenceScoreWeights | None = None,
     ) -> tuple[QueryIntent, list[ApexMemoryUnit]]:
+
         """Reconstruct the exact cognitive slice of the world required by the query."""
         intent = self.classify_intent(query)
         q_lower = query.lower()

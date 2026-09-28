@@ -9,8 +9,8 @@ Detects entity-swaps (e.g. Melanie vs Caroline) and unasserted predicates.
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.proposition import UnifiedProposition
 from artificial_memory.recall.query_planner import QueryPlan
@@ -22,7 +22,7 @@ class IntegrityDecision:
     is_valid: bool
     subject_matched: bool
     predicate_matched: bool
-    grounding_note: Optional[str] = None
+    grounding_note: str | None = None
     recommended_abstention: bool = False
 
 

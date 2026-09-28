@@ -12,20 +12,21 @@ from __future__ import annotations
 
 import datetime
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Optional, Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
-from .base import MemorySkill, SkillResult
 from artificial_memory.recall.temporal_resolver import TemporalResolver, parse_date
 from artificial_memory.temporal.temporal_compiler import TemporalCompiler
+
+from .base import MemorySkill, SkillResult
 
 
 @dataclass
 class TemporalCalculation:
     """Structured result of a temporal calculation."""
     anchored_expression: str          # Exact expression to quote (e.g., "The Sunday before 25 May 2023")
-    absolute_date: Optional[datetime.date]  # Computed absolute date if applicable
+    absolute_date: datetime.date | None  # Computed absolute date if applicable
     calculation_type: str           # "relative_anchor", "duration", "ordering", "recency", "abstention"
     details: str                    # Human-readable calculation details
     confidence: float = 1.0
@@ -44,7 +45,7 @@ class TemporalSkill(MemorySkill):
     - TemporalCompiler (session date anchoring, relative expressions)
     - TemporalResolver (complex multi-event calculations)
     """
-    
+
     name: str = "temporal_skill"
     description: str = "Deterministic temporal reasoning and calendar arithmetic (CHRONOS)"
     trigger_keywords: list[str] = [
@@ -57,23 +58,23 @@ class TemporalSkill(MemorySkill):
     ]
     target_categories: list[int] = [2]  # LoCoMo Category 2: Temporal
     target_question_types: list[str] = ["temporal-reasoning"]
-    
+
     def __init__(self) -> None:
         super().__init__()
         self.compiler = TemporalCompiler()
         self.resolver = TemporalResolver()
         self._cache: dict[str, TemporalCalculation] = {}
-    
+
     def can_handle(self, question: str, records: Sequence[StructuredIR],
-                   category: Optional[int] = None,
-                   question_type: Optional[str] = None) -> bool:
+                   category: int | None = None,
+                   question_type: str | None = None) -> bool:
         """Determine if this skill should handle the query."""
         # Explicit category/type match
         if category in self.target_categories:
             return True
         if question_type in self.target_question_types:
             return True
-        
+
         # Fallback: keyword detection
         q_lower = question.lower()
         temporal_patterns = [
@@ -92,9 +93,9 @@ class TemporalSkill(MemorySkill):
         ]
         q_lower = question.lower()
         return any(re.search(p, q_lower) for p in temporal_patterns)
-    
+
     def resolve(self, question: str, records: Sequence[StructuredIR],
-                reference_date: Optional[str] = None,
+                reference_date: str | None = None,
                 **kwargs) -> SkillResult:
         """Execute deterministic temporal calculation."""
         try:
@@ -110,16 +111,16 @@ class TemporalSkill(MemorySkill):
                     raw_output=calc,
                     metadata={"cached": True, "calculation_type": calc.calculation_type, "confidence": calc.confidence}
                 )
-            
+
             # Execute the temporal calculation
             calc = self._calculate(question, records, reference_date)
-            
+
             # Cache result
             self._cache[cache_key] = calc
-            
+
             # Only output skill block if confidence is high (>= 0.85)
             skill_block = self._format_skill_block(calc) if calc.confidence >= 0.85 else ""
-            
+
             return self._make_result(
                 success=True,
                 skill_block=skill_block,
@@ -131,20 +132,20 @@ class TemporalSkill(MemorySkill):
                 success=False,
                 error=f"TemporalSkill error: {e}"
             )
-    
+
     def _make_cache_key(self, question: str, records: Sequence[StructuredIR],
-                        reference_date: Optional[str]) -> str:
+                        reference_date: str | None) -> str:
         """Create a cache key from question and context hash."""
         import hashlib
         context_str = "".join(r.raw_content[:100] for r in records[:10])
         key_data = f"{question}|{reference_date}|{context_str[:500]}"
         return hashlib.md5(key_data.encode()).hexdigest()
-    
+
     def _calculate(self, question: str, records: Sequence[StructuredIR],
-                   reference_date: Optional[str]) -> TemporalCalculation:
+                   reference_date: str | None) -> TemporalCalculation:
         """Main calculation dispatcher - routes to appropriate sub-calculator."""
         q_lower = question.lower()
-        
+
         # 1. Try complex multi-event resolver first (handles durations, ordering, etc.)
         try:
             resolver_result = self.resolver.resolve(question, records, reference_date)
@@ -152,18 +153,18 @@ class TemporalSkill(MemorySkill):
                 return self._format_resolver_result(resolver_result)
         except Exception:
             pass  # Fall through to simpler calculators
-        
+
         # 2. Try TemporalCompiler for relative date anchoring (LoCoMo style)
         compiler_states = self.compiler.compile_temporal_states(question, records)
         if compiler_states:
             state = compiler_states[0]
             return self._format_compiler_state(state, question)
-        
+
         # 3. Fallback: Try simple relative date parsing from question
         relative_result = self._parse_relative_expression(question, reference_date, records)
         if relative_result:
             return relative_result
-        
+
         # 4. Abstention - entity not found
         return TemporalCalculation(
             anchored_expression="",
@@ -172,12 +173,12 @@ class TemporalSkill(MemorySkill):
             details="Could not resolve temporal query - insufficient evidence",
             confidence=0.0
         )
-    
+
     def _format_resolver_result(self, result) -> TemporalCalculation:
         """Format TemporalResolver result into standardized format."""
         # Extract the exact expression from grounding text
         grounding = result.grounding_text
-        
+
         # Try to extract a clean date expression
         if "Exactly" in grounding:
             # Duration result - extract the number
@@ -191,7 +192,7 @@ class TemporalSkill(MemorySkill):
                     details=grounding,
                     confidence=0.95
                 )
-        
+
         if "Temporal Calculation:" in grounding:
             return TemporalCalculation(
                 anchored_expression=grounding,
@@ -200,7 +201,7 @@ class TemporalSkill(MemorySkill):
                 details=grounding,
                 confidence=0.9
             )
-        
+
         if "Temporal Ordering:" in grounding:
             # Extract the ordering sentence
             order_match = re.search(r"Temporal Ordering:\s*([^\]]+)", grounding)
@@ -212,7 +213,7 @@ class TemporalSkill(MemorySkill):
                     details=grounding,
                     confidence=0.95
                 )
-        
+
         if "Time-Anchored Event" in grounding:
             return TemporalCalculation(
                 anchored_expression=grounding,
@@ -221,7 +222,7 @@ class TemporalSkill(MemorySkill):
                 details=grounding,
                 confidence=0.9
             )
-        
+
         if "Temporal Abstention" in grounding:
             return TemporalCalculation(
                 anchored_expression="",
@@ -230,7 +231,7 @@ class TemporalSkill(MemorySkill):
                 details=grounding,
                 confidence=0.0
             )
-        
+
         return TemporalCalculation(
             anchored_expression=grounding,
             absolute_date=None,
@@ -238,12 +239,12 @@ class TemporalSkill(MemorySkill):
             details=grounding,
             confidence=0.5
         )
-    
+
     def _format_compiler_state(self, state, question: str) -> TemporalCalculation:
         """Format TemporalCompiler state into standardized format."""
         # The state.anchored_date is the exact expression to quote
         anchored = state.anchored_date or state.relative_expression
-        
+
         # Determine calculation type
         calc_type = "relative_anchor"
         if "week" in anchored.lower() or "month" in anchored.lower():
@@ -252,7 +253,7 @@ class TemporalSkill(MemorySkill):
             calc_type = "absolute_date"
         elif "since" in anchored.lower():
             calc_type = "recency"
-        
+
         return TemporalCalculation(
             anchored_expression=anchored,
             absolute_date=self._parse_date_string(anchored),
@@ -261,8 +262,8 @@ class TemporalSkill(MemorySkill):
                     f"Turn: {state.turn_id}, Subject: {state.subject}",
             confidence=state.confidence
         )
-    
-    def _parse_date_string(self, date_str: str) -> Optional[datetime.date]:
+
+    def _parse_date_string(self, date_str: str) -> datetime.date | None:
         """Try to parse an absolute date from the expression."""
         # Try DD Month YYYY
         m = re.match(r"(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})", date_str)
@@ -281,30 +282,30 @@ class TemporalSkill(MemorySkill):
                     return datetime.date(int(year), month, int(day))
                 except ValueError:
                     pass
-        
+
         # Try YYYY only
         m = re.match(r"^(\d{4})$", date_str.strip())
         if m:
             return datetime.date(int(m.group(1)), 1, 1)
-        
+
         return None
-    
-    def _parse_relative_expression(self, question: str, reference_date: Optional[str],
-                                   records: Sequence[StructuredIR]) -> Optional[TemporalCalculation]:
+
+    def _parse_relative_expression(self, question: str, reference_date: str | None,
+                                   records: Sequence[StructuredIR]) -> TemporalCalculation | None:
         """Parse simple relative expressions from the question directly."""
         q_lower = question.lower()
         ref_d = parse_date(reference_date) if reference_date else None
-        
+
         # Get latest session date as fallback reference
         if not ref_d:
             for r in records:
                 d = parse_date(r.time_scope)
                 if d and (ref_d is None or d > ref_d):
                     ref_d = d
-        
+
         if not ref_d:
             return None
-        
+
         # "the [weekday] before [date]"
         m = re.search(r"the\s+(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\s+before\s+(\d{1,2}\s+\w+\s+\d{4})", q_lower)
         if m:
@@ -319,7 +320,7 @@ class TemporalSkill(MemorySkill):
                     details=f"Computed {m.group(1)} before {anchor_str}",
                     confidence=0.95
                 )
-        
+
         # "the week before [date]"
         m = re.search(r"the\s+week\s+before\s+(\d{1,2}\s+\w+\s+\d{4})", q_lower)
         if m:
@@ -334,7 +335,7 @@ class TemporalSkill(MemorySkill):
                     details=f"Week before {anchor_str}",
                     confidence=0.95
                 )
-        
+
         # "two weekends before [date]"
         m = re.search(r"two\s+weekends?\s+before\s+(\d{1,2}\s+\w+\s+\d{4})", q_lower)
         if m:
@@ -349,7 +350,7 @@ class TemporalSkill(MemorySkill):
                     details=f"Two weekends before {anchor_str}",
                     confidence=0.95
                 )
-        
+
         # "X days/weeks/months ago" / "X days/weeks/months before"
         m = re.search(r"(\d+)\s+(days?|weeks?|months?)\s+(ago|before)", q_lower)
         if m:
@@ -371,7 +372,7 @@ class TemporalSkill(MemorySkill):
                 details=f"{count} {unit} before reference date {ref_d}",
                 confidence=0.85
             )
-        
+
         # "X weeks/months after [date]"
         m = re.search(r"(\d+)\s+(weeks?|months?)\s+after\s+(\d{1,2}\s+\w+\s+\d{4})", q_lower)
         if m:
@@ -393,7 +394,7 @@ class TemporalSkill(MemorySkill):
                     details=f"{count} {unit} after {anchor_str}",
                     confidence=0.9
                 )
-        
+
         # "the day after [date]"
         m = re.search(r"the\s+day\s+after\s+(\d{1,2}\s+\w+\s+\d{4})", q_lower)
         if m:
@@ -408,7 +409,7 @@ class TemporalSkill(MemorySkill):
                     details=f"Day after {anchor_str}",
                     confidence=0.95
                 )
-        
+
         # "X days/weeks after [date]"
         m = re.search(r"(\d+)\s+(days?|weeks?)\s+after\s+(\d{1,2}\s+\w+\s+\d{4})", q_lower)
         if m:
@@ -430,7 +431,7 @@ class TemporalSkill(MemorySkill):
                     details=f"{count} {unit} after {anchor_str}",
                     confidence=0.9
                 )
-        
+
         # "passed since [event]" / "how long since [event]"
         m = re.search(r"(?:how long|passed since|since)\s+(.+?)(?:\?|$)", q_lower)
         if m:
@@ -450,7 +451,7 @@ class TemporalSkill(MemorySkill):
                         details=f"Time since '{event_str}' ({earliest}) to reference ({ref_d})",
                         confidence=0.8
                     )
-        
+
         # "between [event1] and [event2]"
         m = re.search(r"between\s+(.+?)\s+and\s+(.+?)(?:\?|$)", q_lower)
         if m:
@@ -468,15 +469,15 @@ class TemporalSkill(MemorySkill):
                     details=f"Duration between '{e1_str}' ({d1}) and '{e2_str}' ({d2})",
                     confidence=0.85
                 )
-        
+
         return None
-    
+
     def _find_dates_for_event(self, event_str: str, records: Sequence[StructuredIR],
-                               reference_date: Optional[str]) -> list:
+                               reference_date: str | None) -> list:
         """Find all dates associated with an event description."""
         words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", event_str.lower()))
         words = {w for w in words if len(w) >= 3 and w not in {"the", "and", "that", "this", "with", "have", "from", "for", "day"}}
-        
+
         dates = []
         for r in records:
             if not r.raw_content:
@@ -487,13 +488,13 @@ class TemporalSkill(MemorySkill):
                 if d:
                     dates.append(d)
         return dates
-    
+
     def _find_date_for_event(self, event_str: str, records: Sequence[StructuredIR],
-                             reference_date: Optional[str]) -> Optional[datetime.date]:
+                             reference_date: str | None) -> datetime.date | None:
         """Find the most relevant date for an event description."""
         words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", event_str.lower()))
         words = {w for w in words if len(w) >= 3 and w not in {"the", "and", "that", "this", "with", "have", "from", "for", "day"}}
-        
+
         best_score = 0.0
         best_date = None
         for r in records:
@@ -502,23 +503,23 @@ class TemporalSkill(MemorySkill):
             content = r.raw_content.lower()
             if not any(w in content for w in words):
                 continue
-            
+
             d = parse_date(r.time_scope)
             if not d:
                 continue
-            
+
             content_words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", content))
             overlap = float(len(words & content_words))
             for w in words:
                 if len(w) >= 4 and w in content:
                     overlap += 2.0
-            
+
             if overlap > best_score:
                 best_score = overlap
                 best_date = d
-        
+
         return best_date if best_score >= 2.0 else None
-    
+
     def _get_weekday_before(self, anchor: datetime.date, weekday_name: str) -> datetime.date:
         """Get the date of the specified weekday before the anchor date.
         
@@ -530,7 +531,7 @@ class TemporalSkill(MemorySkill):
         }
         target_wd = weekday_map[weekday_name.lower()]
         anchor_wd = anchor.weekday()
-        
+
         # Calculate days back to reach the target weekday
         # If anchor is Thursday (3) and we want Sunday (6): (3 - 6) % 7 = 4 days back
         # If anchor is Sunday (6) and we want Sunday (6): (6 - 6) % 7 = 0 -> 7 days back
@@ -538,15 +539,15 @@ class TemporalSkill(MemorySkill):
         if days_diff == 0:
             days_diff = 7
         return anchor - datetime.timedelta(days=days_diff)
-    
+
     def _format_skill_block(self, calc: TemporalCalculation) -> str:
         """Format the calculation result as a skill block for context injection."""
         if calc.calculation_type == "abstention" or not calc.anchored_expression:
             return ""
-        
+
         # The verified expression to reference
         expr = calc.anchored_expression.strip()
-        
+
         # Provide flexible grounding: give the verified anchor context
         # so the reader is not penalized by upstream dataset typos
         return (
@@ -556,7 +557,7 @@ class TemporalSkill(MemorySkill):
             f"- Estimated Calendar Range: {calc.absolute_date if calc.absolute_date else 'N/A'} or \"{calc.anchored_expression}\"\n"
             f"(Instruction: State the concise date or time expression directly without preamble.)\n"
         )
-    
+
     def clear_cache(self) -> None:
         """Clear the calculation cache."""
         self._cache.clear()

@@ -8,8 +8,9 @@ from __future__ import annotations
 
 import abc
 import logging
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Optional, Sequence
+from typing import Any
 
 from artificial_memory.core.ir.structured import StructuredIR
 
@@ -34,7 +35,7 @@ class SkillResult:
     skill_block: str = ""
     raw_output: Any = None
     metadata: dict[str, Any] = field(default_factory=dict)
-    error: Optional[str] = None
+    error: str | None = None
 
     def __bool__(self) -> bool:
         return self.success
@@ -54,30 +55,30 @@ class MemorySkill(abc.ABC):
     - Zero cost at write time: invoked at query time only
     - Provides a skill_block that can be injected into the compiled context
     """
-    
+
     # Class-level identifier for the skill
     name: str = "base_skill"
-    
+
     # Human-readable description of what this skill handles
     description: str = "Base memory skill"
-    
+
     # Keywords/patterns that indicate this skill should be considered
     trigger_keywords: list[str] = []
-    
+
     # Question categories (LoCoMo) this skill handles
     target_categories: list[int] = []
-    
+
     # LongMemEval question types this skill handles
     target_question_types: list[str] = []
-    
+
     def __init__(self) -> None:
         self._invocation_count = 0
         self._success_count = 0
-    
+
     @abc.abstractmethod
-    def can_handle(self, question: str, records: Sequence[StructuredIR], 
-                   category: Optional[int] = None, 
-                   question_type: Optional[str] = None) -> bool:
+    def can_handle(self, question: str, records: Sequence[StructuredIR],
+                   category: int | None = None,
+                   question_type: str | None = None) -> bool:
         """Determine if this skill can handle the given query.
         
         Args:
@@ -90,11 +91,11 @@ class MemorySkill(abc.ABC):
             True if this skill should be invoked for this query.
         """
         pass
-    
+
     @abc.abstractmethod
     def resolve(self, question: str, records: Sequence[StructuredIR],
-                reference_date: Optional[str] = None,
-                **kwargs) -> "SkillResult":
+                reference_date: str | None = None,
+                **kwargs) -> SkillResult:
         """Execute the skill and return a formatted result.
         
         Args:
@@ -107,10 +108,10 @@ class MemorySkill(abc.ABC):
             SkillResult with formatted skill_block for context injection.
         """
         pass
-    
+
     def _make_result(self, success: bool, skill_block: str = "",
-                     raw_output: Any = None, metadata: Optional[dict] = None,
-                     error: Optional[str] = None) -> SkillResult:
+                     raw_output: Any = None, metadata: dict | None = None,
+                     error: str | None = None) -> SkillResult:
         """Helper to create a SkillResult."""
         self._invocation_count += 1
         if success:
@@ -123,7 +124,7 @@ class MemorySkill(abc.ABC):
             metadata=metadata or {},
             error=error
         )
-    
+
     def get_stats(self) -> dict[str, Any]:
         """Return invocation statistics."""
         return {
@@ -132,7 +133,7 @@ class MemorySkill(abc.ABC):
             "successes": self._success_count,
             "success_rate": self._success_count / max(1, self._invocation_count)
         }
-    
+
     def reset_stats(self) -> None:
         self._invocation_count = 0
         self._success_count = 0
@@ -144,11 +145,11 @@ class SkillRegistry:
     Maintains a collection of skills and provides dispatch logic to find
     and invoke the appropriate skill for a given query.
     """
-    
+
     def __init__(self) -> None:
         self._skills: dict[str, MemorySkill] = {}
         self._skill_order: list[str] = []
-    
+
     def register(self, skill: MemorySkill) -> None:
         """Register a skill in the registry."""
         if skill.name in self._skills:
@@ -157,7 +158,7 @@ class SkillRegistry:
         if skill.name not in self._skill_order:
             self._skill_order.append(skill.name)
         logger.info(f"Registered skill: {skill.name} - {skill.description}")
-    
+
     def unregister(self, name: str) -> bool:
         """Remove a skill from the registry."""
         if name in self._skills:
@@ -165,14 +166,14 @@ class SkillRegistry:
             self._skill_order.remove(name)
             return True
         return False
-    
-    def get(self, name: str) -> Optional[MemorySkill]:
+
+    def get(self, name: str) -> MemorySkill | None:
         """Get a skill by name."""
         return self._skills.get(name)
-    
+
     def find_skills(self, question: str, records: Sequence[StructuredIR],
-                    category: Optional[int] = None,
-                    question_type: Optional[str] = None) -> list[MemorySkill]:
+                    category: int | None = None,
+                    question_type: str | None = None) -> list[MemorySkill]:
         """Find all skills that can handle the given query.
         
         Skills are returned in registration order (priority order).
@@ -183,11 +184,11 @@ class SkillRegistry:
             if skill.can_handle(question, records, category, question_type):
                 applicable.append(skill)
         return applicable
-    
+
     def dispatch(self, question: str, records: Sequence[StructuredIR],
-                 category: Optional[int] = None,
-                 question_type: Optional[str] = None,
-                 reference_date: Optional[str] = None,
+                 category: int | None = None,
+                 question_type: str | None = None,
+                 reference_date: str | None = None,
                  **kwargs) -> list[SkillResult]:
         """Find and execute all applicable skills for the query.
         
@@ -211,7 +212,7 @@ class SkillRegistry:
                     error=str(e)
                 ))
         return results
-    
+
     def get_all_stats(self) -> dict[str, dict]:
         return {name: skill.get_stats() for name, skill in self._skills.items()}
 
@@ -231,9 +232,9 @@ def register_skill(skill: MemorySkill) -> None:
 
 
 def dispatch_skills(question: str, records: Sequence[StructuredIR],
-                    category: Optional[int] = None,
-                    question_type: Optional[str] = None,
-                    reference_date: Optional[str] = None,
+                    category: int | None = None,
+                    question_type: str | None = None,
+                    reference_date: str | None = None,
                     **kwargs) -> list[SkillResult]:
     """Convenience function to dispatch skills globally."""
     return _global_registry.dispatch(question, records, category, question_type, reference_date, **kwargs)

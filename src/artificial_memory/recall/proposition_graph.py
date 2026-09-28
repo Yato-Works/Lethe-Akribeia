@@ -8,10 +8,14 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Optional, Sequence
 
-from artificial_memory.core.ir.proposition import PropositionStatus, StateHistory, UnifiedProposition
+from artificial_memory.core.ir.proposition import (
+    PropositionStatus,
+    StateHistory,
+    UnifiedProposition,
+)
 from artificial_memory.core.ir.structured import StructuredIR
 
 
@@ -57,7 +61,7 @@ class UnifiedPropositionGraph:
             key = (subj_clean, prop.predicate)
             if key not in self.state_histories:
                 self.state_histories[key] = StateHistory(prop.subject, prop.predicate)
-            
+
             # Check if this supersedes previous snapshots
             prev = self.state_histories[key].get_latest()
             if prev and prev.value.lower() != prop.object.lower():

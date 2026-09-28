@@ -10,8 +10,8 @@ Aggregates evidence across multiple conversation sessions for multi-hop / multi-
 import datetime
 import re
 from collections import defaultdict
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 
@@ -20,10 +20,10 @@ from artificial_memory.core.ir.structured import StructuredIR
 class AggregationResult:
     """Result of cross-session aggregation."""
     is_aggregation_query: bool
-    total_value: Optional[float] = None
-    unit: Optional[str] = None
+    total_value: float | None = None
+    unit: str | None = None
     found_snippets: list[tuple[str, str, float]] = None  # [(sid, snippet, val)]
-    certificate: Optional[str] = None
+    certificate: str | None = None
 
 
 class SessionFuser:
@@ -534,8 +534,9 @@ class SessionFuser:
             for sid, contents in session_lines.items():
                 for content in contents:
                     c_lower = content.lower()
-                    if is_luxury and not any(l in c_lower for l in ["luxury", "splurge", "high-end", "designer", "gucci", "gown"]):
+                    if is_luxury and not any(term in c_lower for term in ["luxury", "splurge", "high-end", "designer", "gucci", "gown"]):
                         continue
+
                     if is_bike and not re.search(r"\b(bike|cycling|bicycle|helmet|lights?|chain|rack)\b", c_lower):
                         continue
                     if is_charity and not any(w in c_lower for w in ["charity", "raise", "raised", "fundrais"]):

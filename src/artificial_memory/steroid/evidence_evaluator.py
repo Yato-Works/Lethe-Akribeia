@@ -12,9 +12,8 @@ Generates the quantitative Evidence Recall Curve:
 
 from __future__ import annotations
 
-import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.steroid.adaptive_graph_expander import AdaptiveGraphExpander

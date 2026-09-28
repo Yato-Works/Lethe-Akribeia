@@ -20,9 +20,8 @@ from __future__ import annotations
 
 import asyncio
 
-import pytest
-
 from artificial_memory.core.models import Memory, MemoryType, RecallLevel, ResolutionLevel
+from artificial_memory.recall.deepseek_engine import DeepSeekRecallEngine
 from artificial_memory.recall.engine import BasicRecallEngine
 from artificial_memory.recall.retrieval_cache import (
     FULL,
@@ -30,13 +29,10 @@ from artificial_memory.recall.retrieval_cache import (
     REUSE,
     EphemeralStore,
     HierarchicalGate,
-    RetrievalPlan,
     RetrievalPlanCache,
 )
-from artificial_memory.recall.deepseek_engine import DeepSeekRecallEngine
 from artificial_memory.runtime import ArtificialMemoryRuntime, RuntimeConfig
 from artificial_memory.storage.sqlite_store import SQLiteMemoryStore
-
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -597,7 +593,7 @@ class TestPlanCacheGateFlush:
     """Phase 8.11: the plan cache must not replay across gate configs."""
 
     @staticmethod
-    def _runtime() -> "ArtificialMemoryRuntime":
+    def _runtime() -> ArtificialMemoryRuntime:
         import asyncio  # noqa: F401  (used inside test closures)
 
         return ArtificialMemoryRuntime(RuntimeConfig(
@@ -674,7 +670,6 @@ class TestDeepSeekSessionWiring:
         assert runtime.recall_engine.candidate_window == 450
 
     def test_tuning_fields_reach_the_gate(self):
-        from artificial_memory.recall.retrieval_cache import SessionGate
 
         runtime = ArtificialMemoryRuntime(self._config(
             session_gate_pool=32, candidate_window=64,
@@ -722,6 +717,7 @@ class TestAbstentionThreshold:
     @staticmethod
     def _memories(texts: list[str]) -> list[Memory]:
         from datetime import datetime, timedelta
+
         from artificial_memory.core.models import Memory, MemoryType, ResolutionLevel
 
         base = datetime(2026, 1, 1, 12, 0, 0)
@@ -769,6 +765,7 @@ class TestAbstentionThreshold:
 
     def test_gate_swap_abstention_threshold_flushes_plan_cache(self):
         import asyncio
+
         from artificial_memory.recall.retrieval_cache import SessionGate
 
         runtime = ArtificialMemoryRuntime(RuntimeConfig(

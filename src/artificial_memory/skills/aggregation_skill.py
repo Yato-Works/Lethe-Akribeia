@@ -10,8 +10,8 @@ from __future__ import annotations
 
 import hashlib
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Optional, Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 
@@ -53,8 +53,8 @@ class AggregationSkill(MemorySkill):
         self._cache: dict[str, AggregationCalculation] = {}
 
     def can_handle(self, question: str, records: Sequence[StructuredIR],
-                   category: Optional[int] = None,
-                   question_type: Optional[str] = None) -> bool:
+                   category: int | None = None,
+                   question_type: str | None = None) -> bool:
         """Determine if this skill should handle the query."""
         # Explicit category/type match
         if category in self.target_categories:
@@ -76,7 +76,7 @@ class AggregationSkill(MemorySkill):
         return any(re.search(p, q_lower) for p in strict_counting_patterns)
 
     def resolve(self, question: str, records: Sequence[StructuredIR],
-                reference_date: Optional[str] = None,
+                reference_date: str | None = None,
                 **kwargs) -> SkillResult:
         """Execute deterministic counting/aggregation."""
         try:
@@ -111,14 +111,13 @@ class AggregationSkill(MemorySkill):
             )
 
     def _make_cache_key(self, question: str, records: Sequence[StructuredIR],
-                        reference_date: Optional[str]) -> str:
-        import hashlib
+                        reference_date: str | None) -> str:
         context_str = "".join(r.raw_content[:100] for r in records[:10])
         key_data = f"{question}|{reference_date}|{context_str[:500]}"
         return hashlib.md5(key_data.encode()).hexdigest()
 
     def _calculate(self, question: str, records: Sequence[StructuredIR],
-                   reference_date: Optional[str]) -> AggregationCalculation:
+                   reference_date: str | None) -> AggregationCalculation:
         q_lower = question.lower()
 
         # First, verify this is genuinely a counting query with strict patterns
@@ -131,7 +130,7 @@ class AggregationSkill(MemorySkill):
             r"\bnumber\s+of\s+(?:cities|countries|people|times|events|items|places)\b",
             r"\btotal\s+(?:cities|countries|people|times|events|items|places)\b",
         ]
-        
+
         is_strict_counting = any(re.search(p, q_lower) for p in strict_counting_patterns)
         if not is_strict_counting:
             return AggregationCalculation(

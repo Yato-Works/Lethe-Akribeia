@@ -10,8 +10,8 @@ suggestion, and preference queries.
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence
 
 from artificial_memory.core.ir.structured import StructuredIR
 
@@ -24,7 +24,7 @@ class PersonaAttribute:
     attribute: str
     value: str
     raw_snippet: str
-    timestamp: Optional[str] = None
+    timestamp: str | None = None
 
 
 class PersonaExtractor:
@@ -56,7 +56,7 @@ class PersonaExtractor:
         "wellness": ["evening", "wind-down", "meditation", "sleep quality", "relaxing"],
     }
 
-    def extract_from_turn(self, speaker: str, text: str, timestamp: Optional[str] = None) -> list[PersonaAttribute]:
+    def extract_from_turn(self, speaker: str, text: str, timestamp: str | None = None) -> list[PersonaAttribute]:
         """Extract user attributes if speaker is user."""
         if speaker.lower() != "user":
             return []
@@ -168,7 +168,7 @@ class PersonaStore:
             attrs = self.extractor.extract_from_turn(speaker, content, r.time_scope)
             self.attributes.extend(attrs)
 
-    def get_persona_grounding(self, query: str) -> Optional[str]:
+    def get_persona_grounding(self, query: str) -> str | None:
         """Generate a concise Persona Grounding tag if query relates to user preferences/setup."""
         q_lower = query.lower()
         is_recommendation = any(
@@ -265,9 +265,10 @@ class PersonaStore:
 
         # Fall back to condensed character signals
         if character_signals:
-            key_lines = [l for l in character_signals if len(l) > 20][:3]
+            key_lines = [line for line in character_signals if len(line) > 20][:3]
             if key_lines:
                 parts.append("Key context: " + " ; ".join(key_lines[:3]))
+
 
         if not parts:
             return ""

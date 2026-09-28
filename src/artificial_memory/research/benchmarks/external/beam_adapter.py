@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from artificial_memory.core.ir.structured import IRRelation, IRStatus, StructuredIR
+from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 
@@ -80,7 +80,7 @@ class BeamAdapter:
         chat_path = self.base_dir / scale / chat_id / "chat.json"
         if not chat_path.exists():
             return []
-        with open(chat_path, "r", encoding="utf-8") as f:
+        with open(chat_path, encoding="utf-8") as f:
             data = json.load(f)
 
         turns = []
@@ -124,7 +124,7 @@ class BeamAdapter:
         if not pq_path.exists():
             return []
 
-        with open(pq_path, "r", encoding="utf-8") as f:
+        with open(pq_path, encoding="utf-8") as f:
             data = json.load(f)
 
         questions = []
@@ -181,7 +181,7 @@ class BeamAdapter:
             msg_id = t.get("msg_id")
             role_str = t["role"].upper()
             content = t["content"]
-            
+
             # Chunk long messages (>1500 chars) while preserving markdown section coherence
             if len(content) > 1500:
                 chunks = []
