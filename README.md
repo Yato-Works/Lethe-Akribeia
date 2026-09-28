@@ -32,7 +32,8 @@ Conversational Turns
         │
    [Reader LLM] (1.5B ~ 7B ~ Frontier)
         ▼
-   Deterministic Answer
+   Evidence-Grounded Answer
+
 ```
 
 ---
@@ -63,8 +64,8 @@ What is not solved (Current Limitations 🟡)
 
 | Benchmark / Evaluation | Result | Dataset / Scope | What it measures |
 |:---|:---:|:---:|:---|
-| **BEAM (500K scale)** | **100.0%** | Official 10 probing categories | Pinpoint extraction, contradiction detection, and event ordering from massive context |
-| **BEAM (1M & 10M scales)** | **100.0%** | Long-horizon probing subsets | Needle retrieval and state tracking under extreme token budgets |
+| **BEAM (500K scale)** | **100.0%** | Official 10 categories (20 Qs) | Pinpoint extraction, contradiction detection, and event ordering from massive context |
+| **BEAM (1M & 10M scales)** | **100.0%** | Long-horizon probes (8 Qs) | Needle retrieval and state tracking under extreme token budgets |
 | **LoCoMo Evidence Recall** | **81.1%** | 1,540 non-adversarial questions | Whether **all** required gold evidence turns were compiled into context (Strict Content Oracle) |
 | **LoCoMo Zero-Evidence Failure** | **8.7%** | 134 / 1,540 questions | Complete retrieval failure (no required evidence turns retrieved by the memory engine) |
 | **LoCoMo Official QA F1** | **50.9%** | 1,540 questions (7B Reader) | End-to-end question answering using local 7B Reader |
@@ -72,7 +73,8 @@ What is not solved (Current Limitations 🟡)
 
 > [!NOTE]
 > **Why is BEAM 100% while LoCoMo is 50.9%?**  
-> BEAM tests long-context needle extraction, contradiction resolution, and event sequencing from structured chats — tasks where Lethe's deterministic timeline extraction and noise filtering excel. In contrast, LoCoMo tests open-domain commonsense synthesis and personality deductions across casual dialogues, placing heavy demands on the Reader's reasoning capacity.
+> BEAM tests long-context needle extraction, contradiction resolution, and event sequencing from structured chats — tasks where Lethe's deterministic timeline extraction and noise filtering excel. (Evaluated with `qwen2.5-coder:7b` for strict schema adherence on official probe testbeds, held separate from prompt development sets).  
+> In contrast, LoCoMo tests open-domain commonsense synthesis and personality deductions across casual dialogues, placing heavy demands on the Reader's reasoning capacity.
 
 ---
 
@@ -80,15 +82,19 @@ What is not solved (Current Limitations 🟡)
 
 A core empirical finding of over 140+ hours of benchmark sweeps is that **Lethe's structured context insulates against Reader downgrades**:
 
-| Reader Model | Parameter Scale | LoCoMo 1,540Q Hit | LoCoMo Official F1 | LongMemEval 500Q | Behavioral Profile |
+| Reader Model | Parameter Scale | LoCoMo 1,540Q Hits (Rate) | LoCoMo Official F1 | LongMemEval 500Q | Behavioral Profile |
 |:---|:---:|:---:|:---:|:---:|:---|
-| **Qwen 2.5 1.5B** | 1.5B | **64.5%** | **50.8%** | **80.0%** | Robust: minimal degradation despite 5x parameter drop |
-| **Qwen 2.5 7B Instruct** | 7B | **64.7%** | **50.9%** | **81.6%** | Baseline deployed: strong instruction adherence |
-| **Qwen 2.5 7B Coder** | 7B | **64.7%** | **50.9%** | **81.5%** | Strict formatting adherence; comparable overall |
-| *(Gemini 3.6 Flash Probe)* | *Frontier* | *(90.0% / 10Q)* | *(76.38% / 10Q)* | *—* | *Preliminary probe on identical frozen context* |
+| **Qwen 2.5 1.5B** | 1.5B | **993 / 1,540 (64.48%)** | **50.82%** | **80.0%** | Robust: minimal degradation despite 5x parameter drop |
+| **Qwen 2.5 7B Instruct** | 7B | **996 / 1,540 (64.68%)** | **50.92%** | **81.6%** | Primary deployed Reader: strong conversational synthesis |
+| **Qwen 2.5 7B Coder** | 7B | **996 / 1,540 (64.68%)** | **50.88%** | **81.5%** | Strict formatting adherence; comparable overall |
 
 > [!TIP]
-> Across 1,540 questions, swapping the Reader from 7B to 1.5B yielded virtually identical accuracy (**64.7% vs 64.5%, Δ = +0.13 pp, p = 0.95**). Because Lethe compiles high-density, pre-filtered context, compact local models perform far above their unassisted baseline.
+> **Context-Dominance Verification (Overlap Analysis)**:  
+> Across all 1,540 questions, the 7B and 1.5B models **shared 863 identical correct answers** (and 413 identical wrong answers), with only 17.1% flipping outcome (McNemar test p = 0.95). This confirms that answer accuracy is predominantly driven by **the quality of Lethe's pre-compiled context**, not the Reader's intrinsic reasoning capacity.
+> 
+> *Note on Frontier Reader Probe (Gemini 3.6 Flash)*:  
+> A preliminary 10-question validation probe on the identical frozen context was run to observe potential ceiling breaches. On those exact same 10 questions, the 7B baseline scored 80.0% Hit / 82.2% F1, while Gemini scored 90.0% Hit / 76.4% F1. Evaluating all 1,540 questions on frontier APIs remains future work pending compute budget.
+
 
 ---
 
@@ -119,10 +125,11 @@ Human memory does not drop files into a recycle bin. Over time, memories decay i
 - **Level 0 (RAW)**: Full verbatim conversation turns.
 - **Level 1 (EPISODIC)**: Structured events tagged with speaker, timestamp, and conversational context.
 - **Level 2 (CONDENSED)**: Salient points and assertions extracted via syntactic entity-predicate parsing.
-- **Level 3 (FACT/STATE)**: Verified entity state changes and timeline anchors (resolved by `TemporalNormalizer`).
 - **Level 4 (ANCHOR)**: High-level durable life facts, user profiles, and recurring beliefs.
 
-### 2. Zero-LLM Ingestion & Deterministic Co-Processors
+**Resolution Decay Policy**:  
+Memory resolution decays deterministically based on conversational turn age, access recency, and token budget utility scoring (Utility / Token). Frequently accessed core anchors remain at high resolution, while peripheral details compress into condensed assertions. Upon querying, Lethe traverses from lowest token cost upward, expanding resolution dynamically only when necessary.
+
 Memory ingestion does not rely on non-deterministic, expensive LLM calls:
 - **Write LLM Calls = 0**: Ingestion and indexing are purely deterministic (regex, syntactic parsing, token inverted index).
 - **CHRONOS Temporal Co-processor**: Computes calendar arithmetic deterministically (resolving relative expressions like "last Tuesday" or "three months ago" against message timestamps).
@@ -168,6 +175,8 @@ Exposed MCP Tools:
 git clone https://github.com/Yato-Works/Lethe-Akribeia.git
 cd Lethe-Akribeia
 pip install -e ".[vector,llm]"
+# Note: during package transition, internal imports via `import artificial_memory` remain fully functional
+
 
 # Start a session
 lethe start "Project/Akribeia"
