@@ -68,8 +68,8 @@ What is not solved (Current Limitations 🟡)
 
 | Benchmark / Evaluation | Result | Dataset / Scope | What it measures |
 |:---|:---:|:---:|:---|
-| **BEAM (500K scale)** | **100.0%** | Official 10 categories (all 20 Qs) | Pinpoint extraction, contradiction detection, and event ordering from massive context |
-| **BEAM (1M & 10M scales)** | **100.0%** | Extreme probes (1M: 8 Qs, 10M: 8 Qs) | Needle retrieval and state tracking under extreme token budgets |
+| **BEAM (500K scale)** | **100.0% (20/20)** | Official 10 categories (all 20 Qs) | Pinpoint extraction, contradiction detection, and event ordering from massive context |
+| **BEAM (1M & 10M scales)** | **100.0% (8/8 each scale)** | Extreme probes (1M: 8 Qs, 10M: 8 Qs) | Needle retrieval and state tracking under extreme token budgets |
 | **LoCoMo Evidence Recall** | **81.1%** | 1,540 non-adversarial questions | Whether **all** required gold evidence turns were compiled into context (Strict Content Oracle) |
 | **LoCoMo Zero-Evidence Failure** | **8.7%** | 134 / 1,540 questions | Complete retrieval failure (no required evidence turns retrieved by the memory engine) |
 | **LoCoMo Official QA F1** | **50.9%** | 1,540 questions (7B Reader) | End-to-end question answering using local 7B Reader |
@@ -110,7 +110,7 @@ To prevent misleading comparisons between the full 1,540-question local run (64.
 | **Qwen 2.5 7B Instruct** | 7B | **Identical 10-Q Probe** | **80.0% (8/10)** | **82.17%** | Local baseline on frozen context |
 | **Gemini 3.6 Flash** | Commercial Frontier | **Identical 10-Q Probe** | **90.0% (9/10)** | **76.38%** | Ceiling validation with frontier Reader |
 
-This demonstrates that Lethe's pre-compiled context transfers seamlessly to frontier-grade models (90% accuracy), while confirming that the 50.9% / 64.7% barrier on 7B stems from Reader reasoning capacity rather than memory omission. (Full 1,540-question frontier evaluation remains future work pending compute budget).
+This demonstrates that Lethe's pre-compiled context transfers seamlessly to frontier-grade models (9/10 Qs correct), providing empirical evidence that a substantial portion of the remaining gap on 7B is attributable to Reader reasoning capacity rather than retrieval omission. (Full 1,540-question frontier evaluation remains future work pending compute budget).
 
 
 ---
