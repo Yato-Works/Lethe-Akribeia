@@ -47,13 +47,16 @@ def _load(name: str, path: Path):
 _audit = _load("_oracle_fn_audit_shared", REPO / "scripts" / "benchmarks" / "oracle_fn_audit.py")
 
 
-def unresolved_qids(run_path: str, dataset: dict, contexts: dict) -> list[str]:
+def unresolved_qids(run_path: str | Path, dataset: dict, contexts: dict) -> list[str]:
     """Wrong for the reference reader, not committed, and the evidence was there.
 
     Deliberately the same three conditions the failure ceiling uses, spelled out
     here so the experiment's input cannot drift from the census that produced it.
     """
-    data = json.loads((REPO / run_path).read_text(encoding="utf-8"))
+    path = Path(run_path)
+    if not path.is_absolute():
+        path = REPO / path
+    data = json.loads(path.read_text(encoding="utf-8"))
     out = []
     for row in data.get("results", []):
         qid = str(row.get("question_id") or "")

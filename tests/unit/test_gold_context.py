@@ -66,7 +66,7 @@ def test_unresolved_means_wrong_uncommitted_and_evidence_present() -> None:
         {"question_id": "q3", "is_correct": False, "answer_source": "committed: t"},  # claimed
         {"question_id": "q4", "is_correct": False, "answer_source": "reader"},   # no evidence
     ]
-    rel = _write_run(tmp, rows).replace(str(REPO) + "\\", "").replace("/", "\\")
+    run_file = _write_run(tmp, rows)
     dataset = {
         "q1": {"evidence_ids": ["D1:3"], "turns": TURNS},
         "q2": {"evidence_ids": ["D1:3"], "turns": TURNS},
@@ -79,7 +79,7 @@ def test_unresolved_means_wrong_uncommitted_and_evidence_present() -> None:
         "q3": "[D9:1 on 1:56 pm on 8 May, 2023] Caroline: I visited the botanical garden last Saturday.",
         "q4": "[D9:1 on 1:56 pm on 8 May, 2023] Caroline: Nothing relevant here.",
     }
-    assert gc.unresolved_qids(rel, dataset, contexts) == ["q1"]
+    assert gc.unresolved_qids(run_file, dataset, contexts) == ["q1"]
 
 
 def test_the_four_cells_are_the_four_outcomes() -> None:
