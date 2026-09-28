@@ -81,3 +81,14 @@ redteam_results/
 /datasets/official/
 /benchmark_results/official/
 datasets/external/longmemeval_s_cleaned.json
+
+# Large intermediate benchmark caches & logs
+*.log
+*.err
+benchmark_results/logs/
+benchmark_results/_scorecard_snapshot.json
+benchmark_results/locomo_context_cache_*.jsonl
+benchmark_results/locomo10/mining_*/
+benchmark_results/locomo10_runs/*/
+
+

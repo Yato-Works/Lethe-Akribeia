@@ -14,6 +14,8 @@ from __future__ import annotations
 import re
 from typing import Any, Optional, Sequence
 
+from artificial_memory.context.content_condenser import CondenseOptions
+from artificial_memory.context.content_condenser import OFF as CONDENSE_OFF
 from artificial_memory.context.temporal_normalizer import TemporalNormalizer
 from artificial_memory.core.ir.memory_types import (
     ApexMemoryUnit,
@@ -157,8 +159,12 @@ class MinimumSufficientContextCompiler:
         scalable_retrieval_threshold: int = 10_000,
         scalable_candidate_budget: int = 256,
         evidence_widening: bool = True,
+        rescue_order: str = "pool",
         selection_window_cap: int = 24,
         rescue_token_bonus_per_unit: int = 130,
+        condense: bool = False,
+        quote_mode: str = "keep",
+        compact_header: bool = False,
     ) -> None:
         self.reconstructor = StateReconstructor()
         self.checker = CoverageChecker()
@@ -178,6 +184,20 @@ class MinimumSufficientContextCompiler:
         # expansion rescue.  Keeps strong lexical hits on top while promoting
         # channel-diverse evidence into the selection window.
         self.evidence_widening = evidence_widening
+        # How ``_apply_evidence_widening`` orders the merged candidate list:
+        #   "pool"      legacy block order: strong + WideSlicer pool + fresh +
+        #               everything else.  Membership in the pool therefore
+        #               *demotes* a top-ranked candidate that the slicer did
+        #               not surface (it is pushed behind the whole pool block).
+        #   "relevance" preserve the ranker's order and only insert records the
+        #               ranker never produced.
+        # Measured on LoCoMo 1,540 (oracle recall): "pool" 80.65% vs
+        # "relevance" 80.65% -- 42 questions gained, 42 lost, net zero.
+        # The ordering hypothesis was therefore rejected; "pool" stays the
+        # default so pre-existing results remain reproducible.
+        # Both modes still report ``_last_rescue_count`` so the selection window
+        # keeps the widened sizing.
+        self.rescue_order = rescue_order
         self.wide_slicer = WideSlicer(per_channel_budget=40)
         self.graph_expander = AdaptiveGraphExpander(max_hops=2, per_hop_budget=15)
         # Number of rescue units injected by the most recent widening call; the
@@ -190,6 +210,15 @@ class MinimumSufficientContextCompiler:
         # oracle recall without unbounded context growth.
         self.selection_window_cap = selection_window_cap
         self.rescue_token_bonus_per_unit = rescue_token_bonus_per_unit
+        # High-density content compression ("Eli's 10-passenger principle"):
+        # purge greetings / sign-offs / fillers / repetitive agreement from the
+        # selected units and optionally drop the duplicated "(In reply to ...)"
+        # quote.  Off by default so every frozen artefact stays reproducible.
+        self.condense = condense
+        self.condense_opts = CondenseOptions(
+            quote_mode=quote_mode,
+            compact_header=compact_header,
+        ) if condense else CONDENSE_OFF
         from artificial_memory.protein.session_fuser import SessionFuser
         self.session_fuser = SessionFuser()
 
@@ -299,7 +328,13 @@ class MinimumSufficientContextCompiler:
         # Report the injected rescue volume so the selection loop can guarantee
         # that every promoted unit is inspected before it stops early.
         self._last_rescue_count = len(rescue) + len(fresh)
-        merged = strong + rescue + fresh + [u for u in tail if _key(u) not in pool_keys]
+        if self.rescue_order == "pool":
+            merged = strong + rescue + fresh + [u for u in tail if _key(u) not in pool_keys]
+        else:
+            # "relevance": keep the ranker's order intact.  ``fresh`` holds pool
+            # records the ranker never emitted at all, so inserting those behind
+            # the top hits can only add candidates, never demote one.
+            merged = strong + fresh + tail
         return merged
 
 
@@ -697,6 +732,18 @@ class MinimumSufficientContextCompiler:
         for u in selected_units:
             raw_text = u.ir.raw_content
             ref_date = u.ir.time_scope or ""
+            if not ref_date:
+                # Every rendered unit carries its session date in the
+                # provenance header.  ``time_scope`` is occasionally empty, and
+                # TemporalNormalizer.normalize() bails out entirely in that
+                # case -- measured on LoCoMo that silently skipped 10.2% of
+                # `last <weekday>` expansions, leaving the reader to do the
+                # arithmetic itself.  Fall back to the header date.
+                m_ref = re.search(
+                    r"\bon\s+\d{1,2}\s+[A-Za-z]{3,9},\s+(?:19|20)\d{2}", raw_text
+                )
+                if m_ref:
+                    ref_date = m_ref.group(0)[3:]
             # Apply deterministic temporal grounding
             grounded_text = self.temporal_normalizer.normalize(
                 raw_text,
@@ -719,7 +766,20 @@ class MinimumSufficientContextCompiler:
                             m_sent = re.match(r"(.*?[.!?])(?:\s+|$)", ast_body)
                             compact_body = m_sent.group(1) if m_sent and len(m_sent.group(1)) <= 200 else ast_body[:180] + "..."
                             grounded_text = prefix + compact_body
+            if self.condense:
+                # High-density condensation runs last so the temporal normalizer
+                # has already resolved relative dates into the text.
+                from artificial_memory.context.content_condenser import condense_turn
+                grounded_text = condense_turn(grounded_text, self.condense_opts)
+                if not grounded_text:
+                    continue
             lines.append(grounded_text)
+
+        if self.condense and self.condense_opts.quote_mode == "redundant":
+            # Needs every selected unit at once: a quote is only dropped when
+            # its payload already appears in another unit's body.
+            from artificial_memory.context.content_condenser import drop_redundant_quotes
+            lines = drop_redundant_quotes(lines)
 
         context_text = "\n".join(lines)
         token_cost = len(context_text.split())

@@ -11,16 +11,17 @@ Tests:
 """
 
 import sys
-sys.stdout.reconfigure(encoding="utf-8")
 
-from artificial_memory.core.ir.proposition import PropositionStatus, StateHistory, UnifiedProposition
-from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.recall.adaptive_search import AdaptiveEvidenceSearcher
+from artificial_memory.core.ir.proposition import StateHistory, UnifiedProposition
 from artificial_memory.recall.answer_verifier import AnswerVerifier
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
 from artificial_memory.recall.proposition_integrity_gate import PropositionIntegrityGate
 from artificial_memory.recall.query_planner import PlannerIntent, QueryPlanner
 from artificial_memory.recall.state_supersession_engine import StateSupersessionEngine
+
+# Kept below the imports so the module keeps the UTF-8 stdout it was written
+# against without tripping E402 on every import line.
+sys.stdout.reconfigure(encoding="utf-8")
 
 
 def test_unified_proposition_and_state_history():
@@ -38,7 +39,7 @@ def test_unified_proposition_and_state_history():
 
 def test_query_planner():
     planner = QueryPlanner()
-    
+
     p1 = planner.plan("How many days passed between the first race and the marathon?")
     assert p1.intent == PlannerIntent.TEMPORAL_DELTA
     assert len(p1.sub_queries) == 2
@@ -124,12 +125,16 @@ def test_state_supersession_engine():
 def test_answer_verifier():
     verifier = AnswerVerifier()
 
-    # 1. Test abstention enforcement
+    # 1. Test abstention enforcement.  The override needs a proposition to check
+    #    against the context; LoCoMo passes none, so state it here explicitly.
+    necklace = UnifiedProposition(
+        id="p-necklace", subject="Melanie", predicate="symbolizes", object="graduation"
+    )
     res = verifier.verify(
         question="What does Melanie's necklace symbolize?",
         predicted_answer="It symbolizes graduation from university.",
         context="[Proposition Integrity Warning: ...]",
-        propositions=[],
+        propositions=[necklace],
         integrity_abstention_recommended=True,
     )
     assert res.verified_answer == "None (not mentioned in conversation)."

@@ -1,0 +1,30 @@
+{
+ "tag": "locomo1540_baseline",
+ "run_dir": "benchmark_results/_official_scoring/run_locomo1540_baseline",
+ "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
+ "n": 1540,
+ "official_f1": 40.7952,
+ "official_f1_no_cat5": 40.7952,
+ "per_category": {
+  "multi-hop": {
+   "n": 282,
+   "official_f1": 24.4806
+  },
+  "temporal": {
+   "n": 321,
+   "official_f1": 52.6194
+  },
+  "open-domain": {
+   "n": 96,
+   "official_f1": 17.6625
+  },
+  "single-hop": {
+   "n": 841,
+   "official_f1": 44.3931
+  },
+  "adversarial": {
+   "n": 0,
+   "official_f1": null
+  }
+ }
+}

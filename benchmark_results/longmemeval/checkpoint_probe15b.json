@@ -1,0 +1,36 @@
+{
+  "completed": 3,
+  "total": 3,
+  "results": [
+    {
+      "question_id": "e47becba",
+      "question_type": "single-session-user",
+      "oracle_recall": true,
+      "predicted_answer": "Business Administration",
+      "ground_truth": "Business Administration",
+      "tokens_used": 1680,
+      "latency_ms": 3948.413800000708,
+      "is_correct": true
+    },
+    {
+      "question_id": "118b2229",
+      "question_type": "single-session-user",
+      "oracle_recall": true,
+      "predicted_answer": "45 minutes",
+      "ground_truth": "45 minutes each way",
+      "tokens_used": 3271,
+      "latency_ms": 1969.2405000005238,
+      "is_correct": true
+    },
+    {
+      "question_id": "51a45a95",
+      "question_type": "single-session-user",
+      "oracle_recall": true,
+      "predicted_answer": "You redeemed a $5 coupon on coffee creamer at a store.",
+      "ground_truth": "Target",
+      "tokens_used": 3181,
+      "latency_ms": 2180.060400000002,
+      "is_correct": false
+    }
+  ]
+}

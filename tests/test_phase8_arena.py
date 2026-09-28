@@ -1,7 +1,15 @@
 """Tests for Phase 8.1 Arena Core."""
 
-
 import pytest
+
+# The controlled players embed their memories, which needs the optional `vector`
+# extra (sentence-transformers).  CI installs it (``.[dev,web,llm,vector,mcp]``),
+# so these tests run there; a lean local venv skips them with a stated reason
+# instead of failing with ModuleNotFoundError from deep inside embeddings.py.
+pytest.importorskip(
+    "sentence_transformers",
+    reason="requires the 'vector' extra (pip install -e '.[vector]')",
+)
 
 from artificial_memory.research.benchmarks.arena import (
     ArenaCategory,

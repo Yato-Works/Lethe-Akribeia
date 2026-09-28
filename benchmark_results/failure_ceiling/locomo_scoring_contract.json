@@ -1,0 +1,194 @@
+{
+  "official_source": "snap-research/locomo task_eval/evaluation.py (eval_question_answering, f1_score)",
+  "policies": [
+    "lethe_current",
+    "lethe_strict",
+    "official_f1"
+  ],
+  "a": {
+    "run": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
+    "model": "qwen2.5:7b-instruct",
+    "scored": {
+      "totals": {
+        "lethe_current": {
+          "n": 1540,
+          "sum": 996.0,
+          "hits": 996
+        },
+        "lethe_strict": {
+          "n": 1540,
+          "sum": 539.0,
+          "hits": 539
+        },
+        "official_f1": {
+          "n": 1540,
+          "sum": 784.1613926572417,
+          "hits": 428
+        }
+      },
+      "per_category": {
+        "temporal": {
+          "lethe_current": {
+            "n": 321,
+            "sum": 161.0,
+            "hits": 161
+          },
+          "lethe_strict": {
+            "n": 321,
+            "sum": 104.0,
+            "hits": 104
+          },
+          "official_f1": {
+            "n": 321,
+            "sum": 180.04448884448877,
+            "hits": 93
+          }
+        },
+        "open-domain": {
+          "lethe_current": {
+            "n": 96,
+            "sum": 38.0,
+            "hits": 38
+          },
+          "lethe_strict": {
+            "n": 96,
+            "sum": 12.0,
+            "hits": 12
+          },
+          "official_f1": {
+            "n": 96,
+            "sum": 23.653988464641678,
+            "hits": 15
+          }
+        },
+        "multi-hop": {
+          "lethe_current": {
+            "n": 282,
+            "sum": 141.0,
+            "hits": 141
+          },
+          "lethe_strict": {
+            "n": 282,
+            "sum": 31.0,
+            "hits": 31
+          },
+          "official_f1": {
+            "n": 282,
+            "sum": 94.98820192236764,
+            "hits": 26
+          }
+        },
+        "single-hop": {
+          "lethe_current": {
+            "n": 841,
+            "sum": 656.0,
+            "hits": 656
+          },
+          "lethe_strict": {
+            "n": 841,
+            "sum": 392.0,
+            "hits": 392
+          },
+          "official_f1": {
+            "n": 841,
+            "sum": 485.47471342574516,
+            "hits": 294
+          }
+        }
+      }
+    }
+  },
+  "b": {
+    "run": "benchmark_results/locomo1540/temporal321_rules_commit_15b.json",
+    "model": "qwen2.5:1.5b",
+    "scored": {
+      "totals": {
+        "lethe_current": {
+          "n": 1540,
+          "sum": 994.0,
+          "hits": 994
+        },
+        "lethe_strict": {
+          "n": 1540,
+          "sum": 523.0,
+          "hits": 523
+        },
+        "official_f1": {
+          "n": 1540,
+          "sum": 587.0794731636779,
+          "hits": 238
+        }
+      },
+      "per_category": {
+        "temporal": {
+          "lethe_current": {
+            "n": 321,
+            "sum": 140.0,
+            "hits": 140
+          },
+          "lethe_strict": {
+            "n": 321,
+            "sum": 90.0,
+            "hits": 90
+          },
+          "official_f1": {
+            "n": 321,
+            "sum": 147.8963282606779,
+            "hits": 73
+          }
+        },
+        "open-domain": {
+          "lethe_current": {
+            "n": 96,
+            "sum": 42.0,
+            "hits": 42
+          },
+          "lethe_strict": {
+            "n": 96,
+            "sum": 13.0,
+            "hits": 13
+          },
+          "official_f1": {
+            "n": 96,
+            "sum": 25.619306615095816,
+            "hits": 16
+          }
+        },
+        "multi-hop": {
+          "lethe_current": {
+            "n": 282,
+            "sum": 149.0,
+            "hits": 149
+          },
+          "lethe_strict": {
+            "n": 282,
+            "sum": 29.0,
+            "hits": 29
+          },
+          "official_f1": {
+            "n": 282,
+            "sum": 70.45253105317919,
+            "hits": 13
+          }
+        },
+        "single-hop": {
+          "lethe_current": {
+            "n": 841,
+            "sum": 663.0,
+            "hits": 663
+          },
+          "lethe_strict": {
+            "n": 841,
+            "sum": 391.0,
+            "hits": 391
+          },
+          "official_f1": {
+            "n": 841,
+            "sum": 343.1113072347262,
+            "hits": 136
+          }
+        }
+      }
+    }
+  }
+}

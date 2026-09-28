@@ -1,660 +1,268 @@
-# Artificial Memory / Context Runtime
+# Lethe Akribeia
 
-> **Deterministic Memory Runtime with Structured Retrieval, Temporal Reasoning, Conflict Awareness, and Abstention.**
->
-> *Forget by compression. Recall by resolution. Reason with provenance.*
+> **Forgetting is not deletion.**  
+> **It is loss of resolution.**
 
-[English](README.md) | [日本語](README.ja.md)
+An experimental long-term memory system for AI that treats forgetting as progressive resolution loss rather than deletion.  
+*Deterministic memory compilation · Temporal reasoning · Evidence provenance · MCP native*  
+*(Formerly: Artificial Memory)*
 
-A **Cognitive Memory Runtime for Persistent AI Systems** that implements human-like memory with progressive compression, adaptive recall, temporal reasoning, and full provenance tracking.
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status: Experimental v0.2.0](https://img.shields.io/badge/status-experimental%20v0.2.0-orange.svg)](#why-release-now)
+[![LoCoMo: 1540 Benchmark](https://img.shields.io/badge/benchmark-LoCoMo%201540-green.svg)](#evaluation-highlights)
+[![BEAM: 100K--10M](https://img.shields.io/badge/benchmark-BEAM%20100%25-brightgreen.svg)](#evaluation-highlights)
 
-## Vision
+---
 
-Artificial Memory is not merely a "better RAG" — it is a **general-purpose cognitive memory runtime** that manages persistent AI memory throughout its entire lifecycle:
+## What is Lethe?
 
-- **Progressive Memory Compression** — Forgetting = Resolution Down, not Deletion
-- **Adaptive-Resolution Recall** — Expand only when tokens provide maximum utility
-- **Context as Intermediate Representation** — Memory → Recall → Prioritization → Resolution Expansion → Budget Allocation → Context IR → LLM
-- **Provenance as First-Class Property** — Every memory traces back to source conversation/message
-- **Memory as Evolving Object** — Created → Accessed → Compressed → Expanded → Contradicted → Revised → Consolidated → Archived → Recompiled
-- **Contradiction Detection & Belief Management** — Evidence ≠ Belief; explicit contradiction tracking with temporal validity (Truth vs. Evidence separation)
-- **Temporal Memory & Time Travel** — Reconstruct "what the system knew/believed at time T"
-- **Memory Integrity & Self-Healing** — Semantic preservation scoring, automatic recompilation on corruption
-- **Deterministic IR Extraction & Zero-LLM Ingestion** — Purely deterministic syntax/semantic parsing for ingestion (0 LLM write calls)
-- **Federated Multi-Agent Memory** — Policy-driven memory exchange with trust, provenance, expiration
-- **Enterprise Governance** — Classification, permissions, audit, tenancy, retention as architectural layer
+Lethe Akribeia is an open-source cognitive memory runtime designed for long-term AI persistence.  
+Unlike standard vector RAG or naive context stuffing, Lethe compiles conversational history into structured, resolution-tiered memory states using **zero LLM calls on ingestion**, attaches deterministic calendar and aggregation co-processors, and preserves full evidentiary provenance back to the exact source turn.
 
-## Features
+---
 
-### 🧠 Core Memory System
-- **Memory Resolution Model**: 6 levels from RAW (0) to DEEP_LONG_TERM (5)
-- **Progressive Forgetting**: Forget = Resolution Down, not Delete
-- **Progressive Recall**: Recall = Resolution Up, expand only when needed
-- **Topic-based Organization**: Automatic topic classification and hierarchy
-- **Memory IR / Context IR**: Formal intermediate representations for compilation, recall, and context building
-- **Universal IR Extractor & Resolver**: Entity scoping, temporal constraints, and conflict gates without domain heuristics
+## Evaluation Highlights
 
-### 🔍 Advanced Retrieval & Attribution
-- **Decoupled Evaluation**: Clear separation between Memory Retrieval (Test A) and LLM Answering (Test B)
-- **Failure Attribution**: Automated 8-point failure audit logging categorizing root causes (Retrieval, Resolution, LLM Reasoning, Evaluator)
-- **Vector Search**: FAISS-based semantic search with hybrid keyword+vector
-- **Temporal Queries**: Time-travel queries with valid_from/valid_until
-- **Associative Memory**: Graph-based memory associations with dependency tracking
-- **Provenance Tracking**: Full traceability from memory to source conversation
-- **Counterfactual Recall**: Measure memory influence, not just relevance
+We do not present Lethe as a universal SOTA system. However, specific components already perform at the ceiling of current long-context benchmarks, while full pipeline evaluations expose clear architectural insights:
 
-### 🤖 LLM Integration
-- **Context Runtime**: Automatic context building with priority-based budget (utility/token optimization)
-- **Multi-provider**: Ollama (local-first) and OpenAI support
-- **Confidence Scoring**: 4-component confidence with natural language expression
-- **Human-like Recall**: Adaptive resolution based on memory age/importance/relevance
-
-### 🔐 Multi-user & Security
-- **User Management**: Registration, authentication, roles
-- **API Keys**: Scoped keys with expiration
-- **Session Management**: Secure token-based sessions
-- **Topic Isolation**: User/project-level memory isolation
-
-### 📊 Observability & Research
-- **Real-time Metrics**: Compression ratios, recall accuracy, token costs
-- **Experiment Framework**: Quantitative evaluation with ablation studies
-- **Memory Debugger**: Explain why memory was selected/rejected, why resolution expanded/not
-- **Red-Team Suite**: Adversarial collision testing (Entity, Semantic, Temporal, Contradiction, Truth vs Evidence)
-- **Web UI**: Dashboard for memory visualization
-- **WebSocket**: Real-time updates
-
-## Benchmarks
-
-### 🔬 Rigorous Scientific Memory Benchmark: Artificial Memory vs. Competitors
-
-Evaluated against audited competitors (**Mem0**, **MemGPT**, **MemoryBank**, **Simple RAG**) under frozen configurations (`benchmark_config/*.yaml`), audited adapter specs (`competitors/*/spec.md`), and a frozen local model (`phi4-mini:3.8b`).
-
-#### 1. Adversarial Collision Suite ("AM Destruction Set")
-Stress-tests 5 hard cognitive failure modes: *Entity Collision*, *Semantic Collision*, *Temporal Collision*, *Contradiction*, and *Truth vs. Evidence* (state vs historical proposal).
-
-| System | Test A (Retrieval Acc) | Test B (Answer Acc) | False Positive Rate (FPR) | Abstention Acc | Context Tokens/Q | Write LLM Calls |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Artificial Memory (AM)** | **100.0%** | **83.3%** | **16.7%** | **83.3%** | **118** | **0** |
-| MemGPT | 66.7% | 83.3% | 0.0% | 100.0% | 311 | 0 |
-| Mem0 | 66.7% | 66.7% | 33.3% | 66.7% | 144 | 15 |
-| MemoryBank | 66.7% | 66.7% | 16.7% | 83.3% | 200 | 0 |
-| Simple RAG | 66.7% | 66.7% | 33.3% | 66.7% | 195 | 0 |
-
-> **Key Architectural Insights**:
-> - **Decoupled Evaluation**: AM achieved **100.0% Retrieval Accuracy (Test A)**. The drop to 83.3% in Test B was isolated via automated **Failure Attribution** as an `LLM_Reasoning_Failure` by the 3.8B model, not a retrieval defect.
-> - **Truth vs. Evidence**: Competitors suffered up to 33.3% False Positive Rates by confusing abandoned historical proposals with the active state. AM cleanly separated historical mentions from active truth.
-> - **Efficiency**: AM used only **118 tokens/query** (38% of MemGPT, 82% of Mem0) with **zero LLM write calls** during ingestion.
-
-#### 2. Scaled Hierarchical Benchmark (100 Questions)
-Tested across 4 difficulty tiers: **Easy** (Direct fact), **Medium** (Multi-hop), **Hard** (Temporal & Conflict), and **Adversarial** (Collisions).
-- Data schemas: `dataset_public/` (Specs & evaluation schemas)
-- Hidden evaluation suite: `dataset_hidden/arena_100.json`
-
-Run benchmark & diagnostics:
-```bash
-# Run Adversarial destruction set with failure attribution
-python scripts/run_scaled_benchmark.py --suite adversarial --diagnose
-
-# Run full 100-question evaluation
-python scripts/run_scaled_benchmark.py --suite 100
-```
-
-Five verification layers, from fastest to most realistic — all reproducible
-from this repo:
+### What is Working vs. What is Unsolved
 
 ```text
-1. Deterministic system benchmark   recall accuracy / latency / token savings
-2. LLM QA benchmark (Ollama)        no-memory vs full-context vs AM recall
-3. MCP smoke test                   all 7 tools, one session         -> 8/8 PASS
-4. Cross-session E2E                remember -> fresh process ->
-                                    recall/trace/timeline/explain/
-                                    expand/inspect                   -> 8/8 PASS
-5. Agent tool-selection test        LLM picks the tools itself       -> 2/4
+What is working (Strong Results)
+🟢 BEAM Benchmark (500K tokens)      — 100.0% Accuracy across all 10 evaluated probing categories
+🟢 BEAM Benchmark (1M & 10M tokens)   — 100.0% Accuracy on evaluated long-horizon probes
+🟢 LoCoMo Evidence-Presence Recall   — 81.1% on 1,540 non-adversarial questions (Corrected Oracle)
+🟢 Zero-LLM Ingestion Write Path     — 0 LLM calls during memory compilation (deterministic indexing)
+🟢 Deterministic Co-Processors        — Calendar arithmetic (CHRONOS) & Counting/aggregation without LLM
+🟢 Decoupled Reader Evaluation       — Frozen-context testbed isolating memory retrieval from Reader reasoning
+
+What is not solved (Current Limitations)
+🟡 LoCoMo End-to-End QA F1           — 50.9% with deployed local 7B Reader (reasoning bottleneck)
+🟡 Temporal Reasoning Accuracy       — Relative date intervals remain challenging for 7B models
+🟡 Frontier Reader Probe Scope       — 76.38% F1 observed on a 10-question probe; full 1,540Q pending budget
+🟡 Federated Multi-Agent Protocol    — Operator orchestration exists; distributed consistency is ongoing
 ```
 
-Layer 5 is reported honestly, and its failures are the most informative:
-a local 4B model autonomously chose `memory_remember` and `memory_recall`,
-but stored and queried under slightly different topic names
-("Artificial Memory" vs "Artificial Memory project") → recall returned 0
-results → the model then answered "I don't have that memory" instead of
-inventing one. The server was healthy on every call; the failure is in the
-agent's tool-usage layer (topic consistency on a small local model), not in
-AM. Two candidate improvements (pinned topics / fuzzy topic fallback) are
-recorded as future work. Note the honest-zero-result behavior reflects the
-specific test model (Qwen3-4B), not a property of Artificial Memory itself.
+### Benchmark Summary Table
 
-The cross-session E2E (`scripts/real_agent_e2e.py`) runs the exact server
-command registered for Cline: Session 1 stores project facts, the server
-process is terminated, and Session 2 — a fresh process on the same database —
-recalls all facts, traces provenance back to the source, returns the timeline
-entry, explains its retrieval decision, and expands/inspects the stored IR.
-Result tables, observed responses, and full analysis:
-`docs/real-agent-e2e.md`.
+| Benchmark / Evaluation | Result | What it measures |
+|:---|:---:|:---|
+| **BEAM (500K scale, 10 categories)** | **100.0%** | Probing accuracy across multi-session, contradiction, temporal, event ordering |
+| **BEAM (1M & 10M scales)** | **100.0%** | Probing accuracy under extreme context horizons |
+| **LoCoMo Evidence Recall** (1,540Q) | **81.1%** | Whether required evidence was successfully retrieved into Lethe's compiled context |
+| **LoCoMo Official QA F1** (1,540Q) | **50.9%** | End-to-end answer accuracy using the deployed local 7B Reader |
+| **Frozen Context Probe (7B)** | **50.92% F1** | Baseline local 7B Reader on 10 probe questions (64.68% binary hit) |
+| **Frozen Context Probe (Frontier)** | **76.38% F1** | Gemini 3.6 Flash on the **exact same frozen context** (90.00% binary hit, **+25.46 pp**) |
 
-Registration instructions for Cline / Claude Desktop / Hermes:
-`docs/mcp-agent-testing.md`.
+> [!IMPORTANT]
+> **81.1% evidence recall is not equivalent to 81.1% QA accuracy.**  
+> Retrieving the correct evidence into context does not guarantee that a compact 7B Reader can synthesize and reason over it to produce the exact answer string.
 
-### Installation
-```bash
-git clone https://github.com/Yato-Works/artificial-memory.git
-cd artificial-memory
-pip install -e ".[web,llm,vector]"
+---
+
+## The Key Question
+
+When an end-to-end memory benchmark fails, **is the bottleneck the memory retrieval, or the Reader model?**
+
+```
+                 SAME FROZEN LETHE CONTEXT
+                             │
+              ┌──────────────┴──────────────┐
+              ▼                             ▼
+       Local 7B Reader              Frontier Reader
+      (qwen2.5-coder:7b)           (Gemini 3.6 Flash)
+              │                             │
+          50.92 F1                      76.38 F1
+          64.68 Hit                     90.00 Hit
+              │                             │
+              └──────────────┬──────────────┘
+                             ▼
+                 +25.46 pp F1 (+25.32 pp Hit)
 ```
 
-> The `vector` extra installs FAISS + sentence-transformers for semantic
-> vector search (numpy is installed as a core dependency). Without it, the
-> package still works with keyword-only recall.
+In standard agent pipelines, memory and generation are conflated into a single metric. Lethe decouples them: by freezing the compiled memory context, we can evaluate memory retrieval independently from Reader synthesis.
 
-### Start with Docker (Recommended)
-```bash
-docker-compose up -d
-# Access UI at http://localhost:8000/ui
-# API at http://localhost:8000/docs
+---
+
+## Frozen Context Probe: Reader Sensitivity
+
+To test whether the 7B Reader was underutilizing Lethe's compiled context, we ran a validation probe across identical contexts and questions:
+
+| Category | Deployed 7B Reader (F1) | Gemini 3.6 Flash (F1) | Delta |
+|:---|:---:|:---:|:---:|
+| **Multi-hop Reasoning** | 64.7% | **100.0%** | **+35.3 pp** |
+| **Temporal Reasoning** | 50.2% | **83.3%** | **+33.1 pp** |
+| **Open-domain / Factual** | 39.6% | **100.0%** | **+60.4 pp** |
+| **Overall F1** | 50.92% | **76.38%** | **+25.46 pp** |
+| **Binary Hit Rate** | 64.68% | **90.00%** | **+25.32 pp** |
+
+> [!NOTE]
+> **This is a 10-question validation probe, not a full 1,540-question claim.**  
+> However, it provides strong preliminary evidence: when the compiled context is held strictly constant, a frontier-class Reader extracts answers with substantially higher precision (+25.46 pp F1). This indicates that the 7B Reader represents a significant portion of the remaining error surface.
+
+---
+
+## Failure Ceiling: Error Census on 1,540 Questions
+
+Rather than treating errors as an undifferentiated failure score, Lethe provides a diagnostic framework that separates failure causes across all 1,540 non-adversarial questions in LoCoMo:
+
+```
+1,540 Total Questions
+│
+├── 996 (64.7%) Correctly Answered / Hit
+├── 134 (8.7%)  Retrieval Failure   → Required evidence was missing from compiled context (Memory limit)
+├── 32  (2.1%)  Commitment Failure  → Evidence was present, but Answer Committer rejected/abstained
+└── 378 (24.5%) Reasoning Gap       → Evidence was present in context, but Reader failed to synthesize
 ```
 
-### Use with AI Agents (MCP — Priority Interface)
+By isolating retrieval failure from Reader reasoning failure, future research can target the actual bottleneck rather than blindly tweaking prompts.
 
-Interface priority for V1: **MCP → Python SDK → REST**.
+---
+
+## Why Lethe? (Core Principles)
+
+### 1. Forgetting = Loss of Resolution, Not Deletion
+Human memory does not drop files into a recycle bin. Over time, memories decay in resolution:
+- **Level 0 (RAW)**: Full verbatim conversation turns
+- **Level 1 (EPISODIC)**: Structured event records with speaker and tone
+- **Level 2 (CONDENSED)**: Salient conversational points and factual assertions
+- **Level 3 (FACT/STATE)**: Entity state changes and verified decisions
+- **Level 4 (ANCHOR)**: High-level durable life facts and long-term beliefs
+
+Queries start at low token cost and expand resolution dynamically only when ambiguity demands it.
+
+### 2. Zero-LLM Ingestion & Deterministic Co-Processors
+Memory ingestion does not rely on non-deterministic LLM summarization:
+- **Write LLM Calls = 0**: Conversation turns are ingested and token-indexed deterministically.
+- **CHRONOS Temporal Co-processor**: Computes calendar arithmetic deterministically (resolving relative expressions like "last Tuesday" or "three months ago" against conversation timestamps).
+- **Aggregation Co-processor**: Handles counting, lists, and frequency queries deterministically.
+- **Answer Committer**: Enforces an answer contract to prevent hallucinated drift.
+
+### 3. Context as an Intermediate Representation (Context IR / MSC)
+Rather than dumping raw text into a prompt, Lethe compiles memories into a structured **Memory State Context (MSC)**:
+```text
+[TEMPORAL_ANCHOR] Reference Date: 2023-05-14
+[VERIFIED_STATE] User lives in Kyoto (as of 2022-10)
+[DETERMINISTIC_TIMELINE]
+ - 2023-01-10: Visited Paris
+ - 2023-03-04: Switched job to Researcher
+[EVIDENCE_CHAIN (Provenance)]
+ - [conv_3:turn_12] User: "I am taking the exam next month..."
+```
+
+---
+
+## What Lethe Can Do Today
+
+### AI Agent Integration (MCP Native)
+
+Lethe Akribeia provides a native **Model Context Protocol (MCP)** server for Claude Desktop, Cline, Hermes, and any MCP-compliant agent:
 
 ```bash
-pip install -e ".[mcp]"
-# Then register with your MCP client (Claude Desktop, IDE, agent):
 python -m artificial_memory.mcp
 ```
 
-Exposed tools (all routed through the Runtime Facade):
+Exposed MCP Tools:
+- `memory_remember`: Store durable facts and decisions with timestamped provenance
+- `memory_recall`: Adaptive-resolution recall with evidence chains
+- `memory_expand`: Expand a compressed memory to verbatim resolution
+- `memory_trace`: Trace any stored fact back to its exact conversation turn
+- `memory_timeline`: Retrieve chronological timeline of an entity or topic
+- `memory_explain`: Inspect why specific memories were selected or ranked
 
-| Tool | Purpose |
-|------|---------|
-| `memory_remember` | Store durable facts / decisions with provenance |
-| `memory_recall` | Adaptive-resolution recall with full provenance |
-| `memory_expand` | Expand a compressed memory to higher resolution |
-| `memory_trace` | Trace a memory back to its source conversation |
-| `memory_explain` | Explain recall selection decisions |
-| `memory_timeline` | Chronological timeline of a topic |
-| `memory_inspect` | Inspect IR, provenance chain, and versions |
-
-### Manual Start
-```bash
-# Start the API server
-python -m artificial_memory.api.server
-
-# Or use CLI
-python -m artificial_memory start "Projects/MyProject"
-python -m artificial_memory user "Hello, how are you?"
-python -m artificial_memory assistant "I'm doing well, thank you!"
-python -m artificial_memory recall "what did we discuss"
-python -m artificial_memory end
-```
-
-## CLI Commands
-
-| Command | Description |
-|---------|-------------|
-| `am start <topic>` | Start new conversation |
-| `am user <message>` | Log user message |
-| `am assistant <message>` | Log assistant message |
-| `am end` | End conversation & compile memories |
-| `am memory` | Show current memories |
-| `am context` | Show LLM context |
-| `am recall <query>` | Recall memories |
-| `am expand <id> --target N` | Expand memory resolution |
-| `am trace <id>` | Trace memory provenance |
-| `am temporal_state` | Show temporal state |
-| `am confidence` | Check recall confidence |
-| `am human_recall` | Human-like recall |
-| `am vector_search` | Vector similarity search |
-| `am associate` | Analyze semantic associations |
-| `am style_profile` | Show conversation style profile |
-| `am consolidation_status` | Show consolidation engine status |
-
-## API Endpoints
-
-### Conversations
-- `POST /conversations/start` - Start conversation
-- `POST /conversations/{id}/messages` - Add message
-- `POST /conversations/{id}/end` - End & compile
-
-### Memory & Recall
-- `GET /memory?topic_path=...` - List memories
-- `POST /recall` - Standard recall
-- `POST /recall/human` - Human-like recall
-- `POST /recall/explain` - Explain recall process
-- `POST /memory/{id}/expand` - Expand resolution
-
-### Context & Vector
-- `POST /context` - Build optimized context
-- `POST /vector/search` - Vector similarity search
-- `POST /vector/hybrid` - Hybrid vector+keyword search
-- `GET /vector/stats` - Index statistics
-
-### Temporal
-- `POST /temporal/state` - State at timestamp
-- `POST /temporal/changes` - Changes between timestamps
-- `POST /temporal/timeline` - Topic timeline
-
-### Confidence & Style
-- `POST /confidence` - Compute confidence
-- `GET /confidence/memory/{id}` - Memory confidence
-- `POST /style/profile` - Style profile
-- `POST /style/reconstruct` - Reconstruct with style
-
-### Human-like Recall
-- `POST /recall/human` - Human-like recall
-- `POST /recall/explain` - Explain recall process
-
-### Auth
-- `POST /auth/register` - Register user
-- `POST /auth/login` - Login
-- `GET /auth/me` - Current user
-- `POST /auth/api-keys` - Create API key
-- `GET /auth/api-keys` - List API keys
-
-### Chat
-- `POST /chat` - Chat with LLM
-- `POST /chat/stream` - Streaming chat
-
-### Metrics & Admin
-- `GET /metrics` - System metrics
-- `GET /metrics/export` - Export metrics
-- `WS /ws` - WebSocket
-
-## Configuration
-
-Environment variables:
-```bash
-# Database
-DATABASE_PATH=memory.db
-
-# LLM Providers
-OLLAMA_BASE_URL=http://localhost:11434
-OPENAI_API_KEY=your-key
-
-# Auth
-JWT_SECRET=your-secret
-
-# Vector Search
-VECTOR_INDEX_PATH=vector_index
-EMBEDDING_MODEL=all-MiniLM-L6-v2
-```
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Artificial Memory                        │
-│         Cognitive Memory Runtime for Persistent AI         │
-├─────────────────────────────────────────────────────────────┤
-│  CLI          │  HTTP API        │  WebSocket  │  Web UI   │
-├─────────────────────────────────────────────────────────────┤
-│                    Runtime Facade                           │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │   Recall    │ │   Context   │ │  Confidence │           │
-│  │   Runtime   │ │   Runtime   │ │   Engine    │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-├─────────────────────────────────────────────────────────────┤
-│                    Memory Compiler                          │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │  Lexical    │ │  Semantic   │ │  Fact/      │           │
-│  │  Analysis   │ │  Extraction │ │  Decision   │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │  Episode    │ │  Temporal   │ │  Provenance │           │
-│  │  Construction│ │  Linking    │ │  Linking    │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-├─────────────────────────────────────────────────────────────┤
-│              Memory Evolution Layer                         │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │Consolidation│ │Contradiction│ │   Belief    │           │
-│  │  Engine     │ │  Detection  │ │  Engine     │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │   Healing   │ │ Dependency  │ │  Temporal   │           │
-│  │  (Integrity)│ │   Graph     │ │  Updates    │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-├─────────────────────────────────────────────────────────────┤
-│                    IR Layer                                 │
-│  ┌─────────────────┐  ┌─────────────────┐                  │
-│  │    Memory IR    │  │   Context IR    │                  │
-│  └─────────────────┘  └─────────────────┘                  │
-├─────────────────────────────────────────────────────────────┤
-│  SQLite  │  FAISS/pgvector  │  File Storage (Markdown/JSON) │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Target Architecture: Distributed / Kubernetes
-
-```
-                    AI Application
-                          │
-                          ▼
-                 Artificial Memory
-                          │
-       ┌──────────────────┼──────────────────┐
-       ▼                  ▼                  ▼
-  Memory Runtime    Context Runtime    Governance
-       │                  │                  │
-  Recall             Context             Audit
-  Evolution          Allocation          Policy
-  Temporal           Provenance          Security
-  Healing            Debugging           Tenancy
-       │                  │                  │
-       └──────────────────┼──────────────────┘
-                          ▼
-                    Storage Layer
-              (PostgreSQL / pgvector / Object Store)
-                          │
-                    Kubernetes Operator
-                          │
-        ┌─────────────────┼─────────────────┐
-        ▼                 ▼                 ▼
-   Recall Workers    Compiler Workers   Vector Index Workers
-   Consolidation     Memory Governance   Runtime Nodes
-```
-
-**Long-term goal**: Artificial Memory aims to provide a **Kubernetes Operator** for deploying and managing distributed cognitive memory runtimes:
-
-```yaml
-apiVersion: memory.artificialmemory.dev/v1
-kind: ArtificialMemoryCluster
-spec:
-  replicas: 3
-  storage:
-    backend: postgres
-    vector: pgvector
-  runtime:
-    recallWorkers: 4
-    consolidationWorkers: 2
-    compilerWorkers: 2
-  policy:
-    compression: adaptive
-    retention: policy-driven
-    governance: enabled
-```
-
-## Experiment Framework
-
-Run quantitative evaluations with ablation studies:
-
-```python
-from artificial_memory.experiments import ExperimentRunner, ExperimentConfig, ExperimentType
-
-config = ExperimentConfig(
-    name="comparison",
-    experiment_types=[
-        ExperimentType.RAW_CONVERSATION,
-        ExperimentType.TRADITIONAL_SUMMARY,
-        ExperimentType.VECTOR_MEMORY,
-        ExperimentType.TEMPORAL_MEMORY,
-        ExperimentType.ARTIFICIAL_MEMORY,
-    ],
-    num_conversations=10,
-    topics=["Architecture", "API Design", "Database"],
-)
-
-runner = ExperimentRunner(config)
-results = await runner.run_all_experiments()
-```
-
-## Development
+### Quickstart CLI
 
 ```bash
-# Install dev dependencies
-pip install -e ".[dev]"
+# Install
+git clone https://github.com/Yato-Works/artificial-memory.git
+cd artificial-memory
+pip install -e ".[vector,llm]"
 
-# Run tests
-pytest tests/
+# Start a session
+lethe start "Project/Akribeia"
 
-# Lint
-ruff check .
+# Log conversation (0 LLM cost)
+lethe user "We decided to target 9/30 for the initial v0.2.0 release."
+lethe assistant "Understood. The release deadline is set to September 30."
 
-# Type check
-mypy src/artificial_memory
+# Query memories
+lethe recall "When is the release scheduled?"
 
-# Format
-ruff format .
+# Inspect timeline & provenance
+lethe timeline
 ```
 
-## Docker Deployment
+---
+
+## Hardware & Research Design
+
+This project was built under a **deliberately constrained research budget** using a single local GPU (RTX 4080 / 16GB VRAM) and a local 7B-class model (`qwen2.5-coder:7b`).
+
+Running 1,540 questions through commercial frontier APIs with long contexts currently exceeds our available research budget.  
+**Rather than hiding this constraint, Lethe converts it into research design**: by freezing its compiled contexts (`locomo_gold_context_cache.jsonl`), the memory system and Reader can be evaluated independently whenever additional compute becomes available.
+
+---
+
+## What Is NOT Finished
+
+To remain scientifically rigorous, here is what is explicitly left as future work:
+
+- [ ] **Full 1,540-question frontier Reader evaluation** (pending compute/API budget)
+- [ ] **Comprehensive Reader scaling laws** (7B vs 14B vs 32B vs 70B vs Frontier)
+- [ ] **Complex overlapping temporal interval resolution**
+- [ ] **Full LongMemEval and PersonaMem local benchmark suites**
+- [ ] **Distributed multi-agent consensus protocols** (Kubernetes Operator CRDs exist, but distributed consensus is experimental)
+
+---
+
+## Reproduction
+
+All evaluation scripts, adapters, and scoring pipelines are fully reproducible:
 
 ```bash
-# Build and run
-docker-compose up -d
+# 1. Run unit tests (82 tests)
+pytest tests/unit/
 
-# With OpenAI
-OPENAI_API_KEY=your-key docker-compose up -d
+# 2. Run LoCoMo Official Scorer on baseline
+python scripts/benchmarks/score_locomo_run_json.py --input benchmark_results/locomo1540/locomo_1540_improved2.json
 
-# Production
-docker build -t artificial-memory .
-docker run -d -p 8000:8000 -v ./data:/app/data artificial-memory
+# 3. Inspect Failure Ceiling breakdown
+python scripts/benchmarks/failure_ceiling.py
+
+# 4. Run BEAM benchmark
+python scripts/run_coder7b_beam.py --scale 500K
+
+# 5. Run Frontier Reader probe on frozen context (requires GEMINI_API_KEYS)
+python scripts/benchmarks/run_frontier_eval.py --limit 10
 ```
 
-## Kubernetes Deployment (Phase 9)
+---
 
-> **⚠️ Scope Disclaimer (V1)**
->
-> The Kubernetes Operator provides **deployment and operational orchestration
-> primitives** only — CRDs, reconciliation, worker deployment, scaling, and
-> lifecycle management. It **does not** constitute proof of distributed memory
-> consistency, distributed correctness, or production readiness. Single-node
-> (SQLite / single Postgres) operation is the validated path in V1. Distributed
-> consistency semantics (idempotency, transaction boundaries, index
-> synchronization, recovery) are being designed in Phase 9.5 and must not be
-> assumed from the presence of the Operator.
+## Why Release Now?
 
-### Quick Start with Helm
+I wanted to find out how far a structured, local memory system could go when the hardware and models were small.
 
-```bash
-# Add the chart repository (or use local chart)
-helm repo add artificial-memory ./k8s/helm/artificial-memory-operator
+Lethe Akribeia v0.2.0 is not a finished monument. It is a working, auditable checkpoint.  
+It has measurable strengths. It has measurable weaknesses.  
+And now, it separates memory retrieval from Reader reasoning so that both can be improved systematically.
 
-# Create namespace
-kubectl create namespace artificial-memory
+I still want to find out how far this architecture can go.
 
-# Install with default values
-helm install artificial-memory artificial-memory/artificial-memory-operator \
-  -n artificial-memory
+---
 
-# Or install with custom values
-helm install artificial-memory artificial-memory/artificial-memory-operator \
-  -n artificial-memory \
-  -f custom-values.yaml
-```
+## Citation
 
-### Deploy via kubectl (CRDs + Operator)
-
-```bash
-# Install CRDs
-kubectl apply -f k8s/crds/
-
-# Install operator
-kubectl apply -f k8s/operator/rbac.yaml
-kubectl apply -f k8s/operator/deployment.yaml
-```
-
-### Create an ArtificialMemoryCluster
-
-```yaml
-# cluster.yaml
-apiVersion: memory.artificialmemory.dev/v1
-kind: ArtificialMemoryCluster
-metadata:
-  name: my-cluster
-  namespace: artificial-memory
-spec:
-  replicas: 3
-  storage:
-    backend: postgres
-    vector: pgvector
-    postgres:
-      host: artificial-memory-postgres
-      port: 5432
-      database: artificial_memory
-      secretRef: artificial-memory-postgres-secret
-  runtime:
-    recallWorkers: 4
-    consolidationWorkers: 2
-    compilerWorkers: 2
-  policy:
-    compression: adaptive
-    retention: policy-driven
-    governance: enabled
-```
-
-```bash
-kubectl apply -f cluster.yaml
-```
-
-### Check Cluster Status
-
-```bash
-# Get cluster status
-kubectl get artificialmemorycluster -n artificial-memory
-
-# Get all resources
-kubectl get amc,ms,mw,rw,vi -n artificial-memory
-
-# Check operator logs
-kubectl logs -n artificial-memory -l app.kubernetes.io/component=operator
-
-# Port-forward to access API
-kubectl port-forward -n artificial-memory svc/artificial-memory-recall-service 8000:8000
-```
-
-### Custom Values
-
-```yaml
-# custom-values.yaml
-cluster:
-  name: production-cluster
-  replicas: 5
-  runtime:
-    recallWorkers: 8
-    consolidationWorkers: 4
-  storage:
-    postgres:
-      secretRef: production-postgres-secret
-
-postgresql:
-  cnpg:
-    instances: 5
-    storageSize: 100Gi
-
-monitoring:
-  enabled: true
-
-ingress:
-  enabled: true
-  hosts:
-    - host: memory.example.com
-      paths:
-        - path: /
-          pathType: Prefix
-```
-
-### Local Development with kind
-
-```bash
-# Start local Kubernetes with kind
-kind create cluster --name artificial-memory
-
-# Or use docker-compose with kind
-docker-compose -f docker-compose.kind.yml up -d
-
-# Deploy to kind
-helm install artificial-memory ./k8s/helm/artificial-memory-operator -n artificial-memory --create-namespace
+```bibtex
+@software{lethe_akribeia_2026,
+  title = {Lethe Akribeia: An Experimental Cognitive Long-Term Memory System for AI},
+  author = {Yato-Works},
+  year = {2026},
+  version = {0.2.0},
+  url = {https://github.com/Yato-Works/artificial-memory}
+}
 ```
 
 ## License
 
-MIT License - see LICENSE file for details.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests: `pytest tests/`
-5. Submit a PR
-
-## Design Philosophy
-
-Core principles:
-
-1. **Forget = Resolution Down** — Not deletion, but progressive compression
-2. **Progressive Recall** — Expand resolution only when needed
-3. **Conversation Preservation** — Tone, fillers, hesitation preserved
-4. **Context IR** — Dense intermediate representation for LLM
-5. **Human-like Recall** — Adaptive resolution based on age/importance
-6. **Provenance Tracking** — Every memory traces to source conversation
-7. **Evidence ≠ Belief** — Explicit contradiction detection, belief state separate from memory
-8. **Memory Evolution** — Memories change; history preserved; healing possible
-
-## Roadmap
-
-### Phase 1 — Foundation (Current)
-- [x] Memory IR & Context IR formal definitions
-- [x] Legacy Memory ↔ MemoryIR lossless adapter
-- [x] Runtime Facade (unified entry point)
-- [ ] Deterministic Compiler Pipeline
-
-### Phase 2 — Advanced Memory Runtime
-- [ ] Adaptive Recall (utility/token optimization)
-- [ ] Memory Evolution Engine (revision, merge, split)
-- [ ] Contradiction Detection & Belief State
-- [ ] Dependency Graph & Impact Analysis
-
-### Phase 3 — Memory Integrity
-- [ ] Integrity Metrics (semantic preservation, temporal consistency)
-- [ ] Stale Memory Detection
-- [ ] Memory Healing (auto-recompile on corruption)
-- [ ] Counterfactual Recall Engine
-
-### Phase 4 — Temporal & Debugging Research
-- [ ] Memory Time Travel (state/belief/context at timestamp)
-- [ ] Memory Debugger (selection/rejection/expansion explanations)
-- [ ] Decision Trace & Impact Analysis
-
-### Phase 5 — Research Platform
-- [ ] Benchmark Harness (reproducible experiments)
-- [ ] Ablation Framework
-- [ ] Red-Team Suite (adversarial testing)
-- [ ] AM-Specific Synthetic Benchmarks (temporal, contradiction, false memory, compression loss)
-
-### Phase 6 — Multi-Agent & Enterprise
-- [ ] Federated Memory Exchange
-- [ ] Trust Policies & Governance
-- [ ] Tenant Isolation & Audit
-- [ ] Retention Policies
-
-### Phase 7 — Distributed Runtime
-- [x] PostgreSQL / pgvector Backend
-- [x] Distributed Vector Indexing
-- [x] Worker Architecture (queue-based compilation)
-- [x] Horizontal Scaling
-
-### Phase 8 — Kubernetes
-- [x] Kubernetes Operator (ArtificialMemoryCluster, MemoryStore, MemoryWorker, RecallWorker, VectorIndex)
-- [x] Operator-managed: deployment, scaling, storage, config, upgrades, health, migration
-- [x] Helm Chart for deployment
-- [ ] Integration tests with kind/k3s
-- [ ] Production hardening (network policies, pod disruption budgets, priority classes)
-
-## 🌟 Showcase & Adopters
-
-Are you using Artificial Memory in your project, startup, enterprise, or research?  
-We would love to feature you! Please check out [SHOWCASE.md](SHOWCASE.md) or submit a [Showcase Issue](https://github.com/Yato-Works/artificial-memory/issues/new?template=showcase.yml) (anonymous submissions welcome!).
-
-## Citation
-
-If you use this in research, please cite:
-
-```bibtex
-@software{artificial-memory,
-  title = {Artificial Memory / Context Runtime},
-  subtitle = {A Cognitive Memory Runtime for Persistent AI Systems},
-  author = {Yato-Works},
-  year = {2026},
-  url = {https://github.com/Yato-Works/artificial-memory}
-}
-```
+MIT License. See [LICENSE](LICENSE) for details.

@@ -1,0 +1,73 @@
+{
+  "label": "LoCoMo 1,540 - deployed system (7B reader)",
+  "a": {
+    "run": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
+    "model": "qwen2.5:7b-instruct"
+  },
+  "b": {
+    "run": "benchmark_results/locomo1540/temporal321_rules_commit_15b.json",
+    "model": "qwen2.5:1.5b"
+  },
+  "cache": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "claims": null,
+  "n": 1540,
+  "correct": 996,
+  "wrong": 544,
+  "committed_in_run": 109,
+  "oracle_measured": 1540,
+  "buckets": {
+    "retrieval": 211,
+    "commit": 32,
+    "unresolved_reader_sensitive": 89,
+    "unresolved_reader_insensitive": 212
+  },
+  "per_group": [
+    {
+      "name": "multi-hop",
+      "buckets": {
+        "retrieval": 45,
+        "commit": 0,
+        "unresolved_reader_sensitive": 26,
+        "unresolved_reader_insensitive": 70
+      }
+    },
+    {
+      "name": "open-domain",
+      "buckets": {
+        "retrieval": 35,
+        "commit": 0,
+        "unresolved_reader_sensitive": 9,
+        "unresolved_reader_insensitive": 14
+      }
+    },
+    {
+      "name": "single-hop",
+      "buckets": {
+        "retrieval": 90,
+        "commit": 0,
+        "unresolved_reader_sensitive": 43,
+        "unresolved_reader_insensitive": 52
+      }
+    },
+    {
+      "name": "temporal",
+      "buckets": {
+        "retrieval": 41,
+        "commit": 32,
+        "unresolved_reader_sensitive": 11,
+        "unresolved_reader_insensitive": 76
+      }
+    }
+  ],
+  "signals": {
+    "other_reader_only": 131,
+    "neither_reader": 413,
+    "reference_only": 133,
+    "reader_determined": 264,
+    "both_right": 863,
+    "retrieval_but_other_right": 42,
+    "commit_without_evidence": 6,
+    "gt_verbatim_in_context": 81,
+    "unresolved_n": 301
+  }
+}

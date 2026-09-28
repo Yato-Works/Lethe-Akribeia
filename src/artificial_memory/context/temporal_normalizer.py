@@ -10,7 +10,6 @@ from __future__ import annotations
 import calendar
 import datetime
 import re
-from typing import Optional
 
 
 class TemporalNormalizer:
@@ -31,7 +30,7 @@ class TemporalNormalizer:
         "dec": 12, "december": 12,
     }
 
-    def parse_reference_date(self, date_str: str) -> Optional[datetime.date]:
+    def parse_reference_date(self, date_str: str) -> datetime.date | None:
         """Parse a variety of session date strings into a datetime.date object.
 
         Examples:
@@ -79,7 +78,7 @@ class TemporalNormalizer:
         self,
         text: str,
         reference_date_str: str,
-        enabled_rules: Optional[set[str]] = None,
+        enabled_rules: set[str] | None = None,
     ) -> str:
         """Resolve relative dates in text using the reference date string.
 
@@ -88,11 +87,13 @@ class TemporalNormalizer:
             reference_date_str: Reference timestamp of the session.
             enabled_rules: If provided, only execute rules present in this set:
                 - 'yesterday': yesterday, tomorrow, the day before yesterday
-                - 'last_week': last week, last weekend
+                - 'last_week': last week, last weekend, this week, next week
                 - 'month': this month, next month, last month
                 - 'days_ago': X days ago, X weeks ago, two days ago
                 - 'weekdays': last [day of week]
-                - 'last_year': last year
+                - 'last_year': last year, last <season>
+                - 'years_ago': X years ago (resolved to the year)
+                - 'months_ago': X months ago (resolved to Month YYYY)
         """
         ref_date = self.parse_reference_date(reference_date_str)
         if not ref_date:
@@ -228,4 +229,81 @@ class TemporalNormalizer:
             d = ref_date - datetime.timedelta(days=2)
             d_str = self.format_date(d)
             result = re.sub(r"\btwo days ago\b", f"two days ago ({d_str})", result, flags=re.IGNORECASE)
+        # 14. 'this week' -> 'this week (the week of DD Month YYYY)'
+        if (run_all or "last_week" in enabled_rules) and re.search(r"\bthis week\b", result, flags=re.IGNORECASE):
+            d_str = self.format_date(ref_date)
+            result = re.sub(r"\bthis week\b", f"this week (the week of {d_str})", result, flags=re.IGNORECASE)
+
+        # 15. 'next week' -> 'next week (the week after DD Month YYYY)'
+        if (run_all or "last_week" in enabled_rules) and re.search(r"\bnext week\b", result, flags=re.IGNORECASE):
+            d_str = self.format_date(ref_date)
+            result = re.sub(r"\bnext week\b", f"next week (the week after {d_str})", result, flags=re.IGNORECASE)
+
+        # 16. 'last <season>' -> 'last <season> (the <season> of YYYY)'
+        #     "Last <season>" means *the most recent one that has already ended*,
+        #     so the year depends on where the reference date sits relative to the
+        #     season: from 15 July 2023 "last summer" is 2022 (2023's summer is
+        #     still running) but "last winter" is also 2022 (the winter that ended
+        #     in February 2023).  Wrapping into the previous year unconditionally
+        #     (the v1 rule) is wrong for every reference date that sits inside or
+        #     after the named season.
+        if run_all or "last_year" in enabled_rules:
+            season_end = {"spring": 5, "summer": 8, "fall": 11, "autumn": 11}
+
+            def replace_last_season(match: re.Match) -> str:
+                season = match.group(1).lower()
+                if season == "winter":
+                    # The most recent winter that ended before the reference date
+                    # started in ref.year-1, unless we are still inside it.
+                    year = ref_date.year - 1 if ref_date.month >= 3 else ref_date.year - 2
+                else:
+                    end = season_end.get(season, 11)
+                    year = ref_date.year - 1 if ref_date.month <= end else ref_date.year
+                return f"last {match.group(1)} (the {match.group(1)} of {year})"
+
+            result = re.sub(
+                r"\blast\s+(summer|winter|spring|fall|autumn)\b",
+                replace_last_season,
+                result,
+                flags=re.IGNORECASE,
+            )
+
+        # 17. 'N years ago' -> 'N years ago (YYYY)'.  This is calendar arithmetic
+        #     the reader cannot be trusted with: LoCoMo answers these questions
+        #     with the year ("In 2013") while the turn only says "10 years ago",
+        #     so without the resolved year the answer is not present anywhere in
+        #     the context and the question is unanswerable by construction.
+        if run_all or "years_ago" in enabled_rules:
+            spelled = {
+                "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+                "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
+            }
+
+            def replace_years_ago(match: re.Match) -> str:
+                raw = match.group(1).lower()
+                count = spelled.get(raw) if raw in spelled else int(raw)
+                return f"{match.group(1)} years ago ({ref_date.year - count})"
+
+            result = re.sub(
+                r"\b(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)"
+                r"\s+years?\s+ago\b",
+                replace_years_ago,
+                result,
+                flags=re.IGNORECASE,
+            )
+
+        # 18. 'N months ago' -> 'N months ago (Month YYYY)'
+        if run_all or "months_ago" in enabled_rules:
+            def replace_months_ago(match: re.Match) -> str:
+                count = int(match.group(1))
+                total = ref_date.year * 12 + (ref_date.month - 1) - count
+                year, month_index = divmod(total, 12)
+                return f"{count} months ago ({calendar.month_name[month_index + 1]} {year})"
+
+            result = re.sub(
+                r"\b(\d{1,2})\s+months?\s+ago\b",
+                replace_months_ago,
+                result,
+                flags=re.IGNORECASE,
+            )
         return result

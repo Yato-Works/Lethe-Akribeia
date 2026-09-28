@@ -1,0 +1,2582 @@
+{
+  "label": "LoCoMo 1,540 - category 2 (temporal)",
+  "suite": "locomo",
+  "cache": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "reader_run": "benchmark_results/locomo1540/temporal321_rules.json",
+  "min_turn_score": 0.8,
+  "counts": {
+    "n": 321,
+    "claimed": 109,
+    "commit_correct": 77
+  },
+  "records": [
+    {
+      "question_id": "conv-26-qa-000",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-001",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-005",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-006",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-008",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-009",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-010",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-012",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-016",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-017",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-020",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-021",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-025",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-026",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-028",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-029",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-031",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-033",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-035",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-036",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-041",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-044",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-045",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-049",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-053",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-054",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-057",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-058",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-062",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-063",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-067",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-068",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-072",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-073",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-074",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-079",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-26-qa-080",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-000",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-001",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-006",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-007",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-008",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-010",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-011",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-012",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-013",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-014",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-015",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-016",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-019",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-020",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-021",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-022",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-026",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-028",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-030",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-032",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-033",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-034",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-035",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-036",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-037",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-30-qa-038",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-000",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-001",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-004",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-005",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-010",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-013",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-016",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-020",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-022",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-024",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-027",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-031",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-034",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-038",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-043",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-046",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-048",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-051",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-053",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-054",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-055",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-056",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-058",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-059",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-061",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-063",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-41-qa-091",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-002",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-003",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-006",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-007",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-008",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-009",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-013",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-015",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-016",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-017",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-018",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-020",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-021",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-022",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-024",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-025",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-026",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-028",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-029",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-031",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-032",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-033",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-035",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-036",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-037",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-038",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-039",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-040",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-041",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-043",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-044",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-045",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-048",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-054",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-057",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-064",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-065",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-072",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-077",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-42-qa-086",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-006",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-010",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-012",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-016",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-020",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-022",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-023",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-024",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-031",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-033",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-037",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-039",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-040",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-044",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-045",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-046",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-047",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-054",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-055",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-056",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-058",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-060",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-063",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-064",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-068",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-43-qa-069",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-000",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-001",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-004",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-005",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-006",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-007",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-008",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-010",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-011",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-013",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-016",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-022",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-025",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-030",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-034",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-037",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-038",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-045",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-046",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-047",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-055",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-057",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-058",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-44-qa-059",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-001",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-004",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-010",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-011",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-013",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-014",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-015",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-021",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-023",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-028",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-029",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-031",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-032",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-037",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-039",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-041",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-042",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-043",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-046",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-047",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-048",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-050",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-052",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-053",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-055",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-057",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-058",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-059",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-061",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-062",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-063",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-064",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-065",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-47-qa-066",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-000",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-002",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-003",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-004",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-007",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-009",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-010",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-012",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-017",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-021",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-022",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-026",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-027",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-029",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-030",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-031",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-032",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-034",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-035",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-037",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-038",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-043",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-044",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-045",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-046",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-047",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-050",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-051",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-052",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-053",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-054",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-055",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-056",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-057",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-060",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-065",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-066",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-068",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-071",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-076",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-078",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-48-qa-081",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-004",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-009",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-012",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-013",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-017",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-022",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-023",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-024",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-025",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-030",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-035",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-039",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-040",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-041",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-045",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-047",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-052",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-053",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-058",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-059",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-060",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-061",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-063",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-066",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-067",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-068",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-070",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-073",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-074",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-075",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-076",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-079",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-49-qa-080",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-000",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-002",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-008",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-009",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-010",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-012",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-014",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-016",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-017",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-025",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-026",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-027",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-031",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-034",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-035",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-036",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-038",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-043",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-044",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-048",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-050",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-051",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-052",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-055",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-057",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-061",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-062",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-065",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-067",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-068",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-069",
+      "group": "2 (temporal)",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": null
+    },
+    {
+      "question_id": "conv-50-qa-070",
+      "group": "2 (temporal)",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": null
+    }
+  ]
+}

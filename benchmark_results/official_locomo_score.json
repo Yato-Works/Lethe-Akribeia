@@ -1,0 +1,30 @@
+{
+ "tag": "locomo10_coder7b_apex",
+ "run_dir": "benchmark_results/locomo10",
+ "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
+ "n": 1986,
+ "official_f1": 50.2168,
+ "official_f1_no_cat5": 41.3185,
+ "per_category": {
+  "multi-hop": {
+   "n": 282,
+   "official_f1": 22.8193
+  },
+  "temporal": {
+   "n": 321,
+   "official_f1": 53.9134
+  },
+  "open-domain": {
+   "n": 96,
+   "official_f1": 20.4861
+  },
+  "single-hop": {
+   "n": 841,
+   "official_f1": 45.0922
+  },
+  "adversarial": {
+   "n": 446,
+   "official_f1": 80.9417
+  }
+ }
+}

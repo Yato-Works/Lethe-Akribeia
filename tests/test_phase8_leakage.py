@@ -10,6 +10,7 @@ Per Benchmark_Plan.txt §5 "Leakage Boundary" (Spec Freeze):
   questions and assert the sentinel never appears in any recorded prompt.
 """
 
+import importlib.util
 import inspect
 
 import pytest
@@ -36,6 +37,9 @@ from artificial_memory.research.benchmarks.players import (
     create_controlled_players,
     get_shared_answerer,
 )
+
+#: The controlled players need the optional `vector` extra to embed memories.
+HAS_VECTOR_EXTRA = importlib.util.find_spec("sentence_transformers") is not None
 
 SENTINEL = "GROUND_TRUTH_SENTINEL_9f83a"
 
@@ -106,9 +110,34 @@ class TestGenerationAPIShape:
 
 class TestFrozenConfig:
     def test_frozen_values(self):
-        assert FROZEN_MODEL == "phi4-mini:latest"
+        # The *invariants* of a spec freeze, not one model string.  Pinning a
+        # literal model name here is what let the reader drift three times
+        # (phi4-mini in the test, coder:7b in the yaml, instruct in the code)
+        # without CI noticing; the model id is now asserted to agree with the
+        # single source of truth and the yaml in test_config_agrees_with_code.
         assert FROZEN_TEMPERATURE == 0.0
         assert FROZEN_SEED == 42
+        assert FROZEN_MODEL, "the frozen reader model must be set"
+        assert ":" in FROZEN_MODEL or "-" in FROZEN_MODEL, (
+            f"the frozen model should be an Ollama tag, got {FROZEN_MODEL!r}"
+        )
+
+    def test_config_agrees_with_code(self):
+        """benchmark_config/apex_config.yaml must name the same reader."""
+        from pathlib import Path
+
+        import yaml
+
+        config_path = Path(__file__).resolve().parents[1] / "benchmark_config" / "apex_config.yaml"
+        if not config_path.exists():
+            pytest.skip("apex_config.yaml is not part of this install")
+        config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+        assert config["global"]["default_model"] == FROZEN_MODEL, (
+            "apex_config.yaml and llm.FROZEN_MODEL disagree; published results "
+            "would silently change reader"
+        )
+        assert config["global"]["temperature"] == FROZEN_TEMPERATURE
+        assert config["global"]["seed"] == FROZEN_SEED
 
     def test_config_hash_is_stable(self):
         assert frozen_config_sha256() == frozen_config_sha256()
@@ -122,6 +151,10 @@ class TestFrozenConfig:
         assert get_shared_answerer() is players[0]._answerer
 
 
+@pytest.mark.skipif(
+    not HAS_VECTOR_EXTRA,
+    reason="requires the 'vector' extra (pip install -e '.[vector]')",
+)
 class TestLeakageGuard:
     @pytest.fixture
     def seeded_dataset(self):

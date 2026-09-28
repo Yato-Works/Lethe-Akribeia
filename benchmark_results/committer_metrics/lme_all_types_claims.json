@@ -1,0 +1,4014 @@
+{
+  "label": "LongMemEval - all types",
+  "suite": "lme",
+  "cache": "benchmark_results/lme_context_cache.jsonl",
+  "reader_run": "benchmark_results/longmemeval/grand_longmemeval_report_7b_apex_ctx8192_postfix.json",
+  "min_turn_score": 0.8,
+  "counts": {
+    "n": 500,
+    "claimed": 59,
+    "commit_correct": 55
+  },
+  "records": [
+    {
+      "question_id": "e47becba",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "118b2229",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "51a45a95",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "58bf7951",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1e043500",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c5e8278d",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6ade9755",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6f9b354f",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "58ef2f1c",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f8c5f88b",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5d3d2817",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7527f7e2",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c960da58",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3b6f954b",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "726462e0",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "94f70d80",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "66f24dbb",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ad7109d1",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "af8d2e46",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "dccbc061",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c8c3f81d",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8ebdbe50",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6b168ec8",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "75499fd8",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "21436231",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "95bcc1c8",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0862e8bf",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "853b0a1d",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a06e4cfe",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "37d43f65",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b86304ba",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d52b4f67",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "25e5aa4f",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "caf9ead2",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8550ddae",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "60d45044",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3f1e9474",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "86b68151",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "577d4d32",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ec81a493",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "15745da0",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e01b8e2f",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bc8a6e93",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ccb36322",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "001be529",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b320f3f8",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "19b5f2b3",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4fd1909e",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "545bd2b5",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8a137a7f",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "76d63226",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "86f00804",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8e9d538c",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "311778f1",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c19f7a0b",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4100d0a0",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "29f2956b",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1faac195",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "faba32e5",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f4f1d8a4",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c14c00dd",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "36580ce8",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3d86fd0a",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a82c026e",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0862e8bf_abs",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "15745da0_abs",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bc8a6e93_abs",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "19b5f2b3_abs",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "29f2956b_abs",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f4f1d8a4_abs",
+      "group": "single-session-user",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0a995998",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6d550036",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b5ef892d",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e831120c",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3a704032",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_d84a3211",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "aae3761f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_f2262a51",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "dd2973ad",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c4a1ceb8",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_a56e767c",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6cb6f249",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "46a3abf7",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "36b9f61e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "28dc39ac",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2f8be40d",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2e6d26dc",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_15e38248",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "88432d0a",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "80ec1f4f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d23cf73b",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7fce9456",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d682f1a2",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7024f17c",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_5501fe77",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2ba83207",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2318644b",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2ce6a0f2",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_d12ceb0e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "00ca467f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b3c15d39",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_31ff4165",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "eeda8a6d",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2788b940",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "60bf93ed",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9d25d4e0",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "129d1232",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "60472f9c",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_194be4b3",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a9f6b44c",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d851d5ba",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5a7937c8",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_ab202e7f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_e05b82a6",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_731e37d7",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "edced276",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "10d9b85a",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e3038f8c",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2b8f3739",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1a8a66a6",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c2ac3c61",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bf659f65",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_372c3eed",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2f91af09",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "81507db6",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "88432d0a_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "80ec1f4f_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "eeda8a6d_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "60bf93ed_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "edced276_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_372c3eed_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8a2466db",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "06878be2",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "75832dbd",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "0edc2aef",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "35a27287",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "32260d93",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "195a1a1b",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "afdc33df",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "caf03d32",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "54026fce",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "06f04340",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "6b7dfb22",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1a1907b4",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "09d032c9",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "38146c39",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d24813b1",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "57f827a0",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "95228167",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "505af2f5",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "75f70248",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d6233ab6",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1da05512",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "fca70973",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b6025781",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a89d7624",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b0479f84",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1d4e3b97",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "07b6f563",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1c0ddc50",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0a34ad58",
+      "group": "single-session-preference",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d3ab962e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2311e44b",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "cc06de0d",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a11281a2",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4f54b7c9",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "85fa3a3f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9aaed6a3",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1f2b8d4f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e6041065",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "51c32626",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d905b33f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7405e8b1",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f35224e0",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6456829e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a4996e51",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3c1045c8",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "60036106",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "681a1674",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e25c3b8d",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4adc0475",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4bc144e2",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ef66a6e5",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5025383b",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a1cc6108",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9ee3ecd6",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3fdac837",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "91b15a6e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "27016adc",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "720133ac",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "77eafa52",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8979f9ec",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0100672e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a96c20ee",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "92a0aa75",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3fe836c9",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1c549ce4",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6c49646a",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1192316e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0ea62687",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "67e0d0f2",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bb7c3b45",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ba358f49",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "61f8c8f8",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "60159905",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ef9cf60a",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "73d42213",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bc149d6b",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "099778bb",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "09ba9854",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d6062bb9",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "157a136e",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c18a7dc8",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "a3332713",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "55241a1f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a08a253f",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f0e564bc",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "078150f1",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8cf4d046",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a346bb18",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "37f165cf",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8e91e7d9",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "87f22b4a",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e56a43b9",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "efc3f7c2",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "21d02d0d",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2311e44b_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6456829e_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e5ba910e_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a96c20ee_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ba358f49_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "09ba9854_abs",
+      "group": "multi-session",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_59149c77",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_f49edff3",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "71017276",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b46e15ed",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_fa19884c",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0bc8ad92",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "af082822",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_4929293a",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_b5700ca9",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9a707b81",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_1d4ab0c9",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_e072b769",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0db4c65d",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_1d80365e",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7f6b06db",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_6dc9b45b",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_8279ba02",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_18c2b244",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_a1b77f9c",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_1916e0ea",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7a0daae1",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_468eb063",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7abb270c",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_1e4a8aeb",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_4fc4f797",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4dfccbf7",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_61e13b3c",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_45189cb4",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2ebe6c90",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_e061b84f",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "370a8ff4",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_d6585ce8",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_4ef30696",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_ec93e27f",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6e984301",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8077ef71",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_f420262c",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_8e165409",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_74aed68e",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bcbe585f",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_21adecb5",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5e1b23de",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_98f46fc6",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_af6db32f",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "eac54adc",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7ddcf75f",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_a2d1d1f6",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_85da3956",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_b0863698",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_68e94287",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_e414231e",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7ca326fa",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7bc6cf22",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2ebe6c92",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_e061b84g",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "71017277",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b46e15ee",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_d6585ce9",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_1e4a8aec",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "gpt4_f420262d",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_59149c78",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_e414231f",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_4929293b",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_468eb064",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_fa19884d",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9a707b82",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "eac54add",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "4dfccbf8",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0bc8ad93",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6e984302",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_8279ba03",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": false
+    },
+    {
+      "question_id": "gpt4_b5700ca0",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_68e94288",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2655b836",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2487a7cb",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_76048e76",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2312f94c",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0bb5a684",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "08f4fc43",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2c63a862",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_385a5000",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2a1811e2",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "bbf86515",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_5dcc0aab",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_0b2f1d21",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f0853d11",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_6ed717ea",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_70e84552",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a3838d2b",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_93159ced",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2d58bcd6",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_65aabe59",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "982b5123",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b9cfe692",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_4edbafa2",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c8090214",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_483dd43c",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e4e14d04",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c9f37c46",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2c50253f",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "dcfa8644",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_b4a80587",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_9a159967",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "cc6d1ec1",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_8c8961ae",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_d9af6064",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_7de946e7",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d01c6aa8",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "993da5e2",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a3045048",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_d31cdae3",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_cd90e484",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_88806d6e",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_4cd9eba1",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_93f6379c",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b29f3365",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2f56ae70",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6613b389",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_78cf46a3",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_0a05b494",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_1a1dc16d",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_2f584639",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_213fd887",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_5438fa52",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_c27434e8",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_fe651585",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8c18457d",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": true,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_70e84552_abs",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_93159ced_abs",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "982b5123_abs",
+      "group": "temporal-reasoning",
+      "claimed": true,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c8090214_abs",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_c27434e8_abs",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "gpt4_fe651585_abs",
+      "group": "temporal-reasoning",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6a1eabeb",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6aeb4375",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "830ce83f",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "852ce960",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "945e3d21",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d7c942c3",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "71315a70",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "89941a93",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ce6d2d27",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9ea5eabc",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "07741c44",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a1eacc2a",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "184da446",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "031748ae",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4d6b87c8",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0f05491a",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "08e075c7",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f9e8c073",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "41698283",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2698e78f",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b6019101",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "45dc21b6",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5a4f22c0",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6071bd76",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e493bb7c",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "618f13b2",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "72e3ee87",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c4ea545c",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "01493427",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6a27ffc2",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2133c1b5",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "18bc8abd",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "db467c8c",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7a87bd0c",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e61a7584",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1cea1afa",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ed4ddc30",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8fb83627",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b01defab",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "22d2cb42",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0e4e4c46",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4b24c848",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7e974930",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "603deb26",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "59524333",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5831f84d",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "eace081b",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "affe2881",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "50635ada",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e66b632c",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0ddfec37",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f685340e",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "cc5ded98",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "dfde3500",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "69fee5aa",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7401057b",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "cf22b7bf",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a2f3aa27",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c7dc5443",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "06db6396",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3ba21379",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "9bbe84a2",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "10e09553",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "dad224aa",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ba61f0b9",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "42ec0761",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5c40ec5b",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c6853660",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "26bdc477",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0977f2af",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6aeb4375_abs",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "031748ae_abs",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2698e78f_abs",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2133c1b5_abs",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0ddfec37_abs",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f685340e_abs",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "89941a94",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "07741c45",
+      "group": "knowledge-update",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7161e7e2",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c4f10528",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "89527b6b",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e9327a54",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4c36ccef",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6ae235be",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7e00a6cb",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1903aded",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ceb54acb",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "f523d9fe",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "0e5e2d1a",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "fea54f57",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "cc539528",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "dc439ea3",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "18dcd5a5",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "488d3006",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "58470ed2",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8cf51dda",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1d4da289",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8464fc84",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8aef76bc",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "71a3fd6b",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "2bf43736",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "70b3e69b",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8752c811",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3249768e",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1b9b7252",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1568498a",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "6222b6eb",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e8a79c70",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "d596882b",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e3fc4d6e",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "51b23612",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "3e321797",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e982271f",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "352ab8bd",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "fca762bc",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "7a8d0b71",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "a40e080f",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "8b9d4367",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "5809eb10",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "41275add",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4388e9dd",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "4baee567",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "561fabcd",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "b759caee",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "ac031881",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "28bcfaac",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "16c90bf4",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c8f1aeed",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "eaca4986",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": false,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "c7cf7dfd",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "e48988bc",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "1de5cff2",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "65240037",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    },
+    {
+      "question_id": "778164c6",
+      "group": "single-session-assistant",
+      "claimed": false,
+      "commit_correct": false,
+      "reader_correct": true,
+      "oracle_recall": true
+    }
+  ]
+}

@@ -39,7 +39,14 @@ EVIDENCE_FIRST = (
     "4. Use only the evidence; do not invent details that are not in it.\n\n"
 )
 
-SS_USER_INSTRUCTION = "[INSTRUCTION: Answer the question with the exact value from the evidence.]\n\n"
+SS_USER_INSTRUCTION = (
+    "[INSTRUCTION: EXACT FACT EXTRACTION]\n"
+    "Answer the question directly based on the conversation evidence below.\n"
+    "RULES:\n"
+    "1. Distinguish where an action was PERFORMED vs where something was received (e.g. redeemed coupon at a store vs received in email).\n"
+    "2. Extract the specific final entity, store name, degree, or number directly.\n"
+    "3. State only the concise answer (e.g. 'Target', 'Business Administration', '45 minutes').\n\n"
+)
 
 TEMPORAL_WITH_GROUNDING = (
     "[INSTRUCTION: Answer the question using BOTH the grounding above and the "

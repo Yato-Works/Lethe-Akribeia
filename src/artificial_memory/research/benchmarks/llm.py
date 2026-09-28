@@ -26,21 +26,27 @@ import httpx
 # ==================== Frozen configuration (Spec Freeze) ====================
 
 FROZEN_BASE_URL = "http://localhost:11434"
-# Frozen model: phi4-mini:latest (non-thinking, local).
-# Decision evidence (probe, 2026-09-18): qwen3:4b on this Ollama install
-# ignores both the `think: false` flag and the /no_think soft switch — it
-# emits 300-500 reasoning tokens in `content` per call (~26 s), which would
-# poison forbidden-term scoring and make 3,000+ calls impractical.
-# phi4-mini answers directly ("ripgrep", 3 completion tokens). Recorded in
-# Benchmark_Plan.txt §5 Fixed LLM Configuration.
-FROZEN_MODEL = "phi4-mini:latest"
+# Frozen reader: the local Qwen2.5 7B instruct model, Ollama, $0, no API.
+# History of this constant, because the comments used to lie about it:
+#   * phi4-mini:latest was the original arena reader (Benchmark_Plan.txt §5); it
+#     answers in 3 completion tokens, which is what made 3,000+ calls with
+#     forbidden-term scoring practical.
+#   * qwen2.5:7b-instruct replaced it for the LoCoMo/LongMemEval suites: the
+#     operator runs a local-only, $0 setup and prefers one reader across suites
+#     over the smallest/fastest model.  qwen3:4b was rejected because it ignores
+#     `think: false` and emits 300-500 reasoning tokens per call (~26 s).
+#   * qwen2.5-coder:7b produced the published AM_APEX_SCORECARD.md numbers; those
+#     artefacts stay valid because every one of them records its own `model`.
+# This constant is the single source of truth: `benchmark_config/apex_config.yaml`
+# must agree with it, and tests/test_phase8_leakage.py fails CI if they drift.
+FROZEN_MODEL = "qwen2.5:7b-instruct"
 FROZEN_TEMPERATURE = 0.0
 FROZEN_SEED = 42
 FROZEN_ANSWER_MAX_TOKENS = 256
 FROZEN_EXTRACTION_MAX_TOKENS = 256
 
-# phi4-mini is a non-thinking model; the Ollama `think` flag is NOT sent
-# (sending it to a non-thinking model is rejected by some Ollama versions).
+# The reader is a non-thinking model; the Ollama `think` flag is NOT sent
+# (some Ollama versions reject it for non-thinking models).
 FROZEN_THINK: bool | None = None
 
 ABSTENTION_TEXT = "I don't know."
@@ -173,7 +179,7 @@ class OllamaAnswerer:
         self,
         base_url: str = FROZEN_BASE_URL,
         model: str = FROZEN_MODEL,
-        timeout_seconds: float = 300.0,
+        timeout_seconds: float = 600.0,
         answer_adapter: Any | None = None,
         num_ctx: int | None = None,
     ):

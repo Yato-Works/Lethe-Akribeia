@@ -1,0 +1,2004 @@
+{
+ "results": [
+  {
+   "question_id": "conv-47-qa-115",
+   "category": 4,
+   "predicted_answer": "A gaming night",
+   "is_correct": true,
+   "tokens_used": 1524,
+   "latency_ms": 2205.588600001647
+  },
+  {
+   "question_id": "conv-47-qa-116",
+   "category": 4,
+   "predicted_answer": "Dark beer",
+   "is_correct": true,
+   "tokens_used": 1251,
+   "latency_ms": 1839.7612999979174
+  },
+  {
+   "question_id": "conv-47-qa-117",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1354,
+   "latency_ms": 1911.3721000030637
+  },
+  {
+   "question_id": "conv-47-qa-118",
+   "category": 4,
+   "predicted_answer": "Programming",
+   "is_correct": false,
+   "tokens_used": 1380,
+   "latency_ms": 1882.4859999876935
+  },
+  {
+   "question_id": "conv-47-qa-119",
+   "category": 4,
+   "predicted_answer": "Basic games and stories",
+   "is_correct": true,
+   "tokens_used": 1348,
+   "latency_ms": 1881.8443000054685
+  },
+  {
+   "question_id": "conv-47-qa-120",
+   "category": 4,
+   "predicted_answer": "Sennheiser",
+   "is_correct": true,
+   "tokens_used": 1399,
+   "latency_ms": 1963.4575999953086
+  },
+  {
+   "question_id": "conv-47-qa-121",
+   "category": 4,
+   "predicted_answer": "They both enjoy a good lager beer at McGee's bar.",
+   "is_correct": true,
+   "tokens_used": 1229,
+   "latency_ms": 2143.273900001077
+  },
+  {
+   "question_id": "conv-47-qa-122",
+   "category": 4,
+   "predicted_answer": "$10",
+   "is_correct": true,
+   "tokens_used": 2903,
+   "latency_ms": 3801.1826000001747
+  },
+  {
+   "question_id": "conv-47-qa-123",
+   "category": 4,
+   "predicted_answer": "They taught them how to make the dough.",
+   "is_correct": true,
+   "tokens_used": 1361,
+   "latency_ms": 2161.0241000016686
+  },
+  {
+   "question_id": "conv-47-qa-124",
+   "category": 4,
+   "predicted_answer": "James signed up for a cooking class because he wanted to learn something new and improve his cooking skills.",
+   "is_correct": true,
+   "tokens_used": 1353,
+   "latency_ms": 2313.395799996215
+  },
+  {
+   "question_id": "conv-47-qa-125",
+   "category": 4,
+   "predicted_answer": "An omelette",
+   "is_correct": true,
+   "tokens_used": 1402,
+   "latency_ms": 1896.1814000067534
+  },
+  {
+   "question_id": "conv-47-qa-126",
+   "category": 4,
+   "predicted_answer": "Dungeons of the Dragon",
+   "is_correct": true,
+   "tokens_used": 1335,
+   "latency_ms": 1947.5958999973955
+  },
+  {
+   "question_id": "conv-47-qa-127",
+   "category": 4,
+   "predicted_answer": "Books, movies, and even dreams.",
+   "is_correct": true,
+   "tokens_used": 1395,
+   "latency_ms": 2074.35809999879
+  },
+  {
+   "question_id": "conv-47-qa-128",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1358,
+   "latency_ms": 2111.1743000074057
+  },
+  {
+   "question_id": "conv-47-qa-129",
+   "category": 4,
+   "predicted_answer": "Electronic and rock music.",
+   "is_correct": true,
+   "tokens_used": 1276,
+   "latency_ms": 1872.8722000087146
+  },
+  {
+   "question_id": "conv-47-qa-130",
+   "category": 4,
+   "predicted_answer": "Guitar",
+   "is_correct": true,
+   "tokens_used": 1260,
+   "latency_ms": 1772.2314999991795
+  },
+  {
+   "question_id": "conv-47-qa-131",
+   "category": 4,
+   "predicted_answer": "John used to play drums when he was younger to let off steam.",
+   "is_correct": true,
+   "tokens_used": 1273,
+   "latency_ms": 2197.4925999966217
+  },
+  {
+   "question_id": "conv-47-qa-132",
+   "category": 4,
+   "predicted_answer": "John achieved making his first mobile game as a career milestone in September 2022.",
+   "is_correct": true,
+   "tokens_used": 1393,
+   "latency_ms": 2348.3938999997918
+  },
+  {
+   "question_id": "conv-47-qa-133",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1217,
+   "latency_ms": 1902.8640999895288
+  },
+  {
+   "question_id": "conv-47-qa-134",
+   "category": 4,
+   "predicted_answer": "John reads magazines, watches tutorials, and stays up-to-date with developer forums to stay informed and constantly learn about game design.",
+   "is_correct": true,
+   "tokens_used": 1325,
+   "latency_ms": 2482.3257999960333
+  },
+  {
+   "question_id": "conv-47-qa-135",
+   "category": 4,
+   "predicted_answer": "Programming mentor for game developers",
+   "is_correct": true,
+   "tokens_used": 1246,
+   "latency_ms": 1827.1207000070717
+  },
+  {
+   "question_id": "conv-47-qa-136",
+   "category": 4,
+   "predicted_answer": "Excited and inspired",
+   "is_correct": true,
+   "tokens_used": 1481,
+   "latency_ms": 2019.740500007174
+  },
+  {
+   "question_id": "conv-47-qa-137",
+   "category": 4,
+   "predicted_answer": "RPGs",
+   "is_correct": true,
+   "tokens_used": 1293,
+   "latency_ms": 1808.4294000000227
+  },
+  {
+   "question_id": "conv-47-qa-138",
+   "category": 4,
+   "predicted_answer": "Playing video games, especially Witcher 3, gave James a lot of inspiration.",
+   "is_correct": true,
+   "tokens_used": 1364,
+   "latency_ms": 2248.346099993796
+  },
+  {
+   "question_id": "conv-47-qa-139",
+   "category": 4,
+   "predicted_answer": "Super Mario and The Legend of Zelda",
+   "is_correct": true,
+   "tokens_used": 1316,
+   "latency_ms": 2018.359199995757
+  },
+  {
+   "question_id": "conv-47-qa-140",
+   "category": 4,
+   "predicted_answer": "The game he was playing.",
+   "is_correct": true,
+   "tokens_used": 1258,
+   "latency_ms": 1936.8873000057647
+  },
+  {
+   "question_id": "conv-47-qa-141",
+   "category": 4,
+   "predicted_answer": "Fortnite, Overwatch, Apex Legends",
+   "is_correct": true,
+   "tokens_used": 1402,
+   "latency_ms": 2084.3624000117416
+  },
+  {
+   "question_id": "conv-47-qa-142",
+   "category": 4,
+   "predicted_answer": "To raise money for a children's hospital",
+   "is_correct": true,
+   "tokens_used": 1438,
+   "latency_ms": 2054.5949999941513
+  },
+  {
+   "question_id": "conv-47-qa-143",
+   "category": 4,
+   "predicted_answer": "They decided to move in together.",
+   "is_correct": true,
+   "tokens_used": 1346,
+   "latency_ms": 2016.4726999937557
+  },
+  {
+   "question_id": "conv-47-qa-144",
+   "category": 4,
+   "predicted_answer": "They rented an apartment not far from McGee's bar.",
+   "is_correct": true,
+   "tokens_used": 1307,
+   "latency_ms": 2059.667100009392
+  },
+  {
+   "question_id": "conv-47-qa-145",
+   "category": 4,
+   "predicted_answer": "They chose an apartment near McGee's bar because it was one of the criteria for their choice.",
+   "is_correct": true,
+   "tokens_used": 1300,
+   "latency_ms": 2812.7230999962194
+  },
+  {
+   "question_id": "conv-47-qa-146",
+   "category": 4,
+   "predicted_answer": "FIFA 23",
+   "is_correct": true,
+   "tokens_used": 1205,
+   "latency_ms": 1808.1065000005765
+  },
+  {
+   "question_id": "conv-47-qa-147",
+   "category": 4,
+   "predicted_answer": "John suggested James practice a little before playing FIFA 23 together.",
+   "is_correct": false,
+   "tokens_used": 2430,
+   "latency_ms": 3733.4229000116466
+  },
+  {
+   "question_id": "conv-47-qa-148",
+   "category": 4,
+   "predicted_answer": "An online board game called \"Dungeons of the Dragon\"",
+   "is_correct": true,
+   "tokens_used": 675,
+   "latency_ms": 1308.8520000019344
+  },
+  {
+   "question_id": "conv-47-qa-149",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1329,
+   "latency_ms": 2064.971500003594
+  },
+  {
+   "question_id": "conv-48-qa-000",
+   "category": 2,
+   "predicted_answer": "An electrical engineering project",
+   "is_correct": false,
+   "tokens_used": 648,
+   "latency_ms": 1279.9709999962943
+  },
+  {
+   "question_id": "conv-48-qa-001",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1238,
+   "latency_ms": 2169.070300005842
+  },
+  {
+   "question_id": "conv-48-qa-002",
+   "category": 2,
+   "predicted_answer": "23 January 2023",
+   "is_correct": false,
+   "tokens_used": 1094,
+   "latency_ms": 1861.8253000022378
+  },
+  {
+   "question_id": "conv-48-qa-003",
+   "category": 2,
+   "predicted_answer": "2022",
+   "is_correct": true,
+   "tokens_used": 1226,
+   "latency_ms": 1885.5376999999862
+  },
+  {
+   "question_id": "conv-48-qa-004",
+   "category": 2,
+   "predicted_answer": "2010",
+   "is_correct": true,
+   "tokens_used": 1292,
+   "latency_ms": 1899.9762000021292
+  },
+  {
+   "question_id": "conv-48-qa-005",
+   "category": 3,
+   "predicted_answer": "Paris",
+   "is_correct": false,
+   "tokens_used": 1172,
+   "latency_ms": 2022.7806000038981
+  },
+  {
+   "question_id": "conv-48-qa-006",
+   "category": 1,
+   "predicted_answer": "Jolene's pendant, Deborah's mother's old house, and Max, the cat.",
+   "is_correct": false,
+   "tokens_used": 1285,
+   "latency_ms": 2564.6656999888364
+  },
+  {
+   "question_id": "conv-48-qa-007",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1191,
+   "latency_ms": 2054.3871999980183
+  },
+  {
+   "question_id": "conv-48-qa-008",
+   "category": 1,
+   "predicted_answer": "Artwork, yoga, nature, and spending time with loved ones.",
+   "is_correct": false,
+   "tokens_used": 1356,
+   "latency_ms": 2471.419599998626
+  },
+  {
+   "question_id": "conv-48-qa-009",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1114,
+   "latency_ms": 1998.6224000022048
+  },
+  {
+   "question_id": "conv-48-qa-010",
+   "category": 2,
+   "predicted_answer": "1993",
+   "is_correct": true,
+   "tokens_used": 1120,
+   "latency_ms": 1698.0105999973603
+  },
+  {
+   "question_id": "conv-48-qa-011",
+   "category": 3,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1187,
+   "latency_ms": 2059.0463999978965
+  },
+  {
+   "question_id": "conv-48-qa-012",
+   "category": 2,
+   "predicted_answer": "26 January 2023",
+   "is_correct": true,
+   "tokens_used": 1280,
+   "latency_ms": 2168.040000004112
+  },
+  {
+   "question_id": "conv-48-qa-013",
+   "category": 1,
+   "predicted_answer": "Bali, park with a forest trail, beach, mother's old house, garden, local care home",
+   "is_correct": true,
+   "tokens_used": 1296,
+   "latency_ms": 2705.4103999980725
+  },
+  {
+   "question_id": "conv-48-qa-014",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1231,
+   "latency_ms": 1891.082500005723
+  },
+  {
+   "question_id": "conv-48-qa-015",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1273,
+   "latency_ms": 2283.4622000082163
+  },
+  {
+   "question_id": "conv-48-qa-016",
+   "category": 4,
+   "predicted_answer": "Susie, Seraphim",
+   "is_correct": true,
+   "tokens_used": 1287,
+   "latency_ms": 1939.5997999963583
+  },
+  {
+   "question_id": "conv-48-qa-017",
+   "category": 2,
+   "predicted_answer": "2022",
+   "is_correct": true,
+   "tokens_used": 1160,
+   "latency_ms": 2026.3131000101566
+  },
+  {
+   "question_id": "conv-48-qa-018",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1346,
+   "latency_ms": 2350.818099992466
+  },
+  {
+   "question_id": "conv-48-qa-019",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 2673,
+   "latency_ms": 4206.301100013661
+  },
+  {
+   "question_id": "conv-48-qa-020",
+   "category": 1,
+   "predicted_answer": "Detroit, It takes two, Walking Dead, Zelda BOTW, Animal Crossing: New Horizons",
+   "is_correct": true,
+   "tokens_used": 1359,
+   "latency_ms": 2421.9013000110863
+  },
+  {
+   "question_id": "conv-48-qa-021",
+   "category": 2,
+   "predicted_answer": "Next Saturday",
+   "is_correct": false,
+   "tokens_used": 1294,
+   "latency_ms": 2079.025700004422
+  },
+  {
+   "question_id": "conv-48-qa-022",
+   "category": 2,
+   "predicted_answer": "31 January 2023",
+   "is_correct": true,
+   "tokens_used": 1244,
+   "latency_ms": 1980.6525000021793
+  },
+  {
+   "question_id": "conv-48-qa-023",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1222,
+   "latency_ms": 2153.8958000019193
+  },
+  {
+   "question_id": "conv-48-qa-024",
+   "category": 1,
+   "predicted_answer": "Tree pose, Dancer Pose (Natarajasana)",
+   "is_correct": true,
+   "tokens_used": 1152,
+   "latency_ms": 2210.3020999929868
+  },
+  {
+   "question_id": "conv-48-qa-025",
+   "category": 4,
+   "predicted_answer": "\"Sapiens\"",
+   "is_correct": true,
+   "tokens_used": 1239,
+   "latency_ms": 2162.5571999902604
+  },
+  {
+   "question_id": "conv-48-qa-026",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1042,
+   "latency_ms": 1943.9271000010194
+  },
+  {
+   "question_id": "conv-48-qa-027",
+   "category": 2,
+   "predicted_answer": "The summer of 2022",
+   "is_correct": true,
+   "tokens_used": 1286,
+   "latency_ms": 2118.9147000113735
+  },
+  {
+   "question_id": "conv-48-qa-028",
+   "category": 3,
+   "predicted_answer": "Bogota",
+   "is_correct": false,
+   "tokens_used": 1326,
+   "latency_ms": 2340.904100012267
+  },
+  {
+   "question_id": "conv-48-qa-029",
+   "category": 2,
+   "predicted_answer": "30 August, 2023",
+   "is_correct": false,
+   "tokens_used": 1233,
+   "latency_ms": 2186.5241000050446
+  },
+  {
+   "question_id": "conv-48-qa-030",
+   "category": 2,
+   "predicted_answer": "22 February, 2023",
+   "is_correct": false,
+   "tokens_used": 1183,
+   "latency_ms": 1945.366700005252
+  },
+  {
+   "question_id": "conv-48-qa-031",
+   "category": 2,
+   "predicted_answer": "The summer of 2022",
+   "is_correct": true,
+   "tokens_used": 1429,
+   "latency_ms": 2162.2598999965703
+  },
+  {
+   "question_id": "conv-48-qa-032",
+   "category": 2,
+   "predicted_answer": "2022",
+   "is_correct": true,
+   "tokens_used": 1124,
+   "latency_ms": 1684.5182999968529
+  },
+  {
+   "question_id": "conv-48-qa-033",
+   "category": 4,
+   "predicted_answer": "Three years",
+   "is_correct": true,
+   "tokens_used": 2818,
+   "latency_ms": 4016.365399991628
+  },
+  {
+   "question_id": "conv-48-qa-034",
+   "category": 2,
+   "predicted_answer": "2023",
+   "is_correct": false,
+   "tokens_used": 1297,
+   "latency_ms": 2322.756900000968
+  },
+  {
+   "question_id": "conv-48-qa-035",
+   "category": 2,
+   "predicted_answer": "24 February 2023",
+   "is_correct": true,
+   "tokens_used": 1388,
+   "latency_ms": 2108.62040000211
+  },
+  {
+   "question_id": "conv-48-qa-036",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": true,
+   "tokens_used": 1213,
+   "latency_ms": 2228.4968000021763
+  },
+  {
+   "question_id": "conv-48-qa-037",
+   "category": 2,
+   "predicted_answer": "The Sunday before 2 March 2023",
+   "is_correct": true,
+   "tokens_used": 1330,
+   "latency_ms": 2420.278799996595
+  },
+  {
+   "question_id": "conv-48-qa-038",
+   "category": 2,
+   "predicted_answer": "13 March 2023",
+   "is_correct": false,
+   "tokens_used": 1164,
+   "latency_ms": 2041.0133999976097
+  },
+  {
+   "question_id": "conv-48-qa-039",
+   "category": 1,
+   "predicted_answer": "Pomodoro Technique, bullet journal, planners or schedulers",
+   "is_correct": false,
+   "tokens_used": 1209,
+   "latency_ms": 2291.761900007259
+  },
+  {
+   "question_id": "conv-48-qa-040",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1310,
+   "latency_ms": 2253.947299992433
+  },
+  {
+   "question_id": "conv-48-qa-041",
+   "category": 1,
+   "predicted_answer": "Essential oils, soft, soothing music, candles, and nature.",
+   "is_correct": true,
+   "tokens_used": 1337,
+   "latency_ms": 2487.825200005318
+  },
+  {
+   "question_id": "conv-48-qa-042",
+   "category": 4,
+   "predicted_answer": "\"Savana,\" \"Sleep\" by Nils Frahm and Olafur Arnalds",
+   "is_correct": true,
+   "tokens_used": 1304,
+   "latency_ms": 2498.210300007486
+  },
+  {
+   "question_id": "conv-48-qa-043",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1273,
+   "latency_ms": 1952.495200006524
+  },
+  {
+   "question_id": "conv-48-qa-044",
+   "category": 2,
+   "predicted_answer": "2 February 2023",
+   "is_correct": false,
+   "tokens_used": 1329,
+   "latency_ms": 1997.7195999963442
+  },
+  {
+   "question_id": "conv-48-qa-045",
+   "category": 2,
+   "predicted_answer": "The week before 1 February 2023",
+   "is_correct": false,
+   "tokens_used": 1298,
+   "latency_ms": 2133.445900006336
+  },
+  {
+   "question_id": "conv-48-qa-046",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 596,
+   "latency_ms": 1045.771999997669
+  },
+  {
+   "question_id": "conv-48-qa-047",
+   "category": 2,
+   "predicted_answer": "5 June 2023",
+   "is_correct": true,
+   "tokens_used": 1206,
+   "latency_ms": 1887.566000004881
+  },
+  {
+   "question_id": "conv-48-qa-048",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1179,
+   "latency_ms": 2151.50910000375
+  },
+  {
+   "question_id": "conv-48-qa-049",
+   "category": 4,
+   "predicted_answer": "3 years",
+   "is_correct": true,
+   "tokens_used": 2720,
+   "latency_ms": 3932.4765000055777
+  },
+  {
+   "question_id": "conv-48-qa-050",
+   "category": 2,
+   "predicted_answer": "2023",
+   "is_correct": false,
+   "tokens_used": 1144,
+   "latency_ms": 1869.7632000112208
+  },
+  {
+   "question_id": "conv-48-qa-051",
+   "category": 2,
+   "predicted_answer": "25 June 2023",
+   "is_correct": false,
+   "tokens_used": 1283,
+   "latency_ms": 2076.7070000001695
+  },
+  {
+   "question_id": "conv-48-qa-052",
+   "category": 2,
+   "predicted_answer": "The week before 1 August 2023",
+   "is_correct": false,
+   "tokens_used": 1372,
+   "latency_ms": 2164.2897999990964
+  },
+  {
+   "question_id": "conv-48-qa-053",
+   "category": 2,
+   "predicted_answer": "1 August 2021",
+   "is_correct": true,
+   "tokens_used": 1159,
+   "latency_ms": 1863.8880999933463
+  },
+  {
+   "question_id": "conv-48-qa-054",
+   "category": 2,
+   "predicted_answer": "Susie",
+   "is_correct": true,
+   "tokens_used": 1168,
+   "latency_ms": 1782.8080999897793
+  },
+  {
+   "question_id": "conv-48-qa-055",
+   "category": 2,
+   "predicted_answer": "Susie",
+   "is_correct": false,
+   "tokens_used": 1237,
+   "latency_ms": 1786.7849000031129
+  },
+  {
+   "question_id": "conv-48-qa-056",
+   "category": 2,
+   "predicted_answer": "The week before 16 August 2023",
+   "is_correct": true,
+   "tokens_used": 1382,
+   "latency_ms": 2215.036500012502
+  },
+  {
+   "question_id": "conv-48-qa-057",
+   "category": 2,
+   "predicted_answer": "The 17th of January 2023",
+   "is_correct": false,
+   "tokens_used": 1258,
+   "latency_ms": 2104.1857000091113
+  },
+  {
+   "question_id": "conv-48-qa-058",
+   "category": 4,
+   "predicted_answer": "Zelda BOTW for Switch, Animal Crossing: New Horizons",
+   "is_correct": true,
+   "tokens_used": 1162,
+   "latency_ms": 2221.4336000033654
+  },
+  {
+   "question_id": "conv-48-qa-059",
+   "category": 4,
+   "predicted_answer": "Deborah and her husband enjoy spending time outdoors and exploring nature together.",
+   "is_correct": true,
+   "tokens_used": 1420,
+   "latency_ms": 2221.1469000030775
+  },
+  {
+   "question_id": "conv-48-qa-060",
+   "category": 2,
+   "predicted_answer": "The week before 24 August 2023",
+   "is_correct": true,
+   "tokens_used": 1368,
+   "latency_ms": 2395.2050000079907
+  },
+  {
+   "question_id": "conv-48-qa-061",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1199,
+   "latency_ms": 2200.811100003193
+  },
+  {
+   "question_id": "conv-48-qa-062",
+   "category": 4,
+   "predicted_answer": "Deborah got her cats from her mother.",
+   "is_correct": true,
+   "tokens_used": 1367,
+   "latency_ms": 2126.7829999997048
+  },
+  {
+   "question_id": "conv-48-qa-063",
+   "category": 4,
+   "predicted_answer": "8 years old",
+   "is_correct": true,
+   "tokens_used": 1205,
+   "latency_ms": 1936.4382999920053
+  },
+  {
+   "question_id": "conv-48-qa-064",
+   "category": 4,
+   "predicted_answer": "Yes.",
+   "is_correct": true,
+   "tokens_used": 1356,
+   "latency_ms": 1974.0021000034176
+  },
+  {
+   "question_id": "conv-48-qa-065",
+   "category": 2,
+   "predicted_answer": "Brazil",
+   "is_correct": true,
+   "tokens_used": 1548,
+   "latency_ms": 2357.7574000082677
+  },
+  {
+   "question_id": "conv-48-qa-066",
+   "category": 2,
+   "predicted_answer": "29 August 2023",
+   "is_correct": true,
+   "tokens_used": 1184,
+   "latency_ms": 1948.867999992217
+  },
+  {
+   "question_id": "conv-48-qa-067",
+   "category": 4,
+   "predicted_answer": "Jolene and her partner were checking out some cool yoga classes in Rio de Janeiro.",
+   "is_correct": true,
+   "tokens_used": 1383,
+   "latency_ms": 2691.477100001066
+  },
+  {
+   "question_id": "conv-48-qa-068",
+   "category": 2,
+   "predicted_answer": "30 August 2023",
+   "is_correct": false,
+   "tokens_used": 1293,
+   "latency_ms": 2201.5520999993896
+  },
+  {
+   "question_id": "conv-48-qa-069",
+   "category": 4,
+   "predicted_answer": "Yes.",
+   "is_correct": true,
+   "tokens_used": 1191,
+   "latency_ms": 1856.6673000023002
+  },
+  {
+   "question_id": "conv-48-qa-070",
+   "category": 3,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1284,
+   "latency_ms": 2137.7407999971183
+  },
+  {
+   "question_id": "conv-48-qa-071",
+   "category": 2,
+   "predicted_answer": "The Friday before 3 September 2023",
+   "is_correct": false,
+   "tokens_used": 1259,
+   "latency_ms": 2235.096300006262
+  },
+  {
+   "question_id": "conv-48-qa-072",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1107,
+   "latency_ms": 1999.8070999863558
+  },
+  {
+   "question_id": "conv-48-qa-073",
+   "category": 1,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1239,
+   "latency_ms": 1962.0811999920988
+  },
+  {
+   "question_id": "conv-48-qa-074",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1183,
+   "latency_ms": 1971.347999991849
+  },
+  {
+   "question_id": "conv-48-qa-075",
+   "category": 3,
+   "predicted_answer": "Cat card game",
+   "is_correct": false,
+   "tokens_used": 1236,
+   "latency_ms": 2145.897900001728
+  },
+  {
+   "question_id": "conv-48-qa-076",
+   "category": 2,
+   "predicted_answer": "The Friday before 17 September 2023",
+   "is_correct": true,
+   "tokens_used": 1406,
+   "latency_ms": 2452.0837999880314
+  },
+  {
+   "question_id": "conv-48-qa-077",
+   "category": 1,
+   "predicted_answer": "Rio de Janeiro",
+   "is_correct": false,
+   "tokens_used": 1364,
+   "latency_ms": 2128.695500010508
+  },
+  {
+   "question_id": "conv-48-qa-078",
+   "category": 2,
+   "predicted_answer": "Phuket",
+   "is_correct": true,
+   "tokens_used": 1311,
+   "latency_ms": 2019.6317000081763
+  },
+  {
+   "question_id": "conv-48-qa-079",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1205,
+   "latency_ms": 2094.123499991838
+  },
+  {
+   "question_id": "conv-48-qa-080",
+   "category": 1,
+   "predicted_answer": "Yes",
+   "is_correct": false,
+   "tokens_used": 1215,
+   "latency_ms": 1708.4214000060456
+  },
+  {
+   "question_id": "conv-48-qa-081",
+   "category": 2,
+   "predicted_answer": "17 September, 2023",
+   "is_correct": false,
+   "tokens_used": 1300,
+   "latency_ms": 2287.6928000041516
+  },
+  {
+   "question_id": "conv-48-qa-082",
+   "category": 1,
+   "predicted_answer": "This is one of the places where I do it.",
+   "is_correct": false,
+   "tokens_used": 1292,
+   "latency_ms": 2273.453399990103
+  },
+  {
+   "question_id": "conv-48-qa-083",
+   "category": 1,
+   "predicted_answer": "Presenting at a virtual conference, attending workshops, networking, interning at a well-known engineering firm, and volunteering to teach STEM to underprivileged kids.",
+   "is_correct": true,
+   "tokens_used": 1279,
+   "latency_ms": 2609.931000013603
+  },
+  {
+   "question_id": "conv-48-qa-084",
+   "category": 1,
+   "predicted_answer": "Robotics project, sustainable water purifier, electrical engineering project",
+   "is_correct": true,
+   "tokens_used": 1392,
+   "latency_ms": 2166.1139000061667
+  },
+  {
+   "question_id": "conv-48-qa-085",
+   "category": 1,
+   "predicted_answer": "Running group, yoga class, community meetup, cleanup project",
+   "is_correct": true,
+   "tokens_used": 1341,
+   "latency_ms": 2094.072399995639
+  },
+  {
+   "question_id": "conv-48-qa-086",
+   "category": 1,
+   "predicted_answer": "A pendant, a console for her partner, and a snake named Susie.",
+   "is_correct": false,
+   "tokens_used": 1163,
+   "latency_ms": 2094.5783000061056
+  },
+  {
+   "question_id": "conv-48-qa-087",
+   "category": 1,
+   "predicted_answer": "Bali, Rio de Janeiro",
+   "is_correct": false,
+   "tokens_used": 1222,
+   "latency_ms": 1842.114400002174
+  },
+  {
+   "question_id": "conv-48-qa-088",
+   "category": 1,
+   "predicted_answer": "Meditation, jogging, spending time with loved ones, and organizing yoga events.",
+   "is_correct": false,
+   "tokens_used": 1354,
+   "latency_ms": 2241.251800005557
+  },
+  {
+   "question_id": "conv-48-qa-089",
+   "category": 4,
+   "predicted_answer": "Susie, Seraphim",
+   "is_correct": true,
+   "tokens_used": 1287,
+   "latency_ms": 2070.3884000104154
+  },
+  {
+   "question_id": "conv-48-qa-090",
+   "category": 4,
+   "predicted_answer": "\"Sapiens\"",
+   "is_correct": true,
+   "tokens_used": 1239,
+   "latency_ms": 1837.421699994593
+  },
+  {
+   "question_id": "conv-48-qa-091",
+   "category": 4,
+   "predicted_answer": "\"Savana,\" \"Sleep\" by Nils Frahm and Olafur Arnalds",
+   "is_correct": true,
+   "tokens_used": 1304,
+   "latency_ms": 642.088499997044
+  },
+  {
+   "question_id": "conv-48-qa-092",
+   "category": 4,
+   "predicted_answer": "Zelda BOTW for Switch, Animal Crossing: New Horizons",
+   "is_correct": true,
+   "tokens_used": 1162,
+   "latency_ms": 477.6218000042718
+  },
+  {
+   "question_id": "conv-48-qa-093",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1199,
+   "latency_ms": 398.127199994633
+  },
+  {
+   "question_id": "conv-48-qa-094",
+   "category": 4,
+   "predicted_answer": "Deborah got her cats from her mother.",
+   "is_correct": true,
+   "tokens_used": 1367,
+   "latency_ms": 382.52889999421313
+  },
+  {
+   "question_id": "conv-48-qa-095",
+   "category": 4,
+   "predicted_answer": "8 years old",
+   "is_correct": true,
+   "tokens_used": 1205,
+   "latency_ms": 210.3713999968022
+  },
+  {
+   "question_id": "conv-48-qa-096",
+   "category": 4,
+   "predicted_answer": "Jolene and her partner were checking out some cool yoga classes in Rio de Janeiro.",
+   "is_correct": true,
+   "tokens_used": 1383,
+   "latency_ms": 630.6461000058334
+  },
+  {
+   "question_id": "conv-48-qa-097",
+   "category": 4,
+   "predicted_answer": "Yes.",
+   "is_correct": true,
+   "tokens_used": 1191,
+   "latency_ms": 193.49960000545252
+  },
+  {
+   "question_id": "conv-48-qa-098",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1107,
+   "latency_ms": 403.43820000998676
+  },
+  {
+   "question_id": "conv-48-qa-099",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1183,
+   "latency_ms": 286.0657999990508
+  },
+  {
+   "question_id": "conv-48-qa-100",
+   "category": 4,
+   "predicted_answer": "An electrical engineering project",
+   "is_correct": true,
+   "tokens_used": 673,
+   "latency_ms": 1086.9266999943648
+  },
+  {
+   "question_id": "conv-48-qa-101",
+   "category": 4,
+   "predicted_answer": "2022",
+   "is_correct": false,
+   "tokens_used": 1194,
+   "latency_ms": 1761.7802000022493
+  },
+  {
+   "question_id": "conv-48-qa-102",
+   "category": 4,
+   "predicted_answer": "Robotics project",
+   "is_correct": true,
+   "tokens_used": 602,
+   "latency_ms": 940.178199991351
+  },
+  {
+   "question_id": "conv-48-qa-103",
+   "category": 4,
+   "predicted_answer": "Deborah met her new neighbor Anna by the sea.",
+   "is_correct": true,
+   "tokens_used": 1201,
+   "latency_ms": 1928.2070999906864
+  },
+  {
+   "question_id": "conv-48-qa-104",
+   "category": 4,
+   "predicted_answer": "Playing the console",
+   "is_correct": true,
+   "tokens_used": 1289,
+   "latency_ms": 1790.3061999968486
+  },
+  {
+   "question_id": "conv-48-qa-105",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1152,
+   "latency_ms": 1700.5223000014666
+  },
+  {
+   "question_id": "conv-48-qa-106",
+   "category": 4,
+   "predicted_answer": "\"Sapiens\"",
+   "is_correct": true,
+   "tokens_used": 1159,
+   "latency_ms": 1666.7022000037832
+  },
+  {
+   "question_id": "conv-48-qa-107",
+   "category": 4,
+   "predicted_answer": "The amulet",
+   "is_correct": true,
+   "tokens_used": 1435,
+   "latency_ms": 1917.5417999940692
+  },
+  {
+   "question_id": "conv-48-qa-108",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1139,
+   "latency_ms": 1766.6711999918334
+  },
+  {
+   "question_id": "conv-48-qa-109",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1110,
+   "latency_ms": 1672.1885000006296
+  },
+  {
+   "question_id": "conv-48-qa-110",
+   "category": 4,
+   "predicted_answer": "A volunteer program where engineers teach STEM to underprivileged kids.",
+   "is_correct": true,
+   "tokens_used": 1143,
+   "latency_ms": 1931.7298999958439
+  },
+  {
+   "question_id": "conv-48-qa-111",
+   "category": 4,
+   "predicted_answer": "Jolene plans to invite engineers as guest speakers to show kids their career options.",
+   "is_correct": true,
+   "tokens_used": 1363,
+   "latency_ms": 2051.720999996178
+  },
+  {
+   "question_id": "conv-48-qa-112",
+   "category": 4,
+   "predicted_answer": "The roses and dahlias gave Deborah peace in the garden she visited.",
+   "is_correct": true,
+   "tokens_used": 1414,
+   "latency_ms": 2262.8850000037346
+  },
+  {
+   "question_id": "conv-48-qa-113",
+   "category": 4,
+   "predicted_answer": "To find comfort after losing a friend.",
+   "is_correct": true,
+   "tokens_used": 1322,
+   "latency_ms": 1972.5523999950383
+  },
+  {
+   "question_id": "conv-48-qa-114",
+   "category": 4,
+   "predicted_answer": "In an engineering class in college.",
+   "is_correct": true,
+   "tokens_used": 1338,
+   "latency_ms": 2045.401800001855
+  },
+  {
+   "question_id": "conv-48-qa-115",
+   "category": 4,
+   "predicted_answer": "Teaching classes",
+   "is_correct": false,
+   "tokens_used": 1435,
+   "latency_ms": 1984.6307999978308
+  },
+  {
+   "question_id": "conv-48-qa-116",
+   "category": 4,
+   "predicted_answer": "Connected to her body",
+   "is_correct": true,
+   "tokens_used": 1353,
+   "latency_ms": 1927.3580000008224
+  },
+  {
+   "question_id": "conv-48-qa-117",
+   "category": 4,
+   "predicted_answer": "A photo of Deb and her partner gaming together.",
+   "is_correct": false,
+   "tokens_used": 1278,
+   "latency_ms": 2052.5430999987293
+  },
+  {
+   "question_id": "conv-48-qa-118",
+   "category": 4,
+   "predicted_answer": "Lasagna",
+   "is_correct": true,
+   "tokens_used": 1196,
+   "latency_ms": 1697.1698999986984
+  },
+  {
+   "question_id": "conv-48-qa-119",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1222,
+   "latency_ms": 1729.264499997953
+  },
+  {
+   "question_id": "conv-48-qa-120",
+   "category": 4,
+   "predicted_answer": "Breaking tasks into smaller pieces and setting goals for yourself.",
+   "is_correct": true,
+   "tokens_used": 1240,
+   "latency_ms": 2020.2641999931075
+  },
+  {
+   "question_id": "conv-48-qa-121",
+   "category": 4,
+   "predicted_answer": "Jolene asked Deb for tips on studying or time management on 13 March, 2023.",
+   "is_correct": true,
+   "tokens_used": 1155,
+   "latency_ms": 2308.827899993048
+  },
+  {
+   "question_id": "conv-48-qa-122",
+   "category": 4,
+   "predicted_answer": "The Eisenhower Matrix",
+   "is_correct": true,
+   "tokens_used": 2243,
+   "latency_ms": 3215.97939998901
+  },
+  {
+   "question_id": "conv-48-qa-123",
+   "category": 4,
+   "predicted_answer": "Inspiration",
+   "is_correct": true,
+   "tokens_used": 1272,
+   "latency_ms": 1839.108699990902
+  },
+  {
+   "question_id": "conv-48-qa-124",
+   "category": 4,
+   "predicted_answer": "Jolene plans to find the right time and place to get a lesson.",
+   "is_correct": false,
+   "tokens_used": 1178,
+   "latency_ms": 2104.60079999757
+  },
+  {
+   "question_id": "conv-48-qa-125",
+   "category": 4,
+   "predicted_answer": "A candle",
+   "is_correct": true,
+   "tokens_used": 1282,
+   "latency_ms": 1810.6764999974985
+  },
+  {
+   "question_id": "conv-48-qa-126",
+   "category": 4,
+   "predicted_answer": "Instrumental tracks with mellow melodies and rhythms",
+   "is_correct": true,
+   "tokens_used": 1376,
+   "latency_ms": 2085.769800003618
+  },
+  {
+   "question_id": "conv-48-qa-127",
+   "category": 4,
+   "predicted_answer": "Nils Frahm and Olafur Arnalds",
+   "is_correct": true,
+   "tokens_used": 1205,
+   "latency_ms": 2012.3862000036752
+  },
+  {
+   "question_id": "conv-48-qa-128",
+   "category": 4,
+   "predicted_answer": "Sleep",
+   "is_correct": true,
+   "tokens_used": 1240,
+   "latency_ms": 1754.9668999999994
+  },
+  {
+   "question_id": "conv-48-qa-129",
+   "category": 4,
+   "predicted_answer": "An art show",
+   "is_correct": true,
+   "tokens_used": 1390,
+   "latency_ms": 1865.645099998801
+  },
+  {
+   "question_id": "conv-48-qa-130",
+   "category": 4,
+   "predicted_answer": "Deborah finds comfort in art shows because they remind her of her late mother and give her strong emotions.",
+   "is_correct": false,
+   "tokens_used": 1316,
+   "latency_ms": 2337.2633999970276
+  },
+  {
+   "question_id": "conv-48-qa-131",
+   "category": 4,
+   "predicted_answer": "Jolene describes the time spent with her snakes and partner as valuable and teaching her to take time and be in tune with herself.",
+   "is_correct": true,
+   "tokens_used": 1333,
+   "latency_ms": 2571.9355999899562
+  },
+  {
+   "question_id": "conv-48-qa-132",
+   "category": 4,
+   "predicted_answer": "Playing video games",
+   "is_correct": true,
+   "tokens_used": 1351,
+   "latency_ms": 1754.9544000066817
+  },
+  {
+   "question_id": "conv-48-qa-133",
+   "category": 4,
+   "predicted_answer": "Jolene is interning at a well-known engineering firm.",
+   "is_correct": true,
+   "tokens_used": 1053,
+   "latency_ms": 1938.809899991611
+  },
+  {
+   "question_id": "conv-48-qa-134",
+   "category": 4,
+   "predicted_answer": "2 years",
+   "is_correct": true,
+   "tokens_used": 2531,
+   "latency_ms": 3606.3498000003165
+  },
+  {
+   "question_id": "conv-48-qa-135",
+   "category": 4,
+   "predicted_answer": "Jolene feels comforted and cheered up when spending time with Seraphim.",
+   "is_correct": true,
+   "tokens_used": 1372,
+   "latency_ms": 2360.0399999995716
+  },
+  {
+   "question_id": "conv-48-qa-136",
+   "category": 4,
+   "predicted_answer": "Dancer Pose (Natarajasana)",
+   "is_correct": true,
+   "tokens_used": 1185,
+   "latency_ms": 1900.20600000571
+  },
+  {
+   "question_id": "conv-48-qa-137",
+   "category": 4,
+   "predicted_answer": "A running group",
+   "is_correct": true,
+   "tokens_used": 1250,
+   "latency_ms": 1772.9782999958843
+  },
+  {
+   "question_id": "conv-48-qa-138",
+   "category": 4,
+   "predicted_answer": "Deborah found it easy to stay motivated in the running group because they help and push each other during their runs.",
+   "is_correct": true,
+   "tokens_used": 1310,
+   "latency_ms": 2305.254999999306
+  },
+  {
+   "question_id": "conv-48-qa-139",
+   "category": 4,
+   "predicted_answer": "To bring comfort and a sense of peace.",
+   "is_correct": false,
+   "tokens_used": 1217,
+   "latency_ms": 1963.6192000034498
+  },
+  {
+   "question_id": "conv-48-qa-140",
+   "category": 4,
+   "predicted_answer": "\"It takes two\"",
+   "is_correct": true,
+   "tokens_used": 1451,
+   "latency_ms": 1984.2214999953285
+  },
+  {
+   "question_id": "conv-48-qa-141",
+   "category": 4,
+   "predicted_answer": "Deborah plays a card game about cats with her partner.",
+   "is_correct": false,
+   "tokens_used": 1233,
+   "latency_ms": 2033.5094000038225
+  },
+  {
+   "question_id": "conv-48-qa-142",
+   "category": 4,
+   "predicted_answer": "Relieved and grateful",
+   "is_correct": false,
+   "tokens_used": 1258,
+   "latency_ms": 1832.6320000051055
+  },
+  {
+   "question_id": "conv-48-qa-143",
+   "category": 4,
+   "predicted_answer": "Deborah takes her cats out for a run in the park every day because exercise and nature are important to her.",
+   "is_correct": true,
+   "tokens_used": 1376,
+   "latency_ms": 2466.0065999923972
+  },
+  {
+   "question_id": "conv-48-qa-144",
+   "category": 4,
+   "predicted_answer": "Jolene adopted Susie two years ago when she was feeling lonely and wanted some company.",
+   "is_correct": true,
+   "tokens_used": 1189,
+   "latency_ms": 2227.5632999953814
+  },
+  {
+   "question_id": "conv-48-qa-145",
+   "category": 4,
+   "predicted_answer": "Video games",
+   "is_correct": true,
+   "tokens_used": 1192,
+   "latency_ms": 1703.771099986625
+  },
+  {
+   "question_id": "conv-48-qa-146",
+   "category": 4,
+   "predicted_answer": "A gentle flow that's all about breathing and grounding.",
+   "is_correct": true,
+   "tokens_used": 1193,
+   "latency_ms": 1966.0145999951055
+  },
+  {
+   "question_id": "conv-48-qa-147",
+   "category": 4,
+   "predicted_answer": "Notebooks with elements like galaxies and circuitry.",
+   "is_correct": true,
+   "tokens_used": 1334,
+   "latency_ms": 2030.2784999948926
+  },
+  {
+   "question_id": "conv-48-qa-148",
+   "category": 4,
+   "predicted_answer": "A bullet journal",
+   "is_correct": true,
+   "tokens_used": 1315,
+   "latency_ms": 1834.1592000069795
+  },
+  {
+   "question_id": "conv-48-qa-149",
+   "category": 4,
+   "predicted_answer": "Animal Crossing: New Horizons",
+   "is_correct": true,
+   "tokens_used": 1234,
+   "latency_ms": 1785.798099997919
+  },
+  {
+   "question_id": "conv-48-qa-150",
+   "category": 4,
+   "predicted_answer": "Zelda BOTW",
+   "is_correct": true,
+   "tokens_used": 2376,
+   "latency_ms": 3463.249000007636
+  },
+  {
+   "question_id": "conv-48-qa-151",
+   "category": 4,
+   "predicted_answer": "Video games",
+   "is_correct": true,
+   "tokens_used": 1426,
+   "latency_ms": 1943.6992999981157
+  },
+  {
+   "question_id": "conv-48-qa-152",
+   "category": 4,
+   "predicted_answer": "It holds special memories for Deborah and her mother, where they would chat about dreams and life.",
+   "is_correct": true,
+   "tokens_used": 1562,
+   "latency_ms": 2575.048400001833
+  },
+  {
+   "question_id": "conv-48-qa-153",
+   "category": 4,
+   "predicted_answer": "Dreams and life",
+   "is_correct": true,
+   "tokens_used": 1516,
+   "latency_ms": 2048.9452000038
+  },
+  {
+   "question_id": "conv-48-qa-154",
+   "category": 4,
+   "predicted_answer": "Peace and gratitude",
+   "is_correct": true,
+   "tokens_used": 1437,
+   "latency_ms": 1918.9759000000777
+  },
+  {
+   "question_id": "conv-48-qa-155",
+   "category": 4,
+   "predicted_answer": "Yoga and meditation",
+   "is_correct": true,
+   "tokens_used": 835,
+   "latency_ms": 1268.6000999965472
+  },
+  {
+   "question_id": "conv-48-qa-156",
+   "category": 4,
+   "predicted_answer": "Savasana",
+   "is_correct": true,
+   "tokens_used": 1190,
+   "latency_ms": 1771.9933999906061
+  },
+  {
+   "question_id": "conv-48-qa-157",
+   "category": 4,
+   "predicted_answer": "3 years",
+   "is_correct": true,
+   "tokens_used": 2502,
+   "latency_ms": 3470.4790000105277
+  },
+  {
+   "question_id": "conv-48-qa-158",
+   "category": 4,
+   "predicted_answer": "Presenting at a virtual conference",
+   "is_correct": true,
+   "tokens_used": 1483,
+   "latency_ms": 2075.5232000083197
+  },
+  {
+   "question_id": "conv-48-qa-159",
+   "category": 4,
+   "predicted_answer": "Thrilled",
+   "is_correct": true,
+   "tokens_used": 1366,
+   "latency_ms": 1858.7369000015315
+  },
+  {
+   "question_id": "conv-48-qa-160",
+   "category": 4,
+   "predicted_answer": "Virtual conference",
+   "is_correct": true,
+   "tokens_used": 1252,
+   "latency_ms": 1732.2356999939075
+  },
+  {
+   "question_id": "conv-48-qa-161",
+   "category": 4,
+   "predicted_answer": "Helping others",
+   "is_correct": true,
+   "tokens_used": 1287,
+   "latency_ms": 1803.2277000020258
+  },
+  {
+   "question_id": "conv-48-qa-162",
+   "category": 4,
+   "predicted_answer": "Renewable energy projects, sustainable initiatives, and social causes.",
+   "is_correct": true,
+   "tokens_used": 1285,
+   "latency_ms": 2103.4003000095254
+  },
+  {
+   "question_id": "conv-48-qa-163",
+   "category": 4,
+   "predicted_answer": "Deborah took Luna from the shelter.",
+   "is_correct": true,
+   "tokens_used": 1158,
+   "latency_ms": 1831.0731999954442
+  },
+  {
+   "question_id": "conv-48-qa-164",
+   "category": 4,
+   "predicted_answer": "8 years old",
+   "is_correct": true,
+   "tokens_used": 1220,
+   "latency_ms": 1770.8586000080686
+  },
+  {
+   "question_id": "conv-48-qa-165",
+   "category": 4,
+   "predicted_answer": "Yoga classes",
+   "is_correct": true,
+   "tokens_used": 1555,
+   "latency_ms": 2085.2585999964504
+  },
+  {
+   "question_id": "conv-48-qa-166",
+   "category": 4,
+   "predicted_answer": "A tranquil spot",
+   "is_correct": true,
+   "tokens_used": 1222,
+   "latency_ms": 1777.2172999975737
+  },
+  {
+   "question_id": "conv-48-qa-167",
+   "category": 4,
+   "predicted_answer": "A new plant",
+   "is_correct": false,
+   "tokens_used": 1426,
+   "latency_ms": 1958.9319999940926
+  },
+  {
+   "question_id": "conv-48-qa-168",
+   "category": 4,
+   "predicted_answer": "To create a good atmosphere to help them grow and improve.",
+   "is_correct": false,
+   "tokens_used": 1282,
+   "latency_ms": 1994.609200002742
+  },
+  {
+   "question_id": "conv-48-qa-169",
+   "category": 4,
+   "predicted_answer": "Teaching yoga and spending time with the community.",
+   "is_correct": true,
+   "tokens_used": 1369,
+   "latency_ms": 2088.392199992086
+  },
+  {
+   "question_id": "conv-48-qa-170",
+   "category": 4,
+   "predicted_answer": "Deborah's mom supported her yoga practice by coming to her classes with her.",
+   "is_correct": true,
+   "tokens_used": 1408,
+   "latency_ms": 2270.381299997098
+  },
+  {
+   "question_id": "conv-48-qa-171",
+   "category": 4,
+   "predicted_answer": "The video game console that Jolene's parents got her at age 10 was a Monster Hunter: World.",
+   "is_correct": true,
+   "tokens_used": 1368,
+   "latency_ms": 2505.300199991325
+  },
+  {
+   "question_id": "conv-48-qa-172",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1341,
+   "latency_ms": 1927.2748999937903
+  },
+  {
+   "question_id": "conv-48-qa-173",
+   "category": 4,
+   "predicted_answer": "Meditation course",
+   "is_correct": true,
+   "tokens_used": 1209,
+   "latency_ms": 1789.1422999964561
+  },
+  {
+   "question_id": "conv-48-qa-174",
+   "category": 4,
+   "predicted_answer": "Jolene had to reschedule their meeting with Deborah on September 8, 2023, because she remembered she already had plans for that day.",
+   "is_correct": true,
+   "tokens_used": 1276,
+   "latency_ms": 2628.1582999945385
+  },
+  {
+   "question_id": "conv-48-qa-175",
+   "category": 4,
+   "predicted_answer": "Phuket",
+   "is_correct": true,
+   "tokens_used": 1377,
+   "latency_ms": 1903.1183999904897
+  },
+  {
+   "question_id": "conv-48-qa-176",
+   "category": 4,
+   "predicted_answer": "Releasing expectations and judgments and just savoring the present.",
+   "is_correct": true,
+   "tokens_used": 1426,
+   "latency_ms": 2280.049599998165
+  },
+  {
+   "question_id": "conv-48-qa-177",
+   "category": 4,
+   "predicted_answer": "Jolene felt great about her progress in practicing mindfulness and gratitude.",
+   "is_correct": false,
+   "tokens_used": 1348,
+   "latency_ms": 2224.0164000104414
+  },
+  {
+   "question_id": "conv-48-qa-178",
+   "category": 4,
+   "predicted_answer": "Jolene experienced a positive change in finding inner peace and realizing the importance of incorporating relaxation, self-care, and balance in life alongside her engineering studies.",
+   "is_correct": true,
+   "tokens_used": 1377,
+   "latency_ms": 2688.8678000104846
+  },
+  {
+   "question_id": "conv-48-qa-179",
+   "category": 4,
+   "predicted_answer": "A card game about cats",
+   "is_correct": true,
+   "tokens_used": 1317,
+   "latency_ms": 1909.964199992828
+  },
+  {
+   "question_id": "conv-48-qa-180",
+   "category": 4,
+   "predicted_answer": "Reconnected with them, reminisced, and looked through her photos.",
+   "is_correct": true,
+   "tokens_used": 1359,
+   "latency_ms": 2170.4853999981424
+  },
+  {
+   "question_id": "conv-48-qa-181",
+   "category": 4,
+   "predicted_answer": "At the beach.",
+   "is_correct": true,
+   "tokens_used": 1328,
+   "latency_ms": 1937.450400000671
+  },
+  {
+   "question_id": "conv-48-qa-182",
+   "category": 4,
+   "predicted_answer": "Peace and joy",
+   "is_correct": true,
+   "tokens_used": 1223,
+   "latency_ms": 1748.8922999909846
+  },
+  {
+   "question_id": "conv-48-qa-183",
+   "category": 4,
+   "predicted_answer": "It's a place for peace and rest, a haven for relaxation and recharge.",
+   "is_correct": true,
+   "tokens_used": 1144,
+   "latency_ms": 2086.9106000027386
+  },
+  {
+   "question_id": "conv-48-qa-184",
+   "category": 4,
+   "predicted_answer": "A free gardening class",
+   "is_correct": true,
+   "tokens_used": 1443,
+   "latency_ms": 2031.6222999972524
+  },
+  {
+   "question_id": "conv-48-qa-185",
+   "category": 4,
+   "predicted_answer": "Cooking",
+   "is_correct": true,
+   "tokens_used": 1367,
+   "latency_ms": 1833.2622000016272
+  },
+  {
+   "question_id": "conv-48-qa-186",
+   "category": 4,
+   "predicted_answer": "Pineapple birthday cakes",
+   "is_correct": true,
+   "tokens_used": 1482,
+   "latency_ms": 2021.3511000038125
+  },
+  {
+   "question_id": "conv-48-qa-187",
+   "category": 4,
+   "predicted_answer": "Pineapple birthday cakes",
+   "is_correct": false,
+   "tokens_used": 1181,
+   "latency_ms": 1816.0883999953512
+  },
+  {
+   "question_id": "conv-48-qa-188",
+   "category": 4,
+   "predicted_answer": "Exploring nature",
+   "is_correct": false,
+   "tokens_used": 2429,
+   "latency_ms": 3455.4744999913964
+  },
+  {
+   "question_id": "conv-48-qa-189",
+   "category": 4,
+   "predicted_answer": "Deborah enjoyed dancing and bopping around at the music festival with their pals on September 20, 2023.",
+   "is_correct": true,
+   "tokens_used": 1427,
+   "latency_ms": 2616.4907999918796
+  },
+  {
+   "question_id": "conv-48-qa-190",
+   "category": 4,
+   "predicted_answer": "Dancing and bopping around",
+   "is_correct": true,
+   "tokens_used": 1382,
+   "latency_ms": 2007.307399995625
+  },
+  {
+   "question_id": "conv-49-qa-000",
+   "category": 1,
+   "predicted_answer": "Prius",
+   "is_correct": true,
+   "tokens_used": 1408,
+   "latency_ms": 2156.088300005649
+  },
+  {
+   "question_id": "conv-49-qa-001",
+   "category": 1,
+   "predicted_answer": "new Prius",
+   "is_correct": true,
+   "tokens_used": 1396,
+   "latency_ms": 1892.119600001024
+  },
+  {
+   "question_id": "conv-49-qa-002",
+   "category": 1,
+   "predicted_answer": "Jasper, Banff",
+   "is_correct": true,
+   "tokens_used": 1348,
+   "latency_ms": 1936.6353000077652
+  },
+  {
+   "question_id": "conv-49-qa-003",
+   "category": 1,
+   "predicted_answer": "2",
+   "is_correct": false,
+   "tokens_used": 2874,
+   "latency_ms": 3851.4293000043835
+  },
+  {
+   "question_id": "conv-49-qa-004",
+   "category": 2,
+   "predicted_answer": "Painting",
+   "is_correct": true,
+   "tokens_used": 1036,
+   "latency_ms": 1818.8028000004124
+  },
+  {
+   "question_id": "conv-49-qa-005",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1117,
+   "latency_ms": 2001.8917999987025
+  },
+  {
+   "question_id": "conv-49-qa-006",
+   "category": 1,
+   "predicted_answer": "2",
+   "is_correct": false,
+   "tokens_used": 2578,
+   "latency_ms": 3692.8198999958113
+  },
+  {
+   "question_id": "conv-49-qa-007",
+   "category": 1,
+   "predicted_answer": "painting, kayaking, yoga",
+   "is_correct": true,
+   "tokens_used": 1216,
+   "latency_ms": 1906.9068000098923
+  },
+  {
+   "question_id": "conv-49-qa-008",
+   "category": 1,
+   "predicted_answer": "Painting",
+   "is_correct": true,
+   "tokens_used": 1519,
+   "latency_ms": 2032.7727000112645
+  },
+  {
+   "question_id": "conv-49-qa-009",
+   "category": 2,
+   "predicted_answer": "The weekend before 24 May 2023",
+   "is_correct": true,
+   "tokens_used": 1418,
+   "latency_ms": 2405.590000009397
+  },
+  {
+   "question_id": "conv-49-qa-010",
+   "category": 3,
+   "predicted_answer": "Camping trip in the outdoors",
+   "is_correct": true,
+   "tokens_used": 1403,
+   "latency_ms": 2345.847999997204
+  },
+  {
+   "question_id": "conv-49-qa-011",
+   "category": 1,
+   "predicted_answer": "Health scare",
+   "is_correct": false,
+   "tokens_used": 1382,
+   "latency_ms": 2108.272900004522
+  },
+  {
+   "question_id": "conv-49-qa-012",
+   "category": 2,
+   "predicted_answer": "The Monday before 27 July 2023",
+   "is_correct": false,
+   "tokens_used": 1369,
+   "latency_ms": 2377.102200000081
+  },
+  {
+   "question_id": "conv-49-qa-013",
+   "category": 2,
+   "predicted_answer": "The week before 6 June 2023",
+   "is_correct": false,
+   "tokens_used": 1450,
+   "latency_ms": 2215.383600007044
+  },
+  {
+   "question_id": "conv-49-qa-014",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1297,
+   "latency_ms": 2099.2151999962516
+  },
+  {
+   "question_id": "conv-49-qa-015",
+   "category": 1,
+   "predicted_answer": "Sugary drinks and snacks",
+   "is_correct": false,
+   "tokens_used": 1302,
+   "latency_ms": 1887.0235999929719
+  },
+  {
+   "question_id": "conv-49-qa-016",
+   "category": 1,
+   "predicted_answer": "Issues with the self-checkout machines",
+   "is_correct": true,
+   "tokens_used": 1230,
+   "latency_ms": 1786.9941999961156
+  },
+  {
+   "question_id": "conv-49-qa-017",
+   "category": 2,
+   "predicted_answer": "The Friday before 27 July 2023",
+   "is_correct": true,
+   "tokens_used": 1239,
+   "latency_ms": 2227.1781000017654
+  },
+  {
+   "question_id": "conv-49-qa-018",
+   "category": 1,
+   "predicted_answer": "Flavored seltzer with air-popped popcorn or fruit",
+   "is_correct": false,
+   "tokens_used": 2586,
+   "latency_ms": 3991.6402000089874
+  },
+  {
+   "question_id": "conv-49-qa-019",
+   "category": 3,
+   "predicted_answer": "Take the first step, set goals, and find a supportive community.",
+   "is_correct": false,
+   "tokens_used": 908,
+   "latency_ms": 1967.3302000010153
+  },
+  {
+   "question_id": "conv-49-qa-020",
+   "category": 3,
+   "predicted_answer": "A fitness tracker or a set of healthy recipes.",
+   "is_correct": true,
+   "tokens_used": 1535,
+   "latency_ms": 2253.0578000005335
+  },
+  {
+   "question_id": "conv-49-qa-021",
+   "category": 1,
+   "predicted_answer": "\"Awesome Canadian woman, makes him feel alive, love at first sight, in love with her, feels energized, fun and exciting, a nice change, special occasions, exploring the outdoors together, creating memories, exploring beautiful snowy landscapes, feeling alive, feeling energized, feeling happy, feeling motivated, feeling relaxed, feeling peaceful, feeling positive, feeling strong, feeling supported, feeling understood, feeling valued, feeling loved, feeling appreciated, feeling grateful, feeling blessed, feeling fortunate, feeling lucky, feeling excited, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy, feeling alive, feeling energized, feeling happy,",
+   "is_correct": false,
+   "tokens_used": 1462,
+   "latency_ms": 9227.417900008732
+  },
+  {
+   "question_id": "conv-49-qa-022",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1505,
+   "latency_ms": 2218.875000005937
+  },
+  {
+   "question_id": "conv-49-qa-023",
+   "category": 2,
+   "predicted_answer": "28 July 2023",
+   "is_correct": true,
+   "tokens_used": 1192,
+   "latency_ms": 1919.2613000050187
+  }
+ ]
+}

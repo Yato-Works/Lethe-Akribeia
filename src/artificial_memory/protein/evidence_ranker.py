@@ -97,10 +97,20 @@ class EvidenceRanker:
             "clothes": {"clothing", "clothes", "blazer", "boots", "jacket", "jeans", "shirt", "pants", "dress", "sweater"},
             "plant": {"plant", "plants", "lily", "succulent", "fern", "basil", "snake"},
             "plants": {"plant", "plants", "lily", "succulent", "fern", "basil", "snake"},
+            "delay": {"delay", "delays", "latency", "lag", "bottleneck", "bottlenecks"},
+            "delays": {"delay", "delays", "latency", "lag", "bottleneck", "bottlenecks"},
+            "latency": {"delay", "delays", "latency", "lag", "bottleneck", "bottlenecks"},
+            "load": {"load", "concurrent", "concurrency", "traffic"},
+            "interactions": {"interactions", "interaction", "presence", "rooms", "messages", "events", "socket"},
+            "interaction": {"interactions", "interaction", "presence", "rooms", "messages", "events", "socket"},
         }
         for qw in list(q_words):
             if qw in DOMAIN_SYNONYMS:
                 q_words.update(DOMAIN_SYNONYMS[qw])
+
+        # Extract bigrams/phrases from query for phrase match bonus
+        q_clean_words = [w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", q_lower) if len(w) > 2 and w not in STOP_CONV]
+        q_bigrams = [f"{q_clean_words[i]} {q_clean_words[i+1]}" for i in range(len(q_clean_words) - 1)]
 
         # Extract entities from query if not provided
         if not target_entity:
@@ -123,9 +133,10 @@ class EvidenceRanker:
 
         for r in records:
             content = (r.raw_content or "").lower()
+            val_lower = (r.value or "").lower()
             r_words = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", content) if len(w) > 2)
 
-            # 1. Semantic Score (Token overlap ratio + stem bonus)
+            # 1. Semantic Score (Token overlap ratio + stem bonus + exact phrase bonus)
             overlap = len(q_words & r_words)
             stem_bonus = 0.0
             for qw in q_words:
@@ -134,13 +145,18 @@ class EvidenceRanker:
                         stem_bonus += 0.5
             s_score = (overlap + stem_bonus) / len(q_words) * 10.0 if q_words else 0.0
 
+            # Phrase / N-gram exact match bonus
+            for bg in q_bigrams:
+                if bg in content or bg in val_lower:
+                    s_score += 8.0
+
             # 2. Entity Score (Direct or alias match + Speaker Priority)
             e_score = 0.0
             r_ent = (r.entity or "").lower()
             r_src = (r.source or "").lower()
             if target_entity:
                 if target_entity in ["user", "me", "i"]:
-                    if r_src == "user" or (r.raw_content and ": user:" in r.raw_content.lower()):
+                    if "user" in r_src or (r.raw_content and (": user:" in r.raw_content.lower() or "[user]" in r.raw_content.lower() or "user:" in r.raw_content.lower())):
                         e_score += 15.0
                     elif any(w in content for w in ["i ", "my ", "me ", "mine "]):
                         e_score += 10.0

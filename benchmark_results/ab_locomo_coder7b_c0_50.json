@@ -1,0 +1,27 @@
+[
+ {
+  "model": "qwen2.5-coder:7b",
+  "n": 50,
+  "totals": {
+   "ALL": [
+    35,
+    50
+   ],
+   "temporal": [
+    14,
+    24
+   ],
+   "open-domain": [
+    7,
+    7
+   ],
+   "multi-hop": [
+    14,
+    19
+   ]
+  },
+  "oracle": 86.0,
+  "sec": 125.64039399998728,
+  "failures": []
+ }
+]

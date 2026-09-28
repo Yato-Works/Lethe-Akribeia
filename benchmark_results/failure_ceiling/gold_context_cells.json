@@ -1,0 +1,3784 @@
+{
+  "questions": [
+    {
+      "qid": "conv-26-qa-032",
+      "category": 1,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.2857142857142857,
+      "gold_f1_b": 0.25,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-033",
+      "category": 2,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 1.0,
+      "gold_f1_b": 0.25,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-034",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-035",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.1111111111111111,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-040",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-26-qa-044",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-26-qa-047",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-055",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-069",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-074",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-075",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-26-qa-085",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-110",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-112",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-121",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-127",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-133",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.11764705882352941,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-138",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.47058823529411764,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-140",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-141",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-147",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-26-qa-150",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-003",
+      "category": 1,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.30769230769230765,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-005",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-009",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-017",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.36734693877551017,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-018",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.18181818181818182,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-020",
+      "category": 2,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.25,
+      "gold_f1_b": 0.6,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-30-qa-023",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0851063829787234,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-027",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-031",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-035",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-30-qa-039",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-047",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.5714285714285715,
+      "gold_f1_b": 0.5882352941176471,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-30-qa-050",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-056",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.25000000000000006,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-057",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.4210526315789474,
+      "gold_f1_b": 0.5833333333333334,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-30-qa-060",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.33333333333333337,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-30-qa-067",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-071",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-30-qa-075",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-000",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-008",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-009",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-011",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-014",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-017",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-020",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-027",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.8000000000000002,
+      "gold_f1_b": 0.4615384615384615,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-031",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-037",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-039",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-042",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-047",
+      "category": 1,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-049",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-41-qa-051",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-056",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.4000000000000001,
+      "gold_f1_b": 0.3636363636363636,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-057",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.2,
+      "gold_f1_b": 0.2,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-058",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.7272727272727272,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-062",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-063",
+      "category": 2,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-068",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-069",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-072",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.09523809523809523,
+      "gold_f1_b": 0.09523809523809523,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-075",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-082",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.4,
+      "gold_f1_b": 0.18181818181818182,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-092",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-101",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 1.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-41-qa-112",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-127",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.058823529411764705,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-41-qa-128",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-133",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-41-qa-134",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-002",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-003",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.6666666666666665,
+      "gold_f1_b": 0.6666666666666665,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-004",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.1,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-005",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-008",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-012",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-023",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2105263157894737,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-024",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.22222222222222224,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-030",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-031",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.4444444444444445,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-035",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-042",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-043",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-044",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.28571428571428575,
+      "gold_f1_b": 0.28571428571428575,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-049",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-050",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-051",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-42-qa-052",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-057",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-42-qa-058",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.1,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-059",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.15384615384615383,
+      "gold_f1_b": 0.13333333333333333,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-061",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-062",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-063",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-065",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-066",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-068",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-069",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-070",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-074",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.07692307692307693,
+      "gold_f1_b": 0.08888888888888889,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-078",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-079",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-080",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-081",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0625,
+      "gold_f1_b": 0.08695652173913043,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-083",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-088",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-089",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-091",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-092",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2222222222222222,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-093",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-108",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-116",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-119",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-122",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4444444444444445,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-123",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.26666666666666666,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-135",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-136",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-139",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-149",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.13333333333333336,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-150",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-165",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-168",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-184",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-42-qa-189",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.14814814814814817,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-001",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.36363636363636365,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-004",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-005",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-006",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-008",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-009",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.21052631578947367,
+      "gold_f1_b": 0.2727272727272727,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-011",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-43-qa-014",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.07142857142857142,
+      "gold_f1_b": 0.12121212121212123,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-017",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-43-qa-019",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.12,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-025",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.25,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-027",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.125,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-029",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-034",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.06666666666666667,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-038",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-047",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.1818181818181818,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-048",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-049",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-053",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-059",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-061",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0689655172413793,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-062",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.25,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-066",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-070",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.16216216216216214,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-078",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-082",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-092",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.14285714285714285,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-093",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.23529411764705882,
+      "gold_f1_b": 0.1818181818181818,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-096",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-102",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.13793103448275862,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-103",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-114",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.3333333333333333,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-118",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-43-qa-122",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.42857142857142855,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-43-qa-134",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.19999999999999998,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-43-qa-135",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-137",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.11764705882352941,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-146",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-43-qa-151",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.22222222222222224,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-152",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-160",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-164",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-43-qa-165",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-171",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-172",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-43-qa-174",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-000",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-002",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-003",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.11764705882352941,
+      "gold_f1_b": 0.31578947368421056,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-004",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.15384615384615383,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-006",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.6,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-009",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.1904761904761905,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-010",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.14285714285714285,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-013",
+      "category": 2,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.5714285714285715,
+      "gold_f1_b": 0.5,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-44-qa-014",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.5,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-017",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-018",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-021",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-022",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.10526315789473684,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-028",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.6666666666666666,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-44-qa-033",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.09756097560975609,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-034",
+      "category": 2,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-036",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-039",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-044",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.6666666666666666,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-046",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-049",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-052",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-053",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-054",
+      "category": 1,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.18181818181818182,
+      "gold_f1_b": 0.18181818181818182,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-057",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.6,
+      "gold_f1_b": 0.3636363636363636,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-059",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-060",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-44-qa-064",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-065",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-071",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-44-qa-119",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-000",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-003",
+      "category": 1,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.25,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-005",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.3157894736842105,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-006",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-010",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.20000000000000004,
+      "gold_f1_b": 0.4000000000000001,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-014",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-015",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-016",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-017",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-020",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-021",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-024",
+      "category": 1,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.4,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-030",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-031",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.5,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-037",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.5,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-038",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.08,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-039",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-043",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-044",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.23076923076923075,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-046",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-048",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4444444444444444,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-050",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-051",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.35294117647058826,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-052",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.22222222222222224,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-053",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-054",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-055",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.5,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-056",
+      "category": 1,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.6666666666666666,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-057",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.3333333333333333,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-059",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.5714285714285715,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-061",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-062",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-063",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-064",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-066",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2222222222222222,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-073",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-098",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-101",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.15384615384615385,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-47-qa-106",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-47-qa-112",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.3,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-47-qa-113",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-000",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-001",
+      "category": 1,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.4444444444444445,
+      "gold_f1_b": 0.4444444444444445,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-002",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.4444444444444445,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-004",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-005",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-006",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-007",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-014",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-015",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-017",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-018",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-019",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-021",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-023",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-029",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.8000000000000002,
+      "gold_f1_b": 0.5454545454545454,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-030",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-48-qa-038",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4000000000000001,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-039",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.25,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-045",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.28571428571428575,
+      "gold_f1_b": 0.28571428571428575,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-046",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-052",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.1,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-053",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-054",
+      "category": 2,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-059",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.06451612903225805,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-072",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-074",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-075",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-077",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-082",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.19999999999999998,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-083",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-086",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-087",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-098",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-099",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-101",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-103",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-105",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-108",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-129",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-48-qa-130",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-135",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-141",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0909090909090909,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-151",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-171",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-177",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-178",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-48-qa-179",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.25,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-003",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-006",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-007",
+      "category": 1,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.7499999999999999,
+      "gold_f1_b": 0.7499999999999999,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-011",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-012",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-018",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-019",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2278481012658228,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-020",
+      "category": 3,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.3,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-021",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.21276595744680854,
+      "gold_f1_b": 0.04444444444444444,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-024",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-026",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-034",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-039",
+      "category": 2,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-040",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-043",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-047",
+      "category": 2,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.28571428571428575,
+      "gold_f1_b": 0.5714285714285715,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-050",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.25,
+      "gold_f1_b": 0.375,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-053",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.28571428571428575,
+      "gold_f1_b": 0.8000000000000002,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-054",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-057",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-060",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-061",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.1818181818181818,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-062",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.039215686274509796,
+      "gold_f1_b": 0.0625,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-064",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-49-qa-068",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-069",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-070",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-073",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-076",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-077",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.08695652173913043,
+      "gold_f1_b": 0.08695652173913043,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-078",
+      "category": 1,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 0.15384615384615385,
+      "gold_f1_b": 0.2222222222222222,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-080",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2222222222222222,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-081",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-082",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-088",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-095",
+      "category": 4,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-102",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-103",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-104",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-106",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-108",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-112",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-144",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-49-qa-153",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-000",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-002",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-004",
+      "category": 3,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 1.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-007",
+      "category": 3,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-008",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-50-qa-011",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.4,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-012",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.6,
+      "gold_f1_b": 0.3076923076923077,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-013",
+      "category": 3,
+      "cell": "reader_capability",
+      "gold_a": true,
+      "gold_b": false,
+      "gold_f1_a": 1.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-014",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-50-qa-015",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.10526315789473682,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-018",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-020",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-50-qa-023",
+      "category": 1,
+      "cell": "context_limited",
+      "gold_a": true,
+      "gold_b": true,
+      "gold_f1_a": 1.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-50-qa-031",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-038",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.5,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-50-qa-047",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-048",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-049",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.2,
+      "gold_f1_b": 0.2,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-050",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-051",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-052",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.28571428571428575,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-053",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-057",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-059",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-060",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.2,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-061",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-062",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-063",
+      "category": 1,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.37499999999999994,
+      "answer_in_gold_context": "mostly"
+    },
+    {
+      "qid": "conv-50-qa-064",
+      "category": 1,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.1935483870967742,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-068",
+      "category": 2,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.20000000000000004,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-087",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-091",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-102",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-50-qa-103",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-108",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 1.0,
+      "answer_in_gold_context": "verbatim"
+    },
+    {
+      "qid": "conv-50-qa-109",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-113",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.13333333333333333,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-128",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-137",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-147",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-156",
+      "category": 4,
+      "cell": "semantic",
+      "gold_a": false,
+      "gold_b": false,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.0,
+      "answer_in_gold_context": "absent"
+    },
+    {
+      "qid": "conv-50-qa-157",
+      "category": 4,
+      "cell": "small_reader_advantage",
+      "gold_a": false,
+      "gold_b": true,
+      "gold_f1_a": 0.0,
+      "gold_f1_b": 0.1818181818181818,
+      "answer_in_gold_context": "absent"
+    }
+  ]
+}

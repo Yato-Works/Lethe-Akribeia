@@ -1,0 +1,324 @@
+{
+ "results": [
+  {
+   "question_id": "conv-50-qa-118",
+   "category": 4,
+   "predicted_answer": "Hard work and determination.",
+   "is_correct": true,
+   "tokens_used": 1522,
+   "latency_ms": 2017.2622999998566
+  },
+  {
+   "question_id": "conv-50-qa-119",
+   "category": 4,
+   "predicted_answer": "Working on cars represents a sense of achievement, fulfillment, and therapy for Dave. It allows him to express himself, connect with himself, and give him a sense of purpose.",
+   "is_correct": true,
+   "tokens_used": 1601,
+   "latency_ms": 2918.2034000004933
+  },
+  {
+   "question_id": "conv-50-qa-120",
+   "category": 4,
+   "predicted_answer": "Dave aims to fix up things, give cars a second chance, and share his passion for cars through his blog and workshops.",
+   "is_correct": false,
+   "tokens_used": 1598,
+   "latency_ms": 2616.9120999984443
+  },
+  {
+   "question_id": "conv-50-qa-121",
+   "category": 4,
+   "predicted_answer": "A new Ferrari.",
+   "is_correct": true,
+   "tokens_used": 1487,
+   "latency_ms": 2015.0953000011214
+  },
+  {
+   "question_id": "conv-50-qa-122",
+   "category": 4,
+   "predicted_answer": "The Fireworks",
+   "is_correct": true,
+   "tokens_used": 1561,
+   "latency_ms": 1986.829299999954
+  },
+  {
+   "question_id": "conv-50-qa-123",
+   "category": 4,
+   "predicted_answer": "When faced with setbacks, Calvin reminds himself of his passion for his goals, relies on supportive people, and takes breaks to recharge with his favorite activities.",
+   "is_correct": true,
+   "tokens_used": 1468,
+   "latency_ms": 2627.239900000859
+  },
+  {
+   "question_id": "conv-50-qa-124",
+   "category": 4,
+   "predicted_answer": "Dave finds hiking fulfilling, similar to Calvin's passion for music festivals.",
+   "is_correct": false,
+   "tokens_used": 1591,
+   "latency_ms": 2288.408000000345
+  },
+  {
+   "question_id": "conv-50-qa-125",
+   "category": 4,
+   "predicted_answer": "Tokyo",
+   "is_correct": false,
+   "tokens_used": 1518,
+   "latency_ms": 1847.9244999980438
+  },
+  {
+   "question_id": "conv-50-qa-126",
+   "category": 4,
+   "predicted_answer": "Shibuya Crossing",
+   "is_correct": true,
+   "tokens_used": 1402,
+   "latency_ms": 2004.3213999997533
+  },
+  {
+   "question_id": "conv-50-qa-127",
+   "category": 4,
+   "predicted_answer": "Shinjuku",
+   "is_correct": true,
+   "tokens_used": 1491,
+   "latency_ms": 2002.076800003124
+  },
+  {
+   "question_id": "conv-50-qa-128",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1338,
+   "latency_ms": 1828.2837999977346
+  },
+  {
+   "question_id": "conv-50-qa-129",
+   "category": 4,
+   "predicted_answer": "Performing and connecting with the crowd.",
+   "is_correct": true,
+   "tokens_used": 1525,
+   "latency_ms": 2221.6974000002665
+  },
+  {
+   "question_id": "conv-50-qa-130",
+   "category": 4,
+   "predicted_answer": "Calvin balances his job and personal life by making music, collaborating with others, and surrounding himself with positive energy and passion.",
+   "is_correct": false,
+   "tokens_used": 1513,
+   "latency_ms": 2671.918200001528
+  },
+  {
+   "question_id": "conv-50-qa-131",
+   "category": 4,
+   "predicted_answer": "Calvin's recent music is inspired by the struggles that people go through.",
+   "is_correct": true,
+   "tokens_used": 1454,
+   "latency_ms": 2295.918799998617
+  },
+  {
+   "question_id": "conv-50-qa-132",
+   "category": 4,
+   "predicted_answer": "Calvin describes his music as a way to express himself and work through his emotions, likening it to a form of therapy.",
+   "is_correct": true,
+   "tokens_used": 1631,
+   "latency_ms": 2755.6124000002455
+  },
+  {
+   "question_id": "conv-50-qa-133",
+   "category": 4,
+   "predicted_answer": "Dave started working on cars since he was ten years old, inspired by fixing an old car he found in a neighbor's garage.",
+   "is_correct": true,
+   "tokens_used": 1665,
+   "latency_ms": 2796.088699997199
+  },
+  {
+   "question_id": "conv-50-qa-134",
+   "category": 4,
+   "predicted_answer": "The toughest part of car restoration, according to Dave, is paying extra attention to detail.",
+   "is_correct": true,
+   "tokens_used": 1554,
+   "latency_ms": 2510.940500000288
+  },
+  {
+   "question_id": "conv-50-qa-135",
+   "category": 4,
+   "predicted_answer": "Paying attention to details.",
+   "is_correct": true,
+   "tokens_used": 1548,
+   "latency_ms": 2191.701199997624
+  },
+  {
+   "question_id": "conv-50-qa-136",
+   "category": 4,
+   "predicted_answer": "Dave sold the car he restored last year (2022) to a collector.",
+   "is_correct": true,
+   "tokens_used": 1578,
+   "latency_ms": 2567.1370000018214
+  },
+  {
+   "question_id": "conv-50-qa-137",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1555,
+   "latency_ms": 2156.694299999799
+  },
+  {
+   "question_id": "conv-50-qa-138",
+   "category": 4,
+   "predicted_answer": "It was unreal, Dave. Being up there with someone I admire - it was a dream come true. The energy, the crowd - it made me realize how much music means to me, it's like my passion and my purpose.",
+   "is_correct": true,
+   "tokens_used": 1606,
+   "latency_ms": 3380.431599998701
+  },
+  {
+   "question_id": "conv-50-qa-139",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1542,
+   "latency_ms": 2117.775700000493
+  },
+  {
+   "question_id": "conv-50-qa-140",
+   "category": 4,
+   "predicted_answer": "Dave and Calvin both agree that progress and hard work are key to achieving success and motivating them to keep striving for their goals.",
+   "is_correct": true,
+   "tokens_used": 1273,
+   "latency_ms": 2614.391200000682
+  },
+  {
+   "question_id": "conv-50-qa-141",
+   "category": 4,
+   "predicted_answer": "Boston",
+   "is_correct": true,
+   "tokens_used": 1352,
+   "latency_ms": 1869.8619999995572
+  },
+  {
+   "question_id": "conv-50-qa-142",
+   "category": 4,
+   "predicted_answer": "Calvin threw a small party at his Japanese house for his new album.",
+   "is_correct": true,
+   "tokens_used": 1490,
+   "latency_ms": 2365.6133000004047
+  },
+  {
+   "question_id": "conv-50-qa-143",
+   "category": 4,
+   "predicted_answer": "Dave recently started a blog about car mods.",
+   "is_correct": true,
+   "tokens_used": 1679,
+   "latency_ms": 2445.7264999982726
+  },
+  {
+   "question_id": "conv-50-qa-144",
+   "category": 4,
+   "predicted_answer": "Dave shares his passion with others through blogging about car mods.",
+   "is_correct": true,
+   "tokens_used": 1644,
+   "latency_ms": 2486.304800000653
+  },
+  {
+   "question_id": "conv-50-qa-145",
+   "category": 4,
+   "predicted_answer": "Music videos, concerts, and documentaries about artists and their creative process.",
+   "is_correct": true,
+   "tokens_used": 1491,
+   "latency_ms": 2342.448900002637
+  },
+  {
+   "question_id": "conv-50-qa-146",
+   "category": 4,
+   "predicted_answer": "Dave has been getting into photography recently.",
+   "is_correct": false,
+   "tokens_used": 1590,
+   "latency_ms": 2349.7664999995322
+  },
+  {
+   "question_id": "conv-50-qa-147",
+   "category": 4,
+   "predicted_answer": "Calvin uses writing lyrics and notes to boost his motivation for music.",
+   "is_correct": true,
+   "tokens_used": 1539,
+   "latency_ms": 2343.044599998393
+  },
+  {
+   "question_id": "conv-50-qa-148",
+   "category": 4,
+   "predicted_answer": "Dave posts about how he made a car look like a beast, inspiring others to start their own DIY projects.",
+   "is_correct": true,
+   "tokens_used": 1559,
+   "latency_ms": 2559.944299999188
+  },
+  {
+   "question_id": "conv-50-qa-149",
+   "category": 4,
+   "predicted_answer": "Dave's blog on car mods inspires people and helps them find their creativity.",
+   "is_correct": true,
+   "tokens_used": 1566,
+   "latency_ms": 2418.091200001072
+  },
+  {
+   "question_id": "conv-50-qa-150",
+   "category": 4,
+   "predicted_answer": "Calvin invited his old high school buddy to see him perform in Boston on 13 November, 2023.",
+   "is_correct": true,
+   "tokens_used": 1495,
+   "latency_ms": 2747.645999999804
+  },
+  {
+   "question_id": "conv-50-qa-151",
+   "category": 4,
+   "predicted_answer": "Playing guitar in a rock band",
+   "is_correct": false,
+   "tokens_used": 1565,
+   "latency_ms": 2144.2308999976376
+  },
+  {
+   "question_id": "conv-50-qa-152",
+   "category": 4,
+   "predicted_answer": "Dave bought a new vintage camera recently.",
+   "is_correct": true,
+   "tokens_used": 1642,
+   "latency_ms": 2393.3305999998993
+  },
+  {
+   "question_id": "conv-50-qa-153",
+   "category": 4,
+   "predicted_answer": "Dave likes to capture photos of nature, such as sunsets, beaches, and waves.",
+   "is_correct": true,
+   "tokens_used": 1461,
+   "latency_ms": 2437.262899999041
+  },
+  {
+   "question_id": "conv-50-qa-154",
+   "category": 4,
+   "predicted_answer": "Calvin attended a fancy gala in Boston.",
+   "is_correct": true,
+   "tokens_used": 1560,
+   "latency_ms": 2285.7636000007915
+  },
+  {
+   "question_id": "conv-50-qa-155",
+   "category": 4,
+   "predicted_answer": "Calvin discussed music and art with the cool artist he met at the gala.",
+   "is_correct": true,
+   "tokens_used": 1440,
+   "latency_ms": 2348.8201000000117
+  },
+  {
+   "question_id": "conv-50-qa-156",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1418,
+   "latency_ms": 1974.3430000016815
+  },
+  {
+   "question_id": "conv-50-qa-157",
+   "category": 4,
+   "predicted_answer": "Nature can boost Calvin's spirits during tough times.",
+   "is_correct": true,
+   "tokens_used": 1611,
+   "latency_ms": 2318.3844999985013
+  }
+ ]
+}

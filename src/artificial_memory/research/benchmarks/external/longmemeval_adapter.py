@@ -28,6 +28,7 @@ from artificial_memory.research.benchmarks.external.lme_prompts import (
     build_prompt as build_lme_prompt,
 )
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
+from artificial_memory.skills import get_temporal_skill
 
 
 @dataclass
@@ -180,14 +181,18 @@ class LongMemEvalAdapter:
             if any(gw[:4] in aw[:4] for gw in gt_words for aw in ans_words
                    if len(gw) >= 4 and len(aw) >= 4):
                 return True
-        # Numeric-focused scoring: same primary number counts (\"12 games\" vs \"12 times\").
+        # Numeric-focused scoring: same primary number counts ("12 games" vs "12 times").
         gt_nums = re.findall(r"\$?([\d,]+(?:\.\d+)?)\s*%?", clean_gt)
         ans_nums = re.findall(r"\$?([\d,]+(?:\.\d+)?)\s*%?", clean_ans)
         if gt_nums and ans_nums:
             gt_primary = gt_nums[0].replace(",", "")
             ans_primary = ans_nums[0].replace(",", "")
-            if gt_primary == ans_primary and float(gt_primary) > 0:
-                return True
+            if gt_primary and gt_primary == ans_primary:
+                try:
+                    if float(gt_primary) > 0:
+                        return True
+                except ValueError:
+                    pass
         return False
 
     def __init__(self, dataset_path: str | Path = "datasets/external/longmemeval_s_cleaned.json") -> None:
@@ -366,19 +371,42 @@ class LongMemEvalAdapter:
                     all_records,
                     reference_date_str=item.question_date,
                 )
+                # Phase X: Temporal Skill Co-processor (CHRONOS)
+                temporal_skill = get_temporal_skill()
+                temporal_skill_result = temporal_skill.resolve(
+                    item.question,
+                    all_records,
+                    reference_date=item.question_date,
+                )
+                temporal_skill_block = ""
+                if temporal_skill_result.success and temporal_skill_result.skill_block:
+                    temporal_skill_block = temporal_skill_result.skill_block
+                
                 if t_grounding:
                     if "Time-Anchored Event" in t_grounding.grounding_text:
                         prompt_context = (
                             f"{t_grounding.grounding_text}\n\n"
+                            f"{temporal_skill_block}"
                             f"[INSTRUCTION: Answer the question based on the event above clearly and concisely.]"
                         )
                     else:
                         prompt_context = (
                             f"{t_grounding.grounding_text}\n\n"
+                            f"{temporal_skill_block}"
                             f"[INSTRUCTION: Based on the verified temporal calculation/ordering above, answer the question directly. State the exact numbers, durations, or order clearly.]"
                         )
                 else:
                     t_grounding = None
+                    prompt_context = (
+                        f"{temporal_skill_block}"
+                        f"[INSTRUCTION: TEMPORAL REASONING]\n"
+                        f"Answer the temporal question using ONLY the dated conversation evidence below.\n"
+                        f"- Compute exact dates, durations, or ordering from the session dates.\n"
+                        f"- For relative dates, output the exact relative expression from the context.\n"
+                        f"- State exact numbers and units for durations.\n"
+                        f"- Return ONLY the concise answer.\n\n"
+                        f"{pcc.context_text}"
+                    )
 
             # --- Prompt structure: single source of truth ---------------------
             # The inline branches above are kept for their side effects (session

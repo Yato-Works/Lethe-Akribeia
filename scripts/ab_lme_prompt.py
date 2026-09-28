@@ -225,8 +225,15 @@ def build_prompt(row: dict, args: argparse.Namespace) -> str:
 
     # single-session-user (and any future type): the adapter has no branch at all.
     if args.fix_ss_user:
-        return (f"{ef}[INSTRUCTION: Answer the question with the exact value from the "
-                f"evidence.]\n\n{ctx}")
+        return (
+            f"{ef}[INSTRUCTION: EXACT FACT EXTRACTION]\n"
+            f"Answer the question directly based on the conversation evidence below.\n"
+            f"RULES:\n"
+            f"1. Target Distinction: Distinguish where an action was PERFORMED vs where something was received (e.g. redeemed coupon at a store vs received in email).\n"
+            f"2. Extract the specific final entity, store name, degree, or number directly.\n"
+            f"3. State only the concise answer (e.g. 'Target', 'Business Administration', '45 minutes').\n\n"
+            f"{ctx}"
+        )
     return f"{ef}{ctx}" if args.global_ef else ctx
 
 

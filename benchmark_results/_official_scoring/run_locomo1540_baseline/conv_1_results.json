@@ -1,0 +1,2004 @@
+{
+ "results": [
+  {
+   "question_id": "conv-41-qa-017",
+   "category": 3,
+   "predicted_answer": "Education",
+   "is_correct": false,
+   "tokens_used": 1470,
+   "latency_ms": 1987.8401999999369
+  },
+  {
+   "question_id": "conv-41-qa-018",
+   "category": 1,
+   "predicted_answer": "John went to yoga with his colleague Rob.",
+   "is_correct": true,
+   "tokens_used": 1459,
+   "latency_ms": 2183.7805999999773
+  },
+  {
+   "question_id": "conv-41-qa-019",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1454,
+   "latency_ms": 2066.685399999983
+  },
+  {
+   "question_id": "conv-41-qa-020",
+   "category": 2,
+   "predicted_answer": "10 April, 2023",
+   "is_correct": false,
+   "tokens_used": 1467,
+   "latency_ms": 2304.3552999999974
+  },
+  {
+   "question_id": "conv-41-qa-021",
+   "category": 1,
+   "predicted_answer": "West County, East Coast",
+   "is_correct": true,
+   "tokens_used": 1488,
+   "latency_ms": 2065.721499999995
+  },
+  {
+   "question_id": "conv-41-qa-022",
+   "category": 2,
+   "predicted_answer": "March 2023",
+   "is_correct": true,
+   "tokens_used": 1453,
+   "latency_ms": 2070.7051999999067
+  },
+  {
+   "question_id": "conv-41-qa-023",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1466,
+   "latency_ms": 1996.9165999999632
+  },
+  {
+   "question_id": "conv-41-qa-024",
+   "category": 2,
+   "predicted_answer": "April 2023",
+   "is_correct": true,
+   "tokens_used": 1456,
+   "latency_ms": 2005.5669999999282
+  },
+  {
+   "question_id": "conv-41-qa-025",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1404,
+   "latency_ms": 1989.7821000000704
+  },
+  {
+   "question_id": "conv-41-qa-026",
+   "category": 1,
+   "predicted_answer": "Maria bought a cross necklace to feel closer to her faith.",
+   "is_correct": true,
+   "tokens_used": 1474,
+   "latency_ms": 2232.999599999971
+  },
+  {
+   "question_id": "conv-41-qa-027",
+   "category": 2,
+   "predicted_answer": "20 May 2023",
+   "is_correct": false,
+   "tokens_used": 1416,
+   "latency_ms": 2182.2310000000016
+  },
+  {
+   "question_id": "conv-41-qa-028",
+   "category": 1,
+   "predicted_answer": "Veterans' rights, education, infrastructure, and teaching kids about veterans.",
+   "is_correct": true,
+   "tokens_used": 1439,
+   "latency_ms": 2340.9518000000844
+  },
+  {
+   "question_id": "conv-41-qa-029",
+   "category": 1,
+   "predicted_answer": "Maria is planning a ring-toss tournament for the homeless shelter's fundraiser.",
+   "is_correct": true,
+   "tokens_used": 1571,
+   "latency_ms": 2455.850199999986
+  },
+  {
+   "question_id": "conv-41-qa-030",
+   "category": 1,
+   "predicted_answer": "Maria volunteers at a homeless shelter.",
+   "is_correct": true,
+   "tokens_used": 1499,
+   "latency_ms": 2049.881800000094
+  },
+  {
+   "question_id": "conv-41-qa-031",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1549,
+   "latency_ms": 2095.805600000176
+  },
+  {
+   "question_id": "conv-41-qa-032",
+   "category": 1,
+   "predicted_answer": "John has done a weekend yoga class with a colleague.",
+   "is_correct": false,
+   "tokens_used": 1475,
+   "latency_ms": 2129.8927000000276
+  },
+  {
+   "question_id": "conv-41-qa-033",
+   "category": 1,
+   "predicted_answer": "Maria has practiced beginner yoga focusing on poses and breathing, as well as kundalini yoga.",
+   "is_correct": true,
+   "tokens_used": 1317,
+   "latency_ms": 2268.802399999913
+  },
+  {
+   "question_id": "conv-41-qa-034",
+   "category": 2,
+   "predicted_answer": "10 June 2023",
+   "is_correct": false,
+   "tokens_used": 1351,
+   "latency_ms": 2004.1349000000537
+  },
+  {
+   "question_id": "conv-41-qa-035",
+   "category": 1,
+   "predicted_answer": "Florida",
+   "is_correct": true,
+   "tokens_used": 1373,
+   "latency_ms": 1823.8756000000649
+  },
+  {
+   "question_id": "conv-41-qa-036",
+   "category": 1,
+   "predicted_answer": "John attended a violin concert and a live music event.",
+   "is_correct": true,
+   "tokens_used": 1662,
+   "latency_ms": 2317.3910000000433
+  },
+  {
+   "question_id": "conv-41-qa-037",
+   "category": 1,
+   "predicted_answer": "John has participated in events such as a marching event for veterans' rights, a 5K charity run for veterans and their families, and a community event to raise money for a good cause.",
+   "is_correct": true,
+   "tokens_used": 1710,
+   "latency_ms": 3204.851799999915
+  },
+  {
+   "question_id": "conv-41-qa-038",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1395,
+   "latency_ms": 1947.0593000000918
+  },
+  {
+   "question_id": "conv-41-qa-039",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1352,
+   "latency_ms": 1905.1062000000911
+  },
+  {
+   "question_id": "conv-41-qa-040",
+   "category": 1,
+   "predicted_answer": "Kyle",
+   "is_correct": true,
+   "tokens_used": 1486,
+   "latency_ms": 1928.254299999935
+  },
+  {
+   "question_id": "conv-41-qa-041",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1449,
+   "latency_ms": 2029.2942000000949
+  },
+  {
+   "question_id": "conv-41-qa-042",
+   "category": 1,
+   "predicted_answer": "John's old area was hit by a flood.",
+   "is_correct": false,
+   "tokens_used": 1344,
+   "latency_ms": 2075.6834000001163
+  },
+  {
+   "question_id": "conv-41-qa-043",
+   "category": 2,
+   "predicted_answer": "The week before 7 July 2023.",
+   "is_correct": true,
+   "tokens_used": 1500,
+   "latency_ms": 2337.9317999999785
+  },
+  {
+   "question_id": "conv-41-qa-044",
+   "category": 1,
+   "predicted_answer": "Maria has done activities such as camping, community work, picnics, hiking, and volunteering at a homeless shelter with her church friends.",
+   "is_correct": true,
+   "tokens_used": 1465,
+   "latency_ms": 2782.2781000002124
+  },
+  {
+   "question_id": "conv-41-qa-045",
+   "category": 3,
+   "predicted_answer": "No",
+   "is_correct": true,
+   "tokens_used": 1447,
+   "latency_ms": 1950.5882999999358
+  },
+  {
+   "question_id": "conv-41-qa-046",
+   "category": 2,
+   "predicted_answer": "21 July 2023",
+   "is_correct": false,
+   "tokens_used": 1453,
+   "latency_ms": 2141.8776000000435
+  },
+  {
+   "question_id": "conv-41-qa-047",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1461,
+   "latency_ms": 2002.8737999998611
+  },
+  {
+   "question_id": "conv-41-qa-048",
+   "category": 2,
+   "predicted_answer": "30 July 2023",
+   "is_correct": false,
+   "tokens_used": 1490,
+   "latency_ms": 2139.2616000000544
+  },
+  {
+   "question_id": "conv-41-qa-049",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1493,
+   "latency_ms": 2036.746600000015
+  },
+  {
+   "question_id": "conv-41-qa-050",
+   "category": 3,
+   "predicted_answer": "Passionate, dedicated, supportive, and community-oriented.",
+   "is_correct": true,
+   "tokens_used": 1467,
+   "latency_ms": 2227.0321000000877
+  },
+  {
+   "question_id": "conv-41-qa-051",
+   "category": 2,
+   "predicted_answer": "Maria started volunteering at the homeless shelter about a year ago, which was around December 2022.",
+   "is_correct": false,
+   "tokens_used": 1547,
+   "latency_ms": 2610.0845999999365
+  },
+  {
+   "question_id": "conv-41-qa-052",
+   "category": 1,
+   "predicted_answer": "Cindy and Laura",
+   "is_correct": true,
+   "tokens_used": 1431,
+   "latency_ms": 1971.6779000000315
+  },
+  {
+   "question_id": "conv-41-qa-053",
+   "category": 2,
+   "predicted_answer": "2022",
+   "is_correct": true,
+   "tokens_used": 1455,
+   "latency_ms": 2016.6698000000451
+  },
+  {
+   "question_id": "conv-41-qa-054",
+   "category": 2,
+   "predicted_answer": "4 August 2023",
+   "is_correct": true,
+   "tokens_used": 1460,
+   "latency_ms": 2059.0985999999702
+  },
+  {
+   "question_id": "conv-41-qa-055",
+   "category": 2,
+   "predicted_answer": "8 August 2023",
+   "is_correct": false,
+   "tokens_used": 1468,
+   "latency_ms": 2068.667400000095
+  },
+  {
+   "question_id": "conv-41-qa-056",
+   "category": 2,
+   "predicted_answer": "7 April, 2023",
+   "is_correct": false,
+   "tokens_used": 1508,
+   "latency_ms": 2109.4166999998833
+  },
+  {
+   "question_id": "conv-41-qa-057",
+   "category": 1,
+   "predicted_answer": "Domestic abuse, veterans and their families, education, and infrastructure.",
+   "is_correct": false,
+   "tokens_used": 1694,
+   "latency_ms": 2520.708300000024
+  },
+  {
+   "question_id": "conv-41-qa-058",
+   "category": 2,
+   "predicted_answer": "Two weeks before 11 August, 2023",
+   "is_correct": true,
+   "tokens_used": 1385,
+   "latency_ms": 2297.8274000001875
+  },
+  {
+   "question_id": "conv-41-qa-059",
+   "category": 2,
+   "predicted_answer": "11 June 2023",
+   "is_correct": false,
+   "tokens_used": 1517,
+   "latency_ms": 2205.404999999928
+  },
+  {
+   "question_id": "conv-41-qa-060",
+   "category": 1,
+   "predicted_answer": "Shadow and Coco",
+   "is_correct": true,
+   "tokens_used": 1352,
+   "latency_ms": 1872.7360000000317
+  },
+  {
+   "question_id": "conv-41-qa-061",
+   "category": 2,
+   "predicted_answer": "12 August 2023",
+   "is_correct": false,
+   "tokens_used": 1381,
+   "latency_ms": 2129.703500000005
+  },
+  {
+   "question_id": "conv-41-qa-062",
+   "category": 1,
+   "predicted_answer": "1",
+   "is_correct": false,
+   "tokens_used": 3113,
+   "latency_ms": 4116.917300000068
+  },
+  {
+   "question_id": "conv-41-qa-063",
+   "category": 2,
+   "predicted_answer": "0 weeks",
+   "is_correct": false,
+   "tokens_used": 3140,
+   "latency_ms": 4330.492500000219
+  },
+  {
+   "question_id": "conv-41-qa-064",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1398,
+   "latency_ms": 2077.003900000136
+  },
+  {
+   "question_id": "conv-41-qa-065",
+   "category": 4,
+   "predicted_answer": "John's main focus in local politics is improving education and infrastructure in the community.",
+   "is_correct": true,
+   "tokens_used": 1434,
+   "latency_ms": 2411.8584000000283
+  },
+  {
+   "question_id": "conv-41-qa-066",
+   "category": 4,
+   "predicted_answer": "Growing up, John saw how lack of education and crumbling infrastructure affected his neighborhood.",
+   "is_correct": true,
+   "tokens_used": 1460,
+   "latency_ms": 2321.6655000001083
+  },
+  {
+   "question_id": "conv-41-qa-067",
+   "category": 4,
+   "predicted_answer": "It enabled needed repairs and renovations, making the learning environment safer and more modern for students.",
+   "is_correct": true,
+   "tokens_used": 1493,
+   "latency_ms": 2358.382299999903
+  },
+  {
+   "question_id": "conv-41-qa-068",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1315,
+   "latency_ms": 1949.3234999999913
+  },
+  {
+   "question_id": "conv-41-qa-069",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1365,
+   "latency_ms": 1933.3480000000236
+  },
+  {
+   "question_id": "conv-41-qa-070",
+   "category": 4,
+   "predicted_answer": "Pizza",
+   "is_correct": true,
+   "tokens_used": 1547,
+   "latency_ms": 1965.8100000001468
+  },
+  {
+   "question_id": "conv-41-qa-071",
+   "category": 4,
+   "predicted_answer": "A service-focused online group",
+   "is_correct": true,
+   "tokens_used": 1527,
+   "latency_ms": 2110.451100000091
+  },
+  {
+   "question_id": "conv-41-qa-072",
+   "category": 4,
+   "predicted_answer": "John and his mates from the online group participated in various service activities, including joining a virtual support group for military members, organizing a charity event, and volunteering at a homeless shelter.",
+   "is_correct": true,
+   "tokens_used": 1497,
+   "latency_ms": 2877.805999999964
+  },
+  {
+   "question_id": "conv-41-qa-073",
+   "category": 4,
+   "predicted_answer": "Maria's aunt inspired her to start volunteering.",
+   "is_correct": true,
+   "tokens_used": 1450,
+   "latency_ms": 2161.288400000103
+  },
+  {
+   "question_id": "conv-41-qa-074",
+   "category": 4,
+   "predicted_answer": "Maria sat with the little girl because she seemed sad and alone, and Maria wanted to give her some comfort and a listening ear.",
+   "is_correct": true,
+   "tokens_used": 1508,
+   "latency_ms": 2715.0653999999577
+  },
+  {
+   "question_id": "conv-41-qa-075",
+   "category": 4,
+   "predicted_answer": "Jean had been through a lot before meeting Maria.",
+   "is_correct": false,
+   "tokens_used": 1375,
+   "latency_ms": 2079.1638000000603
+  },
+  {
+   "question_id": "conv-41-qa-076",
+   "category": 4,
+   "predicted_answer": "John decided to run for office again because he saw the impact he could make in the community through politics and wanted to work towards positive changes and a better future.",
+   "is_correct": true,
+   "tokens_used": 1526,
+   "latency_ms": 12692.576199999849
+  },
+  {
+   "question_id": "conv-41-qa-077",
+   "category": 4,
+   "predicted_answer": "Rob invited John to a beginner's yoga class.",
+   "is_correct": true,
+   "tokens_used": 1412,
+   "latency_ms": 2210.7948000000306
+  },
+  {
+   "question_id": "conv-41-qa-078",
+   "category": 4,
+   "predicted_answer": "Kyle",
+   "is_correct": true,
+   "tokens_used": 1478,
+   "latency_ms": 1950.1531999999315
+  },
+  {
+   "question_id": "conv-41-qa-079",
+   "category": 4,
+   "predicted_answer": "John takes his kids to the park a few times a week.",
+   "is_correct": true,
+   "tokens_used": 1625,
+   "latency_ms": 2463.7809999999263
+  },
+  {
+   "question_id": "conv-41-qa-080",
+   "category": 4,
+   "predicted_answer": "A painting",
+   "is_correct": true,
+   "tokens_used": 1479,
+   "latency_ms": 9392.73749999984
+  },
+  {
+   "question_id": "conv-41-qa-081",
+   "category": 4,
+   "predicted_answer": "Maria got the idea for the castle shadow box from a trip to England a few years ago, where she was mesmerized by the castles.",
+   "is_correct": true,
+   "tokens_used": 1446,
+   "latency_ms": 2637.8606000000673
+  },
+  {
+   "question_id": "conv-41-qa-082",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1410,
+   "latency_ms": 2006.1916999998175
+  },
+  {
+   "question_id": "conv-41-qa-083",
+   "category": 4,
+   "predicted_answer": "Education and infrastructure",
+   "is_correct": true,
+   "tokens_used": 1366,
+   "latency_ms": 1898.8056999999117
+  },
+  {
+   "question_id": "conv-41-qa-084",
+   "category": 4,
+   "predicted_answer": "Maria participated in a 5K charity run for a homeless shelter.",
+   "is_correct": true,
+   "tokens_used": 1562,
+   "latency_ms": 2443.9729999999145
+  },
+  {
+   "question_id": "conv-41-qa-085",
+   "category": 4,
+   "predicted_answer": "A career fair at a local school.",
+   "is_correct": true,
+   "tokens_used": 1647,
+   "latency_ms": 11827.751400000125
+  },
+  {
+   "question_id": "conv-41-qa-086",
+   "category": 4,
+   "predicted_answer": "John's car broke down, which put a strain on his wallet.",
+   "is_correct": true,
+   "tokens_used": 1416,
+   "latency_ms": 2268.094499999961
+  },
+  {
+   "question_id": "conv-41-qa-087",
+   "category": 4,
+   "predicted_answer": "John explored the coast up in the Pacific Northwest and hit some cool national parks on a road trip last year.",
+   "is_correct": true,
+   "tokens_used": 1574,
+   "latency_ms": 2733.906199999865
+  },
+  {
+   "question_id": "conv-41-qa-088",
+   "category": 4,
+   "predicted_answer": "John has been blogging about politics and the government recently.",
+   "is_correct": true,
+   "tokens_used": 1739,
+   "latency_ms": 2563.5662999998203
+  },
+  {
+   "question_id": "conv-41-qa-089",
+   "category": 4,
+   "predicted_answer": "John started blogging about politics and policies to raise awareness and start conversations to create positive change.",
+   "is_correct": true,
+   "tokens_used": 1452,
+   "latency_ms": 2484.093600000051
+  },
+  {
+   "question_id": "conv-41-qa-090",
+   "category": 4,
+   "predicted_answer": "John's recent research and writing on his blog focused on education reform and infrastructure development.",
+   "is_correct": true,
+   "tokens_used": 1680,
+   "latency_ms": 3809.067299999924
+  },
+  {
+   "question_id": "conv-41-qa-091",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1347,
+   "latency_ms": 2042.6072000000204
+  },
+  {
+   "question_id": "conv-41-qa-092",
+   "category": 4,
+   "predicted_answer": "John works out with his family a few times a week.",
+   "is_correct": true,
+   "tokens_used": 1455,
+   "latency_ms": 2275.2610000000004
+  },
+  {
+   "question_id": "conv-41-qa-093",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1451,
+   "latency_ms": 1993.419700000004
+  },
+  {
+   "question_id": "conv-41-qa-094",
+   "category": 4,
+   "predicted_answer": "Salads, sandwiches, and homemade desserts.",
+   "is_correct": true,
+   "tokens_used": 1379,
+   "latency_ms": 11432.364199999938
+  },
+  {
+   "question_id": "conv-41-qa-095",
+   "category": 4,
+   "predicted_answer": "They made dinner together.",
+   "is_correct": true,
+   "tokens_used": 1420,
+   "latency_ms": 2085.0061999999525
+  },
+  {
+   "question_id": "conv-41-qa-096",
+   "category": 4,
+   "predicted_answer": "Maria joined a nearby church and bought a cross necklace to feel closer to her faith.",
+   "is_correct": true,
+   "tokens_used": 1474,
+   "latency_ms": 2404.4278999999733
+  },
+  {
+   "question_id": "conv-41-qa-097",
+   "category": 4,
+   "predicted_answer": "To feel closer to a community and her faith.",
+   "is_correct": true,
+   "tokens_used": 1464,
+   "latency_ms": 2168.444099999988
+  },
+  {
+   "question_id": "conv-41-qa-098",
+   "category": 4,
+   "predicted_answer": "John hosted a small party for veterans to share their stories in May 2023 as part of the project.",
+   "is_correct": true,
+   "tokens_used": 1339,
+   "latency_ms": 2505.7392000001073
+  },
+  {
+   "question_id": "conv-41-qa-099",
+   "category": 4,
+   "predicted_answer": "John and the veterans shared stories and made connections during the small party.",
+   "is_correct": true,
+   "tokens_used": 1388,
+   "latency_ms": 2175.341899999921
+  },
+  {
+   "question_id": "conv-41-qa-100",
+   "category": 4,
+   "predicted_answer": "John felt heartwarming and appreciative during the small party with the veterans.",
+   "is_correct": true,
+   "tokens_used": 1515,
+   "latency_ms": 2321.9966999999997
+  },
+  {
+   "question_id": "conv-41-qa-101",
+   "category": 4,
+   "predicted_answer": "Maria is getting ready for a fundraiser at the shelter on May 25, 2023.",
+   "is_correct": true,
+   "tokens_used": 1496,
+   "latency_ms": 2557.947000000013
+  },
+  {
+   "question_id": "conv-41-qa-102",
+   "category": 4,
+   "predicted_answer": "Maria needs to spread the word about the chili cook-off at the fundraiser.",
+   "is_correct": true,
+   "tokens_used": 1516,
+   "latency_ms": 2338.8856999999916
+  },
+  {
+   "question_id": "conv-41-qa-103",
+   "category": 4,
+   "predicted_answer": "Max",
+   "is_correct": true,
+   "tokens_used": 1615,
+   "latency_ms": 2068.45229999999
+  },
+  {
+   "question_id": "conv-41-qa-104",
+   "category": 4,
+   "predicted_answer": "10 years",
+   "is_correct": true,
+   "tokens_used": 3198,
+   "latency_ms": 3928.2762999998795
+  },
+  {
+   "question_id": "conv-41-qa-105",
+   "category": 4,
+   "predicted_answer": "John plans to honor the memories of his beloved pet Max by sharing pictures of him and finding comfort in the good times they had together.",
+   "is_correct": false,
+   "tokens_used": 1587,
+   "latency_ms": 2766.3195000000087
+  },
+  {
+   "question_id": "conv-41-qa-106",
+   "category": 4,
+   "predicted_answer": "John wants to teach his kids responsibility and compassion through adopting a rescue dog.",
+   "is_correct": true,
+   "tokens_used": 1496,
+   "latency_ms": 2299.3275000001177
+  },
+  {
+   "question_id": "conv-41-qa-107",
+   "category": 4,
+   "predicted_answer": "Maria started volunteering at a local dog shelter once a month.",
+   "is_correct": true,
+   "tokens_used": 1506,
+   "latency_ms": 2272.448700000041
+  },
+  {
+   "question_id": "conv-41-qa-108",
+   "category": 4,
+   "predicted_answer": "Maria said it felt like she was in a fairy tale, with the water sounding calming and the surroundings being beautiful.",
+   "is_correct": true,
+   "tokens_used": 1522,
+   "latency_ms": 2541.8048999999883
+  },
+  {
+   "question_id": "conv-41-qa-109",
+   "category": 4,
+   "predicted_answer": "Maria feels free and light when doing upside-down yoga poses.",
+   "is_correct": true,
+   "tokens_used": 1458,
+   "latency_ms": 2148.3539000000746
+  },
+  {
+   "question_id": "conv-41-qa-110",
+   "category": 4,
+   "predicted_answer": "Maria joined a gym.",
+   "is_correct": true,
+   "tokens_used": 1453,
+   "latency_ms": 2030.9248000000935
+  },
+  {
+   "question_id": "conv-41-qa-111",
+   "category": 4,
+   "predicted_answer": "Kundalini yoga",
+   "is_correct": true,
+   "tokens_used": 1450,
+   "latency_ms": 1954.045099999803
+  },
+  {
+   "question_id": "conv-41-qa-112",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1500,
+   "latency_ms": 1982.4358999999276
+  },
+  {
+   "question_id": "conv-41-qa-113",
+   "category": 4,
+   "predicted_answer": "Self-doubt",
+   "is_correct": true,
+   "tokens_used": 1627,
+   "latency_ms": 2137.538799999902
+  },
+  {
+   "question_id": "conv-41-qa-114",
+   "category": 4,
+   "predicted_answer": "John describes the support he received during his journey to becoming assistant manager as vital, coming from loved ones who trust him and provide emotional and practical support.",
+   "is_correct": true,
+   "tokens_used": 1432,
+   "latency_ms": 2666.691700000001
+  },
+  {
+   "question_id": "conv-41-qa-115",
+   "category": 4,
+   "predicted_answer": "John and his family attended a live music event in June 2023.",
+   "is_correct": true,
+   "tokens_used": 1623,
+   "latency_ms": 2524.1439999999784
+  },
+  {
+   "question_id": "conv-41-qa-116",
+   "category": 4,
+   "predicted_answer": "Maria's cousin had a tough time recently, so Maria is lending a hand in helping her find a new place.",
+   "is_correct": true,
+   "tokens_used": 1444,
+   "latency_ms": 2509.553500000038
+  },
+  {
+   "question_id": "conv-41-qa-117",
+   "category": 4,
+   "predicted_answer": "John participated in a marching event for veterans' rights to show support for veterans.",
+   "is_correct": true,
+   "tokens_used": 1571,
+   "latency_ms": 2547.672700000021
+  },
+  {
+   "question_id": "conv-41-qa-118",
+   "category": 4,
+   "predicted_answer": "John was inspired to join the marching event for veterans' rights because he wanted to show his support for the military and appreciate the sacrifices they make for us.",
+   "is_correct": true,
+   "tokens_used": 1477,
+   "latency_ms": 2775.5986999998186
+  },
+  {
+   "question_id": "conv-41-qa-119",
+   "category": 4,
+   "predicted_answer": "John sees sunsets at least once a week.",
+   "is_correct": true,
+   "tokens_used": 1665,
+   "latency_ms": 2365.9626000001026
+  },
+  {
+   "question_id": "conv-41-qa-120",
+   "category": 4,
+   "predicted_answer": "A flood",
+   "is_correct": true,
+   "tokens_used": 1410,
+   "latency_ms": 1959.0307999999368
+  },
+  {
+   "question_id": "conv-41-qa-121",
+   "category": 4,
+   "predicted_answer": "Lots of homes were ruined.",
+   "is_correct": true,
+   "tokens_used": 1458,
+   "latency_ms": 2004.1532000000188
+  },
+  {
+   "question_id": "conv-41-qa-122",
+   "category": 4,
+   "predicted_answer": "They were motivated by the recent flood in John's old area, which reminded them of the need to fix things up in their community.",
+   "is_correct": true,
+   "tokens_used": 1447,
+   "latency_ms": 2573.6148000000867
+  },
+  {
+   "question_id": "conv-41-qa-123",
+   "category": 4,
+   "predicted_answer": "Maria planned to have dinner with some friends from the gym.",
+   "is_correct": true,
+   "tokens_used": 1302,
+   "latency_ms": 2036.5211999999246
+  },
+  {
+   "question_id": "conv-41-qa-124",
+   "category": 4,
+   "predicted_answer": "Maria and her church friends chilled under the trees, played games, and ate yummy food at the picnic.",
+   "is_correct": true,
+   "tokens_used": 1445,
+   "latency_ms": 2424.4522999999845
+  },
+  {
+   "question_id": "conv-41-qa-125",
+   "category": 4,
+   "predicted_answer": "John appreciates the stories from an elderly veteran named Samuel, which inspired him and reminded him of why he wanted to join the military.",
+   "is_correct": true,
+   "tokens_used": 1461,
+   "latency_ms": 2619.0908000000945
+  },
+  {
+   "question_id": "conv-41-qa-126",
+   "category": 4,
+   "predicted_answer": "John was inspired by the stories and resilience of the veterans he met at the hospital, which reinforced his desire to support them.",
+   "is_correct": false,
+   "tokens_used": 1436,
+   "latency_ms": 2499.310800000103
+  },
+  {
+   "question_id": "conv-41-qa-127",
+   "category": 4,
+   "predicted_answer": "John felt inspired to join the military after the visit to the hospital because he met some amazing people and was reminded of the need to give back to the community.",
+   "is_correct": false,
+   "tokens_used": 1514,
+   "latency_ms": 2749.4692000000214
+  },
+  {
+   "question_id": "conv-41-qa-128",
+   "category": 4,
+   "predicted_answer": "Maria and her church friends participated in a hiking trip in July 2023.",
+   "is_correct": true,
+   "tokens_used": 1361,
+   "latency_ms": 2264.334299999973
+  },
+  {
+   "question_id": "conv-41-qa-129",
+   "category": 4,
+   "predicted_answer": "John thinks trying new classes at the yoga studio is a great way to push himself and mix things up.",
+   "is_correct": true,
+   "tokens_used": 1450,
+   "latency_ms": 2437.3758000001544
+  },
+  {
+   "question_id": "conv-41-qa-130",
+   "category": 4,
+   "predicted_answer": "John has done aerial yoga and networking with people to get their input.",
+   "is_correct": false,
+   "tokens_used": 1452,
+   "latency_ms": 2301.4665999999124
+  },
+  {
+   "question_id": "conv-41-qa-131",
+   "category": 4,
+   "predicted_answer": "Maria mentioned that she dropped off baked goods at a homeless shelter on 31 July, 2023.",
+   "is_correct": true,
+   "tokens_used": 1453,
+   "latency_ms": 2597.0259000000624
+  },
+  {
+   "question_id": "conv-41-qa-132",
+   "category": 4,
+   "predicted_answer": "Maria started volunteering at the homeless shelter after witnessing a family struggling on the streets and reaching out to the shelter to ask if they needed any volunteers.",
+   "is_correct": true,
+   "tokens_used": 1534,
+   "latency_ms": 2856.6866000001028
+  },
+  {
+   "question_id": "conv-41-qa-133",
+   "category": 4,
+   "predicted_answer": "John went to the park with his family that week.",
+   "is_correct": false,
+   "tokens_used": 1462,
+   "latency_ms": 2315.317900000082
+  },
+  {
+   "question_id": "conv-41-qa-134",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1631,
+   "latency_ms": 2166.8975000000046
+  },
+  {
+   "question_id": "conv-41-qa-135",
+   "category": 4,
+   "predicted_answer": "Maria thinks it's important for younger generations to visit military memorials because it helps them remember and appreciate those who served.",
+   "is_correct": true,
+   "tokens_used": 1472,
+   "latency_ms": 2590.0036000000455
+  },
+  {
+   "question_id": "conv-41-qa-136",
+   "category": 4,
+   "predicted_answer": "John believes it's important to teach kids about veterans and what they did for the country.",
+   "is_correct": true,
+   "tokens_used": 1457,
+   "latency_ms": 2379.4600000001083
+  },
+  {
+   "question_id": "conv-41-qa-137",
+   "category": 4,
+   "predicted_answer": "John lost his job at the mechanical engineering company.",
+   "is_correct": true,
+   "tokens_used": 1315,
+   "latency_ms": 2033.714300000156
+  },
+  {
+   "question_id": "conv-41-qa-138",
+   "category": 4,
+   "predicted_answer": "Maria took up community work with her friends from church in August 2023.",
+   "is_correct": true,
+   "tokens_used": 1418,
+   "latency_ms": 2317.135300000018
+  },
+  {
+   "question_id": "conv-41-qa-139",
+   "category": 4,
+   "predicted_answer": "John helped renovate a rundown community center back home last year.",
+   "is_correct": true,
+   "tokens_used": 1537,
+   "latency_ms": 2319.6201000000656
+  },
+  {
+   "question_id": "conv-41-qa-140",
+   "category": 4,
+   "predicted_answer": "Veterans and their families",
+   "is_correct": true,
+   "tokens_used": 1552,
+   "latency_ms": 2049.840599999925
+  },
+  {
+   "question_id": "conv-41-qa-141",
+   "category": 4,
+   "predicted_answer": "A local organization that helps victims of domestic abuse.",
+   "is_correct": true,
+   "tokens_used": 1549,
+   "latency_ms": 2233.2830999998805
+  },
+  {
+   "question_id": "conv-41-qa-142",
+   "category": 4,
+   "predicted_answer": "Maria received a medal from the homeless shelter in August 2023.",
+   "is_correct": true,
+   "tokens_used": 1616,
+   "latency_ms": 2472.559799999999
+  },
+  {
+   "question_id": "conv-41-qa-143",
+   "category": 4,
+   "predicted_answer": "Coco",
+   "is_correct": true,
+   "tokens_used": 1450,
+   "latency_ms": 1993.2960000001003
+  },
+  {
+   "question_id": "conv-41-qa-144",
+   "category": 4,
+   "predicted_answer": "Camping, hiking, and swimming.",
+   "is_correct": true,
+   "tokens_used": 1491,
+   "latency_ms": 2185.7285000000957
+  },
+  {
+   "question_id": "conv-41-qa-145",
+   "category": 4,
+   "predicted_answer": "John describes the camping trip with Max as a blast, where they hiked, swam, and made great memories. It was a peaceful and awesome experience.",
+   "is_correct": true,
+   "tokens_used": 1531,
+   "latency_ms": 2698.0356000001393
+  },
+  {
+   "question_id": "conv-41-qa-146",
+   "category": 4,
+   "predicted_answer": "John feels stuck and questioning his decisions and goals because he doesn't feel like he's making much of an impact and is unsure how to focus his passion and enthusiasm effectively.",
+   "is_correct": true,
+   "tokens_used": 1509,
+   "latency_ms": 2879.743800000142
+  },
+  {
+   "question_id": "conv-41-qa-147",
+   "category": 4,
+   "predicted_answer": "Shadow",
+   "is_correct": true,
+   "tokens_used": 1404,
+   "latency_ms": 1793.84210000012
+  },
+  {
+   "question_id": "conv-41-qa-148",
+   "category": 4,
+   "predicted_answer": "Maria's new puppy, Coco, is adjusting well to its new home. She brings a lot of joy and is loved by Maria.",
+   "is_correct": false,
+   "tokens_used": 1310,
+   "latency_ms": 2425.024500000063
+  },
+  {
+   "question_id": "conv-41-qa-149",
+   "category": 4,
+   "predicted_answer": "John is volunteering as a mentor for a local school in August 2023.",
+   "is_correct": true,
+   "tokens_used": 1393,
+   "latency_ms": 2332.7666000000136
+  },
+  {
+   "question_id": "conv-41-qa-150",
+   "category": 4,
+   "predicted_answer": "John's family enjoys going for hikes, hanging out at the park, having picnics, playing board games, and having movie nights at home.",
+   "is_correct": true,
+   "tokens_used": 1402,
+   "latency_ms": 2640.280500000017
+  },
+  {
+   "question_id": "conv-41-qa-151",
+   "category": 4,
+   "predicted_answer": "A brand new fire truck.",
+   "is_correct": true,
+   "tokens_used": 1476,
+   "latency_ms": 2117.1876999999313
+  },
+  {
+   "question_id": "conv-42-qa-000",
+   "category": 3,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1322,
+   "latency_ms": 1825.5437999998776
+  },
+  {
+   "question_id": "conv-42-qa-001",
+   "category": 1,
+   "predicted_answer": "Joanna and Nate both enjoy writing, reading, watching movies, and exploring nature.",
+   "is_correct": true,
+   "tokens_used": 1307,
+   "latency_ms": 2251.015900000084
+  },
+  {
+   "question_id": "conv-42-qa-002",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1297,
+   "latency_ms": 1865.5158000001393
+  },
+  {
+   "question_id": "conv-42-qa-003",
+   "category": 2,
+   "predicted_answer": "The week before 21 January 2022.",
+   "is_correct": false,
+   "tokens_used": 1357,
+   "latency_ms": 2099.2601000000377
+  },
+  {
+   "question_id": "conv-42-qa-004",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1397,
+   "latency_ms": 1984.7502999998596
+  },
+  {
+   "question_id": "conv-42-qa-005",
+   "category": 1,
+   "predicted_answer": "Writing, reading, watching movies, and exploring nature.",
+   "is_correct": false,
+   "tokens_used": 1203,
+   "latency_ms": 1953.1537999998818
+  },
+  {
+   "question_id": "conv-42-qa-006",
+   "category": 2,
+   "predicted_answer": "3 years",
+   "is_correct": true,
+   "tokens_used": 2831,
+   "latency_ms": 3662.755500000003
+  },
+  {
+   "question_id": "conv-42-qa-007",
+   "category": 2,
+   "predicted_answer": "Friday, January 20, 2022",
+   "is_correct": false,
+   "tokens_used": 1322,
+   "latency_ms": 2151.302400000077
+  },
+  {
+   "question_id": "conv-42-qa-008",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1367,
+   "latency_ms": 1926.58009999991
+  },
+  {
+   "question_id": "conv-42-qa-009",
+   "category": 2,
+   "predicted_answer": "Joanna finished her first full screenplay and printed it.",
+   "is_correct": true,
+   "tokens_used": 1146,
+   "latency_ms": 1920.5968000001121
+  },
+  {
+   "question_id": "conv-42-qa-010",
+   "category": 1,
+   "predicted_answer": "Relief, excitement, worry",
+   "is_correct": true,
+   "tokens_used": 1437,
+   "latency_ms": 2025.3539999998793
+  },
+  {
+   "question_id": "conv-42-qa-011",
+   "category": 1,
+   "predicted_answer": "Joanna is allergic to most reptiles and animals with fur.",
+   "is_correct": true,
+   "tokens_used": 1257,
+   "latency_ms": 2003.951200000074
+  },
+  {
+   "question_id": "conv-42-qa-012",
+   "category": 3,
+   "predicted_answer": "Allergies",
+   "is_correct": false,
+   "tokens_used": 1395,
+   "latency_ms": 1915.462300000172
+  },
+  {
+   "question_id": "conv-42-qa-013",
+   "category": 2,
+   "predicted_answer": "23 March 2022",
+   "is_correct": true,
+   "tokens_used": 1397,
+   "latency_ms": 2038.3672000000388
+  },
+  {
+   "question_id": "conv-42-qa-014",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1306,
+   "latency_ms": 1866.4876000000277
+  },
+  {
+   "question_id": "conv-42-qa-015",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1377,
+   "latency_ms": 1969.644799999969
+  },
+  {
+   "question_id": "conv-42-qa-016",
+   "category": 2,
+   "predicted_answer": "Nate dyed his hair in April 2022.",
+   "is_correct": false,
+   "tokens_used": 1238,
+   "latency_ms": 2158.828000000085
+  },
+  {
+   "question_id": "conv-42-qa-017",
+   "category": 2,
+   "predicted_answer": "\"The Lord of the Rings\" Trilogy",
+   "is_correct": true,
+   "tokens_used": 1240,
+   "latency_ms": 1955.235700000003
+  },
+  {
+   "question_id": "conv-42-qa-018",
+   "category": 2,
+   "predicted_answer": "Whispering Falls",
+   "is_correct": false,
+   "tokens_used": 1279,
+   "latency_ms": 1828.9027000000715
+  },
+  {
+   "question_id": "conv-42-qa-019",
+   "category": 1,
+   "predicted_answer": "Joanna has found new hiking trails at least twice.",
+   "is_correct": true,
+   "tokens_used": 2789,
+   "latency_ms": 3984.4273000001067
+  },
+  {
+   "question_id": "conv-42-qa-020",
+   "category": 2,
+   "predicted_answer": "20 May, 2022",
+   "is_correct": true,
+   "tokens_used": 1207,
+   "latency_ms": 1956.7755000000489
+  },
+  {
+   "question_id": "conv-42-qa-021",
+   "category": 2,
+   "predicted_answer": "Max",
+   "is_correct": true,
+   "tokens_used": 1260,
+   "latency_ms": 1648.6838000000716
+  },
+  {
+   "question_id": "conv-42-qa-022",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1329,
+   "latency_ms": 1826.443700000027
+  },
+  {
+   "question_id": "conv-42-qa-023",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1223,
+   "latency_ms": 1850.1567000000705
+  },
+  {
+   "question_id": "conv-42-qa-024",
+   "category": 2,
+   "predicted_answer": "The gaming party is being hosted two weekends after the date of the last message in the conversation, which is 9 November 2022. Therefore, the gaming party is scheduled for 18 November 2022.",
+   "is_correct": false,
+   "tokens_used": 1289,
+   "latency_ms": 3080.240999999887
+  },
+  {
+   "question_id": "conv-42-qa-025",
+   "category": 2,
+   "predicted_answer": "The hike with buddies is mentioned as happening this weekend.",
+   "is_correct": false,
+   "tokens_used": 1378,
+   "latency_ms": 2053.271300000006
+  },
+  {
+   "question_id": "conv-42-qa-026",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1303,
+   "latency_ms": 1815.0613000000249
+  },
+  {
+   "question_id": "conv-42-qa-027",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1561,
+   "latency_ms": 2089.7257999999965
+  },
+  {
+   "question_id": "conv-42-qa-028",
+   "category": 2,
+   "predicted_answer": "Friday, 17 June 2022",
+   "is_correct": false,
+   "tokens_used": 1313,
+   "latency_ms": 2074.0211999998337
+  },
+  {
+   "question_id": "conv-42-qa-029",
+   "category": 2,
+   "predicted_answer": "24 June 2022",
+   "is_correct": false,
+   "tokens_used": 1330,
+   "latency_ms": 1926.9894999999906
+  },
+  {
+   "question_id": "conv-42-qa-030",
+   "category": 1,
+   "predicted_answer": "Joanna writes screenplays and movie scripts.",
+   "is_correct": false,
+   "tokens_used": 1335,
+   "latency_ms": 2047.2270999998727
+  },
+  {
+   "question_id": "conv-42-qa-031",
+   "category": 2,
+   "predicted_answer": "10 July, 2022",
+   "is_correct": false,
+   "tokens_used": 1398,
+   "latency_ms": 2162.5856000000567
+  },
+  {
+   "question_id": "conv-42-qa-032",
+   "category": 2,
+   "predicted_answer": "Woodhaven, a small town in the Midwest.",
+   "is_correct": true,
+   "tokens_used": 1271,
+   "latency_ms": 2047.8077000000212
+  },
+  {
+   "question_id": "conv-42-qa-033",
+   "category": 2,
+   "predicted_answer": "The letter was written last week, which was the week before 14 August 2022.",
+   "is_correct": true,
+   "tokens_used": 1343,
+   "latency_ms": 2414.6709999999985
+  },
+  {
+   "question_id": "conv-42-qa-034",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1377,
+   "latency_ms": 1987.6667999999427
+  },
+  {
+   "question_id": "conv-42-qa-035",
+   "category": 2,
+   "predicted_answer": "22 August, 2022",
+   "is_correct": false,
+   "tokens_used": 1408,
+   "latency_ms": 2091.5208000001257
+  },
+  {
+   "question_id": "conv-42-qa-036",
+   "category": 2,
+   "predicted_answer": "The week before 22 August 2022.",
+   "is_correct": true,
+   "tokens_used": 1439,
+   "latency_ms": 2236.96259999997
+  },
+  {
+   "question_id": "conv-42-qa-037",
+   "category": 2,
+   "predicted_answer": "21 August 2022",
+   "is_correct": true,
+   "tokens_used": 1358,
+   "latency_ms": 1987.948299999971
+  },
+  {
+   "question_id": "conv-42-qa-038",
+   "category": 2,
+   "predicted_answer": "Last Friday, 9 September 2022.",
+   "is_correct": false,
+   "tokens_used": 1441,
+   "latency_ms": 2196.2413000001106
+  },
+  {
+   "question_id": "conv-42-qa-039",
+   "category": 2,
+   "predicted_answer": "14 September, 2022",
+   "is_correct": false,
+   "tokens_used": 1221,
+   "latency_ms": 1876.870899999858
+  },
+  {
+   "question_id": "conv-42-qa-040",
+   "category": 2,
+   "predicted_answer": "The week before 14 September 2022.",
+   "is_correct": true,
+   "tokens_used": 1240,
+   "latency_ms": 2031.8634000000202
+  },
+  {
+   "question_id": "conv-42-qa-041",
+   "category": 2,
+   "predicted_answer": "14 September, 2022",
+   "is_correct": false,
+   "tokens_used": 1453,
+   "latency_ms": 2091.195000000198
+  },
+  {
+   "question_id": "conv-42-qa-042",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1189,
+   "latency_ms": 1791.7838999999276
+  },
+  {
+   "question_id": "conv-42-qa-043",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 3034,
+   "latency_ms": 3983.3741999998438
+  },
+  {
+   "question_id": "conv-42-qa-044",
+   "category": 2,
+   "predicted_answer": "10 July 2022",
+   "is_correct": false,
+   "tokens_used": 1408,
+   "latency_ms": 2046.9470000000456
+  },
+  {
+   "question_id": "conv-42-qa-045",
+   "category": 2,
+   "predicted_answer": "The week before 6 October, 2022.",
+   "is_correct": true,
+   "tokens_used": 1528,
+   "latency_ms": 2266.597900000079
+  },
+  {
+   "question_id": "conv-42-qa-046",
+   "category": 1,
+   "predicted_answer": "Catan",
+   "is_correct": true,
+   "tokens_used": 1228,
+   "latency_ms": 1743.3470000000852
+  },
+  {
+   "question_id": "conv-42-qa-047",
+   "category": 1,
+   "predicted_answer": "Nate has met new people at a game convention and while watching pets play with one another.",
+   "is_correct": true,
+   "tokens_used": 1408,
+   "latency_ms": 2440.7339000001684
+  },
+  {
+   "question_id": "conv-42-qa-048",
+   "category": 2,
+   "predicted_answer": "Friday, 6 October 2022",
+   "is_correct": false,
+   "tokens_used": 1356,
+   "latency_ms": 2136.616799999956
+  },
+  {
+   "question_id": "conv-42-qa-049",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 2886,
+   "latency_ms": 3880.3281999998944
+  },
+  {
+   "question_id": "conv-42-qa-050",
+   "category": 1,
+   "predicted_answer": "A stuffed animal dog named Tilly.",
+   "is_correct": true,
+   "tokens_used": 1256,
+   "latency_ms": 2015.8301999999821
+  },
+  {
+   "question_id": "conv-42-qa-051",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1396,
+   "latency_ms": 2021.7207000000599
+  },
+  {
+   "question_id": "conv-42-qa-052",
+   "category": 1,
+   "predicted_answer": "3",
+   "is_correct": false,
+   "tokens_used": 3099,
+   "latency_ms": 3995.837199999869
+  },
+  {
+   "question_id": "conv-42-qa-053",
+   "category": 1,
+   "predicted_answer": "Nate has taken his turtles on a walk at least three times.",
+   "is_correct": false,
+   "tokens_used": 2837,
+   "latency_ms": 4067.5156999998308
+  },
+  {
+   "question_id": "conv-42-qa-054",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1414,
+   "latency_ms": 2073.131599999897
+  },
+  {
+   "question_id": "conv-42-qa-055",
+   "category": 1,
+   "predicted_answer": "Personal experiences, her journey of self-discovery, nature, and her passion for writing.",
+   "is_correct": true,
+   "tokens_used": 1265,
+   "latency_ms": 2259.860500000059
+  },
+  {
+   "question_id": "conv-42-qa-056",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1273,
+   "latency_ms": 1828.5185999998248
+  },
+  {
+   "question_id": "conv-42-qa-057",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1381,
+   "latency_ms": 2046.7086999999538
+  },
+  {
+   "question_id": "conv-42-qa-058",
+   "category": 1,
+   "predicted_answer": "Nate has recommended having pets, specifically turtles, to Joanna.",
+   "is_correct": false,
+   "tokens_used": 1254,
+   "latency_ms": 2109.451300000046
+  },
+  {
+   "question_id": "conv-42-qa-059",
+   "category": 1,
+   "predicted_answer": "Joanna writes down some of her favorite memories.",
+   "is_correct": false,
+   "tokens_used": 1379,
+   "latency_ms": 2041.0764999999174
+  },
+  {
+   "question_id": "conv-42-qa-060",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1222,
+   "latency_ms": 1769.526199999973
+  },
+  {
+   "question_id": "conv-42-qa-061",
+   "category": 1,
+   "predicted_answer": "Nate uses a computer to play games.",
+   "is_correct": false,
+   "tokens_used": 1258,
+   "latency_ms": 1904.8069999998916
+  },
+  {
+   "question_id": "conv-42-qa-062",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 2833,
+   "latency_ms": 3747.60880000008
+  },
+  {
+   "question_id": "conv-42-qa-063",
+   "category": 1,
+   "predicted_answer": "CS:GO, Street Fighter, and Xeonoblade Chronicles",
+   "is_correct": false,
+   "tokens_used": 1345,
+   "latency_ms": 2108.3340000000135
+  },
+  {
+   "question_id": "conv-42-qa-064",
+   "category": 2,
+   "predicted_answer": "The Saturday before 7 November 2022",
+   "is_correct": true,
+   "tokens_used": 1410,
+   "latency_ms": 2211.5243000000646
+  },
+  {
+   "question_id": "conv-42-qa-065",
+   "category": 2,
+   "predicted_answer": "Nate won the Valorant tournament on the Saturday before 7 November 2022.",
+   "is_correct": true,
+   "tokens_used": 1308,
+   "latency_ms": 2308.462200000122
+  },
+  {
+   "question_id": "conv-42-qa-066",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1396,
+   "latency_ms": 1978.6497000000054
+  },
+  {
+   "question_id": "conv-42-qa-067",
+   "category": 1,
+   "predicted_answer": "Nate has three turtles.",
+   "is_correct": false,
+   "tokens_used": 1389,
+   "latency_ms": 1919.7337999999036
+  },
+  {
+   "question_id": "conv-42-qa-068",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 2922,
+   "latency_ms": 3888.4027999999944
+  },
+  {
+   "question_id": "conv-42-qa-069",
+   "category": 1,
+   "predicted_answer": "Nate has three turtles.",
+   "is_correct": true,
+   "tokens_used": 2797,
+   "latency_ms": 3816.050599999926
+  },
+  {
+   "question_id": "conv-42-qa-070",
+   "category": 1,
+   "predicted_answer": "Nate takes his turtles out for walks and enjoys watching them play.",
+   "is_correct": false,
+   "tokens_used": 1286,
+   "latency_ms": 2108.221599999979
+  },
+  {
+   "question_id": "conv-42-qa-071",
+   "category": 1,
+   "predicted_answer": "Nature",
+   "is_correct": true,
+   "tokens_used": 1476,
+   "latency_ms": 1893.595600000026
+  },
+  {
+   "question_id": "conv-42-qa-072",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1249,
+   "latency_ms": 1823.8962000000356
+  },
+  {
+   "question_id": "conv-42-qa-073",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1229,
+   "latency_ms": 1818.516499999987
+  },
+  {
+   "question_id": "conv-42-qa-074",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1215,
+   "latency_ms": 1748.882900000126
+  },
+  {
+   "question_id": "conv-42-qa-075",
+   "category": 1,
+   "predicted_answer": "Coconut milk ice cream, dairy-free chocolate mousse, and chocolate raspberry tart.",
+   "is_correct": true,
+   "tokens_used": 1269,
+   "latency_ms": 2155.782600000066
+  },
+  {
+   "question_id": "conv-42-qa-076",
+   "category": 1,
+   "predicted_answer": "Nate has shared his vegan ice-cream recipes on his own cooking show.",
+   "is_correct": true,
+   "tokens_used": 1273,
+   "latency_ms": 2144.433299999946
+  },
+  {
+   "question_id": "conv-42-qa-077",
+   "category": 2,
+   "predicted_answer": "2 May 2022",
+   "is_correct": false,
+   "tokens_used": 1390,
+   "latency_ms": 2074.6131000000787
+  },
+  {
+   "question_id": "conv-42-qa-078",
+   "category": 1,
+   "predicted_answer": "Nate has participated in at least 4 video game tournaments.",
+   "is_correct": false,
+   "tokens_used": 2759,
+   "latency_ms": 4066.9172999998864
+  },
+  {
+   "question_id": "conv-42-qa-079",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 2918,
+   "latency_ms": 3982.695299999932
+  },
+  {
+   "question_id": "conv-42-qa-080",
+   "category": 1,
+   "predicted_answer": "Nate has won 8 tournaments.",
+   "is_correct": false,
+   "tokens_used": 2797,
+   "latency_ms": 3863.6448999998265
+  },
+  {
+   "question_id": "conv-42-qa-081",
+   "category": 1,
+   "predicted_answer": "Joanna has made recipes for a coconut milk dessert, a vegan ice cream, and a dairy-free chocolate cake with berries.",
+   "is_correct": true,
+   "tokens_used": 1332,
+   "latency_ms": 2497.2356999999192
+  },
+  {
+   "question_id": "conv-42-qa-082",
+   "category": 1,
+   "predicted_answer": "Coconut milk ice cream, dairy-free chocolate mousse",
+   "is_correct": true,
+   "tokens_used": 1474,
+   "latency_ms": 2168.9111000000594
+  },
+  {
+   "question_id": "conv-42-qa-083",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1401,
+   "latency_ms": 1952.4235000001227
+  },
+  {
+   "question_id": "conv-42-qa-084",
+   "category": 3,
+   "predicted_answer": "No",
+   "is_correct": true,
+   "tokens_used": 1510,
+   "latency_ms": 2071.709399999918
+  },
+  {
+   "question_id": "conv-42-qa-085",
+   "category": 3,
+   "predicted_answer": "Writing",
+   "is_correct": false,
+   "tokens_used": 1425,
+   "latency_ms": 1816.598699999986
+  },
+  {
+   "question_id": "conv-42-qa-086",
+   "category": 2,
+   "predicted_answer": "10 November 2022",
+   "is_correct": true,
+   "tokens_used": 1408,
+   "latency_ms": 2023.8595000000714
+  },
+  {
+   "question_id": "conv-42-qa-087",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1243,
+   "latency_ms": 1127.735199999961
+  },
+  {
+   "question_id": "conv-42-qa-088",
+   "category": 4,
+   "predicted_answer": "One of Joanna's favorite movies is a classic that she watched around 3 years ago and even got a physical copy of.",
+   "is_correct": false,
+   "tokens_used": 1285,
+   "latency_ms": 2416.908700000022
+  },
+  {
+   "question_id": "conv-42-qa-089",
+   "category": 4,
+   "predicted_answer": "Bright and bold",
+   "is_correct": false,
+   "tokens_used": 1214,
+   "latency_ms": 1751.290200000085
+  },
+  {
+   "question_id": "conv-42-qa-090",
+   "category": 4,
+   "predicted_answer": "The Lord of the Rings trilogy",
+   "is_correct": true,
+   "tokens_used": 1327,
+   "latency_ms": 1894.2650000001322
+  },
+  {
+   "question_id": "conv-42-qa-091",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1298,
+   "latency_ms": 1838.8854000002084
+  },
+  {
+   "question_id": "conv-42-qa-092",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1340,
+   "latency_ms": 1855.419700000084
+  },
+  {
+   "question_id": "conv-42-qa-093",
+   "category": 4,
+   "predicted_answer": "CS:GO",
+   "is_correct": false,
+   "tokens_used": 1355,
+   "latency_ms": 1767.0533999998952
+  },
+  {
+   "question_id": "conv-42-qa-094",
+   "category": 4,
+   "predicted_answer": "It's about loss, identity, and connection.",
+   "is_correct": true,
+   "tokens_used": 1217,
+   "latency_ms": 1905.1518999999644
+  },
+  {
+   "question_id": "conv-42-qa-095",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1312,
+   "latency_ms": 1828.159400000004
+  },
+  {
+   "question_id": "conv-42-qa-096",
+   "category": 4,
+   "predicted_answer": "Action and sci-fi movies.",
+   "is_correct": true,
+   "tokens_used": 1232,
+   "latency_ms": 1823.6057999999957
+  },
+  {
+   "question_id": "conv-42-qa-097",
+   "category": 4,
+   "predicted_answer": "Joanna just finished her first full screenplay and printed it last Friday.",
+   "is_correct": true,
+   "tokens_used": 1230,
+   "latency_ms": 2027.0732999999836
+  },
+  {
+   "question_id": "conv-42-qa-098",
+   "category": 4,
+   "predicted_answer": "Dramas and romcoms",
+   "is_correct": true,
+   "tokens_used": 1258,
+   "latency_ms": 1767.578199999889
+  },
+  {
+   "question_id": "conv-42-qa-099",
+   "category": 4,
+   "predicted_answer": "Joanna plans to submit her finished screenplay to film festivals and hopes to get producers and directors to check it out.",
+   "is_correct": true,
+   "tokens_used": 1169,
+   "latency_ms": 2256.78999999991
+  },
+  {
+   "question_id": "conv-42-qa-100",
+   "category": 4,
+   "predicted_answer": "3 years",
+   "is_correct": true,
+   "tokens_used": 2724,
+   "latency_ms": 3707.0041000001765
+  },
+  {
+   "question_id": "conv-42-qa-101",
+   "category": 4,
+   "predicted_answer": "Super good! It was rich and creamy - might be my new favorite snack!",
+   "is_correct": true,
+   "tokens_used": 1374,
+   "latency_ms": 2389.5990999999412
+  },
+  {
+   "question_id": "conv-42-qa-102",
+   "category": 4,
+   "predicted_answer": "Nate enjoys coconut milk, chocolate, and mixed berry flavors for dairy-free desserts.",
+   "is_correct": true,
+   "tokens_used": 1246,
+   "latency_ms": 2222.5634999999784
+  },
+  {
+   "question_id": "conv-42-qa-103",
+   "category": 4,
+   "predicted_answer": "Joanna recently watched \"Little Women\" and recommended it to Nate on February 7, 2022.",
+   "is_correct": true,
+   "tokens_used": 1233,
+   "latency_ms": 2352.048599999989
+  },
+  {
+   "question_id": "conv-42-qa-104",
+   "category": 4,
+   "predicted_answer": "It's a great story about sisterhood, love, and reaching for your dreams.",
+   "is_correct": true,
+   "tokens_used": 1327,
+   "latency_ms": 2222.7716999998393
+  },
+  {
+   "question_id": "conv-42-qa-105",
+   "category": 4,
+   "predicted_answer": "Chocolate and vanilla swirl",
+   "is_correct": true,
+   "tokens_used": 1121,
+   "latency_ms": 1733.2567999999355
+  },
+  {
+   "question_id": "conv-42-qa-106",
+   "category": 4,
+   "predicted_answer": "Personal experiences and her own journey of self-discovery.",
+   "is_correct": true,
+   "tokens_used": 1221,
+   "latency_ms": 2005.7954999999765
+  },
+  {
+   "question_id": "conv-42-qa-107",
+   "category": 4,
+   "predicted_answer": "Nate likes turtles as pets because they are unique, have a slow pace, are low-maintenance, and calming.",
+   "is_correct": true,
+   "tokens_used": 1409,
+   "latency_ms": 2503.2032999999956
+  },
+  {
+   "question_id": "conv-42-qa-108",
+   "category": 4,
+   "predicted_answer": "Nate describes turtles as unique, low-maintenance, and calming.",
+   "is_correct": false,
+   "tokens_used": 1354,
+   "latency_ms": 2162.7845999998954
+  },
+  {
+   "question_id": "conv-42-qa-109",
+   "category": 4,
+   "predicted_answer": "A writing gig",
+   "is_correct": true,
+   "tokens_used": 1166,
+   "latency_ms": 1705.886800000144
+  },
+  {
+   "question_id": "conv-42-qa-110",
+   "category": 4,
+   "predicted_answer": "Nate chose the hair color because it's bright and bold, like him, and he wanted to stand out from regular options.",
+   "is_correct": true,
+   "tokens_used": 1231,
+   "latency_ms": 2455.302700000175
+  },
+  {
+   "question_id": "conv-42-qa-111",
+   "category": 4,
+   "predicted_answer": "Coconut milk, vanilla extract, sugar, and a pinch of salt.",
+   "is_correct": true,
+   "tokens_used": 1404,
+   "latency_ms": 2250.4377999998724
+  },
+  {
+   "question_id": "conv-42-qa-112",
+   "category": 4,
+   "predicted_answer": "\"Finding Home\"",
+   "is_correct": true,
+   "tokens_used": 670,
+   "latency_ms": 1036.6907000000083
+  },
+  {
+   "question_id": "conv-42-qa-113",
+   "category": 4,
+   "predicted_answer": "Action and sci-fi movies",
+   "is_correct": true,
+   "tokens_used": 1330,
+   "latency_ms": 1832.4674000000414
+  },
+  {
+   "question_id": "conv-42-qa-114",
+   "category": 4,
+   "predicted_answer": "Nate enjoys reading fantasy and sci-fi movies, as well as playing video games.",
+   "is_correct": true,
+   "tokens_used": 1278,
+   "latency_ms": 2135.6055999999626
+  }
+ ]
+}

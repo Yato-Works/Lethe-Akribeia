@@ -1,0 +1,69 @@
+{
+  "label": "LongMemEval - all types",
+  "suite": "lme",
+  "cache": "benchmark_results/lme_context_cache.jsonl",
+  "reader_run": "benchmark_results/longmemeval/grand_longmemeval_report_7b_apex_ctx8192_postfix.json",
+  "min_turn_score": 0.8,
+  "counts": {
+    "n": 500,
+    "claimed": 59,
+    "commit_correct": 55,
+    "reader_correct": 53
+  },
+  "groups": [
+    {
+      "name": "knowledge-update",
+      "counts": {
+        "n": 78,
+        "claimed": 0,
+        "commit_correct": 0,
+        "reader_correct": 0
+      }
+    },
+    {
+      "name": "multi-session",
+      "counts": {
+        "n": 133,
+        "claimed": 0,
+        "commit_correct": 0,
+        "reader_correct": 0
+      }
+    },
+    {
+      "name": "single-session-assistant",
+      "counts": {
+        "n": 56,
+        "claimed": 0,
+        "commit_correct": 0,
+        "reader_correct": 0
+      }
+    },
+    {
+      "name": "single-session-preference",
+      "counts": {
+        "n": 30,
+        "claimed": 0,
+        "commit_correct": 0,
+        "reader_correct": 0
+      }
+    },
+    {
+      "name": "single-session-user",
+      "counts": {
+        "n": 70,
+        "claimed": 0,
+        "commit_correct": 0,
+        "reader_correct": 0
+      }
+    },
+    {
+      "name": "temporal-reasoning",
+      "counts": {
+        "n": 133,
+        "claimed": 59,
+        "commit_correct": 55,
+        "reader_correct": 53
+      }
+    }
+  ]
+}

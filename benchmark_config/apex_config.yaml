@@ -5,7 +5,12 @@ global:
   temperature: 0.0
   seed: 42
   model_provider: "ollama" # or "deepseek", "openai"
-  default_model: "deepseek-v3" # Adjusted based on AM environment
+  # Must equal artificial_memory.research.benchmarks.llm.FROZEN_MODEL;
+  # tests/test_phase8_leakage.py fails CI when the two drift apart (they did:
+  # this file said coder:7b while the code read instruct, and the test still
+  # pinned phi4-mini).  Published qwen2.5-coder:7b artefacts stay valid - every
+  # runner artefact records its own `model`.
+  default_model: "qwen2.5:7b-instruct"
 
 benchmarks:
   locomo:

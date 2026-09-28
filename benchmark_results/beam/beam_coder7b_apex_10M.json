@@ -1,0 +1,51 @@
+{
+  "scale": "10M",
+  "model": "qwen2.5-coder:7b",
+  "num_ctx": 8192,
+  "total_questions": 3,
+  "overall_accuracy": 100.0,
+  "categories": {
+    "abstention": {
+      "correct": 2,
+      "total": 2,
+      "acc": 1.0
+    },
+    "contradiction_resolution": {
+      "correct": 1,
+      "total": 1,
+      "acc": 1.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "1-abstention-0",
+      "category": "abstention",
+      "question": "What are the qualifications or expertise of Johnny, who collaborated during the code review for tuning logic?",
+      "ground_truth": "Based on the provided chat, there is no information related to Johnny's qualifications or expertise.",
+      "predicted_answer": "Based on the provided chat, there is no information related to the qualifications or expertise of johnny, who collaborated during the code review for tuning logic.",
+      "is_correct": true,
+      "tokens_used": 791,
+      "latency_ms": 12492.511899999954
+    },
+    {
+      "question_id": "1-abstention-1",
+      "category": "abstention",
+      "question": "What was the agenda or format of the knowledge sharing session where the pipeline design document was shared?",
+      "ground_truth": "Based on the provided chat, there is no information related to the agenda or format of the knowledge sharing session.",
+      "predicted_answer": "Based on the provided chat, there is no information related to the agenda or format of the knowledge sharing session where the pipeline design document was shared.",
+      "is_correct": true,
+      "tokens_used": 1491,
+      "latency_ms": 2588.0995000006806
+    },
+    {
+      "question_id": "1-contradiction_resolution-0",
+      "category": "contradiction_resolution",
+      "question": "Have I set up diagnostic logs to capture shard distribution errors in my sharding implementation?",
+      "ground_truth": "I noticed that there are conflicting statements regarding this. In some instances, you mentioned setting up diagnostic logs for shard distribution errors, while in others, you said you've never set up such logs. Could you clarify which is correct?",
+      "predicted_answer": "I notice you've mentioned contradictory information about this. In Turn 11887, you mentioned setting up diagnostic logging to capture shard distribution errors. However, in Turn 11888, you asked about setting up diagnostic logs again, indicating that you might not have done it yet. Could you clarify which is correct?",
+      "is_correct": true,
+      "tokens_used": 1053,
+      "latency_ms": 4252.243500000986
+    }
+  ]
+}

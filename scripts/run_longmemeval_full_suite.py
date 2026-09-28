@@ -51,15 +51,23 @@ def main():
     parser.add_argument("--tag", type=str, default=None,
                         help="Suffix for the report/checkpoint files. Use this for every "
                              "A/B arm so the frozen baseline report is never overwritten.")
+    parser.add_argument("--window-cap", type=int, default=None, help="Override MSC selection window cap (A/B only)")
+    parser.add_argument("--token-bonus", type=int, default=None, help="Override MSC rescue token bonus per unit (A/B only)")
     args = parser.parse_args()
 
     print("=" * 85)
     print("        AM APEX: LONGMEMEVAL FROZEN BENCHMARK SUITE (500 QUESTIONS)")
     print("=" * 85)
     print("Rule: STRICTLY FROZEN CONFIGURATION. Zero in-flight tuning.")
+    if args.window_cap is not None or args.token_bonus is not None:
+        print(f"A/B OVERRIDE: window_cap={args.window_cap or 'default'} token_bonus={args.token_bonus or 'default'}")
     print("=" * 85)
 
     adapter = LongMemEvalAdapter()
+    if args.window_cap is not None:
+        adapter.compiler.selection_window_cap = args.window_cap
+    if args.token_bonus is not None:
+        adapter.compiler.rescue_token_bonus_per_unit = args.token_bonus
     t0_load = time.perf_counter()
     print("Loading LongMemEval dataset (277 MB)...")
     items = adapter.load_dataset()

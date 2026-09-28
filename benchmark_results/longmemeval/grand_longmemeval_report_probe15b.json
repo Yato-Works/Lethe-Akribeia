@@ -1,0 +1,62 @@
+{
+  "benchmark": "LongMemEval (500 Questions)",
+  "reader_model": "qwen2.5:1.5b",
+  "reader_num_ctx": 8192,
+  "total_questions": 3,
+  "overall_accuracy": 0.6666666666666666,
+  "oracle_recall": 1.0,
+  "mean_tokens_per_q": 2710.6666666666665,
+  "mean_latency_ms": 2699.2382333337446,
+  "total_elapsed_seconds": 8.10217300000113,
+  "write_llm_calls": 0,
+  "type_breakdown": {
+    "single-session-user": {
+      "total": 3,
+      "correct": 2,
+      "oracle": 3,
+      "conversion_rate": 66.66666666666666
+    }
+  },
+  "failure_taxonomy_v2": {
+    "COMPOSITION_FAILURE": 1
+  },
+  "failure_diagnoses": [
+    {
+      "question_id": "51a45a95",
+      "category": "COMPOSITION_FAILURE",
+      "explanation": "Composition failure: Partial evidence retrieved, but multi-hop link to target slot broke."
+    }
+  ],
+  "results": [
+    {
+      "question_id": "e47becba",
+      "question_type": "single-session-user",
+      "oracle_recall": true,
+      "predicted_answer": "Business Administration",
+      "ground_truth": "Business Administration",
+      "tokens_used": 1680,
+      "latency_ms": 3948.413800000708,
+      "is_correct": true
+    },
+    {
+      "question_id": "118b2229",
+      "question_type": "single-session-user",
+      "oracle_recall": true,
+      "predicted_answer": "45 minutes",
+      "ground_truth": "45 minutes each way",
+      "tokens_used": 3271,
+      "latency_ms": 1969.2405000005238,
+      "is_correct": true
+    },
+    {
+      "question_id": "51a45a95",
+      "question_type": "single-session-user",
+      "oracle_recall": true,
+      "predicted_answer": "You redeemed a $5 coupon on coffee creamer at a store.",
+      "ground_truth": "Target",
+      "tokens_used": 3181,
+      "latency_ms": 2180.060400000002,
+      "is_correct": false
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "label": "LongMemEval 500 - deployed configuration",
+  "cohort": "longmemeval_all500",
+  "a": {
+    "run": "benchmark_results/longmemeval/grand_longmemeval_report_7b_apex_ctx8192_postfix.json",
+    "model": "qwen2.5:7b-instruct"
+  },
+  "b": {
+    "run": "benchmark_results/longmemeval/grand_longmemeval_report_15b_apex_ctx8192.json",
+    "model": "qwen2.5:1.5b"
+  },
+  "claims": "benchmark_results/committer_metrics/lme_all_types_claims.json",
+  "shared": 500,
+  "claims_source": "file",
+  "zone_mode": "counterfactual",
+  "zones_committed_in_run": 0,
+  "counts": {
+    "n": 500,
+    "both_correct": 369,
+    "a_only": 39,
+    "b_only": 31,
+    "both_wrong": 61
+  },
+  "zones": {
+    "deterministic": {
+      "n": 59,
+      "both_correct": 53,
+      "a_only": 0,
+      "b_only": 4,
+      "both_wrong": 2
+    },
+    "llm": {
+      "n": 441,
+      "both_correct": 316,
+      "a_only": 39,
+      "b_only": 27,
+      "both_wrong": 59
+    }
+  },
+  "groups": [
+    {
+      "name": "knowledge-update",
+      "counts": {
+        "n": 78,
+        "both_correct": 54,
+        "a_only": 9,
+        "b_only": 3,
+        "both_wrong": 12
+      }
+    },
+    {
+      "name": "multi-session",
+      "counts": {
+        "n": 133,
+        "both_correct": 104,
+        "a_only": 8,
+        "b_only": 8,
+        "both_wrong": 13
+      }
+    },
+    {
+      "name": "single-session-assistant",
+      "counts": {
+        "n": 56,
+        "both_correct": 38,
+        "a_only": 7,
+        "b_only": 2,
+        "both_wrong": 9
+      }
+    },
+    {
+      "name": "single-session-preference",
+      "counts": {
+        "n": 30,
+        "both_correct": 26,
+        "a_only": 0,
+        "b_only": 3,
+        "both_wrong": 1
+      }
+    },
+    {
+      "name": "single-session-user",
+      "counts": {
+        "n": 70,
+        "both_correct": 53,
+        "a_only": 6,
+        "b_only": 4,
+        "both_wrong": 7
+      }
+    },
+    {
+      "name": "temporal-reasoning",
+      "counts": {
+        "n": 133,
+        "both_correct": 94,
+        "a_only": 9,
+        "b_only": 11,
+        "both_wrong": 19
+      }
+    }
+  ],
+  "controls": {
+    "only_in_a": {
+      "n": 0,
+      "sample": []
+    },
+    "only_in_b": {
+      "n": 0,
+      "sample": []
+    },
+    "token_mismatch": {
+      "n": 0,
+      "sample": []
+    },
+    "oracle_mismatch": {
+      "n": 0,
+      "sample": []
+    },
+    "claims_missing": {
+      "n": 0,
+      "sample": []
+    },
+    "claims_oracle_mismatch": {
+      "n": 0,
+      "sample": []
+    },
+    "claims_oracle_compared": 500,
+    "answer_source_mismatch": {
+      "n": 0,
+      "sample": []
+    },
+    "committed_detail_mismatch": {
+      "n": 0,
+      "sample": []
+    },
+    "answer_source_compared": false,
+    "deterministic_zone_identical": null
+  },
+  "mcnemar": {
+    "discordant_a_only": 39,
+    "discordant_b_only": 31,
+    "p_exact_two_sided": 0.40296307504607976
+  }
+}

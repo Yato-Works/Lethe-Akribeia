@@ -20,13 +20,19 @@ from typing import Sequence
 from artificial_memory.core.ir.memory_types import ApexMemoryUnit, MemoryRole
 from artificial_memory.core.ir.structured import StructuredIR
 
-
 @dataclass
 class WideSliceResult:
-    """Result of multi-channel wide slicing."""
+    """Result of multi-channel wide slicing.
+
+    ``channels`` exposes each retrieval channel's own ordered output so callers
+    can measure (and deliberately interleave) channel diversity instead of
+    flattening the union and losing which channel surfaced a record.
+    """
+
     candidate_records: list[StructuredIR]
     channel_counts: dict[str, int] = field(default_factory=dict)
     total_unioned: int = 0
+    channels: dict[str, list[StructuredIR]] = field(default_factory=dict)
 
 
 class WideSlicer:
@@ -216,4 +222,11 @@ class WideSlicer:
                 "session": len(c_session),
             },
             total_unioned=len(c_union),
+            channels={
+                "lexical": list(c_lexical),
+                "entity": list(c_entity),
+                "temporal": list(c_temporal),
+                "relation": list(c_relation),
+                "session": list(c_session),
+            },
         )

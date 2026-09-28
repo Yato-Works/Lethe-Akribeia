@@ -1,0 +1,4580 @@
+{
+  "label_absent": [
+    {
+      "qid": "conv-26-qa-004",
+      "cat": 1,
+      "q": "What is Caroline's identity?",
+      "evidence": [
+        "D1:5"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-024",
+      "cat": 1,
+      "q": "What does Melanie do to destress?",
+      "evidence": [
+        "D7:22",
+        "D5:4"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:22",
+        "session 5 dia_id D5:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-26-qa-027",
+      "cat": 3,
+      "q": "Would Caroline pursue writing as a career option?",
+      "evidence": [
+        "D7:5",
+        "D7:9"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:5",
+        "session 7 dia_id D7:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-26-qa-042",
+      "cat": 3,
+      "q": "Would Melanie be more interested in going to a national park or a theme park?",
+      "evidence": [
+        "D10:12",
+        "D10:14"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:12",
+        "session 10 dia_id D10:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-26-qa-043",
+      "cat": 1,
+      "q": "What kind of art does Caroline make?",
+      "evidence": [
+        "D11:12",
+        "D11:8",
+        "D9:14"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:12",
+        "session 11 dia_id D11:8",
+        "session 9 dia_id D9:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-26-qa-049",
+      "cat": 2,
+      "q": "When did Caroline and Melanie go to a pride fesetival together?",
+      "evidence": [
+        "D12:15"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-055",
+      "cat": 1,
+      "q": "What subject have Caroline and Melanie both painted?",
+      "evidence": [
+        "D14:5",
+        "D8:6"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:5",
+        "session 8 dia_id D8:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-26-qa-064",
+      "cat": 3,
+      "q": "Would Melanie likely enjoy the song \"The Four Seasons\" by Vivaldi?",
+      "evidence": [
+        "D15:28"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:28"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-066",
+      "cat": 1,
+      "q": "What does Melanie do with her family on hikes?",
+      "evidence": [
+        "D16:4",
+        "D10:12"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:4",
+        "session 10 dia_id D10:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-26-qa-069",
+      "cat": 3,
+      "q": "What personality traits might Melanie say Caroline has?",
+      "evidence": [
+        "D16:18",
+        "D13:16",
+        "D7:4"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:18",
+        "session 13 dia_id D13:16",
+        "session 7 dia_id D7:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-26-qa-070",
+      "cat": 1,
+      "q": "What transgender-specific events has Caroline attended?",
+      "evidence": [
+        "D17:19",
+        "D15:13"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:19",
+        "session 15 dia_id D15:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-26-qa-107",
+      "cat": 4,
+      "q": "What is Melanie's reason for getting into running?",
+      "evidence": [
+        "D7:21"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:21"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-119",
+      "cat": 4,
+      "q": "How did Melanie feel while watching the meteor shower?",
+      "evidence": [
+        "D10:18"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-121",
+      "cat": 4,
+      "q": "Who performed at the concert at Melanie's daughter's birthday?",
+      "evidence": [
+        "D11:3"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-124",
+      "cat": 4,
+      "q": "What pets does Melanie have?",
+      "evidence": [
+        "D13:4"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-127",
+      "cat": 4,
+      "q": "What did Caroline make for a local church?",
+      "evidence": [
+        "D14:17"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:17"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-141",
+      "cat": 4,
+      "q": "What does Caroline's drawing symbolize for her?",
+      "evidence": [
+        "D17:23"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:23"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-142",
+      "cat": 4,
+      "q": "How do Melanie and Caroline describe their journey through life together?",
+      "evidence": [
+        "D17:25"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:25"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-149",
+      "cat": 4,
+      "q": "What do Melanie's family give her?",
+      "evidence": [
+        "D18:9"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-150",
+      "cat": 4,
+      "q": "How did Melanie feel about her family supporting her?",
+      "evidence": [
+        "D18:13"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-002",
+      "cat": 4,
+      "q": "How do Jon and Gina both like to destress?",
+      "evidence": [
+        "D1:7",
+        "D1:6"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:7",
+        "session 1 dia_id D1:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-30-qa-009",
+      "cat": 1,
+      "q": "Which city have both Jean and John visited?",
+      "evidence": [
+        "D2:5",
+        "D15:1"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:5",
+        "session 15 dia_id D15:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-30-qa-016",
+      "cat": 2,
+      "q": "When did Jon go to a fair to get more exposure for his dance studio?",
+      "evidence": [
+        "D10:1"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-018",
+      "cat": 1,
+      "q": "Do Jon and Gina start businesses out of what they love?",
+      "evidence": [
+        "D1:4",
+        "D6:8"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:4",
+        "session 6 dia_id D6:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-30-qa-026",
+      "cat": 2,
+      "q": "When did Jon receive mentorship to promote his venture?",
+      "evidence": [
+        "D14:1"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-029",
+      "cat": 1,
+      "q": "Which cities has Jon visited?",
+      "evidence": [
+        "D2:4",
+        "D15:1"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:4",
+        "session 15 dia_id D15:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-30-qa-039",
+      "cat": 4,
+      "q": "What is Gina's favorite style of dance?",
+      "evidence": [
+        "D1:9"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-044",
+      "cat": 4,
+      "q": "What does Gina say about the dancers in the photo?",
+      "evidence": [
+        "D1:26"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:26"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-045",
+      "cat": 4,
+      "q": "What is Jon's attitude towards being part of the dance festival?",
+      "evidence": [
+        "D1:28"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:28"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-056",
+      "cat": 4,
+      "q": "What did Jon and Gina compare their entrepreneurial journeys to?",
+      "evidence": [
+        "D6:15",
+        "D6:16"
+      ],
+      "resolve": [
+        "session 6 dia_id D6:15",
+        "session 6 dia_id D6:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-30-qa-060",
+      "cat": 4,
+      "q": "What does Jon's dance make him?",
+      "evidence": [
+        "D9:5"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-067",
+      "cat": 4,
+      "q": "How does Jon use the clipboard with a notepad attached to it?",
+      "evidence": [
+        "D13:11"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-068",
+      "cat": 4,
+      "q": "What does Jon tell Gina he won't do?",
+      "evidence": [
+        "D14:17"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:17"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-070",
+      "cat": 4,
+      "q": "What is Jon working on opening?",
+      "evidence": [
+        "D15:3"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-072",
+      "cat": 4,
+      "q": "How does Jon feel about the opening night of his dance studio?",
+      "evidence": [
+        "D15:7"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-074",
+      "cat": 4,
+      "q": "What does Jon plan to do at the grand opening of his dance studio?",
+      "evidence": [
+        "D15:9"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-075",
+      "cat": 4,
+      "q": "What does Gina say to Jon about the grand opening?",
+      "evidence": [
+        "D15:12"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-008",
+      "cat": 3,
+      "q": "What might John's financial status be?",
+      "evidence": [
+        "D5:5"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-010",
+      "cat": 2,
+      "q": "When did Maria meet Jean?",
+      "evidence": [
+        "D7:1"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-014",
+      "cat": 3,
+      "q": "Would John be considered a patriotic person?",
+      "evidence": [
+        "D8:18",
+        "D8:20"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:18",
+        "session 8 dia_id D8:20"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-41-qa-016",
+      "cat": 2,
+      "q": "When did John get his degree?",
+      "evidence": [
+        "D9:2"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-019",
+      "cat": 1,
+      "q": "What damages have happened to John's car?",
+      "evidence": [
+        "D11:1",
+        "D4:2"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:1",
+        "session 4 dia_id D4:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-41-qa-025",
+      "cat": 1,
+      "q": "What European countries has Maria been to?",
+      "evidence": [
+        "D13:24",
+        "D8:15"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:24",
+        "session 8 dia_id D8:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-41-qa-032",
+      "cat": 1,
+      "q": "What outdoor activities has John done with his colleagues?",
+      "evidence": [
+        "D18:2",
+        "D16:2"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:2",
+        "session 16 dia_id D16:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-41-qa-038",
+      "cat": 2,
+      "q": "When did Maria get in a car accident?",
+      "evidence": [
+        "D21:3"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-039",
+      "cat": 3,
+      "q": "Around which US holiday did Maria get into a car accident?",
+      "evidence": [
+        "D21:3"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-041",
+      "cat": 3,
+      "q": "Does John live close to a beach or the mountains?",
+      "evidence": [
+        "D22:15"
+      ],
+      "resolve": [
+        "session 22 dia_id D22:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-047",
+      "cat": 1,
+      "q": "What exercises has John done?",
+      "evidence": [
+        "D25:17",
+        "D25:13",
+        "D10:1",
+        "D1:4"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:17",
+        "session 25 dia_id D25:13",
+        "session 10 dia_id D10:1",
+        "session 1 dia_id D1:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-41-qa-050",
+      "cat": 3,
+      "q": "What attributes describe John?",
+      "evidence": [
+        "D26:6",
+        "D2:14",
+        "D3:5",
+        "D4:6"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:6",
+        "session 2 dia_id D2:14",
+        "session 3 dia_id D3:5",
+        "session 4 dia_id D4:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-41-qa-064",
+      "cat": 3,
+      "q": "What job might Maria pursue in the future?",
+      "evidence": [
+        "D32:14",
+        "D5:8",
+        "D11:10",
+        "D27:4"
+      ],
+      "resolve": [
+        "session 32 dia_id D32:14",
+        "session 5 dia_id D5:8",
+        "session 11 dia_id D11:10",
+        "session 27 dia_id D27:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-41-qa-072",
+      "cat": 4,
+      "q": "What kind of activities did John and his mates from the online group do as part of their service efforts?",
+      "evidence": [
+        "D3:5"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-075",
+      "cat": 4,
+      "q": "What did Jean go through before meeting Maria?",
+      "evidence": [
+        "D7:7"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-091",
+      "cat": 2,
+      "q": "What did John attend with his colleagues in March 2023?",
+      "evidence": [
+        "D12:9"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-092",
+      "cat": 4,
+      "q": "How often does John work out with his family?",
+      "evidence": [
+        "D13:7"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-093",
+      "cat": 4,
+      "q": "How has John's fitness improved since starting boot camps with his family?",
+      "evidence": [
+        "D13:5"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-105",
+      "cat": 4,
+      "q": "How does John plan to honor the memories of his beloved pet?",
+      "evidence": [
+        "D17:11"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-112",
+      "cat": 4,
+      "q": "What did John recently get promoted to?",
+      "evidence": [
+        "D19:8"
+      ],
+      "resolve": [
+        "session 19 dia_id D19:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-114",
+      "cat": 4,
+      "q": "How does John describe the support he received during his journey to becoming assistant manager?",
+      "evidence": [
+        "D19:12"
+      ],
+      "resolve": [
+        "session 19 dia_id D19:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-124",
+      "cat": 4,
+      "q": "What kind of activities did Maria do at the picnic with her church friends?",
+      "evidence": [
+        "D24:8"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-130",
+      "cat": 4,
+      "q": "Which activity has John done apart from yoga at the studio?",
+      "evidence": [
+        "D25:17"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:17"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-134",
+      "cat": 4,
+      "q": "How did John describe his kids' reaction at the military memorial?",
+      "evidence": [
+        "D27:11"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-148",
+      "cat": 4,
+      "q": "How is Maria's new puppy adjusting to its new home?",
+      "evidence": [
+        "D31:10"
+      ],
+      "resolve": [
+        "session 31 dia_id D31:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-000",
+      "cat": 3,
+      "q": "Is it likely that Nate has friends besides Joanna?",
+      "evidence": [
+        "D1:7"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-008",
+      "cat": 2,
+      "q": "When did Nate get his first two turtles?",
+      "evidence": [
+        "D2:12"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-014",
+      "cat": 3,
+      "q": "What nickname does Nate use for Joanna?",
+      "evidence": [
+        "D7:1"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-022",
+      "cat": 2,
+      "q": "When did Joanna start writing her third screenplay?",
+      "evidence": [
+        "D12:13",
+        "D12:14"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:13",
+        "session 12 dia_id D12:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-42-qa-026",
+      "cat": 2,
+      "q": "When did Nate win his third tourney?",
+      "evidence": [
+        "D14:8"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-041",
+      "cat": 2,
+      "q": "When did Joanna make a chocolate tart with raspberries?",
+      "evidence": [
+        "D22:1"
+      ],
+      "resolve": [
+        "session 22 dia_id D22:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-042",
+      "cat": 1,
+      "q": "What movies have both Joanna and Nate seen?",
+      "evidence": [
+        "D3:17",
+        "D10:1",
+        "D22:8"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:17",
+        "session 10 dia_id D10:1",
+        "session 22 dia_id D22:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-42-qa-050",
+      "cat": 1,
+      "q": "What is something Nate gave to Joanna that brings her a lot of joy?",
+      "evidence": [
+        "D13:9",
+        "D24:2"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:9",
+        "session 24 dia_id D24:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-42-qa-051",
+      "cat": 1,
+      "q": "When did Nate get Tilly for Joanna?",
+      "evidence": [
+        "D13:9",
+        "D24:2"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:9",
+        "session 24 dia_id D24:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-42-qa-056",
+      "cat": 1,
+      "q": "What animal do both Nate and Joanna like?",
+      "evidence": [
+        "D5:6",
+        "D26:9"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:6",
+        "session 26 dia_id D26:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-42-qa-057",
+      "cat": 2,
+      "q": "When did Joanna plan to go over to Nate's and share recipes?",
+      "evidence": [
+        "D26:19"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-060",
+      "cat": 3,
+      "q": "What Console does Nate own?",
+      "evidence": [
+        "D27:23"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:23"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-066",
+      "cat": 3,
+      "q": "What alternative career might Nate consider after gaming?",
+      "evidence": [
+        "D5:8",
+        "D19:3",
+        "D25:19",
+        "D28:25"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:8",
+        "session 19 dia_id D19:3",
+        "session 25 dia_id D25:19",
+        "session 28 dia_id D28:25"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-42-qa-067",
+      "cat": 1,
+      "q": "What pets does Nate have?",
+      "evidence": [
+        "D8:3",
+        "D12:3",
+        "D28:23"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:3",
+        "session 12 dia_id D12:3",
+        "session 28 dia_id D28:23"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-42-qa-068",
+      "cat": 3,
+      "q": "How many hikes has Joanna been on?",
+      "evidence": [
+        "D7:6",
+        "D11:5",
+        "D14:21",
+        "D28:22"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:6",
+        "session 11 dia_id D11:5",
+        "session 14 dia_id D14:21",
+        "session 28 dia_id D28:22"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-42-qa-070",
+      "cat": 1,
+      "q": "What activities does Nate do with his turtles?",
+      "evidence": [
+        "D25:21",
+        "D25:23",
+        "D28:31"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:21",
+        "session 25 dia_id D25:23",
+        "session 28 dia_id D28:31"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-42-qa-074",
+      "cat": 1,
+      "q": "What recommendations has Nate received from Joanna?",
+      "evidence": [
+        "D1:16",
+        "D3:17",
+        "D15:14",
+        "D15:15",
+        "D19:15",
+        "D19:16",
+        "D23:26"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:16",
+        "session 3 dia_id D3:17",
+        "session 15 dia_id D15:14",
+        "session 15 dia_id D15:15",
+        "session 19 dia_id D19:15",
+        "session 19 dia_id D19:16",
+        "session 23 dia_id D23:26"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 7
+    },
+    {
+      "qid": "conv-42-qa-082",
+      "cat": 1,
+      "q": "What recipes has Nate made?",
+      "evidence": [
+        "D3:4",
+        "D4:3"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:4",
+        "session 4 dia_id D4:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-42-qa-083",
+      "cat": 1,
+      "q": "What are the skills that Nate has helped others learn?",
+      "evidence": [
+        "D18:8",
+        "D26:12",
+        "D14:16"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:8",
+        "session 26 dia_id D26:12",
+        "session 14 dia_id D14:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-42-qa-087",
+      "cat": 3,
+      "q": "What state did Nate visit?",
+      "evidence": [
+        "D29:6"
+      ],
+      "resolve": [
+        "session 29 dia_id D29:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-092",
+      "cat": 4,
+      "q": "What kind of lighting does Nate's gaming room have?",
+      "evidence": [
+        "D10:2"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-098",
+      "cat": 4,
+      "q": "What genre is Joanna's first screenplay?",
+      "evidence": [
+        "D2:5"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-108",
+      "cat": 4,
+      "q": "How does Nate describe the process of taking care of turtles?",
+      "evidence": [
+        "D5:8"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-120",
+      "cat": 4,
+      "q": "What creative activity does Nate joke about pursuing after being inspired by their hikes with Jo?",
+      "evidence": [
+        "D11:16"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-134",
+      "cat": 4,
+      "q": "What recipe Nate offer to share with Joanna?",
+      "evidence": [
+        "D16:10"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-135",
+      "cat": 4,
+      "q": "What did Joanna plan to do with the recipe Nate promised to share?",
+      "evidence": [
+        "D16:11"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-150",
+      "cat": 4,
+      "q": "How did Joanna celebrate after sharing her book with her writers group?",
+      "evidence": [
+        "D19:8"
+      ],
+      "resolve": [
+        "session 19 dia_id D19:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-151",
+      "cat": 4,
+      "q": "How did Nate celebrate winning the international tournament?",
+      "evidence": [
+        "D19:9"
+      ],
+      "resolve": [
+        "session 19 dia_id D19:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-173",
+      "cat": 4,
+      "q": "What encouragement does Nate give to Joanna after her setback?",
+      "evidence": [
+        "D24:13"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-180",
+      "cat": 4,
+      "q": "What type of diet do Nate's turtles have?",
+      "evidence": [
+        "D25:19"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-181",
+      "cat": 4,
+      "q": "What ingredient did Nate use to make the ice cream lactose-free?",
+      "evidence": [
+        "D26:18"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-195",
+      "cat": 4,
+      "q": "What does Nate want to do when he goes over to Joanna's place?",
+      "evidence": [
+        "D28:29"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:29"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-003",
+      "cat": 3,
+      "q": "Would Tim enjoy reading books by C. S. Lewis or John Greene?",
+      "evidence": [
+        "D1:14",
+        "D1:16",
+        "D1:18"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:14",
+        "session 1 dia_id D1:16",
+        "session 1 dia_id D1:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-43-qa-005",
+      "cat": 3,
+      "q": "Based on Tim's collections, what is a shop that he would enjoy visiting in New York city?",
+      "evidence": [
+        "D2:9"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-025",
+      "cat": 1,
+      "q": "What similar sports collectible do Tim and John own?",
+      "evidence": [
+        "D7:7",
+        "D7:9",
+        "D16:7",
+        "D16:9"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:7",
+        "session 7 dia_id D7:9",
+        "session 16 dia_id D16:7",
+        "session 16 dia_id D16:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-43-qa-034",
+      "cat": 3,
+      "q": "What could John do after his basketball career?",
+      "evidence": [
+        "D11:19",
+        "D26:1",
+        "D27:26"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:19",
+        "session 26 dia_id D26:1",
+        "session 27 dia_id D27:26"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-43-qa-035",
+      "cat": 1,
+      "q": "What outdoor activities does John enjoy?",
+      "evidence": [
+        "D3:27",
+        "D12:6"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:27",
+        "session 12 dia_id D12:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-43-qa-038",
+      "cat": 1,
+      "q": "which country has Tim visited most frequently in his travels?",
+      "evidence": [
+        "D1:18",
+        "D13:1",
+        "D18:1"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:18",
+        "session 13 dia_id D13:1",
+        "session 18 dia_id D18:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-43-qa-040",
+      "cat": 2,
+      "q": "Has Tim been to North Carolina and/or Tennesee states in the US?",
+      "evidence": [
+        "D14:16"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-055",
+      "cat": 2,
+      "q": "When did John start playing professionally?",
+      "evidence": [
+        "D1:3",
+        "D21:4"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:3",
+        "session 21 dia_id D21:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-43-qa-082",
+      "cat": 4,
+      "q": "How does John feel while surfing?",
+      "evidence": [
+        "D3:29"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:29"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-083",
+      "cat": 4,
+      "q": "What kind of articles has Tim been writing about for the online magazine?",
+      "evidence": [
+        "D4:5"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-084",
+      "cat": 4,
+      "q": "Which two fantasy novels does Tim particularly enjoy writing about?",
+      "evidence": [
+        "D4:7"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-093",
+      "cat": 4,
+      "q": "Why did John's teammates sign the basketball they gave him?",
+      "evidence": [
+        "D7:9"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-101",
+      "cat": 4,
+      "q": "How was John's experience in New York City?",
+      "evidence": [
+        "D9:8"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-102",
+      "cat": 4,
+      "q": "What did John say about NYC, enticing Tim to visit?",
+      "evidence": [
+        "D9:10"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-108",
+      "cat": 4,
+      "q": "What does John want to do after his basketball career?",
+      "evidence": [
+        "D11:19"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-113",
+      "cat": 4,
+      "q": "Which basketball team does Tim support?",
+      "evidence": [
+        "D12:21"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:21"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-118",
+      "cat": 4,
+      "q": "What did John's team win at the end of the season?",
+      "evidence": [
+        "D13:8"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-122",
+      "cat": 4,
+      "q": "What has John been able to help the younger players achieve?",
+      "evidence": [
+        "D14:5"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-136",
+      "cat": 4,
+      "q": "What did Tim say about his injury on 16 November, 2023?",
+      "evidence": [
+        "D18:10"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-160",
+      "cat": 4,
+      "q": "What activity did Tim do after reading the stories about the Himalayan trek?",
+      "evidence": [
+        "D26:12"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-171",
+      "cat": 4,
+      "q": "What map does Tim show to his friend John?",
+      "evidence": [
+        "D27:33"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:33"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-000",
+      "cat": 2,
+      "q": "Which year did Audrey adopt the first three of her dogs?",
+      "evidence": [
+        "D1:7"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-008",
+      "cat": 2,
+      "q": "Did Andrew have a pet dog during March 2023?",
+      "evidence": [
+        "D2:8"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-010",
+      "cat": 2,
+      "q": "When did Audrey's positive reinforcement training course for dogs take place?",
+      "evidence": [
+        "D6:2"
+      ],
+      "resolve": [
+        "session 6 dia_id D6:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-015",
+      "cat": 1,
+      "q": "What is a shared frustration regarding dog ownership for Audrey and Andrew?",
+      "evidence": [
+        "D7:8",
+        "D10:5"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:8",
+        "session 10 dia_id D10:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-016",
+      "cat": 2,
+      "q": "When is Andrew going to go hiking with Audrey?",
+      "evidence": [
+        "D11:7"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-019",
+      "cat": 3,
+      "q": "What is an indoor activity that Andrew would enjoy doing while make his dog happy?",
+      "evidence": [
+        "D10:12",
+        "D12:1"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:12",
+        "session 12 dia_id D12:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-020",
+      "cat": 3,
+      "q": "Which meat does Audrey prefer eating more than others?",
+      "evidence": [
+        "D10:13",
+        "D10:23"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:13",
+        "session 10 dia_id D10:23"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-023",
+      "cat": 1,
+      "q": "What are some problems that Andrew faces before he adopted Toby?",
+      "evidence": [
+        "D2:12",
+        "D5:3",
+        "D5:5",
+        "D5:7"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:12",
+        "session 5 dia_id D5:3",
+        "session 5 dia_id D5:5",
+        "session 5 dia_id D5:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-44-qa-024",
+      "cat": 1,
+      "q": "Did Audrey and Andrew grow up with a pet dog?",
+      "evidence": [
+        "D2:16",
+        "D13:10"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:16",
+        "session 13 dia_id D13:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-028",
+      "cat": 1,
+      "q": "What is something that Audrey often dresses up her dogs with?",
+      "evidence": [
+        "D4:23",
+        "D4:25",
+        "D19:6"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:23",
+        "session 4 dia_id D4:25",
+        "session 19 dia_id D19:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-44-qa-031",
+      "cat": 1,
+      "q": "What has Andrew done with his dogs?",
+      "evidence": [
+        "D14:27",
+        "D24:8"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:27",
+        "session 24 dia_id D24:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-033",
+      "cat": 3,
+      "q": "What can Andrew potentially do to improve his stress and accomodate his living situation with his dogs?",
+      "evidence": [
+        "D12:3",
+        "D18:1",
+        "D21:5"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:3",
+        "session 18 dia_id D18:1",
+        "session 21 dia_id D21:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-44-qa-035",
+      "cat": 1,
+      "q": "What are the names of Andrew's dogs?",
+      "evidence": [
+        "D12:1",
+        "D24:6",
+        "D28:8"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:1",
+        "session 24 dia_id D24:6",
+        "session 28 dia_id D28:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-44-qa-036",
+      "cat": 1,
+      "q": "What are some foods that Audrey likes eating?",
+      "evidence": [
+        "D3:18",
+        "D10:13",
+        "D10:23",
+        "D25:6"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:18",
+        "session 10 dia_id D10:13",
+        "session 10 dia_id D10:23",
+        "session 25 dia_id D25:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-44-qa-039",
+      "cat": 1,
+      "q": "What did Audrey get wtih having so many dogs?",
+      "evidence": [
+        "D2:15",
+        "D23:18"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:15",
+        "session 23 dia_id D23:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-040",
+      "cat": 1,
+      "q": "What is a good place for dogs to run around freely and meet new friends?",
+      "evidence": [
+        "D4:25",
+        "D14:2",
+        "D23:10"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:25",
+        "session 14 dia_id D14:2",
+        "session 23 dia_id D23:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-44-qa-043",
+      "cat": 3,
+      "q": "Which US state do Audrey and Andrew potentially live in?",
+      "evidence": [
+        "D11:9"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-048",
+      "cat": 1,
+      "q": "What does Andrew view his pets as?",
+      "evidence": [
+        "D15:14",
+        "D28:18"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:14",
+        "session 28 dia_id D28:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-049",
+      "cat": 1,
+      "q": "What does Audrey view her pets as?",
+      "evidence": [
+        "D15:15",
+        "D23:18"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:15",
+        "session 23 dia_id D23:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-052",
+      "cat": 3,
+      "q": "What is something that Andrew could do to make birdwatching hobby to fit in his city schedule?",
+      "evidence": [
+        "D20:5",
+        "D20:21",
+        "D23:1",
+        "D1:14"
+      ],
+      "resolve": [
+        "session 20 dia_id D20:5",
+        "session 20 dia_id D20:21",
+        "session 23 dia_id D23:1",
+        "session 1 dia_id D1:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-44-qa-055",
+      "cat": 2,
+      "q": "When did Andrew make his dogs a fun indoor area?",
+      "evidence": [
+        "D28:12"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-057",
+      "cat": 2,
+      "q": "When did Andrew adopt Scout?",
+      "evidence": [
+        "D28:6"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-058",
+      "cat": 2,
+      "q": "What did Audrey eat for dinner on October 24, 2023?",
+      "evidence": [
+        "D25:14"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-066",
+      "cat": 4,
+      "q": "What type of dog was Andrew looking to adopt based on his living space?",
+      "evidence": [
+        "D5:3"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-073",
+      "cat": 4,
+      "q": "What challenge is Andrew facing in their search for a pet?",
+      "evidence": [
+        "D7:8"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-116",
+      "cat": 4,
+      "q": "What aspect of autumn does Andrew find beautiful?",
+      "evidence": [
+        "D26:36"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:36"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-000",
+      "cat": 3,
+      "q": "What are John's suspected health problems?",
+      "evidence": [
+        "D1:27"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:27"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-002",
+      "cat": 1,
+      "q": "Which places or events have John and James planned to meet at?",
+      "evidence": [
+        "D1:36",
+        "D21:15",
+        "D23:5",
+        "D23:6"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:36",
+        "session 21 dia_id D21:15",
+        "session 23 dia_id D23:5",
+        "session 23 dia_id D23:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-47-qa-004",
+      "cat": 2,
+      "q": "When did John resume playing drums in his adulthood?",
+      "evidence": [
+        "D3:5"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-006",
+      "cat": 3,
+      "q": "Does James live in Connecticut?",
+      "evidence": [
+        "D5:1"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-009",
+      "cat": 1,
+      "q": "What are the names of James's dogs?",
+      "evidence": [
+        "D1:14",
+        "D5:1"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:14",
+        "session 5 dia_id D5:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-47-qa-017",
+      "cat": 3,
+      "q": "What is the board game where you have to find the imposter that John mentions to James?",
+      "evidence": [
+        "D8:36"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:36"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-019",
+      "cat": 3,
+      "q": "Was James feeling lonely before meeting Samantha?",
+      "evidence": [
+        "D9:16"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-022",
+      "cat": 1,
+      "q": "Who or which organizations have been the beneficiaries of John's charity tournaments?",
+      "evidence": [
+        "D10:10",
+        "D10:12",
+        "D29:1"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:10",
+        "session 10 dia_id D10:12",
+        "session 29 dia_id D29:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-47-qa-027",
+      "cat": 1,
+      "q": "What kind of classes has James joined?",
+      "evidence": [
+        "D13:6",
+        "D23:13"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:6",
+        "session 23 dia_id D23:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-47-qa-029",
+      "cat": 2,
+      "q": "When did James depart for his trip to Canada?",
+      "evidence": [
+        "D16:9"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-032",
+      "cat": 2,
+      "q": "Where was James at on July 12, 2022?",
+      "evidence": [
+        "D16:9"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-033",
+      "cat": 3,
+      "q": "Did John and James study together?",
+      "evidence": [
+        "D17:13"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-035",
+      "cat": 3,
+      "q": "What additional country did James visit during his trip to Canada?",
+      "evidence": [
+        "D17:22"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:22"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-041",
+      "cat": 2,
+      "q": "When did James meet Samantha?",
+      "evidence": [
+        "D19:12"
+      ],
+      "resolve": [
+        "session 19 dia_id D19:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-050",
+      "cat": 2,
+      "q": "When did James start taking cooking classes?",
+      "evidence": [
+        "D23:13"
+      ],
+      "resolve": [
+        "session 23 dia_id D23:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-053",
+      "cat": 2,
+      "q": "How long did it take for James to complete his Witcher-inspired game?",
+      "evidence": [
+        "D6:1",
+        "D27:2"
+      ],
+      "resolve": [
+        "session 6 dia_id D6:1",
+        "session 27 dia_id D27:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-47-qa-054",
+      "cat": 1,
+      "q": "What kind of programming-related events has John hosted?",
+      "evidence": [
+        "D27:1",
+        "D28:6"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:1",
+        "session 28 dia_id D28:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-47-qa-056",
+      "cat": 1,
+      "q": "Which of James's family members have visited him in the last year?",
+      "evidence": [
+        "D17:28",
+        "D28:19"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:28",
+        "session 28 dia_id D28:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-47-qa-059",
+      "cat": 2,
+      "q": "When did John and his gaming friends organize the charity tournament?",
+      "evidence": [
+        "D29:1"
+      ],
+      "resolve": [
+        "session 29 dia_id D29:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-069",
+      "cat": 4,
+      "q": "How does James plan to make his dog-sitting app unique?",
+      "evidence": [
+        "D1:16"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-077",
+      "cat": 4,
+      "q": "What advice did James receive from the famous players he met at the tournament?",
+      "evidence": [
+        "D4:12"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-081",
+      "cat": 4,
+      "q": "What inspired James to create the game character in the virtual world?",
+      "evidence": [
+        "D6:6"
+      ],
+      "resolve": [
+        "session 6 dia_id D6:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-088",
+      "cat": 4,
+      "q": "What did John organize with his friends on May 8, 2022?",
+      "evidence": [
+        "D10:4"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-094",
+      "cat": 4,
+      "q": "What project is James working on in his game design course?",
+      "evidence": [
+        "D13:8"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-096",
+      "cat": 4,
+      "q": "Which football club does John support?",
+      "evidence": [
+        "D13:15"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-097",
+      "cat": 4,
+      "q": "What disagreement do James and John have about their football teams?",
+      "evidence": [
+        "D13:15"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-098",
+      "cat": 4,
+      "q": "What is Max good at doing according to James?",
+      "evidence": [
+        "D14:23"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:23"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-107",
+      "cat": 4,
+      "q": "What made John leave his IT job?",
+      "evidence": [
+        "D18:3"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-109",
+      "cat": 4,
+      "q": "What happened to James's puppy during the recent visit to the clinic?",
+      "evidence": [
+        "D18:16"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:16"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-117",
+      "cat": 4,
+      "q": "What were some difficulties James faced during the development of his game?",
+      "evidence": [
+        "D22:7"
+      ],
+      "resolve": [
+        "session 22 dia_id D22:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-128",
+      "cat": 4,
+      "q": "What kind of dream did James have recently?",
+      "evidence": [
+        "D24:8"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-133",
+      "cat": 4,
+      "q": "What type of game is John's upcoming mobile game?",
+      "evidence": [
+        "D25:9"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-147",
+      "cat": 4,
+      "q": "What did John suggest James practice before playing FIFA 23 together?",
+      "evidence": [
+        "D30:18"
+      ],
+      "resolve": [
+        "session 30 dia_id D30:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-149",
+      "cat": 4,
+      "q": "What is the name of John's cousin's dog?",
+      "evidence": [
+        "D31:22"
+      ],
+      "resolve": [
+        "session 31 dia_id D31:22"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-002",
+      "cat": 2,
+      "q": "When did Deborah`s mother pass away?",
+      "evidence": [
+        "D1:5"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-014",
+      "cat": 1,
+      "q": "What were Deborah's mother's hobbies?",
+      "evidence": [
+        "D2:17",
+        "D2:19",
+        "D12:3",
+        "D29:7"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:17",
+        "session 2 dia_id D2:19",
+        "session 12 dia_id D12:3",
+        "session 29 dia_id D29:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-48-qa-017",
+      "cat": 2,
+      "q": "When did Jolene buy her pet Seraphim?",
+      "evidence": [
+        "D2:24"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:24"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-018",
+      "cat": 3,
+      "q": "In what country did Jolene buy snake Seraphim?",
+      "evidence": [
+        "D2:24"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:24"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-026",
+      "cat": 2,
+      "q": "Which book did Jolene read in January 2023?",
+      "evidence": [
+        "D4:23"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:23"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-029",
+      "cat": 2,
+      "q": "When did Jolene have a mini-retreat to reflect on her career?",
+      "evidence": [
+        "D5:1"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-034",
+      "cat": 2,
+      "q": "Which year did Jolene and her partner start dating?",
+      "evidence": [
+        "D7:7"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-043",
+      "cat": 2,
+      "q": "When did Deborah go for a bicycle ride with Anna?",
+      "evidence": [
+        "D12:1"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-048",
+      "cat": 3,
+      "q": "Which US state did Jolene visit during her internship?",
+      "evidence": [
+        "D13:15"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-050",
+      "cat": 2,
+      "q": "Which year did Jolene start practicing yoga?",
+      "evidence": [
+        "D13:17"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:17"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-071",
+      "cat": 2,
+      "q": "When did Deborah go to a community meetup?",
+      "evidence": [
+        "D24:1"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-074",
+      "cat": 4,
+      "q": "What do Deborah and Jolene plan to try when they meet in a new cafe?",
+      "evidence": [
+        "D26:10",
+        "D26:12"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:10",
+        "session 26 dia_id D26:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-48-qa-078",
+      "cat": 2,
+      "q": "Where did Jolene and her partner spend most of September 2023?",
+      "evidence": [
+        "D2:1"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-079",
+      "cat": 1,
+      "q": "Has Deborah tried surfing?",
+      "evidence": [
+        "D28:11",
+        "D29:25"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:11",
+        "session 29 dia_id D29:25"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-48-qa-081",
+      "cat": 2,
+      "q": "When did the Deboran and Jolene agree to go surfing?",
+      "evidence": [
+        "D29:34"
+      ],
+      "resolve": [
+        "session 29 dia_id D29:34"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-088",
+      "cat": 1,
+      "q": "What activities does Deborah pursue besides practicing and teaching yoga?",
+      "evidence": [
+        "D12:1",
+        "D15:1",
+        "D15:11",
+        "D28:11",
+        "D29:1"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:1",
+        "session 15 dia_id D15:1",
+        "session 15 dia_id D15:11",
+        "session 28 dia_id D28:11",
+        "session 29 dia_id D29:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 5
+    },
+    {
+      "qid": "conv-48-qa-099",
+      "cat": 4,
+      "q": "What do Deborah and Jolene plan to try when they meet in a new cafe?",
+      "evidence": [
+        "D26:10",
+        "D26:12"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:10",
+        "session 26 dia_id D26:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-48-qa-101",
+      "cat": 4,
+      "q": "When did Jolene buy her pet snake?",
+      "evidence": [
+        "D2:24"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:24"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-103",
+      "cat": 4,
+      "q": "Where did Deborah meet her new neighbor Anna?",
+      "evidence": [
+        "D3:6"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-117",
+      "cat": 4,
+      "q": "What did Deb share a photo of, which brought a smile to Jolene's face?",
+      "evidence": [
+        "D8:22"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:22"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-139",
+      "cat": 4,
+      "q": "Why did Jolene decide to get a snake as a pet?",
+      "evidence": [
+        "D15:18"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-141",
+      "cat": 4,
+      "q": "What activity does Deborah do with her cats?",
+      "evidence": [
+        "D15:27"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:27"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-155",
+      "cat": 4,
+      "q": "What habits does Jolene practice to feel balanced?",
+      "evidence": [
+        "D20:12"
+      ],
+      "resolve": [
+        "session 20 dia_id D20:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-168",
+      "cat": 4,
+      "q": "Why did Jolene get the new plant on 30 August, 2023?",
+      "evidence": [
+        "D23:29"
+      ],
+      "resolve": [
+        "session 23 dia_id D23:29"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-182",
+      "cat": 4,
+      "q": "What does yoga on the beach provide for Deborah?",
+      "evidence": [
+        "D28:15"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-188",
+      "cat": 4,
+      "q": "What outdoor activity did Jolene suggest doing together with Deborah?",
+      "evidence": [
+        "D29:27"
+      ],
+      "resolve": [
+        "session 29 dia_id D29:27"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-019",
+      "cat": 3,
+      "q": "Considering their conversations and personal growth, what advice might Evan and Sam give to someone facing a major life transition or challenge?",
+      "evidence": [
+        "D3:10",
+        "D3:15",
+        "D22:1",
+        "D8:17",
+        "D8:22",
+        "D9:8",
+        "D9:11",
+        "D14:7",
+        "D14:12",
+        "D12:7",
+        "D12:11"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:10",
+        "session 3 dia_id D3:15",
+        "session 22 dia_id D22:1",
+        "session 8 dia_id D8:17",
+        "session 8 dia_id D8:22",
+        "session 9 dia_id D9:8",
+        "session 9 dia_id D9:11",
+        "session 14 dia_id D14:7",
+        "session 14 dia_id D14:12",
+        "session 12 dia_id D12:7",
+        "session 12 dia_id D12:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 11
+    },
+    {
+      "qid": "conv-49-qa-022",
+      "cat": 2,
+      "q": "When Evan did meet his future wife?",
+      "evidence": [
+        "D5:1"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-024",
+      "cat": 2,
+      "q": "What significant event happened in Sam's life towards the end of summer 2023?",
+      "evidence": [
+        "D5:1"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-025",
+      "cat": 2,
+      "q": "Which year did Evan start taking care of his health seriously?",
+      "evidence": [
+        "D5:6",
+        "D5:7"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:6",
+        "session 5 dia_id D5:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-49-qa-027",
+      "cat": 3,
+      "q": "What electronic device could Evan gift Sam to help him keep up with his fitness goals?",
+      "evidence": [
+        "D5:7"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-031",
+      "cat": 3,
+      "q": "How might Evan and Sam's experiences with health and lifestyle changes influence their approach to stress and challenges?",
+      "evidence": [
+        "D9:1 D4:4 D4:6"
+      ],
+      "resolve": [
+        "compound id; D9:1: session 9 dia_id D9:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-032",
+      "cat": 1,
+      "q": "What recurring frustration does Evan experience?",
+      "evidence": [
+        "D6:13",
+        "D21:20"
+      ],
+      "resolve": [
+        "session 6 dia_id D6:13",
+        "session 21 dia_id D21:20"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-49-qa-038",
+      "cat": 3,
+      "q": "What role does nature and the outdoors play in Evan and Sam's mental well-being?",
+      "evidence": [
+        "D22:1 D22:2 D9:10 D9:11"
+      ],
+      "resolve": [
+        "compound id; D22:1: session 22 dia_id D22:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-045",
+      "cat": 2,
+      "q": "Which places in Canada was Evan visiting in July 2023?",
+      "evidence": [
+        "D8:27",
+        "D9:8",
+        "D9:10"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:27",
+        "session 9 dia_id D9:8",
+        "session 9 dia_id D9:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-49-qa-046",
+      "cat": 3,
+      "q": "How do Evan and Sam use creative outlets to cope with life's challenges?",
+      "evidence": [
+        "D21:18 D21:22 D11:15 D11:19"
+      ],
+      "resolve": [
+        "compound id; D21:18: session 21 dia_id D21:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-051",
+      "cat": 3,
+      "q": "What challenges does Sam face in his quest for a healthier lifestyle, and how does he address them?",
+      "evidence": [
+        "D4:2",
+        "D4:6",
+        "D14:1",
+        "D14:2"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:2",
+        "session 4 dia_id D4:6",
+        "session 14 dia_id D14:1",
+        "session 14 dia_id D14:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-49-qa-060",
+      "cat": 2,
+      "q": "Which new activity does Sam take up in October 2023?",
+      "evidence": [
+        "D13:8"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-063",
+      "cat": 2,
+      "q": "When was Sam in the ER?",
+      "evidence": [
+        "D14:1"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-068",
+      "cat": 2,
+      "q": "What was Sam doing on December 4, 2023?",
+      "evidence": [
+        "D18:6"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-071",
+      "cat": 3,
+      "q": "Which major holiday season conincides with Evan's wedding?",
+      "evidence": [
+        "D21:2"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-076",
+      "cat": 2,
+      "q": "When did Evan finish the painting that's hanging in the exhibit?",
+      "evidence": [
+        "D20:13",
+        "D20:15"
+      ],
+      "resolve": [
+        "session 20 dia_id D20:13",
+        "session 20 dia_id D20:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-49-qa-077",
+      "cat": 1,
+      "q": "How does Evan spend his time with his bride after the wedding?",
+      "evidence": [
+        "D23:15",
+        "D23:23",
+        "D23:25",
+        "D24:9"
+      ],
+      "resolve": [
+        "session 23 dia_id D23:15",
+        "session 23 dia_id D23:23",
+        "session 23 dia_id D23:25",
+        "session 24 dia_id D24:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-49-qa-091",
+      "cat": 4,
+      "q": "What did Sam agree to try instead of soda and candy?",
+      "evidence": [
+        "D3:6"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-095",
+      "cat": 4,
+      "q": "What does the smartwatch help Evan with?",
+      "evidence": [
+        "D5:9"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-109",
+      "cat": 4,
+      "q": "What fun activity did Evan mention doing in July 2023?",
+      "evidence": [
+        "D8:26"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:26"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-110",
+      "cat": 4,
+      "q": "What injury did Evan suffer from in August 2023?",
+      "evidence": [
+        "D9:2"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-112",
+      "cat": 4,
+      "q": "What suggestion did Sam give to Evan to help with his knee issue?",
+      "evidence": [
+        "D9:5"
+      ],
+      "resolve": [
+        "session 9 dia_id D9:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-122",
+      "cat": 4,
+      "q": "What digestive issue did Sam experience lately?",
+      "evidence": [
+        "D14:1"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-130",
+      "cat": 4,
+      "q": "How did Sam suggest Evan view the setback with his broken Prius?",
+      "evidence": [
+        "D18:5"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-004",
+      "cat": 3,
+      "q": "Which country do Calvin and Dave want to meet in?",
+      "evidence": [
+        "D3:9",
+        "D3:10"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:9",
+        "session 3 dia_id D3:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-50-qa-011",
+      "cat": 1,
+      "q": "What mishaps has Calvin run into?",
+      "evidence": [
+        "D6:1",
+        "D9:1"
+      ],
+      "resolve": [
+        "session 6 dia_id D6:1",
+        "session 9 dia_id D9:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-50-qa-020",
+      "cat": 1,
+      "q": "Who inspired Dave's passion for car engineering?",
+      "evidence": [
+        "D12:2",
+        "D12:4",
+        "D26:6"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:2",
+        "session 12 dia_id D12:4",
+        "session 26 dia_id D26:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-50-qa-023",
+      "cat": 1,
+      "q": "What is Dave's main passion?",
+      "evidence": [
+        "D13:3",
+        "D5:5",
+        "D4:5",
+        "D3:12"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:3",
+        "session 5 dia_id D5:5",
+        "session 4 dia_id D4:5",
+        "session 3 dia_id D3:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-50-qa-029",
+      "cat": 1,
+      "q": "What are Dave's hobbies other than fixing cars?",
+      "evidence": [
+        "D5:9",
+        "D5:11",
+        "D8:8",
+        "D27:2"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:9",
+        "session 5 dia_id D5:11",
+        "session 8 dia_id D8:8",
+        "session 27 dia_id D27:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-50-qa-045",
+      "cat": 1,
+      "q": "What shared activities do Dave and Calvin have?",
+      "evidence": [
+        "D21:3",
+        "D21:4"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:3",
+        "session 21 dia_id D21:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-50-qa-046",
+      "cat": 1,
+      "q": "What is Dave's favorite activity?",
+      "evidence": [
+        "D21:4",
+        "D22:7",
+        "D19:7"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:4",
+        "session 22 dia_id D22:7",
+        "session 19 dia_id D19:7"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-50-qa-052",
+      "cat": 2,
+      "q": "When did Calvin plan on travelling to Tokyo the second time?",
+      "evidence": [
+        "D24:17"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:17"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-056",
+      "cat": 1,
+      "q": "Which cities did Dave travel to in 2023?",
+      "evidence": [
+        "D14:1",
+        "D26:2"
+      ],
+      "resolve": [
+        "session 14 dia_id D14:1",
+        "session 26 dia_id D26:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-50-qa-067",
+      "cat": 2,
+      "q": "Where was Calvin located in the last week of October 2023?",
+      "evidence": [
+        "D28:1"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-068",
+      "cat": 2,
+      "q": "When did Dave find the car he repaired and started sharing in his blog?",
+      "evidence": [
+        "D28:20"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:20"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-079",
+      "cat": 4,
+      "q": "What does Dave do when he feels his creativity is frozen?",
+      "evidence": [
+        "D5:11"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-080",
+      "cat": 4,
+      "q": "How does Calvin plan to jumpstart his inspiration?",
+      "evidence": [
+        "D5:11"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-097",
+      "cat": 4,
+      "q": "What does Dave say is important for making his custom cars unique?",
+      "evidence": [
+        "D13:11"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-102",
+      "cat": 4,
+      "q": "Where did Calvin start shooting a video for his new album?",
+      "evidence": [
+        "D16:8"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-103",
+      "cat": 4,
+      "q": "What design is featured on Calvin's guitar?",
+      "evidence": [
+        "D16:14"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-117",
+      "cat": 4,
+      "q": "What does Dave find satisfying about restoring old cars?",
+      "evidence": [
+        "D21:10"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-119",
+      "cat": 4,
+      "q": "What does working on cars represent for Dave?",
+      "evidence": [
+        "D22:5"
+      ],
+      "resolve": [
+        "session 22 dia_id D22:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-120",
+      "cat": 4,
+      "q": "What does Dave aim to do with his passion for cars?",
+      "evidence": [
+        "D22:5"
+      ],
+      "resolve": [
+        "session 22 dia_id D22:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-124",
+      "cat": 4,
+      "q": "What activity does Dave find fulfilling, similar to Calvin's passion for music festivals?",
+      "evidence": [
+        "D23:11"
+      ],
+      "resolve": [
+        "session 23 dia_id D23:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-125",
+      "cat": 4,
+      "q": "Where did Calvin and Dave meet Frank Ocean to start collaborating?",
+      "evidence": [
+        "D24:5"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-130",
+      "cat": 4,
+      "q": "How does Calvin balance his job and personal life?",
+      "evidence": [
+        "D25:4"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-139",
+      "cat": 4,
+      "q": "What realization did the nightclub experience bring to Calvin?",
+      "evidence": [
+        "D26:9"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-140",
+      "cat": 4,
+      "q": "What do Dave and Calvin agree on regarding their pursuits?",
+      "evidence": [
+        "D26:11"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-146",
+      "cat": 4,
+      "q": "What type of music has Dave been getting into lately?",
+      "evidence": [
+        "D28:40"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:40"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-151",
+      "cat": 4,
+      "q": "What hobby did Calvin take up recently?",
+      "evidence": [
+        "D30:1"
+      ],
+      "resolve": [
+        "session 30 dia_id D30:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-157",
+      "cat": 4,
+      "q": "What positive impact does Calvin mention nature has on tough times?",
+      "evidence": [
+        "D30:12"
+      ],
+      "resolve": [
+        "session 30 dia_id D30:12"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [],
+      "n_ev": 1
+    }
+  ],
+  "label_absent_content_present": [
+    {
+      "qid": "conv-26-qa-037",
+      "cat": 1,
+      "q": "What did Melanie paint recently?",
+      "evidence": [
+        "D8:6; D9:17"
+      ],
+      "resolve": [
+        "compound id; D8:6: session 8 dia_id D8:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D8:6; D9:17"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-072",
+      "cat": 2,
+      "q": "When did Melanie's friend adopt a child?",
+      "evidence": [
+        "D17:3"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D17:3"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-089",
+      "cat": 4,
+      "q": "What does Melanie think about Caroline's decision to adopt?",
+      "evidence": [
+        "D2:15"
+      ],
+      "resolve": [
+        "session 2 dia_id D2:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D2:15"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-094",
+      "cat": 4,
+      "q": "What is Melanie's hand-painted bowl a reminder of?",
+      "evidence": [
+        "D4:5"
+      ],
+      "resolve": [
+        "session 4 dia_id D4:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D4:5"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-26-qa-139",
+      "cat": 4,
+      "q": "What was the poetry reading that Caroline attended about?",
+      "evidence": [
+        "D17:18"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D17:18"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-036",
+      "cat": 2,
+      "q": "When did Jon and Gina decide to collaborate to create dance content?",
+      "evidence": [
+        "D18:18"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:18"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D18:18"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-050",
+      "cat": 4,
+      "q": "What did Jon say about Gina's progress with her store?",
+      "evidence": [
+        "D3:3"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:3"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D3:3"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-30-qa-057",
+      "cat": 4,
+      "q": "What advice does Gina give to Jon about running a successful business?",
+      "evidence": [
+        "D7:5"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D7:5"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-005",
+      "cat": 2,
+      "q": "When did Maria go to the beach?",
+      "evidence": [
+        "D3:15"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D3:15"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-41-qa-136",
+      "cat": 4,
+      "q": "What does John believe is important for children regarding veterans?",
+      "evidence": [
+        "D27:13"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:13"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:13"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-054",
+      "cat": 2,
+      "q": "When was Joanna's second movie script shown on the big screens?",
+      "evidence": [
+        "D25:1"
+      ],
+      "resolve": [
+        "session 25 dia_id D25:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D25:1"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-061",
+      "cat": 1,
+      "q": "What mediums does Nate use to play games?",
+      "evidence": [
+        "D22:2",
+        "D27:21",
+        "D27:15"
+      ],
+      "resolve": [
+        "session 22 dia_id D22:2",
+        "session 27 dia_id D27:21",
+        "session 27 dia_id D27:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:15"
+      ],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-42-qa-122",
+      "cat": 4,
+      "q": "What did Nate do for Joanna on 25 May, 2022?",
+      "evidence": [
+        "D13:9"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D13:9"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-123",
+      "cat": 4,
+      "q": "How does Nate describe the stuffed animal he got for Joanna?",
+      "evidence": [
+        "D13:11"
+      ],
+      "resolve": [
+        "session 13 dia_id D13:11"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D13:11"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-172",
+      "cat": 4,
+      "q": "How does Nate feel about Joanna's ability to bounce back from setbacks?",
+      "evidence": [
+        "D24:15"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:15"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D24:15"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-42-qa-184",
+      "cat": 4,
+      "q": "What did Joanna receive from her brother that brought back childhood memories?",
+      "evidence": [
+        "D27:29"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:29"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:29"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-059",
+      "cat": 1,
+      "q": "Which career-high performances did John achieve in 2023?",
+      "evidence": [
+        "D3:1",
+        "D23:2"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:1",
+        "session 23 dia_id D23:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D23:2"
+      ],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-43-qa-060",
+      "cat": 2,
+      "q": "When did John achieve a career-high assist performance?",
+      "evidence": [
+        "D23:2"
+      ],
+      "resolve": [
+        "session 23 dia_id D23:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D23:2"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-086",
+      "cat": 4,
+      "q": "What did John share with the person he skyped about?",
+      "evidence": [
+        "D5:1"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D5:1"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-107",
+      "cat": 4,
+      "q": "What city did Tim suggest to John for the team trip next month?",
+      "evidence": [
+        "D11:10"
+      ],
+      "resolve": [
+        "session 11 dia_id D11:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D11:10"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-165",
+      "cat": 4,
+      "q": "What book did Tim get in Italy that inspired him to cook?",
+      "evidence": [
+        "D27:4"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:4"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:4"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-166",
+      "cat": 4,
+      "q": "What is John's favorite book series?",
+      "evidence": [
+        "D27:19"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:19"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-43-qa-168",
+      "cat": 4,
+      "q": "Why does John like Aragorn from Lord of the Rings?",
+      "evidence": [
+        "D27:30"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:30"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:30"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-44-qa-044",
+      "cat": 3,
+      "q": "Which national park could Audrey and Andrew be referring to in their conversations?",
+      "evidence": [
+        "D5:8",
+        "D11:9"
+      ],
+      "resolve": [
+        "session 5 dia_id D5:8",
+        "session 11 dia_id D11:9"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D5:8"
+      ],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-44-qa-088",
+      "cat": 4,
+      "q": "What advice did Audrey give to Andrew regarding grooming Toby?",
+      "evidence": [
+        "D16:8"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D16:8"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-47-qa-020",
+      "cat": 1,
+      "q": "How many charity tournaments has John organized till date?",
+      "evidence": [
+        "D10:2",
+        "D29:1"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:2",
+        "session 29 dia_id D29:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D29:1"
+      ],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-47-qa-037",
+      "cat": 2,
+      "q": "When did John spend time with his sister and dogs?",
+      "evidence": [
+        "D17:28"
+      ],
+      "resolve": [
+        "session 17 dia_id D17:28"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D17:28"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-000",
+      "cat": 2,
+      "q": "What kind of project was Jolene working on in the beginning of January 2023?",
+      "evidence": [
+        "D1:2"
+      ],
+      "resolve": [
+        "session 1 dia_id D1:2"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D1:2"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-102",
+      "cat": 4,
+      "q": "What project was Jolene working on as of 1 February, 2023?",
+      "evidence": [
+        "D3:1"
+      ],
+      "resolve": [
+        "session 3 dia_id D3:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D3:1"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-116",
+      "cat": 4,
+      "q": "According to Jolene, what does exercise help her to feel?",
+      "evidence": [
+        "D7:20"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:20"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D7:20"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-48-qa-120",
+      "cat": 4,
+      "q": "What did Jolene and Deb discuss as a helpful strategy for studying and time management?",
+      "evidence": [
+        "D8:19"
+      ],
+      "resolve": [
+        "session 8 dia_id D8:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D8:19"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-036",
+      "cat": 1,
+      "q": "What kind of foods or recipes has Sam recommended to Evan?",
+      "evidence": [
+        "D7:8",
+        "D8:7",
+        "D23:26"
+      ],
+      "resolve": [
+        "session 7 dia_id D7:8",
+        "session 8 dia_id D8:7",
+        "session 23 dia_id D23:26"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D8:7"
+      ],
+      "n_ev": 3
+    },
+    {
+      "qid": "conv-49-qa-113",
+      "cat": 4,
+      "q": "What did Evan suggest Sam try as a calming hobby?",
+      "evidence": [
+        "D10:8"
+      ],
+      "resolve": [
+        "session 10 dia_id D10:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D10:8"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-125",
+      "cat": 4,
+      "q": "How did Evan start his transformation journey two years ago?",
+      "evidence": [
+        "D15:8"
+      ],
+      "resolve": [
+        "session 15 dia_id D15:8"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D15:8"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-132",
+      "cat": 4,
+      "q": "What did Sam offer Evan regarding yoga?",
+      "evidence": [
+        "D18:10"
+      ],
+      "resolve": [
+        "session 18 dia_id D18:10"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D18:10"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-49-qa-139",
+      "cat": 4,
+      "q": "What did Sam suggest Evan should do with his keys?",
+      "evidence": [
+        "D21:21"
+      ],
+      "resolve": [
+        "session 21 dia_id D21:21"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D21:21"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-041",
+      "cat": 1,
+      "q": "Which of their family member do Calvin and Dave have nostalgic memories about?",
+      "evidence": [
+        "D12:2",
+        "D20:6"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:2",
+        "session 20 dia_id D20:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D12:2"
+      ],
+      "n_ev": 2
+    },
+    {
+      "qid": "conv-50-qa-063",
+      "cat": 1,
+      "q": "What style of guitars does Calvin own?",
+      "evidence": [
+        "D16:13",
+        "D16:4",
+        "D16:18",
+        "D16:19"
+      ],
+      "resolve": [
+        "session 16 dia_id D16:13",
+        "session 16 dia_id D16:4",
+        "session 16 dia_id D16:18",
+        "session 16 dia_id D16:19"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D16:19"
+      ],
+      "n_ev": 4
+    },
+    {
+      "qid": "conv-50-qa-065",
+      "cat": 2,
+      "q": "When did Dave take a photo of a Boston clock tower?",
+      "evidence": [
+        "D27:6"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:6"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-069",
+      "cat": 2,
+      "q": "When did Dave buy a vintage camera?",
+      "evidence": [
+        "D30:05"
+      ],
+      "resolve": [
+        "session 30 dia_id D30:5"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D30:05"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-070",
+      "cat": 2,
+      "q": "When did Calvin attend a gala in Boston?",
+      "evidence": [
+        "D30:1"
+      ],
+      "resolve": [
+        "session 30 dia_id D30:1"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D30:1"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-093",
+      "cat": 4,
+      "q": "What is Dave's advice to Calvin regarding his dreams?",
+      "evidence": [
+        "D12:14"
+      ],
+      "resolve": [
+        "session 12 dia_id D12:14"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D12:14"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-128",
+      "cat": 4,
+      "q": "What dish does Dave recommend Calvin to try in Tokyo?",
+      "evidence": [
+        "D24:20"
+      ],
+      "resolve": [
+        "session 24 dia_id D24:20"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D24:20"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-137",
+      "cat": 4,
+      "q": "When did Calvin first get interested in cars?",
+      "evidence": [
+        "D26:6"
+      ],
+      "resolve": [
+        "session 26 dia_id D26:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D26:6"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-141",
+      "cat": 4,
+      "q": "Which city is featured in the photograph Dave showed Calvin?",
+      "evidence": [
+        "D27:6"
+      ],
+      "resolve": [
+        "session 27 dia_id D27:6"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D27:6"
+      ],
+      "n_ev": 1
+    },
+    {
+      "qid": "conv-50-qa-147",
+      "cat": 4,
+      "q": "What tools does Calvin use to boost his motivation for music?",
+      "evidence": [
+        "D28:34"
+      ],
+      "resolve": [
+        "session 28 dia_id D28:34"
+      ],
+      "label_in_ctx": [],
+      "content_in_ctx": [
+        "D28:34"
+      ],
+      "n_ev": 1
+    }
+  ]
+}

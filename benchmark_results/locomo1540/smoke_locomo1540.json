@@ -1,0 +1,80 @@
+{
+  "tag": "smoke_locomo1540",
+  "model": "qwen2.5-coder:7b",
+  "n_questions": 5,
+  "overall_accuracy": 80.0,
+  "categories": {
+    "Temporal": {
+      "acc": 1.0,
+      "corr": 2,
+      "tot": 2
+    },
+    "Open-Domain": {
+      "acc": 1.0,
+      "corr": 1,
+      "tot": 1
+    },
+    "Multi-Hop": {
+      "acc": 0.5,
+      "corr": 1,
+      "tot": 2
+    }
+  },
+  "results": [
+    {
+      "question_id": "conv-26-qa-000",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "prediction": "7 May 2023",
+      "is_correct": true,
+      "oracle_recall": true,
+      "tokens": 1717,
+      "latency_ms": 2752.3405000000025
+    },
+    {
+      "question_id": "conv-26-qa-001",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "prediction": "2022",
+      "is_correct": true,
+      "oracle_recall": true,
+      "tokens": 1304,
+      "latency_ms": 340.5616000000009
+    },
+    {
+      "question_id": "conv-26-qa-002",
+      "category": 3,
+      "question": "What fields would Caroline be likely to pursue in her educaton?",
+      "ground_truth": "Psychology, counseling certification",
+      "prediction": "Counseling and mental health",
+      "is_correct": true,
+      "oracle_recall": true,
+      "tokens": 1649,
+      "latency_ms": 379.43070000000034
+    },
+    {
+      "question_id": "conv-26-qa-003",
+      "category": 1,
+      "question": "What did Caroline research?",
+      "ground_truth": "Adoption agencies",
+      "prediction": "Caroline researched adoption agencies.",
+      "is_correct": true,
+      "oracle_recall": true,
+      "tokens": 1461,
+      "latency_ms": 388.4428000000071
+    },
+    {
+      "question_id": "conv-26-qa-004",
+      "category": 1,
+      "question": "What is Caroline's identity?",
+      "ground_truth": "Transgender woman",
+      "prediction": "Caroline identifies as trans.",
+      "is_correct": false,
+      "oracle_recall": false,
+      "tokens": 1572,
+      "latency_ms": 396.1646999999857
+    }
+  ]
+}

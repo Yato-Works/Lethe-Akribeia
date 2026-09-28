@@ -1,0 +1,2004 @@
+{
+ "results": [
+  {
+   "question_id": "conv-49-qa-024",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1341,
+   "latency_ms": 1920.9205999941332
+  },
+  {
+   "question_id": "conv-49-qa-025",
+   "category": 2,
+   "predicted_answer": "2023",
+   "is_correct": false,
+   "tokens_used": 1624,
+   "latency_ms": 2220.3699000092456
+  },
+  {
+   "question_id": "conv-49-qa-026",
+   "category": 1,
+   "predicted_answer": "Family",
+   "is_correct": true,
+   "tokens_used": 1460,
+   "latency_ms": 2174.379099989892
+  },
+  {
+   "question_id": "conv-49-qa-027",
+   "category": 3,
+   "predicted_answer": "A fitness tracker",
+   "is_correct": true,
+   "tokens_used": 1503,
+   "latency_ms": 2030.3635000018403
+  },
+  {
+   "question_id": "conv-49-qa-028",
+   "category": 1,
+   "predicted_answer": "Writing in his journal and doing creative writing",
+   "is_correct": true,
+   "tokens_used": 1327,
+   "latency_ms": 2237.0329999976093
+  },
+  {
+   "question_id": "conv-49-qa-029",
+   "category": 1,
+   "predicted_answer": "Evan met an awesome Canadian woman on his trip to Canada, and he came back from Canada with his new SO.",
+   "is_correct": true,
+   "tokens_used": 1354,
+   "latency_ms": 2508.3325000014156
+  },
+  {
+   "question_id": "conv-49-qa-030",
+   "category": 2,
+   "predicted_answer": "13 August 2023",
+   "is_correct": true,
+   "tokens_used": 1484,
+   "latency_ms": 2390.752799998154
+  },
+  {
+   "question_id": "conv-49-qa-031",
+   "category": 3,
+   "predicted_answer": "Both Evan and Sam have faced health challenges and have made significant lifestyle changes as a result. These experiences have likely made them more resilient and better equipped to handle stress and challenges. They may be more mindful of their health and well-being, and have developed healthier coping mechanisms, such as exercise, meditation, and creative activities like painting. Their shared experiences may also foster a sense of community and support, helping them to feel less alone in their efforts to improve their health and manage stress.",
+   "is_correct": true,
+   "tokens_used": 1361,
+   "latency_ms": 4699.711299996125
+  },
+  {
+   "question_id": "conv-49-qa-032",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1348,
+   "latency_ms": 2308.072700005141
+  },
+  {
+   "question_id": "conv-49-qa-033",
+   "category": 1,
+   "predicted_answer": "Flying over skyscrapers",
+   "is_correct": true,
+   "tokens_used": 1227,
+   "latency_ms": 1795.8107000013115
+  },
+  {
+   "question_id": "conv-49-qa-034",
+   "category": 1,
+   "predicted_answer": "Soccer accident, bike accident",
+   "is_correct": false,
+   "tokens_used": 1425,
+   "latency_ms": 2067.985100002261
+  },
+  {
+   "question_id": "conv-49-qa-035",
+   "category": 2,
+   "predicted_answer": "The Saturday before 15 August 2023",
+   "is_correct": true,
+   "tokens_used": 1246,
+   "latency_ms": 2279.1078000009293
+  },
+  {
+   "question_id": "conv-49-qa-036",
+   "category": 1,
+   "predicted_answer": "Grilled chicken and veggie stir-fry, homemade sauce, healthy recipes, painting classes, writing, hiking, Prius, healthy eating, before-and-after photos, and cookies.",
+   "is_correct": true,
+   "tokens_used": 1354,
+   "latency_ms": 3046.186799998395
+  },
+  {
+   "question_id": "conv-49-qa-037",
+   "category": 1,
+   "predicted_answer": "Grilled chicken and veggie stir-fry",
+   "is_correct": true,
+   "tokens_used": 1372,
+   "latency_ms": 2105.066500007524
+  },
+  {
+   "question_id": "conv-49-qa-038",
+   "category": 3,
+   "predicted_answer": "Nature and the outdoors play a significant role in Evan and Sam's mental well-being. They both enjoy activities like hiking, biking, and swimming, which help them relax and find peace. Evan mentions that spending time in nature helps him feel more joyful and free, while Sam appreciates the tranquility and refreshing qualities of nature.",
+   "is_correct": true,
+   "tokens_used": 1361,
+   "latency_ms": 3978.475800002343
+  },
+  {
+   "question_id": "conv-49-qa-039",
+   "category": 2,
+   "predicted_answer": "1 month",
+   "is_correct": false,
+   "tokens_used": 2786,
+   "latency_ms": 3982.690699995146
+  },
+  {
+   "question_id": "conv-49-qa-040",
+   "category": 2,
+   "predicted_answer": "The week before 6 October 2023",
+   "is_correct": false,
+   "tokens_used": 1380,
+   "latency_ms": 2213.573200002429
+  },
+  {
+   "question_id": "conv-49-qa-041",
+   "category": 2,
+   "predicted_answer": "Evan joined painting classes in mid-August 2023.",
+   "is_correct": true,
+   "tokens_used": 1368,
+   "latency_ms": 2273.8358000060543
+  },
+  {
+   "question_id": "conv-49-qa-042",
+   "category": 1,
+   "predicted_answer": "My friend got me into it and gave me some advice, and I was hooked right away!",
+   "is_correct": true,
+   "tokens_used": 773,
+   "latency_ms": 1846.7621999880066
+  },
+  {
+   "question_id": "conv-49-qa-043",
+   "category": 3,
+   "predicted_answer": "Not enough information",
+   "is_correct": false,
+   "tokens_used": 1295,
+   "latency_ms": 2143.453099997714
+  },
+  {
+   "question_id": "conv-49-qa-044",
+   "category": 1,
+   "predicted_answer": "Landscapes",
+   "is_correct": true,
+   "tokens_used": 1343,
+   "latency_ms": 2114.5498000114458
+  },
+  {
+   "question_id": "conv-49-qa-045",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1091,
+   "latency_ms": 1962.1829000097932
+  },
+  {
+   "question_id": "conv-49-qa-046",
+   "category": 3,
+   "predicted_answer": "Evan and Sam use creative outlets like painting, writing in a journal, and trying new recipes to cope with life's challenges.",
+   "is_correct": true,
+   "tokens_used": 1496,
+   "latency_ms": 3030.352900008438
+  },
+  {
+   "question_id": "conv-49-qa-047",
+   "category": 2,
+   "predicted_answer": "The week before 9 June 2023",
+   "is_correct": false,
+   "tokens_used": 1311,
+   "latency_ms": 2309.7194000001764
+  },
+  {
+   "question_id": "conv-49-qa-048",
+   "category": 1,
+   "predicted_answer": "Reducing soda and candy intake, starting a new diet and exercise routine, and making healthier food choices.",
+   "is_correct": true,
+   "tokens_used": 1167,
+   "latency_ms": 2376.0167000000365
+  },
+  {
+   "question_id": "conv-49-qa-049",
+   "category": 1,
+   "predicted_answer": "Evan's knee was injured.",
+   "is_correct": false,
+   "tokens_used": 1293,
+   "latency_ms": 1909.6178999898257
+  },
+  {
+   "question_id": "conv-49-qa-050",
+   "category": 1,
+   "predicted_answer": "Watercolor painting",
+   "is_correct": false,
+   "tokens_used": 1260,
+   "latency_ms": 1765.95489999454
+  },
+  {
+   "question_id": "conv-49-qa-051",
+   "category": 3,
+   "predicted_answer": "Cravings for sugary drinks and snacks, setbacks like a health scare and knee injury. Sam addresses these by staying motivated, making small changes, and celebrating progress.",
+   "is_correct": true,
+   "tokens_used": 1254,
+   "latency_ms": 2970.1699999859557
+  },
+  {
+   "question_id": "conv-49-qa-052",
+   "category": 2,
+   "predicted_answer": "Painting session",
+   "is_correct": true,
+   "tokens_used": 1336,
+   "latency_ms": 2144.8987999901874
+  },
+  {
+   "question_id": "conv-49-qa-053",
+   "category": 2,
+   "predicted_answer": "The week before 6 October 2023",
+   "is_correct": false,
+   "tokens_used": 1254,
+   "latency_ms": 2029.8758999997517
+  },
+  {
+   "question_id": "conv-49-qa-054",
+   "category": 1,
+   "predicted_answer": "Heart palpitation incident, setback playing basketball",
+   "is_correct": false,
+   "tokens_used": 1486,
+   "latency_ms": 2350.7092999934684
+  },
+  {
+   "question_id": "conv-49-qa-055",
+   "category": 1,
+   "predicted_answer": "Helping lost tourists",
+   "is_correct": true,
+   "tokens_used": 1376,
+   "latency_ms": 1949.7984000045108
+  },
+  {
+   "question_id": "conv-49-qa-056",
+   "category": 1,
+   "predicted_answer": "Navigation app malfunctioning",
+   "is_correct": true,
+   "tokens_used": 1214,
+   "latency_ms": 1779.2790999956196
+  },
+  {
+   "question_id": "conv-49-qa-057",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1265,
+   "latency_ms": 2140.19369999005
+  },
+  {
+   "question_id": "conv-49-qa-058",
+   "category": 2,
+   "predicted_answer": "One year ago",
+   "is_correct": false,
+   "tokens_used": 1529,
+   "latency_ms": 2257.66350000049
+  },
+  {
+   "question_id": "conv-49-qa-059",
+   "category": 2,
+   "predicted_answer": "14 October 2023",
+   "is_correct": true,
+   "tokens_used": 1127,
+   "latency_ms": 1816.5154999878723
+  },
+  {
+   "question_id": "conv-49-qa-060",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1246,
+   "latency_ms": 1857.1580999996513
+  },
+  {
+   "question_id": "conv-49-qa-061",
+   "category": 2,
+   "predicted_answer": "Work stress",
+   "is_correct": false,
+   "tokens_used": 1328,
+   "latency_ms": 1824.4887000037124
+  },
+  {
+   "question_id": "conv-49-qa-062",
+   "category": 1,
+   "predicted_answer": "Health scare on 6 June 2023, health scare on 17 October 2023",
+   "is_correct": false,
+   "tokens_used": 1549,
+   "latency_ms": 2873.5752000065986
+  },
+  {
+   "question_id": "conv-49-qa-063",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1117,
+   "latency_ms": 1890.2097000100184
+  },
+  {
+   "question_id": "conv-49-qa-064",
+   "category": 1,
+   "predicted_answer": "Serious health risk",
+   "is_correct": false,
+   "tokens_used": 1151,
+   "latency_ms": 1911.936299991794
+  },
+  {
+   "question_id": "conv-49-qa-065",
+   "category": 3,
+   "predicted_answer": "Beach",
+   "is_correct": true,
+   "tokens_used": 1371,
+   "latency_ms": 2184.5158000069205
+  },
+  {
+   "question_id": "conv-49-qa-066",
+   "category": 2,
+   "predicted_answer": "October 2023",
+   "is_correct": false,
+   "tokens_used": 1375,
+   "latency_ms": 2241.916899991338
+  },
+  {
+   "question_id": "conv-49-qa-067",
+   "category": 2,
+   "predicted_answer": "The week before 9 December 2023",
+   "is_correct": true,
+   "tokens_used": 1304,
+   "latency_ms": 2046.3285000005271
+  },
+  {
+   "question_id": "conv-49-qa-068",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1310,
+   "latency_ms": 1858.1817999947816
+  },
+  {
+   "question_id": "conv-49-qa-069",
+   "category": 1,
+   "predicted_answer": "Evan's son's accident, his partner's pregnancy",
+   "is_correct": false,
+   "tokens_used": 1285,
+   "latency_ms": 2239.0076000010595
+  },
+  {
+   "question_id": "conv-49-qa-070",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 2960,
+   "latency_ms": 4257.221400010167
+  },
+  {
+   "question_id": "conv-49-qa-071",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1228,
+   "latency_ms": 2213.9994999888586
+  },
+  {
+   "question_id": "conv-49-qa-072",
+   "category": 1,
+   "predicted_answer": "Hiking",
+   "is_correct": true,
+   "tokens_used": 1188,
+   "latency_ms": 1941.1336000048323
+  },
+  {
+   "question_id": "conv-49-qa-073",
+   "category": 2,
+   "predicted_answer": "The summer of 2024",
+   "is_correct": true,
+   "tokens_used": 1405,
+   "latency_ms": 2325.7313999929465
+  },
+  {
+   "question_id": "conv-49-qa-074",
+   "category": 2,
+   "predicted_answer": "The Tuesday before 17 December 2023",
+   "is_correct": false,
+   "tokens_used": 1360,
+   "latency_ms": 2137.035499996273
+  },
+  {
+   "question_id": "conv-49-qa-075",
+   "category": 2,
+   "predicted_answer": "5 January 2024",
+   "is_correct": true,
+   "tokens_used": 1376,
+   "latency_ms": 2005.2110999968136
+  },
+  {
+   "question_id": "conv-49-qa-076",
+   "category": 2,
+   "predicted_answer": "17 December, 2023",
+   "is_correct": false,
+   "tokens_used": 1364,
+   "latency_ms": 2039.3742000014754
+  },
+  {
+   "question_id": "conv-49-qa-077",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1344,
+   "latency_ms": 2139.9518999969587
+  },
+  {
+   "question_id": "conv-49-qa-078",
+   "category": 1,
+   "predicted_answer": "Evan told his extended family about his marriage.",
+   "is_correct": false,
+   "tokens_used": 1294,
+   "latency_ms": 2012.4144000001252
+  },
+  {
+   "question_id": "conv-49-qa-079",
+   "category": 2,
+   "predicted_answer": "February 2024",
+   "is_correct": true,
+   "tokens_used": 1340,
+   "latency_ms": 2179.089199998998
+  },
+  {
+   "question_id": "conv-49-qa-080",
+   "category": 2,
+   "predicted_answer": "9 January 2024",
+   "is_correct": false,
+   "tokens_used": 1334,
+   "latency_ms": 2023.9549999969313
+  },
+  {
+   "question_id": "conv-49-qa-081",
+   "category": 1,
+   "predicted_answer": "Painting",
+   "is_correct": false,
+   "tokens_used": 1390,
+   "latency_ms": 2136.3066000049002
+  },
+  {
+   "question_id": "conv-49-qa-082",
+   "category": 1,
+   "predicted_answer": "Painting",
+   "is_correct": false,
+   "tokens_used": 1181,
+   "latency_ms": 1731.9130999967456
+  },
+  {
+   "question_id": "conv-49-qa-083",
+   "category": 4,
+   "predicted_answer": "New Prius",
+   "is_correct": true,
+   "tokens_used": 1298,
+   "latency_ms": 2054.432099990663
+  },
+  {
+   "question_id": "conv-49-qa-084",
+   "category": 4,
+   "predicted_answer": "Evan got into watercolor painting when his friend introduced him to it and gave him some advice, which he found helpful and engaging.",
+   "is_correct": true,
+   "tokens_used": 759,
+   "latency_ms": 1823.1794000021182
+  },
+  {
+   "question_id": "conv-49-qa-085",
+   "category": 4,
+   "predicted_answer": "Evan started doing watercolor painting a few years back as a stress-buster.",
+   "is_correct": true,
+   "tokens_used": 1461,
+   "latency_ms": 2375.6993999995757
+  },
+  {
+   "question_id": "conv-49-qa-086",
+   "category": 4,
+   "predicted_answer": "Try new things until something sparks your excitement.",
+   "is_correct": true,
+   "tokens_used": 1412,
+   "latency_ms": 2110.1610000041546
+  },
+  {
+   "question_id": "conv-49-qa-087",
+   "category": 4,
+   "predicted_answer": "Jasper",
+   "is_correct": true,
+   "tokens_used": 1262,
+   "latency_ms": 1761.7820000014035
+  },
+  {
+   "question_id": "conv-49-qa-088",
+   "category": 4,
+   "predicted_answer": "Fresh air, peacefulness, and a cozy cabin surrounded by mountains and forests.",
+   "is_correct": true,
+   "tokens_used": 1344,
+   "latency_ms": 2085.565300003509
+  },
+  {
+   "question_id": "conv-49-qa-089",
+   "category": 4,
+   "predicted_answer": "Eating less processed food and sugary drinks",
+   "is_correct": false,
+   "tokens_used": 1164,
+   "latency_ms": 1908.0753000016557
+  },
+  {
+   "question_id": "conv-49-qa-090",
+   "category": 4,
+   "predicted_answer": "Flavored seltzer water",
+   "is_correct": true,
+   "tokens_used": 2766,
+   "latency_ms": 3875.219900000957
+  },
+  {
+   "question_id": "conv-49-qa-091",
+   "category": 4,
+   "predicted_answer": "Flavored seltzer water and dark chocolate with high cocoa content.",
+   "is_correct": true,
+   "tokens_used": 1279,
+   "latency_ms": 2158.4244999976363
+  },
+  {
+   "question_id": "conv-49-qa-092",
+   "category": 4,
+   "predicted_answer": "The self-checkout machines were all broken.",
+   "is_correct": true,
+   "tokens_used": 1210,
+   "latency_ms": 1895.2200999920024
+  },
+  {
+   "question_id": "conv-49-qa-093",
+   "category": 4,
+   "predicted_answer": "\"The Great Gatsby\"",
+   "is_correct": true,
+   "tokens_used": 1374,
+   "latency_ms": 1934.3687999935355
+  },
+  {
+   "question_id": "conv-49-qa-094",
+   "category": 4,
+   "predicted_answer": "Flavored seltzer water",
+   "is_correct": true,
+   "tokens_used": 2636,
+   "latency_ms": 3693.767200005823
+  },
+  {
+   "question_id": "conv-49-qa-095",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1467,
+   "latency_ms": 2029.6508000028552
+  },
+  {
+   "question_id": "conv-49-qa-096",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1427,
+   "latency_ms": 2120.8824000059394
+  },
+  {
+   "question_id": "conv-49-qa-097",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1369,
+   "latency_ms": 1938.279900001362
+  },
+  {
+   "question_id": "conv-49-qa-098",
+   "category": 4,
+   "predicted_answer": "Progress",
+   "is_correct": true,
+   "tokens_used": 1228,
+   "latency_ms": 1769.7800000023562
+  },
+  {
+   "question_id": "conv-49-qa-099",
+   "category": 4,
+   "predicted_answer": "A dream interpretation book",
+   "is_correct": true,
+   "tokens_used": 2577,
+   "latency_ms": 3683.745699992869
+  },
+  {
+   "question_id": "conv-49-qa-100",
+   "category": 4,
+   "predicted_answer": "Keys",
+   "is_correct": true,
+   "tokens_used": 1492,
+   "latency_ms": 2069.9658999947133
+  },
+  {
+   "question_id": "conv-49-qa-101",
+   "category": 4,
+   "predicted_answer": "Cooking class",
+   "is_correct": true,
+   "tokens_used": 1259,
+   "latency_ms": 1879.5683999924222
+  },
+  {
+   "question_id": "conv-49-qa-102",
+   "category": 4,
+   "predicted_answer": "Grilled chicken and veggie stir-fry",
+   "is_correct": true,
+   "tokens_used": 1301,
+   "latency_ms": 1999.179299993557
+  },
+  {
+   "question_id": "conv-49-qa-103",
+   "category": 4,
+   "predicted_answer": "Grilled chicken and veggie stir-fry recipe",
+   "is_correct": true,
+   "tokens_used": 1229,
+   "latency_ms": 1947.3395999957575
+  },
+  {
+   "question_id": "conv-49-qa-104",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1282,
+   "latency_ms": 1976.9438000075752
+  },
+  {
+   "question_id": "conv-49-qa-105",
+   "category": 4,
+   "predicted_answer": "Watercolor painting classes",
+   "is_correct": true,
+   "tokens_used": 1449,
+   "latency_ms": 1985.7192999916151
+  },
+  {
+   "question_id": "conv-49-qa-106",
+   "category": 4,
+   "predicted_answer": "Evan started painting years ago after receiving a painting from a friend, which inspired him.",
+   "is_correct": false,
+   "tokens_used": 1382,
+   "latency_ms": 2305.1251000142656
+  },
+  {
+   "question_id": "conv-49-qa-107",
+   "category": 4,
+   "predicted_answer": "Observing nature and painting what is seen.",
+   "is_correct": true,
+   "tokens_used": 1355,
+   "latency_ms": 2044.0123000007588
+  },
+  {
+   "question_id": "conv-49-qa-108",
+   "category": 4,
+   "predicted_answer": "Landscapes",
+   "is_correct": false,
+   "tokens_used": 1404,
+   "latency_ms": 1924.410200008424
+  },
+  {
+   "question_id": "conv-49-qa-109",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1198,
+   "latency_ms": 1801.4550999942003
+  },
+  {
+   "question_id": "conv-49-qa-110",
+   "category": 4,
+   "predicted_answer": "Evan's son hurt his ankle in a soccer accident on the Saturday before August 15, 2023.",
+   "is_correct": false,
+   "tokens_used": 1252,
+   "latency_ms": 2397.4598999921
+  },
+  {
+   "question_id": "conv-49-qa-111",
+   "category": 4,
+   "predicted_answer": "Swimming",
+   "is_correct": true,
+   "tokens_used": 1474,
+   "latency_ms": 1946.9255000003614
+  },
+  {
+   "question_id": "conv-49-qa-112",
+   "category": 4,
+   "predicted_answer": "Evan should try low-impact exercises like swimming, yoga, and walking to stay active while healing.",
+   "is_correct": true,
+   "tokens_used": 2790,
+   "latency_ms": 4318.728099999134
+  },
+  {
+   "question_id": "conv-49-qa-113",
+   "category": 4,
+   "predicted_answer": "Evan suggested Sam try painting as a calming hobby.",
+   "is_correct": true,
+   "tokens_used": 2720,
+   "latency_ms": 4009.0877000038745
+  },
+  {
+   "question_id": "conv-49-qa-114",
+   "category": 4,
+   "predicted_answer": "Acrylic paints, brushes, a canvas/paper, and a palette.",
+   "is_correct": true,
+   "tokens_used": 1410,
+   "latency_ms": 2225.4245999938576
+  },
+  {
+   "question_id": "conv-49-qa-115",
+   "category": 4,
+   "predicted_answer": "Watercolor painting",
+   "is_correct": true,
+   "tokens_used": 1411,
+   "latency_ms": 1962.9986999934772
+  },
+  {
+   "question_id": "conv-49-qa-116",
+   "category": 4,
+   "predicted_answer": "Sunset painting",
+   "is_correct": false,
+   "tokens_used": 1482,
+   "latency_ms": 2059.2555000039283
+  },
+  {
+   "question_id": "conv-49-qa-117",
+   "category": 4,
+   "predicted_answer": "Creative writing",
+   "is_correct": true,
+   "tokens_used": 1256,
+   "latency_ms": 1796.725400010473
+  },
+  {
+   "question_id": "conv-49-qa-118",
+   "category": 4,
+   "predicted_answer": "Sam's new phone's navigation app keeps malfunctioning, making getting around a bit of a challenge.",
+   "is_correct": true,
+   "tokens_used": 1526,
+   "latency_ms": 2557.0071000111056
+  },
+  {
+   "question_id": "conv-49-qa-119",
+   "category": 4,
+   "predicted_answer": "Lifting weights",
+   "is_correct": true,
+   "tokens_used": 1589,
+   "latency_ms": 2128.0761000089115
+  },
+  {
+   "question_id": "conv-49-qa-120",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1427,
+   "latency_ms": 2039.4471000035992
+  },
+  {
+   "question_id": "conv-49-qa-121",
+   "category": 4,
+   "predicted_answer": "Near the lake",
+   "is_correct": true,
+   "tokens_used": 1232,
+   "latency_ms": 1800.5567000072915
+  },
+  {
+   "question_id": "conv-49-qa-122",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1474,
+   "latency_ms": 2078.1784999999218
+  },
+  {
+   "question_id": "conv-49-qa-123",
+   "category": 4,
+   "predicted_answer": "Helping tourists",
+   "is_correct": true,
+   "tokens_used": 1504,
+   "latency_ms": 2061.5428000019165
+  },
+  {
+   "question_id": "conv-49-qa-124",
+   "category": 4,
+   "predicted_answer": "Evan mentions that he gained strength at the gym on 16 October 2023.",
+   "is_correct": true,
+   "tokens_used": 1279,
+   "latency_ms": 2242.67229999532
+  },
+  {
+   "question_id": "conv-49-qa-125",
+   "category": 4,
+   "predicted_answer": "Evan started his transformation journey two years ago by changing his diet and starting to walk regularly.",
+   "is_correct": true,
+   "tokens_used": 740,
+   "latency_ms": 1475.1501999999164
+  },
+  {
+   "question_id": "conv-49-qa-126",
+   "category": 4,
+   "predicted_answer": "A 1968 Kustom K-200A vintage guitar",
+   "is_correct": true,
+   "tokens_used": 1365,
+   "latency_ms": 2281.594399988535
+  },
+  {
+   "question_id": "conv-49-qa-127",
+   "category": 4,
+   "predicted_answer": "Evan had been going through a tough time lately due to a health scare, losing his job, and dealing with personal health issues.",
+   "is_correct": true,
+   "tokens_used": 1577,
+   "latency_ms": 2816.5911999967648
+  },
+  {
+   "question_id": "conv-49-qa-128",
+   "category": 4,
+   "predicted_answer": "Evan describes the island he grew up on as his happy place.",
+   "is_correct": true,
+   "tokens_used": 1181,
+   "latency_ms": 2064.0885999891907
+  },
+  {
+   "question_id": "conv-49-qa-129",
+   "category": 4,
+   "predicted_answer": "Evan's frustration with his new Prius breaking down was due to it being his main mode of transport and a challenge when dealing with unexpected issues.",
+   "is_correct": false,
+   "tokens_used": 1537,
+   "latency_ms": 2905.379999996512
+  },
+  {
+   "question_id": "conv-49-qa-130",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 786,
+   "latency_ms": 1116.4661000075284
+  },
+  {
+   "question_id": "conv-49-qa-131",
+   "category": 4,
+   "predicted_answer": "Yoga",
+   "is_correct": true,
+   "tokens_used": 2664,
+   "latency_ms": 3584.60540001397
+  },
+  {
+   "question_id": "conv-49-qa-132",
+   "category": 4,
+   "predicted_answer": "Sam offered to check out a dream interpretation book.",
+   "is_correct": false,
+   "tokens_used": 1276,
+   "latency_ms": 2029.8672999924747
+  },
+  {
+   "question_id": "conv-49-qa-133",
+   "category": 4,
+   "predicted_answer": "Evan shared that his partner is pregnant with news.",
+   "is_correct": true,
+   "tokens_used": 1271,
+   "latency_ms": 1982.9411999962758
+  },
+  {
+   "question_id": "conv-49-qa-134",
+   "category": 4,
+   "predicted_answer": "Family reunion",
+   "is_correct": true,
+   "tokens_used": 1366,
+   "latency_ms": 1908.8678999978583
+  },
+  {
+   "question_id": "conv-49-qa-135",
+   "category": 4,
+   "predicted_answer": "Bring it on Home",
+   "is_correct": true,
+   "tokens_used": 1359,
+   "latency_ms": 1923.45089999435
+  },
+  {
+   "question_id": "conv-49-qa-136",
+   "category": 4,
+   "predicted_answer": "Sam's worth is not defined by his weight.",
+   "is_correct": true,
+   "tokens_used": 1588,
+   "latency_ms": 2327.9410999966785
+  },
+  {
+   "question_id": "conv-49-qa-137",
+   "category": 4,
+   "predicted_answer": "A close friend of Evan's helped him get the painting published in the exhibition.",
+   "is_correct": true,
+   "tokens_used": 1388,
+   "latency_ms": 2307.038200000534
+  },
+  {
+   "question_id": "conv-49-qa-138",
+   "category": 4,
+   "predicted_answer": "Running in the mornings",
+   "is_correct": true,
+   "tokens_used": 1300,
+   "latency_ms": 1921.0718000103952
+  },
+  {
+   "question_id": "conv-49-qa-139",
+   "category": 4,
+   "predicted_answer": "Install a GPS sensor on his keys.",
+   "is_correct": true,
+   "tokens_used": 2624,
+   "latency_ms": 3762.4523999984376
+  },
+  {
+   "question_id": "conv-49-qa-140",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 856,
+   "latency_ms": 1227.696999994805
+  },
+  {
+   "question_id": "conv-49-qa-141",
+   "category": 4,
+   "predicted_answer": "Keep trying new things.",
+   "is_correct": true,
+   "tokens_used": 2725,
+   "latency_ms": 3755.876700000954
+  },
+  {
+   "question_id": "conv-49-qa-142",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 744,
+   "latency_ms": 1115.960900002392
+  },
+  {
+   "question_id": "conv-49-qa-143",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1360,
+   "latency_ms": 2027.6065999933053
+  },
+  {
+   "question_id": "conv-49-qa-144",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1261,
+   "latency_ms": 1993.8122000021394
+  },
+  {
+   "question_id": "conv-49-qa-145",
+   "category": 4,
+   "predicted_answer": "Energy balls recipe",
+   "is_correct": true,
+   "tokens_used": 1352,
+   "latency_ms": 1877.1484000026248
+  },
+  {
+   "question_id": "conv-49-qa-146",
+   "category": 4,
+   "predicted_answer": "They shared news about their marriage.",
+   "is_correct": true,
+   "tokens_used": 1245,
+   "latency_ms": 1905.5463999975473
+  },
+  {
+   "question_id": "conv-49-qa-147",
+   "category": 4,
+   "predicted_answer": "Evan was limiting himself to just two ginger snaps a day on his new diet.",
+   "is_correct": true,
+   "tokens_used": 1456,
+   "latency_ms": 2432.361500003026
+  },
+  {
+   "question_id": "conv-49-qa-148",
+   "category": 4,
+   "predicted_answer": "Snowshoeing",
+   "is_correct": true,
+   "tokens_used": 1504,
+   "latency_ms": 2078.1697999918833
+  },
+  {
+   "question_id": "conv-49-qa-149",
+   "category": 4,
+   "predicted_answer": "A balanced diet plan and advice on low-impact exercises.",
+   "is_correct": true,
+   "tokens_used": 2767,
+   "latency_ms": 4107.518400007393
+  },
+  {
+   "question_id": "conv-49-qa-150",
+   "category": 4,
+   "predicted_answer": "Swimming, yoga, and walking.",
+   "is_correct": true,
+   "tokens_used": 2750,
+   "latency_ms": 3946.395200007828
+  },
+  {
+   "question_id": "conv-49-qa-151",
+   "category": 4,
+   "predicted_answer": "The Godfather",
+   "is_correct": true,
+   "tokens_used": 1247,
+   "latency_ms": 1770.8940000011353
+  },
+  {
+   "question_id": "conv-49-qa-152",
+   "category": 4,
+   "predicted_answer": "Yoga",
+   "is_correct": true,
+   "tokens_used": 1372,
+   "latency_ms": 1893.588799997815
+  },
+  {
+   "question_id": "conv-49-qa-153",
+   "category": 4,
+   "predicted_answer": "A sunset",
+   "is_correct": false,
+   "tokens_used": 1325,
+   "latency_ms": 1816.5687000000617
+  },
+  {
+   "question_id": "conv-49-qa-154",
+   "category": 4,
+   "predicted_answer": "Because he had a drunken night.",
+   "is_correct": true,
+   "tokens_used": 1297,
+   "latency_ms": 1939.532100004726
+  },
+  {
+   "question_id": "conv-49-qa-155",
+   "category": 4,
+   "predicted_answer": "Evan describes being out on the water while kayaking and watching the sunset as peaceful and unforgettable.",
+   "is_correct": true,
+   "tokens_used": 1393,
+   "latency_ms": 2343.4486000041943
+  },
+  {
+   "question_id": "conv-50-qa-000",
+   "category": 2,
+   "predicted_answer": "20 April 2023",
+   "is_correct": false,
+   "tokens_used": 1257,
+   "latency_ms": 2203.201900003478
+  },
+  {
+   "question_id": "conv-50-qa-001",
+   "category": 1,
+   "predicted_answer": "New mansion, new car",
+   "is_correct": false,
+   "tokens_used": 1062,
+   "latency_ms": 1860.1675999962026
+  },
+  {
+   "question_id": "conv-50-qa-002",
+   "category": 2,
+   "predicted_answer": "26 March 2023",
+   "is_correct": false,
+   "tokens_used": 1376,
+   "latency_ms": 2268.443599998136
+  },
+  {
+   "question_id": "conv-50-qa-003",
+   "category": 1,
+   "predicted_answer": "Aerosmith",
+   "is_correct": true,
+   "tokens_used": 1337,
+   "latency_ms": 2118.9903000049526
+  },
+  {
+   "question_id": "conv-50-qa-004",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1441,
+   "latency_ms": 2368.1072000035783
+  },
+  {
+   "question_id": "conv-50-qa-005",
+   "category": 1,
+   "predicted_answer": "Opening a car maintenance shop, working on classic cars, building a custom car, and learning auto engineering.",
+   "is_correct": true,
+   "tokens_used": 1386,
+   "latency_ms": 2531.564300006721
+  },
+  {
+   "question_id": "conv-50-qa-006",
+   "category": 1,
+   "predicted_answer": "Classic cars",
+   "is_correct": true,
+   "tokens_used": 1543,
+   "latency_ms": 2056.0871999914525
+  },
+  {
+   "question_id": "conv-50-qa-007",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1438,
+   "latency_ms": 2298.982899999828
+  },
+  {
+   "question_id": "conv-50-qa-008",
+   "category": 2,
+   "predicted_answer": "The week before 16 May 2023",
+   "is_correct": false,
+   "tokens_used": 1489,
+   "latency_ms": 2454.4101000064984
+  },
+  {
+   "question_id": "conv-50-qa-009",
+   "category": 2,
+   "predicted_answer": "The week before 16 May 2023",
+   "is_correct": true,
+   "tokens_used": 1456,
+   "latency_ms": 2258.479099997203
+  },
+  {
+   "question_id": "conv-50-qa-010",
+   "category": 2,
+   "predicted_answer": "The week before 16 May 2023",
+   "is_correct": true,
+   "tokens_used": 1292,
+   "latency_ms": 2085.1190999965183
+  },
+  {
+   "question_id": "conv-50-qa-011",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1177,
+   "latency_ms": 2091.550199998892
+  },
+  {
+   "question_id": "conv-50-qa-012",
+   "category": 2,
+   "predicted_answer": "19 October 2023",
+   "is_correct": false,
+   "tokens_used": 1316,
+   "latency_ms": 2242.8485000127694
+  },
+  {
+   "question_id": "conv-50-qa-013",
+   "category": 3,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1360,
+   "latency_ms": 2121.925300001749
+  },
+  {
+   "question_id": "conv-50-qa-014",
+   "category": 2,
+   "predicted_answer": "8 June 2023",
+   "is_correct": true,
+   "tokens_used": 1448,
+   "latency_ms": 2296.156399999745
+  },
+  {
+   "question_id": "conv-50-qa-015",
+   "category": 1,
+   "predicted_answer": "To relax and recharge",
+   "is_correct": false,
+   "tokens_used": 1496,
+   "latency_ms": 2234.3202000047313
+  },
+  {
+   "question_id": "conv-50-qa-016",
+   "category": 2,
+   "predicted_answer": "July 2023",
+   "is_correct": true,
+   "tokens_used": 1375,
+   "latency_ms": 2200.7268000015756
+  },
+  {
+   "question_id": "conv-50-qa-017",
+   "category": 2,
+   "predicted_answer": "The Friday before 21 June 2023",
+   "is_correct": true,
+   "tokens_used": 1404,
+   "latency_ms": 2154.54960000352
+  },
+  {
+   "question_id": "conv-50-qa-018",
+   "category": 1,
+   "predicted_answer": "1",
+   "is_correct": false,
+   "tokens_used": 3034,
+   "latency_ms": 4200.561400008155
+  },
+  {
+   "question_id": "conv-50-qa-019",
+   "category": 1,
+   "predicted_answer": "Shibuya Crossing, Shinjuku, networking event, music festival, concert, mansion, Boston",
+   "is_correct": true,
+   "tokens_used": 1286,
+   "latency_ms": 2344.5565000001807
+  },
+  {
+   "question_id": "conv-50-qa-020",
+   "category": 1,
+   "predicted_answer": "Ever since he was ten, Dave was fascinated with how machines work. He found an old car in a neighbor's garage and asked if he could fix it. That's when his love for car engineering began!",
+   "is_correct": true,
+   "tokens_used": 1535,
+   "latency_ms": 3140.878899997915
+  },
+  {
+   "question_id": "conv-50-qa-021",
+   "category": 3,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1368,
+   "latency_ms": 2155.3852000070037
+  },
+  {
+   "question_id": "conv-50-qa-022",
+   "category": 1,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1449,
+   "latency_ms": 2126.2886000040453
+  },
+  {
+   "question_id": "conv-50-qa-023",
+   "category": 1,
+   "predicted_answer": "Fixing cars",
+   "is_correct": false,
+   "tokens_used": 1375,
+   "latency_ms": 1756.2422000046354
+  },
+  {
+   "question_id": "conv-50-qa-024",
+   "category": 1,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1475,
+   "latency_ms": 1959.6484000066994
+  },
+  {
+   "question_id": "conv-50-qa-025",
+   "category": 2,
+   "predicted_answer": "The Friday before 22 August 2023",
+   "is_correct": true,
+   "tokens_used": 1438,
+   "latency_ms": 2413.8429000013275
+  },
+  {
+   "question_id": "conv-50-qa-026",
+   "category": 2,
+   "predicted_answer": "21 August 2023",
+   "is_correct": true,
+   "tokens_used": 1459,
+   "latency_ms": 2082.539299997734
+  },
+  {
+   "question_id": "conv-50-qa-027",
+   "category": 2,
+   "predicted_answer": "Tokyo",
+   "is_correct": false,
+   "tokens_used": 1409,
+   "latency_ms": 1881.9589000049746
+  },
+  {
+   "question_id": "conv-50-qa-028",
+   "category": 1,
+   "predicted_answer": "Long drives in his car, listening to vinyl music, and working on cars.",
+   "is_correct": true,
+   "tokens_used": 1298,
+   "latency_ms": 2396.609299990814
+  },
+  {
+   "question_id": "conv-50-qa-029",
+   "category": 1,
+   "predicted_answer": "Fixing cars, working on cars, restoring cars, customizing cars, owning cars, attending car shows, and working in a car maintenance shop.",
+   "is_correct": false,
+   "tokens_used": 1494,
+   "latency_ms": 2768.6719999910565
+  },
+  {
+   "question_id": "conv-50-qa-030",
+   "category": 1,
+   "predicted_answer": "Vinyl",
+   "is_correct": false,
+   "tokens_used": 1512,
+   "latency_ms": 2001.678400003584
+  },
+  {
+   "question_id": "conv-50-qa-031",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1435,
+   "latency_ms": 2236.3419000030262
+  },
+  {
+   "question_id": "conv-50-qa-032",
+   "category": 1,
+   "predicted_answer": "San Francisco",
+   "is_correct": true,
+   "tokens_used": 1421,
+   "latency_ms": 2115.0655999954324
+  },
+  {
+   "question_id": "conv-50-qa-033",
+   "category": 1,
+   "predicted_answer": "Dave was at a car workshop in San Francisco.",
+   "is_correct": true,
+   "tokens_used": 1422,
+   "latency_ms": 2040.0302000052761
+  },
+  {
+   "question_id": "conv-50-qa-034",
+   "category": 2,
+   "predicted_answer": "1 September 2023",
+   "is_correct": true,
+   "tokens_used": 1427,
+   "latency_ms": 2277.2353000036674
+  },
+  {
+   "question_id": "conv-50-qa-035",
+   "category": 2,
+   "predicted_answer": "The week before 2 September 2023",
+   "is_correct": false,
+   "tokens_used": 1364,
+   "latency_ms": 2127.6196999970125
+  },
+  {
+   "question_id": "conv-50-qa-036",
+   "category": 2,
+   "predicted_answer": "11 September 2023",
+   "is_correct": true,
+   "tokens_used": 1260,
+   "latency_ms": 1886.318199991365
+  },
+  {
+   "question_id": "conv-50-qa-037",
+   "category": 3,
+   "predicted_answer": "Yes",
+   "is_correct": true,
+   "tokens_used": 1444,
+   "latency_ms": 2256.875699997181
+  },
+  {
+   "question_id": "conv-50-qa-038",
+   "category": 2,
+   "predicted_answer": "The weekend before 15 September 2023",
+   "is_correct": false,
+   "tokens_used": 1320,
+   "latency_ms": 2302.2367999947164
+  },
+  {
+   "question_id": "conv-50-qa-039",
+   "category": 3,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 811,
+   "latency_ms": 1611.2374999938766
+  },
+  {
+   "question_id": "conv-50-qa-040",
+   "category": 1,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1326,
+   "latency_ms": 2152.400500010117
+  },
+  {
+   "question_id": "conv-50-qa-041",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1226,
+   "latency_ms": 1925.0565999973333
+  },
+  {
+   "question_id": "conv-50-qa-042",
+   "category": 3,
+   "predicted_answer": "No.",
+   "is_correct": true,
+   "tokens_used": 1550,
+   "latency_ms": 2053.318099991884
+  },
+  {
+   "question_id": "conv-50-qa-043",
+   "category": 2,
+   "predicted_answer": "Boston",
+   "is_correct": true,
+   "tokens_used": 1413,
+   "latency_ms": 2048.504399994272
+  },
+  {
+   "question_id": "conv-50-qa-044",
+   "category": 2,
+   "predicted_answer": "3 October 2023",
+   "is_correct": true,
+   "tokens_used": 1420,
+   "latency_ms": 2124.566099999356
+  },
+  {
+   "question_id": "conv-50-qa-045",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1343,
+   "latency_ms": 2274.9556000053417
+  },
+  {
+   "question_id": "conv-50-qa-046",
+   "category": 1,
+   "predicted_answer": "Exploring the city, trying out some delicious food, and visiting popular attractions.",
+   "is_correct": false,
+   "tokens_used": 1299,
+   "latency_ms": 2192.1652000019094
+  },
+  {
+   "question_id": "conv-50-qa-047",
+   "category": 1,
+   "predicted_answer": "2",
+   "is_correct": false,
+   "tokens_used": 3044,
+   "latency_ms": 4041.9029999902705
+  },
+  {
+   "question_id": "conv-50-qa-048",
+   "category": 2,
+   "predicted_answer": "He went to a music festival in Boston.",
+   "is_correct": false,
+   "tokens_used": 1500,
+   "latency_ms": 2470.4591000045184
+  },
+  {
+   "question_id": "conv-50-qa-049",
+   "category": 1,
+   "predicted_answer": "Restoring and modifying an old car",
+   "is_correct": false,
+   "tokens_used": 1595,
+   "latency_ms": 2461.874500004342
+  },
+  {
+   "question_id": "conv-50-qa-050",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1435,
+   "latency_ms": 2264.835000009043
+  },
+  {
+   "question_id": "conv-50-qa-051",
+   "category": 2,
+   "predicted_answer": "August last year (2022)",
+   "is_correct": true,
+   "tokens_used": 1447,
+   "latency_ms": 2120.707299996866
+  },
+  {
+   "question_id": "conv-50-qa-052",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1273,
+   "latency_ms": 1431.4535000012256
+  },
+  {
+   "question_id": "conv-50-qa-053",
+   "category": 1,
+   "predicted_answer": "Dave",
+   "is_correct": false,
+   "tokens_used": 1424,
+   "latency_ms": 2063.7949999945704
+  },
+  {
+   "question_id": "conv-50-qa-054",
+   "category": 1,
+   "predicted_answer": "The notebook, music videos, concerts, and documentaries about artists and their creative process.",
+   "is_correct": true,
+   "tokens_used": 1350,
+   "latency_ms": 2244.8989000113215
+  },
+  {
+   "question_id": "conv-50-qa-055",
+   "category": 2,
+   "predicted_answer": "24 October 2023",
+   "is_correct": true,
+   "tokens_used": 1462,
+   "latency_ms": 2319.5080000004964
+  },
+  {
+   "question_id": "conv-50-qa-056",
+   "category": 1,
+   "predicted_answer": "Boston",
+   "is_correct": false,
+   "tokens_used": 1288,
+   "latency_ms": 1945.9169000037946
+  },
+  {
+   "question_id": "conv-50-qa-057",
+   "category": 2,
+   "predicted_answer": "Photography",
+   "is_correct": true,
+   "tokens_used": 1488,
+   "latency_ms": 2216.029300005175
+  },
+  {
+   "question_id": "conv-50-qa-058",
+   "category": 1,
+   "predicted_answer": "The car show and the networking event with artists.",
+   "is_correct": false,
+   "tokens_used": 1502,
+   "latency_ms": 2422.8032999963034
+  },
+  {
+   "question_id": "conv-50-qa-059",
+   "category": 1,
+   "predicted_answer": "1",
+   "is_correct": false,
+   "tokens_used": 2982,
+   "latency_ms": 3892.2801000007894
+  },
+  {
+   "question_id": "conv-50-qa-060",
+   "category": 1,
+   "predicted_answer": "A custom-made photo with an octopus, a necklace, and a car.",
+   "is_correct": true,
+   "tokens_used": 1524,
+   "latency_ms": 2388.588699992397
+  },
+  {
+   "question_id": "conv-50-qa-061",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 3101,
+   "latency_ms": 4289.212100004079
+  },
+  {
+   "question_id": "conv-50-qa-062",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 2783,
+   "latency_ms": 3867.2496000071988
+  },
+  {
+   "question_id": "conv-50-qa-063",
+   "category": 1,
+   "predicted_answer": "Purple-hued, shiny-finished guitar",
+   "is_correct": true,
+   "tokens_used": 1232,
+   "latency_ms": 2181.6216000006534
+  },
+  {
+   "question_id": "conv-50-qa-064",
+   "category": 1,
+   "predicted_answer": "Card night, regular walks in the park, road trip, and podcast recording.",
+   "is_correct": false,
+   "tokens_used": 1397,
+   "latency_ms": 2262.8427000017837
+  },
+  {
+   "question_id": "conv-50-qa-065",
+   "category": 2,
+   "predicted_answer": "The Friday before 29 October 2023",
+   "is_correct": false,
+   "tokens_used": 1535,
+   "latency_ms": 2540.140400000382
+  },
+  {
+   "question_id": "conv-50-qa-066",
+   "category": 1,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": true,
+   "tokens_used": 1501,
+   "latency_ms": 2402.9463000042597
+  },
+  {
+   "question_id": "conv-50-qa-067",
+   "category": 2,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1505,
+   "latency_ms": 2344.935399989481
+  },
+  {
+   "question_id": "conv-50-qa-068",
+   "category": 2,
+   "predicted_answer": "The week before 16 May 2023",
+   "is_correct": false,
+   "tokens_used": 1535,
+   "latency_ms": 2195.699500007322
+  },
+  {
+   "question_id": "conv-50-qa-069",
+   "category": 2,
+   "predicted_answer": "November 2023",
+   "is_correct": true,
+   "tokens_used": 1356,
+   "latency_ms": 1941.922500001965
+  },
+  {
+   "question_id": "conv-50-qa-070",
+   "category": 2,
+   "predicted_answer": "16 November 2023",
+   "is_correct": true,
+   "tokens_used": 1481,
+   "latency_ms": 2156.8113999965135
+  },
+  {
+   "question_id": "conv-50-qa-071",
+   "category": 4,
+   "predicted_answer": "A few months",
+   "is_correct": true,
+   "tokens_used": 2751,
+   "latency_ms": 3861.0553000034997
+  },
+  {
+   "question_id": "conv-50-qa-072",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1391,
+   "latency_ms": 1973.3429000043543
+  },
+  {
+   "question_id": "conv-50-qa-073",
+   "category": 4,
+   "predicted_answer": "Tokyo",
+   "is_correct": true,
+   "tokens_used": 1343,
+   "latency_ms": 1837.478799992823
+  },
+  {
+   "question_id": "conv-50-qa-074",
+   "category": 4,
+   "predicted_answer": "Stay true to yourself and sound unique.",
+   "is_correct": true,
+   "tokens_used": 1471,
+   "latency_ms": 2084.233300003689
+  },
+  {
+   "question_id": "conv-50-qa-075",
+   "category": 4,
+   "predicted_answer": "Dave's new business venture as of 1 May, 2023, is opening his own car maintenance shop.",
+   "is_correct": true,
+   "tokens_used": 1334,
+   "latency_ms": 2444.455499993637
+  },
+  {
+   "question_id": "conv-50-qa-076",
+   "category": 4,
+   "predicted_answer": "All kinds of cars, from regular maintenance to full restorations of classic cars.",
+   "is_correct": true,
+   "tokens_used": 1464,
+   "latency_ms": 2335.2738000103272
+  },
+  {
+   "question_id": "conv-50-qa-077",
+   "category": 4,
+   "predicted_answer": "A necklace",
+   "is_correct": true,
+   "tokens_used": 1394,
+   "latency_ms": 1830.5193999985931
+  },
+  {
+   "question_id": "conv-50-qa-078",
+   "category": 4,
+   "predicted_answer": "The necklace Calvin received was meant to remind him of why he keeps hustling as a musician.",
+   "is_correct": true,
+   "tokens_used": 1374,
+   "latency_ms": 2273.255499996594
+  },
+  {
+   "question_id": "conv-50-qa-079",
+   "category": 4,
+   "predicted_answer": "I don't know.",
+   "is_correct": false,
+   "tokens_used": 1433,
+   "latency_ms": 1994.8842000012519
+  },
+  {
+   "question_id": "conv-50-qa-080",
+   "category": 4,
+   "predicted_answer": "Exploring the city, trying out different local cuisines, and collaborating with musicians in the area.",
+   "is_correct": true,
+   "tokens_used": 1472,
+   "latency_ms": 2437.4632999970345
+  },
+  {
+   "question_id": "conv-50-qa-081",
+   "category": 4,
+   "predicted_answer": "Calvin managed to save his music gear and favorite microphone during the flood incident.",
+   "is_correct": true,
+   "tokens_used": 1253,
+   "latency_ms": 2130.1190000085626
+  },
+  {
+   "question_id": "conv-50-qa-082",
+   "category": 4,
+   "predicted_answer": "Dave opened his own car maintenance shop in May 2023.",
+   "is_correct": true,
+   "tokens_used": 1390,
+   "latency_ms": 2189.2769999976736
+  },
+  {
+   "question_id": "conv-50-qa-083",
+   "category": 4,
+   "predicted_answer": "Fixing cars",
+   "is_correct": true,
+   "tokens_used": 1364,
+   "latency_ms": 1855.607700010296
+  },
+  {
+   "question_id": "conv-50-qa-084",
+   "category": 4,
+   "predicted_answer": "Performing live",
+   "is_correct": true,
+   "tokens_used": 1181,
+   "latency_ms": 1717.1685000066645
+  },
+  {
+   "question_id": "conv-50-qa-085",
+   "category": 4,
+   "predicted_answer": "Exploring parks",
+   "is_correct": true,
+   "tokens_used": 1538,
+   "latency_ms": 2040.3070000029402
+  },
+  {
+   "question_id": "conv-50-qa-086",
+   "category": 4,
+   "predicted_answer": "Skiing",
+   "is_correct": true,
+   "tokens_used": 1473,
+   "latency_ms": 1999.1039000015007
+  },
+  {
+   "question_id": "conv-50-qa-087",
+   "category": 4,
+   "predicted_answer": "Cruising around",
+   "is_correct": false,
+   "tokens_used": 1539,
+   "latency_ms": 2039.6948000125121
+  },
+  {
+   "question_id": "conv-50-qa-088",
+   "category": 4,
+   "predicted_answer": "Regular walks together in the park.",
+   "is_correct": true,
+   "tokens_used": 1519,
+   "latency_ms": 2122.1557000098983
+  },
+  {
+   "question_id": "conv-50-qa-089",
+   "category": 4,
+   "predicted_answer": "Calvin has been experimenting with different genres lately, pushing himself out of his comfort zone. He's added electronic elements to his songs, giving them a fresh vibe.",
+   "is_correct": true,
+   "tokens_used": 1515,
+   "latency_ms": 2845.606599992607
+  },
+  {
+   "question_id": "conv-50-qa-090",
+   "category": 4,
+   "predicted_answer": "Calvin describes his process of adding electronic elements to his songs as experimenting with different genres and pushing himself out of his comfort zone.",
+   "is_correct": false,
+   "tokens_used": 1498,
+   "latency_ms": 2647.010999993654
+  },
+  {
+   "question_id": "conv-50-qa-091",
+   "category": 4,
+   "predicted_answer": "Luxury car",
+   "is_correct": false,
+   "tokens_used": 1440,
+   "latency_ms": 1929.8042000009445
+  },
+  {
+   "question_id": "conv-50-qa-092",
+   "category": 4,
+   "predicted_answer": "Expand his brand worldwide and grow his fanbase.",
+   "is_correct": true,
+   "tokens_used": 1325,
+   "latency_ms": 2058.7965000013355
+  },
+  {
+   "question_id": "conv-50-qa-093",
+   "category": 4,
+   "predicted_answer": "Stay true to yourself and sound unique.",
+   "is_correct": false,
+   "tokens_used": 1520,
+   "latency_ms": 2187.89139999717
+  },
+  {
+   "question_id": "conv-50-qa-094",
+   "category": 4,
+   "predicted_answer": "Car mod workshop",
+   "is_correct": true,
+   "tokens_used": 1304,
+   "latency_ms": 1807.6678000070387
+  },
+  {
+   "question_id": "conv-50-qa-095",
+   "category": 4,
+   "predicted_answer": "Engine swaps, suspension modifications, and body modifications.",
+   "is_correct": true,
+   "tokens_used": 1509,
+   "latency_ms": 2119.217800005572
+  },
+  {
+   "question_id": "conv-50-qa-096",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1468,
+   "latency_ms": 2097.1122999908403
+  },
+  {
+   "question_id": "conv-50-qa-097",
+   "category": 4,
+   "predicted_answer": "Showing his style, it's like customizing a work of art on wheels.",
+   "is_correct": false,
+   "tokens_used": 1452,
+   "latency_ms": 2310.4432999971323
+  },
+  {
+   "question_id": "conv-50-qa-098",
+   "category": 4,
+   "predicted_answer": "The audience in Tokyo was so into it when Calvin played one of his songs and sang along.",
+   "is_correct": true,
+   "tokens_used": 1369,
+   "latency_ms": 2355.292799999006
+  },
+  {
+   "question_id": "conv-50-qa-099",
+   "category": 4,
+   "predicted_answer": "At a music festival in Tokyo.",
+   "is_correct": true,
+   "tokens_used": 1412,
+   "latency_ms": 2076.1799000028986
+  },
+  {
+   "question_id": "conv-50-qa-100",
+   "category": 4,
+   "predicted_answer": "Calvin's mansion",
+   "is_correct": true,
+   "tokens_used": 1509,
+   "latency_ms": 1611.1870999884559
+  },
+  {
+   "question_id": "conv-50-qa-101",
+   "category": 4,
+   "predicted_answer": "A podcast discussing the rapidly evolving rap industry.",
+   "is_correct": true,
+   "tokens_used": 1465,
+   "latency_ms": 2189.196199993603
+  },
+  {
+   "question_id": "conv-50-qa-102",
+   "category": 4,
+   "predicted_answer": "No information available (not mentioned in the conversation).",
+   "is_correct": false,
+   "tokens_used": 1471,
+   "latency_ms": 2189.2026999994414
+  },
+  {
+   "question_id": "conv-50-qa-103",
+   "category": 4,
+   "predicted_answer": "The guitar has a gorgeous purple hue with a shiny finish.",
+   "is_correct": false,
+   "tokens_used": 1148,
+   "latency_ms": 1993.3878999872832
+  },
+  {
+   "question_id": "conv-50-qa-104",
+   "category": 4,
+   "predicted_answer": "To give it a unique look and match his style.",
+   "is_correct": true,
+   "tokens_used": 1437,
+   "latency_ms": 2163.698699994711
+  },
+  {
+   "question_id": "conv-50-qa-105",
+   "category": 4,
+   "predicted_answer": "Purple glow",
+   "is_correct": true,
+   "tokens_used": 1450,
+   "latency_ms": 1840.571299995645
+  },
+  {
+   "question_id": "conv-50-qa-106",
+   "category": 4,
+   "predicted_answer": "San Francisco",
+   "is_correct": true,
+   "tokens_used": 1522,
+   "latency_ms": 1991.463800004567
+  },
+  {
+   "question_id": "conv-50-qa-107",
+   "category": 4,
+   "predicted_answer": "Pride",
+   "is_correct": false,
+   "tokens_used": 1454,
+   "latency_ms": 1839.101399993524
+  },
+  {
+   "question_id": "conv-50-qa-108",
+   "category": 4,
+   "predicted_answer": "Boston",
+   "is_correct": true,
+   "tokens_used": 1416,
+   "latency_ms": 1856.798599998001
+  },
+  {
+   "question_id": "conv-50-qa-109",
+   "category": 4,
+   "predicted_answer": "Exploring and growing his brand",
+   "is_correct": true,
+   "tokens_used": 1492,
+   "latency_ms": 2089.955999996164
+  },
+  {
+   "question_id": "conv-50-qa-110",
+   "category": 4,
+   "predicted_answer": "Calvin plans to explore the city, try out different local cuisines, and perhaps collaborate with musicians in the area. Dave offers to show Calvin around town and visit all the cool spots.",
+   "is_correct": true,
+   "tokens_used": 1521,
+   "latency_ms": 3001.5184999938356
+  },
+  {
+   "question_id": "conv-50-qa-111",
+   "category": 4,
+   "predicted_answer": "Ratatouille",
+   "is_correct": true,
+   "tokens_used": 1503,
+   "latency_ms": 2086.2525000120513
+  },
+  {
+   "question_id": "conv-50-qa-112",
+   "category": 4,
+   "predicted_answer": "Satisfying",
+   "is_correct": true,
+   "tokens_used": 1554,
+   "latency_ms": 2103.011200000765
+  },
+  {
+   "question_id": "conv-50-qa-113",
+   "category": 4,
+   "predicted_answer": "Long drives in his car",
+   "is_correct": false,
+   "tokens_used": 1497,
+   "latency_ms": 2022.233600000618
+  },
+  {
+   "question_id": "conv-50-qa-114",
+   "category": 4,
+   "predicted_answer": "\"California Love\" by Tupac and Dr. Dre",
+   "is_correct": true,
+   "tokens_used": 1479,
+   "latency_ms": 2224.0418000001227
+  },
+  {
+   "question_id": "conv-50-qa-115",
+   "category": 4,
+   "predicted_answer": "Working on a project that involves adding electronic elements to his songs.",
+   "is_correct": false,
+   "tokens_used": 754,
+   "latency_ms": 1367.3922000016319
+  },
+  {
+   "question_id": "conv-50-qa-116",
+   "category": 4,
+   "predicted_answer": "Ford Mustang",
+   "is_correct": true,
+   "tokens_used": 1469,
+   "latency_ms": 1891.4116000087233
+  },
+  {
+   "question_id": "conv-50-qa-117",
+   "category": 4,
+   "predicted_answer": "Seeing the end result and knowing that he did it together with his dad.",
+   "is_correct": false,
+   "tokens_used": 1519,
+   "latency_ms": 2318.2480999967083
+  }
+ ]
+}

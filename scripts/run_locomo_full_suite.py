@@ -188,16 +188,24 @@ def main():
     parser.add_argument("--start-conv", type=int, default=0, help="Start conversation index (default: 0)")
     parser.add_argument("--end-conv", type=int, default=9, help="End conversation index (default: 9)")
     parser.add_argument("--resume", action="store_true", help="Skip conversations with existing checkpoints")
+    parser.add_argument("--window-cap", type=int, default=None, help="Override MSC selection window cap (A/B only)")
+    parser.add_argument("--token-bonus", type=int, default=None, help="Override MSC rescue token bonus per unit (A/B only)")
     args = parser.parse_args()
 
     print("=" * 80)
     print("      AM APEX: LOCOMO-10 FROZEN GENERALIZATION BENCHMARK (CONV 0 - 9)")
     print("=" * 80)
     print(f"Target Range: Conversation {args.start_conv} to {args.end_conv}")
+    if args.window_cap is not None or args.token_bonus is not None:
+        print(f"A/B OVERRIDE: window_cap={args.window_cap or 'default'} token_bonus={args.token_bonus or 'default'}")
     print("Rule: STRICTLY FROZEN CONFIGURATION. Zero in-flight tuning.")
     print("=" * 80)
 
     adapter = LoCoMoAdapter()
+    if args.window_cap is not None:
+        adapter.compiler.selection_window_cap = args.window_cap
+    if args.token_bonus is not None:
+        adapter.compiler.rescue_token_bonus_per_unit = args.token_bonus
     answerer = OllamaAnswerer()
     weights = EvidenceScoreWeights()
 

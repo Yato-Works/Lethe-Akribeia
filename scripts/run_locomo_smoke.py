@@ -113,7 +113,6 @@ def run_conversation(
         reader_info = {
             "reader_model": answerer.model,
             "num_ctx": answerer.num_ctx,
-            "hints_enabled": bool(getattr(adapter, "allow_question_hints", False)),
         }
     return _summarize_and_save(adapter, questions, results, conv_idx, sample_id,
                                turns, ir_records, retrieval_only, eval_time, out_dir,
@@ -141,7 +140,6 @@ def _empty_summary(conv_idx: int, sample_id: str, retrieval_only: bool) -> dict:
         "reader": {
             "reader_model": FROZEN_MODEL,
             "num_ctx": None,
-            "hints_enabled": False,
         },
     }
 
@@ -251,7 +249,6 @@ def _summarize_and_save(
         "reader": reader_info or {
             "reader_model": FROZEN_MODEL,
             "num_ctx": None,
-            "hints_enabled": bool(getattr(adapter, "allow_question_hints", False)),
         },
     }
 
@@ -314,8 +311,6 @@ def main() -> None:
                         help="Override the Ollama context window (A/B only). Needed for large model "
                              "tags on small-VRAM GPUs; omitted = Ollama default (frozen).")
 
-    parser.add_argument("--hints", action='store_true',
-                        help="DIAGNOSTIC ONLY: enable per-question hint tables (answer injection); production stays clean.")
     parser.add_argument("--token-bonus", type=int, default=None,
                         help="Override the MSC rescue token bonus per promoted unit "
                              "(A/B only; production default is untouched when omitted)")
@@ -380,9 +375,6 @@ def main() -> None:
         adapter.compiler.selection_window_cap = args.window_cap
     if args.token_bonus is not None:
         adapter.compiler.rescue_token_bonus_per_unit = args.token_bonus
-    if args.hints:
-        adapter.allow_question_hints = True
-        print('WARNING: --hints ENABLED (diagnostic answer injection; not for publication)')
     if args.window_cap is not None or args.token_bonus is not None:
         print(f"A/B OVERRIDE: window_cap={adapter.compiler.selection_window_cap} "
               f"token_bonus={adapter.compiler.rescue_token_bonus_per_unit}")
