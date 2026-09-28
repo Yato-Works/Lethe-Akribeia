@@ -96,7 +96,7 @@ A core empirical finding of over 140+ hours of benchmark sweeps is that **Lethe'
 
 ### Why 7B? — The Architectural Divide with 120B-Class Systems
 Existing agent memory systems (Mem0, LangChain, Zep, etc.) typically assume frontier Readers (GPT-4, Claude 3.5, or 120B+ models). They dump thousands to tens of thousands of tokens of raw conversational history into prompts, relying on brute-force model capacity to filter and reason.  
-If you mount a 7B or 1.5B local model to such systems, the massive context window bloats immediately, attention collapses, and the model fails to answer even a single question coherently.  
+If you mount a 7B or 1.5B local model to such systems, large uncurated raw contexts become difficult for small local Readers to process reliably.  
 In contrast, Lethe Akribeia deterministically compiles memories into structured Memory State Contexts (MSC), distilling 100K+ token sessions into just a few hundred tokens. Because of this, **even a 1.5B or 7B model suffers zero context overflow and runs 1,540 benchmark questions continuously for 140 hours without collapsing**. Systems that only function with frontier models vs. systems that remain fully robust on 7B local hardware — this is the distinct arena Lethe defines.
 
 ### Context-Dominance Verification (Overlap Analysis)
