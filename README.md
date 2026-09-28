@@ -50,8 +50,8 @@ We do not present Lethe as a universal SOTA system. Rather, specific components 
 
 ```text
 What is working (Strong Results 🟢)
-🟢 BEAM Benchmark (500K tokens)      — 100.0% accuracy across all 10 evaluated probing categories
-🟢 BEAM Benchmark (1M & 10M tokens)   — 100.0% accuracy under extreme context horizons
+🟢 BEAM Benchmark (500K, 7B Reader)    — 100.0% (20/20) accuracy across all 10 evaluated categories
+🟢 BEAM Benchmark (1M & 10M, 7B Reader) — 100.0% (8/8 each scale) accuracy under extreme context horizons
 🟢 LoCoMo Evidence-Presence Recall   — 81.1% on 1,540 non-adversarial questions (All-Evidence Oracle)
 🟢 Zero-LLM Ingestion Write Path     — 0 LLM calls during memory ingestion (pure deterministic indexing)
 🟢 Reader Invariance at Small Scales — 1.5B achieves 64.5% vs 7B at 64.7% (Lethe context absorbs model drop)
@@ -68,8 +68,8 @@ What is not solved (Current Limitations 🟡)
 
 | Benchmark / Evaluation | Result | Dataset / Scope | What it measures |
 |:---|:---:|:---:|:---|
-| **BEAM (500K scale)** | **100.0% (20/20)** | Official 10 categories (all 20 Qs) | Pinpoint extraction, contradiction detection, and event ordering from massive context |
-| **BEAM (1M & 10M scales)** | **100.0% (8/8 each scale)** | Extreme probes (1M: 8 Qs, 10M: 8 Qs) | Needle retrieval and state tracking under extreme token budgets |
+| **BEAM (500K, 7B Reader)** | **100.0% (20/20)** | Official 10 categories (all 20 Qs) | Pinpoint extraction, contradiction detection, and event ordering from massive context |
+| **BEAM (1M & 10M, 7B Reader)** | **100.0% (8/8 each scale)** | Extreme probes (1M: 8 Qs, 10M: 8 Qs) | Needle retrieval and state tracking under extreme token budgets |
 | **LoCoMo Evidence Recall** | **81.1%** | 1,540 non-adversarial questions | Whether **all** required gold evidence turns were compiled into context (Strict Content Oracle) |
 | **LoCoMo Zero-Evidence Failure** | **8.7%** | 134 / 1,540 questions | Complete retrieval failure (no required evidence turns retrieved by the memory engine) |
 | **LoCoMo Official QA F1** | **50.9%** | 1,540 questions (7B Reader) | End-to-end question answering using local 7B Reader |
@@ -100,7 +100,7 @@ If you mount a 7B or 1.5B local model to such systems, the massive context windo
 In contrast, Lethe Akribeia deterministically compiles memories into structured Memory State Contexts (MSC), distilling 100K+ token sessions into just a few hundred tokens. Because of this, **even a 1.5B or 7B model suffers zero context overflow and runs 1,540 benchmark questions continuously for 140 hours without collapsing**. Systems that only function with frontier models vs. systems that remain fully robust on 7B local hardware — this is the distinct arena Lethe defines.
 
 ### Context-Dominance Verification (Overlap Analysis)
-Across all 1,540 questions, the 7B and 1.5B models **shared 863 identical correct answers** (and 413 identical wrong answers), with only 17.1% flipping outcome (McNemar test p = 0.95). This confirms that answer accuracy is predominantly driven by **the quality of Lethe's pre-compiled context**, not the Reader's intrinsic reasoning capacity.
+Across all 1,540 questions, the 7B and 1.5B models **shared 863 identical correct answers** (and 413 identical wrong answers), with only 17.1% flipping outcome (McNemar test p = 0.95). This strongly suggests that a substantial portion of observed accuracy is driven by **the quality of Lethe's pre-compiled context**, rather than Reader scale alone.
 
 #### Identical 10-Question Frozen Context Probe
 To prevent misleading comparisons between the full 1,540-question local run (64.7%) and a small probe, the table below compares Readers strictly across the **exact same 10 questions** on the **identical frozen context**:
