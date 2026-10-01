@@ -1001,22 +1001,31 @@ def commit_answer(question: str, context: str, category: int | None = None) -> C
         return scaffold_ans
 
     # 3. Temporal reasoning
-    is_temporal_q = (category == 2) or bool(re.search(
-        r"\b(?:when|what\s+date|what\s+year|which\s+year|how\s+long|how\s+many\s+days|how\s+many\s+years|ago)\b",
-        question,
-        re.IGNORECASE,
-    ))
+    # Guard against false positives like "How did Joanna feel when someone wrote..."
+    if category is not None:
+        is_temporal_q = (category == 2)
+    else:
+        is_temporal_q = bool(re.search(
+            r"^(?:when\b|what\s+date|what\s+year|which\s+year|how\s+long|how\s+many\s+(?:days|weeks|months|years))\b",
+            question.strip(),
+            re.IGNORECASE,
+        ))
+
     if is_temporal_q:
         temp_ans = extract_temporal_answer(question, context)
         if temp_ans.used:
             return temp_ans
 
     # 4. Single-hop fact reasoning
-    is_fact_q = (category == 4) or bool(re.search(
-        r"\b(?:what\s+is|what's|where\s+does|where\s+is|who\s+is|what\s+does)\b",
-        question,
-        re.IGNORECASE,
-    ))
+    if category is not None:
+        is_fact_q = (category == 4)
+    else:
+        is_fact_q = bool(re.search(
+            r"\b(?:what\s+is|what's|where\s+does|where\s+is|who\s+is|what\s+does)\b",
+            question,
+            re.IGNORECASE,
+        ))
+
     if is_fact_q:
         fact_ans = commit_single_hop_fact(question, context)
         if fact_ans.used:
