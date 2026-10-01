@@ -650,6 +650,7 @@ class LoCoMoAdapter:
                 f"- When asked for titles, books, movies, activities, or items, do NOT describe or summarize them.\n"
                 f"  List ONLY the exact titles or names, comma-separated (e.g. 'Item 1, Item 2').\n"
                 f"- If the question asks what two people 'share' or 'both like', include ONLY the common items.\n"
+                f"  Do NOT output items that belong to only one person (e.g. if Nate likes video games but Joanna does not, exclude video games).\n"
                 f"- Quote names, dates, and facts exactly as they appear in the context.\n"
                 f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
                 f"- Return ONLY the concise target answer/entity/date.\n"
@@ -809,13 +810,14 @@ class LoCoMoAdapter:
                     f"conversation, or attribute to one person something that actually belongs\n"
                     f"to a DIFFERENT person.  Before answering:\n"
                     f"1. Find the evidence for the exact premise in the context.\n"
-                    f"2. Check WHO said or did it. If the person named in the question is not\n"
-                    f"   the person the context talks about, the premise is false.\n"
+                    f"2. Check WHO said or did it. If Person A did it, but the question asks\n"
+                    f"   what Person B did (e.g. Joanna celebrated, but question asks how Nate celebrated;\n"
+                    f"   or Audrey bought dog beds, but question asks what Andrew did), then Person B did NOT do it.\n"
+                    f"   The premise is FALSE. Reply: {OFFICIAL_ABSTENTION_TEXT}\n"
                     f"3. If the event, object or person in the question does not appear in the\n"
-                    f"   context at all, the premise is false.\n"
-                    f"If the premise is false, reply exactly: {OFFICIAL_ABSTENTION_TEXT}\n"
-                    f"Only give a real answer when the context explicitly confirms the premise\n"
-                    f"for the exact person the question asks about.\n"
+                    f"   context at all, the premise is false. Reply: {OFFICIAL_ABSTENTION_TEXT}\n"
+                    f"Only give a real answer when the context explicitly confirms that the SPECIFIC person named\n"
+                    f"in the question performed the action.\n"
                     f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
                     f"- Return ONLY the concise target answer or the official abstention text.\n"
                     f"- CRITICAL: If the premise IS confirmed, you are FORBIDDEN from saying\n"
@@ -824,20 +826,6 @@ class LoCoMoAdapter:
                     f"{pcc.context_text}"
                 )
                 ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
-                # Anti-refusal retry
-                refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
-                ans_text = ans.text.strip()
-                if any(m in ans_text.lower() for m in refusal_markers):
-                    retry_prompt = (
-                        f"[RETRY - PREVIOUS ANSWER WAS A REFUSAL]\n"
-                        f"You previously refused to answer. This is NOT allowed.\n"
-                        f"RULE: You MUST provide a direct answer. The evidence IS in the context.\n"
-                        f"Make your BEST direct deduction from the evidence provided.\n"
-                        f"Do NOT say 'I don't know', 'Unsure', 'Not enough information', 'None', or any refusal.\n"
-                        f"Answer the question directly using ONLY the context below.\n\n"
-                        f"{pcc.context_text}"
-                    )
-                    ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
                 v_res = self.compiler.answer_verifier.verify(
                     question=question.question,
                     predicted_answer=ans.text,

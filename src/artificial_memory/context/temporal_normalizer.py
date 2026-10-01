@@ -268,11 +268,7 @@ class TemporalNormalizer:
                 flags=re.IGNORECASE,
             )
 
-        # 17. 'N years ago' -> 'N years ago (YYYY)'.  This is calendar arithmetic
-        #     the reader cannot be trusted with: LoCoMo answers these questions
-        #     with the year ("In 2013") while the turn only says "10 years ago",
-        #     so without the resolved year the answer is not present anywhere in
-        #     the context and the question is unanswerable by construction.
+        # 17. 'N years ago' -> 'N years ago (YYYY)'.  Supports 'around 3 years ago', 'about 5 years ago'.
         if run_all or "years_ago" in enabled_rules:
             spelled = {
                 "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
@@ -280,14 +276,30 @@ class TemporalNormalizer:
             }
 
             def replace_years_ago(match: re.Match) -> str:
+                full_matched = match.group(0)
                 raw = match.group(1).lower()
                 count = spelled.get(raw) if raw in spelled else int(raw)
-                return f"{match.group(1)} years ago ({ref_date.year - count})"
+                return f"{full_matched} ({ref_date.year - count})"
 
             result = re.sub(
-                r"\b(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)"
+                r"\b(?:around|about|approximately\s+)?(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)"
                 r"\s+years?\s+ago\b",
                 replace_years_ago,
+                result,
+                flags=re.IGNORECASE,
+            )
+
+            # 17b. 'had / have had for N years' -> resolve inception year (e.g. 'had them for 3 years' -> since 2020)
+            def replace_had_for_years(match: re.Match) -> str:
+                full_matched = match.group(0)
+                raw = match.group(1).lower()
+                count = spelled.get(raw) if raw in spelled else int(raw)
+                return f"{full_matched} (since {ref_date.year - count})"
+
+            result = re.sub(
+                r"\b(?:had|have\s+had|lived\s+here|known\s+each\s+other|been\s+together)\s+(?:them|her|him|it)?\s*for\s+"
+                r"(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+years?\b",
+                replace_had_for_years,
                 result,
                 flags=re.IGNORECASE,
             )

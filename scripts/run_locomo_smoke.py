@@ -28,6 +28,7 @@ from artificial_memory.recall.evidence_scorer import EvidenceScoreWeights
 from artificial_memory.research.benchmarks.external.locomo_adapter import (
     LoCoMoAdapter,
     LoCoMoEvalResult,
+    _evidence_present,
 )
 from artificial_memory.research.benchmarks.failure_taxonomy_v2 import FailureClassifierV2
 from artificial_memory.research.benchmarks.llm import FROZEN_MODEL, OllamaAnswerer
@@ -78,7 +79,7 @@ def run_conversation(
         if retrieval_only:
             pcc = adapter.compiler.compile(q.question, ir_records, weights=weights)
             if q.evidence_ids:
-                oracle_recall = any(ev_id in pcc.context_text for ev_id in q.evidence_ids)
+                oracle_recall, _ = _evidence_present(pcc.context_text, turns, q.evidence_ids)
             else:
                 oracle_recall = True
             res = LoCoMoEvalResult(
