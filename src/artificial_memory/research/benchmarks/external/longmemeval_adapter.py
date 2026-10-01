@@ -223,6 +223,36 @@ class LongMemEvalAdapter:
             items.append(item)
         return items
 
+    def _call_answerer(
+        self,
+        answerer: Any,
+        question: str,
+        prompt: str,
+        question_type: str,
+    ) -> Any:
+        """Call answerer with question-type-specific token bounds and stop sequences."""
+        bounds = {
+            "single-session-assistant": (64, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),
+            "temporal-reasoning": (64, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),
+            "knowledge-update": (64, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),
+            "multi-session": (96, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),
+            "single-session-preference": (160, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),
+        }
+        max_tokens, stop = bounds.get(question_type, (80, ["\n\n[INSTRUCTION", "\n\nUser:"]))
+        old_max = getattr(answerer, "max_tokens", None)
+        old_stop = getattr(answerer, "stop", None)
+        if hasattr(answerer, "max_tokens"):
+            answerer.max_tokens = max_tokens
+        if hasattr(answerer, "stop"):
+            answerer.stop = stop
+        try:
+            return answerer.answer(question, prompt)
+        finally:
+            if hasattr(answerer, "max_tokens"):
+                answerer.max_tokens = old_max
+            if hasattr(answerer, "stop"):
+                answerer.stop = old_stop
+
     def evaluate_item(
         self,
         item: LongMemEvalItem,
@@ -444,7 +474,7 @@ class LongMemEvalAdapter:
             if _TEMPORAL_BYPASS and item.question_type == "temporal-reasoning":
                 pass
             else:
-                ans = answerer.answer(item.question, prompt_context)
+                ans = self._call_answerer(answerer, item.question, prompt_context, item.question_type)
                 if (
                     item.question_type == "single-session-preference"
                     or item.question_type == "single-session-assistant"

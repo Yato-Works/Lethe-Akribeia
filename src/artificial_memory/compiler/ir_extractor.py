@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 
+from artificial_memory.compiler.speaker_normalizer import SpeakerAttributionNormalizer
 from artificial_memory.core.ir import IRRelation, IRStatus, StructuredIR
 
 
@@ -32,6 +33,10 @@ class UniversalIRExtractor:
         re.compile(r"\b(currently|now|previously)\b", re.IGNORECASE),
     ]
 
+    def __init__(self, enable_speaker_attribution: bool = True) -> None:
+        self.enable_speaker_attribution = enable_speaker_attribution
+        self.speaker_normalizer = SpeakerAttributionNormalizer()
+
     def extract(self, text: str, default_source: str = "user") -> list[StructuredIR]:
         """Extract all StructuredIR units from a given text line or turn."""
         records: list[StructuredIR] = []
@@ -44,6 +49,10 @@ class UniversalIRExtractor:
             source = "teammate"
         elif "assistant" in clean.lower():
             source = "assistant"
+
+        # Apply deterministic speaker attribution & pronoun disambiguation
+        if self.enable_speaker_attribution and default_source and default_source.lower() not in ["user", "assistant", "system", "teammate", "general"]:
+            clean = self.speaker_normalizer.normalize_turn(clean, speaker=default_source)
 
         entity = self._extract_entity(clean)
         if entity == "general" and default_source and default_source.lower() not in ["user", "assistant", "teammate", "general"]:
@@ -185,6 +194,90 @@ class UniversalIRExtractor:
                 entity=entity,
                 property=prop,
                 value=val,
+                time_scope=time_scope,
+                source=source,
+                relation=IRRelation.ASSERTS,
+                status=IRStatus.ACTIVE,
+                raw_content=clean,
+            ))
+            return records
+
+        # Pattern H: Actions & Events (bought, visited, adopted, planted, assembled, finished)
+        m_act = re.search(
+            r"\b(bought|purchased|adopted|planted|assembled|visited|attended|joined|started|finished|watched|read|dined\s+at)\s+(?:a\s+|an\s+|the\s+)?([a-zA-Z0-9_\s\.\-]{2,40})",
+            clean,
+            re.IGNORECASE,
+        )
+        if m_act:
+            action_prop = m_act.group(1).lower().strip()
+            action_val = m_act.group(2).strip().rstrip(".,")
+            records.append(StructuredIR(
+                entity=entity,
+                property=action_prop,
+                value=action_val,
+                time_scope=time_scope,
+                source=source,
+                relation=IRRelation.BEHAVIOR,
+                status=IRStatus.ACTIVE,
+                raw_content=clean,
+            ))
+            return records
+
+        # Pattern I: Preferences & Tastes (likes, loves, enjoys, prefers, hates)
+        m_pref = re.search(
+            r"\b(loves?|likes?|enjoys?|prefers?|hates?|dislikes?)\s+([a-zA-Z0-9_\s\.\-]{2,35})",
+            clean,
+            re.IGNORECASE,
+        )
+        if m_pref:
+            raw_pref = m_pref.group(1).lower().strip()
+            # Normalize to base form
+            pref_prop = "love" if raw_pref.startswith("love") else "like" if raw_pref.startswith("like") else raw_pref
+            pref_val = m_pref.group(2).strip().rstrip(".,")
+            records.append(StructuredIR(
+                entity=entity,
+                property=pref_prop,
+                value=pref_val,
+                time_scope=time_scope,
+                source=source,
+                relation=IRRelation.PREFERS,
+                status=IRStatus.ACTIVE,
+                raw_content=clean,
+            ))
+            return records
+
+        # Pattern J: Possession & Kinship (has a dog, owns a car, etc.)
+        m_poss = re.search(
+            r"\b(has|have|owns?|owned)\s+(?:a\s+|an\s+|the\s+)?([a-zA-Z0-9_\s\.\-]{2,35})",
+            clean,
+            re.IGNORECASE,
+        )
+        if m_poss:
+            poss_val = m_poss.group(2).strip().rstrip(".,")
+            records.append(StructuredIR(
+                entity=entity,
+                property="possesses",
+                value=poss_val,
+                time_scope=time_scope,
+                source=source,
+                relation=IRRelation.ASSERTS,
+                status=IRStatus.ACTIVE,
+                raw_content=clean,
+            ))
+            return records
+
+        # Pattern K: Occupation & Identity (works as, employed as, studies)
+        m_occ = re.search(
+            r"\b(works?\s+as|employed\s+as|studies|majoring\s+in)\s+(?:a\s+|an\s+)?([a-zA-Z0-9_\s\.\-]{2,30})",
+            clean,
+            re.IGNORECASE,
+        )
+        if m_occ:
+            occ_val = m_occ.group(2).strip().rstrip(".,")
+            records.append(StructuredIR(
+                entity=entity,
+                property="occupation",
+                value=occ_val,
                 time_scope=time_scope,
                 source=source,
                 relation=IRRelation.ASSERTS,

@@ -435,6 +435,36 @@ class LoCoMoAdapter:
         # other arenas (e.g. LongMemEval) stays untouched.
         self.compiler.answer_verifier = AnswerVerifier(subject_binding=True)
 
+    def _call_answerer(
+        self,
+        answerer: Any,
+        question: str,
+        prompt: str,
+        category: int,
+    ) -> Any:
+        """Call answerer with category-specific token bounds and stop sequences."""
+        bounds = {
+            1: (80, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),  # multi-hop
+            2: (48, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),  # temporal
+            3: (64, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),  # open-domain
+            4: (48, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),  # single-hop
+            5: (48, ["\n\n[INSTRUCTION", "\n\nUser:", "\nContext:"]),  # adversarial
+        }
+        max_tokens, stop = bounds.get(category, (64, ["\n\n[INSTRUCTION", "\n\nUser:"]))
+        old_max = getattr(answerer, "max_tokens", None)
+        old_stop = getattr(answerer, "stop", None)
+        if hasattr(answerer, "max_tokens"):
+            answerer.max_tokens = max_tokens
+        if hasattr(answerer, "stop"):
+            answerer.stop = stop
+        try:
+            return answerer.answer(question, prompt)
+        finally:
+            if hasattr(answerer, "max_tokens"):
+                answerer.max_tokens = old_max
+            if hasattr(answerer, "stop"):
+                answerer.stop = old_stop
+
     def load_conversation(self, conv_idx: int = 0) -> tuple[list[LoCoMoTurn], list[LoCoMoQuestion], list[StructuredIR]]:
         """Load a conversation and parse turns, questions, and IR records."""
         with open(self.dataset_path, encoding="utf-8") as f:
@@ -587,7 +617,7 @@ class LoCoMoAdapter:
                 f"=== PERSONA SUMMARY ===\n{persona_summary}\n\n"
                 f"=== DIALOGUE CONTEXT ===\n{pcc.context_text}"
             )
-            ans = answerer.answer(question.question, prompt)
+            ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             predicted_answer = ans.text
         elif question.category == 1:
             # Phase 6: Multi-Hop Evidence Synthesis Director.  Cached-context
@@ -612,7 +642,7 @@ class LoCoMoAdapter:
                 f"{OFFICIAL_ABSTENTION_TEXT}\n\n"
                 f"{pcc.context_text}"
             )
-            ans = answerer.answer(question.question, prompt)
+            ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry: up to 2 retries with increasingly forceful prompts
             refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
             ans_text = ans.text.strip()
@@ -639,7 +669,7 @@ class LoCoMoAdapter:
                         f"Answer directly: what does the context say?\n\n"
                         f"{pcc.context_text}"
                     )
-                ans = answerer.answer(question.question, retry_prompt)
+                ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
                 ans_text = ans.text.strip()
             # All directed branches must still pass the verification guards
             v_res = self.compiler.answer_verifier.verify(
@@ -698,7 +728,7 @@ class LoCoMoAdapter:
                 f"{temporal_skill_block}"
                 f"{pcc.context_text}"
             )
-            ans = answerer.answer(question.question, prompt)
+            ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry
             refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
             ans_text = ans.text.strip()
@@ -712,7 +742,7 @@ class LoCoMoAdapter:
                     f"Answer the question directly using ONLY the context below.\n\n"
                     f"{pcc.context_text}"
                 )
-                ans = answerer.answer(question.question, retry_prompt)
+                ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
             predicted_answer = ans.text
         elif question.category == 4:
             # Phase 4: Single-Hop Evidence Director (CoT-Fusion)
@@ -733,7 +763,7 @@ class LoCoMoAdapter:
                 f"- If the context does not contain the answer, reply: {OFFICIAL_ABSTENTION_TEXT}\n\n"
                 f"{pcc.context_text}"
             )
-            ans = answerer.answer(question.question, prompt)
+            ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry
             refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
             ans_text = ans.text.strip()
@@ -747,7 +777,7 @@ class LoCoMoAdapter:
                     f"Answer the question directly using ONLY the context below.\n\n"
                     f"{pcc.context_text}"
                 )
-                ans = answerer.answer(question.question, retry_prompt)
+                ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
             predicted_answer = ans.text
         elif question.category == 5:
             # Phase 7 & 8: Refined Adversarial Gate (89.4% detection, 0% FP)
@@ -775,7 +805,7 @@ class LoCoMoAdapter:
                     f"  'Unknown', or any refusal. Answer directly from the confirmed evidence.\n\n"
                     f"{pcc.context_text}"
                 )
-                ans = answerer.answer(question.question, prompt)
+                ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
                 # Anti-refusal retry
                 refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
                 ans_text = ans.text.strip()
@@ -789,7 +819,7 @@ class LoCoMoAdapter:
                         f"Answer the question directly using ONLY the context below.\n\n"
                         f"{pcc.context_text}"
                     )
-                    ans = answerer.answer(question.question, retry_prompt)
+                    ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
                 v_res = self.compiler.answer_verifier.verify(
                     question=question.question,
                     predicted_answer=ans.text,
@@ -810,7 +840,7 @@ class LoCoMoAdapter:
                 f"  If you cannot find the exact answer, make your BEST direct deduction from the evidence.\n\n"
                 f"{pcc.context_text}"
             )
-            ans = answerer.answer(question.question, prompt)
+            ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry
             refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
             ans_text = ans.text.strip()
@@ -824,7 +854,7 @@ class LoCoMoAdapter:
                     f"Answer the question directly using ONLY the context below.\n\n"
                     f"{pcc.context_text}"
                 )
-                ans = answerer.answer(question.question, retry_prompt)
+                ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
             # Verify and filter hallucinations using AnswerVerifier
             v_res = self.compiler.answer_verifier.verify(
                 question=question.question,

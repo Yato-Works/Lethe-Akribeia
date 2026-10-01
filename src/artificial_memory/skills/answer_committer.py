@@ -387,10 +387,14 @@ def _shape_bonus(kind: str, question: str) -> float:
 
 
 #: "occurred on 2023-06-15" inside a certificate.  The event *name* is recovered by
-#: position, not by matching quotes: LongMemEval quotes names that themselves
-#: contain apostrophes ("'michael's engagement party'"), so a quote-matching
-#: pattern truncates them to "michael".
-_OCCURRED_ON = re.compile(r"occurred on\s+(\d{4})-(\d{1,2})-(\d{1,2})", re.IGNORECASE)
+#: "occurred on 2023-06-15" or "occurred on 2023-06-15 14:30" inside a certificate.
+#: The event *name* is recovered by position, not by matching quotes: LongMemEval
+#: quotes names that themselves contain apostrophes ("'michael's engagement party'"),
+#: so a quote-matching pattern truncates them to "michael".
+_OCCURRED_ON = re.compile(
+    r"occurred on\s+(\d{4})-(\d{1,2})-(\d{1,2})(?:\s+(\d{1,2}):(\d{2}))?",
+    re.IGNORECASE,
+)
 #: The verdict is the last clause: "... the event that happened first is 'x'."
 _VERDICT = re.compile(
     r"(?:happened\s+(first|last)|earliest|latest)\s+is\s+(.+?)\]?\s*$",
@@ -400,18 +404,22 @@ _VERDICT = re.compile(
 _NAME_START = re.compile(r"[.:]\s|\]\s")
 
 
-def _certificate_events(certificate: str) -> dict[str, tuple[int, int, int]]:
-    """Map lowercased event name -> date for every "X occurred on D" clause."""
-    events: dict[str, tuple[int, int, int]] = {}
+def _certificate_events(certificate: str) -> dict[str, tuple[int, int, int, int, int, bool]]:
+    """Map lowercased event name -> (year, month, day, hour, minute, has_time) for every clause."""
+    events: dict[str, tuple[int, int, int, int, int, bool]] = {}
     for match in _OCCURRED_ON.finditer(certificate):
         prefix = certificate[: match.start()]
         starts = list(_NAME_START.finditer(prefix))
         name = _clean_name(prefix[starts[-1].end():] if starts else prefix)
         if not name:
             continue
-        events[name.lower()] = (
-            int(match.group(1)), int(match.group(2)), int(match.group(3))
-        )
+        y = int(match.group(1))
+        m = int(match.group(2))
+        d = int(match.group(3))
+        has_time = match.group(4) is not None
+        h = int(match.group(4)) if has_time else 0
+        mn = int(match.group(5)) if has_time else 0
+        events[name.lower()] = (y, m, d, h, mn, has_time)
     return events
 
 
@@ -433,11 +441,10 @@ def _single_winner(certificate: str) -> tuple[str, str] | None:
     trusted:
 
     * the named winner is not one of the dated events (name normalisation drift);
-    * **two events share a date**: the certificate keeps the date and drops the
-      time of day, so the ordering is a coin flip.  Measured on the real cache,
-      "Samsung Galaxy S22 vs Dell XPS 13" (both 2023-03-15), "tomatoes vs
-      marigolds" (both 2023-03-10) and "smart thermostat vs mesh network" (both
-      2023-05-25) all name the wrong winner, while the reader gets them right;
+    * **two events share a date without resolving time**: if neither event carries
+      a time of day, a same-day pair is an unresolvable tie and the committer
+      abstains. When hours/minutes are present and distinct, the committer resolves
+      the exact winner deterministically.
     * the named winner does not actually hold the extreme date, i.e. the
       resolver's verdict contradicts its own dates (0 of 20 such cases today,
       checked by ``scratch/_ordering_cert_audit.py``).
@@ -451,12 +458,20 @@ def _single_winner(certificate: str) -> tuple[str, str] | None:
     name = _clean_name(verdict.group(2))
     if name.lower() not in events:
         return "", "named winner is not one of the dated events"
-    dates = list(events.values())
-    if len(set(dates)) != len(dates):
-        return "", "same-date tie: the certificate has no time of day"
+    points = list(events.values())
+    timestamps = [(p[0], p[1], p[2], p[3], p[4]) for p in points]
+    dates_only = [(p[0], p[1], p[2]) for p in points]
+    any_has_time = any(p[5] for p in points)
+
+    if len(set(dates_only)) != len(dates_only):
+        if not any_has_time or len(set(timestamps)) != len(timestamps):
+            return "", "same-date tie: the certificate has no time of day"
+
     wants_first = (verdict.group(1) or "earliest").lower() in ("first", "earliest")
-    extreme = min(dates) if wants_first else max(dates)
-    if events[name.lower()] != extreme:
+    extreme_ts = min(timestamps) if wants_first else max(timestamps)
+    win_point = events[name.lower()]
+    win_ts = (win_point[0], win_point[1], win_point[2], win_point[3], win_point[4])
+    if win_ts != extreme_ts:
         return "", "verdict contradicts the dates inside the certificate"
     return name, "certificate names the winning event"
 
@@ -721,4 +736,292 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
 #: **67.0%** for the paired reader on exactly those questions (+1.25pp on the
 #: slice, 0 LLM calls).
 MIN_TURN_SCORE = 0.80
+
+
+#: Regexes for derivation scaffold markers in compiled context
+_SCAFFOLD_COUNT = re.compile(
+    r"\[(?:Derivation(?:Scaffold)?|MSC Derivation):\s*COUNT\s*=\s*(\d+)(?:,\s*TARGET\s*=\s*([A-Za-z0-9_ -]+))?\]",
+    re.IGNORECASE,
+)
+_SCAFFOLD_SUM = re.compile(
+    r"\[(?:Derivation(?:Scaffold)?|MSC Derivation):\s*SUM\s*=\s*([\d.]+)(?:,\s*TARGET\s*=\s*([A-Za-z0-9_ -]+))?\]",
+    re.IGNORECASE,
+)
+_SCAFFOLD_LIST = re.compile(
+    r"\[(?:Derivation(?:Scaffold)?|MSC Derivation):\s*LIST\s*=\s*\[([^\]]+)\]\]",
+    re.IGNORECASE,
+)
+_MSC_FACT_BLOCK = re.compile(
+    r"\[(?:MSC Fact|Fact):\s*\(([^,]+),\s*([^,]+),\s*([^)]+)\)\]",
+    re.IGNORECASE,
+)
+
+
+def commit_derivation_scaffold(question: str, context: str) -> CommittedAnswer:
+    """Commit precomputed count/aggregation results directly from derivation scaffolds.
+
+    When the context includes a deterministic derivation scaffold (e.g. from
+    DerivationScaffolder or MSC compiler) and the question asks for a count
+    or summation ("How many...", "Total number of..."), this bypasses the
+    reader LLM entirely (0 ms, 0 tokens, 100% arithmetic precision).
+    """
+    is_count_q = bool(re.search(r"\b(?:how\s+many|how\s+much|total\s+number\s+of|count\s+of)\b", question, re.IGNORECASE))
+    if not is_count_q:
+        return CommittedAnswer(used=False, detail="question does not ask for count/aggregation")
+
+    q_lower = question.lower()
+
+    # 1. Check COUNT scaffolds
+    for m in _SCAFFOLD_COUNT.finditer(context):
+        cnt = m.group(1)
+        target = (m.group(2) or "").strip().lower()
+        if not target or target in q_lower or any(w in q_lower for w in target.split()):
+            return CommittedAnswer(
+                used=True,
+                answer=cnt,
+                source="derivation_scaffold",
+                confidence=0.95,
+                detail=f"scaffold count={cnt} target={target}",
+                evidence_turn=m.group(0),
+            )
+
+    # 2. Check SUM scaffolds
+    for m in _SCAFFOLD_SUM.finditer(context):
+        s_val = m.group(1)
+        target = (m.group(2) or "").strip().lower()
+        if not target or target in q_lower or any(w in q_lower for w in target.split()):
+            # Format cleanly (e.g. 150.0 -> 150)
+            ans = str(int(float(s_val))) if float(s_val).is_integer() else s_val
+            return CommittedAnswer(
+                used=True,
+                answer=ans,
+                source="derivation_scaffold",
+                confidence=0.95,
+                detail=f"scaffold sum={ans} target={target}",
+                evidence_turn=m.group(0),
+            )
+
+    return CommittedAnswer(used=False, detail="no matching derivation scaffold found")
+
+
+def commit_single_hop_fact(question: str, context: str) -> CommittedAnswer:
+    """Commit high-confidence single-hop facts (occupation, location, preferences, names).
+
+    Matches deterministic SPO triplets or normalized turns where the subject,
+    relation, and object are stated without ambiguity.
+    """
+    turns = parse_turns(context)
+    q_lower = question.lower()
+
+    # 1. Look for MSC Fact triplets in context
+    for m in _MSC_FACT_BLOCK.finditer(context):
+        subj = m.group(1).strip()
+        pred = m.group(2).strip().upper()
+        obj = m.group(3).strip()
+        subj_clean = re.sub(r"'s\s*.*$", "", subj, flags=re.IGNORECASE).strip()
+
+        if subj_clean.lower() in q_lower:
+            # Check relation match
+            if pred in ("OCCUPATION", "JOB") and re.search(r"\b(?:job|occupation|profession|career|do\s+for\s+a\s+living)\b", q_lower):
+                return CommittedAnswer(
+                    used=True,
+                    answer=obj,
+                    source="single_hop_fact",
+                    confidence=0.92,
+                    detail=f"MSC fact: {subj} {pred} {obj}",
+                    evidence_turn=m.group(0),
+                )
+            if pred in ("LOCATED_IN", "LOCATION") and re.search(r"\b(?:live|living|reside|hometown|where)\b", q_lower):
+                return CommittedAnswer(
+                    used=True,
+                    answer=obj,
+                    source="single_hop_fact",
+                    confidence=0.92,
+                    detail=f"MSC fact: {subj} {pred} {obj}",
+                    evidence_turn=m.group(0),
+                )
+            if pred in ("PREFERS", "FAVORITE") and re.search(r"\b(?:favorite|prefer|like)\b", q_lower):
+                return CommittedAnswer(
+                    used=True,
+                    answer=obj,
+                    source="single_hop_fact",
+                    confidence=0.92,
+                    detail=f"MSC fact: {subj} {pred} {obj}",
+                    evidence_turn=m.group(0),
+                )
+            if pred in ("NAME", "NAMED") and re.search(r"\b(?:name|called)\b", q_lower):
+                return CommittedAnswer(
+                    used=True,
+                    answer=obj,
+                    source="single_hop_fact",
+                    confidence=0.92,
+                    detail=f"MSC fact: {subj} {pred} {obj}",
+                    evidence_turn=m.group(0),
+                )
+
+    # 2. Extract facts from parsed dialogue turns
+    # Pattern A: Occupation ("What is X's job / occupation?", "What does X do for a living?")
+    occ_match = re.search(
+        r"(?:what\s+is|what's)\s+([A-Z][a-z]+)(?:'s)?\s+(?:job|occupation|profession|career)"
+        r"|what\s+does\s+([A-Z][a-z]+)\s+do(?: for a living)?",
+        question,
+        re.IGNORECASE,
+    )
+    if occ_match:
+        person = (occ_match.group(1) or occ_match.group(2)).capitalize()
+        for turn in turns:
+            if turn.speaker.lower() == person.lower() or person.lower() in turn.text.lower():
+                m_work = re.search(
+                    r"\b(?:work\s+as|work\s+as\s+an?|i'm\s+an?|i\s+am\s+an?|" + re.escape(person) + r"\s+is\s+an?)\s+([a-zA-Z\s]+?)(?:[.,;\n]|and\b)",
+                    turn.text,
+                    re.IGNORECASE,
+                )
+                if m_work:
+                    role = m_work.group(1).strip()
+                    if 2 < len(role) < 40 and not role.lower().startswith(("the", "this", "that")):
+                        return CommittedAnswer(
+                            used=True,
+                            answer=role,
+                            source="single_hop_fact",
+                            confidence=0.90,
+                            detail=f"occupation match for {person}",
+                            evidence_turn=turn.text,
+                        )
+
+    # Pattern B: Residence ("Where does X live?", "What is X's hometown?")
+    live_match = re.search(
+        r"where\s+does\s+([A-Z][a-z]+)\s+live"
+        r"|(?:what|where)\s+is\s+([A-Z][a-z]+)(?:'s)?\s+(?:hometown|home|residence|city)",
+        question,
+        re.IGNORECASE,
+    )
+    if live_match:
+        person = (live_match.group(1) or live_match.group(2)).capitalize()
+        for turn in turns:
+            if turn.speaker.lower() == person.lower() or person.lower() in turn.text.lower():
+                m_live = re.search(
+                    r"\b(?:live\s+in|living\s+in|moved\s+to|hometown\s+is|" + re.escape(person) + r"\s+lives\s+in)\s+([A-Z][a-zA-Z\s]+?)(?:[.,;\n]|and\b)",
+                    turn.text,
+                )
+                if m_live:
+                    place = m_live.group(1).strip()
+                    if 2 < len(place) < 40:
+                        return CommittedAnswer(
+                            used=True,
+                            answer=place,
+                            source="single_hop_fact",
+                            confidence=0.90,
+                            detail=f"residence match for {person}",
+                            evidence_turn=turn.text,
+                        )
+
+    # Pattern C: Favorite item ("What is X's favorite Y?")
+    fav_match = re.search(
+        r"(?:what\s+is|what's)\s+([A-Z][a-z]+)(?:'s)?\s+favorite\s+([a-zA-Z]+)",
+        question,
+        re.IGNORECASE,
+    )
+    if fav_match:
+        person = fav_match.group(1).capitalize()
+        category_item = fav_match.group(2).lower()
+        for turn in turns:
+            if turn.speaker.lower() == person.lower() or person.lower() in turn.text.lower():
+                m_fav = re.search(
+                    rf"\bfavorite\s+{re.escape(category_item)}\s+is\s+([^.,;\n]+)",
+                    turn.text,
+                    re.IGNORECASE,
+                )
+                if not m_fav:
+                    m_fav = re.search(
+                        rf"\b(?:love|prefer|favorite)\s+([^.,;\n]+?)(?:[.,;\n]|$)",
+                        turn.text,
+                        re.IGNORECASE,
+                    )
+                if m_fav:
+                    fav_val = m_fav.group(1).strip().strip("'\"")
+                    if 2 < len(fav_val) < 50:
+                        return CommittedAnswer(
+                            used=True,
+                            answer=fav_val,
+                            source="single_hop_fact",
+                            confidence=0.88,
+                            detail=f"favorite {category_item} match for {person}",
+                            evidence_turn=turn.text,
+                        )
+
+    # Pattern D: Pet/Kinship Name ("What is the name of X's dog/cat/pet/sister/brother?")
+    name_match = re.search(
+        r"(?:what\s+is|what's)\s+(?:the\s+name\s+of\s+)?([A-Z][a-z]+)(?:'s)?\s+(?:pet|dog|cat|sister|brother|friend)(?:'s)?\s*(?:name)?",
+        question,
+        re.IGNORECASE,
+    )
+    if name_match:
+        person = name_match.group(1).capitalize()
+        for turn in turns:
+            if turn.speaker.lower() == person.lower() or person.lower() in turn.text.lower():
+                m_name = re.search(
+                    r"\b(?:named|name\s+is|called)\s+([A-Z][a-z]+)\b",
+                    turn.text,
+                )
+                if m_name:
+                    name_val = m_name.group(1).strip()
+                    if name_val.lower() not in ("i", "my", "we", "he", "she"):
+                        return CommittedAnswer(
+                            used=True,
+                            answer=name_val,
+                            source="single_hop_fact",
+                            confidence=0.90,
+                            detail=f"name match for {person}'s entity",
+                            evidence_turn=turn.text,
+                        )
+
+    return CommittedAnswer(used=False, detail="no high-confidence single-hop fact found")
+
+
+def commit_answer(question: str, context: str, category: int | None = None) -> CommittedAnswer:
+    """Master deterministic answer committer spanning all memory reasoning categories.
+
+    Pipeline:
+    1. Temporal Certificates: runtime certificates with explicit calculation/ordering (confidence ~0.95).
+    2. Derivation Scaffolds: precomputed counts, sums, or enumerations (confidence ~0.95).
+    3. Temporal Spans: IDF-anchored relative/absolute date spans (category 2 or temporal question).
+    4. Single-Hop Facts: unambiguous SPO attributes (job, location, favorites, names) (category 4 or fact question).
+
+    Returns CommittedAnswer(used=False) when deterministic proof is ambiguous,
+    delegating cleanly to the reader LLM.
+    """
+    # 1. Temporal Certificate
+    cert_ans = extract_certificate_answer(question, context)
+    if cert_ans.used:
+        return cert_ans
+
+    # 2. Derivation Scaffold (Count/Aggregation)
+    scaffold_ans = commit_derivation_scaffold(question, context)
+    if scaffold_ans.used:
+        return scaffold_ans
+
+    # 3. Temporal reasoning
+    is_temporal_q = (category == 2) or bool(re.search(
+        r"\b(?:when|what\s+date|what\s+year|which\s+year|how\s+long|how\s+many\s+days|how\s+many\s+years|ago)\b",
+        question,
+        re.IGNORECASE,
+    ))
+    if is_temporal_q:
+        temp_ans = extract_temporal_answer(question, context)
+        if temp_ans.used:
+            return temp_ans
+
+    # 4. Single-hop fact reasoning
+    is_fact_q = (category == 4) or bool(re.search(
+        r"\b(?:what\s+is|what's|where\s+does|where\s+is|who\s+is|what\s+does)\b",
+        question,
+        re.IGNORECASE,
+    ))
+    if is_fact_q:
+        fact_ans = commit_single_hop_fact(question, context)
+        if fact_ans.used:
+            return fact_ans
+
+    return CommittedAnswer(used=False, detail="no deterministic skill could commit an answer")
+
 

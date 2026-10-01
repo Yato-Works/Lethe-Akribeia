@@ -41,31 +41,91 @@ ACTION_VERBS = [
 ]
 
 
-def parse_date(date_str: str | None) -> datetime.date | None:
-    """Parse various date string formats into datetime.date."""
+def parse_datetime_or_date(date_str: str | None) -> datetime.datetime | datetime.date | None:
+    """Parse various date/datetime string formats into datetime.datetime or datetime.date."""
     if not date_str:
         return None
+
+    # Try extracting time: HH:MM or HH:MM am/pm
+    hour = 0
+    minute = 0
+    has_time = False
+
+    # Check for "1:56 pm" or "10:00 am"
+    m_ampm = re.search(r"\b(\d{1,2}):(\d{2})\s*(am|pm)\b", date_str, re.IGNORECASE)
+    if m_ampm:
+        h = int(m_ampm.group(1))
+        minute = int(m_ampm.group(2))
+        ampm = m_ampm.group(3).lower()
+        if ampm == "pm" and h < 12:
+            h += 12
+        elif ampm == "am" and h == 12:
+            h = 0
+        hour = h
+        has_time = True
+    else:
+        # Check for 24h format "17:27" or "10:00"
+        m_24h = re.search(r"\b(\d{1,2}):(\d{2})(?::\d{2})?\b", date_str)
+        if m_24h:
+            hour = int(m_24h.group(1))
+            minute = int(m_24h.group(2))
+            has_time = True
 
     # 1. YYYY/MM/DD or YYYY-MM-DD
     m = re.search(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})", date_str)
     if m:
-        return datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        y, mth, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if has_time:
+            return datetime.datetime(y, mth, d, hour, minute)
+        return datetime.date(y, mth, d)
 
     # 2. DD Month YYYY
     m = re.search(r"\b(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})\b", date_str)
     if m:
         m_name = m.group(2).lower()[:3]
         if m_name in MONTH_MAP:
-            return datetime.date(int(m.group(3)), MONTH_MAP[m_name], int(m.group(1)))
+            y, mth, d = int(m.group(3)), MONTH_MAP[m_name], int(m.group(1))
+            if has_time:
+                return datetime.datetime(y, mth, d, hour, minute)
+            return datetime.date(y, mth, d)
 
     # 3. Month DD, YYYY
     m = re.search(r"\b([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})\b", date_str)
     if m:
         m_name = m.group(1).lower()[:3]
         if m_name in MONTH_MAP:
-            return datetime.date(int(m.group(3)), MONTH_MAP[m_name], int(m.group(2)))
+            y, mth, d = int(m.group(3)), MONTH_MAP[m_name], int(m.group(2))
+            if has_time:
+                return datetime.datetime(y, mth, d, hour, minute)
+            return datetime.date(y, mth, d)
 
     return None
+
+
+def to_comparable_datetime(val: datetime.datetime | datetime.date) -> datetime.datetime:
+    """Normalize date or datetime into datetime.datetime for safe comparison."""
+    if isinstance(val, datetime.datetime):
+        return val
+    return datetime.datetime.combine(val, datetime.time.min)
+
+
+def format_temporal_point(val: datetime.datetime | datetime.date) -> str:
+    """Format date or datetime into standard string for grounding certificates."""
+    if isinstance(val, datetime.datetime) and (val.hour != 0 or val.minute != 0):
+        return val.strftime("%Y-%m-%d %H:%M")
+    if isinstance(val, datetime.datetime):
+        return val.strftime("%Y-%m-%d")
+    return str(val)
+
+
+def parse_date(date_str: str | None) -> datetime.date | None:
+    """Parse various date string formats into datetime.date."""
+    res = parse_datetime_or_date(date_str)
+    if res is None:
+        return None
+    if isinstance(res, datetime.datetime):
+        return res.date()
+    return res
 
 
 @dataclass
@@ -305,7 +365,7 @@ class TemporalResolver:
             events = [re.sub(r"^day\s+", "", e).strip() for e in events]
             dates = [self._find_date_for_event(e, sessions_data) for e in events]
             if all(dates):
-                sorted_events = sorted(zip(events, dates), key=lambda x: x[1])
+                sorted_events = sorted(zip(events, dates), key=lambda x: to_comparable_datetime(x[1]))
                 e1, d1 = sorted_events[0]
                 e2, d2 = sorted_events[1]
                 e3, d3 = sorted_events[2]
@@ -324,7 +384,7 @@ class TemporalResolver:
             people = [m_who3.group(1).strip(), m_who3.group(2).strip(), m_who3.group(3).strip()]
             dates = [self._find_date_for_event(p, sessions_data) for p in people]
             if all(dates):
-                sorted_people = sorted(zip(people, dates), key=lambda x: x[1])
+                sorted_people = sorted(zip(people, dates), key=lambda x: to_comparable_datetime(x[1]))
                 p1, d1 = sorted_people[0]
                 p2, d2 = sorted_people[1]
                 p3, d3 = sorted_people[2]
@@ -347,12 +407,16 @@ class TemporalResolver:
             if not d1 or not d2:
                 grounding = "[Temporal Abstention: The information provided is not enough. One of the mentioned items was never recorded in the conversation.]"
                 return TemporalGrounding(grounding, [], "abstention")
-            first_e = e1_str if d1 < d2 else e2_str
-            last_e = e2_str if d1 < d2 else e1_str
+            dt1 = to_comparable_datetime(d1)
+            dt2 = to_comparable_datetime(d2)
+            first_e = e1_str if dt1 < dt2 else e2_str
+            last_e = e2_str if dt1 < dt2 else e1_str
+            d1_fmt = format_temporal_point(d1)
+            d2_fmt = format_temporal_point(d2)
             if "most recently" in ql:
-                grounding = f"[Temporal Ordering: '{e1_str}' occurred on {d1}. '{e2_str}' occurred on {d2}. The one that occurred most recently is '{last_e}'.]"
+                grounding = f"[Temporal Ordering: '{e1_str}' occurred on {d1_fmt}. '{e2_str}' occurred on {d2_fmt}. The one that occurred most recently is '{last_e}'.]"
             else:
-                grounding = f"[Temporal Ordering: '{e1_str}' occurred on {d1}. '{e2_str}' occurred on {d2}. The event that happened first is '{first_e}'.]"
+                grounding = f"[Temporal Ordering: '{e1_str}' occurred on {d1_fmt}. '{e2_str}' occurred on {d2_fmt}. The event that happened first is '{first_e}'.]"
             return TemporalGrounding(grounding, [d1, d2], "ordering")
 
         # 11. "Who [verb] first, A or B?"
@@ -368,8 +432,12 @@ class TemporalResolver:
             if not d1 or not d2:
                 grounding = "[Temporal Abstention: The information provided is not enough. One of the mentioned people was never recorded in the conversation.]"
                 return TemporalGrounding(grounding, [], "abstention")
-            first_e = e1_str if d1 < d2 else e2_str
-            grounding = f"[Temporal Ordering: '{e1_str}' occurred on {d1}. '{e2_str}' occurred on {d2}. The one who did so first is '{first_e}'.]"
+            dt1 = to_comparable_datetime(d1)
+            dt2 = to_comparable_datetime(d2)
+            first_e = e1_str if dt1 < dt2 else e2_str
+            d1_fmt = format_temporal_point(d1)
+            d2_fmt = format_temporal_point(d2)
+            grounding = f"[Temporal Ordering: '{e1_str}' occurred on {d1_fmt}. '{e2_str}' occurred on {d2_fmt}. The one who did so first is '{first_e}'.]"
             return TemporalGrounding(grounding, [d1, d2], "ordering")
 
         # 12. Time-Anchored Single-Session Retrieval
@@ -503,8 +571,8 @@ class TemporalResolver:
         self,
         event_str: str,
         sessions_data: list,
-        exclude_date: datetime.date | None = None,
-    ) -> datetime.date | None:
+        exclude_date: datetime.date | datetime.datetime | None = None,
+    ) -> datetime.datetime | datetime.date | None:
         words = set(re.findall(r"\b[a-zA-Z0-9_-]+\b", event_str.lower()))
         words = {w for w in words if len(w) >= 3 and w not in ["the", "and", "that", "this", "with", "have", "from", "for", "day"]}
         PROPER_STOP = {"camping", "trip", "national", "park", "event", "events", "class", "classes", "meeting", "workshop", "webinar", "first", "second", "third", "when", "after", "before"}
@@ -513,9 +581,14 @@ class TemporalResolver:
         best_score = 0.0
         best_date = None
         for sid, sdate_str, user_texts in sessions_data:
-            s_d = parse_date(sdate_str)
-            if not s_d or (exclude_date and s_d == exclude_date):
+            s_d = parse_datetime_or_date(sdate_str)
+            if not s_d:
                 continue
+            if exclude_date:
+                ex_d = exclude_date.date() if isinstance(exclude_date, datetime.datetime) else exclude_date
+                cur_d = s_d.date() if isinstance(s_d, datetime.datetime) else s_d
+                if ex_d == cur_d:
+                    continue
             combined = " ".join(user_texts).lower()
             if proper_nouns and not any(pn in combined for pn in proper_nouns):
                 continue

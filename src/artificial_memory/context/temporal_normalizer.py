@@ -306,4 +306,68 @@ class TemporalNormalizer:
                 result,
                 flags=re.IGNORECASE,
             )
+
+        # 19. Compound Temporal Algebraic Expressions (P3)
+        #     e.g., '2 weeks after 25 December 2022' -> '2 weeks after 25 December 2022 (8 January 2023)'
+        #           'the third Monday of June 2023'  -> 'the third Monday of June 2023 (19 June 2023)'
+        if run_all or "compound_algebra" in enabled_rules:
+            from artificial_memory.temporal.interval_algebra import (
+                TimeInterval,
+                parse_compound_temporal_expression,
+                resolve_ast,
+            )
+
+            # Match compound offset patterns that do not already have parenthesised resolution
+            compound_pattern = re.compile(
+                r"\b((?:the\s+)?(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|a\s+few|a\s+couple(?:\s+of)?)"
+                r"\s+(?:days?|weeks?|months?|years?)\s+(?:after|before|later|earlier)\s+"
+                r"(?:last\s+christmas|new\s+year|\d{1,2}\s+[a-z]+,?\s+\d{4}|[a-z]+\s+\d{4}|\d{4}-\d{1,2}-\d{1,2}))"
+                r"(?!\s*\([^)]*\))",
+                re.IGNORECASE,
+            )
+
+            def replace_compound_offset(match: re.Match) -> str:
+                raw_expr = match.group(1)
+                ast = parse_compound_temporal_expression(raw_expr, ref_date)
+                if not ast:
+                    return match.group(0)
+                try:
+                    res = resolve_ast(ast)
+                    if isinstance(res, datetime.date):
+                        formatted = self.format_date(res)
+                        return f"{raw_expr} ({formatted})"
+                    elif isinstance(res, TimeInterval):
+                        return f"{raw_expr} ({self.format_date(res.start)} to {self.format_date(res.end)})"
+                except Exception:
+                    pass
+                return match.group(0)
+
+            result = compound_pattern.sub(replace_compound_offset, result)
+
+            # Match ordinal weekday expressions e.g. "the third Monday of June 2023"
+            ordinal_pattern = re.compile(
+                r"\b((?:the\s+)?(?:first|second|third|fourth|fifth|last)\s+"
+                r"(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\s+of\s+"
+                r"(?:next\s+month|this\s+month|[a-z]+\s+\d{4}))"
+                r"(?!\s*\([^)]*\))",
+                re.IGNORECASE,
+            )
+
+            def replace_ordinal_wday(match: re.Match) -> str:
+                raw_expr = match.group(1)
+                ast = parse_compound_temporal_expression(raw_expr, ref_date)
+                if not ast:
+                    return match.group(0)
+                try:
+                    res = resolve_ast(ast)
+                    if isinstance(res, datetime.date):
+                        formatted = self.format_date(res)
+                        return f"{raw_expr} ({formatted})"
+                except Exception:
+                    pass
+                return match.group(0)
+
+            result = ordinal_pattern.sub(replace_ordinal_wday, result)
+
         return result
+

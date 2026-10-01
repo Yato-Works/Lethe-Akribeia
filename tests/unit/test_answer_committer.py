@@ -193,6 +193,13 @@ NUMBERED_CTX = (
 )
 
 
+SAME_DAY_WITH_TIME_CTX = (
+    "[Temporal Ordering: 'samsung galaxy s22' occurred on 2023-03-15 10:00. 'dell xps 13' "
+    "occurred on 2023-03-15 14:30. The event that happened first is 'samsung galaxy s22'.]\n"
+    "[answer_1 on 2023/03/15 (Wed) 10:00] user: Galaxy arrived in the morning."
+)
+
+
 def test_commits_a_winner_when_the_dates_differ() -> None:
     out = extract_certificate_answer(
         "Which event happened first, the wedding or the engagement party?",
@@ -202,8 +209,18 @@ def test_commits_a_winner_when_the_dates_differ() -> None:
     assert out.answer == "michael's engagement party"
 
 
+def test_same_day_with_time_resolves_winner() -> None:
+    """Both events are on 2023-03-15, but hours/minutes resolve the order."""
+    out = extract_certificate_answer(
+        "Which device did I get first, the Galaxy S22 or the Dell XPS?",
+        SAME_DAY_WITH_TIME_CTX,
+    )
+    assert out.used, out.detail
+    assert out.answer == "samsung galaxy s22"
+
+
 def test_same_day_tie_is_left_to_the_reader() -> None:
-    """Both events are 2023-03-15, so the certificate cannot order them."""
+    """Both events are 2023-03-15 without times, so the certificate cannot order them."""
     out = extract_certificate_answer(
         "Which device did I get first, the Galaxy S22 or the Dell XPS?", SAME_DAY_CTX
     )

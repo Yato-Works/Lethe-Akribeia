@@ -196,6 +196,8 @@ class OllamaAnswerer:
         # RTX 3050) request a 32K KV cache by default and the server answers
         # HTTP 500 once VRAM is exhausted, which silently kills a full run.
         self.num_ctx = num_ctx
+        self.max_tokens: int | None = None
+        self.stop: list[str] | None = None
 
     # ---------- prompt construction (frozen) ----------
 
@@ -221,6 +223,7 @@ class OllamaAnswerer:
         self,
         messages: list[dict[str, str]],
         max_tokens: int,
+        stop: list[str] | None = None,
     ) -> LLMAnswer:
         payload: dict[str, Any] = {
             "model": self.model,
@@ -232,6 +235,8 @@ class OllamaAnswerer:
                 "num_predict": max_tokens,
             },
         }
+        if stop:
+            payload["options"]["stop"] = stop
         if FROZEN_THINK is not None:
             payload["think"] = FROZEN_THINK
         if self.num_ctx is not None:
@@ -256,10 +261,15 @@ class OllamaAnswerer:
 
     # ---------- public API (Leakage Boundary by signature) ----------
 
-    def answer(self, question_text: str, context: str) -> LLMAnswer:
+    def answer(
+        self,
+        question_text: str,
+        context: str,
+    ) -> LLMAnswer:
         """Generate the final answer from retrieved context ONLY."""
         messages = self.build_answer_messages(question_text, context)
-        return self._chat(messages, FROZEN_ANSWER_MAX_TOKENS)
+        effective_max = self.max_tokens if self.max_tokens is not None else FROZEN_ANSWER_MAX_TOKENS
+        return self._chat(messages, effective_max, stop=self.stop)
 
     def extract(self, exchange_text: str) -> LLMAnswer:
         """Single-pass write-side memory extraction (frozen prompt)."""

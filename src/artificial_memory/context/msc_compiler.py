@@ -17,6 +17,7 @@ from typing import Any
 
 from artificial_memory.context.content_condenser import OFF as CONDENSE_OFF
 from artificial_memory.context.content_condenser import CondenseOptions
+from artificial_memory.context.derivation_scaffold import DerivationScaffolder
 from artificial_memory.context.temporal_normalizer import TemporalNormalizer
 from artificial_memory.core.ir.memory_types import (
     ApexMemoryUnit,
@@ -34,6 +35,7 @@ from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
 from artificial_memory.recall.proposition_integrity_gate import PropositionIntegrityGate
 from artificial_memory.recall.query_planner import QueryPlanner
 from artificial_memory.recall.state_reconstructor import StateReconstructor
+from artificial_memory.recall.ppr_graph import PPREvidenceGraph
 from artificial_memory.recall.state_supersession_engine import StateSupersessionEngine
 from artificial_memory.recall.state_timeline import StateTimelineEngine
 from artificial_memory.recall.temporal_resolver import TemporalResolver
@@ -166,11 +168,16 @@ class MinimumSufficientContextCompiler:
         condense: bool = False,
         quote_mode: str = "keep",
         compact_header: bool = False,
+        derivation_scaffolding: bool = False,
+        ppr_retrieval: bool = False,
     ) -> None:
         self.reconstructor = StateReconstructor()
         self.checker = CoverageChecker()
         self.temporal_normalizer = TemporalNormalizer()
         self.temporal_resolver = TemporalResolver()
+        self.scaffolder = DerivationScaffolder()
+        self.derivation_scaffolding = derivation_scaffolding
+        self.ppr_retrieval = ppr_retrieval
         self.persona_store = PersonaStore()
         self.planner = QueryPlanner()
         self.adaptive_searcher = AdaptiveEvidenceSearcher()
@@ -338,6 +345,39 @@ class MinimumSufficientContextCompiler:
             merged = strong + fresh + tail
         return merged
 
+    def _apply_ppr_widening(
+        self,
+        query: str,
+        candidate_units: list[ApexMemoryUnit],
+        working_records: Sequence[StructuredIR],
+    ) -> list[ApexMemoryUnit]:
+        """Rescue cross-session associative evidence using Personalized PageRank."""
+        try:
+            ppr_graph = PPREvidenceGraph()
+            ppr_graph.build_from_records(working_records)
+            ranked_turns = ppr_graph.rank_turns(query, top_k=20)
+        except Exception:
+            return candidate_units
+
+        content_to_rec = {r.raw_content: r for r in working_records if r.raw_content}
+        existing_keys = {u.ir.raw_content for u in candidate_units}
+
+        ppr_promoted: list[ApexMemoryUnit] = []
+        for _tid, score, content in ranked_turns:
+            if score <= 0.0 or not content:
+                continue
+            if content not in existing_keys and content in content_to_rec:
+                rec = content_to_rec[content]
+                ppr_promoted.append(ApexMemoryUnit(ir=rec, role=MemoryRole.EVIDENCE))
+                existing_keys.add(content)
+
+        if not ppr_promoted:
+            return candidate_units
+
+        # Interleave top PPR promoted units behind top direct lexical hits
+        strong = candidate_units[:6]
+        tail = candidate_units[6:]
+        return strong + ppr_promoted[:8] + tail
 
     def compile(
         self,
@@ -377,6 +417,12 @@ class MinimumSufficientContextCompiler:
         if self.evidence_widening:
             candidate_units = self._apply_evidence_widening(
                 query, candidate_units, working_records, graph, reference_date_str
+            )
+
+        # HippoRAG-style associative activation spreading (Personalized PageRank)
+        if self.ppr_retrieval:
+            candidate_units = self._apply_ppr_widening(
+                query, candidate_units, working_records
             )
 
         # Overdrive Core: Adaptive Bounded Evidence Search (Potion 1)
@@ -729,6 +775,19 @@ class MinimumSufficientContextCompiler:
             lines.append(state_resolution.grounding_certificate)
         for tag in search_res.grounding_tags:
             lines.append(tag)
+
+        if self.derivation_scaffolding:
+            if temporal_grounding:
+                t_scaff = self.scaffolder.scaffold_temporal(temporal_grounding.grounding_text, query)
+                if t_scaff:
+                    lines.append(t_scaff)
+            if state_resolution:
+                s_scaff = self.scaffolder.scaffold_state_update(state_resolution)
+                if s_scaff:
+                    lines.append(s_scaff)
+            a_scaff = self.scaffolder.scaffold_aggregation(query, intent, selected_units)
+            if a_scaff:
+                lines.append(a_scaff)
 
         for u in selected_units:
             raw_text = u.ir.raw_content

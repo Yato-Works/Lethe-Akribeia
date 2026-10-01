@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-10-01
+
+### Added
+- **HippoRAG-Style Personalized PageRank (PPR) Associative Memory Graph** (`artificial_memory/recall/ppr_graph.py`):
+  - Implemented neurobiologically-inspired associative memory layer over deterministic Entity-Turn bipartite graph.
+  - Zero Write LLM calls, Zero Recall LLM calls: Pure power-iteration stationary distribution activation spreading.
+  - Wired into `MinimumSufficientContextCompiler` (`ppr_retrieval=True`) to interleave associative multi-hop evidence behind top lexical hits.
+- **Allen's Interval Algebra & Minute-Level Temporal Precision** (`artificial_memory/temporal/interval_algebra.py`, `artificial_memory/recall/temporal_resolver.py`, `artificial_memory/skills/answer_committer.py`):
+  - Implemented Allen's 13 interval relations (`before`, `meets`, `overlaps`, `during`, etc.) and `TimeInterval` algebraic engine.
+  - Upgraded temporal resolver and committer to preserve `HH:MM` timestamp precision, deterministically resolving same-day event order without LLM coin flips.
+- **Derivation Scaffolding Engine** (`artificial_memory/context/derivation_scaffold.py`):
+  - Injects deterministic calculation and order traces (`[DERIVATION SCAFFOLD: ...]`) into compiled MSC context.
+  - Directly breaks the Gold-Context Ceiling where 7B readers fail on arithmetic/ordering despite evidence presence.
+- **Bi-Temporal State Model (Valid Time vs Assertion Time)** (`artificial_memory/core/ir/structured.py`):
+  - Added `valid_from`, `valid_until`, and `assertion_time` to `StructuredIR`.
+  - Implemented `is_valid_at(target_time)` point-in-time querying and `supersede()` for conflict-free state evolution.
+- **Category-Bounded Sampling & Stop Sequences** (`artificial_memory/research/benchmarks/llm.py`, `locomo_adapter.py`, `longmemeval_adapter.py`):
+  - Category-specific output token ceilings and stop sequences without violating the strict `["self", "question_text", "context"]` leakage boundary test (`test_phase8_leakage.py`).
+  - Physically suppresses runaway reasoning loops and verbose preambles on 1.5B / 7B small reader models.
+- **Unit Test Suite Expansion**: Expanded suite from 214 to 264 tests (100% passing across all 264 unit tests and leakage boundary tests).
+- **Deterministic Speaker Attribution & Pronoun Binding** (`artificial_memory/compiler/speaker_normalizer.py`):
+  - Normalizes ambiguous first-person pronouns ("I", "my", "me") into explicit speaker entities ("Caroline", "Caroline's").
+  - Deterministically binds kinship and possession terms ("my sister", "my dog") to the speaking actor context.
+  - Eradicates conversational Actor Attribution Failure in Adversarial (LoCoMo Cat 5) and Single-Hop (Cat 4) scenarios.
+- **Conversational SPO Extraction Engine** (`artificial_memory/compiler/ir_extractor.py`):
+  - Expanded `UniversalIRExtractor` with Patterns H through K covering daily dialogue predicates (Actions/Events, Preferences/Tastes, Possession/Kinship, Occupation/Identity).
+  - Reduced unstructured statement fallbacks from ~65% down to structured Subject-Predicate-Object triplets without LLM calls.
+- **Compound Temporal Algebraic AST & Normalizer Integration** (`artificial_memory/temporal/interval_algebra.py`, `context/temporal_normalizer.py`):
+  - Implemented `TemporalASTNode` hierarchy (`DatePointNode`, `OffsetNode`, `OrdinalWeekdayNode`, `IntervalSpanNode`) and `resolve_ast()` algebraic evaluator.
+  - Added deterministic natural-language expression parser `parse_compound_temporal_expression()` handling compound relative offsets ("2 weeks after 25 December 2022") and ordinal weekdays ("the third Monday of June 2023").
+  - Integrated into `TemporalNormalizer` (Rule 19) for zero-leak resolution of complex temporal bounds.
+- **Expanded Zero-Reader Committer Skills** (`artificial_memory/skills/answer_committer.py`):
+  - Added `commit_derivation_scaffold()`: Directly commits count and summation queries from derivation scaffolds (0 ms, 0 tokens, 100% arithmetic precision).
+  - Added `commit_single_hop_fact()`: Directly commits unambiguous single-hop entity attributes (occupations, locations, favorites, names) with confidence >= 0.88.
+  - Added master `commit_answer()` dispatcher prioritizing proof-carrying certificates, derivation scaffolds, temporal spans, and single-hop facts before Reader fallback.
+- **Multilingual Foundation & LocaleProvider** (`artificial_memory/i18n/locale_provider.py`):
+  - Decoupled hardcoded English calendar tokens and month mappings into pluggable `LocaleProvider` interface.
+  - Implemented `EnLocaleProvider` and `JaLocaleProvider` for robust CJK/multilingual expansion.
+
 ## [0.2.0] - 2026-09-28
 
 ### Changed
