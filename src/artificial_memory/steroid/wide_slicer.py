@@ -98,6 +98,40 @@ class WideSlicer:
     def __init__(self, per_channel_budget: int = 40) -> None:
         self.per_channel_budget = per_channel_budget
 
+    MONTH_NAMES = {
+        "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+        "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
+        "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+        "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    }
+
+    @classmethod
+    def _parse_date(cls, text: str) -> tuple[int, int, int] | None:
+        """Parse natural language or ISO dates into (year, month, day)."""
+        if not text:
+            return None
+        # 1. YYYY-MM-DD or YYYY/MM/DD
+        m1 = cls.DATE_PATTERN.search(text)
+        if m1:
+            return int(m1.group(1)), int(m1.group(2)), int(m1.group(3))
+        # 2. DD Month YYYY (e.g. 27 March, 2023)
+        m2 = re.search(r"\b(\d{1,2})\s+([a-zA-Z]+),?\s+(\d{4})\b", text)
+        if m2 and m2.group(2).lower() in cls.MONTH_NAMES:
+            return int(m2.group(3)), cls.MONTH_NAMES[m2.group(2).lower()], int(m2.group(1))
+        # 3. Month DD, YYYY (e.g. March 27, 2023)
+        m3 = re.search(r"\b([a-zA-Z]+)\s+(\d{1,2}),?\s+(\d{4})\b", text)
+        if m3 and m3.group(1).lower() in cls.MONTH_NAMES:
+            return int(m3.group(3)), cls.MONTH_NAMES[m3.group(1).lower()], int(m3.group(2))
+        # 4. Month YYYY
+        m4 = re.search(r"\b([a-zA-Z]+)\s+(\d{4})\b", text)
+        if m4 and m4.group(1).lower() in cls.MONTH_NAMES:
+            return int(m4.group(2)), cls.MONTH_NAMES[m4.group(1).lower()], 1
+        # 5. Standalone YYYY
+        m5 = re.search(r"\b(20\d\d|19\d\d)\b", text)
+        if m5:
+            return int(m5.group(1)), 1, 1
+        return None
+
     def slice(
         self,
         query: str,
@@ -119,10 +153,9 @@ class WideSlicer:
             overlap = len(q_tokens & r_tokens) * 2 + len(q_stems & r_stems)
             if overlap > 0:
                 rec_val = 0.0
-                if r.time_scope:
-                    m_d = self.DATE_PATTERN.search(r.time_scope)
-                    if m_d:
-                        rec_val = int(m_d.group(1)) * 365.0 + int(m_d.group(2)) * 30.0 + int(m_d.group(3))
+                date_tuple = self._parse_date(r.time_scope or r.raw_content or "")
+                if date_tuple:
+                    rec_val = date_tuple[0] * 365.0 + date_tuple[1] * 30.0 + date_tuple[2]
                 lexical_scores.append((float(overlap), rec_val, r))
         lexical_scores.sort(key=lambda x: (x[0], x[1]), reverse=True)
         c_lexical = [r for _, _, r in lexical_scores[:self.per_channel_budget]]
@@ -145,21 +178,37 @@ class WideSlicer:
                     if len(c_entity) >= self.per_channel_budget:
                         break
 
-        # 3. Temporal Channel (Session dates, intervals, relative dates)
+        # 3. Temporal Channel (Session dates, intervals, relative dates, temporal cues)
         c_temporal: list[StructuredIR] = []
-        target_dates = set(m.group(0) for m in self.DATE_PATTERN.finditer(query))
-        if reference_date_str:
-            target_dates.add(reference_date_str)
+        q_date = self._parse_date(query)
+        ref_date = self._parse_date(reference_date_str) if reference_date_str else None
+        target_year = q_date[0] if q_date else (ref_date[0] if ref_date else None)
 
-        has_temporal_intent = any(w in q_lower for w in ["when", "how many days", "how many weeks", "date", "month", "year", "first", "last", "order"])
-        if target_dates or has_temporal_intent:
+        has_temporal_intent = any(
+            w in q_lower
+            for w in [
+                "when", "how many days", "how many weeks", "date", "month",
+                "year", "years", "first", "last", "order", "adopt", "started",
+                "since", "how long",
+            ]
+        )
+        temporal_cues = ("year", "years", "ago", "month", "months", "since", "had them", "first", "last", "bought", "adopted", "weekend", "yesterday", "tomorrow")
+
+        if has_temporal_intent or q_date:
+            scored_temporal: list[tuple[float, float, StructuredIR]] = []
             for r in records:
-                r_text = (r.raw_content or "")
-                r_dates = set(m.group(0) for m in self.DATE_PATTERN.finditer(r_text))
-                if target_dates & r_dates or (has_temporal_intent and r_dates):
-                    c_temporal.append(r)
-                    if len(c_temporal) >= self.per_channel_budget:
-                        break
+                r_text = (r.raw_content or "").lower()
+                r_date = self._parse_date(r.time_scope or r.raw_content or "")
+                cue_score = sum(2 for cue in temporal_cues if cue in r_text)
+                r_tokens = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
+                overlap = len(q_tokens & r_tokens)
+                year_bonus = 5.0 if (target_year and r_date and r_date[0] == target_year) else 0.0
+                total_temp_score = cue_score * 2.0 + overlap * 3.0 + year_bonus
+                if total_temp_score > 0:
+                    rec_val = (r_date[0] * 365.0 + r_date[1] * 30.0 + r_date[2]) if r_date else 0.0
+                    scored_temporal.append((total_temp_score, rec_val, r))
+            scored_temporal.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            c_temporal = [r for _, _, r in scored_temporal[:self.per_channel_budget]]
 
         # 4. Session / Haystack Channel (Pulls anchors from all distinct sessions across timeline)
         c_session: list[StructuredIR] = []
@@ -172,18 +221,27 @@ class WideSlicer:
         if len(sessions_map) > 5:
             scored_sessions: list[tuple[int, float, list[StructuredIR]]] = []
             for s_key, s_recs in sessions_map.items():
-                s_text = " ".join(r.raw_content for r in s_recs[:5]).lower()
+                s_text = " ".join(r.raw_content for r in s_recs).lower()
                 s_tokens = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", s_text) if len(w) > 2)
                 overlap = len(q_tokens & s_tokens)
                 if overlap > 0:
                     rec_val = 0.0
-                    m_d = self.DATE_PATTERN.search(s_key)
-                    if m_d:
-                        rec_val = int(m_d.group(1)) * 365.0 + int(m_d.group(2)) * 30.0 + int(m_d.group(3))
+                    p_d = self._parse_date(s_key)
+                    if p_d:
+                        rec_val = p_d[0] * 365.0 + p_d[1] * 30.0 + p_d[2]
                     scored_sessions.append((overlap, rec_val, s_recs))
             scored_sessions.sort(key=lambda x: (x[0], x[1]), reverse=True)
             for _, _, s_recs in scored_sessions[:15]:
-                c_session.extend(s_recs[:3])
+                # Pick top-scoring turns within this session instead of blind [:3]
+                def _turn_salience(rec: StructuredIR) -> float:
+                    t_text = (rec.raw_content or "").lower()
+                    t_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", t_text) if len(w) > 2)
+                    sal = len(q_tokens & t_toks) * 2.0
+                    if any(c in t_text for c in ("year", "years", "month", "ago", "since", "had", "adopt", "time", "date")):
+                        sal += 2.0
+                    return sal
+                sorted_recs = sorted(s_recs, key=_turn_salience, reverse=True)
+                c_session.extend(sorted_recs[:4])
                 if len(c_session) >= self.per_channel_budget:
                     break
 
@@ -213,7 +271,11 @@ class WideSlicer:
         # Union and Deduplicate while preserving order of relevance
         seen_contents = set()
         c_union: list[StructuredIR] = []
-        for pool in [c_lexical, c_entity, c_domain, c_temporal, c_relation, c_session]:
+        if has_temporal_intent or q_date:
+            channel_pools = [c_temporal, c_lexical, c_entity, c_domain, c_relation, c_session]
+        else:
+            channel_pools = [c_lexical, c_entity, c_domain, c_temporal, c_relation, c_session]
+        for pool in channel_pools:
             for r in pool:
                 key = r.raw_content or f"{r.entity}_{r.target_property}_{r.value}"
                 if key not in seen_contents:

@@ -319,7 +319,9 @@ class MinimumSufficientContextCompiler:
 
         strong = candidate_units[:6]
         tail = candidate_units[6:]
+        pool_order = {r.raw_content: idx for idx, r in enumerate(exp_res.evidence_pool)}
         rescue = [u for u in tail if _key(u) in pool_keys]
+        rescue.sort(key=lambda u: pool_order.get(_key(u), 9999))
         rescue_keys = {_key(u) for u in rescue}
         # Channel hits the relevance scorer dropped entirely (score <= 0),
         # restricted to the (date-filtered) rescue pool.
