@@ -171,12 +171,16 @@ class WideSlicer:
             q_entities.add(m.group().lower())
 
         if q_entities:
+            scored_entity: list[tuple[float, StructuredIR]] = []
             for r in records:
                 r_text = (r.raw_content or "").lower()
-                if any(e in r_text for e in q_entities):
-                    c_entity.append(r)
-                    if len(c_entity) >= self.per_channel_budget:
-                        break
+                matched_ents = sum(1 for e in q_entities if e in r_text)
+                if matched_ents > 0:
+                    r_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
+                    overlap = len(q_tokens & r_toks)
+                    scored_entity.append((matched_ents * 3.0 + overlap * 1.5, r))
+            scored_entity.sort(key=lambda x: x[0], reverse=True)
+            c_entity = [r for _, r in scored_entity[:self.per_channel_budget]]
 
         # 3. Temporal Channel (Session dates, intervals, relative dates, temporal cues)
         c_temporal: list[StructuredIR] = []
@@ -254,26 +258,35 @@ class WideSlicer:
 
         # 5. Relation / Proposition Channel (Actions, migrations, states)
         c_relation: list[StructuredIR] = []
-        action_words = set(w for w in q_tokens if w in ["visit", "travel", "buy", "bought", "meet", "met", "graduated", "start", "started", "lead", "play", "book", "move", "moved"])
+        action_words = set(w for w in q_tokens if w in ["visit", "travel", "buy", "bought", "meet", "met", "graduated", "start", "started", "lead", "play", "book", "move", "moved", "adopt", "adopted", "cook", "cooking", "paint", "draw"])
         if action_words:
+            scored_rel: list[tuple[float, StructuredIR]] = []
             for r in records:
                 r_text = (r.raw_content or "").lower()
-                if any(a in r_text for a in action_words):
-                    c_relation.append(r)
-                    if len(c_relation) >= self.per_channel_budget:
-                        break
+                matched_acts = sum(1 for a in action_words if a in r_text)
+                if matched_acts > 0:
+                    r_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
+                    overlap = len(q_tokens & r_toks)
+                    scored_rel.append((matched_acts * 3.0 + overlap * 1.5, r))
+            scored_rel.sort(key=lambda x: x[0], reverse=True)
+            c_relation = [r for _, r in scored_rel[:self.per_channel_budget]]
 
         # 6. Domain Associative Channel (P5: Open-Domain & Lifestyle Reasoning)
         c_domain: list[StructuredIR] = []
         from artificial_memory.recall.domain_associator import DomainAssociator
         domain_terms = DomainAssociator.expand_query(query)
         if domain_terms:
+            scored_domain: list[tuple[float, StructuredIR]] = []
             for r in records:
                 r_text = (r.raw_content or "").lower()
-                if any(dt in r_text for dt in domain_terms):
-                    c_domain.append(r)
-                    if len(c_domain) >= self.per_channel_budget:
-                        break
+                matched_dt = [dt for dt in domain_terms if dt in r_text]
+                if matched_dt:
+                    r_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
+                    overlap = len(q_tokens & r_toks)
+                    score = len(matched_dt) * 3.0 + overlap * 2.0
+                    scored_domain.append((score, r))
+            scored_domain.sort(key=lambda x: x[0], reverse=True)
+            c_domain = [r for _, r in scored_domain[:self.per_channel_budget]]
 
         # Union and Deduplicate while preserving order of relevance
         seen_contents = set()
@@ -284,6 +297,9 @@ class WideSlicer:
 
         if has_temporal_intent or q_date:
             channel_pools = [strong_lex, c_temporal, rest_lex, c_entity, c_domain, c_relation, c_session]
+        elif domain_terms:
+            # For open-domain associative queries, promote domain associations right behind top hits
+            channel_pools = [strong_lex, c_domain, c_entity, rest_lex, c_relation, c_session, c_temporal]
         else:
             channel_pools = [strong_lex, rest_lex, c_entity, c_domain, c_temporal, c_relation, c_session]
         for pool in channel_pools:

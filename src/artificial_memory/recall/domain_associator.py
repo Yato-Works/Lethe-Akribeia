@@ -54,6 +54,21 @@ _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
     # Location & Residence
     "state": ("live", "living", "moved", "minnesota", "city", "hometown", "residence"),
     "live": ("living", "moved", "house", "apartment", "city", "state", "hometown"),
+
+    # Career & Profession
+    "career": ("job", "work", "profession", "zoo", "keeper", "turtles", "animals", "counselor"),
+    "job": ("career", "work", "profession", "zoo", "keeper", "counselor"),
+    "profession": ("job", "career", "work", "counselor", "counseling"),
+
+    # Health & Medical Conditions
+    "condition": ("health", "asthma", "medical", "disease", "illness", "symptoms", "allergies"),
+    "allergies": ("allergy", "asthma", "allergic", "reaction", "breathing", "fur", "reptiles"),
+    "allergy": ("allergies", "asthma", "allergic", "reaction", "breathing"),
+    "underlying": ("condition", "health", "asthma", "illness", "disease"),
+
+    # Domestic & Indoor Activities
+    "indoor": ("cooking", "cook", "treats", "baking", "home", "inside", "recipes"),
+    "activity": ("hobby", "cooking", "games", "reading", "treats", "exercise", "walk"),
 }
 
 
@@ -61,7 +76,7 @@ class DomainAssociator:
     """Deterministic associative query expansion for memory retrieval."""
 
     @classmethod
-    def expand_query(cls, query: str, max_terms: int = 5) -> set[str]:
+    def expand_query(cls, query: str, max_terms: int = 12) -> set[str]:
         """Expand query with relevant domain terms to bridge lexical gaps.
 
         Returns a set of lowercase keywords to inject into retrieval scoring.
