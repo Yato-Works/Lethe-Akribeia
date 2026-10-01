@@ -185,11 +185,18 @@ class WideSlicer:
         target_year = q_date[0] if q_date else (ref_date[0] if ref_date else None)
 
         has_temporal_intent = any(
-            w in q_lower
-            for w in [
-                "when", "how many days", "how many weeks", "date", "month",
-                "year", "years", "first", "last", "order", "adopt", "started",
-                "since", "how long",
+            re.search(p, q_lower)
+            for p in [
+                r"\bwhen\b",
+                r"\bwhich\s+year\b",
+                r"\bwhat\s+year\b",
+                r"\bwhat\s+date\b",
+                r"\bwhat\s+month\b",
+                r"\bwhat\s+day\b",
+                r"\bwhat\s+time\b",
+                r"\bhow\s+many\s+(?:years?|months?|weeks?|days?)\b",
+                r"\bhow\s+long\b",
+                r"\bhow\s+long\s+ago\b",
             ]
         )
         temporal_cues = ("year", "years", "ago", "month", "months", "since", "had them", "first", "last", "bought", "adopted", "weekend", "yesterday", "tomorrow")
@@ -271,10 +278,14 @@ class WideSlicer:
         # Union and Deduplicate while preserving order of relevance
         seen_contents = set()
         c_union: list[StructuredIR] = []
+        # Strong lexical hits always keep top priority to protect single-hop accuracy
+        strong_lex = c_lexical[:6]
+        rest_lex = c_lexical[6:]
+
         if has_temporal_intent or q_date:
-            channel_pools = [c_temporal, c_lexical, c_entity, c_domain, c_relation, c_session]
+            channel_pools = [strong_lex, c_temporal, rest_lex, c_entity, c_domain, c_relation, c_session]
         else:
-            channel_pools = [c_lexical, c_entity, c_domain, c_temporal, c_relation, c_session]
+            channel_pools = [strong_lex, rest_lex, c_entity, c_domain, c_temporal, c_relation, c_session]
         for pool in channel_pools:
             for r in pool:
                 key = r.raw_content or f"{r.entity}_{r.target_property}_{r.value}"

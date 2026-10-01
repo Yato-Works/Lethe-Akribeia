@@ -740,6 +740,7 @@ class LoCoMoAdapter:
             prompt = (
                 f"[INSTRUCTION: TEMPORAL REASONING]\n"
                 f"Answer the temporal question using the dialogue context and any verified co-processor annotations.\n"
+                f"- Check WHO the question asks about (e.g. Andrew vs Audrey, Nate vs Joanna). Only use facts belonging to the SPECIFIC person asked.\n"
                 f"- If a relative phrase is used in the dialogue (e.g. \"The Sunday before 25 May 2023\" or \"last Saturday\"), output the exact timeframe or date concisely.\n"
                 f"- Do NOT output preambles like \"Based on the conversation...\". Return ONLY the concise date/time answer.\n"
                 f"- NEVER say \"I don't know\" when evidence or dates are present.\n"
