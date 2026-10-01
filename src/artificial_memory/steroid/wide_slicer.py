@@ -198,10 +198,22 @@ class WideSlicer:
                     if len(c_relation) >= self.per_channel_budget:
                         break
 
+        # 6. Domain Associative Channel (P5: Open-Domain & Lifestyle Reasoning)
+        c_domain: list[StructuredIR] = []
+        from artificial_memory.recall.domain_associator import DomainAssociator
+        domain_terms = DomainAssociator.expand_query(query)
+        if domain_terms:
+            for r in records:
+                r_text = (r.raw_content or "").lower()
+                if any(dt in r_text for dt in domain_terms):
+                    c_domain.append(r)
+                    if len(c_domain) >= self.per_channel_budget:
+                        break
+
         # Union and Deduplicate while preserving order of relevance
         seen_contents = set()
         c_union: list[StructuredIR] = []
-        for pool in [c_lexical, c_entity, c_temporal, c_relation, c_session]:
+        for pool in [c_lexical, c_entity, c_domain, c_temporal, c_relation, c_session]:
             for r in pool:
                 key = r.raw_content or f"{r.entity}_{r.target_property}_{r.value}"
                 if key not in seen_contents:

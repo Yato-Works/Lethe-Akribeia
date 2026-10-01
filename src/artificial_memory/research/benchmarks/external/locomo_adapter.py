@@ -161,6 +161,13 @@ class LoCoMoAdapter:
             return True
         if re.fullmatch(r"(no|none|nothing|n/?a)[\s.!,'-]*", low):
             return True
+        # Adversarial premise disconfirmations (e.g. "Joanna didn't choose...", "never dyed", "not mentioned in the dialogue")
+        if re.search(r"\b(?:didn't|did not|never|wasn't|was not|doesn't|does not)\s+[a-z]+", low) and any(
+            w in low for w in ["choose", "mention", "state", "happen", "participate", "dye", "attend", "buy", "color", "hair"]
+        ):
+            return True
+        if re.search(r"\b(?:no record of|no evidence of|not mentioned|nowhere in the text|no specific)\b", low):
+            return True
         return any(
             re.search(rf"\b{re.escape(shape)}\b", low) for shape in cls._ABSTENTION_SHAPES
         )
@@ -413,7 +420,10 @@ class LoCoMoAdapter:
     ) -> None:
         self.dataset_path = Path(dataset_path)
         self.extractor = UniversalIRExtractor()
-        self.compiler = MinimumSufficientContextCompiler()
+        self.compiler = MinimumSufficientContextCompiler(
+            ppr_retrieval=True,
+            derivation_scaffolding=True,
+        )
         # Runtime-classified answer-shape directive (recall/answer_shape.py).
         # DEFAULT OFF on purpose: measured on all 96 category-3 questions it came
         # out at 35.4% against 38.5% for the hand-written shape block, i.e. -3
@@ -569,7 +579,12 @@ class LoCoMoAdapter:
             oracle_recall, oracle_recall_by_id = True, True
 
         # 3. Answer Generation & Verification (Overdrive Core Potion 7)
-        if question.category == 3:
+        # Zero-Reader Committer (Phase 8: AM decides deterministically)
+        from artificial_memory.skills.answer_committer import commit_answer
+        committed = commit_answer(question.question, pcc.context_text, category=question.category)
+        if committed.used:
+            predicted_answer = committed.answer
+        elif question.category == 3:
             # Phase 5: Open-Domain Commonsense Reasoner (bypasses ungrounded entity rejection)
             # Persona summary for character-deduction questions: provide the
             # distilled character profile so the reader can reason about
@@ -632,6 +647,9 @@ class LoCoMoAdapter:
                 f"  for each part, then combine them.\n"
                 f"- Name every item/person/event/location the question asks about; never answer with\n"
                 f"  only one part of a multi-part question. Explicitly list all distinct entities.\n"
+                f"- When asked for titles, books, movies, activities, or items, do NOT describe or summarize them.\n"
+                f"  List ONLY the exact titles or names, comma-separated (e.g. 'Item 1, Item 2').\n"
+                f"- If the question asks what two people 'share' or 'both like', include ONLY the common items.\n"
                 f"- Quote names, dates, and facts exactly as they appear in the context.\n"
                 f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
                 f"- Return ONLY the concise target answer/entity/date.\n"

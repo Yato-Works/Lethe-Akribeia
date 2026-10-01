@@ -83,7 +83,10 @@ class PPREvidenceGraph:
 
     def personalized_pagerank(self, query: str) -> dict[str, float]:
         """Compute Personalized PageRank with personalization focused on query entities."""
-        q_entities = self.extract_entities(query)
+        q_entities = set(self.extract_entities(query))
+        from artificial_memory.recall.domain_associator import DomainAssociator
+        domain_terms = DomainAssociator.expand_query(query)
+        q_entities.update(domain_terms)
         matching_ent_keys = [f"ent:{e}" for e in q_entities if f"ent:{e}" in self.entity_nodes]
 
         # All nodes in the graph
