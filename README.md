@@ -220,7 +220,7 @@ lethe timeline
 
 ## Hardware & Research Design
 
-This project was built under a **deliberately constrained research budget** using a single local GPU (RTX 4080 / 16GB VRAM) and local models.
+This project was built under a **deliberately constrained research budget** using a single local GPU (NVIDIA GeForce RTX 3050 / 8GB VRAM) and local models.
 
 Evaluating 1,540 questions through commercial frontier APIs with massive contexts currently exceeds our budget.  
 **Rather than hiding this constraint, Lethe converts it into research design**: by freezing its compiled contexts (`locomo_gold_context_cache.jsonl`), the memory engine and Reader models can be evaluated independently whenever additional compute becomes available.
