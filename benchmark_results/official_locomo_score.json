@@ -1,30 +1,30 @@
 {
- "tag": "locomo10_coder7b_apex",
- "run_dir": "benchmark_results/locomo10",
+ "tag": "e2e_smoke_20261002_v6",
+ "run_dir": "benchmark_results/locomo10_runs/e2e_smoke_20261002_v6",
  "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
- "n": 1986,
- "official_f1": 50.2168,
- "official_f1_no_cat5": 41.3185,
+ "n": 60,
+ "official_f1": 61.7424,
+ "official_f1_no_cat5": 56.3447,
  "per_category": {
   "multi-hop": {
-   "n": 282,
-   "official_f1": 22.8193
+   "n": 12,
+   "official_f1": 36.5278
   },
   "temporal": {
-   "n": 321,
-   "official_f1": 53.9134
+   "n": 12,
+   "official_f1": 84.0476
   },
   "open-domain": {
-   "n": 96,
-   "official_f1": 20.4861
+   "n": 12,
+   "official_f1": 49.1667
   },
   "single-hop": {
-   "n": 841,
-   "official_f1": 45.0922
+   "n": 12,
+   "official_f1": 55.6366
   },
   "adversarial": {
-   "n": 446,
-   "official_f1": 80.9417
+   "n": 12,
+   "official_f1": 83.3333
   }
  }
 }
