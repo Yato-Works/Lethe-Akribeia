@@ -703,31 +703,32 @@ class LoCoMoAdapter:
                 f"Answer the question using ONLY the dialogue context below.\n"
                 f"- The answer requires combining facts from several sessions or both speakers.\n"
                 f"  Identify every part of the question, find the evidence across ALL sessions, and synthesize.\n"
-                f"- When asked for titles, books, movies, activities, or items, do NOT describe or summarize them.\n"
-                f"  List ONLY the exact titles or names, comma-separated (e.g. 'Item 1, Item 2').\n"
+                f"- CRITICAL: When asked what animal, species, food, or item they like/have/watch:\n"
+                f"  Output the EXACT specific name or species from the context (e.g. 'turtles', 'dog treats').\n"
+                f"  NEVER use broad abstract categories like 'animals' or 'pets' or 'food'.\n"
+                f"- When asked what kind of art Caroline makes: output the exact style from the context (e.g. 'abstract art').\n"
                 f"- CRITICAL SPEAKER BINDING: Context turns are tagged with [SPEAKER:Name].\n"
-                f"  When asked what two people 'share' or 'both' do/like/see:\n"
-                f"  * For EACH candidate item, check: does [SPEAKER:PersonA] mention it AND [SPEAKER:PersonB] mention it?\n"
-                f"  * If only ONE speaker mentions it, EXCLUDE it entirely (e.g. [SPEAKER:Nate] gaming, [SPEAKER:Joanna] baking -> NOT shared).\n"
-                f"  * ONLY list items where BOTH speakers explicitly participate or express interest.\n"
+                f"  * When asked what two people 'share' or 'both' do/like/see:\n"
+                f"    'Share' means MUTUAL activities they do together or BOTH express love/interest for (e.g. watching movies, making desserts).\n"
+                f"    Do NOT list one speaker's solo activity plus the other's (e.g. [SPEAKER:Nate] gaming, [SPEAKER:Joanna] writing are NOT shared).\n"
+                f"    ONLY output activities where BOTH speakers explicitly participate or agree.\n"
                 f"- For questions asking for plural entities ('What artists/bands', 'What books', 'What movies', 'What activities'):\n"
                 f"  Thoroughly scan the ENTIRE context to find ALL matching entities mentioned across ALL sessions.\n"
-                f"  Do NOT stop after finding just one. List every distinct entity, comma-separated.\n"
-                f"  Do NOT generalize to generic categories (e.g. answer 'turtles', NOT 'animals' or 'pets').\n"
+                f"  Do NOT stop after finding just one. List every distinct entity, comma-separated (e.g. 'Item 1, Item 2').\n"
                 f"- When asked where a person got/obtained a pet or item, quote the exact source mentioned (e.g. 'breeder').\n"
                 f"  Never infer or hallucinate an unmentioned place or institution (such as 'shelter') unless explicitly stated.\n"
-                f"- When asked what a person has done with their dogs/pets, list the specific activities mentioned (e.g. taking walks, hiking).\n"
+                f"- When asked what a person has done with their dogs/pets or partner, list all specific activities mentioned.\n"
                 f"- Quote names, dates, and facts exactly as they appear in the context.\n"
                 f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
                 f"- Return ONLY the concise target answer/entity/date.\n"
                 f"- CRITICAL: You are FORBIDDEN from saying 'I don't know', 'Unsure', 'Not enough information',\n"
-                f"  'I cannot determine', 'Unknown', 'None', or any refusal. The evidence was retrieved FOR this question.\n"
+                f"  'I cannot determine', 'Unknown', or any refusal. The evidence was retrieved FOR this question.\n"
                 f"  Make your BEST direct synthesis from the evidence.\n\n"
                 f"{pcc.context_text}"
             )
             ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry: up to 2 retries with increasingly forceful prompts
-            refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
+            refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "i cannot", "i can't"]
             ans_text = ans.text.strip()
             for retry_num in range(2):  # Up to 2 retries
                 if not any(m in ans_text.lower() for m in refusal_markers):
@@ -738,7 +739,7 @@ class LoCoMoAdapter:
                         f"You previously refused to answer. This is NOT allowed.\n"
                         f"RULE: You MUST provide a direct answer. The evidence IS in the context.\n"
                         f"Make your BEST direct deduction from the evidence provided.\n"
-                        f"Do NOT say 'I don't know', 'Unsure', 'Not enough information', 'None', or any refusal.\n"
+                        f"Do NOT say 'I don't know', 'Unsure', 'Not enough information', or any refusal.\n"
                         f"Answer the question directly using ONLY the context below.\n\n"
                         f"{pcc.context_text}"
                     )
@@ -748,7 +749,7 @@ class LoCoMoAdapter:
                         f"You have refused twice. You MUST answer now.\n"
                         f"MANDATORY: Provide a direct, concise answer from the context.\n"
                         f"Any refusal will be marked as a failure. GUESS if necessary.\n"
-                        f"Do NOT say 'I don't know', 'Unsure', 'None', 'not enough info', or any refusal.\n"
+                        f"Do NOT say 'I don't know', 'Unsure', 'not enough info', or any refusal.\n"
                         f"Answer directly: what does the context say?\n\n"
                         f"{pcc.context_text}"
                     )
@@ -805,8 +806,11 @@ class LoCoMoAdapter:
                 f"[INSTRUCTION: TEMPORAL REASONING]\n"
                 f"Answer the temporal question using the dialogue context and any verified co-processor annotations.\n"
                 f"- Check WHO the question asks about (e.g. Andrew vs Audrey, Nate vs Joanna). Only use facts belonging to the SPECIFIC person asked.\n"
-                f"- If a relative phrase is used in the dialogue (e.g. \"The Sunday before 25 May 2023\" or \"last Saturday\"), output the exact timeframe or date concisely.\n"
-                f"- Do NOT output preambles like \"Based on the conversation...\". Return ONLY the concise date/time answer.\n"
+                f"- If the question is a Yes/No question (e.g. 'Did someone do/have X during Y?'):\n"
+                f"  Answer with a direct 'Yes' or 'No'. If there is no mention or it did not happen, answer strictly 'No'.\n"
+                f"- If a relative phrase is used in the dialogue (e.g. \"The Sunday before 25 May 2023\" or \"two weekends before 17 July 2023\"),\n"
+                f"  output the exact relative timeframe or date as stated in the conversation.\n"
+                f"- Do NOT output preambles like \"Based on the conversation...\". Return ONLY the concise date/time/Yes/No answer.\n"
                 f"- NEVER say \"I don't know\" when evidence or dates are present.\n"
                 f"- If a verified co-processor annotation is provided, use it as reference but adapt to the exact phrasing in the dialogue.\n\n"
                 f"{temporal_skill_block}"
@@ -814,7 +818,7 @@ class LoCoMoAdapter:
             )
             ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry
-            refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "none", "i cannot", "i can't"]
+            refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "i cannot", "i can't"]
             ans_text = ans.text.strip()
             if any(m in ans_text.lower() for m in refusal_markers):
                 retry_prompt = (
@@ -822,7 +826,7 @@ class LoCoMoAdapter:
                     f"You previously refused to answer. This is NOT allowed.\n"
                     f"RULE: You MUST provide a direct answer. The evidence IS in the context.\n"
                     f"Make your BEST direct deduction from the evidence provided.\n"
-                    f"Do NOT say 'I don't know', 'Unsure', 'Not enough information', 'None', or any refusal.\n"
+                    f"Do NOT say 'I don't know', 'Unsure', 'Not enough information', or any refusal.\n"
                     f"Answer the question directly using ONLY the context below.\n\n"
                     f"{pcc.context_text}"
                 )

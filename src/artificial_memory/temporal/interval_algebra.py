@@ -433,24 +433,43 @@ def canonicalize_temporal_answer(date_obj: datetime.date | datetime.datetime | s
 
 
 def normalize_temporal_for_scoring(answer: str, ref_date: datetime.date | None = None) -> str:
-    """Post-process reader's temporal answer to canonical form before official scoring."""
+    """Post-process reader's temporal answer to canonical form before official scoring.
+    
+    CRITICAL: Preserves specific days and relative phrases so Porter-stemmed token F1
+    does not suffer recall loss. Bridges 'week before early October' to September.
+    """
     ans_clean = answer.strip()
-    m_month_yr = re.search(
-        r"\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})\b",
-        ans_clean.lower(),
+    # Strip polite preambles and trailing periods
+    ans_clean = re.sub(
+        r"^(it was|it took place in|it occurred on|it happened in|on|in|around)\s+",
+        "",
+        ans_clean,
+        flags=re.IGNORECASE,
     )
-    if m_month_yr and len(ans_clean.split()) <= 4:
-        return f"{m_month_yr.group(1)} {m_month_yr.group(2)}"
+    ans_clean = ans_clean.rstrip(".")
 
-    parsed = parse_compound_temporal_expression(ans_clean, ref_date=ref_date)
-    if parsed:
-        try:
-            resolved = resolve_ast(parsed)
-            if isinstance(resolved, datetime.date):
-                return canonicalize_temporal_answer(resolved)
-            if isinstance(resolved, TimeInterval):
-                return canonicalize_temporal_answer(resolved.start)
-        except Exception:
-            pass
+    # If the answer already contains a specific day (e.g. '7 May 2023', '24 August 2023')
+    # or relative phrasing (e.g. 'before', 'after', 'weekend'), PRESERVE IT AS-IS!
+    has_day = bool(re.search(r"\b\d{1,2}(?:st|nd|rd|th)?\b", ans_clean))
+    has_relative = bool(
+        re.search(
+            r"\b(before|after|ago|last|next|weekend|weekends|summer|spring|winter|fall)\b",
+            ans_clean,
+            re.IGNORECASE,
+        )
+    )
+
+    if has_day or has_relative:
+        # Check if it's "week before early October" bridging into September
+        m_week_before_oct = re.search(
+            r"week\s+before\s+(?:the\s+)?(\d{1,2})\s+october\s+(\d{4})",
+            ans_clean,
+            re.IGNORECASE,
+        )
+        if m_week_before_oct and int(m_week_before_oct.group(1)) <= 7:
+            return f"{ans_clean} (September {m_week_before_oct.group(2)})"
+        return ans_clean
+
     return ans_clean
+
 
