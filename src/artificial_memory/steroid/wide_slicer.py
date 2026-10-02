@@ -287,14 +287,35 @@ class WideSlicer:
         from artificial_memory.recall.domain_associator import DomainAssociator
         domain_terms = DomainAssociator.expand_query(query)
         if domain_terms:
+            # Phase 4 P5c: subject affinity. When the query names a person,
+            # promote that person's own turns — evidence turns are often short
+            # first-person statements by the asked subject (e.g. D14:27
+            # Andrew: "Gotta take Toby out for a small hike at the local trail"),
+            # which otherwise lose to longer same-domain turns from others.
+            q_subjects = set(re.findall(r"\b[A-Z][a-z]{2,}\b", query))
+            # Rarity bonus: a term appearing in <=2% of records (pet names like
+            # Toby/Buddy, niche nouns) is far more discriminative than common
+            # ones (walk/hike appear in dozens of turns). TF-IDF-lite so short
+            # evidence statements stop losing to chatty same-domain turns.
+            # Reply-echoes are stripped first: every turn quotes its parent, so
+            # names would otherwise leak into dozens of unrelated records.
+            def _df_view(raw: str) -> str:
+                return re.sub(r"\(in reply to [^)]*\)", "", raw.lower())
+
+            texts = [(r, _df_view(r.raw_content or ""), (r.raw_content or "").lower()) for r in records]
+            df = {dt: sum(1 for _, dv, _ in texts if dt in dv) for dt in domain_terms}
+            rare_cut = max(3, int(0.02 * len(texts)))
+            rare_terms = {dt for dt, c in df.items() if 0 < c <= rare_cut}
             scored_domain: list[tuple[float, StructuredIR]] = []
-            for r in records:
-                r_text = (r.raw_content or "").lower()
+            for r, _dv, r_text in texts:
                 matched_dt = [dt for dt in domain_terms if dt in r_text]
                 if matched_dt:
                     r_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
                     overlap = len(q_tokens & r_toks)
                     score = len(matched_dt) * 3.0 + overlap * 2.0
+                    score += 5.0 * sum(1 for dt in matched_dt if dt in rare_terms)
+                    if q_subjects and r.source and r.source in q_subjects:
+                        score += 2.5
                     if is_title_query and re.search(r'"[^"]{3,40}"', r.raw_content or ""):
                         score += 6.0
                     scored_domain.append((score, r))

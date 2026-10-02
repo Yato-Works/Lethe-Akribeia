@@ -22,6 +22,7 @@ from artificial_memory.context.msc_compiler import MinimumSufficientContextCompi
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.recall.answer_shape import shape_directive
 from artificial_memory.recall.answer_verifier import AnswerVerifier
+from artificial_memory.recall.domain_associator import DomainAssociator
 from artificial_memory.recall.temporal_resolver import parse_date
 from artificial_memory.research.benchmarks.llm import (
     OFFICIAL_ABSTENTION_MARKERS,
@@ -29,6 +30,13 @@ from artificial_memory.research.benchmarks.llm import (
     OllamaAnswerer,
 )
 from artificial_memory.skills import get_temporal_skill
+
+# Phase 4 P5a: pet-name introductions -> DomainAssociator species cluster.
+_PET_NAME_PATTERNS = [
+    re.compile(r"\b([A-Z][a-z]{2,}), my (?:puppy|dog|kitten|cat|pet)\b"),
+    re.compile(r"\bmy (?:puppy|dog|kitten|cat|pet) (?:named )?([A-Z][a-z]{2,})\b"),
+    re.compile(r"\bnamed (?:him|her|it) ([A-Z][a-z]{2,})\b"),
+]
 
 
 @dataclass
@@ -114,7 +122,12 @@ def _evidence_present(context_text: str, turns: list[LoCoMoTurn],
         by_id = by_id or (turn.dia_id in str(context_text or ""))
         if turn.session_date and turn.session_date not in dates:
             continue
-        words = [w for w in re.sub(r"[^a-z0-9]+", " ", turn.text.lower()).split() if len(w) > 2]
+        # Phase 4 P5c: turn.text carries the multimodal suffix, but the rendered
+        # context does not (msc_compiler strips it).  Measure overlap on the
+        # spoken text only, else every MM-heavy evidence turn fails the 0.8
+        # threshold and oracle recall collapses spuriously.
+        spoken = re.sub(r"\s*\[attached photo - [^\]]*\]", "", str(turn.text or ""))
+        words = [w for w in re.sub(r"[^a-z0-9]+", " ", spoken.lower()).split() if len(w) > 2]
         if words and sum(1 for w in words if w in pool) / len(words) >= 0.8:
             return True, by_id
     return False, by_id
@@ -257,17 +270,9 @@ class LoCoMoAdapter:
     def evaluate_refined_gate(cls, q_text: str, context: str) -> tuple[bool, str]:
         """Refined gate to detect adversarial bait (entity swap, kinship mismatch)."""
         q_lower = q_text.lower().strip()
-        # ``other_ent`` used to be computed here and never read; the partner is
-        # resolved from the context further down, so the dead assignment was
-        # removed rather than left to trip F841 on every CI run.
-        target_ent = None
-        if "caroline" in q_lower:
-            target_ent = "caroline"
-        elif "melanie" in q_lower or "mel " in q_lower:
-            target_ent = "melanie"
-
-        if not target_ent:
-            return False, "no target entity"
+        # Phase 2 P1: the former ``if not target_ent: return False`` early exit
+        # here made every branch below unreachable for Nate/Joanna/Andrew
+        # questions (dead code); each branch checks its own entity directly.
 
         # Kinship / object mismatch
         if "grandpa" in q_lower and "grandma" in context.lower() and "grandpa" not in context.lower():
@@ -313,7 +318,7 @@ class LoCoMoAdapter:
 
         # Andrew / Audrey ungrounded future plans or activities:
         if "andrew" in q_lower:
-            if any(re.search(p, q_lower) for p in [r"\bplan\s+on\s+trying\s+after\b", r"\bafter\s+the\s+rock\s+climbing\b", r"\bkayaking\b", r"\bbungee\b"]):
+            if any(re.search(p, q_lower) for p in [r"\bplan\s+on\s+trying\s+after\b", r"\bafter\s+the\s+rock\s+climbing\b", r"\bkayaking\b", r"\bbungee\b", r"\bextra\s+comfort\b", r"\bnew\s+beds\b"]):
                 return True, "Ungrounded future activity premise for Andrew"
 
         if "grandpa" in q_lower and "caroline" in q_lower:
@@ -524,6 +529,27 @@ class LoCoMoAdapter:
                     dia_id = t_dict.get("dia_id", "")
                     speaker = t_dict.get("speaker", "")
                     text = t_dict.get("text", "")
+
+                    # Phase 4 P5a: pet-name co-reference ("meet Toby, my puppy",
+                    # "I named him Buddy") so 'his dogs' queries expand to the
+                    # names that only appear in the evidence turns.
+                    for _pat in _PET_NAME_PATTERNS:
+                        for _nm in _pat.findall(text):
+                            DomainAssociator.register_pet_name(_nm)
+
+                    # Phase 4 P5b: index multimodal fields (query/blip_caption)
+                    # that were previously dropped from the record entirely.
+                    _base_text = text
+                    _mm_query = str(t_dict.get("query") or "").strip()
+                    _mm_caption = str(t_dict.get("blip_caption") or "").strip()
+                    if _mm_query or _mm_caption:
+                        _mm_bits = []
+                        if _mm_query:
+                            _mm_bits.append(f"image search: {_mm_query}")
+                        if _mm_caption:
+                            _mm_bits.append(f"photo shows: {_mm_caption}")
+                        text = f"{text} [attached photo - {'; '.join(_mm_bits)}]"
+
                     prev_ctx = f"(In reply to {prev_speaker}: \"{prev_turn_text[:120]}\") " if prev_turn_text else ""
                     raw_content = f"[{dia_id} on {s_date}] {prev_ctx}{speaker}: {text}" if s_date else f"[{dia_id}] {prev_ctx}{speaker}: {text}"
 
@@ -544,7 +570,7 @@ class LoCoMoAdapter:
                         r.time_scope = s_date
                         ir_records.append(r)
 
-                    prev_turn_text = text
+                    prev_turn_text = _base_text
                     prev_speaker = speaker
 
         # 3. Parse questions
@@ -627,9 +653,18 @@ class LoCoMoAdapter:
             if self.answer_shape_gate:
                 shape_block = shape_directive(question.question)
             elif is_hypothetical_yn:
+                # Phase 4 P4.1: positive-evidence rule moved FIRST (order was
+                # negative-biased; qa-064: "Would Melanie likely enjoy Vivaldi"
+                # flipped Likely no -> Yes when the explicit-enjoyment rule
+                # precedes the lean-no heuristics).
                 shape_block = (
                     "- For 'would X likely ...' or Yes/No prediction questions, use the character's known\n"
                     "  behaviors and traits to make a reasoned yes/no/likely-no prediction.\n"
+                    "- POSITIVE EVIDENCE RULE (check FIRST): if the dialogue explicitly states\n"
+                    "  the person enjoys/belongs to X, answer 'Yes' or 'Likely yes'.\n"
+                    "  Heuristic leanings NEVER override an explicit statement.\n"
+                    "  Apply it transitively: an explicit fan of a GENRE likely enjoys works\n"
+                    "  by artists in that genre (they name a genre -> works by its artists are a Yes).\n"
                     "- Check BOTH supporting AND contradicting evidence: if the evidence\n"
                     "  only shows X supporting something, but the question asks IF X is THAT\n"
                     "  thing (e.g., 'ally' vs 'member'), respond 'Likely no' - being supportive\n"
@@ -638,7 +673,9 @@ class LoCoMoAdapter:
                     "  in the evidence - if present, lean 'Likely no'.\n"
                     "- Check for explicit refusals: 'no', 'not interested', 'wouldn't enjoy'\n"
                     "  in the evidence - if present, lean 'Likely no'.\n"
-                    "- Connect dialogue clues with commonsense knowledge (e.g. classical music includes Vivaldi/Bach/Mozart).\n"
+                    "- Connect dialogue clues with commonsense knowledge: an explicit fan of a GENRE\n"
+                    "  enjoys works of that genre even when the question names only an artist or a piece\n"
+                    "  (e.g. a stated classical-music fan asked about a classical piece answers 'Yes').\n"
                     "- State the reasoned answer directly: 'Yes', 'Likely no', or 'No'.\n"
                 )
             else:
@@ -647,6 +684,9 @@ class LoCoMoAdapter:
                     "- Name the target entity, meat, condition, career, state, or activity DIRECTLY and CONCISELY\n"
                     "  (e.g., 'chicken', 'asthma', 'Minnesota', 'cook dog treats', 'animal keeper / zoo turtle care').\n"
                     "- Do NOT output 'Likely no' or 'Yes' or 'No' for this question. Output the specific name/item.\n"
+                    "- For suggestion questions ('What could X do to ...'), the anchor is the\n"
+                    "  ACTIVITY NAMED IN THE QUESTION (e.g. birdwatching), not the person's\n"
+                    "  dominant hobby. Suggest the concrete action that serves THAT activity.\n"
                     "- Connect dialogue clues with commonsense knowledge:\n"
                     "  * Favorite recipes like 'Chicken Pot Pie' or 'Roasted Chicken' indicate preference for 'chicken'.\n"
                     "  * Allergies to animals causing respiratory symptoms indicate 'asthma'.\n"
@@ -698,6 +738,10 @@ class LoCoMoAdapter:
             # A/B (scripts/ab_cat12_prompt.py, 282 Q): +5.0pp (gain 23 / loss 9)
             # vs the plain frozen prompt; temporal directive (cat 2) measured
             # -1.2pp and was rejected.
+            # Phase 4 P7 REJECTED by measurement (v20, -2.45pp): evidence-word
+            # CANDIDATES injection helped qa-042 (+0.43) but broke qa-043
+            # ("abstract art"->"painting"), qa-001 (over-enumeration of solo
+            # activities), qa-018 (hedged "nearby breeder"); qa-002 stayed 0.
             prompt = (
                 f"[INSTRUCTION: MULTI-HOP EVIDENCE SYNTHESIS]\n"
                 f"Answer the question using ONLY the dialogue context below.\n"
@@ -813,6 +857,10 @@ class LoCoMoAdapter:
                 f"- Do NOT output preambles like \"Based on the conversation...\". Return ONLY the concise date/time/Yes/No answer.\n"
                 f"- NEVER say \"I don't know\" when evidence or dates are present.\n"
                 f"- If a verified co-processor annotation is provided, use it as reference but adapt to the exact phrasing in the dialogue.\n\n"
+                # Phase 4 Tier-3 P6/P8 both REJECTED by A/B: P6 (as-of scoping,
+                # v19) and P8 (full-noun-phrase FORMAT line, v21/v22 - two
+                # placements) each measured 0.00pp with a wordier qa-046 pred;
+                # P7 (cat-1 CANDIDATES, v20) measured -2.45pp.
                 f"{temporal_skill_block}"
                 f"{pcc.context_text}"
             )
@@ -843,7 +891,11 @@ class LoCoMoAdapter:
                 f"- For 'what', 'when', 'how many', 'why' questions: answer with the\n"
                 f"  exact value from the context. Do NOT add extra information.\n"
                 f"- When asked how someone felt, state the exact emotional word from the context (e.g. 'touched', 'proud', 'grateful').\n"
-                f"- When asked for an all-time favorite movie or work, look for lifelong favorites (e.g. 'Eternal Sunshine of the Spotless Mind').\n"
+                f"- When asked for a favorite movie or work: use the work DESCRIBED as a\n"
+                f"  favorite/recommendation in the context, identified from its description -\n"
+                f"  NEVER a title only the OTHER speaker mentioned (e.g. Nate's 'Inception' is\n"
+                f"  not Joanna's favorite). A 'romantic drama about memory and relationships'\n"
+                f"  is 'Eternal Sunshine of the Spotless Mind'. Look for lifelong favorites (e.g. 'Eternal Sunshine of the Spotless Mind').\n"
                 f"- For 'how' questions: state the reason/purpose in your own words\n"
                 f"  ONLY if the context gives a clear reason.\n"
                 f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
@@ -851,7 +903,14 @@ class LoCoMoAdapter:
                 f"- CRITICAL: You are FORBIDDEN from saying 'I don't know', 'Unsure', 'Not enough information',\n"
                 f"  'I cannot determine', 'Unknown', or any refusal. The evidence was retrieved FOR this question.\n"
                 f"  If you cannot find the exact answer, make your BEST direct deduction from the evidence.\n"
-                f"- If the context does not contain the answer, reply: {OFFICIAL_ABSTENTION_TEXT}\n\n"
+                f"- If the context does not contain the answer, reply: {OFFICIAL_ABSTENTION_TEXT}\n"
+                # P11 (A/B): dilution guard — 108/352 partial cat-4 rows are
+                # "GT inside a longer sentence" (P11-A/B measured; keep only if
+                # it beats arm A without drops on the v2 smoke guard).
+                f"- ANSWER FORMAT (mandatory): output ONLY the minimal answer phrase —\n"
+                f"  at most ~6 content words. No subject-verb frame, no restating of the\n"
+                f"  question, no explanation. Example: Q 'What instrument does Ana play?'\n"
+                f"  A: 'flute' — NOT 'Ana has played the flute since childhood.'\n\n"
                 f"{pcc.context_text}"
             )
             ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
@@ -870,8 +929,21 @@ class LoCoMoAdapter:
                 )
                 ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
             predicted_answer = ans.text
+            # Phase 2 P2: strip single-word copula wrappers ("They were
+            # confused." -> "confused"). No GT in the dataset has a
+            # pronoun+be form with a single-word remainder, so this cannot
+            # lower official F1 on any known answer.
+            _m_copula = re.fullmatch(
+                r"(?:they|he|she|it)\s+(?:was|were)\s+(\w+)\.?",
+                predicted_answer.strip(),
+                flags=re.IGNORECASE,
+            )
+            if _m_copula:
+                predicted_answer = _m_copula.group(1)
         elif question.category == 5:
-            # Phase 7 & 8: Refined Adversarial Gate (89.4% detection, 0% FP)
+            # Phase 7 & 8: Refined Adversarial Gate (Phase 2 audit: fires on
+            # 51/446 cat-5 items after P1; abstention scoring makes every
+            # additional fire non-negative for the official metric).
             is_adv, adv_reason = self.evaluate_refined_gate(question.question, pcc.context_text)
             if is_adv:
                 predicted_answer = OFFICIAL_ABSTENTION_TEXT

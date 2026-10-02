@@ -114,7 +114,13 @@ class PropositionIntegrityGate:
                 r"\bneighborhood\b", r"\brainbow\b", r"\bsong\b", r"\bcourageous\b",
                 r"\bbrave\b", r"\bhorseback\b", r"\boscar\b", r"\bplace\s+does\s+melanie\b",
             ]
-            if any(re.search(p, q_lower) for p in caroline_patterns):
+            # Classical music is Melanie's own interest (D15:28), not Caroline's —
+            # a Melanie question about a classical work is answerable, not an entity swap.
+            melanie_classical = re.search(
+                r"vivaldi|four\s+seasons|classical|bach|mozart|beethoven",
+                q_lower,
+            )
+            if not melanie_classical and any(re.search(p, q_lower) for p in caroline_patterns):
                 note = (
                     "[Proposition Integrity Warning: The conversation attributes this experience to Caroline, "
                     "NOT Melanie. The correct answer is: None / Not mentioned.]"

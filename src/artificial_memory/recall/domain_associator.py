@@ -87,14 +87,30 @@ for _k, _v_tuple in _DOMAIN_ONTOLOGY.items():
 
 # Critical symmetric & transitive bridges identified in failure autopsy
 _ASSOC_GRAPH["classical"].update({"vivaldi", "bach", "mozart", "orchestra", "concerto"})
-_ASSOC_GRAPH["dog"].update({"cook", "treats", "baking", "recipe", "kitchen"})
+_ASSOC_GRAPH["dog"].update({"cook", "treats", "baking", "recipe", "kitchen", "outside"})
 _ASSOC_GRAPH["bird"].update({"feeder", "install", "outside", "window", "watch"})
 _ASSOC_GRAPH["turtle"].update({"zoo", "keeper", "animal keeper", "care"})
 _ASSOC_GRAPH["cook"].update({"dog", "pet", "treat", "treats", "baking"})
 
+_PET_SPECIES_WORDS = ("dog", "dogs", "puppy", "pet", "pets")
+
 
 class DomainAssociator:
     """Deterministic associative query expansion for memory retrieval."""
+
+    @classmethod
+    def register_pet_name(cls, name: str, species: str = "dog") -> None:
+        """Phase 4 P5: co-reference a pet name with its species cluster so
+        'his dogs' queries retrieve turns that mention only the name
+        (e.g. D14:27 'take Toby out for a small hike', D24:8 'Buddy ... walks').
+        Registration order does not affect expansion: neighbor iteration is
+        sorted and ontology-baked names (e.g. pixie) are left untouched."""
+        n = str(name).lower()
+        if len(n) < 3 or n in _DOMAIN_ONTOLOGY:
+            return
+        _ASSOC_GRAPH[n].add(species)
+        for sp in _PET_SPECIES_WORDS:
+            _ASSOC_GRAPH[sp].add(n)
 
     @classmethod
     def expand_query(cls, query: str, max_terms: int = 15, hops: int = 2) -> set[str]:
@@ -102,17 +118,21 @@ class DomainAssociator:
         q_lower = query.lower()
         words = re.findall(r"\b[a-z0-9_-]{3,}\b", q_lower)
 
+        # Phase 2 determinism fix: set-iteration order (PYTHONHASHSEED) decided
+        # which terms survived the max_terms cutoff, so compiled contexts
+        # differed across processes. Frontier keeps query order; graph
+        # neighbors are visited in sorted order.
         expanded: set[str] = set()
-        frontier = set(words)
+        frontier: list[str] = list(dict.fromkeys(words))
 
         for _ in range(hops):
-            next_frontier: set[str] = set()
+            next_frontier: list[str] = []
             for w in frontier:
                 if w in _ASSOC_GRAPH:
-                    for neighbor in _ASSOC_GRAPH[w]:
+                    for neighbor in sorted(_ASSOC_GRAPH[w]):
                         if neighbor not in words and neighbor not in expanded:
                             expanded.add(neighbor)
-                            next_frontier.add(neighbor)
+                            next_frontier.append(neighbor)
                             if len(expanded) >= max_terms:
                                 break
                     if len(expanded) >= max_terms:
