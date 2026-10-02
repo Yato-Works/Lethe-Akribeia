@@ -16,22 +16,25 @@ _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
     # Music & Listening (e.g. Vivaldi, song -> classical, concert)
     "music": (
         "song", "classical", "jazz", "rock", "pop", "concert", "album",
-        "playlist", "listen", "listening", "band", "instrument", "piano",
+        "playlist", "listen", "listening", "band", "artist", "instrument", "piano", "musician",
     ),
     "song": (
-        "music", "classical", "singer", "concert", "track", "listen", "melody",
+        "music", "classical", "singer", "concert", "track", "listen", "melody", "band", "artist",
     ),
+    "artists": ("band", "bands", "singer", "music", "concert", "musician", "tour"),
+    "bands": ("band", "artist", "artists", "singer", "music", "concert", "musician"),
     "vivaldi": ("classical", "music", "orchestra", "concerto", "seasons"),
     "classical": ("music", "orchestra", "concerto", "composer", "symphony"),
 
     # Books & Reading (e.g. book, read -> author, novel, titles)
-    "book": ("read", "reading", "author", "novel", "literature", "story", "pages"),
-    "read": ("book", "books", "author", "novel", "reading", "story"),
+    "book": ("read", "reading", "author", "novel", "literature", "story", "pages", "title"),
+    "books": ("book", "read", "reading", "author", "novel", "literature", "story", "pages", "title"),
+    "read": ("book", "books", "author", "novel", "reading", "story", "title"),
 
     # Movies & Cinema
-    "movie": ("film", "cinema", "watch", "watching", "actor", "romcom", "drama", "series"),
-    "movies": ("film", "cinema", "watch", "watching", "actor", "romcom", "drama", "series"),
-    "film": ("movie", "movies", "cinema", "watch", "director"),
+    "movie": ("film", "cinema", "watch", "watched", "watching", "seen", "actor", "romcom", "drama", "series", "trilogy", "recommendation"),
+    "movies": ("film", "cinema", "watch", "watched", "watching", "seen", "actor", "romcom", "drama", "series", "trilogy", "recommendation"),
+    "film": ("movie", "movies", "cinema", "watch", "watched", "director", "seen"),
 
     # Food & Diet (e.g. meat, eat -> chicken, beef, cook)
     "meat": ("chicken", "beef", "pork", "steak", "food", "eat", "cook", "protein"),
@@ -39,10 +42,12 @@ _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
     "cook": ("food", "baking", "treats", "recipe", "kitchen", "dessert"),
 
     # Pets & Animals (e.g. dog, pet -> breeder, adopt, rescue)
+    "animal": ("turtle", "turtles", "dog", "cat", "pet", "reptile", "wildlife", "nature"),
+    "animals": ("turtle", "turtles", "dog", "cat", "pet", "reptile", "wildlife", "nature"),
     "pet": ("dog", "cat", "puppy", "kitten", "breeder", "adopt", "adoption", "shelter", "rescue"),
     "pets": ("dog", "cat", "puppy", "kitten", "breeder", "adopt", "adoption", "shelter", "rescue"),
-    "dog": ("dogs", "puppy", "breed", "breeder", "adopt", "walk", "shelter", "vet", "pets"),
-    "dogs": ("dog", "puppy", "breed", "breeder", "adopt", "walk", "shelter", "vet", "pets"),
+    "dog": ("dogs", "puppy", "breed", "breeder", "adopt", "walk", "walks", "hike", "hiking", "trail", "shelter", "vet", "pets"),
+    "dogs": ("dog", "puppy", "breed", "breeder", "adopt", "walk", "walks", "hike", "hiking", "trail", "shelter", "vet", "pets"),
     "cat": ("cats", "kitten", "feline", "shelter", "rescue", "pets"),
     "pixie": ("dog", "puppy", "breeder", "adopt", "pet"),
 

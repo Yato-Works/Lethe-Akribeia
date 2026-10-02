@@ -258,7 +258,15 @@ class WideSlicer:
 
         # 5. Relation / Proposition Channel (Actions, migrations, states)
         c_relation: list[StructuredIR] = []
-        action_words = set(w for w in q_tokens if w in ["visit", "travel", "buy", "bought", "meet", "met", "graduated", "start", "started", "lead", "play", "book", "move", "moved", "adopt", "adopted", "cook", "cooking", "paint", "draw"])
+        action_words = set(w for w in q_tokens if w in [
+            "visit", "travel", "buy", "bought", "meet", "met", "graduated", "start", "started",
+            "lead", "play", "book", "move", "moved", "adopt", "adopted", "cook", "cooking",
+            "paint", "draw", "walk", "walks", "walking", "hike", "hiking", "watch", "watched",
+            "watching", "seen", "see", "read", "reading", "listen", "listening", "listened",
+        ])
+        is_title_query = any(w in query.lower() for w in [
+            "movie", "movies", "film", "book", "books", "song", "band", "title", "read", "watched",
+        ])
         if action_words:
             scored_rel: list[tuple[float, StructuredIR]] = []
             for r in records:
@@ -267,7 +275,10 @@ class WideSlicer:
                 if matched_acts > 0:
                     r_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
                     overlap = len(q_tokens & r_toks)
-                    scored_rel.append((matched_acts * 3.0 + overlap * 1.5, r))
+                    score = matched_acts * 3.0 + overlap * 1.5
+                    if is_title_query and re.search(r'"[^"]{3,40}"', r.raw_content or ""):
+                        score += 6.0
+                    scored_rel.append((score, r))
             scored_rel.sort(key=lambda x: x[0], reverse=True)
             c_relation = [r for _, r in scored_rel[:self.per_channel_budget]]
 
@@ -284,6 +295,8 @@ class WideSlicer:
                     r_toks = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", r_text) if len(w) > 2)
                     overlap = len(q_tokens & r_toks)
                     score = len(matched_dt) * 3.0 + overlap * 2.0
+                    if is_title_query and re.search(r'"[^"]{3,40}"', r.raw_content or ""):
+                        score += 6.0
                     scored_domain.append((score, r))
             scored_domain.sort(key=lambda x: x[0], reverse=True)
             c_domain = [r for _, r in scored_domain[:self.per_channel_budget]]
