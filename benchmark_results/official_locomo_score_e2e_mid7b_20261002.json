@@ -1,0 +1,30 @@
+{
+ "tag": "e2e_mid7b_20261002",
+ "run_dir": "benchmark_results/locomo10_runs/e2e_mid7b_20261002",
+ "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
+ "n": 617,
+ "official_f1": 72.1238,
+ "official_f1_no_cat5": 63.9249,
+ "per_category": {
+  "multi-hop": {
+   "n": 99,
+   "official_f1": 42.1396
+  },
+  "temporal": {
+   "n": 101,
+   "official_f1": 70.4533
+  },
+  "open-domain": {
+   "n": 31,
+   "official_f1": 63.0411
+  },
+  "single-hop": {
+   "n": 243,
+   "official_f1": 70.1997
+  },
+  "adversarial": {
+   "n": 143,
+   "official_f1": 99.3007
+  }
+ }
+}

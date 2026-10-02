@@ -85,6 +85,11 @@ def main() -> None:
                 missing += 1
                 continue
             item = {k: v for k, v in qa.items()}
+            # Official harness reads line['answer']; the frozen dataset stores
+            # category-5 gold under 'adversarial_answer' (same handling as
+            # scripts/benchmarks/official_f1_by_question.py).
+            if "answer" not in item:
+                item["answer"] = item.get("adversarial_answer", "")
             item[f"{model_key}_prediction"] = pred["predicted_answer"]
             qas.append(item)
         merged.append({"sample_id": sid, "qa": qas})

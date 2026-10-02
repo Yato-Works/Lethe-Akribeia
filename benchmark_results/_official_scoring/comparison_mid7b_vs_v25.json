@@ -1,0 +1,30 @@
+{
+  "comparison": "LoCoMo convs 0,3,5 (617 questions), reader=qwen2.5:7b-instruct",
+  "baseline": {
+    "tag": "e2e_full_20261002_v25 (subset convs 0,3,5)",
+    "official_f1_micro_pct": 64.36,
+    "official_f1_macro_pct": 58.11,
+    "per_category_f1_pct": {
+      "multi-hop": 36.51,
+      "temporal": 66.14,
+      "open-domain": 33.08,
+      "single-hop": 62.5,
+      "adversarial": 92.31
+    }
+  },
+  "current": {
+    "tag": "e2e_mid7b_20261002 (HEAD ed9c041)",
+    "official_f1_micro_pct": 72.12,
+    "official_f1_macro_pct": 69.03,
+    "per_category_f1_pct": {
+      "multi-hop": 42.14,
+      "temporal": 70.45,
+      "open-domain": 63.04,
+      "single-hop": 70.2,
+      "adversarial": 99.3
+    },
+    "oracle_recall_micro_pct": 93.52,
+    "dev_matcher_micro_pct": 83.14
+  },
+  "delta_pp_official_f1_micro": 7.76
+}
