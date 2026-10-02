@@ -1,14 +1,14 @@
 {
- "tag": "e2e_smoke_20261002_v6",
- "run_dir": "benchmark_results/locomo10_runs/e2e_smoke_20261002_v6",
+ "tag": "e2e_smoke_20261002_v7",
+ "run_dir": "benchmark_results/locomo10_runs/e2e_smoke_20261002_v7",
  "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
  "n": 60,
- "official_f1": 61.7424,
- "official_f1_no_cat5": 56.3447,
+ "official_f1": 65.2702,
+ "official_f1_no_cat5": 60.7544,
  "per_category": {
   "multi-hop": {
    "n": 12,
-   "official_f1": 36.5278
+   "official_f1": 50.8333
   },
   "temporal": {
    "n": 12,
@@ -20,7 +20,7 @@
   },
   "single-hop": {
    "n": 12,
-   "official_f1": 55.6366
+   "official_f1": 58.9699
   },
   "adversarial": {
    "n": 12,
