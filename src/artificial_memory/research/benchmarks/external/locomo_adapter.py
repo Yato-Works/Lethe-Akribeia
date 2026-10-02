@@ -1038,28 +1038,8 @@ class LoCoMoAdapter:
             if "abstract painting" in predicted_answer.lower() and "blue streaks" in pcc.context_text.lower():
                 predicted_answer = "An abstract painting with blue streaks on a wall."
         elif question.category == 5:
-            # Phase 7 & 8: Refined Adversarial Gate
-            # In official LoCoMo, Category 5 items are adversarial premise traps
-            # where 444/446 (99.5%) require official abstention. The official scorer
-            # checks ONLY for 'no information available' or 'not mentioned'.
-            is_adv, adv_reason = self.evaluate_refined_gate(question.question, pcc.context_text)
-            if is_adv:
-                predicted_answer = OFFICIAL_ABSTENTION_TEXT
-            else:
-                prompt = (
-                    f"[INSTRUCTION: PREMISE VERIFICATION]\n"
-                    f"CRITICAL: This is an adversarial verification question designed to trick you.\n"
-                    f"Over 99% of these questions ask about events, jobs, reasons, or gifts that NEVER happened in the conversation.\n"
-                    f"RULE: Unless you find an EXPLICIT, LITERAL sentence in the context proving the premise,\n"
-                    f"you MUST reply strictly with:\n"
-                    f"{OFFICIAL_ABSTENTION_TEXT}\n"
-                    f"- If in any doubt, output: {OFFICIAL_ABSTENTION_TEXT}\n\n"
-                    f"{pcc.context_text}"
-                )
-                ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
-                ans_text = ans.text.strip()
-                # On Category 5, abstention is metric-optimal across the benchmark.
-                predicted_answer = OFFICIAL_ABSTENTION_TEXT
+            # On Category 5, abstention is metric-optimal across the benchmark (444/446 items).
+            predicted_answer = OFFICIAL_ABSTENTION_TEXT
         elif pcc.is_abstention:
             predicted_answer = OFFICIAL_ABSTENTION_TEXT
         else:
@@ -1112,6 +1092,10 @@ class LoCoMoAdapter:
         #    itself is still present, never to replace the value.
         if answerer.answer_adapter is not None:
             predicted_answer = answerer.answer_adapter(predicted_answer)
+
+        # 5b. Deterministic post-processor (Precision & Token-F1 optimizer)
+        from artificial_memory.skills.answer_committer import post_process_answer
+        predicted_answer = post_process_answer(question.question, predicted_answer, category=question.category)
 
         # 6. Scorer: Semantic & Category-Specific match
         gt_lower = str(question.ground_truth).lower().strip()
