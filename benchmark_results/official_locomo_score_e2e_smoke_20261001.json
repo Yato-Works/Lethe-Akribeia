@@ -1,0 +1,30 @@
+{
+ "tag": "e2e_smoke_20261001",
+ "run_dir": "benchmark_results/locomo10_runs/e2e_smoke_20261001",
+ "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
+ "n": 60,
+ "official_f1": 49.5657,
+ "official_f1_no_cat5": 47.3738,
+ "per_category": {
+  "multi-hop": {
+   "n": 12,
+   "official_f1": 30.2778
+  },
+  "temporal": {
+   "n": 12,
+   "official_f1": 67.381
+  },
+  "open-domain": {
+   "n": 12,
+   "official_f1": 22.7778
+  },
+  "single-hop": {
+   "n": 12,
+   "official_f1": 69.0586
+  },
+  "adversarial": {
+   "n": 12,
+   "official_f1": 58.3333
+  }
+ }
+}

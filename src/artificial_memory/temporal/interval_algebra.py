@@ -402,3 +402,54 @@ def parse_compound_temporal_expression(
 
     return None
 
+
+# ─── Canonical Temporal Form for Official F1 ───
+_CANONICAL_MONTHS = {
+    1: "january", 2: "february", 3: "march", 4: "april", 5: "may", 6: "june",
+    7: "july", 8: "august", 9: "september", 10: "october", 11: "november", 12: "december",
+}
+
+
+def canonicalize_temporal_answer(date_obj: datetime.date | datetime.datetime | str) -> str:
+    """Convert any temporal representation to official-scorer-friendly canonical form."""
+    if isinstance(date_obj, str):
+        for fmt in ("%Y-%m-%d", "%d %B %Y", "%B %d, %Y", "%B %Y", "%Y"):
+            try:
+                date_obj = datetime.datetime.strptime(date_obj, fmt).date()
+                break
+            except ValueError:
+                continue
+        else:
+            return date_obj
+
+    if isinstance(date_obj, datetime.datetime):
+        date_obj = date_obj.date()
+
+    if isinstance(date_obj, datetime.date):
+        return f"{date_obj.day} {_CANONICAL_MONTHS[date_obj.month]} {date_obj.year}"
+
+    return str(date_obj)
+
+
+def normalize_temporal_for_scoring(answer: str, ref_date: datetime.date | None = None) -> str:
+    """Post-process reader's temporal answer to canonical form before official scoring."""
+    ans_clean = answer.strip()
+    m_month_yr = re.search(
+        r"\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{4})\b",
+        ans_clean.lower(),
+    )
+    if m_month_yr and len(ans_clean.split()) <= 4:
+        return f"{m_month_yr.group(1)} {m_month_yr.group(2)}"
+
+    parsed = parse_compound_temporal_expression(ans_clean, ref_date=ref_date)
+    if parsed:
+        try:
+            resolved = resolve_ast(parsed)
+            if isinstance(resolved, datetime.date):
+                return canonicalize_temporal_answer(resolved)
+            if isinstance(resolved, TimeInterval):
+                return canonicalize_temporal_answer(resolved.start)
+        except Exception:
+            pass
+    return ans_clean
+

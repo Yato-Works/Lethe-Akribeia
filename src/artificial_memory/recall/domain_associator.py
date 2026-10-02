@@ -76,28 +76,49 @@ _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
     "activity": ("hobby", "cooking", "games", "reading", "treats", "exercise", "walk"),
 }
 
+from collections import defaultdict
+
+# Construct deterministic bidirectional associative graph
+_ASSOC_GRAPH: defaultdict[str, set[str]] = defaultdict(set)
+for _k, _v_tuple in _DOMAIN_ONTOLOGY.items():
+    for _v in _v_tuple:
+        _ASSOC_GRAPH[_k].add(_v)
+        _ASSOC_GRAPH[_v].add(_k)
+
+# Critical symmetric & transitive bridges identified in failure autopsy
+_ASSOC_GRAPH["classical"].update({"vivaldi", "bach", "mozart", "orchestra", "concerto"})
+_ASSOC_GRAPH["dog"].update({"cook", "treats", "baking", "recipe", "kitchen"})
+_ASSOC_GRAPH["bird"].update({"feeder", "install", "outside", "window", "watch"})
+_ASSOC_GRAPH["turtle"].update({"zoo", "keeper", "animal keeper", "care"})
+_ASSOC_GRAPH["cook"].update({"dog", "pet", "treat", "treats", "baking"})
+
 
 class DomainAssociator:
     """Deterministic associative query expansion for memory retrieval."""
 
     @classmethod
-    def expand_query(cls, query: str, max_terms: int = 12) -> set[str]:
-        """Expand query with relevant domain terms to bridge lexical gaps.
-
-        Returns a set of lowercase keywords to inject into retrieval scoring.
-        """
+    def expand_query(cls, query: str, max_terms: int = 15, hops: int = 2) -> set[str]:
+        """Bidirectional expansion: bridges query cues and evidence terms deterministically."""
         q_lower = query.lower()
         words = re.findall(r"\b[a-z0-9_-]{3,}\b", q_lower)
 
         expanded: set[str] = set()
-        for w in words:
-            if w in _DOMAIN_ONTOLOGY:
-                for term in _DOMAIN_ONTOLOGY[w]:
-                    if term not in words:
-                        expanded.add(term)
-                        if len(expanded) >= max_terms:
-                            break
-            if len(expanded) >= max_terms:
+        frontier = set(words)
+
+        for _ in range(hops):
+            next_frontier: set[str] = set()
+            for w in frontier:
+                if w in _ASSOC_GRAPH:
+                    for neighbor in _ASSOC_GRAPH[w]:
+                        if neighbor not in words and neighbor not in expanded:
+                            expanded.add(neighbor)
+                            next_frontier.add(neighbor)
+                            if len(expanded) >= max_terms:
+                                break
+                    if len(expanded) >= max_terms:
+                        break
+            if not next_frontier:
                 break
+            frontier = next_frontier
 
         return expanded

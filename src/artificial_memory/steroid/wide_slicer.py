@@ -326,6 +326,9 @@ class WideSlicer:
         if not c_union:
             c_union = list(records[:self.per_channel_budget])
 
+        # Inject deterministic speaker provenance tags for multi-party queries
+        c_union = self._tag_speaker_provenance(c_union, query)
+
         return WideSliceResult(
             candidate_records=c_union,
             channel_counts={
@@ -334,6 +337,7 @@ class WideSlicer:
                 "temporal": len(c_temporal),
                 "relation": len(c_relation),
                 "session": len(c_session),
+                "domain": len(c_domain),
             },
             total_unioned=len(c_union),
             channels={
@@ -342,5 +346,30 @@ class WideSlicer:
                 "temporal": list(c_temporal),
                 "relation": list(c_relation),
                 "session": list(c_session),
+                "domain": list(c_domain),
             },
         )
+
+    @classmethod
+    def _tag_speaker_provenance(cls, records: list[StructuredIR], query: str) -> list[StructuredIR]:
+        """Inject deterministic speaker attribution markers into record.raw_content."""
+        q_lower = query.lower()
+        multi_person_cues = {"both", "share", "shared", "each", "two people", "two persons"}
+        names_in_query = set(re.findall(r"\b[A-Z][a-z]+\b", query))
+        is_multi_person = any(c in q_lower for c in multi_person_cues) or len(names_in_query) >= 2
+
+        if not is_multi_person:
+            return records
+
+        tagged: list[StructuredIR] = []
+        for r in records:
+            content = r.raw_content or ""
+            speaker = getattr(r, "source", "") or getattr(r, "entity", "")
+            if not speaker:
+                m = re.search(r"\]\s*(?:\([^\)]*\)\s*)?([A-Z][a-z]+):", content)
+                if m:
+                    speaker = m.group(1)
+            if speaker and not re.search(rf"\[SPEAKER:{re.escape(speaker)}\]", content):
+                r.raw_content = f"[SPEAKER:{speaker}] {content}"
+            tagged.append(r)
+        return tagged

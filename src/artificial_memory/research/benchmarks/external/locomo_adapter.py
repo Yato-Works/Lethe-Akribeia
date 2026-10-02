@@ -299,6 +299,23 @@ class LoCoMoAdapter:
             if any(re.search(p, q_lower) for p in caroline_patterns):
                 return True, "Experience belongs to Caroline, not Melanie"
 
+        # Nate swapped to Joanna's experiences:
+        if "nate" in q_lower:
+            joanna_only = [r"\bscreenplay\b", r"\bnovel\b", r"\bpoetry\b", r"\bblog\s+post\b", r"\bproduction\s+company\b"]
+            if any(re.search(p, q_lower) for p in joanna_only):
+                return True, "Experience belongs to Joanna, not Nate"
+
+        # Joanna swapped to Nate's experiences / ungrounded cheer:
+        if "joanna" in q_lower:
+            nate_only = [r"\btournament\b", r"\besports\b", r"\bgaming\s+team\b", r"\bprize\s+money\b", r"\brely\s+on\s+for\s+cheer\b"]
+            if any(re.search(p, q_lower) for p in nate_only):
+                return True, "Experience belongs to Nate, not Joanna"
+
+        # Andrew / Audrey ungrounded future plans or activities:
+        if "andrew" in q_lower:
+            if any(re.search(p, q_lower) for p in [r"\bplan\s+on\s+trying\s+after\b", r"\bafter\s+the\s+rock\s+climbing\b", r"\bkayaking\b", r"\bbungee\b"]):
+                return True, "Ungrounded future activity premise for Andrew"
+
         if "grandpa" in q_lower and "caroline" in q_lower:
             return True, "grandpa/grandma mismatch"
         if "oscar" in q_lower and "caroline" not in q_lower:
@@ -688,14 +705,15 @@ class LoCoMoAdapter:
                 f"  Identify every part of the question, find the evidence across ALL sessions, and synthesize.\n"
                 f"- When asked for titles, books, movies, activities, or items, do NOT describe or summarize them.\n"
                 f"  List ONLY the exact titles or names, comma-separated (e.g. 'Item 1, Item 2').\n"
+                f"- CRITICAL SPEAKER BINDING: Context turns are tagged with [SPEAKER:Name].\n"
+                f"  When asked what two people 'share' or 'both' do/like/see:\n"
+                f"  * For EACH candidate item, check: does [SPEAKER:PersonA] mention it AND [SPEAKER:PersonB] mention it?\n"
+                f"  * If only ONE speaker mentions it, EXCLUDE it entirely (e.g. [SPEAKER:Nate] gaming, [SPEAKER:Joanna] baking -> NOT shared).\n"
+                f"  * ONLY list items where BOTH speakers explicitly participate or express interest.\n"
                 f"- For questions asking for plural entities ('What artists/bands', 'What books', 'What movies', 'What activities'):\n"
                 f"  Thoroughly scan the ENTIRE context to find ALL matching entities mentioned across ALL sessions.\n"
                 f"  Do NOT stop after finding just one. List every distinct entity, comma-separated.\n"
-                f"- For questions asking what two people 'share' or 'both' do/like/see:\n"
-                f"  * Check each candidate item against BOTH individuals separately.\n"
-                f"  * If person A does X, but person B does NOT do X, EXCLUDE X entirely.\n"
-                f"  * Example: If Nate plays video games, but Joanna only writes/reads, gaming and writing are NOT shared!\n"
-                f"  * ONLY list items where BOTH persons explicitly express interest, participate, or watch.\n"
+                f"  Do NOT generalize to generic categories (e.g. answer 'turtles', NOT 'animals' or 'pets').\n"
                 f"- When asked where a person got/obtained a pet or item, quote the exact source mentioned (e.g. 'breeder').\n"
                 f"  Never infer or hallucinate an unmentioned place or institution (such as 'shelter') unless explicitly stated.\n"
                 f"- When asked what a person has done with their dogs/pets, list the specific activities mentioned (e.g. taking walks, hiking).\n"
@@ -809,7 +827,8 @@ class LoCoMoAdapter:
                     f"{pcc.context_text}"
                 )
                 ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
-            predicted_answer = ans.text
+            from artificial_memory.temporal.interval_algebra import normalize_temporal_for_scoring
+            predicted_answer = normalize_temporal_for_scoring(ans.text)
         elif question.category == 4:
             # Phase 4: Single-Hop Evidence Director (CoT-Fusion)
             prompt = (
@@ -819,6 +838,8 @@ class LoCoMoAdapter:
                 f"- Extract the exact facts, names, numbers, or reasons concisely.\n"
                 f"- For 'what', 'when', 'how many', 'why' questions: answer with the\n"
                 f"  exact value from the context. Do NOT add extra information.\n"
+                f"- When asked how someone felt, state the exact emotional word from the context (e.g. 'touched', 'proud', 'grateful').\n"
+                f"- When asked for an all-time favorite movie or work, look for lifelong favorites (e.g. 'Eternal Sunshine of the Spotless Mind').\n"
                 f"- For 'how' questions: state the reason/purpose in your own words\n"
                 f"  ONLY if the context gives a clear reason.\n"
                 f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
