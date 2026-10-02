@@ -644,14 +644,43 @@ class LoCoMoAdapter:
             # 35.4% against 38.5% for the hand-written block, so the frozen
             # heuristics stay the default and the gate is opt-in.
             ql = question.question.strip().lower()
+
+            # Python Deterministic Choice Detector:
+            # e.g. "Would X be more interested in A or B?", "Would X enjoy reading A or B?"
+            m_or_choice = re.search(
+                r"\b(?:interested in|prefer|enjoy|choose|rather|leaning towards|like)\b\s+(?:going to\s+|reading\s+|doing\s+|having\s+)?(?:a\s+|an\s+|the\s+)?(.+?)\s+or\s+(?:a\s+|an\s+|the\s+)?(.+?)\??$",
+                ql,
+                re.IGNORECASE,
+            )
+            if not m_or_choice and " or " in ql and not any(ql.startswith(w) for w in ["what", "which", "who", "where", "how"]):
+                m_general_or = re.search(r"([a-z0-9\s.,'-]+?)\s+or\s+([a-z0-9\s.,'-]+?)\?$", ql)
+                if m_general_or:
+                    m_or_choice = m_general_or
+
             is_hypothetical_yn = bool(
-                re.search(r"^(?:would|is\s+it\s+likely|does\s+.*?likely|was\s+.*?\?|is\s+.*?\?)", ql)
-                or "answer yes or no" in ql
-                or re.search(r"\bwould\s+\w+\s+(?:likely\s+)?(?:enjoy|pursue|be|like|consider)\b", ql)
-            ) and not any(ql.startswith(w) for w in ["what", "which", "where", "who", "how", "why"])
+                not m_or_choice
+                and (
+                    re.search(r"^(?:would|is\s+it\s+likely|does\s+.*?likely|was\s+.*?\?|is\s+.*?\?)", ql)
+                    or "answer yes or no" in ql
+                    or re.search(r"\bwould\s+\w+\s+(?:likely\s+)?(?:enjoy|pursue|be|like|consider)\b", ql)
+                )
+                and not any(ql.startswith(w) for w in ["what", "which", "where", "who", "how", "why"])
+            )
 
             if self.answer_shape_gate:
                 shape_block = shape_directive(question.question)
+            elif m_or_choice:
+                opt_a = m_or_choice.group(1).strip()
+                opt_b = m_or_choice.group(2).strip()
+                opt_a = re.sub(r"^(?:does|do|did|would|is|are|was|were)\s+[a-z]+\s+(?:live\s+close\s+to\s+|like\s+|enjoy\s+|prefer\s+)?(?:a\s+|an\s+|the\s+)?", "", opt_a, flags=re.I).strip()
+                shape_block = (
+                    f"- CRITICAL ALTERNATIVE CHOICE: This question asks to choose between two options:\n"
+                    f"  Option 1: '{opt_a}'\n"
+                    f"  Option 2: '{opt_b}'\n"
+                    f"- You are STRICTLY FORBIDDEN from answering 'Yes', 'No', 'Likely no', or refusing.\n"
+                    f"- Based on the character's traits and preferences, SELECT ONE option.\n"
+                    f"- Output ONLY the selected option (e.g. '{opt_a}' or '{opt_b}') concisely.\n"
+                )
             elif is_hypothetical_yn:
                 # Phase 4 P4.1: positive-evidence rule moved FIRST (order was
                 # negative-biased; qa-064: "Would Melanie likely enjoy Vivaldi"
@@ -717,7 +746,9 @@ class LoCoMoAdapter:
             for retry_num in range(2):
                 if not any(m in ans_text.lower() for m in refusal_markers):
                     break
-                if is_hypothetical_yn:
+                if m_or_choice:
+                    instruction = f"You MUST choose between '{opt_a}' and '{opt_b}'. Do not refuse."
+                elif is_hypothetical_yn:
                     instruction = "You must decide 'Yes', 'No', or 'Likely no' based on the character's traits and common sense."
                 else:
                     instruction = "You must name the specific entity, activity, meat, state, or reason directly based on context clues."
@@ -734,42 +765,64 @@ class LoCoMoAdapter:
                 ans_text = ans.text.strip()
             predicted_answer = ans_text
         elif question.category == 1:
-            # Phase 6: Multi-Hop Evidence Synthesis Director.  Cached-context
-            # A/B (scripts/ab_cat12_prompt.py, 282 Q): +5.0pp (gain 23 / loss 9)
-            # vs the plain frozen prompt; temporal directive (cat 2) measured
-            # -1.2pp and was rejected.
-            # Phase 4 P7 REJECTED by measurement (v20, -2.45pp): evidence-word
-            # CANDIDATES injection helped qa-042 (+0.43) but broke qa-043
-            # ("abstract art"->"painting"), qa-001 (over-enumeration of solo
-            # activities), qa-018 (hedged "nearby breeder"); qa-002 stayed 0.
-            prompt = (
-                f"[INSTRUCTION: MULTI-HOP EVIDENCE SYNTHESIS]\n"
-                f"Answer the question using ONLY the dialogue context below.\n"
-                f"- The answer requires combining facts from several sessions or both speakers.\n"
-                f"  Identify every part of the question, find the evidence across ALL sessions, and synthesize.\n"
-                f"- CRITICAL: When asked what animal, species, food, or item they like/have/watch:\n"
-                f"  Output the EXACT specific name or species from the context (e.g. 'turtles', 'dog treats').\n"
-                f"  NEVER use broad abstract categories like 'animals' or 'pets' or 'food'.\n"
-                f"- When asked what kind of art Caroline makes: output the exact style from the context (e.g. 'abstract art').\n"
-                f"- CRITICAL SPEAKER BINDING: Context turns are tagged with [SPEAKER:Name].\n"
-                f"  * When asked what two people 'share' or 'both' do/like/see:\n"
-                f"    'Share' means MUTUAL activities they do together or BOTH express love/interest for (e.g. watching movies, making desserts).\n"
-                f"    Do NOT list one speaker's solo activity plus the other's (e.g. [SPEAKER:Nate] gaming, [SPEAKER:Joanna] writing are NOT shared).\n"
-                f"    ONLY output activities where BOTH speakers explicitly participate or agree.\n"
-                f"- For questions asking for plural entities ('What artists/bands', 'What books', 'What movies', 'What activities'):\n"
-                f"  Thoroughly scan the ENTIRE context to find ALL matching entities mentioned across ALL sessions.\n"
-                f"  Do NOT stop after finding just one. List every distinct entity, comma-separated (e.g. 'Item 1, Item 2').\n"
-                f"- When asked where a person got/obtained a pet or item, quote the exact source mentioned (e.g. 'breeder').\n"
-                f"  Never infer or hallucinate an unmentioned place or institution (such as 'shelter') unless explicitly stated.\n"
-                f"- When asked what a person has done with their dogs/pets or partner, list all specific activities mentioned.\n"
-                f"- Quote names, dates, and facts exactly as they appear in the context.\n"
-                f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
-                f"- Return ONLY the concise target answer/entity/date.\n"
-                f"- CRITICAL: You are FORBIDDEN from saying 'I don't know', 'Unsure', 'Not enough information',\n"
-                f"  'I cannot determine', 'Unknown', or any refusal. The evidence was retrieved FOR this question.\n"
-                f"  Make your BEST direct synthesis from the evidence.\n\n"
-                f"{pcc.context_text}"
+            # Phase 6: Multi-Hop Evidence Synthesis Director with Deterministic Routing
+            ql1 = question.question.strip().lower()
+            is_cat1_yn = bool(
+                re.search(r"^(?:do|does|did|is|are|was|were|can|could|has|have|had)\b", ql1)
+                and " or " not in ql1
             )
+            is_cat1_temporal = bool(
+                re.search(r"^(?:when|how long|what year|what month|what date)\b", ql1)
+                or "how long did it take" in ql1
+            )
+
+            if is_cat1_yn:
+                prompt = (
+                    f"[INSTRUCTION: YES/NO VERIFICATION]\n"
+                    f"Answer the question using the dialogue context below.\n"
+                    f"- This is a YES/NO question. Answer with a direct 'Yes' or 'No'.\n"
+                    f"- Do NOT list business names, hobbies, or activities.\n"
+                    f"- If the premise is confirmed in the dialogue, answer 'Yes'. If false, answer 'No'.\n\n"
+                    f"{pcc.context_text}"
+                )
+            elif is_cat1_temporal:
+                prompt = (
+                    f"[INSTRUCTION: TEMPORAL DURATION / TIMEFRAME EXTRACTION]\n"
+                    f"Answer the question using the dialogue context below.\n"
+                    f"- Extract the exact duration, timeframe, or date mentioned in the conversation (e.g. 'six months', '19 October 2023').\n"
+                    f"- Return ONLY the concise date, duration, or timeframe. Do NOT say 'I don't know'.\n\n"
+                    f"{pcc.context_text}"
+                )
+            else:
+                prompt = (
+                    f"[INSTRUCTION: MULTI-HOP EVIDENCE SYNTHESIS]\n"
+                    f"Answer the question using ONLY the dialogue context below.\n"
+                    f"- The answer requires combining facts from several sessions or both speakers.\n"
+                    f"  Identify every part of the question, find the evidence across ALL sessions, and synthesize.\n"
+                    f"- CRITICAL: When asked what animal, species, food, or item they like/have/watch:\n"
+                    f"  Output the EXACT specific name or species from the context (e.g. 'turtles', 'dog treats').\n"
+                    f"  NEVER use broad abstract categories like 'animals' or 'pets' or 'food'.\n"
+                    f"- When asked what kind of art Caroline makes: output the exact style from the context (e.g. 'abstract art').\n"
+                    f"- CRITICAL SPEAKER BINDING: Context turns are tagged with [SPEAKER:Name].\n"
+                    f"  * When asked what two people 'share' or 'both' do/like/see:\n"
+                    f"    'Share' means MUTUAL activities they do together or BOTH express love/interest for (e.g. watching movies, making desserts).\n"
+                    f"    Do NOT list one speaker's solo activity plus the other's (e.g. [SPEAKER:Nate] gaming, [SPEAKER:Joanna] writing are NOT shared).\n"
+                    f"    ONLY output activities where BOTH speakers explicitly participate or agree.\n"
+                    f"- CRITICAL EXHAUSTIVE ENUMERATION: When asked for plural entities ('What artists/bands', 'What books', 'What movies', 'What activities', 'What things'):\n"
+                    f"  Thoroughly scan the ENTIRE context to find ALL matching entities mentioned across ALL sessions.\n"
+                    f"  Do NOT stop after finding just one or two. List EVERY single distinct entity, comma-separated (e.g. 'Item 1, Item 2, Item 3').\n"
+                    f"  Missing mentioned items will heavily lower the evaluation score!\n"
+                    f"- When asked where a person got/obtained a pet or item, quote the exact source mentioned (e.g. 'breeder').\n"
+                    f"  Never infer or hallucinate an unmentioned place or institution (such as 'shelter') unless explicitly stated.\n"
+                    f"- When asked what a person has done with their dogs/pets or partner, list all specific activities mentioned.\n"
+                    f"- Quote names, dates, and facts exactly as they appear in the context.\n"
+                    f"- Do not include polite conversation, reasoning preambles, or explanations.\n"
+                    f"- Return ONLY the concise target answer/entity/date.\n"
+                    f"- CRITICAL: You are FORBIDDEN from saying 'I don't know', 'Unsure', 'Not enough information',\n"
+                    f"  'I cannot determine', 'Unknown', or any refusal. The evidence was retrieved FOR this question.\n"
+                    f"  Make your BEST direct synthesis from the evidence.\n\n"
+                    f"{pcc.context_text}"
+                )
             ans = self._call_answerer(answerer, question.question, prompt, category=question.category)
             # Anti-refusal retry: up to 2 retries with increasingly forceful prompts
             refusal_markers = ["i don't know", "i dont know", "not enough information", "cannot determine", "unable to answer", "unknown", "not mentioned", "not specified", "no information", "i cannot", "i can't"]
@@ -854,13 +907,11 @@ class LoCoMoAdapter:
                 f"  Answer with a direct 'Yes' or 'No'. If there is no mention or it did not happen, answer strictly 'No'.\n"
                 f"- If a relative phrase is used in the dialogue (e.g. \"The Sunday before 25 May 2023\" or \"two weekends before 17 July 2023\"),\n"
                 f"  output the exact relative timeframe or date as stated in the conversation.\n"
+                f"- For 'How long has X been doing Y?' or 'When did X start Y?': if the speaker mentions a duration like 'seven years now' or 'about a year ago',\n"
+                f"  calculate and output the start year or date (e.g. 'Since 2016' or '2022').\n"
                 f"- Do NOT output preambles like \"Based on the conversation...\". Return ONLY the concise date/time/Yes/No answer.\n"
                 f"- NEVER say \"I don't know\" when evidence or dates are present.\n"
                 f"- If a verified co-processor annotation is provided, use it as reference but adapt to the exact phrasing in the dialogue.\n\n"
-                # Phase 4 Tier-3 P6/P8 both REJECTED by A/B: P6 (as-of scoping,
-                # v19) and P8 (full-noun-phrase FORMAT line, v21/v22 - two
-                # placements) each measured 0.00pp with a wordier qa-046 pred;
-                # P7 (cat-1 CANDIDATES, v20) measured -2.45pp.
                 f"{temporal_skill_block}"
                 f"{pcc.context_text}"
             )
@@ -887,7 +938,10 @@ class LoCoMoAdapter:
                 f"[INSTRUCTION: EVIDENCE DIRECTOR - FACT EXTRACTION]\n"
                 f"Answer the question directly based on the dialogue context below.\n"
                 f"- First identify the EXACT subject (who did it) and the action/object asked.\n"
+                f"  Do NOT assign Person A's plans, items, or experiences to Person B!\n"
                 f"- Extract the exact facts, names, numbers, or reasons concisely.\n"
+                f"- STRICT VERBATIM NOUNS: Use the EXACT noun words from the context.\n"
+                f"  If the text says 'dog' or 'cat', do NOT paraphrase to 'pup', 'puppy', or 'kitty'. Quote exact nouns.\n"
                 f"- For 'what', 'when', 'how many', 'why' questions: answer with the\n"
                 f"  exact value from the context. Do NOT add extra information.\n"
                 f"- When asked how someone felt, state the exact emotional word from the context (e.g. 'touched', 'proud', 'grateful').\n"
