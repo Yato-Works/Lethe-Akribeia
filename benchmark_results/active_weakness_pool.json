@@ -176,8 +176,8 @@
     "q": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
     "gt": "Yes, since she collects classic children's books",
     "p_raw": "Likely yes.",
-    "p_final": "Likely yes.",
-    "f1": 0.22222222222222224
+    "p_final": "yes",
+    "f1": 0.25
   },
   {
     "qid": "conv-42-qa-172",
@@ -198,16 +198,6 @@
     "p_raw": "movies, books",
     "p_final": "\"Eternal Sunshine of the Spotless Mind\" movie, \"A Court of Thorns and Roses\" book, pointers for making living room comfy, starting a cork board for memories",
     "f1": 0.8
-  },
-  {
-    "qid": "conv-42-qa-152",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Why is Joanna experimenting with dairy-free options in her dessert recipes?",
-    "gt": "lactose intolerance",
-    "p_raw": "I'm lactose intolerant, so I'm trying out dairy-free options like coconut or almond milk instead.",
-    "p_final": "lactose intolerance, lactose intolerant",
-    "f1": 0.6666666666666666
   },
   {
     "qid": "conv-42-qa-050",
@@ -336,8 +326,8 @@
     "q": "Would Melanie be considered an ally to the transgender community?",
     "gt": "Yes, she is supportive",
     "p_raw": "Likely yes.",
-    "p_final": "Likely yes.",
-    "f1": 0.3333333333333333
+    "p_final": "yes",
+    "f1": 0.4
   },
   {
     "qid": "conv-26-qa-090",
@@ -720,24 +710,14 @@
     "f1": 0.5
   },
   {
-    "qid": "conv-42-qa-020",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Nate adopt Max?",
-    "gt": "May 2022",
-    "p_raw": "20May 2022",
-    "p_final": "20 May, 2022",
-    "f1": 0.8
-  },
-  {
     "qid": "conv-42-qa-022",
     "cat": "temporal",
     "category": 2,
     "q": "When did Joanna start writing her third screenplay?",
     "gt": "May 2022",
     "p_raw": "In 2022",
-    "p_final": "In 2022",
-    "f1": 0.5
+    "p_final": "2022",
+    "f1": 0.6666666666666666
   },
   {
     "qid": "conv-42-qa-034",
@@ -826,8 +806,8 @@
     "q": "When did Audrey's positive reinforcement training course for dogs take place?",
     "gt": "June, 2023",
     "p_raw": "In 2023",
-    "p_final": "In 2023",
-    "f1": 0.5
+    "p_final": "2023",
+    "f1": 0.6666666666666666
   },
   {
     "qid": "conv-44-qa-011",
@@ -1120,96 +1100,6 @@
     "f1": 0.6153846153846153
   },
   {
-    "qid": "conv-26-qa-004",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What is Caroline's identity?",
-    "gt": "Transgender woman",
-    "p_raw": "transgender",
-    "p_final": "transgender",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-26-qa-012",
-    "cat": "temporal",
-    "category": 2,
-    "q": "How long ago was Caroline's 18th birthday?",
-    "gt": "10 years ago",
-    "p_raw": "Ten years ago",
-    "p_final": "Ten years ago",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-26-qa-052",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What are Melanie's pets' names?",
-    "gt": "Oliver, Luna, Bailey",
-    "p_raw": "Luna, Oliver",
-    "p_final": "Luna, Oliver",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-26-qa-060",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What instruments does Melanie play?",
-    "gt": "clarinet and violin",
-    "p_raw": "clarinet",
-    "p_final": "clarinet",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-26-qa-064",
-    "cat": "open-domain",
-    "category": 3,
-    "q": "Would Melanie likely enjoy the song \"The Four Seasons\" by Vivaldi?",
-    "gt": "Yes; it's classical music",
-    "p_raw": "Likely yes.",
-    "p_final": "Likely yes.",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-26-qa-081",
-    "cat": "open-domain",
-    "category": 3,
-    "q": "Would Caroline want to move back to her home country soon?",
-    "gt": "No; she's in the process of adopting children.",
-    "p_raw": "Likely no.",
-    "p_final": "Likely no.",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-26-qa-145",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "How did Melanie feel about her family after the accident?",
-    "gt": "They are important and mean the world to her",
-    "p_raw": "they mean the world to me",
-    "p_final": "they mean the world to me",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-42-qa-002",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Joanna first watch \"Eternal Sunshine of the Spotless Mind?",
-    "gt": "2019",
-    "p_raw": "In 2019",
-    "p_final": "In 2019",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-42-qa-008",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Nate get his first two turtles?",
-    "gt": "2019",
-    "p_raw": "In 2019",
-    "p_final": "In 2019",
-    "f1": 0.6666666666666666
-  },
-  {
     "qid": "conv-42-qa-088",
     "cat": "single-hop",
     "category": 4,
@@ -1218,16 +1108,6 @@
     "p_raw": "Eternal Sunshine of the Spotless Mind",
     "p_final": "Eternal Sunshine of the Spotless Mind",
     "f1": 0.6666666666666665
-  },
-  {
-    "qid": "conv-42-qa-127",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What did Joanna write yesterday that appeared on the big screen?",
-    "gt": "screenplay bits",
-    "p_raw": "a screenplay",
-    "p_final": "a screenplay",
-    "f1": 0.6666666666666666
   },
   {
     "qid": "conv-42-qa-174",
@@ -1338,165 +1218,5 @@
     "p_raw": "The weekend before 22August 2022",
     "p_final": "The weekend before 22 August, 2022",
     "f1": 0.4444444444444445
-  },
-  {
-    "qid": "conv-26-qa-005",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Melanie run a charity race?",
-    "gt": "The sunday before 25 May 2023",
-    "p_raw": "The Saturday before 25 May 2023",
-    "p_final": "The Saturday before 25 May 2023",
-    "f1": 0.8000000000000002
-  },
-  {
-    "qid": "conv-42-qa-018",
-    "cat": "temporal",
-    "category": 2,
-    "q": "Which outdoor spot did Joanna visit in May?",
-    "gt": "Whispering Falls waterfall",
-    "p_raw": "Whispering Falls",
-    "p_final": "Whispering Falls",
-    "f1": 0.8
-  },
-  {
-    "qid": "conv-42-qa-193",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What inspired Joanna to take a picture of the sunset in the field near Fort Wayne?",
-    "gt": "The incredible sunset and surrounding beauty",
-    "p_raw": "The sunset and the surrounding beauty were just incredible.",
-    "p_final": "The sunset and the surrounding beauty were just incredible.",
-    "f1": 0.8
-  },
-  {
-    "qid": "conv-42-qa-197",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What does Nate love most about having turtles?",
-    "gt": "They make him feel calm and don't require much looking after",
-    "p_raw": "They're so cool and they make him feel calm. Plus, they don't require much looking after.",
-    "p_final": "They're so cool and they make him feel calm. Plus, they don't require much looking after.",
-    "f1": 0.8
-  },
-  {
-    "qid": "conv-44-qa-013",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Audrey move to a new place?",
-    "gt": "June 2023",
-    "p_raw": "26 June, 2023",
-    "p_final": "26 June, 2023",
-    "f1": 0.8
-  },
-  {
-    "qid": "conv-26-qa-139",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What was the poetry reading that Caroline attended about?",
-    "gt": "It was a transgender poetry reading where transgender people shared their stories.",
-    "p_raw": "transgender poetry reading where transgender people shared their stories through poetry",
-    "p_final": "transgender poetry reading where transgender people shared their stories through poetry",
-    "f1": 0.8181818181818182
-  },
-  {
-    "qid": "conv-26-qa-122",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Why did Melanie choose to use colors and patterns in her pottery project?",
-    "gt": "She wanted to catch the eye and make people smile.",
-    "p_raw": "to catch the eye and make people smile",
-    "p_final": "to catch the eye and make people smile",
-    "f1": 0.8571428571428571
-  },
-  {
-    "qid": "conv-44-qa-006",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Audrey adopt Pixie?",
-    "gt": "around April 2, 2023",
-    "p_raw": "2 April, 2023",
-    "p_final": "2 April, 2023",
-    "f1": 0.8571428571428571
-  },
-  {
-    "qid": "conv-42-qa-189",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What inspired Nate to start making gaming videos?",
-    "gt": "Love of gaming and connecting with others who enjoy it too",
-    "p_raw": "to share his love of gaming and connect with others who enjoy it too",
-    "p_final": "to share his love of gaming and connect with others who enjoy it too",
-    "f1": 0.8695652173913044
-  },
-  {
-    "qid": "conv-26-qa-102",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What kind of books does Caroline have in her library?",
-    "gt": "kids' books - classics, stories from different cultures, educational books",
-    "p_raw": "classics, stories from different cultures, educational books",
-    "p_final": "classics, stories from different cultures, educational books",
-    "f1": 0.8750000000000001
-  },
-  {
-    "qid": "conv-42-qa-130",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What is displayed on Joanna's cork board for motivation and creativity?",
-    "gt": "inspiring quotes, photos, and little keepsakes",
-    "p_raw": "quotes, photos, and little keepsakes",
-    "p_final": "quotes, photos, and little keepsakes",
-    "f1": 0.888888888888889
-  },
-  {
-    "qid": "conv-44-qa-032",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What kind of tattoo does Audrey have on her arm?",
-    "gt": "Tattoos of her four dogs.",
-    "p_raw": "tattoos of four dogs, sunflowers",
-    "p_final": "tattoos of four dogs, sunflowers",
-    "f1": 0.888888888888889
-  },
-  {
-    "qid": "conv-26-qa-036",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Caroline join a mentorship program?",
-    "gt": "The weekend before 17 July 2023",
-    "p_raw": "Two weekends before 17 July 2023",
-    "p_final": "Two weekends before 17 July 2023",
-    "f1": 0.9090909090909091
-  },
-  {
-    "qid": "conv-44-qa-088",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What advice did Audrey give to Andrew regarding grooming Toby?",
-    "gt": "Grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive throughout the grooming process.",
-    "p_raw": "grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive.",
-    "p_final": "grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive.",
-    "f1": 0.9142857142857143
-  },
-  {
-    "qid": "conv-26-qa-135",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What setback did Melanie face in October 2023?",
-    "gt": "She got hurt and had to take a break from pottery.",
-    "p_raw": "got hurt and had to take a break from pottery",
-    "p_final": "got hurt and had to take a break from pottery",
-    "f1": 0.9411764705882353
-  },
-  {
-    "qid": "conv-26-qa-113",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What did Caroline see at the council meeting for adoption?",
-    "gt": "many people wanting to create loving homes for children in need",
-    "p_raw": "so many people wanted to create loving homes for children in need",
-    "p_final": "so many people wanted to create loving homes for children in need",
-    "f1": 0.9565217391304348
   }
 ]

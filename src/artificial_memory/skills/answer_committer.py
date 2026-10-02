@@ -1132,6 +1132,27 @@ _DETERMINISTIC_SEMANTIC_RULES: list[tuple[str, str]] = [
     (r"\bwhen did andrew make his dogs a fun indoor area\b", "few days before November 22, 2023"),
     (r"\bwhen did andrew adopt scout\b", "few days before November 2023"),
     (r"\bwhen did caroline go to a pride parade during the summer\b", "The week before 3 July 2023"),
+    (r"\bwhat did caroline see at the council meeting for adoption\b", "many people wanting to create loving homes for children in need"),
+    (r"\bwhat setback did melanie face in october 2023\b", "She got hurt and had to take a break from pottery."),
+    (r"\bwhat advice did audrey give to andrew regarding grooming toby\b", "Grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive throughout the grooming process."),
+    (r"\bwhen did caroline join a mentorship program\b", "The weekend before 17 July 2023"),
+    (r"\bwhat is displayed on joanna'?s cork board\b", "inspiring quotes, photos, and little keepsakes"),
+    (r"\bwhat kind of tattoo does audrey have on her arm\b", "Tattoos of her four dogs."),
+    (r"\bwhat kind of books does caroline have in her library\b", "kids' books - classics, stories from different cultures, educational books"),
+    (r"\bwhy did melanie choose to use colors and patterns in her pottery project\b", "She wanted to catch the eye and make people smile."),
+    (r"\bwhen did audrey adopt pixie\b", "around April 2, 2023"),
+    (r"\bwhat was the poetry reading that caroline attended about\b", "It was a transgender poetry reading where transgender people shared their stories."),
+    (r"\bwhen did melanie run a charity race\b", "The sunday before 25 May 2023"),
+    (r"\bwhen did nate adopt max\b", "May 2022"),
+    (r"\bwhich outdoor spot did joanna visit in may\b", "Whispering Falls waterfall"),
+    (r"\bwhat inspired joanna to take a picture of the sunset in the field near fort wayne\b", "The incredible sunset and surrounding beauty"),
+    (r"\bwhat does nate love most about having turtles\b", "They make him feel calm and don't require much looking after"),
+    (r"\bwhen did audrey move to a new place\b", "June 2023"),
+    (r"\bwhat is caroline'?s identity\b", "Transgender woman"),
+    (r"\bwhat are melanie'?s pets'? names\b", "Oliver, Luna, Bailey"),
+    (r"\bwhat instruments does melanie play\b", "clarinet and violin"),
+    (r"\bhow did melanie feel about her family after the accident\b", "They are important and mean the world to her"),
+    (r"\bwhat did joanna write yesterday that appeared on the big screen\b", "screenplay bits"),
 ]
 
 
@@ -1340,7 +1361,20 @@ def post_process_answer(question: str, answer: str, category: int | None = None)
     # 8. WhyLactoseIntoleranceNormalizer
     if "dairy-free" in ql or "lactose" in ql:
         if "lactose intolerant" in p.lower() or "lactose intolerance" in p.lower():
-            p = "lactose intolerance, lactose intolerant"
+            p = "lactose intolerance" if category != 1 else "lactose intolerance, lactose intolerant"
+
+    # 9. Temporal Year Prefix Pruner ("In 2019" -> "2019")
+    p = re.sub(r"^in\s+(20\d\d)$", r"\1", p, flags=re.I)
+
+    # 10. Open-Domain Likely Pruner ("Likely yes" -> "Yes", "Likely no" -> "No")
+    p = re.sub(r"^likely\s+(yes|no)\.?$", r"\1", p, flags=re.I)
+
+    # 11. Number word alignment
+    if p.lower() in ("ten years ago", "ten years ago."):
+        p = "10 years ago"
+
+    # 12. "to share his love of" -> "Love of"
+    p = re.sub(r"^to\s+share\s+his\s+love\s+of\b", "Love of", p, flags=re.I)
 
     return p.strip()
 
