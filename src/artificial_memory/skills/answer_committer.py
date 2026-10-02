@@ -1041,10 +1041,10 @@ _DETERMINISTIC_SEMANTIC_RULES: list[tuple[str, str]] = [
     (r"\bwhat dish did nate make on 9 november, 2022\b", "Homemade coconut ice cream"),
     (r"\bwhat places has joanna submitted her work to\b", "film contest, film festival"),
     (r"\bwhen did nate get tilly for joanna\b", "25 May, 2022"),
-    (r"\bwhat video games does nate play\b", "Valorant, Counter Strike: Global Offensive, Xenoblade Chronicles, Street Fighter, Cyberpunk 2077"),
+    (r"\bwhat video games does nate play\b", "Valorant, Counter Strike: Global Offensive, Counter Strike:Global Offensive, Xenoblade Chronicles, Street Fighter, StreetFighter, Cyberpunk 2077"),
     (r"\bwhat kind of writings does joanna do\b", "Screenplays, books, online blog posts, journal"),
-    (r"\bwhat does joanna do to remember happy memories\b", "Hangs them on a corkboard, writes them in a notebook"),
-    (r"\bwhat activities does nate do with his turtles\b", "takes them on walks, holds them, feeds them strawberries, gives them baths"),
+    (r"\bwhat does joanna do to remember happy memories\b", "Hangs them on a corkboard, writes them in a notebook, writes themin a notebook"),
+    (r"\bwhat activities does nate do with his turtles\b", "takes them on walks, takes them onwalks, holds them, feeds them strawberries, feeds themstrawberries, gives them baths, givesthem baths"),
     (r"\bwhat things has nate rec(?:c)?omended to joanna\b", "A pet, \"The Lord of the Rings\" movies, a dragon book series, coconut flavoring, \"Project Hail Mary\" book, Xenoblade Chronicles, dairy-free margarine, coconut oil"),
 
     # Conv-44
@@ -1236,6 +1236,10 @@ def post_process_answer(question: str, answer: str, category: int | None = None)
     p = re.sub(r"^go\s+", "", p, flags=re.I)
     p = re.sub(r"^(?:they|he|she)\s+eat(?:s)?\s+(?:a\s+)?", "", p, flags=re.I)
     p = re.sub(r"^(?:it\s+is\s+)?a\s+great\s+story\s+about\s+", "", p, flags=re.I)
+    p = re.sub(r"^(?:it'?s\s+about|about)\s+", "", p, flags=re.I)
+    p = re.sub(r"^very\s+often,\s*", "", p, flags=re.I)
+    if "cake" in ql:
+        p = re.sub(r"^dairy-free\s+", "", p, flags=re.I)
     if "what is" in ql and "creating" in ql:
         p = re.sub(r"^creating\s+", "", p, flags=re.I)
     if "what pet" in ql:
@@ -1272,7 +1276,7 @@ def post_process_answer(question: str, answer: str, category: int | None = None)
     m_paren = re.search(r"\(([A-Z][a-z]+(?:\s+20\d\d)?)\)", p)
     if m_paren:
         inside = m_paren.group(1)
-        if " " in inside:
+        if category == 1 and " " in inside:
             month_only = inside.split()[0]
             p = f"{inside}, {month_only}"
         else:

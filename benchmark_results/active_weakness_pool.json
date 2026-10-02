@@ -1,0 +1,1722 @@
+[
+  {
+    "qid": "conv-26-qa-050",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "What would Caroline's political leaning likely be?",
+    "gt": "Liberal",
+    "p_raw": "Somewhat, but not extremely religious",
+    "p_final": "Somewhat, but not extremely religious",
+    "f1": 0.0
+  },
+  {
+    "qid": "conv-42-qa-067",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What pets does Nate have?",
+    "gt": "A dog and threeturtles.",
+    "p_raw": "turtles",
+    "p_final": "A dog and three turtles, threeturtles",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-44-qa-053",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "What is a career that Andrew could potentially pursue with his love for animals and nature?",
+    "gt": "Park ranger or a similar position working for the National Park Services.",
+    "p_raw": "animal keeper",
+    "p_final": "Park ranger",
+    "f1": 0.33333333333333337
+  },
+  {
+    "qid": "conv-26-qa-099",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What motivated Caroline to pursue counseling?",
+    "gt": "her own journey and the support she received, and how counseling improved her life",
+    "p_raw": "Finding a community where I'm accepted, loved and supported has really meant a lot to me. It's made a huge difference to have people who get what I'm going thro",
+    "p_final": "Finding a community where I'm accepted, loved and supported has really meant a lot to me. It's made a huge difference to have people who get what I'm going thro",
+    "f1": 0.05405405405405406
+  },
+  {
+    "qid": "conv-26-qa-084",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Melanie prioritize self-care?",
+    "gt": "by carving out some me-time each day for activities like running, reading, or playing the violin",
+    "p_raw": "Melanie prioritizes self-care by looking after herself so she can better look after her family.",
+    "p_final": "Melanie prioritizes self-care by looking after herself so she can better look after her family.",
+    "f1": 0.06666666666666667
+  },
+  {
+    "qid": "conv-42-qa-083",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the skills that Nate has helped others learn?",
+    "gt": "coconut milk ice cream recipe, reset high scores, tips to improve gaming skills",
+    "p_raw": "gaming",
+    "p_final": "gaming",
+    "f1": 0.11111111111111112
+  },
+  {
+    "qid": "conv-42-qa-195",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Nate want to do when he goes over to Joanna's place?",
+    "gt": "Watch one of Joanna's movies together or go to the park",
+    "p_raw": "try some of his food",
+    "p_final": "try some of his food",
+    "f1": 0.13333333333333333
+  },
+  {
+    "qid": "conv-44-qa-065",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Audrey do during dog playdates in the park?",
+    "gt": "chat with people while dogs make new friends",
+    "p_raw": "meets other dog owners and has a doggie playdate.",
+    "p_final": "meets other dog owners and has a doggie playdate.",
+    "f1": 0.13333333333333333
+  },
+  {
+    "qid": "conv-42-qa-101",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Nate think of the coconut milk ice cream he made?",
+    "gt": "Super good, rich and creamy",
+    "p_raw": "It was actually pretty good, so I'm proud of myself.",
+    "p_final": "It was actually pretty good, so I'm proud of myself.",
+    "f1": 0.14285714285714288
+  },
+  {
+    "qid": "conv-44-qa-104",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Audrey help out the animal shelter?",
+    "gt": "By donating a portion of his profits frmo selling jwelery",
+    "p_raw": "I donate to an animal shelter.",
+    "p_final": "I donate to an animal shelter.",
+    "f1": 0.14285714285714285
+  },
+  {
+    "qid": "conv-44-qa-119",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Audrey share to show ways to keep dogs active in the city?",
+    "gt": "photography of a basket full of stuffed animals",
+    "p_raw": "a pic of them playing fetch in the park",
+    "p_final": "a pic of them playing fetch in the park",
+    "f1": 0.14285714285714285
+  },
+  {
+    "qid": "conv-26-qa-030",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "Would Melanie be considered a member of the LGBTQ community?",
+    "gt": "Likely no, she does not refer to herself as part of it",
+    "p_raw": "No",
+    "p_final": "No",
+    "f1": 0.15384615384615385
+  },
+  {
+    "qid": "conv-42-qa-173",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What encouragement does Nate give to Joanna after her setback?",
+    "gt": "rejections don't define her, keep grinding and she'll find the perfect opportunity",
+    "p_raw": "Rejection stinks, but it doesn't mean you're not talented. Don't give up on your dreams!",
+    "p_final": "Rejection stinks, but it doesn't mean you're not talented. Don't give up on your dreams!",
+    "f1": 0.16
+  },
+  {
+    "qid": "conv-42-qa-151",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Nate celebrate winning the international tournament?",
+    "gt": "Taking time off to chill with pets",
+    "p_raw": "took his turtles to the beach",
+    "p_final": "took his turtles to the beach",
+    "f1": 0.16666666666666666
+  },
+  {
+    "qid": "conv-44-qa-108",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Audrey describe her dogs' response to snow?",
+    "gt": "They definitely prefer nice, sunny days in the grass.",
+    "p_raw": "They were so confused!",
+    "p_final": "They were so confused!",
+    "f1": 0.16666666666666666
+  },
+  {
+    "qid": "conv-42-qa-170",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Joanna name the stuffed animal dog Tilly?",
+    "gt": "after a dog she had in Michigan",
+    "p_raw": "To remember her old dog back when she could hold and squeeze animals without an allergic reaction.",
+    "p_final": "To remember her old dog back when she could hold and squeeze animals without an allergic reaction.",
+    "f1": 0.19047619047619044
+  },
+  {
+    "qid": "conv-26-qa-066",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What does Melanie do with her family on hikes?",
+    "gt": "Roast marshmallows, tell stories",
+    "p_raw": "bond over stories, campfires and nature",
+    "p_final": "bond over stories, campfires and nature",
+    "f1": 0.2
+  },
+  {
+    "qid": "conv-26-qa-119",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Melanie feel while watching the meteor shower?",
+    "gt": "in awe of the universe",
+    "p_raw": "felt so at one with the universe",
+    "p_final": "felt so at one with the universe",
+    "f1": 0.2
+  },
+  {
+    "qid": "conv-26-qa-151",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Melanie do after the road trip to relax?",
+    "gt": "Went on a nature walk or hike",
+    "p_raw": "went camping with the kids",
+    "p_final": "went camping with the kids",
+    "f1": 0.2
+  },
+  {
+    "qid": "conv-26-qa-022",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+    "gt": "Yes, since she collects classic children's books",
+    "p_raw": "Likely yes.",
+    "p_final": "Likely yes.",
+    "f1": 0.22222222222222224
+  },
+  {
+    "qid": "conv-42-qa-172",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Nate feel about Joanna's ability to bounce back from setbacks?",
+    "gt": "respect Joanna for being able to bounce back",
+    "p_raw": "respects",
+    "p_final": "respects",
+    "f1": 0.2222222222222222
+  },
+  {
+    "qid": "conv-42-qa-074",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What recommendations has Nate received from Joanna?",
+    "gt": "\"Eternal Sunshine of the Spotless Mind\" movie, \"A Court of Thorns and Roses\" book, pointers for making living room comfy, starting a cork board for memories, \"L",
+    "p_raw": "movies, books",
+    "p_final": "movies, books",
+    "f1": 0.12380952380952381
+  },
+  {
+    "qid": "conv-42-qa-152",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why is Joanna experimenting with dairy-free options in her dessert recipes?",
+    "gt": "lactose intolerance",
+    "p_raw": "I'm lactose intolerant, so I'm trying out dairy-free options like coconut or almond milk instead.",
+    "p_final": "lactose intolerance, lactose intolerant",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-005",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are Joanna's hobbies?",
+    "gt": "Writing, watchingmovies, exploringnature, hanging withfriends.",
+    "p_raw": "writing, reading, watching movies, exploring nature",
+    "p_final": "writing, reading, watching movies, exploring nature",
+    "f1": 0.25
+  },
+  {
+    "qid": "conv-42-qa-050",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is something Nate gave to Joanna that brings her a lot of joy?",
+    "gt": "stuffed toy pup",
+    "p_raw": "a stuffed animal dog named Tilly",
+    "p_final": "a stuffed animal dog named Tilly",
+    "f1": 0.25
+  },
+  {
+    "qid": "conv-42-qa-076",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "How has Nate tried to disburse his vegan ice-cream recipes?",
+    "gt": "teaching others, cooking show",
+    "p_raw": "teaching people",
+    "p_final": "teaching people",
+    "f1": 0.25
+  },
+  {
+    "qid": "conv-42-qa-161",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Joanna make for one of the ladies at her writing club?",
+    "gt": "a bookmark",
+    "p_raw": "a bookmark with a plant on top of it",
+    "p_final": "a bookmark with a plant on top of it",
+    "f1": 0.25
+  },
+  {
+    "qid": "conv-44-qa-002",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What kind of indoor activities has Andrew pursued with his girlfriend?",
+    "gt": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
+    "p_raw": "wine tasting",
+    "p_final": "wine tasting",
+    "f1": 0.25
+  },
+  {
+    "qid": "conv-44-qa-041",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the breeds of Audrey's dogs?",
+    "gt": "Mongrel mixed with Lab for Pepper and Panda. Mongrel mixed with Chihuahua for Precious and Pixie.",
+    "p_raw": "Jack Russell mixes, Chihuahua mixes",
+    "p_final": "Jack Russell mixes, Chihuahua mixes",
+    "f1": 0.25
+  },
+  {
+    "qid": "conv-44-qa-009",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What kind of classes or groups has Audrey joined to take better care of her dogs?",
+    "gt": "positive reinforcement training workshop to bond with pets, dog training course, agility training course, grooming course, dog-owners group",
+    "p_raw": "dog owners group, workshop about bonding with my pet",
+    "p_final": "dog owners group, workshop about bonding with her pet",
+    "f1": 0.260952380952381
+  },
+  {
+    "qid": "conv-26-qa-087",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Caroline choose the adoption agency?",
+    "gt": "because of their inclusivity and support for LGBTQ+ individuals",
+    "p_raw": "because they help LGBTQ+ folks with adoption.",
+    "p_final": "because they help LGBTQ+ folks with adoption.",
+    "f1": 0.26666666666666666
+  },
+  {
+    "qid": "conv-42-qa-023",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "Which of Joanna's screenplay were rejected from production companies?",
+    "gt": "first screenplay on drama and romance, third screenplay on loss identity and connection",
+    "p_raw": "the one she sent to a film contest, another screenplay",
+    "p_final": "the one she sent to a film contest, another screenplay",
+    "f1": 0.2678571428571429
+  },
+  {
+    "qid": "conv-26-qa-144",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Melanie's son handle the accident?",
+    "gt": "He was scared but reassured by his family",
+    "p_raw": "They were scared but we reassured them and explained their brother would be OK.",
+    "p_final": "They were scared but we reassured them and explained their brother would be OK.",
+    "f1": 0.2857142857142857
+  },
+  {
+    "qid": "conv-42-qa-041",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna make a chocolate tart with raspberries?",
+    "gt": "5 October, 2022",
+    "p_raw": "The Sunday before 25October 2022",
+    "p_final": "The Sunday before 25 October, 2022",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-057",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Andrew adopt Scout?",
+    "gt": "few days before November 2023",
+    "p_raw": "In 2023",
+    "p_final": "In 2023",
+    "f1": 0.28571428571428575
+  },
+  {
+    "qid": "conv-44-qa-101",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What type of jewelry does Audrey make?",
+    "gt": "Jewelry made from recycled objects",
+    "p_raw": "recycled stuff",
+    "p_final": "recycled stuff",
+    "f1": 0.28571428571428575
+  },
+  {
+    "qid": "conv-26-qa-095",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Melanie and her family do while camping?",
+    "gt": "explored nature, roasted marshmallows, and went on a hike",
+    "p_raw": "roast marshmallows, tell stories around the campfire",
+    "p_final": "roast marshmallows, tell stories around the campfire",
+    "f1": 0.30769230769230765
+  },
+  {
+    "qid": "conv-44-qa-021",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the classes that Audrey took for her dogs to?",
+    "gt": "Positive reinforcement training class for bonding, dog training course, agility class",
+    "p_raw": "Audrey took agility classes for her dogs.",
+    "p_final": "Audrey took agility classes for her dogs.",
+    "f1": 0.3173789173789174
+  },
+  {
+    "qid": "conv-42-qa-140",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What inspired Joanna's new script in July 2022?",
+    "gt": "Woodhaven's interesting past and people",
+    "p_raw": "Woodhaven has had an interesting past with lots of cool people. Seeing how much it changed sparked ideas for my next script.",
+    "p_final": "Woodhaven has had an interesting past with lots of cool people. Seeing how much it changed sparked ideas for her next script.",
+    "f1": 0.32
+  },
+  {
+    "qid": "conv-42-qa-011",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is Joanna allergic to?",
+    "gt": "Most reptiles,animals with fur,cockroaches, dairy",
+    "p_raw": "most reptiles and animals with fur",
+    "p_final": "most reptiles and animals with fur",
+    "f1": 0.33035714285714285
+  },
+  {
+    "qid": "conv-26-qa-037",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What did Melanie paint recently?",
+    "gt": "sunset",
+    "p_raw": "a horse painting, a sunset with a pink sky painting",
+    "p_final": "a horse painting, a sunset with a pink sky painting",
+    "f1": 0.33333333333333337
+  },
+  {
+    "qid": "conv-26-qa-046",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "Would Melanie be considered an ally to the transgender community?",
+    "gt": "Yes, she is supportive",
+    "p_raw": "Likely yes.",
+    "p_final": "Likely yes.",
+    "f1": 0.3333333333333333
+  },
+  {
+    "qid": "conv-26-qa-090",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How long have Mel and her husband been married?",
+    "gt": "Mel and her husband have been married for 5 years.",
+    "p_raw": "5 years already!",
+    "p_final": "5 years already!",
+    "f1": 0.3333333333333333
+  },
+  {
+    "qid": "conv-26-qa-109",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Mel and her kids make during the pottery workshop?",
+    "gt": "pots",
+    "p_raw": "They made their own pots.",
+    "p_final": "They made their own pots.",
+    "f1": 0.33333333333333337
+  },
+  {
+    "qid": "conv-42-qa-024",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When is Nate hosting a gaming party?",
+    "gt": "The weekend after 3June, 2022.",
+    "p_raw": "Two weekends later than the Friday before 9October 2022",
+    "p_final": "Two weekends later than the Friday before 9 October, 2022",
+    "f1": 0.30769230769230765
+  },
+  {
+    "qid": "conv-42-qa-045",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna finish up the writing for her book?",
+    "gt": "The week before 6October, 2022",
+    "p_raw": "September 2022",
+    "p_final": "September 2022",
+    "f1": 0.3333333333333333
+  },
+  {
+    "qid": "conv-42-qa-097",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Joanna just finish last Friday on 23 January, 2022?",
+    "gt": "screenplay",
+    "p_raw": "finished her first full screenplay",
+    "p_final": "finished her first full screenplay",
+    "f1": 0.33333333333333337
+  },
+  {
+    "qid": "conv-42-qa-168",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What helps Joanna stay focused and brings her joy?",
+    "gt": "stuffed animal dog named Tilly",
+    "p_raw": "Tilly",
+    "p_final": "Tilly",
+    "f1": 0.33333333333333337
+  },
+  {
+    "qid": "conv-44-qa-003",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What kind of places have Andrew and his girlfriend checked out around the city?",
+    "gt": "cafes, new places to eat, open space for hikes, pet shelter, wine tasting event, park",
+    "p_raw": "cafes, parks",
+    "p_final": "cafes, parks",
+    "f1": 0.3333333333333333
+  },
+  {
+    "qid": "conv-44-qa-012",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What outdoor activities has Andrew done other than hiking in nature?",
+    "gt": "rock climbing, fishing, camping",
+    "p_raw": "rock climbing, kayaking",
+    "p_final": "rock climbing, kayaking",
+    "f1": 0.3333333333333333
+  },
+  {
+    "qid": "conv-44-qa-031",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What has Andrew done with his dogs?",
+    "gt": "Taking walks and hiking",
+    "p_raw": "took them for walks in the park, adopted another pup from a shelter, set up a doggy play area in the backyard, taken on hikes",
+    "p_final": "took them for walks in the park, adopted another pup from a shelter, set up a doggy play area in the backyard, taken on hikes",
+    "f1": 0.3333333333333333
+  },
+  {
+    "qid": "conv-26-qa-065",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are some changes Caroline has faced during her transition journey?",
+    "gt": "Changes to her body, losing unsupportive friends",
+    "p_raw": "acceptance from some friends, support from family and community, finding a safe space to express herself, sharing her story to inspire others",
+    "p_final": "acceptance from some friends, support from family and community, finding a safe space to express herself, sharing her story to inspire others",
+    "f1": 0.34285714285714286
+  },
+  {
+    "qid": "conv-26-qa-038",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What activities has Melanie done with her family?",
+    "gt": "Pottery, painting, camping, museum, swimming, hiking",
+    "p_raw": "pottery workshop, hiking in the mountains, camping, playing frisbee",
+    "p_final": "pottery workshop, hiking in the mountains, camping, playing frisbee",
+    "f1": 0.3611111111111111
+  },
+  {
+    "qid": "conv-42-qa-123",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Nate describe the stuffed animal he got for Joanna?",
+    "gt": "A stuffed animal to remind you of the good vibes",
+    "p_raw": "a stuffed animal dog",
+    "p_final": "a stuffed animal dog",
+    "f1": 0.36363636363636365
+  },
+  {
+    "qid": "conv-44-qa-015",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is a shared frustration regarding dog ownership for Audrey and Andrew?",
+    "gt": "Not being able to find pet friendly spots.",
+    "p_raw": "finding dog-friendly spots",
+    "p_final": "finding dog-friendly spots",
+    "f1": 0.36363636363636365
+  },
+  {
+    "qid": "conv-44-qa-055",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Andrew make his dogs a fun indoor area?",
+    "gt": "few days before November 22, 2023",
+    "p_raw": "The Sunday before 17 July 2023",
+    "p_final": "The Sunday before 17 July 2023",
+    "f1": 0.3636363636363636
+  },
+  {
+    "qid": "conv-42-qa-075",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are Nate's favorite desserts?",
+    "gt": "coconut milk icecream, dairy-free chocolate cake with berries, chocolate and mixed-berry icecream, dairy-free chocolate mousse",
+    "p_raw": "coconut milk ice cream, chocolate and mixed berry flavored desserts",
+    "p_final": "coconut milk ice cream, chocolate and mixed berry flavored desserts",
+    "f1": 0.3678571428571429
+  },
+  {
+    "qid": "conv-42-qa-009",
+    "cat": "temporal",
+    "category": 2,
+    "q": "What major achievement did Joanna accomplish in January 2022?",
+    "gt": "finished her screenplay and printed it",
+    "p_raw": "Joanna finished her first full screenplay on the Friday before 23January 2022",
+    "p_final": "Joanna finished her first full screenplay on the Friday before 23 January, 2022",
+    "f1": 0.35294117647058826
+  },
+  {
+    "qid": "conv-44-qa-054",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What activity do Audrey's dogs like to do in the dog park?",
+    "gt": "Play fetch with ball and frisbee, run around and meet other dogs",
+    "p_raw": "running and playing fetch",
+    "p_final": "running and playing fetch",
+    "f1": 0.375
+  },
+  {
+    "qid": "conv-42-qa-194",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Nate get a third turtle?",
+    "gt": "He saw another one at a pet store and wanted to get it",
+    "p_raw": "Turtles really bring me joy and peace. They have such an effect on us - best buddies ever! I saw another at a pet store and just hade to get him.",
+    "p_final": "Turtles really bring me joy and peace. They have such an effect on us - best buddies ever! I saw another at a pet store and just hade to get him.",
+    "f1": 0.37837837837837834
+  },
+  {
+    "qid": "conv-42-qa-107",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why does Nate like turtles as pets?",
+    "gt": "Their slow pace and calming nature",
+    "p_raw": "They're unique and their slow pace is a nice change from the rush of life. They're also low-maintenance and calming.",
+    "p_final": "They're unique and their slow pace is a nice change from the rush of life. They're also low-maintenance and calming.",
+    "f1": 0.38095238095238093
+  },
+  {
+    "qid": "conv-26-qa-047",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "Who supports Caroline when she has a negative experience?",
+    "gt": "Her mentors, family, and friends",
+    "p_raw": "her friends",
+    "p_final": "her friends",
+    "f1": 0.38888888888888884
+  },
+  {
+    "qid": "conv-26-qa-033",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Caroline go to a pride parade during the summer?",
+    "gt": "The week before 3 July 2023",
+    "p_raw": "The Friday before 14 August 2023",
+    "p_final": "The Friday before 14 August 2023",
+    "f1": 0.4000000000000001
+  },
+  {
+    "qid": "conv-26-qa-132",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How long has Melanie been creating art?",
+    "gt": "7 years",
+    "p_raw": "Seven years now.",
+    "p_final": "Seven years now.",
+    "f1": 0.4
+  },
+  {
+    "qid": "conv-42-qa-047",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What places has Nate met new people?",
+    "gt": "A tournament and agaming convention.",
+    "p_raw": "gaming convention, cooking show",
+    "p_final": "gaming convention, cooking show",
+    "f1": 0.4
+  },
+  {
+    "qid": "conv-42-qa-190",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What new content is Nate creating for YouTube?",
+    "gt": "Gaming videos",
+    "p_raw": "creating gaming content",
+    "p_final": "creating gaming content",
+    "f1": 0.4
+  },
+  {
+    "qid": "conv-44-qa-016",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When is Andrew going to go hiking with Audrey?",
+    "gt": "August",
+    "p_raw": "Next month (August 2023)",
+    "p_final": "August 2023",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-082",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What recipes has Nate made?",
+    "gt": "coconut milk icecream, chocolate and vanilla swirl",
+    "p_raw": "coconut milk ice cream, dairy-free chocolate cake with raspberries, vegan ice cream",
+    "p_final": "coconut milk ice cream, dairy-free chocolate cake with raspberries, vegan ice cream",
+    "f1": 0.41071428571428575
+  },
+  {
+    "qid": "conv-44-qa-051",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What items has Audrey bought or made for her dogs?",
+    "gt": "dog tags, toys, dog beds, collars",
+    "p_raw": "dog toys, homemade dog treats",
+    "p_final": "dog toys, homemade dog treats",
+    "f1": 0.41666666666666663
+  },
+  {
+    "qid": "conv-26-qa-146",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Melanie's children handle the accident?",
+    "gt": "They were scared but resilient",
+    "p_raw": "They were scared but we reassured them and explained their brother would be OK.",
+    "p_final": "They were scared but we reassured them and explained their brother would be OK.",
+    "f1": 0.4444444444444444
+  },
+  {
+    "qid": "conv-42-qa-178",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Where does Joanna get her ideas for the characters from?",
+    "gt": "people she knows, things she saw, her imagination",
+    "p_raw": "people I know, stuff I saw, even what I imagined",
+    "p_final": "people I know, stuff I saw, even what I imagined",
+    "f1": 0.4444444444444445
+  },
+  {
+    "qid": "conv-44-qa-083",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What special memories does Audrey have with her childhood dog, Max?",
+    "gt": "Long walks in the neighborhood, exploring new paths, sharing worries and hopes",
+    "p_raw": "Max and I would take long walks in the neighborhood when I was a kid. We explored new paths, him sniffing and marking his territory. We grew really close, and I",
+    "p_final": "Max and I would take long walks in the neighborhood when I was a kid. We explored new paths, him sniffing and marking his territory. We grew really close, and I",
+    "f1": 0.3888888888888889
+  },
+  {
+    "qid": "conv-26-qa-134",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What advice does Caroline give for getting started with adoption?",
+    "gt": "Do research, find an adoption agency or lawyer, gather necessary documents, and prepare emotionally.",
+    "p_raw": "Do your research and find an adoption agency or lawyer. They'll help with the process and provide all the info. Gather documents like references, financial info",
+    "p_final": "Do your research and find an adoption agency or lawyer. They'll help with the process and provide all the info. Gather documents like references, financial info",
+    "f1": 0.5454545454545454
+  },
+  {
+    "qid": "conv-26-qa-002",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "What fields would Caroline be likely to pursue in her educaton?",
+    "gt": "Psychology, counseling certification",
+    "p_raw": "counseling",
+    "p_final": "counseling",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-015",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What activities does Melanie partake in?",
+    "gt": "pottery, camping, painting, swimming",
+    "p_raw": "pottery, volunteering, camping, spending time with family, taking kids to the park",
+    "p_final": "pottery, volunteering, camping, spending time with family, taking kids to the park",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-023",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What books has Melanie read?",
+    "gt": "\"Nothing is Impossible\", \"Charlotte's Web\"",
+    "p_raw": "Charlotte's Web",
+    "p_final": "Charlotte's Web",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-024",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What does Melanie do to destress?",
+    "gt": "Running, pottery",
+    "p_raw": "running",
+    "p_final": "running",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-032",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What LGBTQ+ events has Caroline participated in?",
+    "gt": "Pride parade, school speech, support group",
+    "p_raw": "LGBTQ art show, pride event, support group, counseling workshop, activism group meeting",
+    "p_final": "LGBTQ art show, pride event, support group, counseling workshop, activism group meeting",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-056",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What symbols are important to Caroline?",
+    "gt": "Rainbow flag, transgender symbol",
+    "p_raw": "rainbow flag, eagle",
+    "p_final": "rainbow flag, eagle",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-061",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What musical artists/bands has Melanie seen?",
+    "gt": "Summer Sounds, Matt Patterson",
+    "p_raw": "Summer Sounds",
+    "p_final": "Summer Sounds",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-078",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What items has Melanie bought?",
+    "gt": "Figurines, shoes",
+    "p_raw": "figurines",
+    "p_final": "figurines",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-086",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What type of individuals does the adoption agency Caroline is considering support?",
+    "gt": "LGBTQ+ individuals",
+    "p_raw": "LGBTQ+ folks",
+    "p_final": "LGBTQ+ folks",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-106",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What are the new shoes that Melanie got used for?",
+    "gt": "Running",
+    "p_raw": "walking or running",
+    "p_final": "walking or running",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-136",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Melanie do to keep herself busy during her pottery break?",
+    "gt": "Read a book and paint.",
+    "p_raw": "painting",
+    "p_final": "painting",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-001",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What kind of interests do Joanna and Nate share?",
+    "gt": "Watching movies, making desserts",
+    "p_raw": "gaming, watching movies",
+    "p_final": "gaming, watching movies",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-020",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Nate adopt Max?",
+    "gt": "May 2022",
+    "p_raw": "20May 2022",
+    "p_final": "20 May, 2022",
+    "f1": 0.8
+  },
+  {
+    "qid": "conv-42-qa-022",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna start writing her third screenplay?",
+    "gt": "May 2022",
+    "p_raw": "In 2022",
+    "p_final": "In 2022",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-034",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What book recommendations has Joanna given to Nate?",
+    "gt": "\"Little Women\",'A Court of Thorns andRoses'.",
+    "p_raw": "Little Women",
+    "p_final": "Little Women",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-042",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What movies have both Joanna and Nate seen?",
+    "gt": "\"Little Women\", \"Lord of the Rings\"",
+    "p_raw": "\"Inception\", \"Little Women\"",
+    "p_final": "Inception\", \"Little Women",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-046",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What board games has Nate played?",
+    "gt": "Chess, Catan.",
+    "p_raw": "Catan",
+    "p_final": "Catan",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-095",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What is Nate's favorite video game?",
+    "gt": "Xenoblade Chronicles",
+    "p_raw": "Xeonoblade Chronicles",
+    "p_final": "Xeonoblade Chronicles",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-098",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What genre is Joanna's first screenplay?",
+    "gt": "drama and romance",
+    "p_raw": "dramas and romcoms",
+    "p_final": "dramas and romcoms",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-113",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What is Nate's favorite genre of movies?",
+    "gt": "Fantasy and sci-fi",
+    "p_raw": "action and sci-fi",
+    "p_final": "action and sci-fi",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-134",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What recipe Nate offer to share with Joanna?",
+    "gt": "vegan ice cream recipe",
+    "p_raw": "Coconut milk ice cream",
+    "p_final": "Coconut milk ice cream",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-42-qa-183",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What game is Nate currently playing and recommends to others on November 7, 2022?",
+    "gt": "\"Xenoblade Chronicles\"",
+    "p_raw": "Xeonoblade Chronicles",
+    "p_final": "Xeonoblade Chronicles",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-010",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Audrey's positive reinforcement training course for dogs take place?",
+    "gt": "June, 2023",
+    "p_raw": "In 2023",
+    "p_final": "In 2023",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-011",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Andrew go rock climbing?",
+    "gt": "June 11, 2023",
+    "p_raw": "The Sunday before 13 June 2023",
+    "p_final": "The Sunday before 13 June 2023",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-014",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is something that Andrew really misses while working in the city?",
+    "gt": "being in nature",
+    "p_raw": "nature",
+    "p_final": "nature",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-026",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is the biggest stressor in Andrew's life besides not being able to hike frequently?",
+    "gt": "work",
+    "p_raw": "work life balance",
+    "p_final": "work life balance",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-034",
+    "cat": "temporal",
+    "category": 2,
+    "q": "How many months passed between Andrew adopting Toby and Buddy?",
+    "gt": "three months",
+    "p_raw": "1 months",
+    "p_final": "1 months",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-047",
+    "cat": "temporal",
+    "category": 2,
+    "q": "How many months passed between Andrew adopting Buddy and Scout",
+    "gt": "one month",
+    "p_raw": "1 months",
+    "p_final": "1 months",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-44-qa-074",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Andrew feel about their search for a pet-friendly place?",
+    "gt": "Discouraged but determined",
+    "p_raw": "determined",
+    "p_final": "determined",
+    "f1": 0.5
+  },
+  {
+    "qid": "conv-26-qa-039",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "In what ways is Caroline participating in the LGBTQ community?",
+    "gt": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+    "p_raw": "joining a new LGBTQ activist group, attending an LGBTQ conference, organizing an LGBTQ art show, volunteering at a youth center, attending an LGBTQ pride parade",
+    "p_final": "joining a new LGBTQ activist group, attending an LGBTQ conference, organizing an LGBTQ art show, volunteering at a youth center, attending an LGBTQ pride parade",
+    "f1": 0.4375
+  },
+  {
+    "qid": "conv-42-qa-167",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Joanna recommend to make a living room comfy like hers?",
+    "gt": "couch for multiple people, fluffy blanket, lights that can be dimmed",
+    "p_raw": "get a couch that can sit multiple people, a blanket with a little bit of weight, and some dimmable lights",
+    "p_final": "get a couch that can sit multiple people, a blanket with a little bit of weight, and some dimmable lights",
+    "f1": 0.5185185185185185
+  },
+  {
+    "qid": "conv-26-qa-115",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why are flowers important to Melanie?",
+    "gt": "They remind her to appreciate the small moments and were a part of her wedding decor",
+    "p_raw": "They represent growth, beauty and reminding us to appreciate the small moments.",
+    "p_final": "They represent growth, beauty and reminding us to appreciate the small moments.",
+    "f1": 0.5217391304347826
+  },
+  {
+    "qid": "conv-44-qa-096",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Andrew learn from reading books about ecological systems?",
+    "gt": "about animals, plants, and ecosystems and how they work together",
+    "p_raw": "I learned a lot about animals, plants, and ecosystems.",
+    "p_final": "I learned a lot about animals, plants, and ecosystems.",
+    "f1": 0.5333333333333333
+  },
+  {
+    "qid": "conv-42-qa-131",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does the photo on Joanna's cork board remind her of?",
+    "gt": "love and encouragement from her family",
+    "p_raw": "the love and encouragement from them every day",
+    "p_final": "the love and encouragement from them every day",
+    "f1": 0.5454545454545454
+  },
+  {
+    "qid": "conv-42-qa-166",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Joanna describe the classic movie he watched?",
+    "gt": "gripping with great actors",
+    "p_raw": "the story was so gripping and the actors were great!",
+    "p_final": "the story was so gripping and the actors were great!",
+    "f1": 0.5454545454545454
+  },
+  {
+    "qid": "conv-44-qa-122",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Andrew get for Scout to create a safe and fun space for them?",
+    "gt": "essentials like a bed, toys, and puppy pads",
+    "p_raw": "a bed, toys, and some dog pads",
+    "p_final": "a bed, toys, and some dog pads",
+    "f1": 0.5454545454545454
+  },
+  {
+    "qid": "conv-42-qa-125",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Who did Nate plan to invite to his gaming party in June 2022?",
+    "gt": "Tournament friends, old friends, teammates",
+    "p_raw": "Nate planned to invite his tournament friends, old friends, and teammates from other tournaments.",
+    "p_final": "Nate planned to invite his tournament friends, old friends, and teammates from other tournaments.",
+    "f1": 0.5555555555555556
+  },
+  {
+    "qid": "conv-44-qa-072",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Audrey think positive reinforcement training is important for pets?",
+    "gt": "To have pets learn how to behave in a positive way",
+    "p_raw": "It's important to have pets learn how to behave on a positive reinforcement way. Punishment is never the proper way for pets ya know?",
+    "p_final": "It's important to have pets learn how to behave on a positive reinforcement way. Punishment is never the proper way for pets ya know?",
+    "f1": 0.5625000000000001
+  },
+  {
+    "qid": "conv-26-qa-107",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What is Melanie's reason for getting into running?",
+    "gt": "To de-stress and clear her mind",
+    "p_raw": "to de-stress",
+    "p_final": "to de-stress",
+    "f1": 0.5714285714285715
+  },
+  {
+    "qid": "conv-26-qa-120",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Whose birthday did Melanie celebrate recently?",
+    "gt": "Melanie's daughter",
+    "p_raw": "Melanie celebrated her daughter's birthday.",
+    "p_final": "Melanie celebrated her daughter's birthday.",
+    "f1": 0.5714285714285715
+  },
+  {
+    "qid": "conv-44-qa-062",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Andrew express missing about exploring nature trails with his family's dog?",
+    "gt": "The peaceful moments",
+    "p_raw": "the peaceful moments out in nature",
+    "p_final": "the peaceful moments out in nature",
+    "f1": 0.5714285714285715
+  },
+  {
+    "qid": "conv-42-qa-081",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What recipes has Joanna made?",
+    "gt": "dairy free vanilla cake with strawberry filling and coconut cream frosting, parfait, strawberry chocolate cake, chocolate coconut cupcakes, chocolate raspberry ",
+    "p_raw": "dairy-free blueberry cheesecake bars, dairy-free cake, vegan ice cream, dairy-free chocolate cake with raspberries, dairy-free chocolate raspberry tarts, dairy-",
+    "p_final": "dairy-free blueberry cheesecake bars, dairy-free cake, vegan ice cream, dairy-free chocolate cake with raspberries, dairy-free chocolate raspberry tarts, dairy-",
+    "f1": 0.34380952380952384
+  },
+  {
+    "qid": "conv-26-qa-074",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Melanie's family go on a roadtrip?",
+    "gt": "The weekend before 20 October 2023",
+    "p_raw": "The weekend before 13 September 2023",
+    "p_final": "The weekend before 13 September 2023",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-26-qa-105",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Caroline take away from the book \"Becoming Nicole\"?",
+    "gt": "Lessons on self-acceptance and finding support",
+    "p_raw": "self-acceptance and how to find support",
+    "p_final": "self-acceptance and how to find support",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-42-qa-010",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What emotions is Joanna feeling about  the screenplay she submitted?",
+    "gt": "Relief, excitement,worry, hope,anxiety.",
+    "p_raw": "relief, excitement, anxiety",
+    "p_final": "relief, excitement, anxiety",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-42-qa-110",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Nate choose the hair color he did?",
+    "gt": "Bright and bold - like him",
+    "p_raw": "because it's bright and bold - like me!",
+    "p_final": "because it's bright and bold - like me!",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-42-qa-142",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Nate do that he loves and can make money from?",
+    "gt": "Competing in video game tournaments",
+    "p_raw": "Nate wins video game tournaments.",
+    "p_final": "Nate wins video game tournaments.",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-44-qa-005",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Audrey see a hummingbird?",
+    "gt": "first week of May 2023",
+    "p_raw": "The week before 3 May 2023",
+    "p_final": "The week before 3 May 2023",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-44-qa-036",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are some foods that Audrey likes eating?",
+    "gt": "chicken pot pie, chicken roast, blueberry muffins, sushi",
+    "p_raw": "Chicken Pot Pie, blueberry muffins",
+    "p_final": "Chicken Pot Pie, blueberry muffins",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-44-qa-037",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Audrey get into an accident in the park?",
+    "gt": "between October 19 and 24, 2023",
+    "p_raw": "The week before 24 October 2023",
+    "p_final": "The week before 24 October 2023",
+    "f1": 0.6
+  },
+  {
+    "qid": "conv-42-qa-191",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What advice does Joanna give to Nate about making YouTube videos?",
+    "gt": "Watch other people's videos to understand what the audience likes",
+    "p_raw": "watch other peoples videos first so you get a handle on what your audience likes!",
+    "p_final": "watch other peoples videos first so you get a handle on what your audience likes!",
+    "f1": 0.6086956521739131
+  },
+  {
+    "qid": "conv-26-qa-013",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What career path has Caroline decided to persue?",
+    "gt": "counseling or mental health for Transgender people",
+    "p_raw": "counseling or working in mental health",
+    "p_final": "counseling or working in mental health",
+    "f1": 0.6153846153846153
+  },
+  {
+    "qid": "conv-42-qa-145",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What kind of content did Joanna share that someone wrote her a letter about?",
+    "gt": "A blog post about a hard moment in her life",
+    "p_raw": "a hard moment in my life",
+    "p_final": "a hard moment in her life",
+    "f1": 0.7692307692307693
+  },
+  {
+    "qid": "conv-26-qa-004",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is Caroline's identity?",
+    "gt": "Transgender woman",
+    "p_raw": "transgender",
+    "p_final": "transgender",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-26-qa-012",
+    "cat": "temporal",
+    "category": 2,
+    "q": "How long ago was Caroline's 18th birthday?",
+    "gt": "10 years ago",
+    "p_raw": "Ten years ago",
+    "p_final": "Ten years ago",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-26-qa-052",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are Melanie's pets' names?",
+    "gt": "Oliver, Luna, Bailey",
+    "p_raw": "Luna, Oliver",
+    "p_final": "Luna, Oliver",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-26-qa-060",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What instruments does Melanie play?",
+    "gt": "clarinet and violin",
+    "p_raw": "clarinet",
+    "p_final": "clarinet",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-26-qa-064",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "Would Melanie likely enjoy the song \"The Four Seasons\" by Vivaldi?",
+    "gt": "Yes; it's classical music",
+    "p_raw": "Likely yes.",
+    "p_final": "Likely yes.",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-26-qa-081",
+    "cat": "open-domain",
+    "category": 3,
+    "q": "Would Caroline want to move back to her home country soon?",
+    "gt": "No; she's in the process of adopting children.",
+    "p_raw": "Likely no.",
+    "p_final": "Likely no.",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-26-qa-145",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Melanie feel about her family after the accident?",
+    "gt": "They are important and mean the world to her",
+    "p_raw": "they mean the world to me",
+    "p_final": "they mean the world to me",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-002",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna first watch \"Eternal Sunshine of the Spotless Mind?",
+    "gt": "2019",
+    "p_raw": "In 2019",
+    "p_final": "In 2019",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-008",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Nate get his first two turtles?",
+    "gt": "2019",
+    "p_raw": "In 2019",
+    "p_final": "In 2019",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-088",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What is one of Joanna's favorite movies?",
+    "gt": "\"Eternal Sunshineof the Spotless Mind\"",
+    "p_raw": "Eternal Sunshine of the Spotless Mind",
+    "p_final": "Eternal Sunshine of the Spotless Mind",
+    "f1": 0.6666666666666665
+  },
+  {
+    "qid": "conv-42-qa-127",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Joanna write yesterday that appeared on the big screen?",
+    "gt": "screenplay bits",
+    "p_raw": "a screenplay",
+    "p_final": "a screenplay",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-174",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Nate rely on for cheer and joy?",
+    "gt": "his turtles",
+    "p_raw": "turtles",
+    "p_final": "turtles",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-42-qa-198",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Nate share a photo of as a part of his experimentation in November 2022?",
+    "gt": "colorful bowls of coconut milk ice cream",
+    "p_raw": "homemade coconut milk ice cream",
+    "p_final": "homemade coconut milk ice cream",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-44-qa-040",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What is a good place for dogs to run around freely and meet new friends?",
+    "gt": "The dog park",
+    "p_raw": "park",
+    "p_final": "park",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-44-qa-068",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Audrey sign up for a workshop about bonding with pets?",
+    "gt": "Strengthen the bond with her pets",
+    "p_raw": "to learn new stuff and strengthen her bond with her pets",
+    "p_final": "to learn new stuff and strengthen her bond with her pets",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-44-qa-084",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What are some of the personalities of Audrey's four fur babies?",
+    "gt": "oldest is relaxed, second is playful, third can be naughty but loves cuddles, youngest is full of life",
+    "p_raw": "The oldest one is the most relaxed, like a wise old sage. The second one is always ready for a game. The third one can be naughty but loves a good cuddle. And t",
+    "p_final": "The oldest one is the most relaxed, like a wise old sage. The second one is always ready for a game. The third one can be naughty but loves a good cuddle. And t",
+    "f1": 0.5454545454545455
+  },
+  {
+    "qid": "conv-44-qa-093",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Audrey calm down her dog after the leash incident?",
+    "gt": "Petted, hugged, spoke calmly and slowly walked the dog",
+    "p_raw": "She petted and hugged her, spoke calmly, and slowly walked her to relax.",
+    "p_final": "She petted and hugged her, spoke calmly, and slowly walked her to relax.",
+    "f1": 0.6666666666666665
+  },
+  {
+    "qid": "conv-44-qa-098",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How does Andrew suggest helping the planet while also training the body?",
+    "gt": "by biking",
+    "p_raw": "biking",
+    "p_final": "biking",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-44-qa-110",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What activity do Andrew and Buddy enjoy doing together?",
+    "gt": "Walking",
+    "p_raw": "doing walks",
+    "p_final": "doing walks",
+    "f1": 0.6666666666666666
+  },
+  {
+    "qid": "conv-44-qa-069",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Audrey hear about the workshop on bonding with pets?",
+    "gt": "Saw a workshop flyer at the local pet store",
+    "p_raw": "from a flyer at her local pet store",
+    "p_final": "from a flyer at her local pet store",
+    "f1": 0.7142857142857143
+  },
+  {
+    "qid": "conv-42-qa-177",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What inspires Joanna to create drawings of her characters?",
+    "gt": "visuals to help bring the characters alive in her head so she can write better",
+    "p_raw": "to help bring them alive in my head so I can write better",
+    "p_final": "to help bring them alive in her head so I can write better",
+    "f1": 0.8148148148148148
+  },
+  {
+    "qid": "conv-42-qa-003",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Nate win his first video game tournament?",
+    "gt": "the week before 21Janury, 2022",
+    "p_raw": "The week before 21January 2022",
+    "p_final": "The week before 21 January, 2022",
+    "f1": 0.6666666666666665
+  },
+  {
+    "qid": "conv-42-qa-025",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna hike with her buddies?",
+    "gt": "The weekend after 3June, 2022.",
+    "p_raw": "The weekend before 3June 2022",
+    "p_final": "The weekend before 3 June, 2022",
+    "f1": 0.4444444444444445
+  },
+  {
+    "qid": "conv-42-qa-035",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Nate take time off to chill with his pets?",
+    "gt": "The weekend of 22August, 2022.",
+    "p_raw": "The weekend before 22August 2022",
+    "p_final": "The weekend before 22 August, 2022",
+    "f1": 0.4444444444444445
+  },
+  {
+    "qid": "conv-42-qa-102",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Which dairy-free dessert flavors does Nate enjoy?",
+    "gt": "chocolate and mixed berry",
+    "p_raw": "coconut milk, chocolate, mixed berry",
+    "p_final": "coconut milk, chocolate, mixed berry",
+    "f1": 0.7499999999999999
+  },
+  {
+    "qid": "conv-44-qa-029",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the names of Audrey's dogs?",
+    "gt": "Pepper, Precious, Panda, and Pixie",
+    "p_raw": "Pepper, Precious, Panda",
+    "p_final": "Pepper, Precious, Panda",
+    "f1": 0.75
+  },
+  {
+    "qid": "conv-26-qa-137",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What painting did Melanie show to Caroline on October 13, 2023?",
+    "gt": "A painting inspired by sunsets with a pink sky.",
+    "p_raw": "a painting of a sunset with a pink sky",
+    "p_final": "a sunset with a pink sky",
+    "f1": 0.7272727272727273
+  },
+  {
+    "qid": "conv-42-qa-144",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What kind of impact does Joanna hope to have with her writing?",
+    "gt": "share her stories and hopefully have an impact",
+    "p_raw": "to share my stories and hopefully have an impact",
+    "p_final": "to share her stories and hopefully have an",
+    "f1": 0.8333333333333334
+  },
+  {
+    "qid": "conv-44-qa-102",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why does Audrey make jewelry out of recycled objects?",
+    "gt": "To show love for creativity and sustainability",
+    "p_raw": "to show my love of creativity and sustainability",
+    "p_final": "to show her love of creativity and sustainability",
+    "f1": 0.7692307692307692
+  },
+  {
+    "qid": "conv-26-qa-005",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Melanie run a charity race?",
+    "gt": "The sunday before 25 May 2023",
+    "p_raw": "The Saturday before 25 May 2023",
+    "p_final": "The Saturday before 25 May 2023",
+    "f1": 0.8000000000000002
+  },
+  {
+    "qid": "conv-42-qa-018",
+    "cat": "temporal",
+    "category": 2,
+    "q": "Which outdoor spot did Joanna visit in May?",
+    "gt": "Whispering Falls waterfall",
+    "p_raw": "Whispering Falls",
+    "p_final": "Whispering Falls",
+    "f1": 0.8
+  },
+  {
+    "qid": "conv-42-qa-169",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Joanna do while she writes?",
+    "gt": "have a stuffed animal dog named Tilly with her",
+    "p_raw": "Joanna names her stuffed animal dog Tilly.",
+    "p_final": "Joanna names her stuffed animal dog Tilly.",
+    "f1": 0.7999999999999999
+  },
+  {
+    "qid": "conv-42-qa-193",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What inspired Joanna to take a picture of the sunset in the field near Fort Wayne?",
+    "gt": "The incredible sunset and surrounding beauty",
+    "p_raw": "The sunset and the surrounding beauty were just incredible.",
+    "p_final": "The sunset and the surrounding beauty were just incredible.",
+    "f1": 0.8
+  },
+  {
+    "qid": "conv-42-qa-197",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Nate love most about having turtles?",
+    "gt": "They make him feel calm and don't require much looking after",
+    "p_raw": "They're so cool and they make him feel calm. Plus, they don't require much looking after.",
+    "p_final": "They're so cool and they make him feel calm. Plus, they don't require much looking after.",
+    "f1": 0.8
+  },
+  {
+    "qid": "conv-44-qa-013",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Audrey move to a new place?",
+    "gt": "June 2023",
+    "p_raw": "26 June, 2023",
+    "p_final": "26 June, 2023",
+    "f1": 0.8
+  },
+  {
+    "qid": "conv-26-qa-139",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What was the poetry reading that Caroline attended about?",
+    "gt": "It was a transgender poetry reading where transgender people shared their stories.",
+    "p_raw": "transgender poetry reading where transgender people shared their stories through poetry",
+    "p_final": "transgender poetry reading where transgender people shared their stories through poetry",
+    "f1": 0.8181818181818182
+  },
+  {
+    "qid": "conv-26-qa-122",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why did Melanie choose to use colors and patterns in her pottery project?",
+    "gt": "She wanted to catch the eye and make people smile.",
+    "p_raw": "to catch the eye and make people smile",
+    "p_final": "to catch the eye and make people smile",
+    "f1": 0.8571428571428571
+  },
+  {
+    "qid": "conv-44-qa-006",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Audrey adopt Pixie?",
+    "gt": "around April 2, 2023",
+    "p_raw": "2 April, 2023",
+    "p_final": "2 April, 2023",
+    "f1": 0.8571428571428571
+  },
+  {
+    "qid": "conv-42-qa-189",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What inspired Nate to start making gaming videos?",
+    "gt": "Love of gaming and connecting with others who enjoy it too",
+    "p_raw": "to share his love of gaming and connect with others who enjoy it too",
+    "p_final": "to share his love of gaming and connect with others who enjoy it too",
+    "f1": 0.8695652173913044
+  },
+  {
+    "qid": "conv-26-qa-102",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What kind of books does Caroline have in her library?",
+    "gt": "kids' books - classics, stories from different cultures, educational books",
+    "p_raw": "classics, stories from different cultures, educational books",
+    "p_final": "classics, stories from different cultures, educational books",
+    "f1": 0.8750000000000001
+  },
+  {
+    "qid": "conv-42-qa-130",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What is displayed on Joanna's cork board for motivation and creativity?",
+    "gt": "inspiring quotes, photos, and little keepsakes",
+    "p_raw": "quotes, photos, and little keepsakes",
+    "p_final": "quotes, photos, and little keepsakes",
+    "f1": 0.888888888888889
+  },
+  {
+    "qid": "conv-44-qa-032",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What kind of tattoo does Audrey have on her arm?",
+    "gt": "Tattoos of her four dogs.",
+    "p_raw": "tattoos of four dogs, sunflowers",
+    "p_final": "tattoos of four dogs, sunflowers",
+    "f1": 0.888888888888889
+  },
+  {
+    "qid": "conv-26-qa-036",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Caroline join a mentorship program?",
+    "gt": "The weekend before 17 July 2023",
+    "p_raw": "Two weekends before 17 July 2023",
+    "p_final": "Two weekends before 17 July 2023",
+    "f1": 0.9090909090909091
+  },
+  {
+    "qid": "conv-44-qa-088",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What advice did Audrey give to Andrew regarding grooming Toby?",
+    "gt": "Grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive throughout the grooming process.",
+    "p_raw": "grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive.",
+    "p_final": "grooming slowly and gently, paying attention to sensitive areas like ears and paws. And remember to stay patient and positive.",
+    "f1": 0.9142857142857143
+  },
+  {
+    "qid": "conv-26-qa-135",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What setback did Melanie face in October 2023?",
+    "gt": "She got hurt and had to take a break from pottery.",
+    "p_raw": "got hurt and had to take a break from pottery",
+    "p_final": "got hurt and had to take a break from pottery",
+    "f1": 0.9411764705882353
+  },
+  {
+    "qid": "conv-26-qa-113",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What did Caroline see at the council meeting for adoption?",
+    "gt": "many people wanting to create loving homes for children in need",
+    "p_raw": "so many people wanted to create loving homes for children in need",
+    "p_final": "so many people wanted to create loving homes for children in need",
+    "f1": 0.9565217391304348
+  }
+]
