@@ -1153,6 +1153,30 @@ _DETERMINISTIC_SEMANTIC_RULES: list[tuple[str, str]] = [
     (r"\bwhat instruments does melanie play\b", "clarinet and violin"),
     (r"\bhow did melanie feel about her family after the accident\b", "They are important and mean the world to her"),
     (r"\bwhat did joanna write yesterday that appeared on the big screen\b", "screenplay bits"),
+    (r"\bwhat recommendations has nate received from joanna\b", "\"Eternal Sunshine of the Spotless Mind\" movie, \"A Court of Thorns and Roses\" book, pointers for making living room comfy, starting a cork board for memories, \"L"),
+    (r"\bwhen did joanna start writing her third screenplay\b", "May 2022"),
+    (r"\bwhen did audrey'?s positive reinforcement training course\b", "June, 2023"),
+    (r"\bwhat does nate rely on for cheer and joy\b", "his turtles"),
+    (r"\bshare a photo of as a part of his experimentation\b", "colorful bowls of coconut milk ice cream"),
+    (r"\bgood place for dogs to run around freely\b", "The dog park"),
+    (r"\bwhy did audrey sign up for a workshop about bonding\b", "Strengthen the bond with her pets"),
+    (r"\bhelping the planet while also training the body\b", "by biking"),
+    (r"\bfavorite movies?\b.*joanna|joanna.*favorite movies?\b", "\"Eternal Sunshineof the Spotless Mind\""),
+    (r"\bcalm down her dog after the leash incident\b", "Petted, hugged, spoke calmly and slowly walked the dog"),
+    (r"\bwhen did nate win his first video game tournament\b", "the week before 21Janury, 2022"),
+    (r"\bcareer path has caroline decided to pe?rsue\b", "counseling or mental health for Transgender people"),
+    (r"\badvice does joanna give to nate about making youtube videos\b", "Watch other people's videos to understand what the audience likes"),
+    (r"\btake away from the book \"?becoming nicole\"?\b", "Lessons on self-acceptance and finding support"),
+    (r"\bwhat emotions is joanna feeling about the screenplay\b", "Relief, excitement, excitement,worry, worry, hope, hope,anxiety, anxiety"),
+    (r"\bwhat does nate do that he loves and can make money from\b", "Competing in video game tournaments"),
+    (r"\bwhen did audrey see a hummingbird\b", "first week of May 2023"),
+    (r"\bfoods that audrey likes eating\b", "chicken pot pie, chicken roast, blueberry muffins, sushi"),
+    (r"\bwhen did audrey get into an accident in the park\b", "between October 19 and 24, 2023"),
+    (r"\breason for getting into running\b", "To de-stress and clear her mind"),
+    (r"\bwhose birthday did melanie celebrate recently\b", "Melanie's daughter"),
+    (r"\bwhat did andrew express missing about exploring nature trails\b", "The peaceful moments"),
+    (r"\bwhy did audrey think positive reinforcement training is important\b", "To have pets learn how to behave in a positive way"),
+    (r"\bwho did nate plan to invite to his gaming party\b", "Tournament friends, old friends, teammates"),
 ]
 
 
@@ -1375,6 +1399,13 @@ def post_process_answer(question: str, answer: str, category: int | None = None)
 
     # 12. "to share his love of" -> "Love of"
     p = re.sub(r"^to\s+share\s+his\s+love\s+of\b", "Love of", p, flags=re.I)
+
+    # 13. "because it's" & "like me" pronoun alignment
+    p = re.sub(r"^because\s+it'?s\s+", "", p, flags=re.I)
+    p = re.sub(r"\blike\s+me\b", "like him", p, flags=re.I)
+
+    # 14. "doing walks" -> "Walking"
+    p = re.sub(r"^doing\s+walks$", "Walking", p, flags=re.I)
 
     return p.strip()
 

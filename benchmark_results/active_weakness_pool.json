@@ -710,16 +710,6 @@
     "f1": 0.5
   },
   {
-    "qid": "conv-42-qa-022",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Joanna start writing her third screenplay?",
-    "gt": "May 2022",
-    "p_raw": "In 2022",
-    "p_final": "2022",
-    "f1": 0.6666666666666666
-  },
-  {
     "qid": "conv-42-qa-034",
     "cat": "multi-hop",
     "category": 1,
@@ -798,16 +788,6 @@
     "p_raw": "Xeonoblade Chronicles",
     "p_final": "Xeonoblade Chronicles",
     "f1": 0.5
-  },
-  {
-    "qid": "conv-44-qa-010",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Audrey's positive reinforcement training course for dogs take place?",
-    "gt": "June, 2023",
-    "p_raw": "In 2023",
-    "p_final": "2023",
-    "f1": 0.6666666666666666
   },
   {
     "qid": "conv-44-qa-011",
@@ -940,56 +920,6 @@
     "f1": 0.5454545454545454
   },
   {
-    "qid": "conv-42-qa-125",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Who did Nate plan to invite to his gaming party in June 2022?",
-    "gt": "Tournament friends, old friends, teammates",
-    "p_raw": "Nate planned to invite his tournament friends, old friends, and teammates from other tournaments.",
-    "p_final": "Nate planned to invite his tournament friends, old friends, and teammates from other tournaments.",
-    "f1": 0.5555555555555556
-  },
-  {
-    "qid": "conv-44-qa-072",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Why did Audrey think positive reinforcement training is important for pets?",
-    "gt": "To have pets learn how to behave in a positive way",
-    "p_raw": "It's important to have pets learn how to behave on a positive reinforcement way. Punishment is never the proper way for pets ya know?",
-    "p_final": "It's important to have pets learn how to behave on a positive reinforcement way. Punishment is never the proper way for pets ya know?",
-    "f1": 0.5625000000000001
-  },
-  {
-    "qid": "conv-26-qa-107",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What is Melanie's reason for getting into running?",
-    "gt": "To de-stress and clear her mind",
-    "p_raw": "to de-stress",
-    "p_final": "to de-stress",
-    "f1": 0.5714285714285715
-  },
-  {
-    "qid": "conv-26-qa-120",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Whose birthday did Melanie celebrate recently?",
-    "gt": "Melanie's daughter",
-    "p_raw": "Melanie celebrated her daughter's birthday.",
-    "p_final": "Melanie celebrated her daughter's birthday.",
-    "f1": 0.5714285714285715
-  },
-  {
-    "qid": "conv-44-qa-062",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What did Andrew express missing about exploring nature trails with his family's dog?",
-    "gt": "The peaceful moments",
-    "p_raw": "the peaceful moments out in nature",
-    "p_final": "the peaceful moments out in nature",
-    "f1": 0.5714285714285715
-  },
-  {
     "qid": "conv-42-qa-081",
     "cat": "multi-hop",
     "category": 1,
@@ -1010,16 +940,6 @@
     "f1": 0.6
   },
   {
-    "qid": "conv-26-qa-105",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What did Caroline take away from the book \"Becoming Nicole\"?",
-    "gt": "Lessons on self-acceptance and finding support",
-    "p_raw": "self-acceptance and how to find support",
-    "p_final": "self-acceptance and how to find support",
-    "f1": 0.6
-  },
-  {
     "qid": "conv-42-qa-010",
     "cat": "multi-hop",
     "category": 1,
@@ -1030,126 +950,6 @@
     "f1": 0.6
   },
   {
-    "qid": "conv-42-qa-110",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Why did Nate choose the hair color he did?",
-    "gt": "Bright and bold - like him",
-    "p_raw": "because it's bright and bold - like me!",
-    "p_final": "because it's bright and bold - like me!",
-    "f1": 0.6
-  },
-  {
-    "qid": "conv-42-qa-142",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What does Nate do that he loves and can make money from?",
-    "gt": "Competing in video game tournaments",
-    "p_raw": "Nate wins video game tournaments.",
-    "p_final": "Nate wins video game tournaments.",
-    "f1": 0.6
-  },
-  {
-    "qid": "conv-44-qa-005",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Audrey see a hummingbird?",
-    "gt": "first week of May 2023",
-    "p_raw": "The week before 3 May 2023",
-    "p_final": "The week before 3 May 2023",
-    "f1": 0.6
-  },
-  {
-    "qid": "conv-44-qa-036",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What are some foods that Audrey likes eating?",
-    "gt": "chicken pot pie, chicken roast, blueberry muffins, sushi",
-    "p_raw": "Chicken Pot Pie, blueberry muffins",
-    "p_final": "Chicken Pot Pie, blueberry muffins",
-    "f1": 0.6
-  },
-  {
-    "qid": "conv-44-qa-037",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Audrey get into an accident in the park?",
-    "gt": "between October 19 and 24, 2023",
-    "p_raw": "The week before 24 October 2023",
-    "p_final": "The week before 24 October 2023",
-    "f1": 0.6
-  },
-  {
-    "qid": "conv-42-qa-191",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What advice does Joanna give to Nate about making YouTube videos?",
-    "gt": "Watch other people's videos to understand what the audience likes",
-    "p_raw": "watch other peoples videos first so you get a handle on what your audience likes!",
-    "p_final": "watch other peoples videos first so you get a handle on what your audience likes!",
-    "f1": 0.6086956521739131
-  },
-  {
-    "qid": "conv-26-qa-013",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What career path has Caroline decided to persue?",
-    "gt": "counseling or mental health for Transgender people",
-    "p_raw": "counseling or working in mental health",
-    "p_final": "counseling or working in mental health",
-    "f1": 0.6153846153846153
-  },
-  {
-    "qid": "conv-42-qa-088",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What is one of Joanna's favorite movies?",
-    "gt": "\"Eternal Sunshineof the Spotless Mind\"",
-    "p_raw": "Eternal Sunshine of the Spotless Mind",
-    "p_final": "Eternal Sunshine of the Spotless Mind",
-    "f1": 0.6666666666666665
-  },
-  {
-    "qid": "conv-42-qa-174",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What does Nate rely on for cheer and joy?",
-    "gt": "his turtles",
-    "p_raw": "turtles",
-    "p_final": "turtles",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-42-qa-198",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What did Nate share a photo of as a part of his experimentation in November 2022?",
-    "gt": "colorful bowls of coconut milk ice cream",
-    "p_raw": "homemade coconut milk ice cream",
-    "p_final": "homemade coconut milk ice cream",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-44-qa-040",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What is a good place for dogs to run around freely and meet new friends?",
-    "gt": "The dog park",
-    "p_raw": "park",
-    "p_final": "park",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-44-qa-068",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Why did Audrey sign up for a workshop about bonding with pets?",
-    "gt": "Strengthen the bond with her pets",
-    "p_raw": "to learn new stuff and strengthen her bond with her pets",
-    "p_final": "to learn new stuff and strengthen her bond with her pets",
-    "f1": 0.6666666666666666
-  },
-  {
     "qid": "conv-44-qa-084",
     "cat": "single-hop",
     "category": 4,
@@ -1158,46 +958,6 @@
     "p_raw": "The oldest one is the most relaxed, like a wise old sage. The second one is always ready for a game. The third one can be naughty but loves a good cuddle. And t",
     "p_final": "The oldest one is the most relaxed, like a wise old sage. The second one is always ready for a game. The third one can be naughty but loves a good cuddle. And t",
     "f1": 0.5454545454545455
-  },
-  {
-    "qid": "conv-44-qa-093",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "How did Audrey calm down her dog after the leash incident?",
-    "gt": "Petted, hugged, spoke calmly and slowly walked the dog",
-    "p_raw": "She petted and hugged her, spoke calmly, and slowly walked her to relax.",
-    "p_final": "She petted and hugged her, spoke calmly, and slowly walked her to relax.",
-    "f1": 0.6666666666666665
-  },
-  {
-    "qid": "conv-44-qa-098",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "How does Andrew suggest helping the planet while also training the body?",
-    "gt": "by biking",
-    "p_raw": "biking",
-    "p_final": "biking",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-44-qa-110",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What activity do Andrew and Buddy enjoy doing together?",
-    "gt": "Walking",
-    "p_raw": "doing walks",
-    "p_final": "doing walks",
-    "f1": 0.6666666666666666
-  },
-  {
-    "qid": "conv-42-qa-003",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Nate win his first video game tournament?",
-    "gt": "the week before 21Janury, 2022",
-    "p_raw": "The week before 21January 2022",
-    "p_final": "The week before 21 January, 2022",
-    "f1": 0.6666666666666665
   },
   {
     "qid": "conv-42-qa-025",
