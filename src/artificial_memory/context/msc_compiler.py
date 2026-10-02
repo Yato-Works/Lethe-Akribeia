@@ -163,7 +163,7 @@ class MinimumSufficientContextCompiler:
         scalable_candidate_budget: int = 256,
         evidence_widening: bool = True,
         rescue_order: str = "pool",
-        selection_window_cap: int = 24,
+        selection_window_cap: int = 32,
         rescue_token_bonus_per_unit: int = 130,
         condense: bool = False,
         quote_mode: str = "keep",
@@ -317,8 +317,8 @@ class MinimumSufficientContextCompiler:
         def _key(u):
             return u.ir.raw_content
 
-        strong = candidate_units[:6]
-        tail = candidate_units[6:]
+        strong = candidate_units[:12]
+        tail = candidate_units[12:]
         pool_order = {r.raw_content: idx for idx, r in enumerate(exp_res.evidence_pool)}
         rescue = [u for u in tail if _key(u) in pool_keys]
         rescue.sort(key=lambda u: pool_order.get(_key(u), 9999))
