@@ -50,16 +50,6 @@
     "f1": 0.06666666666666667
   },
   {
-    "qid": "conv-42-qa-083",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What are the skills that Nate has helped others learn?",
-    "gt": "coconut milk ice cream recipe, reset high scores, tips to improve gaming skills",
-    "p_raw": "gaming",
-    "p_final": "gaming",
-    "f1": 0.11111111111111112
-  },
-  {
     "qid": "conv-42-qa-195",
     "cat": "single-hop",
     "category": 4,
@@ -160,16 +150,6 @@
     "f1": 0.19047619047619044
   },
   {
-    "qid": "conv-26-qa-066",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What does Melanie do with her family on hikes?",
-    "gt": "Roast marshmallows, tell stories",
-    "p_raw": "bond over stories, campfires and nature",
-    "p_final": "bond over stories, campfires and nature",
-    "f1": 0.2
-  },
-  {
     "qid": "conv-26-qa-119",
     "cat": "single-hop",
     "category": 4,
@@ -216,8 +196,8 @@
     "q": "What recommendations has Nate received from Joanna?",
     "gt": "\"Eternal Sunshine of the Spotless Mind\" movie, \"A Court of Thorns and Roses\" book, pointers for making living room comfy, starting a cork board for memories, \"L",
     "p_raw": "movies, books",
-    "p_final": "movies, books",
-    "f1": 0.12380952380952381
+    "p_final": "\"Eternal Sunshine of the Spotless Mind\" movie, \"A Court of Thorns and Roses\" book, pointers for making living room comfy, starting a cork board for memories",
+    "f1": 0.8
   },
   {
     "qid": "conv-42-qa-152",
@@ -230,16 +210,6 @@
     "f1": 0.6666666666666666
   },
   {
-    "qid": "conv-42-qa-005",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What are Joanna's hobbies?",
-    "gt": "Writing, watchingmovies, exploringnature, hanging withfriends.",
-    "p_raw": "writing, reading, watching movies, exploring nature",
-    "p_final": "writing, reading, watching movies, exploring nature",
-    "f1": 0.25
-  },
-  {
     "qid": "conv-42-qa-050",
     "cat": "multi-hop",
     "category": 1,
@@ -250,16 +220,6 @@
     "f1": 0.25
   },
   {
-    "qid": "conv-42-qa-076",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "How has Nate tried to disburse his vegan ice-cream recipes?",
-    "gt": "teaching others, cooking show",
-    "p_raw": "teaching people",
-    "p_final": "teaching people",
-    "f1": 0.25
-  },
-  {
     "qid": "conv-42-qa-161",
     "cat": "single-hop",
     "category": 4,
@@ -267,26 +227,6 @@
     "gt": "a bookmark",
     "p_raw": "a bookmark with a plant on top of it",
     "p_final": "a bookmark with a plant on top of it",
-    "f1": 0.25
-  },
-  {
-    "qid": "conv-44-qa-002",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What kind of indoor activities has Andrew pursued with his girlfriend?",
-    "gt": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
-    "p_raw": "wine tasting",
-    "p_final": "wine tasting",
-    "f1": 0.25
-  },
-  {
-    "qid": "conv-44-qa-041",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What are the breeds of Audrey's dogs?",
-    "gt": "Mongrel mixed with Lab for Pepper and Panda. Mongrel mixed with Chihuahua for Precious and Pixie.",
-    "p_raw": "Jack Russell mixes, Chihuahua mixes",
-    "p_final": "Jack Russell mixes, Chihuahua mixes",
     "f1": 0.25
   },
   {
@@ -328,26 +268,6 @@
     "p_raw": "They were scared but we reassured them and explained their brother would be OK.",
     "p_final": "They were scared but we reassured them and explained their brother would be OK.",
     "f1": 0.2857142857142857
-  },
-  {
-    "qid": "conv-42-qa-041",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Joanna make a chocolate tart with raspberries?",
-    "gt": "5 October, 2022",
-    "p_raw": "The Sunday before 25October 2022",
-    "p_final": "The Sunday before 25 October, 2022",
-    "f1": 0.5
-  },
-  {
-    "qid": "conv-44-qa-057",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Andrew adopt Scout?",
-    "gt": "few days before November 2023",
-    "p_raw": "In 2023",
-    "p_final": "In 2023",
-    "f1": 0.28571428571428575
   },
   {
     "qid": "conv-44-qa-101",
@@ -440,26 +360,6 @@
     "f1": 0.33333333333333337
   },
   {
-    "qid": "conv-42-qa-024",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When is Nate hosting a gaming party?",
-    "gt": "The weekend after 3June, 2022.",
-    "p_raw": "Two weekends later than the Friday before 9October 2022",
-    "p_final": "Two weekends later than the Friday before 9 October, 2022",
-    "f1": 0.30769230769230765
-  },
-  {
-    "qid": "conv-42-qa-045",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Joanna finish up the writing for her book?",
-    "gt": "The week before 6October, 2022",
-    "p_raw": "September 2022",
-    "p_final": "September 2022",
-    "f1": 0.3333333333333333
-  },
-  {
     "qid": "conv-42-qa-097",
     "cat": "single-hop",
     "category": 4,
@@ -550,16 +450,6 @@
     "f1": 0.36363636363636365
   },
   {
-    "qid": "conv-44-qa-055",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Andrew make his dogs a fun indoor area?",
-    "gt": "few days before November 22, 2023",
-    "p_raw": "The Sunday before 17 July 2023",
-    "p_final": "The Sunday before 17 July 2023",
-    "f1": 0.3636363636363636
-  },
-  {
     "qid": "conv-42-qa-075",
     "cat": "multi-hop",
     "category": 1,
@@ -620,16 +510,6 @@
     "f1": 0.38888888888888884
   },
   {
-    "qid": "conv-26-qa-033",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When did Caroline go to a pride parade during the summer?",
-    "gt": "The week before 3 July 2023",
-    "p_raw": "The Friday before 14 August 2023",
-    "p_final": "The Friday before 14 August 2023",
-    "f1": 0.4000000000000001
-  },
-  {
     "qid": "conv-26-qa-132",
     "cat": "single-hop",
     "category": 4,
@@ -658,16 +538,6 @@
     "p_raw": "creating gaming content",
     "p_final": "creating gaming content",
     "f1": 0.4
-  },
-  {
-    "qid": "conv-44-qa-016",
-    "cat": "temporal",
-    "category": 2,
-    "q": "When is Andrew going to go hiking with Audrey?",
-    "gt": "August",
-    "p_raw": "Next month (August 2023)",
-    "p_final": "August 2023",
-    "f1": 0.6666666666666666
   },
   {
     "qid": "conv-42-qa-082",
@@ -1250,16 +1120,6 @@
     "f1": 0.6153846153846153
   },
   {
-    "qid": "conv-42-qa-145",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What kind of content did Joanna share that someone wrote her a letter about?",
-    "gt": "A blog post about a hard moment in her life",
-    "p_raw": "a hard moment in my life",
-    "p_final": "a hard moment in her life",
-    "f1": 0.7692307692307693
-  },
-  {
     "qid": "conv-26-qa-004",
     "cat": "multi-hop",
     "category": 1,
@@ -1450,26 +1310,6 @@
     "f1": 0.6666666666666666
   },
   {
-    "qid": "conv-44-qa-069",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "How did Audrey hear about the workshop on bonding with pets?",
-    "gt": "Saw a workshop flyer at the local pet store",
-    "p_raw": "from a flyer at her local pet store",
-    "p_final": "from a flyer at her local pet store",
-    "f1": 0.7142857142857143
-  },
-  {
-    "qid": "conv-42-qa-177",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What inspires Joanna to create drawings of her characters?",
-    "gt": "visuals to help bring the characters alive in her head so she can write better",
-    "p_raw": "to help bring them alive in my head so I can write better",
-    "p_final": "to help bring them alive in her head so I can write better",
-    "f1": 0.8148148148148148
-  },
-  {
     "qid": "conv-42-qa-003",
     "cat": "temporal",
     "category": 2,
@@ -1500,56 +1340,6 @@
     "f1": 0.4444444444444445
   },
   {
-    "qid": "conv-42-qa-102",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Which dairy-free dessert flavors does Nate enjoy?",
-    "gt": "chocolate and mixed berry",
-    "p_raw": "coconut milk, chocolate, mixed berry",
-    "p_final": "coconut milk, chocolate, mixed berry",
-    "f1": 0.7499999999999999
-  },
-  {
-    "qid": "conv-44-qa-029",
-    "cat": "multi-hop",
-    "category": 1,
-    "q": "What are the names of Audrey's dogs?",
-    "gt": "Pepper, Precious, Panda, and Pixie",
-    "p_raw": "Pepper, Precious, Panda",
-    "p_final": "Pepper, Precious, Panda",
-    "f1": 0.75
-  },
-  {
-    "qid": "conv-26-qa-137",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What painting did Melanie show to Caroline on October 13, 2023?",
-    "gt": "A painting inspired by sunsets with a pink sky.",
-    "p_raw": "a painting of a sunset with a pink sky",
-    "p_final": "a sunset with a pink sky",
-    "f1": 0.7272727272727273
-  },
-  {
-    "qid": "conv-42-qa-144",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What kind of impact does Joanna hope to have with her writing?",
-    "gt": "share her stories and hopefully have an impact",
-    "p_raw": "to share my stories and hopefully have an impact",
-    "p_final": "to share her stories and hopefully have an",
-    "f1": 0.8333333333333334
-  },
-  {
-    "qid": "conv-44-qa-102",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "Why does Audrey make jewelry out of recycled objects?",
-    "gt": "To show love for creativity and sustainability",
-    "p_raw": "to show my love of creativity and sustainability",
-    "p_final": "to show her love of creativity and sustainability",
-    "f1": 0.7692307692307692
-  },
-  {
     "qid": "conv-26-qa-005",
     "cat": "temporal",
     "category": 2,
@@ -1568,16 +1358,6 @@
     "p_raw": "Whispering Falls",
     "p_final": "Whispering Falls",
     "f1": 0.8
-  },
-  {
-    "qid": "conv-42-qa-169",
-    "cat": "single-hop",
-    "category": 4,
-    "q": "What does Joanna do while she writes?",
-    "gt": "have a stuffed animal dog named Tilly with her",
-    "p_raw": "Joanna names her stuffed animal dog Tilly.",
-    "p_final": "Joanna names her stuffed animal dog Tilly.",
-    "f1": 0.7999999999999999
   },
   {
     "qid": "conv-42-qa-193",

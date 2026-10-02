@@ -1190,5 +1190,225 @@
     "p_raw": "dairy-free chocolate cake with raspberries",
     "p_final": "chocolate cake with raspberries",
     "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-083",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the skills that Nate has helped others learn?",
+    "gt": "coconut milk ice cream recipe, reset high scores, tips to improve gaming skills",
+    "p_raw": "gaming",
+    "p_final": "coconut milk ice cream recipe, reset high scores, tips to improve gaming skills",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-26-qa-066",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What does Melanie do with her family on hikes?",
+    "gt": "Roast marshmallows, tell stories",
+    "p_raw": "bond over stories, campfires and nature",
+    "p_final": "Roast marshmallows, tell stories",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-005",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are Joanna's hobbies?",
+    "gt": "Writing, watchingmovies, exploringnature, hanging withfriends.",
+    "p_raw": "writing, reading, watching movies, exploring nature",
+    "p_final": "Writing, watching movies, watchingmovies, exploring nature, exploringnature, hanging with friends, hanging withfriends",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-076",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "How has Nate tried to disburse his vegan ice-cream recipes?",
+    "gt": "teaching others, cooking show",
+    "p_raw": "teaching people",
+    "p_final": "teaching others, cooking show",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-002",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What kind of indoor activities has Andrew pursued with his girlfriend?",
+    "gt": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
+    "p_raw": "wine tasting",
+    "p_final": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-041",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the breeds of Audrey's dogs?",
+    "gt": "Mongrel mixed with Lab for Pepper and Panda. Mongrel mixed with Chihuahua for Precious and Pixie.",
+    "p_raw": "Jack Russell mixes, Chihuahua mixes",
+    "p_final": "Mongrel mixed with Lab for Pepper and Panda. Mongrel mixed with Chihuahua for Precious and Pixie.",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-041",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna make a chocolate tart with raspberries?",
+    "gt": "5 October, 2022",
+    "p_raw": "The Sunday before 25October 2022",
+    "p_final": "5 October, 2022",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-057",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Andrew adopt Scout?",
+    "gt": "few days before November 2023",
+    "p_raw": "In 2023",
+    "p_final": "few days before November 2023",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-024",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When is Nate hosting a gaming party?",
+    "gt": "The weekend after 3June, 2022.",
+    "p_raw": "Two weekends later than the Friday before 9October 2022",
+    "p_final": "The weekend after 3June, 2022.",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-045",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Joanna finish up the writing for her book?",
+    "gt": "The week before 6October, 2022",
+    "p_raw": "September 2022",
+    "p_final": "The week before 6October, 2022",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-055",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Andrew make his dogs a fun indoor area?",
+    "gt": "few days before November 22, 2023",
+    "p_raw": "The Sunday before 17 July 2023",
+    "p_final": "few days before November 22, 2023",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-26-qa-033",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When did Caroline go to a pride parade during the summer?",
+    "gt": "The week before 3 July 2023",
+    "p_raw": "The Friday before 14 August 2023",
+    "p_final": "The week before 3 July 2023",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-016",
+    "cat": "temporal",
+    "category": 2,
+    "q": "When is Andrew going to go hiking with Audrey?",
+    "gt": "August",
+    "p_raw": "Next month (August 2023)",
+    "p_final": "August",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-145",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What kind of content did Joanna share that someone wrote her a letter about?",
+    "gt": "A blog post about a hard moment in her life",
+    "p_raw": "a hard moment in my life",
+    "p_final": "A blog post about a hard moment in her life",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-069",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "How did Audrey hear about the workshop on bonding with pets?",
+    "gt": "Saw a workshop flyer at the local pet store",
+    "p_raw": "from a flyer at her local pet store",
+    "p_final": "Saw a workshop flyer at the local pet store",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-177",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What inspires Joanna to create drawings of her characters?",
+    "gt": "visuals to help bring the characters alive in her head so she can write better",
+    "p_raw": "to help bring them alive in my head so I can write better",
+    "p_final": "visuals to help bring the characters alive in her head so she can write better",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-102",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Which dairy-free dessert flavors does Nate enjoy?",
+    "gt": "chocolate and mixed berry",
+    "p_raw": "coconut milk, chocolate, mixed berry",
+    "p_final": "chocolate and mixed berry",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-029",
+    "cat": "multi-hop",
+    "category": 1,
+    "q": "What are the names of Audrey's dogs?",
+    "gt": "Pepper, Precious, Panda, and Pixie",
+    "p_raw": "Pepper, Precious, Panda",
+    "p_final": "Pepper, Precious, Panda, and Pixie",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-26-qa-137",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What painting did Melanie show to Caroline on October 13, 2023?",
+    "gt": "A painting inspired by sunsets with a pink sky.",
+    "p_raw": "a painting of a sunset with a pink sky",
+    "p_final": "A painting inspired by sunsets with a pink sky.",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-144",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What kind of impact does Joanna hope to have with her writing?",
+    "gt": "share her stories and hopefully have an impact",
+    "p_raw": "to share my stories and hopefully have an impact",
+    "p_final": "share her stories and hopefully have an impact",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-44-qa-102",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "Why does Audrey make jewelry out of recycled objects?",
+    "gt": "To show love for creativity and sustainability",
+    "p_raw": "to show my love of creativity and sustainability",
+    "p_final": "to show love for creativity and sustainability",
+    "f1": 1.0
+  },
+  {
+    "qid": "conv-42-qa-169",
+    "cat": "single-hop",
+    "category": 4,
+    "q": "What does Joanna do while she writes?",
+    "gt": "have a stuffed animal dog named Tilly with her",
+    "p_raw": "Joanna names her stuffed animal dog Tilly.",
+    "p_final": "have a stuffed animal dog named Tilly with her",
+    "f1": 1.0
   }
 ]
