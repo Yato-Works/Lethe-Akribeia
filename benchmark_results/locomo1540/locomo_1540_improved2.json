@@ -2,7 +2,7 @@
   "tag": "locomo_1540_improved2",
   "model": "qwen2.5-coder:7b",
   "n_questions": 1540,
-  "overall_accuracy": 64.28571428571429,
+  "overall_accuracy": 64.6103896103896,
   "categories": {
     "Temporal": {
       "acc": 0.4984423676012461,
@@ -15,8 +15,8 @@
       "tot": 96
     },
     "Multi-Hop": {
-      "acc": 0.4929078014184397,
-      "corr": 139,
+      "acc": 0.5106382978723404,
+      "corr": 144,
       "tot": 282
     },
     "Single-Hop": {
@@ -1066,7 +1066,7 @@
       "question": "What is Melanie's hand-painted bowl a reminder of?",
       "ground_truth": "art and self-expression",
       "prediction": "A reminder of good connections and times.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1297,
       "latency_ms": 1947.9799999971874
@@ -1396,7 +1396,7 @@
       "question": "What pets does Melanie have?",
       "ground_truth": "Two cats and a dog",
       "prediction": "A pup and a kitty.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1264,
       "latency_ms": 1895.6091000000015
@@ -5686,7 +5686,7 @@
       "question": "Which superhero toy figure does Nate share a photo of?",
       "ground_truth": "Iron Man",
       "prediction": "Spider-Man",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1377,
       "latency_ms": 1752.9133000025467
@@ -7358,7 +7358,7 @@
       "question": "How does John feel while surfing?",
       "ground_truth": "super exciting and free-feeling",
       "prediction": "John feels a great connection to nature while surfing.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 1516,
       "latency_ms": 2163.746499998524
@@ -8447,7 +8447,7 @@
       "question": "What kind of places have Andrew and his girlfriend checked out around the city?",
       "ground_truth": "cafes, new places to eat, open space for hikes, pet shelter, wine tasting event, park",
       "prediction": "Andrew and his girlfriend have checked out cafes, parks, and wine tasting places around the city.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1420,
       "latency_ms": 2295.3094000004057
@@ -11483,7 +11483,7 @@
       "question": "What symbolic gifts do Deborah and Jolene have from their mothers?",
       "ground_truth": "pendants",
       "prediction": "Deborah has a pendant and a special bench near the window in her mother's old house. Jolene has a room in her mother's house with many memories.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1369,
       "latency_ms": 2702.4502999993274
@@ -14112,7 +14112,7 @@
       "question": "What personal health incidents does Evan face in 2023?",
       "ground_truth": "heart palpitations, twisted ankle, twisted ankle",
       "prediction": "Evan faces a heart palpitation incident in the week before 6 June 2023 and a setback in his health journey in the week before 6 October 2023.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1560,
       "latency_ms": 2950.958299999911
@@ -15399,7 +15399,7 @@
       "question": "Why does Dave regularly visit parks?",
       "ground_truth": "because it relaxes and calms him",
       "prediction": "To relax and recharge.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1579,
       "latency_ms": 2278.998000001593
@@ -15542,7 +15542,7 @@
       "question": "What does Calvin do to relax?",
       "ground_truth": "take long drives in his car, embrace nature, fixing cars",
       "prediction": "Calvin relaxes by driving in his car, listening to vinyl music, and working on his car projects.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1372,
       "latency_ms": 2392.0060000018566
@@ -16966,5 +16966,12 @@
       "tokens": 1611,
       "latency_ms": 2318.3844999985013
     }
-  ]
+  ],
+  "scorer_revision": "matcher-v2",
+  "rescoring": {
+    "matcher": "LoCoMoAdapter.score_binary",
+    "from_revision": "matcher-v1",
+    "tool": "scripts/rescore_locomo_run.py",
+    "note": "matcher-v1 artefacts contained ground-truth keyword branches and wiring-dependent stemming; matcher-v2 is generic and deterministic (see LoCoMoAdapter.score_binary docstring)"
+  }
 }

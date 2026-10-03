@@ -44,4 +44,4 @@ notes: |
   - Total non-adversarial questions in LoCoMo: 1,540 (1,150 Dev + 390 Holdout/Val).
   - conv-48 (191 questions) is the STRICT UNSEEN HOLDOUT: never used for error mining.
   - conv-42 (199 questions) was examined during early autopsies, now strictly evaluated with zero ad-hoc handlers.
-  - Both demonstrate consistent generalization (conv-48: 63.87% binary, 52.95% F1; conv-42: 64.32% binary, 49.96% F1).
+  - Both demonstrate consistent generalization (conv-48: 65.45% binary, 52.95% F1; conv-42: 65.33% binary, 49.96% F1).

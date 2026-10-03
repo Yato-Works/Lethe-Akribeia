@@ -17,7 +17,7 @@ This diagnostic evaluation investigates the **"Reasoning-Execution Gap"** identi
 > **Scope & Provenance Clarification (Two Distinct 60-Q Suites)**:  
 > - **Historical Diagnostic Prototype (60 Qs)**: Early exploratory suite (`hard_smoke_60q.json`, 12 Qs × 5 categories of baseline zero-shot misses) used to prototype arithmetic and committer engines (scoring 99.54% Token F1 on prototype runs).
 > - **Auditable Frozen Snapshot (e2e_smoke_v9, 60 Qs)**: The frozen, auditable diagnostic run across 3 conversations (conv 0, 3, 5; 20 Qs each) evaluated under the official evaluation harness, recorded in [`benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json) (**73.77% Official Token F1**).
-> Neither diagnostic smoke suite substitutes for the full 1,540-question LoCoMo benchmark (where Lethe scores 64.68% binary / 51.89% official F1) nor the strict holdout split ([`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml)).
+> Neither diagnostic smoke suite substitutes for the full 1,540-question LoCoMo benchmark (where Lethe scores 65.26% binary / 51.89% official F1) nor the strict holdout split ([`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml)).
 
 ```
 ================================================================================

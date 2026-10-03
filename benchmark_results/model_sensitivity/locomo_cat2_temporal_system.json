@@ -16,10 +16,10 @@
   "zones_committed_in_run": 109,
   "counts": {
     "n": 1540,
-    "both_correct": 863,
-    "a_only": 133,
-    "b_only": 131,
-    "both_wrong": 413
+    "both_correct": 869,
+    "a_only": 136,
+    "b_only": 135,
+    "both_wrong": 400
   },
   "zones": {
     "deterministic": {
@@ -31,10 +31,10 @@
     },
     "llm": {
       "n": 1431,
-      "both_correct": 786,
-      "a_only": 133,
-      "b_only": 131,
-      "both_wrong": 381
+      "both_correct": 792,
+      "a_only": 136,
+      "b_only": 135,
+      "both_wrong": 368
     }
   },
   "groups": [
@@ -42,10 +42,10 @@
       "name": "1 (multi-hop)",
       "counts": {
         "n": 282,
-        "both_correct": 117,
-        "a_only": 24,
-        "b_only": 32,
-        "both_wrong": 109
+        "both_correct": 123,
+        "a_only": 29,
+        "b_only": 36,
+        "both_wrong": 94
       }
     },
     {
@@ -73,9 +73,9 @@
       "counts": {
         "n": 841,
         "both_correct": 595,
-        "a_only": 61,
+        "a_only": 59,
         "b_only": 68,
-        "both_wrong": 117
+        "both_wrong": 119
       }
     }
   ],
@@ -130,8 +130,8 @@
     "deterministic_zone_identical": true
   },
   "mcnemar": {
-    "discordant_a_only": 133,
-    "discordant_b_only": 131,
-    "p_exact_two_sided": 0.9509400800412549
+    "discordant_a_only": 136,
+    "discordant_b_only": 135,
+    "p_exact_two_sided": 1.0
   }
 }

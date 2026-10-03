@@ -2,7 +2,7 @@
   "tag": "locomo_1540_nemotron",
   "model": "qwen2.5-coder:7b",
   "n_questions": 1540,
-  "overall_accuracy": 64.41558441558442,
+  "overall_accuracy": 64.93506493506493,
   "categories": {
     "Temporal": {
       "acc": 0.5109034267912772,
@@ -15,8 +15,8 @@
       "tot": 96
     },
     "Multi-Hop": {
-      "acc": 0.5070921985815603,
-      "corr": 143,
+      "acc": 0.5354609929078015,
+      "corr": 151,
       "tot": 282
     },
     "Single-Hop": {
@@ -1066,7 +1066,7 @@
       "question": "What is Melanie's hand-painted bowl a reminder of?",
       "ground_truth": "art and self-expression",
       "prediction": "A reminder of good connections and times.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1297,
       "latency_ms": 2102.9323999973712
@@ -1341,7 +1341,7 @@
       "question": "How did Melanie feel while watching the meteor shower?",
       "ground_truth": "in awe of the universe",
       "prediction": "Melanie felt awe-inspiring and part of something huge.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 1403,
       "latency_ms": 2266.851599997608
@@ -1396,7 +1396,7 @@
       "question": "What pets does Melanie have?",
       "ground_truth": "Two cats and a dog",
       "prediction": "A pup and a kitty.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1264,
       "latency_ms": 1925.6479999967269
@@ -1682,7 +1682,7 @@
       "question": "How did Melanie feel about her family supporting her?",
       "ground_truth": "She appreciated them a lot",
       "prediction": "Melanie felt very supported by her family.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1401,
       "latency_ms": 2134.4862000041758
@@ -3277,7 +3277,7 @@
       "question": "How many dogs has Maria adopted from the dog shelter she volunteers at?",
       "ground_truth": "two",
       "prediction": "2",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 3113,
       "latency_ms": 4229.814300000726
@@ -5026,7 +5026,7 @@
       "question": "How many turtles does Nate have?",
       "ground_truth": "Three",
       "prediction": "3",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 2797,
       "latency_ms": 3986.6901000059443
@@ -5686,7 +5686,7 @@
       "question": "Which superhero toy figure does Nate share a photo of?",
       "ground_truth": "Iron Man",
       "prediction": "Spider-Man",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1377,
       "latency_ms": 1885.8714000016334
@@ -7358,7 +7358,7 @@
       "question": "How does John feel while surfing?",
       "ground_truth": "super exciting and free-feeling",
       "prediction": "John feels a great connection to nature while surfing.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 1516,
       "latency_ms": 2330.1617999968585
@@ -9008,7 +9008,7 @@
       "question": "What activity do Audrey's dogs like to do in the dog park?",
       "ground_truth": "Play fetch with ball and frisbee, run around and meet other dogs",
       "prediction": "Playing fetch and Frisbee",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1675,
       "latency_ms": 2294.775700000173
@@ -11483,7 +11483,7 @@
       "question": "What symbolic gifts do Deborah and Jolene have from their mothers?",
       "ground_truth": "pendants",
       "prediction": "Deborah has a pendant and a special bench near the window in her mother's old house. Jolene has a room in her mother's house with many memories.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1369,
       "latency_ms": 2888.8570999988588
@@ -13551,7 +13551,7 @@
       "question": "How many Prius has Evan owned?",
       "ground_truth": "two",
       "prediction": "2",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 3044,
       "latency_ms": 3885.5679999978747
@@ -14112,7 +14112,7 @@
       "question": "What personal health incidents does Evan face in 2023?",
       "ground_truth": "heart palpitations, twisted ankle, twisted ankle",
       "prediction": "Heart palpitation incident (the week before 6 June 2023), setback with knee playing basketball (the week before 6 October 2023)",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1560,
       "latency_ms": 2995.6982000003336
@@ -15399,7 +15399,7 @@
       "question": "Why does Dave regularly visit parks?",
       "ground_truth": "because it relaxes and calms him",
       "prediction": "To relax and recharge.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1579,
       "latency_ms": 2132.7625999983866
@@ -15751,7 +15751,7 @@
       "question": "How many car shows has Dave attended?",
       "ground_truth": "two",
       "prediction": "2",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 3227,
       "latency_ms": 4070.6712000028347
@@ -16966,5 +16966,12 @@
       "tokens": 1611,
       "latency_ms": 2223.374799999874
     }
-  ]
+  ],
+  "scorer_revision": "matcher-v2",
+  "rescoring": {
+    "matcher": "LoCoMoAdapter.score_binary",
+    "from_revision": "matcher-v1",
+    "tool": "scripts/rescore_locomo_run.py",
+    "note": "matcher-v1 artefacts contained ground-truth keyword branches and wiring-dependent stemming; matcher-v2 is generic and deterministic (see LoCoMoAdapter.score_binary docstring)"
+  }
 }

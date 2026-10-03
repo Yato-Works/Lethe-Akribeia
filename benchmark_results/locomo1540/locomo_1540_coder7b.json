@@ -2,7 +2,7 @@
   "tag": "locomo_1540_nemotron_fresh",
   "model": "qwen2.5-coder:7b",
   "n_questions": 1540,
-  "overall_accuracy": 66.75324675324676,
+  "overall_accuracy": 66.81818181818183,
   "categories": {
     "Temporal": {
       "acc": 0.5295950155763239,
@@ -20,8 +20,8 @@
       "tot": 282
     },
     "Single-Hop": {
-      "acc": 0.7966706302021404,
-      "corr": 670,
+      "acc": 0.797859690844233,
+      "corr": 671,
       "tot": 841
     }
   },
@@ -1396,7 +1396,7 @@
       "question": "What pets does Melanie have?",
       "ground_truth": "Two cats and a dog",
       "prediction": "A pup and a kitty.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 2041,
       "latency_ms": 2656.285000004573
@@ -5686,7 +5686,7 @@
       "question": "Which superhero toy figure does Nate share a photo of?",
       "ground_truth": "Iron Man",
       "prediction": "Spider-Man",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1954,
       "latency_ms": 2449.7000999981537
@@ -7358,7 +7358,7 @@
       "question": "How does John feel while surfing?",
       "ground_truth": "super exciting and free-feeling",
       "prediction": "John feels great while surfing.",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 2245,
       "latency_ms": 2822.3711000027834
@@ -16966,5 +16966,12 @@
       "tokens": 2156,
       "latency_ms": 2842.8839999978663
     }
-  ]
+  ],
+  "scorer_revision": "matcher-v2",
+  "rescoring": {
+    "matcher": "LoCoMoAdapter.score_binary",
+    "from_revision": "matcher-v1",
+    "tool": "scripts/rescore_locomo_run.py",
+    "note": "matcher-v1 artefacts contained ground-truth keyword branches and wiring-dependent stemming; matcher-v2 is generic and deterministic (see LoCoMoAdapter.score_binary docstring)"
+  }
 }

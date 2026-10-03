@@ -11,7 +11,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: v0.3.0 Apex Generation](https://img.shields.io/badge/status-v0.3.0%20Apex%20Generation-brightgreen.svg)](#v3-apex-generation-における進化点)
-[![Tests: 321 passed](https://img.shields.io/badge/tests-321%20passed-success.svg)](#再現手順-reproduction)
+[![Tests: 328 passed](https://img.shields.io/badge/tests-328%20passed-success.svg)](#再現手順-reproduction)
 [![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
 [![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
 
@@ -42,11 +42,11 @@ Lethe Akribeia v0.3.0 は、実験的プロトタイプ（v0.2.0）から、極�
    - 通貨差分（$300 − $30 = $270）、節約割引額、複数地点の日数合算、イベント時年齢逆算を 100% 決定論的アルゴリズムで計算する導出スキャフォールドを実装。
    - 7B Reader が偽拒絶（False Refusal）に陥っていた LongMemEval の難問 **+9問を回帰損失ゼロ（0 regressions）で完全救済**し、LongMemEval End-to-End を 81.60% (408/500) から **83.40% (417/500)** へと押し上げました（成果物: [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json)）。
 3. **[LoCoMo](https://github.com/snap-research/locomo)（SNAP / スタンフォード大らによる長文対話ベンチマーク）のターン選択・多重度密度スコアリング最適化**:
-   - `answer_committer` にキーワードカバー率重み付け、話者アライメント、明示的非時間質問ガードを導入: 要求対象サブセットにおいて、LLM 呼び出しゼロで **70.64% の高精度 (77/109問正解)** を達成（成果物: [`committer_metrics/locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)）。
-4. **テストスイートの爆発的拡充: 82件 → 321件 (100% ALL PASS, 総計 740件以上収集)**:
+   - `answer_committer` にキーワードカバー率重み付け、話者アライメント、明示的非時間質問ガードを導入: 要求対象サブセットにおいて、LLM 呼び出しゼロで **70.64% の高精度 (77/109問正解)** を達成（凍結ランのスイープ。現行コミッターリビジョンによるオフライン再スイープは **68.89%, 124/180**。成果物: [`committer_metrics/locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json) / [`locomo_cat2_temporal_claims_current.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims_current.json)）。
+4. **テストスイートの爆発的拡充: 82件 → 328件 (100% ALL PASS, 総計 740件以上収集)**:
    - 算術差分、区間代数、時間コンパイル、発話者正規化、モデル感応性検証、破損耐性、成果物自動検証（Results Registry Verifier）などの包括的テストスイートを追加。
 5. **モデル感度分析 (7B vs. 1.5B)**:
-   - パラメータが約 4.7分の1（7B → 1.5B）に低下しても、同一文脈・プロンプト下で実質的な性能差が観測されないこと（LoCoMo $p=0.9509$, LongMemEval $p=0.4030$）を実証し、性能がモデル単体の規模よりも構造化された文脈品質に強く影響されるという仮説を支持する知見を得ました。
+   - パラメータが約 4.7分の1（7B → 1.5B）に低下しても、同一文脈・プロンプト下で実質的な性能差が観測されないこと（LoCoMo $p=1.0000$, LongMemEval $p=0.4030$）を実証し、性能がモデル単体の規模よりも構造化された文脈品質に強く影響されるという仮説を支持する知見を得ました。
 
 ---
 
@@ -89,7 +89,7 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 > **評価プロトコルとスコア算出の来歴**:  
 > - **公式ベンチマークデータセット**: すべての評価は公式問題セット（LoCoMo 1,540問、LongMemEval 500問、BEAM 500K）を対象に実施され、評価対象データへの訓練・パラメータ学習は一切行っていません。
 > - **公式アップストリームハーネス**: LoCoMo のトークン単位 F1 は、公式アップストリーム（Stanford/SNAP）の評価ハーネス（`official_locomo_score_*`, F1: 全体 51.89% / 完全隔離ホールドアウト 52.95%）を用いて算出されています。
-> - **決定論的インハウス抽出マッチャ**: バイナリ抽出正答率（`is_correct`: LoCoMo 64.68%, LongMemEval 83.40%, BEAM 100%）は、LLM-as-a-judge に起因する非決定性・測定分散・実行コストを排除するため、決定論的かつ監査可能なルールベースマッチャ（単語・語幹重複、ハイフン・数値正規化）で判定されています。マッチャは全データセット横断の汎用規則のみで構成され、個別問題へのハードコード分岐はゼロです。
+> - **決定論的インハウス抽出マッチャ**: バイナリ抽出正答率（`is_correct`: LoCoMo 65.26%, LongMemEval 83.40%, BEAM 100%）は、LLM-as-a-judge に起因する非決定性・測定分散・実行コストを排除するため、決定論的かつ監査可能なルールベースマッチャ（単語・語幹重複、ハイフン・数値正規化）で判定されています。マッチャは全データセット横断の汎用規則のみで構成され、個別問題へのハードコード分岐はゼロです。
 > プロンプト開発やハイパーパラメータ調整は別系統の診断スプリットでのみ行い、最終評価セットはデータリーク防止のため完全に隔離されています。
 
 ### ベンチマーク結果一覧 (三層分離評価)
@@ -98,10 +98,10 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 |:---|:---:|:---:|:---:|:---:|:---|
 | **LongMemEval (全6機能)** | 500問 | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08% (403/491)**<br>*(7B単体・到達時)* | **83.40% (417/500)**<br>*(ベースライン 81.60% + 9問救済)* | 7B単体は 81.60% (408/500)。新設の Subsystem H（算術差分エンジン）により偽拒絶 9問を回帰損失ゼロで自律救済し、E2E 83.40% を達成。[`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて全指標を照合可能。 |
 | **BEAM (500K スケール)** | 48問 | **100.0% (48/48)** | **100.0%** | **100.0%** | 500K トークン規模で実測検証し、48問の needle-in-haystack 質問で針の見落としゼロ。より長大な地平へのスケールは設計目標であり、今回の実測報告には含まれません。 |
-| **LoCoMo 1,540 (Single-Hop)** | 841問 | **83.71%** | **85.80%** | **77.65%** | 明示的事実の想起。Reader が証拠から素直に事実を抽出できる領域。 |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321問 | **81.62% (262/321)** | **57.25%**<br>*(7B は到達時の 42.8% で推論失敗)* | **51.09% (164/321)** | 複数期間の相対時間計算。決定論的カレンダー正規化が寄与。コミッター介入サブセット（109/321問）において、LLM 呼び出しゼロで **70.64% の精度 (77/109問正解)** を達成（成果物: [`locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)）。 |
-| **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282問 | **78.37%** | **55.20%** | **47.87%** | 異セッション間グラフリンク。今後の研究開発課題（フロンティア領域）。 |
-| **LoCoMo 1,540 (全体・非敵対的)** | 1,540問 | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | 主幹ローカル 7B Reader による全問評価（抽出正答率: 64.68%、公式 Token F1: 51.89%）。成果物 [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて完全照合。 |
+| **LoCoMo 1,540 (Single-Hop)** | 841問 | **83.71% (704/841)** | **86.51% (609/704)** | **77.76% (654/841)** | 明示的事実の想起。Reader が証拠から素直に事実を抽出できる領域。 |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321問 | **81.62% (262/321)** | **56.87% (149/262)** | **50.16% (161/321)** | 複数期間の相対時間計算。決定論的カレンダー正規化が寄与。コミッター介入サブセット（109/321問）において、LLM 呼び出しゼロで **70.64% の精度 (77/109問正解)** を達成（凍結ラン。現行リビジョンのオフライン再スイープ: **68.89%, 124/180**。成果物: [`locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)）。 |
+| **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282問 | **78.37% (221/282)** | **60.18% (133/221)** | **53.90% (152/282)** | 異セッション間グラフリンク。今後の研究開発課題（フロンティア領域）。 |
+| **LoCoMo 1,540 (全体・非敵対的)** | 1,540問 | **80.65% (1,242/1,540)** | **74.32% (923/1,242)** | **65.26% (1,005/1,540)** | 主幹ローカル 7B Reader による全問評価（抽出正答率: 65.26%、公式 Token F1: 51.89%）。成果物 [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて完全照合。 |
 
 > [!NOTE]
 > **なぜ Oracle Recall と End-to-End を分離するのか？**  
@@ -114,9 +114,9 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 
 | 評価区分 | 規模 ($N$) | 評価目的 | バイナリ抽出正答率 (`is_correct`) | 公式指標 (Token F1 / 到達率) | 文脈・プロトコル参照 |
 |:---|:---:|:---|:---:|:---:|:---|
-| **LoCoMo 全問（非敵対的）** | 1,540問 | 長期対話記憶の全体汎化性能 | **64.68% (996/1,540)** | **51.89%** (postfix) / **40.80%** (真のベースライン; **41.53%** Qwen2.5-Coder-7B improved2) | 全10対話を通じた総合評価。[`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて完全検証済み。 |
-| **LoCoMo 独立ホールドアウト & 検証セット** | 390問 | 汎化性の独立検証：`conv-48`（191問 完全隔離クリーンホールドアウト）および `conv-42`（199問 検証セット） | **64.10% (250/390)** | **51.42%** 公式 Token F1<br>*(conv-48: 63.87% binary, 52.95% F1; conv-42: 64.32% binary, 49.96% F1)* | [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml) に基づき質問個別ヒューリスティックから完全隔離。過適合なしを実証。 |
-| **LoCoMo 開発セット** | 1,150問 | パイプライン開発・段階的改善（8対話） | **64.87% (746/1,150)** | **52.05%** 公式 Token F1 | 開発セット 52.05% vs ホールドアウト 51.42% F1（乖離 -0.63pp）、過適合なく一般化。 |
+| **LoCoMo 全問（非敵対的）** | 1,540問 | 長期対話記憶の全体汎化性能 | **65.26% (1,005/1,540)** | **51.89%** (postfix) / **40.80%** (真のベースライン; **41.53%** Qwen2.5-Coder-7B improved2) | 全10対話を通じた総合評価。[`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて完全検証済み。 |
+| **LoCoMo 独立ホールドアウト & 検証セット** | 390問 | 汎化性の独立検証：`conv-48`（191問 完全隔離クリーンホールドアウト）および `conv-42`（199問 検証セット） | **65.38% (255/390)** | **51.42%** 公式 Token F1<br>*(conv-48: 65.45% binary, 52.95% F1; conv-42: 65.33% binary, 49.96% F1)* | [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml) に基づき質問個別ヒューリスティックから完全隔離。過適合なしを実証。 |
+| **LoCoMo 開発セット** | 1,150問 | パイプライン開発・段階的改善（8対話） | **65.22% (750/1,150)** | **52.05%** 公式 Token F1 | 開発セット 52.05% vs ホールドアウト 51.42% F1（乖離 -0.63pp）、過適合なく一般化。 |
 | **LoCoMo Diagnostic Smoke（e2e_smoke_v9, 60問）** | 60問 | 3会話（conv 0, 3, 5）にわたる集中診断スモークテスト | **73.77%** 公式 Token F1（凍結スナップショット: e2e_smoke_20261002_v9; 過去プロトタイプ: 99.54%） | **73.77%** 公式 Token F1 | [`report.md`](report.md) & [`official_score`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json) 参照。自律コミッター・算術の診断セット。 |
 | **LongMemEval（全6機能）** | 500問 | 超長期対話・マルチセッション保持 | **83.40% (417/500)** (最終)<br>*(ベースライン: 81.60%, 408/500)* | **98.20%** Oracle Recall<br>*(491/500 証拠到達)* | 全500問。ベースライン 81.60% + Subsystem H 救済 9問。成果物 [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json)。 |
 | **BEAM Horizon** | 20問 (500K) / 48問 (Suite) | 500K トークン規模の超極限針探索 | **100.0% (20/20 at 500K)** | **100.0%** 針到達率 | 500,000 トークン規模で針の見落としゼロ（評価全スケールで針到達率100%）。 |
@@ -129,13 +129,13 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 
 | ベンチマーク区分 | 7B Reader (`qwen2.5:7b-instruct`) | 1.5B Reader (`qwen2.5:1.5b`) | Delta | 7B のみ正解 | 1.5B のみ正解 | McNemar 検定 ($p$ 値) | 科学的解釈 |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| **LoCoMo 1,540 (全問)** | **64.68% (996/1,540)** | **64.55% (994/1,540)** | +0.13pp | 133 | 131 | **$p = 0.9509$** | パラメータが約 4.7分の1 になっても統計的有意差は検出されず（差がある証拠なし）。 |
+| **LoCoMo 1,540 (全問)** | **65.26% (1,005/1,540)** | **65.19% (1,004/1,540)** | +0.06pp | 136 | 135 | **$p = 1.0000$** | パラメータが約 4.7分の1 になっても統計的有意差は検出されず（差がある証拠なし）。 |
 | **LongMemEval (500問)** | **81.60% (408/500)** | **80.00% (400/500)** | +1.60pp | 39 | 31 | **$p = 0.4030$** | 複数セッション推論 (Multi-session) は両モデルで 84.2% 完全一致。 |
 
 > [!CAUTION]
 > **モデル不変性に関する統計的厳密さについて**:  
 > 高い McNemar $p$ 値 ($p > 0.05$) は、完全なモデル非依存性を数学的に証明するものではなく、同一の凍結コンテキスト下において「性能差があるという十分な証拠が得られなかった」ことを意味します。実質的同等性を形式的に立証するには、同等マージンを設定した同等性検定（TOST）が必要です。  
-> しかしながら、1,540問中 863問で両モデルが同一正解し、413問で同一不正解であったという事実は、観測される正解精度の多くが Reader のパラメータ量ではなく**「Lethe が事前に決定論的にコンパイルした文脈の質」**に強く支配されていることを示す強力な経験的知見です。
+> しかしながら、1,540問中 869問で両モデルが同一正解し、400問で同一不正解であったという事実は、観測される正解精度の多くが Reader のパラメータ量ではなく**「Lethe が事前に決定論的にコンパイルした文脈の質」**に強く支配されていることを示す強力な経験的知見です。
 
 ### 正直な境界と未検証領域 (Honest Boundaries & Unverified Frontiers)
 - **フロンティア Reader によるスケール (120B / Gemini)**: 同一10問プローブでは Gemini Flash で 90.0% (9/10) を記録しましたが、「120B+ 級のモデルを接続すれば 1,540問全体で 100% になる」という主張は、計算資源・API予算を伴う実機検証を要する**現時点では未検証の仮説**です。
@@ -212,7 +212,7 @@ pip install -e ".[vector,llm]"
 ```
 
 > [!NOTE]
-> **パッケージアーキテクチャに関する注記**: 再現可能なベンチマークハーネスおよび 308 件の単体テストスイートとの完全な後方互換性を維持するため、内部 Python モジュールは `artificial_memory` パッケージとして構成され、ユーザー向け CLI バイナリおよびエントリポイントは `lethe` として提供されます。
+> **パッケージアーキテクチャに関する注記**: 再現可能なベンチマークハーネスおよび 328 件の単体テストスイートとの完全な後方互換性を維持するため、内部 Python モジュールは `artificial_memory` パッケージとして構成され、ユーザー向け CLI バイナリおよびエントリポイントは `lethe` として提供されます。
 
 ```bash
 # セッション開始
@@ -244,13 +244,13 @@ lethe timeline
 
 ```
 [V3 Apex (現在)] ─────────────► [V4 認知的拡張] ─────────────► [V5 フロンティア拡張 (Frontier Scale)]
-• 321件の単体テスト (100% 合格)  • 非時間暗黙的状態の自律救済        • フロンティア LLM (120B/Gemini/Claude)
+• 328件の単体テスト (100% 合格)  • 非時間暗黙的状態の自律救済        • フロンティア LLM (120B/Gemini/Claude)
 • LME Oracle Recall: 98.2%      • セッション間グラフ探索の拡張      • E2E ベンチマーク上限突破 (95%〜98%+)
 • Subsystem H (算術差分エンジン) • 目標: LME E2E > 90%                • 完全マルチエージェント Kubernetes メッシュ
 • LME E2E: 83.40% (+9問救済)    • LoCoMo Oracle Recall > 90%         • プロダクション自律メモリ標準
 ```
 
-- **V3 (現在: Apex Baseline)**: 三層分離診断標準を確立し、LongMemEval で Oracle Recall 98.2% を達成。新設の Subsystem H (`ArithmeticDifferenceEngine`) により偽拒絶 +9問を完全救済して E2E 83.40% を記録。LoCoMo の時間ターン選択（+8問純増）を最適化し、単体テストを 321件（総計 740件以上、100% ALL PASS）へ拡充。
+- **V3 (現在: Apex Baseline)**: 三層分離診断標準を確立し、LongMemEval で Oracle Recall 98.2% を達成。新設の Subsystem H (`ArithmeticDifferenceEngine`) により偽拒絶 +9問を完全救済して E2E 83.40% を記録。LoCoMo の時間ターン選択（+8問純増）を最適化し、単体テストを 328件（総計 740件以上、100% ALL PASS）へ拡充。
 - **V4 (次期: 認知的拡張 & 非時間暗黙状態の救済)**:
   - *非時間暗黙状態の自律救済*: 属性・所属などの暗黙的推論パターンを自律エンジンへ拡張し、残余の Reader 偽拒絶を撲滅、LongMemEval E2E **90%+** 超えを達成。
   - *セッション間グラフ探索の強化*: `ppr_graph` とエンティティ結合を強化し、LoCoMo Multi-Hop の Oracle Recall を 78.37% から **90%+** へ（全体 Oracle Recall も 80.65% から **90%+** へ）引き上げ。
@@ -265,7 +265,7 @@ lethe timeline
 すべての評価スクリプト、アダプター、およびスコアリングコードは完全に再現可能です：
 
 ```bash
-# 1. 完全単体テストスイートの実行 (321件, 100% 合格)
+# 1. 完全単体テストスイートの実行 (328件, 100% 合格)
 pytest tests/unit/
 
 # 2. 全公表ベンチマーク指標と生成果物（Provenance）の完全自動照合

@@ -2,7 +2,7 @@
   "tag": "temporal321_rules_commit_7b_postfix",
   "model": "qwen2.5:7b-instruct",
   "n_questions": 1540,
-  "overall_accuracy": 64.67532467532467,
+  "overall_accuracy": 65.25974025974025,
   "categories": {
     "Temporal": {
       "acc": 0.5015576323987538,
@@ -15,13 +15,13 @@
       "tot": 96
     },
     "Multi-Hop": {
-      "acc": 0.5,
-      "corr": 141,
+      "acc": 0.5390070921985816,
+      "corr": 152,
       "tot": 282
     },
     "Single-Hop": {
-      "acc": 0.7800237812128419,
-      "corr": 656,
+      "acc": 0.7776456599286563,
+      "corr": 654,
       "tot": 841
     }
   },
@@ -1160,7 +1160,7 @@
       "question": "What is Melanie's hand-painted bowl a reminder of?",
       "ground_truth": "art and self-expression",
       "prediction": "good connections and times",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1303,
       "latency_ms": 1750.2322000000277,
@@ -1520,7 +1520,7 @@
       "question": "What pets does Melanie have?",
       "ground_truth": "Two cats and a dog",
       "prediction": "A pup and a kitty.",
-      "is_correct": true,
+      "is_correct": false,
       "oracle_recall": false,
       "tokens": 1276,
       "latency_ms": 1800.7882999991125,
@@ -5480,7 +5480,7 @@
       "question": "How many turtles does Nate have?",
       "ground_truth": "Three",
       "prediction": "3",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 2798,
       "latency_ms": 3747.924499999499,
@@ -5600,7 +5600,7 @@
       "question": "How many screenplays has Joanna written?",
       "ground_truth": "three",
       "prediction": "3",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 2919,
       "latency_ms": 3629.930700000841,
@@ -7052,7 +7052,7 @@
       "question": "What are John's goals for his career that are not related to his basketball skills?",
       "ground_truth": "get endorsements, build his brand, do charity work",
       "prediction": "building his brand, giving something back",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1727,
       "latency_ms": 1981.796200001554,
@@ -9356,7 +9356,7 @@
       "question": "What is a shared frustration regarding dog ownership for Audrey and Andrew?",
       "ground_truth": "Not being able to find pet friendly spots.",
       "prediction": "finding dog-friendly spots to rent",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 1380,
       "latency_ms": 1946.7604999990726,
@@ -9548,7 +9548,7 @@
       "question": "What has Andrew done with his dogs?",
       "ground_truth": "Taking walks and hiking",
       "prediction": "taken them for a walk in the park",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 1243,
       "latency_ms": 2070.7897000029334,
@@ -12524,7 +12524,7 @@
       "question": "What symbolic gifts do Deborah and Jolene have from their mothers?",
       "ground_truth": "pendants",
       "prediction": "pendant, cat Max",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1369,
       "latency_ms": 2240.5332999987877,
@@ -12680,7 +12680,7 @@
       "question": "How many times has Jolene been to France?",
       "ground_truth": "two times",
       "prediction": "2",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 2854,
       "latency_ms": 4018.040999999357,
@@ -13448,7 +13448,7 @@
       "question": "What kind of professional activities does Jolene participate in to gain more experience in her field?",
       "ground_truth": "present work at virtual conference, attend workshops  and intern at firms",
       "prediction": "studying, attending workshops, networking, interning at a well-known engineering firm",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1355,
       "latency_ms": 2222.4892000012915,
@@ -14780,7 +14780,7 @@
       "question": "How many Prius has Evan owned?",
       "ground_truth": "two",
       "prediction": "2",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 3048,
       "latency_ms": 3971.9057000002067,
@@ -15392,7 +15392,7 @@
       "question": "What personal health incidents does Evan face in 2023?",
       "ground_truth": "heart palpitations, twisted ankle, twisted ankle",
       "prediction": "a sudden heart palpitation incident",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": true,
       "tokens": 1560,
       "latency_ms": 2304.386899999372,
@@ -17156,7 +17156,7 @@
       "question": "What shared activities do Dave and Calvin have?",
       "ground_truth": "Working on cars",
       "prediction": "jam session, car maintenance, music recording, photography",
-      "is_correct": false,
+      "is_correct": true,
       "oracle_recall": false,
       "tokens": 1417,
       "latency_ms": 2376.0423000021547,
@@ -18506,5 +18506,12 @@
       "latency_ms": 2175.8466999999655,
       "answer_source": "reader"
     }
-  ]
+  ],
+  "scorer_revision": "matcher-v2",
+  "rescoring": {
+    "matcher": "LoCoMoAdapter.score_binary",
+    "from_revision": "matcher-v1",
+    "tool": "scripts/rescore_locomo_run.py",
+    "note": "matcher-v1 artefacts contained ground-truth keyword branches and wiring-dependent stemming; matcher-v2 is generic and deterministic (see LoCoMoAdapter.score_binary docstring)"
+  }
 }

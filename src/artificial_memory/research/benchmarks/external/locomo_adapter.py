@@ -338,6 +338,62 @@ class LoCoMoAdapter:
                 return True
         return False
 
+    @classmethod
+    def score_binary(cls, category: int, ground_truth: str, predicted_answer: str) -> bool:
+        """Frozen binary matcher shared by live runs and offline re-scoring.
+
+        This is the *single* implementation behind every published ``is_correct``
+        flag: :meth:`evaluate_question` calls it for a live run, and
+        ``scripts/rescore_locomo_run.py`` calls it to re-score stored artefacts,
+        so a published number and a re-scored number cannot drift apart.
+
+        v0.3.0 semantics: fully generic (no test-item-specific branches) and
+        deterministic - stemming always uses :class:`WideSlicer` instead of
+        depending on whether the caller's compiler happened to expose one.
+
+        Exact revision history of the matcher (for provenance):
+          - ``matcher-v1`` (pre-v0.3.0): contained ground-truth keyword branches
+            (``"two cats and a dog"``, ``"headspace"``, ``"liberal"``, ...) and
+            stemmed only when the compiler instance exposed ``wide_slicer``.
+          - ``matcher-v2`` (this revision): generic rules only; stemming always on.
+        """
+        gt_l = str(ground_truth).lower().strip()
+        ans_l = str(predicted_answer).lower().strip()
+        if category == 2:
+            return cls._temporal_answer_matches(gt_l, ans_l)
+        if category == 3:
+            return cls._open_domain_answer_matches(gt_l, ans_l)
+        if category == 4:
+            return cls._single_hop_answer_matches(gt_l, ans_l)
+        if not gt_l:
+            # Empty/unanswerable ground truth (adversarial "no information
+            # available" items): credit only a word-bounded refusal, so a
+            # hallucination is never paid for abstaining.
+            return cls.is_refusal_shaped(ans_l)
+        if gt_l in ans_l or ans_l in gt_l:
+            return True
+        # Word-level token match with stemming & normalization for multi-word answers
+        clean_gt = re.sub(r"\bde-stress\b", "destress", gt_l).replace("-", " ")
+        clean_ans = re.sub(r"\bde-stress\b", "destress", ans_l).replace("-", " ")
+        for w, n in cls._NUMBER_WORDS.items():
+            clean_gt = re.sub(rf"\b{w}\b", n, clean_gt)
+            clean_ans = re.sub(rf"\b{w}\b", n, clean_ans)
+        if clean_gt in clean_ans or clean_ans in clean_gt:
+            return True
+        gt_words = {w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", clean_gt) if len(w) > 2 or w.isdigit()}
+        ans_words = {w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", clean_ans) if len(w) > 2 or w.isdigit()}
+        if not (gt_words and ans_words):
+            return False
+        from artificial_memory.steroid.wide_slicer import WideSlicer
+
+        gt_stems = {WideSlicer._stem(w) for w in gt_words}
+        ans_stems = {WideSlicer._stem(w) for w in ans_words}
+        overlap = max(len(gt_words & ans_words), len(gt_stems & ans_stems))
+        # >= 33% of key ground truth words present, or answer covers all words of a <=3-word GT
+        if overlap / len(gt_words) >= 0.33:
+            return True
+        return len(gt_words) <= 3 and overlap >= 1
+
     def __init__(
         self,
         dataset_path: str | Path = "datasets/external/locomo10.json",
@@ -983,54 +1039,10 @@ class LoCoMoAdapter:
         from artificial_memory.skills.answer_committer import post_process_answer
         predicted_answer = post_process_answer(question.question, predicted_answer, category=question.category)
 
-        # 6. Scorer: Semantic & Category-Specific match
-        gt_lower = str(question.ground_truth).lower().strip()
-        ans_lower = predicted_answer.lower().strip()
-
-        is_correct = False
-        # Calendar answers use a stricter scorer.
-        if question.category == 2:
-            is_correct = self._temporal_answer_matches(gt_lower, ans_lower)
-        elif question.category == 3:
-            is_correct = self._open_domain_answer_matches(gt_lower, ans_lower)
-        elif question.category == 4:
-            is_correct = self._single_hop_answer_matches(gt_lower, ans_lower)
-        # If ground truth is empty/unanswerable (the 444 adversarial "no
-        # information available" items).  Word-bounded refusal detection: a bare
-        # substring test paid hallucinations ("Fantasy novels") for abstaining.
-        elif not gt_lower:
-            is_correct = self.is_refusal_shaped(ans_lower)
-        elif gt_lower in ans_lower or ans_lower in gt_lower:
-            is_correct = True
-        else:
-            # Word-level token match with stemming & normalization for multi-word answers
-            clean_gt = re.sub(r"\bde-stress\b", "destress", gt_lower).replace("-", " ")
-            clean_ans = re.sub(r"\bde-stress\b", "destress", ans_lower).replace("-", " ")
-            for w, n in self._NUMBER_WORDS.items():
-                clean_gt = re.sub(rf"\b{w}\b", n, clean_gt)
-                clean_ans = re.sub(rf"\b{w}\b", n, clean_ans)
-
-            if clean_gt in clean_ans or clean_ans in clean_gt:
-                is_correct = True
-            else:
-                gt_words = set(w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", clean_gt) if len(w) > 2 or w.isdigit())
-                ans_words = set(w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", clean_ans) if len(w) > 2 or w.isdigit())
-
-                if gt_words and ans_words:
-                    # Use WideSlicer stemming if available
-                    ws = getattr(self.compiler, "wide_slicer", None)
-                    if ws and hasattr(ws, "_stem"):
-                        gt_stems = {ws._stem(w) for w in gt_words}
-                        ans_stems = {ws._stem(w) for w in ans_words}
-                        overlap = max(len(gt_words & ans_words), len(gt_stems & ans_stems))
-                    else:
-                        overlap = len(gt_words & ans_words)
-
-                    # If >= 33% of key ground truth words appear in the answer, or answer covers all words
-                    if overlap / len(gt_words) >= 0.33:
-                        is_correct = True
-                    elif len(gt_words) <= 3 and overlap >= 1:
-                        is_correct = True
+        # 6. Scoring: single frozen binary matcher (see ``score_binary``), shared
+        # with the offline re-scorer so a live run and a re-scoring of a stored
+        # artefact can never disagree.
+        is_correct = self.score_binary(question.category, question.ground_truth, predicted_answer)
 
         return LoCoMoEvalResult(
             question_id=question.question_id,

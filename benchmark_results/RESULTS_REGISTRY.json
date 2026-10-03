@@ -9,13 +9,14 @@
       "scope": 1540,
       "metric_name": "Binary Extraction Accuracy (is_correct)",
       "metric_type": "binary_accuracy",
-      "target_value": 64.68,
+      "target_value": 65.26,
       "tolerance": 0.05,
       "sample_count": 1540,
-      "correct_count": 996,
+      "correct_count": 1005,
       "artifact_path": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
       "json_path": "overall_accuracy",
-      "reproduce_command": "python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json"
+      "reproduce_command": "python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json",
+      "notes": "matcher-v2 (generic, deterministic) re-scoring of the frozen run; the matcher-v1 artefact recorded 64.68% (996/1540)"
     },
     {
       "id": "locomo_1540_holdout_binary_accuracy",
@@ -23,13 +24,14 @@
       "scope": 390,
       "metric_name": "Binary Extraction Accuracy (is_correct)",
       "metric_type": "binary_accuracy",
-      "target_value": 64.10,
+      "target_value": 65.38,
       "tolerance": 0.05,
       "sample_count": 390,
-      "correct_count": 250,
+      "correct_count": 255,
       "artifact_path": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
       "custom_eval": "holdout_convs",
-      "reproduce_command": "python scripts/benchmarks/score_locomo_run_json.py --results benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json"
+      "reproduce_command": "python scripts/rescore_locomo_run.py benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
+      "notes": "matcher-v2 re-scoring; matcher-v1 recorded 64.10% (250/390)"
     },
     {
       "id": "locomo_1540_dev_binary_accuracy",
@@ -37,13 +39,14 @@
       "scope": 1150,
       "metric_name": "Binary Extraction Accuracy (is_correct)",
       "metric_type": "binary_accuracy",
-      "target_value": 64.87,
+      "target_value": 65.22,
       "tolerance": 0.05,
       "sample_count": 1150,
-      "correct_count": 746,
+      "correct_count": 750,
       "artifact_path": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
       "custom_eval": "dev_convs",
-      "reproduce_command": "python scripts/benchmarks/score_locomo_run_json.py --results benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json"
+      "reproduce_command": "python scripts/rescore_locomo_run.py benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
+      "notes": "matcher-v2 re-scoring; matcher-v1 recorded 64.87% (746/1150)"
     },
     {
       "id": "locomo_1540_full_official_f1_postfix",
@@ -86,7 +89,7 @@
     },
     {
       "id": "locomo_temporal_cat2_committer",
-      "benchmark": "LoCoMo Temporal Cat 2 (Autonomous Committer)",
+      "benchmark": "LoCoMo Temporal Cat 2 (Committer - frozen run sweep)",
       "scope": 109,
       "metric_name": "Committer Precision (correct / claimed)",
       "metric_type": "precision",
@@ -96,7 +99,23 @@
       "correct_count": 77,
       "artifact_path": "benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json",
       "json_calc": "counts.commit_correct / counts.claimed * 100",
-      "reproduce_command": "python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json --claims benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json"
+      "reproduce_command": "python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json --claims benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json",
+      "notes": "Frozen sweep consistent with the deployed runs (the runs' answer_source marks exactly these claims); kept as the run-consistent record"
+    },
+    {
+      "id": "locomo_temporal_cat2_committer_current",
+      "benchmark": "LoCoMo Temporal Cat 2 (Committer - current revision sweep)",
+      "scope": 180,
+      "metric_name": "Committer Precision (correct / claimed)",
+      "metric_type": "precision",
+      "target_value": 68.89,
+      "tolerance": 0.05,
+      "sample_count": 180,
+      "correct_count": 124,
+      "artifact_path": "benchmark_results/committer_metrics/locomo_cat2_temporal_claims_current.json",
+      "json_calc": "counts.commit_correct / counts.claimed * 100",
+      "reproduce_command": "python scripts/benchmarks/recompute_committer_claims.py --out benchmark_results/committer_metrics/locomo_cat2_temporal_claims_current.json",
+      "notes": "Current committer revision applied offline to the frozen context cache (180 claims, superset of the frozen 109: 99 kept, 10 dropped, 71 added at ~68% precision)"
     },
     {
       "id": "longmemeval_oracle_recall",
@@ -201,13 +220,14 @@
       "scope": 282,
       "metric_name": "Binary Extraction Accuracy",
       "metric_type": "binary_accuracy",
-      "target_value": 50.00,
+      "target_value": 53.90,
       "tolerance": 0.05,
       "sample_count": 282,
-      "correct_count": 141,
+      "correct_count": 152,
       "artifact_path": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
       "custom_eval": "cat1",
-      "reproduce_command": "python scripts/benchmarks/three_layer_report.py --suite locomo1540"
+      "reproduce_command": "python scripts/benchmarks/three_layer_report.py --suite locomo1540",
+      "notes": "matcher-v2 re-scoring (+11 vs matcher-v1: number normalisation and deterministic stemming)"
     },
     {
       "id": "locomo_1540_cat2_temporal_accuracy",
@@ -243,13 +263,14 @@
       "scope": 841,
       "metric_name": "Binary Extraction Accuracy",
       "metric_type": "binary_accuracy",
-      "target_value": 78.00,
+      "target_value": 77.76,
       "tolerance": 0.05,
       "sample_count": 841,
-      "correct_count": 656,
+      "correct_count": 654,
       "artifact_path": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
       "custom_eval": "cat4",
-      "reproduce_command": "python scripts/benchmarks/three_layer_report.py --suite locomo1540"
+      "reproduce_command": "python scripts/benchmarks/three_layer_report.py --suite locomo1540",
+      "notes": "matcher-v2 re-scoring (-2 vs matcher-v1: the two questions only the removed ground-truth branches had credited)"
     },
     {
       "id": "locomo_1540_mcnemar_p_value",
@@ -257,12 +278,13 @@
       "scope": 1540,
       "metric_name": "Exact McNemar Test p-value",
       "metric_type": "p_value",
-      "target_value": 0.9509,
+      "target_value": 1.0000,
       "tolerance": 0.001,
       "sample_count": 1540,
       "artifact_path": "benchmark_results/model_sensitivity/locomo_cat2_temporal_system.json",
       "json_path": "mcnemar.p_exact_two_sided",
-      "reproduce_command": "python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json --claims benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json"
+      "reproduce_command": "python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json --claims benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json",
+      "notes": "matcher-v2 re-scoring of both arms: 65.26% (7B) vs 65.19% (1.5B), discordant 136/135"
     },
     {
       "id": "longmemeval_500_mcnemar_p_value",
