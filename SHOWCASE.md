@@ -1,9 +1,9 @@
-# Artificial Memory Showcase
+# Lethe-Akribeia Showcase
 
-Are you using **Artificial Memory** in production, a personal project, an autonomous agent, or academic research?  
+Are you using **Lethe-Akribeia** in production, a personal project, an autonomous agent, or academic research?  
 We would love to know and feature you here!
 
-**Artificial Memory を本番環境、個人プロジェクト、AIエージェント、研究などで利用されていますか？**  
+**Lethe-Akribeia を本番環境、個人プロジェクト、AIエージェント、研究などで利用されていますか？**  
 ぜひプロジェクトをこの Showcase に追加して、コミュニティに教えてください！
 
 ---
@@ -13,7 +13,7 @@ We would love to know and feature you here!
 You can easily register via **GitHub Issue** or a **Pull Request**:
 
 1. **Via Issue (Recommended / おすすめ)**:  
-   Open a [Showcase Registration Issue](https://github.com/Yato-Works/artificial-memory/issues/new?template=showcase.yml) with your details.
+   Open a [Showcase Registration Issue](https://github.com/Yato-Works/Lethe-Akribeia/issues/new?template=showcase.yml) with your details.
 2. **Via Pull Request**:  
    Add your entry to the list below following the format and submit a PR!
 
@@ -24,11 +24,11 @@ You can easily register via **GitHub Issue** or a **Pull Request**:
 
 ---
 
-## 🏢 Organizations & Projects Using Artificial Memory
+## 🏢 Organizations & Projects Using Lethe-Akribeia
 
 | Organization / Project | Category | Use Case | Link / Version |
 |---|---|---|---|
-| *Your Organization Here* | Enterprise / OSS / Research | *Brief description of how you use Artificial Memory* | [Link](https://github.com/) |
+| *Your Organization Here* | Enterprise / OSS / Research | *Brief description of how you use Lethe-Akribeia* | [Link](https://github.com/) |
 
 *(Be the first to add your project! / ぜひ最初の登録者になってください！)*
 
@@ -37,5 +37,5 @@ You can easily register via **GitHub Issue** or a **Pull Request**:
 ## 📋 Template for Pull Requests
 
 ```markdown
-| **Organization or Project** | Category | Short description of use case | [Link](url) (v0.1.0) |
+| **Organization or Project** | Category | Short description of use case | [Link](url) (v0.3.0) |
 ```

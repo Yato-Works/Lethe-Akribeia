@@ -1,13 +1,13 @@
-# Artificial Memory / Context Runtime — Technical Specification
+# Lethe-Akribeia — Technical Specification (v0.3.0)
 
-> **A Cognitive Memory Runtime for Persistent AI Systems**
+> **A Deterministic Cognitive Long-Term Memory Runtime for Persistent AI Systems**
 > *Forget by compression. Recall by resolution. Reason with provenance.*
 
 ---
 
 ## 🎯 Vision Statement
 
-Artificial Memory is not merely a "better RAG" — it is a **general-purpose cognitive memory runtime** that manages persistent AI memory throughout its entire lifecycle. It implements human-like memory with progressive compression, adaptive recall, temporal reasoning, and full provenance tracking.
+Lethe-Akribeia (formerly Artificial Memory) is not merely a "better RAG" — it is a **general-purpose cognitive memory runtime** that manages persistent AI memory throughout its entire lifecycle. It implements human-like memory with progressive compression, adaptive recall, temporal interval algebra, deterministic mathematical co-processors, and full provenance tracking back to verbatim conversational turns.
 
 ---
 
@@ -15,35 +15,33 @@ Artificial Memory is not merely a "better RAG" — it is a **general-purpose cog
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Artificial Memory                            │
-│         Cognitive Memory Runtime for Persistent AI             │
+│                    Lethe-Akribeia (v0.3.0)                     │
+│         Cognitive Memory Runtime for Persistent AI Systems      │
 ├─────────────────────────────────────────────────────────────────┤
-│  CLI          │  HTTP API        │  WebSocket  │  Web UI   │
+│  CLI (am/lethe)  │  HTTP REST API   │  WebSocket   │  Web UI    │
 ├─────────────────────────────────────────────────────────────────┤
 │                    Runtime Facade (Unified Entry Point)         │
 │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
-│  │   Recall    │ │   Context   │ │  Confidence │               │
-│  │   Runtime   │ │   Runtime   │ │   Engine    │               │
+│  │   Recall    │ │   Context   │ │ Autonomous  │               │
+│  │   Runtime   │ │ MSC Compiler│ │ Committer   │               │
 │  └─────────────┘ └─────────────┘ └─────────────┘               │
 ├─────────────────────────────────────────────────────────────────┤
-│                    Memory Compiler (10 Deterministic Stages)    │
+│           Protein Memory Compilation & Fuser Layer              │
 │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
-│  │  Lexical    │ │  Semantic   │ │  Fact/      │               │
-│  │  Analysis   │ │  Extraction │ │  Decision   │               │
-│  └─────────────┘ └─────────────┘ └─────────────┘               │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
-│  │  Episode    │ │  Temporal   │ │  Provenance │               │
-│  │  Construction│ │  Linking    │ │  Linking    │               │
+│  │ Conversat.  │ │   Session   │ │ Multi-Channel│               │
+│  │  IR Extract │ │    Fuser    │ │ Wide Slicer │               │
 │  └─────────────┘ └─────────────┘ └─────────────┘               │
 ├─────────────────────────────────────────────────────────────────┤
-│              Memory Evolution Layer                             │
+│           Deterministic Reasoning Engines (Zero-LLM)            │
 │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
-│  │Consolidation│ │Contradiction│ │   Belief    │               │
-│  │  Engine     │ │  Detection  │ │  Engine     │               │
+│  │ Subsystem A │ │ Subsystem B │ │ Subsystem C │               │
+│  │ Counting &  │ │  Temporal   │ │ Relational  │               │
+│  │ Aggregation │ │   Algebra   │ │  Traverser  │               │
 │  └─────────────┘ └─────────────┘ └─────────────┘               │
 │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐               │
-│  │   Healing   │ │ Dependency  │ │  Temporal   │               │
-│  │  (Integrity)│ │   Graph     │ │  Updates    │               │
+│  │ Subsystem H │ │ Linguistic  │ │ Polar/Event │               │
+│  │ Arithmetic  │ │  Precision  │ │  Verifier   │               │
+│  │  Difference │ │ Normalizer  │ │  (E & D)    │               │
 │  └─────────────┘ └─────────────┘ └─────────────┘               │
 ├─────────────────────────────────────────────────────────────────┤
 │                    IR Layer (Intermediate Representation)       │
@@ -51,7 +49,7 @@ Artificial Memory is not merely a "better RAG" — it is a **general-purpose cog
 │  │    Memory IR    │  │   Context IR    │                      │
 │  └─────────────────┘  └─────────────────┘                      │
 ├─────────────────────────────────────────────────────────────────┤
-│  SQLite  │  FAISS/pgvector  │  File Storage (Markdown/JSON)    │
+│  SQLite (Local)  │  PostgreSQL / pgvector  │  FAISS / Vectors  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -406,9 +404,16 @@ src/artificial_memory/
 - Integration tests with kind/k3s (in progress)
 - Production hardening (network policies, PDBs)
 
-### Phase 9+ — Future
+### Phase 9 — Deterministic Cognitive Memory & Autonomous Committer (v0.3.0) ✅
+- Zero-LLM Ingestion (Axiom 1: Write LLM = 0)
+- Protein Session Fuser & Multi-Channel Slicing
+- Deterministic Memory Engine (Subsystems A, B, C, D, E, F, G, H)
+- Linguistic Precision Normalizer (Axiom 2: Generalizable Normalization)
+- 720+ Automated Unit & Integration Tests (100% Deterministic Guarantee)
+
+### Phase 10+ — Future
 - Distributed consistency proofs
-- Cryptographic provenance
+- Cryptographic provenance chains
 - Neurosymbolic reasoning integration
 - Edge deployment optimization
 
@@ -429,15 +434,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, ground rules, test
 ## 📚 Citation
 
 ```bibtex
-@software{artificial-memory,
-  title = {Artificial Memory / Context Runtime},
-  subtitle = {A Cognitive Memory Runtime for Persistent AI Systems},
-  author = {Artificial Memory Project},
-  year = {2024},
-  url = {https://github.com/artificial-memory/artificial-memory}
+@software{lethe-akribeia,
+  title = {Lethe-Akribeia: Cognitive Memory Runtime},
+  subtitle = {A Deterministic Cognitive Long-Term Memory System for Persistent AI},
+  author = {Yato-Works and Contributors},
+  year = {2026},
+  url = {https://github.com/Yato-Works/Lethe-Akribeia}
 }
 ```
 
 ---
 
-*Built with ❤️ for the future of persistent AI cognition.*
+*Built with ❤️ for the future of persistent, grounded AI cognition.*

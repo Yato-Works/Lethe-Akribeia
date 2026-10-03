@@ -107,6 +107,18 @@ We do not present Lethe Akribeia as a universal SOTA system. Rather, we empirica
 > In LongMemEval (500 questions), Lethe missed the gold evidence in only 9 out of 500 questions (Oracle Recall 98.20%, 491/500). On those 491 hits, the 7B Reader answered 403 correctly (82.08% on hits), yielding a baseline End-to-End accuracy of 81.60% (408/500, with 92 initial misses, including 5 lucky guesses on retrieval misses). An error analysis of these initial misses revealed that 88 out of 92 (95.7%) had the required evidence present in the prompt, failing purely due to Reader false abstention ("I don't know" despite evidence present) or arithmetic errors in calendar math.  
 > By deploying Subsystem H (`ArithmeticDifferenceEngine`), 9 of these false refusals and arithmetic operations were deterministically resolved with 0 regression losses, increasing correct answers from 408/500 (81.60%) to 417/500 (83.40%).
 
+### 📊 Metric & Evaluation Scope Matrix (Disambiguation Table)
+
+To eliminate ambiguity across different benchmark documents, reports, and subsets, the table below provides a unified reference for all reported evaluation metrics:
+
+| Evaluation Slice | Scope ($N$) | Evaluation Purpose | Metric | Measured Result | Context & Protocol Reference |
+|:---|:---:|:---|:---:|:---:|:---|
+| **LoCoMo Full (Non-Adversarial)** | 1,540 Qs | Global end-to-end persistent memory benchmark | Official Token F1 | **64.68% (996/1,540)** | Full benchmark across all 10 long-term multi-session conversations. |
+| **LoCoMo Independent Holdout** | 308 Qs | Generalization validation (Held-out Conv 3 & 7) | Official Token F1 | **63.96% (197/308)** | Strictly isolated per [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml); never exposed to heuristic tuning. |
+| **LoCoMo Development Set** | 1,232 Qs | Development & iterative refinement (Conv 0,1,2,4,5,6,8,9) | Official Token F1 | **64.85% (799/1,232)** | Generalizes seamlessly to Holdout (63.96% vs 64.85%, no overfitting). |
+| **LoCoMo Hard-Smoke (Diagnostic)** | 60 Qs | Targeted stress-test on zero-baseline failure cohort | Official Token F1 | **99.54% (60/60)** | See [`report.md`](report.md); targeted diagnostic suite verifying autonomous arithmetic & committer. |
+| **LongMemEval (All 6 Capabilities)** | 500 Qs | Long-context multi-session memory retention | Official Accuracy | **83.40% (417/500)** | Full suite; baseline 81.60% + 9 rescued by deterministic Subsystem H. |
+| **BEAM Horizon** | 48 Qs | Extreme needle retrieval at 500K token scale | Needle Retrieval | **100.0% (48/48)** | 500,000 token horizon needle test; zero needle drop. |
 
 ---
 
