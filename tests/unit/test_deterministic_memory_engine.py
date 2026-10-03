@@ -241,11 +241,12 @@ def test_counting_engine_turtles() -> None:
     assert "three" in ans.answer.lower() or "3" in ans.answer
 
 
-def test_boolean_verifier_childhood_dog() -> None:
+def test_boolean_verifier_childhood_dog_abstains_without_polarity() -> None:
+    # "grow up with" is not proven by "my childhood dog" without a synonym
+    # bridge - the honest verdict is abstention, not a hardcoded Yes.
     ctx = "[D13:8 on 27 July, 2023] Audrey: That one is Max, my childhood dog. He had lots of energy and loved a game of fetch."
     ans = DeterministicMemoryEngine.resolve("Did Audrey and Andrew grow up with a pet dog?", ctx)
-    assert ans.used
-    assert ans.answer == "Yes"
+    assert not ans.used
 
 
 def test_boolean_verifier_apartment_moved() -> None:
@@ -273,11 +274,12 @@ def test_event_action_resolver_celebration() -> None:
     assert "making a delicious treat" in ans.answer
 
 
-def test_event_action_resolver_food_opinion() -> None:
+def test_event_action_resolver_food_opinion_abstains_without_topic_anchor() -> None:
+    # The opinion sentence never mentions the asked topic ("coconut milk ice
+    # cream"), so anchoring it would be a guess - abstain and let the reader.
     ctx = '[D3:6 on 7 February, 2022] Nate: Super good! It was rich and creamy - might be my new favorite snack!'
     ans = DeterministicMemoryEngine.resolve("What did Nate think of the coconut milk ice cream he made?", ctx)
-    assert ans.used
-    assert "rich and creamy" in ans.answer.lower()
+    assert not ans.used
 
 
 def test_event_action_resolver_received_letter() -> None:

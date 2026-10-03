@@ -110,16 +110,13 @@ class RelationalTraverser:
                     evidence_turn="",
                 )
 
-        # 4. Allergy lookup: "What is X allergic to?"
+        # 4. Allergy lookup: "What is X allergic to?" - each "allergic to ..."
+        #    mention across the person's turns contributes its items; the
+        #    accumulated union is the answer (allergies stack over a
+        #    conversation).  A hardcoded per-person list was MEASURED and
+        #    REJECTED: it memorizes one dialogue and misfires everywhere else.
         if "allergic to" in ql or "allerg" in ql:
-            if "joanna" in ql or ("reptiles" in context.lower() and "cockroaches" in context.lower()):
-                return CommittedAnswer(
-                    used=True,
-                    answer="most reptiles, animals with fur, cockroaches, dairy",
-                    source="autonomous_relational_traverser",
-                    confidence=0.98,
-                    detail="Joanna combined allergies",
-                )
+            found_items: list[str] = []
             for turn in turns:
                 if person and person not in turn.speaker.lower() and person not in turn.text.lower():
                     continue
@@ -128,15 +125,18 @@ class RelationalTraverser:
                     ans = m_all.group(1).strip()
                     ans = re.sub(r"\b(?:and|or)\b", ",", ans)
                     items = [w.strip() for w in ans.split(",") if w.strip()]
-                    ans_str = ", ".join(items)
-                    return CommittedAnswer(
-                        used=True,
-                        answer=ans_str,
-                        source="autonomous_relational_traverser",
-                        confidence=0.95,
-                        detail=f"extracted allergy: '{ans_str}'",
-                        evidence_turn=turn.text,
-                    )
+                    for it in items:
+                        if it and it not in found_items:
+                            found_items.append(it)
+            if found_items:
+                ans_str = ", ".join(found_items[:6])
+                return CommittedAnswer(
+                    used=True,
+                    answer=ans_str,
+                    source="autonomous_relational_traverser",
+                    confidence=0.95,
+                    detail=f"extracted allergy union: '{ans_str}'",
+                )
 
         return CommittedAnswer(used=False)
 

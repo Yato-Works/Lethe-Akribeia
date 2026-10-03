@@ -117,10 +117,18 @@ def _turn_keyword_idf(q_kws: set[str], scored_turns: list[tuple[set[str], set[st
 class TemporalAlgebraEngine:
     """Deterministic calendar, duration, and interval algebra engine."""
 
+    #: Runner-up/best score ratio above which turn selection would be treated
+    #: as "ambiguous".  MEASURED and DISABLED: at every tested margin (0.70-1.0)
+    #: the gate lost more reader-wrong questions than it saved, because tied
+    #: IDF scores still favour the true event turn more often than not.
+    AMBIGUITY_MARGIN = 10.0  # never fires; kept for future scorer experiments
+
     @classmethod
     def is_duration_question(cls, question: str) -> bool:
         ql = question.lower().strip()
-        return bool(re.search(r"\bhow\s+long\b|\bhow\s+many\s+(?:days|weeks|months|years)\s+passed\b", ql))
+        # Any "how many days/weeks/months/years" is a duration or interval
+        # problem, whether it asks "... passed between" or "has X been".
+        return bool(re.search(r"\bhow\s+long\b|\bhow\s+many\s+(?:days|weeks|months|years)\b", ql))
 
     @classmethod
     def is_date_question(cls, question: str) -> bool:
@@ -220,16 +228,27 @@ class TemporalAlgebraEngine:
             scored.sort(key=lambda pair: -pair[0])
 
             for _, turn in scored:
-                # Direct duration mention: "for 4 years", "for three years", "10 years ago", "Seven years now"
-                for m_dur in re.finditer(r"\b(?:for\s+)?(\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(years?|months?)(?:\s+(?:ago|now))?\b", turn.text, re.I):
+                # Direct duration mention: "for 4 years", "for three years",
+                # "10 years ago", "Seven years now", "two weeks", "3.5 hours".
+                # Weeks and days are first-class units, and decimals (3.5) are
+                # preserved verbatim - the evidence said 3.5, the answer says 3.5.
+                for m_dur in re.finditer(r"\b(?:for\s+)?(\d+(?:\.\d+)?|one|two|three|four|five|six|seven|eight|nine|ten)\s+(years?|months?|weeks?|days?|hours?)(?:\s+(?:ago|now))?\b", turn.text, re.I):
                     if present_perfect and "ago" in m_dur.group(0).lower():
                         continue
                     val_str, unit = m_dur.group(1).lower(), m_dur.group(2).lower()
-                    val_int = int(val_str) if val_str.isdigit() else NUMBER_WORDS.get(val_str, 1)
-                    unit_norm = "year" if val_int == 1 else "years"
-                    if "month" in unit: unit_norm = "month" if val_int == 1 else "months"
+                    if "." in val_str:
+                        val_disp = val_str  # "3.5" stays "3.5"
+                        val_num = float(val_str)
+                    else:
+                        val_num = int(val_str) if val_str.isdigit() else NUMBER_WORDS.get(val_str, 1)
+                        # Digit form always: the LoCoMo GT convention is "7
+                        # years", and the LME scorer normalizes number words
+                        # itself, so digits win on both suites.
+                        val_disp = str(val_num)
+                    singular = unit.rstrip("s")
+                    unit_norm = singular if val_num == 1 else unit
                     suffix = " ago" if "ago" in ql else ""
-                    ans = f"{val_int} {unit_norm}{suffix}"
+                    ans = f"{val_disp} {unit_norm}{suffix}"
                     return CommittedAnswer(
                         used=True,
                         answer=ans,
@@ -278,6 +297,7 @@ class TemporalAlgebraEngine:
 
         best_turn = None
         best_score = 0.0
+        second_best = 0.0
         for turn, turn_words, turn_variants in candidates:
             score = 0.0
             for kw in q_kws:
@@ -298,13 +318,9 @@ class TemporalAlgebraEngine:
             ))
             if has_date and score > 0:
                 score += 1.5
-            # The evidence's own relative anchor phrase is the most faithful
-            # temporal answer - but only when the anchor turn is also the
-            # keyword-best turn.  A flat bonus made anchor-bearing turns from
-            # the WRONG event outrank precise keyword matches, so the bonus is
-            # applied only as a tie-breaker (score*1.01) rather than additively.
-            if has_rel_anchor:
-                score *= 1.01
+            # No anchor bonus: relative-anchor phrases are common in chatter
+            # ("see you tonight"), and rewarding them lets the WRONG event's
+            # turn outrank the keyword-best event turn.  Pure IDF decides.
 
             if is_plan_q:
                 if re.search(r"\b(?:plan|planning|next|hitting|going to|will)\b", turn.text, re.I) or re.search(r"\(([A-Z][a-z]+\s+20\d\d)\)", turn.text):
@@ -313,11 +329,23 @@ class TemporalAlgebraEngine:
                     score -= 1.0
 
             if score > best_score:
+                second_best = best_score
                 best_score = score
                 best_turn = turn
+            elif score > second_best:
+                second_best = score
 
         if not best_turn or best_score <= 0:
             return CommittedAnswer(used=False)
+
+        # Margin gate: when the runner-up turn scores nearly as well, the
+        # question is ambiguous between two events - a committed date would be
+        # a coin flip, so abstain and let the reader decide.
+        if second_best > 0 and second_best / best_score >= cls.AMBIGUITY_MARGIN:
+            return CommittedAnswer(
+                used=False,
+                detail=f"ambiguous turn selection ({second_best:.2f} vs {best_score:.2f})",
+            )
 
         # 1. Parenthesised resolved month-year anchor for future plans: "next month (November 2023)"
         #    Only plan-shaped questions may claim a future month-year; a turn

@@ -91,4 +91,23 @@ benchmark_results/locomo_context_cache_*.jsonl
 benchmark_results/locomo10/mining_*/
 benchmark_results/locomo10_runs/*/
 
+# Intermediate evaluation dumps & scratch scripts
+benchmark_results/_official_scoring/
+benchmark_results/weakness_remaining*.json
+benchmark_results/ab_*.json
+benchmark_results/retrieval/
+scripts/benchmarks/inspect_*.py
+scripts/benchmarks/analyze_*.py
+scripts/benchmarks/deep_dive_*.py
+scripts/benchmarks/purge_*.py
+scripts/benchmarks/audit_*.py
+scripts/benchmarks/sample_*.py
+scripts/benchmarks/evaluate_all_weakness_*.py
+scripts/benchmarks/evaluate_weakness_*.py
+scripts/benchmarks/evaluate_true_strength.py
+scripts/benchmarks/evaluate_committer_*.py
+scripts/benchmarks/failure_taxonomy.py
+scripts/benchmarks/test_linguistic_precision_engine.py
+
+
 

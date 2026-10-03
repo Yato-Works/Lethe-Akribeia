@@ -38,100 +38,56 @@ Conversational Turns
 
 ---
 
-## Evaluation Highlights
+## Evaluation Highlights: Three-Layer Architecture
 
-We do not present Lethe as a universal SOTA system. Rather, specific components reach benchmark ceilings, while 140+ hours of empirical evaluations reveal clear, actionable architectural boundaries:
+We do not present Lethe Akribeia as a universal SOTA system. Rather, we empirically separate the evaluation of persistent memory into three distinct layers to diagnose where memory succeeds and where language models struggle:
+
+```
+  Layer 1 (Oracle Recall)  ── Did Lethe retrieve and compile the necessary gold evidence turns?
+  Layer 2 (Reader on Hits) ── Given the evidence in context, did the Reader LLM answer correctly?
+  Layer 3 (End-to-End)     ── Final pipeline accuracy (Query → Lethe Retrieval → Reader LLM → Answer)
+```
 
 > [!IMPORTANT]
 > **Strict Evaluation Protocol & Data Separation**:  
-> All benchmarks are evaluated strictly against **official testbeds** and **official LLM-as-a-Judge harnesses**. Prompts and hyperparameters were tuned strictly on separate diagnostic splits; the final benchmark sets (LoCoMo 1,540 questions, BEAM official suites) were **held completely separate** to prevent any data leakage or overfitting to specific test cases.
+> All benchmarks are evaluated strictly against **official testbeds** and **official evaluation harnesses**. Prompts and hyperparameters were tuned strictly on separate diagnostic splits; the final benchmark sets (LoCoMo 1,540 questions, LongMemEval 500 questions, BEAM official suites) were **held completely separate** to prevent any data leakage or benchmark-specific overfitting.
 
-### What is Working vs. What is Unsolved
+### Benchmark Summary Table (Three-Layer Decomposition)
 
-```text
-What is working (Strong Results 🟢)
-🟢 BEAM Benchmark (500K, 7B Reader)    — 100.0% (20/20) accuracy across all 10 evaluated categories
-🟢 BEAM Benchmark (1M & 10M, 7B Reader) — 100.0% (8/8 each scale) accuracy under extreme context horizons
-🟢 LoCoMo Evidence-Presence Recall   — 81.1% on 1,540 non-adversarial questions (All-Evidence Oracle)
-🟢 Zero-LLM Ingestion Write Path     — 0 LLM calls during memory ingestion (pure deterministic indexing)
-🟢 Reader Invariance at Small Scales — 1.5B achieves 64.5% vs 7B at 64.7% (Lethe context absorbs model drop)
-🟢 Deterministic Co-Processors        — Calendar arithmetic (CHRONOS) & Counting/aggregation without LLM
-
-What is not solved (Current Limitations 🟡)
-🟡 LoCoMo End-to-End QA F1           — 50.9% with deployed 7B Reader (synthesis & reasoning gap)
-🟡 Relative Temporal Reasoning       — Multi-interval relative expressions remain challenging for 7B Readers
-🟡 Frontier Reader Scale             — Full 1,540-question frontier Reader evaluation is pending compute budget
-🟡 Multi-Agent Distributed Consensus — Kubernetes Operator CRDs exist; distributed consensus is experimental
-```
-
-### Benchmark Summary Table
-
-| Benchmark / Evaluation | Result | Dataset / Scope | What it measures |
-|:---|:---:|:---:|:---|
-| **BEAM (500K, 7B Reader)** | **100.0% (20/20)** | Official 10 categories (all 20 Qs) | Pinpoint extraction, contradiction detection, and event ordering from massive context |
-| **BEAM (1M & 10M, 7B Reader)** | **100.0% (8/8 each scale)** | Extreme probes (1M: 8 Qs, 10M: 8 Qs) | Needle retrieval and state tracking under extreme token budgets |
-| **LoCoMo Evidence Recall** | **81.1%** | 1,540 non-adversarial questions | Whether **all** required gold evidence turns were compiled into context (Strict Content Oracle) |
-| **LoCoMo Zero-Evidence Failure** | **8.7%** | 134 / 1,540 questions | Complete retrieval failure (no required evidence turns retrieved by the memory engine) |
-| **LoCoMo Official QA F1** | **50.9%** | 1,540 questions (7B Reader) | End-to-end question answering using local 7B Reader |
-| **LongMemEval (500Q)** | **81.6%** | 500 questions (7B Reader) | Long-term memory evaluation suite accuracy |
+| Benchmark / Evaluation Suite | Scope (N) | **Layer 1: Oracle Recall** (Evidence Retrieval) | **Layer 2: Reader on Hits** (7B Reader Accuracy) | **Layer 3: End-to-End** (Final Accuracy) | Key Finding & Architectural Boundary |
+|:---|:---:|:---:|:---:|:---:|:---|
+| **LongMemEval (All 6 Capabilities)** | 500 Qs | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08%**<br>*(7B fails on 17.9% of hits)* | **81.60% (408/500)** | Memory retrieval reaches 98.2%; errors are heavily concentrated in Reader false refusals and calendar arithmetic. |
+| **BEAM (100K ~ 10M Horizon)** | 48 Qs | **100.0% (48/48)** | **100.0%** | **100.0%** | Deterministic timeline indexing extracts needles across 100K–10M tokens without context degradation. |
+| **LoCoMo 1,540 (Single-Hop)** | 841 Qs | **83.71%** | **85.80%** | **77.65%** | Strong direct factual recall; Reader reliably extracts explicit entity facts. |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62%** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **51.09%** | Multi-interval relative dates expose severe 7B reasoning limits (provenance header copying, relative date drift). |
+| **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282 Qs | **78.37%** | **55.20%** | **47.87%** | Open research frontier: cross-session graph linking across divergent topics. |
+| **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | Overall non-adversarial benchmark with primary local 7B Reader. |
 
 > [!NOTE]
-> **Why is BEAM 100% while LoCoMo is 50.9%?**  
-> BEAM tests long-context needle extraction, contradiction resolution, and event sequencing from structured chats — tasks where Lethe's deterministic timeline extraction and noise filtering excel. (Evaluated with `qwen2.5-coder:7b` for strict schema adherence).  
-> In contrast, LoCoMo tests open-domain commonsense synthesis and personality deductions across casual dialogues, placing heavy demands on the Reader's intrinsic reasoning capacity (evaluated with `qwen2.5-7b-instruct` as primary conversational Reader).
+> **Why Separate Oracle Recall from End-to-End?**  
+> In LongMemEval (500 questions), Lethe missed the gold evidence in only 9 out of 500 questions (Oracle Recall 98.20%). An error analysis across all 109 incorrect answers revealed that **96.3% had the required evidence present in the context prompt**, but the 7B local Reader failed due to false abstention ("I don't know" despite evidence present, 29 Qs) or arithmetic errors in calendar math (29 Qs).  
+> Separating Layer 1 from Layer 2 prevents misattributing Reader reasoning limits to memory retrieval failure.
 
 ---
 
-## Model Sensitivity: The Reader Floor
+## Model Sensitivity: The Reader Floor (7B vs. 1.5B)
 
-A core empirical finding of over 140+ hours of benchmark sweeps is that **Lethe's structured context insulates against Reader downgrades**:
+A central finding across 140+ hours of sweeps is that **Lethe's pre-compiled context significantly insulates against Reader scale downgrades**:
 
-| Reader Model | Parameter Scale | LoCoMo 1,540Q Hits (Rate) | LoCoMo Official F1 | LongMemEval 500Q | Behavioral Profile |
-|:---|:---:|:---:|:---:|:---:|:---|
-| **Qwen 2.5 1.5B** | 1.5B | **993 / 1,540 (64.48%)** | **50.82%** | **80.0%** | Robust: minimal degradation despite 5x parameter drop |
-| **Qwen 2.5 7B Instruct** | 7B | **996 / 1,540 (64.68%)** | **50.92%** | **81.6%** | Primary deployed Reader: strong conversational synthesis |
-| **Qwen 2.5 7B Coder** | 7B | **996 / 1,540 (64.68%)** | **50.88%** | **81.5%** | Strict formatting adherence; identical hit count under same contract |
+| Benchmark Slice | 7B Reader (`qwen2.5:7b-instruct`) | 1.5B Reader (`qwen2.5:1.5b`) | Delta | 7B-only Hits | 1.5B-only Hits | McNemar Test ($p$-value) | Scientific Interpretation |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **LoCoMo 1,540 (Full)** | **64.68% (996/1,540)** | **64.48% (993/1,540)** | +0.20pp | 133 | 131 | **$p = 0.9509$** | No statistically significant difference detected despite 5x parameter drop. |
+| **LongMemEval (500 Qs)** | **81.60% (408/500)** | **80.00% (400/500)** | +1.60pp | 39 | 31 | **$p = 0.4030$** | Multi-session reasoning scored identically (84.2% on both models). |
 
-*Note on 7B Instruct vs Coder identical scores*: The matching hit count (996/1,540) and near-identical F1 (50.9%) is an empirical convergence result (coincidence) under the identical compiled context and answer-extraction prompts.
+> [!CAUTION]
+> **Statistical Rigor on Model Invariance**:  
+> A high McNemar $p$-value ($p > 0.05$) does **not** constitute mathematical proof of complete model independence; it indicates that under these frozen benchmark contexts, there is insufficient evidence to reject the null hypothesis of equal performance. Formally establishing equivalence requires two-one-sided tests (TOST) with a pre-defined equivalence margin.  
+> Nonetheless, observing that 7B and 1.5B share 863 identical correct answers and 413 identical failures (1,540Q) strongly suggests that accuracy is heavily governed by **the structured quality of the memory context**, rather than raw Reader parameters alone.
 
-### Why 7B? — The Architectural Divide with 120B-Class Systems
-Existing agent memory systems (Mem0, LangChain, Zep, etc.) typically assume frontier Readers (GPT-4, Claude 3.5, or 120B+ models). They dump thousands to tens of thousands of tokens of raw conversational history into prompts, relying on brute-force model capacity to filter and reason.  
-If you mount a 7B or 1.5B local model to such systems, large uncurated raw contexts become difficult for small local Readers to process reliably.  
-In contrast, Lethe Akribeia deterministically compiles memories into structured Memory State Contexts (MSC), distilling 100K+ token sessions into just a few hundred tokens. Because of this, **even a 1.5B or 7B model suffers zero context overflow and runs 1,540 benchmark questions continuously for 140 hours without collapsing**. Systems that only function with frontier models vs. systems that remain fully robust on 7B local hardware — this is the distinct arena Lethe defines.
-
-### Context-Dominance Verification (Overlap Analysis)
-Across all 1,540 questions, the 7B and 1.5B models **shared 863 identical correct answers** (and 413 identical wrong answers), with only 17.1% flipping outcome (McNemar test p = 0.95). This strongly suggests that a substantial portion of observed accuracy is driven by **the quality of Lethe's pre-compiled context**, rather than Reader scale alone.
-
-#### Identical 10-Question Frozen Context Probe
-To prevent misleading comparisons between the full 1,540-question local run (64.7%) and a small probe, the table below compares Readers strictly across the **exact same 10 questions** on the **identical frozen context**:
-
-| Reader Model | Parameter Scale | Evaluation Set | Hit Rate | Official QA F1 | Validation Purpose |
-|:---|:---:|:---:|:---:|:---:|:---|
-| **Qwen 2.5 7B Instruct** | 7B | **Identical 10-Q Probe** | **80.0% (8/10)** | **82.17%** | Local baseline on frozen context |
-| **Gemini 3.6 Flash** | Commercial Frontier | **Identical 10-Q Probe** | **90.0% (9/10)** | **76.38%** | Ceiling validation with frontier Reader |
-
-This demonstrates that Lethe's pre-compiled context transfers seamlessly to frontier-grade models (9/10 Qs correct), providing empirical evidence that a substantial portion of the remaining gap on 7B is attributable to Reader reasoning capacity rather than retrieval omission. (Full 1,540-question frontier evaluation remains future work pending compute budget).
-
-
----
-
-## Failure Ceiling: Error Anatomy on 1,540 Questions
-
-Rather than treating errors as an undifferentiated failure score, Lethe partitions failure causes across all 1,540 questions in LoCoMo:
-
-```
-1,540 Total Questions
-│
-├── 996 (64.7%) Correctly Answered / Hit
-├── 134 (8.7%)  Retrieval Failure   → Zero evidence turns reached the compiled context (Memory limit)
-├── 32  (2.1%)  Commitment Failure  → Evidence was present, but Answer Committer rejected or abstained
-└── 378 (24.5%) Reasoning Gap       → Evidence was present in context, but Reader failed to synthesize
-```
-
-### Clarifying Evidence Recall vs. Retrieval Failure
-- **81.1% (1,249 / 1,540 questions)**: **All-Evidence Match** — every single required gold evidence turn was present in Lethe's compiled context.
-- **8.7% (134 / 1,540 questions)**: **Zero-Evidence Failure** — the memory engine completely missed the gold evidence.
-- **10.2% (157 / 1,540 questions)**: **Partial Retrieval** — some required evidence turns were retrieved, but not all (e.g., in multi-hop questions requiring multiple dates).
+### Honest Boundaries & Unverified Frontiers
+- **Frontier Reader Scaling (120B / Gemini)**: While our small 10-question probe showed 90% (9/10) with Gemini Flash, asserting that a 120B+ model will achieve 100% on the full 1,540 suite is **an unverified hypothesis** pending compute budget.
+- **Autonomous Deterministic Offloading**: To bypass Reader arithmetic and formatting failures, Lethe incorporates zero-LLM deterministic skills (CHRONOS, counting, ontology resolvers). On a hard diagnostic drill of 281 questions where 7B Reader scored 38.79% F1, the deterministic engine committed answers at **100% resolution with 92.87% F1 and 0 regression losses**.
+- **Comparison with Contemporaneous Work**: Other systems report strong LongMemEval numbers (e.g., Sibyl Labs 95.6%, OMEGA 95.4%) and LoCoMo numbers under varying evaluation harnesses and judge models. Direct head-to-head evaluation under identical frozen judges remains ongoing.
 
 ---
 

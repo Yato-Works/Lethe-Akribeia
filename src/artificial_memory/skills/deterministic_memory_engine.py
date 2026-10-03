@@ -64,12 +64,6 @@ class DeterministicMemoryEngine:
         if not turns:
             return CommittedAnswer(used=False, detail="no parsed turns in context")
 
-        # 1. Subsystem F: Temporal Anchor Resolver (Pinpoint Event Dates, Relative Days, Anchors)
-        if TemporalAnchorResolver.is_temporal_anchor_question(question) or "months passed" in question.lower():
-            ans_temp = TemporalAnchorResolver.resolve_temporal_anchor(question, turns, context)
-            if ans_temp.used and not _is_garbage_answer(ans_temp.answer):
-                return ans_temp
-
         # 2. Subsystem B: Temporal Algebra (Duration / Interval passed)
         if TemporalAlgebraEngine.is_duration_question(question):
             ans = TemporalAlgebraEngine.resolve_duration(question, turns, context)
@@ -81,6 +75,15 @@ class DeterministicMemoryEngine:
             ans = TemporalAlgebraEngine.resolve_date(question, turns, context)
             if ans.used:
                 return ans
+
+        # 3b. Subsystem F: Temporal Anchor Resolver - fills only what B left
+        #     open ("yesterday" against the turn's own timestamp).  Running it
+        #     after B matters: its relative-day words ("tonight", "today") are
+        #     too common to lead a date question.
+        if TemporalAnchorResolver.is_temporal_anchor_question(question):
+            ans_temp = TemporalAnchorResolver.resolve_temporal_anchor(question, turns, context)
+            if ans_temp.used and not _is_garbage_answer(ans_temp.answer):
+                return ans_temp
 
         # 3. Subsystem A: Counting & Cardinality (How many, count, frequency)
         if CountingEngine.is_counting_question(question):

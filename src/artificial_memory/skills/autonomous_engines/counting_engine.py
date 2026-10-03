@@ -4,13 +4,18 @@ Guarantees:
 - Deterministic extraction of entity counts and action frequencies.
 - Multi-turn enumeration and set aggregation for plural categories.
 - Distinct-session event counting (e.g. times taken on walk, tournaments won).
-- Temporal "as of [Date]" state counting.
 - 0 LLM calls, 100% deterministic arithmetic.
 
 Integrity rule: every count is derived from evidence in the context.  A branch
 that cannot prove its number from the evidence abstains - no branch returns a
 hardcoded number keyed on question keywords (entity names, months, conversation
 ids), because that is memorization, not memory.
+
+Session-scope rule: a numeral inside a single-session context IS the total; a
+numeral inside a multi-session context is one session's partial and only
+commits when the evidence states a standing total ("I have 8", "in total").
+Measure-unit targets ("how many hours/pages/points") are session sums and are
+never answered by grabbing a single sentence's numeral.
 """
 
 from __future__ import annotations
@@ -57,6 +62,23 @@ STOPWORDS = {
     "you", "your", "i", "me", "my", "we", "us", "our", "not", "no", "yes",
 }
 
+#: Targets whose count is a SUM over sessions, never a single sentence's
+#: numeral.  "How many hours did I spend..." aggregates; "I spent 3 hours
+#: swimming" is one session's share.
+_MEASURE_UNITS = {
+    "hour", "day", "week", "month", "year", "minute", "second",
+    "page", "point", "dollar", "cent", "mile", "meter", "kilometer", "km",
+    "degree", "percent", "lap", "step", "calorie",
+}
+
+#: Frames that mark a standing total rather than one session's event.
+_STATIVE_FRAME = re.compile(
+    r"\b(?:in\s+total|altogether|all\s+together|in\s+all)\b"
+    r"|"
+    r"\b(?:have|has|own|owns)\s+(?:now\s+|currently\s+|exactly\s+|about\s+|around\s+)?\w*\s{0,1}",
+    re.IGNORECASE,
+)
+
 #: Frequency words whose co-occurrence in one sentence ("once or twice a year")
 #: marks an ambiguous range - the honest move is to abstain and let the reader
 #: decide, because picking either bound is a coin flip.
@@ -66,7 +88,6 @@ _FREQUENCY_RANGE = re.compile(
     re.IGNORECASE,
 )
 
-
 #: First words that mark a demonstrative/pronoun phrase rather than a countable
 #: object - "playing this game", "watching that one" name nothing.
 _ENUM_OBJECT_BLOCKLIST = {
@@ -74,6 +95,11 @@ _ENUM_OBJECT_BLOCKLIST = {
     "them", "him", "her", "us", "me", "you", "everything", "something",
     "anything", "nothing", "again", "too", "very", "all", "both", "each",
 }
+
+#: Nouns that mark a sentence as being about animals, so that "named X"
+#: captures are pets rather than people or places.
+_PET_NOUNS = ("dog", "cat", "turtle", "turtles", "bird", "fish", "hamster",
+              "rabbit", "puppy", "kitten", "pet", "pets", "goldfish")
 
 
 def _word_stem(word: str) -> str:
@@ -91,11 +117,15 @@ class CountingEngine:
     @classmethod
     def is_counting_question(cls, question: str) -> bool:
         ql = question.lower().strip()
-        if re.search(r"\bhow\s+many\s+(?:days|weeks|months|years)\s+passed\b", ql):
+        # Duration problems belong to the temporal engine, not to cardinality:
+        # "how many days passed", "how much time", "how many years has X been".
+        if re.search(r"\bhow\s+many\s+(?:days|weeks|months|years)\b", ql):
+            return False
+        if re.search(r"\bhow\s+much\s+(?:time|longer)\b", ql):
             return False
         return bool(
-            re.search(r"^(?:how\s+many|how\s+much|how\s+long|how\s+often|total\s+number\s+of|count\s+of)\b", ql)
-            or re.search(r"\b(?:how\s+many|how\s+much|how\s+long|how\s+often)\b", ql)
+            re.search(r"^(?:how\s+many|how\s+much|how\s+often|total\s+number\s+of|count\s+of)\b", ql)
+            or re.search(r"\b(?:how\s+many|how\s+much|how\s+often)\b", ql)
         )
 
     @classmethod
@@ -104,7 +134,8 @@ class CountingEngine:
         return bool(re.search(
             r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+|are\s+|is\s+)?[a-z\s']*\b"
             r"(activities|hobbies|books|movies|recipes|items|pets|symbols|places|events|classes|groups|"
-            r"screenplays|(?:video\s+)?games|shows|writings|sports|instruments|songs|artists|bands)\b",
+            r"screenplays|(?:video\s+)?games|shows|writings|sports|instruments|songs|artists|bands|"
+            r"dogs|cats|turtles|puppies|pups)\b",
             ql,
         ))
 
@@ -114,38 +145,33 @@ class CountingEngine:
         ql = question.lower()
         person = cls._extract_person(question, turns)
         q_kws = cls._extract_keywords(question)
+        freq_q = "how many times" in ql or "how often" in ql
 
-        # 0. Frequency questions: "How often does X do Y?"
-        if "how often" in ql:
-            for turn in turns:
-                if person and person not in turn.speaker.lower() and person not in turn.text.lower():
-                    continue
-                turn_words = set(re.findall(r"\b[a-zA-Z]{3,}\b", turn.text.lower()))
-                if not (q_kws & turn_words):
-                    continue
-                t_lower = turn.text.lower()
-                m_freq_phrase = re.search(
-                    r"\b(multiple\s+times\s+a\s+day|once\s+or\s+twice\s+a\s+year|once\s+or\s+twice\s+a\s+month|"
-                    r"once\s+a\s+(?:week|month|year)|twice\s+a\s+(?:day|week|month|year)|"
-                    r"every\s+couple\s+(?:of\s+)?(?:days|weeks|months))\b",
-                    t_lower,
-                )
-                if m_freq_phrase:
-                    ans = m_freq_phrase.group(1)
-                    if ans == "multiple times a day":
-                        ans = "Multiple times a day"
-                    return CommittedAnswer(
-                        used=True,
-                        answer=ans,
-                        source="autonomous_counting_engine",
-                        confidence=0.95,
-                        detail=f"found frequency phrase: {ans}",
-                    )
+        # Session scope: a single-session context makes one numeral the total;
+        # a multi-session context makes it a partial unless a total is stated.
+        n_sessions = len({t.header_date for t in turns if t.header_date})
+        single_session = n_sessions <= 1
 
-        # 1. Distinct-session activity counting: "How many times has X taken his
-        #    turtles on a walk?" - a session is one turn whose text mentions the
-        #    question's activity keywords; sessions are counted by turn id.
-        if "how many times" in ql:
+        # 1. Distinct-session event counting.  Two triggers:
+        #    - event-shaped count questions ("how many ... have made it to ..."),
+        #    - frequency questions ONLY after the explicit-frequency branch
+        #      below fails: an evidence-stated "twice a week" outranks counting
+        #      mention-sessions, which overcount whenever the topic recurs.
+        #      State-count questions ("how many X does Y have") never take this
+        #      path - counting mention-sessions would fabricate a total.
+        event_shaped = bool(re.search(
+            r"\b(?:made\s+it|appeared|performed|happened|visited|attended|been\s+to|went\s+to|shown)\b", ql))
+        # For frequency questions, an evidence-stated "twice a week" outranks
+        # counting mention-sessions (which overcount when the topic recurs):
+        # if any turn already states an explicit frequency, leave it to the
+        # frequency-mention branch below.
+        explicit_freq_exists = False
+        if freq_q:
+            for t in turns:
+                if re.search(r"\b(once|twice|three\s+times|four\s+times|five\s+times)\b", t.text, re.I):
+                    explicit_freq_exists = True
+                    break
+        if event_shaped or (freq_q and not explicit_freq_exists):
             topic_kws = {k for k in q_kws if len(k) > 2}
             if topic_kws:
                 need = min(2, len(topic_kws))
@@ -168,10 +194,12 @@ class CountingEngine:
                         detail=f"counted {c} distinct activity sessions: {sorted(sessions)}",
                     )
 
-        # 2. Direct frequency mention in turns.  A range ("once or twice a year")
-        #    is ambiguous: abstain from that turn rather than guess a bound.
-        if "how many times" in ql:
-            for turn in turns:
+        # 2. Direct frequency mention in turns, most recent first - habits
+        #    change over a conversation ("used to be weekly, now every other
+        #    week"), and the CURRENT frequency is the answer.  A range ("once
+        #    or twice a year") is ambiguous: abstain from that sentence.
+        if freq_q:
+            for turn in reversed(turns):
                 if person and person not in turn.speaker.lower() and person not in turn.text.lower():
                     continue
                 turn_words = set(re.findall(r"\b[a-zA-Z]{3,}\b", turn.text.lower()))
@@ -192,191 +220,24 @@ class CountingEngine:
                     elif "three" in f_word: ans = "three times, 3"
                     elif "four" in f_word: ans = "four times, 4"
                     else: ans = f_word
-        # 2b. Big screen adaptations: "How many of Joanna's writing have made it to the big screen?"
-        if "big screen" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="two",
-                source="autonomous_counting_engine",
-                confidence=0.98,
-                detail="Joanna had 2 screenplays on the big screen",
-            )
-
-        # 2c. Turtles count: "How many turtles does Nate have?"
-        if "turtle" in ql:
-            if "how long" in ql and ("first two" in ql or "two turtles" in ql):
-                return CommittedAnswer(
-                    used=True,
-                    answer="three years",
-                    source="autonomous_counting_engine",
-                    confidence=0.95,
-                    detail="Nate had first two turtles for three years",
-                )
-            if "how many times" in ql and "walk" in ql:
-                return CommittedAnswer(
-                    used=True,
-                    answer="Twice.",
-                    source="autonomous_counting_engine",
-                    confidence=0.95,
-                    detail="Nate took turtles on walk twice",
-                )
-            if "how many" in ql:
-                return CommittedAnswer(
-                    used=True,
-                    answer="three, 3",
-                    source="autonomous_counting_engine",
-                    confidence=0.98,
-                    detail="Nate has three turtles",
-                )
-
-        # 2c-2. Rejected scripts: "How many times has Joanna's scripts been rejected?"
-        if "script" in ql and "reject" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="Twice",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Joanna scripts rejected twice",
-            )
-
-        # 2c-3. Found hiking trails: "How many times has Joanna found new hiking trails?"
-        if "hiking trail" in ql or ("hiking" in ql and "trail" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="twice",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Joanna found hiking trails twice",
-            )
-
-        # 2c-4. Tournaments Nate won: "How many tournaments has Nate won?"
-        if "tournament" in ql and ("won" in ql or "win" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="seven",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Nate won seven tournaments",
-            )
-
-        # 2c-5. Caroline friends duration: "How long has Caroline had her current group of friends for?"
-        if "caroline" in ql and "friend" in ql and "how long" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="4 years",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Caroline had friend group for 4 years",
-            )
-
-        # 2c-6. Caroline 18th birthday duration: "How long ago was Caroline's 18th birthday?"
-        if "caroline" in ql and "18th" in ql and "birthday" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="10 years ago",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Caroline 18th birthday was 10 years ago",
-            )
-
-        # 2c-7. Plan to hike together: "How many times did Audrey and Andew plan to hike together?"
-        if ("audrey" in ql or "andrew" in ql) and "hike together" in ql and ("plan" in ql or "how many times" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="three times",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Audrey and Andrew planned to hike together three times",
-            )
-
-        # 2d. Letters received: "How many letters has Joanna recieved?"
-        if "letter" in ql and ("receive" in ql or "got" in ql or "recieved" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="Two",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Joanna received two letters",
-            )
-
-        # 2e. Screenplays written: "How many screenplays has Joanna written?"
-        if "screenplay" in ql and ("written" in ql or "write" in ql or "completed" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="three",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Joanna has written three screenplays",
-            )
-
-        # 2f. Tournaments participated in: "How many video game tournaments has Nate participated in?"
-        if "tournament" in ql and ("participat" in ql or "entered" in ql or "compet" in ql or "played" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="nine",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Nate participated in nine tournaments",
-            )
-
-        # 2g. Marriage duration: "How long have Mel and her husband been married?"
-        if "married" in ql and ("long" in ql or "year" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="Mel and her husband have been married for 5 years.",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Mel and husband married 5 years",
-            )
-
-        # 2h. Andrew pets timeline: "How many pets will Andrew have, as of December 2023?" / "September 2023"
-        if "pet" in ql and "andrew" in ql and "as of" in ql:
-            if "december" in ql:
-                return CommittedAnswer(
-                    used=True,
-                    answer="three",
-                    source="autonomous_counting_engine",
-                    confidence=0.95,
-                    detail="Andrew has three pets as of December 2023",
-                )
-            if "september" in ql:
-                return CommittedAnswer(
-                    used=True,
-                    answer="one",
-                    source="autonomous_counting_engine",
-                    confidence=0.95,
-                    detail="Andrew has one pet as of September 2023",
-                )
-
-        # 2i. Time since Andrew adopted first pet as of November 2023:
-        if "andrew" in ql and "first pet" in ql and "how long" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="4 months",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="4 months since first pet as of November 2023",
-            )
-
-        # 2j. Andrew total dogs: "How many dogs does Andrew have?"
-        if "how many dogs" in ql and "andrew" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="3",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Andrew has three dogs (Toby, Buddy, Scout)",
-            )
-
-        # 2k. Melanie art creating duration: "How long has Melanie been creating art?"
-        if "melanie" in ql and "art" in ql and "how long" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="7 years",
-                source="autonomous_counting_engine",
-                confidence=0.95,
-                detail="Melanie has been creating art for 7 years",
-            )
+                    # "how often" answers keep the evidence's own period:
+                    # the evidence said "twice a week", so does the answer.
+                    if "how often" in ql:
+                        m_period = re.search(
+                            rf"{re.escape(f_word)}\s+a\s+(day|week|month|year)",
+                            sentence,
+                            re.I,
+                        )
+                        if m_period:
+                            ans = f"{f_word} a {m_period.group(1).lower()}"
+                    return CommittedAnswer(
+                        used=True,
+                        answer=ans,
+                        source="autonomous_counting_engine",
+                        confidence=0.95,
+                        detail=f"matched frequency '{f_word}'",
+                        evidence_turn=turn.text,
+                    )
 
         # 3. Ordinal event counting: "How many tournaments has X won (by DATE)?"
         #    Each evidence turn stating a "<ordinal> <event>" bounds the running
@@ -390,15 +251,47 @@ class CountingEngine:
             target_noun_m = re.search(r"\bhow\s+many\s+([a-z]+)\b", ql)
         target_noun = target_noun_m.group(1).strip() if target_noun_m else ""
         event_stem = target_noun.rstrip("s") if target_noun else ""
-        if event_stem and re.search(r"\b(?:won|win|played|attended|completed|hosted|ran|finished|entered)\b", ql):
-            m_by = re.search(r"\bby\s+(\d{1,2})\s+([A-Za-z]+),?\s+(20\d\d)\b", ql)
-            bound = None
-            if m_by:
-                d, m, y = int(m_by.group(1)), m_by.group(2).lower(), int(m_by.group(3))
-                m_idx = MONTH_MAP.get(m) or MONTH_MAP.get(m[:3])
-                if m_idx:
-                    bound = datetime.date(y, m_idx, d)
+        m_by = re.search(r"\bby\s+(\d{1,2})\s+([A-Za-z]+),?\s+(20\d\d)\b", ql)
+        bound = None
+        if m_by:
+            d, m, y = int(m_by.group(1)), m_by.group(2).lower(), int(m_by.group(3))
+            m_idx = MONTH_MAP.get(m) or MONTH_MAP.get(m[:3])
+            if m_idx:
+                bound = datetime.date(y, m_idx, d)
 
+        def _within_bound(t: Turn) -> bool:
+            if bound is None:
+                return True
+            t_date = cls._turn_date(t)
+            return t_date is not None and t_date <= bound
+
+        # Ordinals attached directly to the target noun ("a third turtle")
+        # prove a total for ANY question shape - no event verb required.
+        if event_stem:
+            noun_ord = 0
+            for t in turns:
+                if not _within_bound(t):
+                    continue
+                m_noun_ord = re.search(
+                    r"\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\s+[a-zA-Z\s]{0,15}?\b"
+                    + re.escape(event_stem),
+                    t.text,
+                    re.I,
+                )
+                if m_noun_ord:
+                    ord_val = ORDINAL_MAP.get(m_noun_ord.group(1).lower(), 0)
+                    if ord_val > noun_ord:
+                        noun_ord = ord_val
+            if noun_ord >= 2:
+                word = INT_TO_WORD.get(noun_ord, str(noun_ord))
+                return CommittedAnswer(
+                    used=True,
+                    answer=f"{word}, {noun_ord}",
+                    source="autonomous_counting_engine",
+                    confidence=0.92,
+                    detail=f"ordinal attached to '{event_stem}' proves total {noun_ord}",
+                )
+        if event_stem and re.search(r"\b(?:won|win|played|attended|completed|hosted|ran|finished|entered)\b", ql):
             max_ord = 0
             for t in turns:
                 if event_stem not in t.text.lower():
@@ -411,6 +304,20 @@ class CountingEngine:
                     ord_val = ORDINAL_MAP.get(m_ord.group(1).lower(), 0)
                     if ord_val > max_ord:
                         max_ord = ord_val
+            if max_ord == 0:
+                # "a third turtle" proves a total of three even without an
+                # event verb - ordinals attached to the target noun count.
+                for t in turns:
+                    m_noun_ord = re.search(
+                        r"\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\s+[a-zA-Z\s]{0,15}?\b"
+                        + re.escape(event_stem),
+                        t.text,
+                        re.I,
+                    )
+                    if m_noun_ord:
+                        ord_val = ORDINAL_MAP.get(m_noun_ord.group(1).lower(), 0)
+                        if ord_val > max_ord:
+                            max_ord = ord_val
             if max_ord >= 2:
                 word = INT_TO_WORD.get(max_ord, str(max_ord))
                 return CommittedAnswer(
@@ -423,23 +330,27 @@ class CountingEngine:
                            + f" = {max_ord}",
                 )
 
-        # 4. Temporal "as of [Month YYYY]" state counting is intentionally not
-        #    attempted without entity-level state tracking: guessing a pet/
-        #    possession count from mention patterns would fabricate precision.
-        #    The reader decides those.
-
-        # 5. Target noun counting: "How many [turtles/children/dogs/screenplays] does X have?"
+        # 4. Target noun counting: "How many [turtles/children/dogs] does X have?"
+        #    Measure-unit targets ("hours", "pages") are session sums: they only
+        #    commit inside a single-session context.  Multi-session numerals
+        #    commit only when a standing total is stated in the evidence.
         if not target_noun:
             return CommittedAnswer(used=False)
 
         singular_target = target_noun.rstrip("s")
+        is_measure_unit = singular_target in _MEASURE_UNITS
+        if is_measure_unit and not single_session:
+            return CommittedAnswer(used=False, detail="measure-unit count over multiple sessions needs a sum, not one numeral")
+
         synonyms = {singular_target}
         if singular_target in ("child", "children"):
             synonyms.update(["kid", "child"])
         elif singular_target in ("dog", "cat", "turtle"):
             synonyms.update(["pet", singular_target])
 
-        for turn in turns:
+        # Most recent first: totals evolve over a conversation ("had 4, then
+        # adopted one more"), and the latest stated total is the current one.
+        for turn in reversed(turns):
             if person and person not in turn.speaker.lower() and person not in turn.text.lower():
                 continue
 
@@ -453,6 +364,13 @@ class CountingEngine:
                 num_pattern = r"\b(\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:[a-zA-Z]+\s+)?" + re.escape(syn)
                 m_num = re.search(num_pattern, text, re.IGNORECASE)
                 if m_num:
+                    if not single_session:
+                        # Multi-session: the numeral must sit in a standing-total
+                        # frame ("I have 8", "in total 8"), not an event frame
+                        # ("I bought 5", "I found 3 more").
+                        window = text[max(0, m_num.start() - 60): m_num.end() + 60]
+                        if not (_STATIVE_FRAME.search(window) or re.search(r"\b(?:have|has|own|owns)\b", window, re.I)):
+                            continue
                     val_str = m_num.group(1).lower()
                     val_int = int(val_str) if val_str.isdigit() else NUMBER_WORDS.get(val_str)
                     if val_int is not None:
@@ -463,7 +381,8 @@ class CountingEngine:
                             answer=ans,
                             source="autonomous_counting_engine",
                             confidence=0.95,
-                            detail=f"matched '{m_num.group(0)}'",
+                            detail=f"matched '{m_num.group(0)}'"
+                                   + ("" if single_session else " (stated total)"),
                             evidence_turn=turn.text,
                         )
 
@@ -483,11 +402,6 @@ class CountingEngine:
         except ValueError:
             return None
 
-    #: Nouns that mark a sentence as being about animals, so that "named X"
-    #: captures are pets rather than people or places.
-    _PET_NOUNS = ("dog", "cat", "turtle", "turtles", "bird", "fish", "hamster",
-                  "rabbit", "puppy", "kitten", "pet", "pets", "goldfish")
-
     @classmethod
     def _collect_named_entities(cls, turns: list[Turn], person: str | None, cat_stems: set[str]) -> list[str]:
         """Collect proper-noun names from the person's animal-related sentences.
@@ -496,22 +410,39 @@ class CountingEngine:
         "my pets are Oliver, Luna, and Bailey".
         """
         items: list[str] = []
-        want_pets = bool(cat_stems & {"pet", "animal", "turtle", "dog", "cat"})
+        want_pets = bool(cat_stems & {"pet", "animal", "turtle", "dog", "cat", "puppy", "pup"})
+        # When the question itself asks for pet names, the named/called and
+        # quoted captures run without a per-sentence pet noun - "I named him
+        # Buddy" carries none, and the question already scopes the domain.
+        pet_question = bool(cat_stems & {"dog", "cat", "puppy", "pup", "turtle", "pet"})
         for turn in turns:
             if person and person not in turn.speaker.lower() and person not in turn.text.lower():
                 continue
             for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
                 s_low = sentence.lower()
-                if want_pets and not any(p in s_low for p in cls._PET_NOUNS):
+                if want_pets and not pet_question and not any(p in s_low for p in _PET_NOUNS):
                     continue
-                for m_n in re.finditer(r"\b(?:named|called)\s+([A-Z][a-z]{1,15})\b", sentence):
+                for m_n in re.finditer(r"\b(?:named|called)\s+(?:him|her|it|them)?\s*([A-Z][a-z]{1,15})\b", sentence):
                     name = m_n.group(1)
                     if name.lower() not in STOPWORDS and name not in items:
                         items.append(name)
                 for m_n in re.finditer(
-                    r"\b(?:my|our)\s+(?:" + "|".join(cls._PET_NOUNS) + r")\s+([A-Z][a-z]{1,15})\b",
+                    r"\b(?:my|our)\s+(?:" + "|".join(_PET_NOUNS) + r")\s+([A-Z][a-z]{1,15})\b",
                     sentence,
                 ):
+                    name = m_n.group(1)
+                    if name.lower() not in STOPWORDS and name not in items:
+                        items.append(name)
+                # Appositive before the noun: "meet Toby, my puppy"
+                for m_n in re.finditer(
+                    r"\b([A-Z][a-z]{1,15})\s*,\s+(?:my|our|the)\s+(?:" + "|".join(_PET_NOUNS) + r")\b",
+                    sentence,
+                ):
+                    name = m_n.group(1)
+                    if name.lower() not in STOPWORDS and name not in items:
+                        items.append(name)
+                # Quoted name: "we ended up going with 'Scout' for our pup"
+                for m_n in re.finditer(r"[\"']([A-Z][a-z]{1,15})[\"']", sentence):
                     name = m_n.group(1)
                     if name.lower() not in STOPWORDS and name not in items:
                         items.append(name)
@@ -533,10 +464,16 @@ class CountingEngine:
         ql = question.lower()
         person = cls._extract_person(question, turns)
 
-        # 0. Possessive shape: "What are Melanie's pets' names?" - the category
-        #    is named directly, no verb is involved.
+        # 0. Possessive shapes: "What are Melanie's pets' names?" and
+        #    "What are the names of Andrew's dogs?" - the category is named
+        #    directly, no verb is involved.
         if person:
             m_poss = re.search(rf"\bwhat\s+(?:is|are)\s+{re.escape(person)}'s\s+([a-z\s']+?)\??$", ql)
+            if not m_poss:
+                m_poss = re.search(
+                    rf"\bwhat\s+(?:is|are)\s+the\s+[a-z]+\s+of\s+{re.escape(person)}'s\s+([a-z\s]+?)\??$",
+                    ql,
+                )
             if m_poss:
                 cat_stems = {_word_stem(w) for w in m_poss.group(1).replace("'s", "").split()}
                 items = cls._collect_named_entities(turns, person, cat_stems)
@@ -550,13 +487,12 @@ class CountingEngine:
                     )
 
         # 0b. Category collectors for evidence shapes that need more than a
-        #     verb-object read: quoted titles, "play the <instrument>", and
-        #     named entities (pets).
+        #     verb-object read: quoted titles and "play the <instrument>".
         m_cat = re.search(r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have|is|are)\s+", ql)
         if m_cat:
             cat_stems = {_word_stem(w) for w in m_cat.group(1).split()}
             # Quoted titles: books, songs, movies, shows
-            if cat_stems & {"book", "song", "movie", "show", "screenplay", "movie"}:
+            if cat_stems & {"book", "song", "movie", "show", "screenplay"}:
                 titles: list[str] = []
                 for turn in turns:
                     if person and person not in turn.speaker.lower() and person not in turn.text.lower():
@@ -574,7 +510,7 @@ class CountingEngine:
                         detail=f"quoted titles: {titles[:6]}",
                     )
             # Instruments: "play the clarinet and violin"
-            if cat_stems & {"instrument", "instrument"}:
+            if cat_stems & {"instrument"}:
                 played: list[str] = []
                 for turn in turns:
                     if person and person not in turn.speaker.lower() and person not in turn.text.lower():
@@ -596,19 +532,18 @@ class CountingEngine:
         # 1. Generic verb-object enumeration: "What video games does Nate play?"
         #    Objects are read off the speaker's own verb phrases across turns,
         #    so the set grows with the conversation instead of a fixed lexicon.
-        m_cat = re.search(r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have)\s+", ql)
-        if m_cat:
-            category = m_cat.group(1).strip()
+        m_cat2 = re.search(r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have)\s+", ql)
+        if m_cat2:
+            category = m_cat2.group(1).strip()
             m_verb = re.search(rf"\b{re.escape(person or '')}\s+([a-z]+)", ql) if person else None
             if not m_verb:
                 m_verb = re.search(r"\b(?:does|did|do)\s+(?:not\s+)?[a-z\s]*?\b([a-z]+)(?:\s|$)", ql)
             if m_verb:
                 verb = m_verb.group(1)
                 verb_stem = re.sub(r"(?:s|ed|ing)$", "", verb) or verb
-                cat_stems = {_word_stem(w) for w in category.split()}
-                # Category modifiers ("indoor activities", "outdoor games") are
-                # constraints, not the head noun - they must anchor the evidence
-                # sentences like any other context keyword.
+                cat_stems2 = {_word_stem(w) for w in category.split()}
+                # Category modifiers ("indoor activities") and context keywords
+                # ("dog" in "activities with her dog") anchor the evidence.
                 _CAT_HEAD_NOUNS = {
                     "activity", "game", "book", "movie", "show", "song",
                     "artist", "band", "instrument", "pet", "symbol", "event",
@@ -619,14 +554,10 @@ class CountingEngine:
                     _word_stem(w) for w in category.split()
                     if _word_stem(w) not in _CAT_HEAD_NOUNS
                 }
-                # Context anchor: keywords beyond the category, verb and person
-                # ("dog" in "activities with her dog").  When the question names
-                # a specific context, only sentences inside that context count -
-                # generic activity sentences name everything and nothing.
                 q_kws_all = cls._extract_keywords(question)
                 anchor_kws |= {
                     k for k in q_kws_all
-                    if _word_stem(k) not in cat_stems
+                    if _word_stem(k) not in cat_stems2
                     and _word_stem(k) != verb_stem
                     and k != (person or "")
                     and len(k) > 2
@@ -641,9 +572,7 @@ class CountingEngine:
                             continue
                         if anchor_kws and not any(k in s_low for k in anchor_kws):
                             continue
-                        # Proper-noun objects: "playing Valorant", "play CS:GO",
-                        # "Cyberpunk 2077" - first word required, up to three
-                        # continuation words.
+                        # Proper-noun objects: "playing Valorant", "play CS:GO"
                         for m_obj in re.finditer(
                             rf"\b{re.escape(verb_stem)}[a-z]*\s+((?:[A-Z0-9][A-Za-z0-9:']*)(?:\s+(?:and\s+)?[A-Z0-9][A-Za-z0-9:']*){{0,3}})",
                             sentence,
@@ -652,7 +581,7 @@ class CountingEngine:
                             first_word = obj.split()[0].lower().rstrip("',")
                             if first_word in ("i", "i'm", "i'll", "i've", "i'd", "it", "it's", "a", "an", "the"):
                                 continue
-                            if obj and _word_stem(obj) not in cat_stems and obj.lower() not in STOPWORDS and len(obj) > 2 and obj not in objects:
+                            if obj and _word_stem(obj) not in cat_stems2 and obj.lower() not in STOPWORDS and len(obj) > 2 and obj not in objects:
                                 objects.append(obj)
                         # Appositive naming: "played this game Catan"
                         for m_obj in re.finditer(
@@ -662,20 +591,15 @@ class CountingEngine:
                             obj = m_obj.group(1).strip()
                             if obj and len(obj) > 2 and obj not in objects:
                                 objects.append(obj)
-                        # Named tournaments are game titles in casual speech:
-                        # "the local Street Fighter tournament"
-                        if "game" in cat_stems:
+                        # Named tournaments are game titles in casual speech.
+                        if "game" in cat_stems2:
                             for m_obj in re.finditer(
                                 r"\b((?:[A-Z][A-Za-z0-9:']*)(?:\s+[A-Z][A-Za-z0-9:']*){0,2})\s+tournament",
                                 sentence,
                             ):
                                 obj = m_obj.group(1).strip()
-                                if obj and obj.lower() not in _FRAME_WORDS and len(obj) > 2 and obj not in objects:
+                                if obj and len(obj) > 2 and obj not in objects:
                                     objects.append(obj)
-                        # NOTE: a lowercase-noun object branch ("made bowls and
-                        # cups") was measured here and REJECTED: blocklisted
-                        # demonstratives still leaked "this boardgame"-style
-                        # noise and both runs lost more than they gained.
                 if len(objects) >= 2:
                     ans = ", ".join(objects[:8])
                     return CommittedAnswer(
@@ -686,46 +610,8 @@ class CountingEngine:
                         detail=f"enumerated {category} via '{verb}': {objects[:8]}",
                     )
 
-        # Specific activity sub-types:
-        if "turtle" in ql and ("activit" in ql or "do with" in ql):
-            return CommittedAnswer(
-                used=True,
-                answer="takes them on walks, holds them, feeds them strawberries, gives them baths",
-                source="autonomous_set_aggregator",
-                confidence=0.95,
-                detail="Nate activities with turtles",
-            )
-
-        if "indoor" in ql and "activit" in ql:
-            return CommittedAnswer(
-                used=True,
-                answer="boardgames, volunteering at pet shelter, wine tasting, growing flowers",
-                source="autonomous_set_aggregator",
-                confidence=0.95,
-                detail="Andrew indoor activities with girlfriend",
-            )
-
-        # Frequency questions ("How often...")
-        if "how often" in ql:
-            if "walk" in ql and ("dog" in ql or "audrey" in ql):
-                return CommittedAnswer(
-                    used=True,
-                    answer="Multiple times a day",
-                    source="autonomous_counting_engine",
-                    confidence=0.95,
-                    detail="Audrey walks dogs multiple times a day",
-                )
-            if "beach" in ql and ("kid" in ql or "melanie" in ql):
-                return CommittedAnswer(
-                    used=True,
-                    answer="once or twice a year",
-                    source="autonomous_counting_engine",
-                    confidence=0.95,
-                    detail="Melanie beach trips with kids once or twice a year",
-                )
-
         # 2. Activity lexicon: "What activities/hobbies does X partake in?"
-        if ("hobbies" in ql or "activities" in ql) and "indoor" not in ql and "turtle" not in ql:
+        if "hobbies" in ql or "activities" in ql:
             entities = set()
             for turn in turns:
                 if person and person not in turn.speaker.lower() and person not in turn.text.lower():
