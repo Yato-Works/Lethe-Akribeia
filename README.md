@@ -21,16 +21,16 @@ An experimental long-term memory system for AI that treats forgetting as progres
 Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prototype (v0.2.0) to a research-grade, highly auditable cognitive runtime:
 
 1. **Three-Layer Diagnostic Architecture**:
-   - Decoupled **Layer 1 (Oracle Recall: 98.20% on LongMemEval)** from **Layer 2 (Reader on Hits: 82.08%)** and **Layer 3 (End-to-End: 83.40%)**, demonstrating very high evidence retrieval recall on LongMemEval while diagnosing the exact language model bottlenecks.
+   - Decoupled **Layer 1 (Oracle Recall: 98.20% on LongMemEval)** from **Layer 2 (Reader on Hits: 82.08%)** and **Layer 3 (Baseline 7B E2E: 81.60% → Final E2E: 83.40%)**, demonstrating very high evidence retrieval recall on LongMemEval while diagnosing the exact language model bottlenecks.
 2. **Subsystem H: ArithmeticDifferenceEngine (Zero-LLM Autonomous Committer)**:
    - Built a deterministic derivation scaffold computing currency differentials ($300 − $30 = $270), savings/discounts, multi-location day sums, and chronological age offsets without a single LLM call.
-   - Rescued **+9 difficult questions** from 7B Reader false refusals on LongMemEval with **0 regression losses**, pushing LongMemEval End-to-End to **83.40% (417/500)**.
+   - Rescued **+9 difficult questions** from 7B Reader false refusals on LongMemEval with **0 regression losses**, lifting End-to-End accuracy from 81.60% (408/500) to **83.40% (417/500)**.
 3. **LoCoMo Turn Selection & Proximity Density Scoring**:
-   - Refined `answer_committer` with keyword coverage weighting, speaker alignment, and explicit intent guards, securing **+8 net correct questions (0 regressions)** on temporal reasoning.
+   - Refined `answer_committer` with keyword coverage weighting, speaker alignment, and explicit intent guards: improved committer accuracy on temporal questions from 67 to 75 correct (**+8 net correct, 0 regressions**; 72.8% precision vs 7B's 57.3% on committed subset).
 4. **Rigorous Test Suite Expanded from 82 to 308 Tests (100% Passing)**:
    - Added arithmetic difference suites, interval algebra, temporal compilation, speaker normalization, model sensitivity verification, corruption resilience, and derivation scaffolding suites.
 5. **Model Invariance Validation (7B vs. 1.5B)**:
-   - Empirically demonstrated that a 5x parameter drop (7B → 1.5B) produces virtually zero performance divergence ($p = 0.9509$ on LoCoMo, $p = 0.4030$ on LongMemEval), validating context dominance.
+   - Empirically demonstrated that a 5x parameter drop (7B → 1.5B) produces virtually zero performance divergence ($p = 0.9509$ on LoCoMo, $p = 0.4030$ on LongMemEval), supporting the hypothesis that performance is strongly influenced by structured context quality.
 
 
 
@@ -79,17 +79,17 @@ We do not present Lethe Akribeia as a universal SOTA system. Rather, we empirica
 
 | Benchmark / Evaluation Suite | Scope (N) | **Layer 1: Oracle Recall** (Evidence Retrieval) | **Layer 2: Reader on Hits** (7B Reader Accuracy) | **Layer 3: End-to-End** (Final Accuracy) | Key Finding & Architectural Boundary |
 |:---|:---:|:---:|:---:|:---:|:---|
-| **LongMemEval (All 6 Capabilities)** | 500 Qs | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08%**<br>*(Reader alone on hits)* | **83.40% (417/500)**<br>*(+9 rescued via Subsystem H)* | Memory retrieval reaches 98.20%; Subsystem H (ArithmeticDifferenceEngine) recovers reader false refusals with 0 regressions. |
+| **LongMemEval (All 6 Capabilities)** | 500 Qs | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08% (403/491)**<br>*(7B alone on hits)* | **83.40% (417/500)**<br>*(Baseline 81.60% + 9 rescued)* | 7B alone scores 81.60% (408/500); Subsystem H (ArithmeticDifferenceEngine) deterministically resolves 9 false-refusal questions (0 regressions) raising E2E to 83.40%. |
 | **BEAM (500K Horizon)** | 48 Qs | **100.0% (48/48)** | **100.0%** | **100.0%** | Deterministic timeline indexing extracts needles across 500K tokens without context degradation (extensible to 10M). |
 | **LoCoMo 1,540 (Single-Hop)** | 841 Qs | **83.71%** | **85.80%** | **77.65%** | Strong direct factual recall; Reader reliably extracts explicit entity facts. |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62%** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **51.09% (164/321)** | Multi-interval relative dates benefit from deterministic calendar normalization; autonomous committer achieves 72.8% precision (+5.9pp over 7B on committed subset). |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62% (262/321)** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **51.09% (164/321)** | Multi-interval relative dates benefit from deterministic calendar normalization; on the committed subset (103/321 Qs), autonomous committer achieves 72.8% precision (75/103) vs 7B's 57.3% (59/103), a +16 net gain (+15.5pp). |
 | **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282 Qs | **78.37%** | **55.20%** | **47.87%** | Open research frontier: cross-session graph linking across divergent topics. |
 | **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | Overall non-adversarial benchmark with primary local 7B Reader. |
 
 > [!NOTE]
 > **Why Separate Oracle Recall from End-to-End?**  
-> In LongMemEval (500 questions), Lethe missed the gold evidence in only 9 out of 500 questions (Oracle Recall 98.20%). An error analysis across all 109 initial Reader misses revealed that **96.3% had the required evidence present in the context prompt**, but the 7B local Reader failed due to false abstention ("I don't know" despite evidence present) or arithmetic errors in calendar math.  
-> Deploying Subsystem H (`ArithmeticDifferenceEngine`) deterministically resolved 9 of these arithmetic and state refusals with zero regressions, raising End-to-End accuracy to 83.40%.
+> In LongMemEval (500 questions), Lethe missed the gold evidence in only 9 out of 500 questions (Oracle Recall 98.20%, 491/500). On those 491 hits, the 7B Reader answered 403 correctly (82.08% on hits), yielding a baseline End-to-End accuracy of 81.60% (408/500, with 92 initial misses, including 5 lucky guesses on retrieval misses). An error analysis of these initial misses revealed that over 90% had the required evidence present in the prompt, failing purely due to Reader false abstention ("I don't know" despite evidence present) or arithmetic errors in calendar math.  
+> By deploying Subsystem H (`ArithmeticDifferenceEngine`), 9 of these false refusals and arithmetic operations were deterministically resolved with 0 regression losses, increasing correct answers from 408/500 (81.60%) to 417/500 (83.40%).
 
 
 ---
@@ -208,10 +208,10 @@ Evaluating 1,540 questions through commercial frontier APIs with massive context
 
 ---
 
-## Roadmap: Toward the Global Pinnacle (V4 & V5)
+## Roadmap: Path to Frontier Expansion (V4 & V5)
 
 ```
-[V3 Apex (Current)] ────────► [V4 Cognitive Expansion] ────────► [V5 Frontier Pinnacle]
+[V3 Apex (Current)] ────────► [V4 Cognitive Expansion] ────────► [V5 Frontier Expansion]
 • 308 Unit Tests (100% Pass)   • Non-temporal Semantic Rescue     • Frontier LLM (120B/Gemini/Claude)
 • LME Oracle Recall: 98.2%     • Cross-Session Graph Traversal    • E2E Benchmark Ceilings (95%~98%+)
 • Subsystem H Arithmetic Co-P  • Target: LME E2E > 90%            • Full Multi-Agent Kubernetes Mesh
@@ -222,7 +222,7 @@ Evaluating 1,540 questions through commercial frontier APIs with massive context
 - **V4 (Next: Cognitive Expansion & Non-Temporal Semantic Rescue)**:
   - *Non-Temporal Semantic Rescue*: Expand autonomous pattern induction for implicit entity state questions to eliminate remaining Reader false abstentions, targeting **>90%** LME End-to-End.
   - *Cross-Session Graph Traversal*: Upgrade `ppr_graph` and entity linking to raise LoCoMo Multi-Hop Oracle Recall from 78.37% to **90%+** (and overall from 80.65% to **90%+**).
-- **V5 (The Global Pinnacle: Frontier Synthesis)**:
+- **V5 (Frontier Expansion: Frontier Scale & Synthesis)**:
   - Connect Lethe's high-recall MSC contexts to commercial frontier models (Gemini 1.5 Pro, Claude 3.5, 120B+ open models) to confirm the 95%+ E2E ceiling across all 1,540 questions.
   - Distributed multi-agent consensus protocols across Kubernetes clusters.
 
