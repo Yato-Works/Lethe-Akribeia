@@ -558,70 +558,17 @@ class MinimumSufficientContextCompiler:
 
             # Keywords that indicate aggregation evidence for this unit type
             agg_evidence_keywords = {
-                "$": ["spent", "cost", "paid", "price", "$", "dollar", "expense", "bought", "purchased"],
-                "pieces of furniture": ["furniture", "bookshelf", "table", "chair", "desk", "couch", "sofa", "bed", "mattress", "cabinet", "dresser", "assembled", "bought", "fixed", "sold"],
-                "items of clothing": ["pick up", "return", "exchange", "bought", "got", "blazer", "boots", "jeans", "shirt"],
-                "doctors": ["doctor", "dr.", "dermatologist", "physician", "specialist", "ent"],
-                "plants": ["plant", "lily", "succulent", "fern", "basil", "nursery", "bought", "acquired"],
-                "projects": ["project", "lead", "leading", "led", "completed", "manage", "launch"],
-                "days": ["day", "days", "camping", "camp", "trip", "visit", "spent"],
-                "weeks": ["week", "weeks", "watch", "marvel", "movie", "film"],
-                "hours": ["hour", "hours", "jog", "jogging", "yoga", "run", "running", "exercise", "workout"],
-                "model kits": ["model", "kit", "kits", "tamiya", "revell", "scale", "tank", "spitfire", "camaro"],
-                "restaurants": ["restaurant", "restaurants", "korean", "italian", "tried", "eat", "dined"],
-                "weddings": ["wedding", "weddings", "married", "ceremony", "reception", "bride", "groom", "tie the knot"],
-                "museums": ["museum", "museums", "gallery", "galleries", "exhibition", "exhibit"],
-                "festivals": ["festival", "festivals", "film festival", "sundance", "cannes", "tribeca", "movie festival"],
-                "citrus fruits": ["citrus", "lemon", "lime", "orange", "grapefruit", "yuzu", "bergamot", "cocktail", "drink"],
-                "cuisines": ["cuisine", "cuisines", "cooking", "cooked", "cook", "recipe", "dish", "dishes"],
-                "properties": ["property", "properties", "house", "townhouse", "condo", "apartment", "bungalow", "viewed", "tour", "offer"],
-                "babies": ["baby", "babies", "born", "birth", "infant"],
-                "delivery services": ["delivery", "doordash", "ubereats", "uber eats", "uber", "grubhub", "postmates", "instacart", "takeout", "ordered from", "meal kit", "domino", "fresh fusion", "freshly", "blue apron", "hellofresh", "factor"],
-                "baking": ["bake", "baked", "baking", "cookies", "cake", "bread", "pastry", "pie", "muffins", "sourdough"],
-                "tanks": ["tank", "tanks", "aquarium", "aquariums", "fish tank"],
-                "fish": ["fish", "tetra", "guppy", "betta", "cichlid", "angelfish", "goldfish", "gourami", "catfish"],
-                "health devices": ["device", "devices", "fitbit", "hearing aid", "hearing aids", "accu-chek", "blood sugar", "nebulizer", "scale"],
-                "fitness classes": ["class", "classes", "fitness", "zumba", "bodypump", "hip hop abs", "yoga", "pilates", "spin"],
-                "pieces of jewelry": ["jewelry", "earrings", "necklace", "ring", "emerald", "silver", "pendant", "bracelet"],
-                "delivery days": ["backpack", "shutter", "remote", "order", "ordered", "bought", "arrive", "arrived", "received"],
-                "art events": ["art", "exhibition", "museum", "gallery", "lecture", "afternoon", "street art", "tour"],
-                "average age": ["age", "old", "birthday", "turned", "parents", "grandparents", "mom", "dad", "grandma", "grandpa"],
-                "kitchen items": ["kitchen", "faucet", "mat", "toaster", "coffee maker", "shelves", "replace", "fix"],
-                "pounds": ["pound", "pounds", "bag", "feed", "scratch", "grains", "chicken"],
-                "miles": ["mile", "miles", "road trip", "covered", "drove", "yellowstone", "durango"],
-                "people": ["people", "followers", "reached", "campaign", "influencer", "facebook", "instagram"],
-                "per mug $": ["coffee mug", "mugs", "coworkers", "$", "spent", "purchased"],
-                "days a week classes": ["class", "classes", "fitness", "zumba", "weightlifting", "yoga", "tuesdays", "thursdays", "saturdays", "wednesdays"],
-                "$ sister gifts": ["sister", "gift", "necklace", "tiffany", "spa", "$"],
-                "$ coworker and brother gifts": ["coworker", "brother", "gift", "graduation", "baby shower", "$"],
-                "$ handbag and skincare": ["handbag", "coach", "skincare", "nordstrom", "splurge", "$"],
-                "$ workshops": ["workshop", "workshops", "writing", "mindfulness", "digital marketing", "$"],
-                "$ market sales": ["market", "herbs", "jam", "potted", "sold", "selling", "earned", "$"],
-                "$ charity": ["charity", "raise", "raised", "food bank", "cancer", "hospital", "shelter", "$"],
-                "$ car cover and spray": ["car cover", "detailing spray", "purchased", "$"],
-                "$ max supplies": ["max", "food bowl", "measuring cup", "dental chews", "collar", "$"],
-                "tomato cucumber plants": ["tomato", "cucumber", "plant", "plants", "planted"],
-                "episodes": ["episode", "episodes", "podcast", "podcasts", "how i built this", "my favorite murder"],
-                "siblings": ["sibling", "siblings", "sister", "sisters", "brother", "family"],
-                "online courses": ["coursera", "edx", "course", "courses", "completed", "foundation", "data analysis", "specialization"],
-                "pieces of writing": ["poem", "poems", "short stories", "short story", "writing challenge", "piece", "pieces", "writing", "written"],
-                "video comments": ["comments", "comment", "facebook live", "youtube", "video", "popular"],
-                "video views": ["views", "view", "tiktok", "youtube", "video"],
-                "novel page count": ["page", "pages", "novel", "novels", "nightingale", "finished", "read", "book", "books"],
-                "fun runs": ["fun run", "fun runs", "miss", "missed", "march 5", "march 26", "5k"],
-                "rare items": ["figurine", "record", "book", "coin", "rare", "collection"],
-                "antique items": ["tea set", "typewriter", "necklace", "music box", "glassware", "antique", "vintage"],
-                "goals and assists": ["goal", "goals", "assist", "assists", "soccer"],
-                "music albums": ["album", "albums", "billie eilish", "whiskey wanderers", "tame impala", "vinyl", "ep"],
-                "graduation ceremonies": ["graduation", "ceremony", "attended", "attend", "emma", "rachel", "alex"],
-                "properties before offer": ["property", "properties", "bungalow", "cedar creek", "condo", "offer", "townhouse"],
-                "dinner parties": ["dinner party", "dinner parties", "sarah", "mike", "alex", "place", "host"],
-                "marvel movies": ["marvel", "avengers", "endgame", "spider-man", "no way home", "re-watch", "rewatch", "movie", "movies"],
-                "$ charity raised": ["charity", "raise", "raised", "fundrais", "walk", "yoga", "bike-a-thon", "$"],
+                "$": ["spent", "cost", "paid", "price", "$", "dollar", "expense", "bought", "purchased", "sales", "earned", "fee"],
+                "days": ["day", "days", "camping", "camp", "trip", "visit", "spent", "traveled"],
+                "hours": ["hour", "hours", "jog", "jogging", "yoga", "run", "running", "exercise", "workout", "minutes", "commute"],
+                "weeks": ["week", "weeks", "reading", "stayed"],
+                "months": ["month", "months"],
+                "years": ["year", "years", "age", "old"],
+                "delivery days": ["order", "ordered", "bought", "arrive", "arrived", "received", "delivered"],
                 "items": ["item", "items", "count", "total", "how many", "how much"],
             }
 
-            keywords = agg_evidence_keywords.get(unit, agg_evidence_keywords["items"])
+            keywords = list(agg_evidence_keywords.get(unit, [unit, f"{unit}s"] if isinstance(unit, str) else []))
 
             # Refresh seen_sessions from current selection
             seen_sessions = set()
@@ -657,7 +604,7 @@ class MinimumSufficientContextCompiler:
                     bool(re.search(r"\b\d+\b", cl_body))
                     or "$" in cl_body
                     or any(re.search(rf"\b{wn}\b", cl_body) for wn in ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "twelve", "fifteen", "twenty", "a", "an"])
-                    or (unit in ["pieces of furniture", "items of clothing", "plants", "model kits", "weddings", "properties", "pieces of jewelry", "health devices", "fitness classes", "marvel movies", "antique items", "graduation ceremonies", "dinner parties"] and any(act in cl_body for act in ["bought", "ordered", "assembled", "fixed", "fix", "sell", "sold", "got", "picked up", "attended", "viewed", "offer", "married", "using", "use", "wear", "taking", "re-watch", "rewatch", "re-watched"]))
+                    or any(act in cl_body for act in ["bought", "ordered", "assembled", "fixed", "fix", "sell", "sold", "got", "picked up", "attended", "viewed", "offer", "married", "using", "use", "wear", "taking", "watch", "watched", "re-watch", "rewatch", "re-watched", "read", "finished", "completed", "visited", "tried", "cooked", "baked"])
                 )
                 has_top = any(tw in cl for tw in expanded_topic_words) if expanded_topic_words else True
                 is_user = "user:" in cl
@@ -694,7 +641,7 @@ class MinimumSufficientContextCompiler:
                     bool(re.search(r"\b\d+\b", content_body))
                     or "$" in content_body
                     or any(re.search(rf"\b{wn}\b", content_body) for wn in ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "twelve", "fifteen", "twenty", "a", "an"])
-                    or (unit in ["pieces of furniture", "items of clothing", "plants", "model kits", "weddings", "properties", "pieces of jewelry", "health devices", "fitness classes", "marvel movies", "antique items", "graduation ceremonies", "dinner parties"] and any(act in content_body for act in ["bought", "ordered", "assembled", "fixed", "fix", "sell", "sold", "got", "picked up", "attended", "viewed", "offer", "married", "using", "use", "wear", "taking", "re-watch", "rewatch", "re-watched"]))
+                    or any(act in content_body for act in ["bought", "ordered", "assembled", "fixed", "fix", "sell", "sold", "got", "picked up", "attended", "viewed", "offer", "married", "using", "use", "wear", "taking", "watch", "watched", "re-watch", "rewatch", "re-watched", "read", "finished", "completed", "visited", "tried", "cooked", "baked"])
                 )
                 # Check for query-specific topic relevance
                 has_topic = any(tw in content_lower for tw in expanded_topic_words) if expanded_topic_words else True
