@@ -1,13 +1,12 @@
+<div align="center">
+
+<img src="docs/assets/lethe_hero_banner.jpg" alt="Lethe Akribeia Banner" width="100%" />
+
 # Lethe Akribeia
 
+**持続的 AI エージェントのための高監査性・認知長期メモリランタイム**
+
 [ [English](README.md) | **日本語** ]
-
-> **忘却とは削除ではない。**  
-> **解像度の低下である。**
-
-AIのための実験的認知長期メモリシステム。忘却を「完全削除」ではなく「段階的な解像度の低下」として扱います。  
-*決定論的メモリコンパイル · 時間推論 · エビデンス出所追跡 · MCP ネイティブ*  
-*(旧称: Artificial Memory / `lethe-akribeia`)*
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -15,6 +14,21 @@ AIのための実験的認知長期メモリシステム。忘却を「完全削
 [![Tests: 308 passed](https://img.shields.io/badge/tests-308%20passed-success.svg)](#再現手順-reproduction)
 [![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
 [![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
+
+> *“忘却とは削除ではない。解像度の低下である。”*  
+> *(Forgetting is not deletion. It is loss of resolution.)*
+
+AIのための実験的認知長期メモリシステム。忘却を「完全削除」ではなく「段階的な解像度の低下」として扱います。  
+*決定論的メモリコンパイル · 時間推論 · エビデンス出所追跡 · MCP ネイティブ*  
+*(旧称: Artificial Memory / `lethe-akribeia`)*
+
+<br />
+
+<img src="docs/assets/lethe_runtime_demo.gif" alt="Lethe Runtime Terminal Demo" width="92%" />
+
+<br />
+
+</div>
 
 ---
 
@@ -28,7 +42,7 @@ Lethe Akribeia v0.3.0 は、実験的プロトタイプ（v0.2.0）から、極�
 2. **Subsystem H: ArithmeticDifferenceEngine（Zero-LLM 自律コミッター）の新規配備**:
    - 通貨差分（$300 − $30 = $270）、節約割引額、複数地点の日数合算、イベント時年齢逆算を 100% 決定論的アルゴリズムで計算する導出スキャフォールドを実装。
    - 7B Reader が偽拒絶（False Refusal）に陥っていた LongMemEval の難問 **+9問を回帰損失ゼロ（0 regressions）で完全救済**し、LongMemEval End-to-End を 81.60% (408/500) から **83.40% (417/500)** へと押し上げました。
-3. **LoCoMo ターン選択・多重度密度スコアリングの最適化**:
+3. **[LoCoMo](https://github.com/snap-research/locomo)（Long-Context Conversation Benchmark; SNAP / スタンフォード大らによる長文対話ベンチマーク）のターン選択・多重度密度スコアリング最適化**:
    - `answer_committer` にキーワードカバー率重み付け、話者アライメント、明示的非時間質問ガードを導入: 時間推論におけるコミッター正答数を 67問から 75問へと向上（**+8問純増、回帰損失ゼロ**；コミット対象サブセットにおいて 7B 単体の 57.3% に対し精度 72.8% を達成）。
 4. **テストスイートの爆発的拡充: 82件 → 308件 (100% ALL PASS)**:
    - 算術差分、区間代数、時間コンパイル、発話者正規化、モデル感応性検証、破損耐性、および Derivation Scaffold テストスイートを網羅し、堅牢性を極限まで高めました。
@@ -176,9 +190,11 @@ python -m artificial_memory.mcp
 ### クイックスタート CLI
 
 ```bash
-# インストール
+# リポジトリのクローン
 git clone https://github.com/Yato-Works/Lethe-Akribeia.git
 cd Lethe-Akribeia
+
+# オプション機能付きパッケージのインストール
 pip install -e ".[vector,llm]"
 ```
 

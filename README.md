@@ -1,13 +1,12 @@
+<div align="center">
+
+<img src="docs/assets/lethe_hero_banner.jpg" alt="Lethe Akribeia Banner" width="100%" />
+
 # Lethe Akribeia
 
+**Auditable Cognitive Long-Term Memory Runtime for Persistent AI Agents**
+
 [ **English** | [日本語](README.ja.md) ]
-
-> **Forgetting is not deletion.**  
-> **It is loss of resolution.**
-
-An experimental long-term memory system for AI that treats forgetting as progressive resolution loss rather than deletion.  
-*Deterministic memory compilation · Temporal reasoning · Evidence provenance · MCP native*  
-*(Formerly: Artificial Memory / `lethe-akribeia`)*
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -15,6 +14,21 @@ An experimental long-term memory system for AI that treats forgetting as progres
 [![Tests: 308 passed](https://img.shields.io/badge/tests-308%20passed-success.svg)](#reproduction)
 [![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#evaluation-highlights-three-layer-architecture)
 [![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#evaluation-highlights-three-layer-architecture)
+
+> *“Forgetting is not deletion. It is loss of resolution.”*  
+> *(忘却とは削除ではない。解像度の低下である。)*
+
+An experimental long-term memory system for AI that treats forgetting as progressive resolution loss rather than deletion.  
+*Deterministic memory compilation · Temporal reasoning · Evidence provenance · MCP native*  
+*(Formerly: Artificial Memory / `lethe-akribeia`)*
+
+<br />
+
+<img src="docs/assets/lethe_runtime_demo.gif" alt="Lethe Runtime Terminal Demo" width="92%" />
+
+<br />
+
+</div>
 
 ---
 
@@ -27,7 +41,7 @@ Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prot
 2. **Subsystem H: ArithmeticDifferenceEngine (Zero-LLM Autonomous Committer)**:
    - Built a deterministic derivation scaffold computing currency differentials ($300 − $30 = $270), savings/discounts, multi-location day sums, and chronological age offsets without a single LLM call.
    - Rescued **+9 difficult questions** from 7B Reader false refusals on LongMemEval with **0 regression losses**, lifting End-to-End accuracy from 81.60% (408/500) to **83.40% (417/500)**.
-3. **LoCoMo Turn Selection & Proximity Density Scoring**:
+3. **[LoCoMo](https://github.com/snap-research/locomo) (Long-Context Conversation Benchmark; SNAP / Stanford & collaborators) Turn Selection & Proximity Density Scoring**:
    - Refined `answer_committer` with keyword coverage weighting, speaker alignment, and explicit intent guards: improved committer accuracy on temporal questions from 67 to 75 correct (**+8 net correct, 0 regressions**; 72.8% precision vs 7B's 57.3% on committed subset).
 4. **Rigorous Test Suite Expanded from 82 to 308 Tests (100% Passing)**:
    - Added arithmetic difference suites, interval algebra, temporal compilation, speaker normalization, model sensitivity verification, corruption resilience, and derivation scaffolding suites.
@@ -175,9 +189,11 @@ Exposed MCP Tools:
 ### Quickstart CLI
 
 ```bash
-# Install
+# Clone the repository
 git clone https://github.com/Yato-Works/Lethe-Akribeia.git
 cd Lethe-Akribeia
+
+# Install package with optional extensions
 pip install -e ".[vector,llm]"
 ```
 
