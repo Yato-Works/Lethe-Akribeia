@@ -53,9 +53,19 @@ _ABS_DATE = re.compile(
 )
 #: A duration: "two weeks", "4 years", "10 years ago".
 _DURATION = re.compile(
-    rf"\b(?:{_NUMBER_WORD}|\d+)\s+(?:day|week|month|year|hour|minute)s?\b",
+    rf"\b(?:{_NUMBER_WORD}|\d+)\s+(?:day|week|month|year|hour|minute)s?(?:\s+ago)?\b",
     re.IGNORECASE,
 )
+#: Questions that explicitly ask for non-temporal entities (actions, events, places)
+#: even though they might mention a date as context ("Where was X in March 2023?").
+_EXPLICIT_NON_TEMPORAL = re.compile(
+    r"^(?:where\s+(?:was|did|is|are|were)|what\s+did\s+\w+\s+(?:attend|do|buy|see|make|eat|get|talk)|"
+    r"which\s+(?:activity|recreational|sport|movie|song|book|food|person|item)|"
+    r"what\s+(?:activity|physical|food|movie|book|song|job|profession|instrument))\b",
+    re.IGNORECASE,
+)
+
+
 #: A relative interval resolved against a session date, as produced by
 #: TemporalNormalizer: "the Saturday before 25 May 2023", "the week before
 #: 9 June 2023", "the summer of 2022", "the week of 15 July 2023".
@@ -299,6 +309,8 @@ def _turn_score(
     if turn.speaker.lower() in question_entities:
         score += 0.15  # the question names this speaker as the doer
     return score, matched
+
+
 
 
 def _anchor_position(text: str, matched: Sequence[str], weights: dict[str, float]) -> int:
@@ -620,6 +632,9 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
     the question asks for (date vs duration vs year).  Anything ambiguous returns
     ``used=False`` so the caller falls back to the existing reader path.
     """
+    if _EXPLICIT_NON_TEMPORAL.search(question):
+        return CommittedAnswer(used=False, detail="question asks for non-temporal entity")
+
     turns = parse_turns(context)
     if not turns:
         return CommittedAnswer(used=False, detail="no parsable turns")
@@ -636,7 +651,7 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
     # The single most specific question term must be present in the turn; without
     # that, the turn is not the evidence turn no matter how many generic words it
     # shares with the question.
-    candidates_turns: list[tuple[float, list[str], int, Turn]] = []
+    candidates_turns: list[tuple[float, float, list[str], int, Turn]] = []
     for want in (keys, keys[:1]):
         candidates_turns = []
         for i, turn in enumerate(turns):
@@ -644,13 +659,16 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
             if not all(k in turn_words for k in want):
                 continue
             score, matched = _turn_score(q_words, weights, q_entities, turn)
-            candidates_turns.append((score, matched, i, turn))
+            eff_score = score
+            if q_words:
+                eff_score += 0.20 * (len(matched) / len(q_words))
+            candidates_turns.append((eff_score, score, matched, i, turn))
         if candidates_turns:
             break
     if not candidates_turns:
         return CommittedAnswer(used=False, detail=f"no turn contains the key term {keys[0]!r}")
 
-    candidates_turns.sort(key=lambda p: (-p[0], p[2]))
+    candidates_turns.sort(key=lambda p: (-p[0], p[3]))
 
     if candidates_turns[0][0] < MIN_TURN_SCORE:
         return CommittedAnswer(
@@ -658,10 +676,14 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
             detail=f"best turn score {candidates_turns[0][0]:.2f} < {MIN_TURN_SCORE}",
         )
 
+    is_year_q = bool(_YEAR_QUESTION.search(question))
+    is_duration_q = bool(_DURATION_QUESTION.search(question))
+
     candidates: list[str] = []
-    for score, matched, idx, turn in candidates_turns[:4]:
-        if score < MIN_TURN_SCORE:
+    for eff_score, score, matched, idx, turn in candidates_turns[:4]:
+        if eff_score < MIN_TURN_SCORE:
             break  # never commit from a turn that barely matches the question
+
         spans = _spans_in_turn(turn)
         if not spans:
             continue
@@ -674,6 +696,10 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
                 # (measured: it produced 100% of the v2 wrong commits), so a turn
                 # with no dated content is skipped instead of guessed.
                 continue
+            if is_year_q and kind == "duration":
+                continue
+            if not is_duration_q and kind == "duration" and not value.endswith("ago"):
+                continue
             rank = (
                 _shape_bonus(kind, question) * 100
                 + priority * 10
@@ -684,6 +710,7 @@ def extract_temporal_answer(question: str, context: str) -> CommittedAnswer:
             continue
         ranked.sort(key=lambda p: -p[0])
         value = ranked[0][1]
+
         candidates.append(value)
         return CommittedAnswer(
             used=True,
