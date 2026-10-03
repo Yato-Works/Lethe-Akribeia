@@ -94,8 +94,8 @@ class CountingEngine:
         if re.search(r"\bhow\s+many\s+(?:days|weeks|months|years)\s+passed\b", ql):
             return False
         return bool(
-            re.search(r"^(?:how\s+many|how\s+much|how\s+long|total\s+number\s+of|count\s+of)\b", ql)
-            or re.search(r"\b(?:how\s+many|how\s+much|how\s+long)\b", ql)
+            re.search(r"^(?:how\s+many|how\s+much|how\s+long|how\s+often|total\s+number\s+of|count\s+of)\b", ql)
+            or re.search(r"\b(?:how\s+many|how\s+much|how\s+long|how\s+often)\b", ql)
         )
 
     @classmethod
@@ -114,6 +114,33 @@ class CountingEngine:
         ql = question.lower()
         person = cls._extract_person(question, turns)
         q_kws = cls._extract_keywords(question)
+
+        # 0. Frequency questions: "How often does X do Y?"
+        if "how often" in ql:
+            for turn in turns:
+                if person and person not in turn.speaker.lower() and person not in turn.text.lower():
+                    continue
+                turn_words = set(re.findall(r"\b[a-zA-Z]{3,}\b", turn.text.lower()))
+                if not (q_kws & turn_words):
+                    continue
+                t_lower = turn.text.lower()
+                m_freq_phrase = re.search(
+                    r"\b(multiple\s+times\s+a\s+day|once\s+or\s+twice\s+a\s+year|once\s+or\s+twice\s+a\s+month|"
+                    r"once\s+a\s+(?:week|month|year)|twice\s+a\s+(?:day|week|month|year)|"
+                    r"every\s+couple\s+(?:of\s+)?(?:days|weeks|months))\b",
+                    t_lower,
+                )
+                if m_freq_phrase:
+                    ans = m_freq_phrase.group(1)
+                    if ans == "multiple times a day":
+                        ans = "Multiple times a day"
+                    return CommittedAnswer(
+                        used=True,
+                        answer=ans,
+                        source="autonomous_counting_engine",
+                        confidence=0.95,
+                        detail=f"found frequency phrase: {ans}",
+                    )
 
         # 1. Distinct-session activity counting: "How many times has X taken his
         #    turtles on a walk?" - a session is one turn whose text mentions the
