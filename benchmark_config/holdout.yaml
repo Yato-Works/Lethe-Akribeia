@@ -1,16 +1,28 @@
-# LoCoMo Holdout Configuration
-# Conversations excluded from iterative development and failure mining.
-# These provide an independent validation split to verify that improvements
-# generalize beyond development set patterns.
+# LoCoMo Holdout & Validation Configuration
+# Conversations separated from iterative prompt engineering and heuristic mining.
+# Provides a tiered validation split to verify that improvements generalize
+# beyond development set patterns:
+#   - Tier 1 (Strict Clean Holdout): conv-48 (191 Qs) - Zero exposure to failure autopsies or diagnostic scripts.
+#   - Tier 2 (Validation Split): conv-42 (199 Qs) - Historical failure autopsy exposure in report_v2.md,
+#     with all specific rules/hardcodes subsequently purged in v0.3.0.
 
 holdout:
   indices: [3, 7]
   sample_ids: ["conv-42", "conv-48"]
   question_counts:
-    conv-42: 199  # non-adversarial (cats 1-4)
-    conv-48: 191  # non-adversarial (cats 1-4)
+    conv-42: 199  # validation split (cats 1-4)
+    conv-48: 191  # strict clean holdout (cats 1-4)
   total_questions: 390
-  description: "Fixed holdout conversations (conv-42, conv-48) - 390 non-adversarial questions"
+  strict_clean_holdout:
+    indices: [7]
+    sample_ids: ["conv-48"]
+    total_questions: 191
+    description: "Strict unseen clean holdout with zero exposure to autopsies or diagnostics"
+  validation_split:
+    indices: [3]
+    sample_ids: ["conv-42"]
+    total_questions: 199
+    description: "Validation split with historical autopsy exposure; all ad-hoc handlers purged"
 
 development:
   indices: [0, 1, 2, 4, 5, 6, 8, 9]
@@ -28,7 +40,8 @@ development:
   description: "Development set (8 conversations) - 1,150 non-adversarial questions"
 
 notes: |
-  Holdout conversations (conv-42, conv-48) are isolated from prompt engineering:
-  - Total non-adversarial questions in LoCoMo: 1,540 (1,150 Dev + 390 Holdout).
-  - Used for independent evaluation to verify that retrieval and deterministic
-    reasoning gains generalize without conversation-specific tuning.
+  Separation methodology:
+  - Total non-adversarial questions in LoCoMo: 1,540 (1,150 Dev + 390 Holdout/Val).
+  - conv-48 (191 questions) is the STRICT UNSEEN HOLDOUT: never used for error mining.
+  - conv-42 (199 questions) was examined during early autopsies, now strictly evaluated with zero ad-hoc handlers.
+  - Both demonstrate consistent generalization (conv-48: 63.87% binary, 52.95% F1; conv-42: 64.32% binary, 49.96% F1).

@@ -104,17 +104,7 @@ class LongMemEvalAdapter:
             return False
 
         matches = [w for w in set(rubric_words) if w in ans_clean]
-        HIGH_SPECIFICITY = {
-            "premiere", "adobe", "sony", "miami", "spanish", "french", "netflix",
-            "cooker", "tomatoes", "turbinado", "poppyseed", "dresser", "stratocaster",
-            "gibson", "almond", "luna", "quinoa", "denver", "garmin", "iphone",
-            "audiobooks", "suica", "tripit", "cassette", "cocktail", "power",
-            "tofu", "cashew", "spinach", "blueberry", "martini", "ratatouille",
-            "cascara", "rooftop", "ocean", "skyline", "balcony", "stamping",
-            "fabric", "utensil", "granite",
-        }
-        if any(w in HIGH_SPECIFICITY for w in matches):
-            return True
+        # Require matching at least 2 distinct non-stopword rubric content terms.
         return len(matches) >= 2
 
     @classmethod
@@ -166,8 +156,6 @@ class LongMemEvalAdapter:
             ])
         if (clean_gt in clean_ans or clean_ans in clean_gt
                 or gt_lower in ans_lower or ans_lower in gt_lower):
-            return True
-        if "bedroom" in clean_gt and "bed" in clean_ans:
             return True
 
         gt_words = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", clean_gt)

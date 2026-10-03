@@ -174,9 +174,9 @@ class LoCoMoAdapter:
             return True
         if re.fullmatch(r"(no|none|nothing|n/?a)[\s.!,'-]*", low):
             return True
-        # Adversarial premise disconfirmations (e.g. "Joanna didn't choose...", "never dyed", "not mentioned in the dialogue")
+        # Adversarial premise disconfirmations (e.g. "didn't choose...", "never occurred", "not mentioned in the dialogue")
         if re.search(r"\b(?:didn't|did not|never|wasn't|was not|doesn't|does not)\s+[a-z]+", low) and any(
-            w in low for w in ["choose", "mention", "state", "happen", "participate", "dye", "attend", "buy", "color", "hair"]
+            w in low for w in ["choose", "mention", "state", "happen", "participate", "occur", "attend", "exist", "take place"]
         ):
             return True
         if re.search(r"\b(?:no record of|no evidence of|not mentioned|nowhere in the text|no specific)\b", low):
@@ -266,67 +266,7 @@ class LoCoMoAdapter:
         actual_terms = set(re.findall(r"\b[a-z0-9]+\b", ans))
         return bool(expected_terms) and expected_terms <= actual_terms
 
-    @classmethod
-    def evaluate_refined_gate(cls, q_text: str, context: str) -> tuple[bool, str]:
-        """Refined gate to detect adversarial bait (entity swap, kinship mismatch)."""
-        q_lower = q_text.lower().strip()
-        # Phase 2 P1: the former ``if not target_ent: return False`` early exit
-        # here made every branch below unreachable for Nate/Joanna/Andrew
-        # questions (dead code); each branch checks its own entity directly.
 
-        # Kinship / object mismatch
-        if "grandpa" in q_lower and "grandma" in context.lower() and "grandpa" not in context.lower():
-            return True, "grandpa/grandma mismatch"
-        if "sculpture" in q_lower and "painting" in context.lower() and "sculpture" not in context.lower():
-            return True, "sculpture/painting mismatch"
-
-        # Caroline swapped to Melanie's experiences:
-        if "caroline" in q_lower:
-            melanie_patterns = [
-                r"\bcharity\s+race\b", r"\brunning\b", r"\bshoes\b", r"\bcamping\b",
-                r"\bson\b", r"\baccident\b", r"\bgrand\s+canyon\b", r"\bpottery\b",
-                r"\bcolors\s+and\s+patterns\b", r"\bclassical\s+music\b", r"\bmusicians\b",
-                r"\bmodern\s+music\b", r"\binstrument\b", r"\bcaf[eé]\b", r"\bsetback\b",
-                r"\bmeteor\b", r"\bbeach\b", r"\bblack\s+and\s+white\s+bowl\b",
-            ]
-            if any(re.search(p, q_lower) for p in melanie_patterns):
-                if "help children" not in q_lower:
-                    return True, "Experience belongs to Melanie, not Caroline"
-
-        # Melanie swapped to Caroline's experiences:
-        if "melanie" in q_lower:
-            caroline_patterns = [
-                r"\bnecklace\b", r"\bgrandma\b", r"\badoption\b", r"\bcounseling\b",
-                r"\bart\s+show\b", r"\bdad\b", r"\blocal\s+church\b", r"\bstained\s+glass\b",
-                r"\bneighborhood\b", r"\brainbow\b", r"\bsong\b", r"\bcourageous\b",
-                r"\bbrave\b", r"\bhorseback\b", r"\boscar\b", r"\bplace\s+does\s+melanie\b",
-            ]
-            if any(re.search(p, q_lower) for p in caroline_patterns):
-                return True, "Experience belongs to Caroline, not Melanie"
-
-        # Nate swapped to Joanna's experiences:
-        if "nate" in q_lower:
-            joanna_only = [r"\bscreenplay\b", r"\bnovel\b", r"\bpoetry\b", r"\bblog\s+post\b", r"\bproduction\s+company\b"]
-            if any(re.search(p, q_lower) for p in joanna_only):
-                return True, "Experience belongs to Joanna, not Nate"
-
-        # Joanna swapped to Nate's experiences / ungrounded cheer:
-        if "joanna" in q_lower:
-            nate_only = [r"\btournament\b", r"\besports\b", r"\bgaming\s+team\b", r"\bprize\s+money\b", r"\brely\s+on\s+for\s+cheer\b"]
-            if any(re.search(p, q_lower) for p in nate_only):
-                return True, "Experience belongs to Nate, not Joanna"
-
-        # Andrew / Audrey ungrounded future plans or activities:
-        if "andrew" in q_lower:
-            if any(re.search(p, q_lower) for p in [r"\bplan\s+on\s+trying\s+after\b", r"\bafter\s+the\s+rock\s+climbing\b", r"\bkayaking\b", r"\bbungee\b", r"\bextra\s+comfort\b", r"\bnew\s+beds\b"]):
-                return True, "Ungrounded future activity premise for Andrew"
-
-        if "grandpa" in q_lower and "caroline" in q_lower:
-            return True, "grandpa/grandma mismatch"
-        if "oscar" in q_lower and "caroline" not in q_lower:
-            return True, "Oscar belongs to Caroline"
-
-        return False, "ok"
 
     @classmethod
     def _open_domain_answer_matches(cls, expected: str, actual: str) -> bool:
@@ -348,12 +288,6 @@ class LoCoMoAdapter:
         if "yes" in gt_l and "yes" in pr_l:
             return True
         if "somewhat" in gt_l and ("somewhat" in pr_l or "not" in pr_l):
-            return True
-        if "liberal" in gt_l and "liberal" in pr_l:
-            return True
-        if "national park" in gt_l and "national park" in pr_l:
-            return True
-        if "thoughtful" in gt_l and ("thoughtful" in pr_l or "driven" in pr_l or "authentic" in pr_l):
             return True
 
         # Refusal-as-negative: when the ground-truth is a negative-likelihood
@@ -389,45 +323,14 @@ class LoCoMoAdapter:
         if gt_l in pr_l or pr_l in gt_l:
             return True
 
-        # Semantic synonyms
-        if "two cats and a dog" in gt_l and (("cat" in pr_l or "kitty" in pr_l) and ("dog" in pr_l or "pup" in pr_l)):
-            return True
-        if "7 years" in gt_l and ("2016" in pr_l or "7" in pr_l):
-            return True
-        if "lgbtq" in gt_l and "lgbtq" in pr_l and ("adopt" in pr_l or "help" in pr_l or "support" in pr_l):
-            return True
-        if "walk" in gt_l and ("walk" in pr_l or "hike" in pr_l):
-            return True
-        if "destress" in pr_l or "de-stress" in pr_l:
-            if "de-stress" in gt_l or "destress" in gt_l:
-                return True
-        if "headspace" in pr_l and "mental health" in gt_l:
-            return True
-        if "mental health" in pr_l and "headspace" in gt_l:
-            return True
-        if "me-time" in pr_l and "me-time" in gt_l:
-            return True
-        if "important" in gt_l and ("needed them" in pr_l or "important" in pr_l or "mean the world" in pr_l):
-            return True
-        if "appreciated" in gt_l and ("supported" in pr_l or "appreciated" in pr_l or "loved" in pr_l or "grateful" in pr_l):
-            return True
-        if "sunset with a palm tree" in gt_l and ("sunset" in pr_l or "palm" in pr_l):
-            return True
-        if "cup with a dog face" in gt_l and ("cup" in pr_l or "dog face" in pr_l or "dog" in pr_l):
-            return True
-        if "stained glass" in gt_l and "stained glass" in pr_l:
-            return True
-        if "trans lives matter" in gt_l and "trans lives matter" in pr_l:
-            return True
-        if "self-acceptance" in gt_l and ("self-acceptance" in pr_l or "acceptance" in pr_l or "support" in pr_l):
-            return True
-        if "scared but reassured" in gt_l and ("scared" in pr_l or "reassured" in pr_l):
-            return True
-        if "adoption" in gt_l and ("adoption" in pr_l or "adopt" in pr_l):
+        # Hyphen normalization
+        gt_norm = gt_l.replace("-", " ")
+        pr_norm = pr_l.replace("-", " ")
+        if gt_norm in pr_norm or pr_norm in gt_norm:
             return True
 
-        gt_w = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", gt_l) if len(w) > 2)
-        pr_w = set(w for w in re.findall(r"\b[a-zA-Z0-9_-]+\b", pr_l) if len(w) > 2)
+        gt_w = set(w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", gt_norm) if len(w) > 2)
+        pr_w = set(w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", pr_norm) if len(w) > 2)
         if gt_w and pr_w:
             if len(gt_w & pr_w) / len(gt_w) >= 0.30:
                 return True
@@ -807,7 +710,7 @@ class LoCoMoAdapter:
                     f"- CRITICAL: When asked what animal, species, food, or item they like/have/watch:\n"
                     f"  Output the EXACT specific name or species from the context (e.g. 'turtles', 'dog treats').\n"
                     f"  NEVER use broad abstract categories like 'animals' or 'pets' or 'food'.\n"
-                    f"- When asked what kind of art Caroline makes: output the exact style from the context (e.g. 'abstract art').\n"
+                    f"- When asked what kind of art or craft someone makes: output the exact style or medium from the context (e.g. 'abstract art').\n"
                     f"- CRITICAL SPEAKER BINDING: Context turns are tagged with [SPEAKER:Name].\n"
                     f"  * When asked what two people 'share' or 'both' do/like/see:\n"
                     f"    'Share' means MUTUAL activities they do together or BOTH express love/interest for (e.g. watching movies, making desserts).\n"
@@ -943,18 +846,7 @@ class LoCoMoAdapter:
                 ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
             from artificial_memory.temporal.interval_algebra import normalize_temporal_for_scoring
             predicted_answer = normalize_temporal_for_scoring(ans.text)
-            # Official dataset anomaly handlers
-            if question.question_id == "conv-41-qa-024" or "start boot camp" in question.question.lower():
-                predicted_answer = "April.2023"
-            elif "conv-42" in question.question_id:
-                # Conv-42 official GT glued date normalization (e.g. 24June, 2022)
-                predicted_answer = re.sub(r"\b(\d+)\s+([A-Za-z]+)", r"\1\2", predicted_answer)
-                if "ice cream" in question.question.lower() and ("this weekend" in ans.text.lower() or "weekend" in ans.text.lower()):
-                    predicted_answer = "The weekend of 24June, 2022."
-            # Relative to absolute conversion for known session events
-            if "year ago" in predicted_answer.lower() and "volunteer" in question.question.lower():
-                predicted_answer = "Around August 2022"
-            # Normalize 'Since YYYY' to 'In YYYY' when question asks 'When did X get/buy'
+            # General preposition normalization ('Since YYYY' -> 'In YYYY' when question asks 'When did / What year')
             if re.match(r"^Since\s+(\d{4})$", predicted_answer.strip(), re.I) and any(w in question.question.lower() for w in ["when did", "what year", "get his", "get her", "get their", "buy"]):
                 predicted_answer = re.sub(r"^Since\s+", "In ", predicted_answer.strip(), flags=re.I)
         elif question.category == 4:
@@ -970,18 +862,14 @@ class LoCoMoAdapter:
                 f"- For 'what', 'when', 'how many', 'why' questions: answer with the\n"
                 f"  exact value from the context. Do NOT add extra information.\n"
                 f"- When asked how someone felt, state the exact emotional word from the context (e.g. 'touched', 'proud', 'grateful').\n"
-                f"- When asked for a favorite movie or work: use the work DESCRIBED as a\n"
+                f"- When asked for a favorite movie, book, or work: use the work DESCRIBED as a\n"
                 f"  favorite/recommendation in the context, identified from its description -\n"
-                f"  NEVER a title only the OTHER speaker mentioned (e.g. Nate's 'Inception' is\n"
-                f"  not Joanna's favorite). A 'romantic drama about memory and relationships'\n"
-                f"  is 'Eternal Sunshine of the Spotless Mind'. Look for lifelong favorites (e.g. 'Eternal Sunshine of the Spotless Mind').\n"
+                f"  NEVER a title or item only the OTHER speaker mentioned. Attribute preferences strictly to the person asked.\n"
                 f"- For 'how' questions: state the reason/purpose in your own words\n"
                 f"  ONLY if the context gives a clear reason.\n"
                 f"- MULTIMODAL PHOTO EVIDENCE: Image descriptions like '[attached photo - photo shows: ...]' or 'photo shows: a photography of a sign that says X' contain CRITICAL factual evidence (e.g. posters, signs, drawings, objects). ALWAYS extract facts from 'photo shows:' descriptions!\n"
                 f"- STRICT VERBATIM PHRASE EXTRACTION: Do NOT summarize, synthesize, or rephrase in your own words!\n"
-                f"  Copy the EXACT words and phrases from the dialogue or photo descriptions (e.g. 'an ongoing adventure of learning and growing',\n"
-                f"  'creating a family for kids who need one', 'art and self-expression', 'researching adoption agencies', 'Trans Lives Matter',\n"
-                f"  'Freedom and being true to herself').\n"
+                f"  Copy the EXACT words and phrases from the dialogue or photo descriptions.\n"
                 f"- When asked what something symbolizes, is a reminder of, plans for the summer, or why someone did something: quote the exact phrase from the speaker.\n"
                 f"- Return ONLY the concise target answer/entity/date/number/phrase.\n"
                 f"- CRITICAL: You are FORBIDDEN from saying 'I don't know', 'Unsure', 'Not enough information',\n"
