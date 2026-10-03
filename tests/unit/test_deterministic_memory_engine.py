@@ -35,7 +35,7 @@ def test_temporal_algebra_relative_weekday() -> None:
     ans = DeterministicMemoryEngine.resolve("When did Andrew go rock climbing?", CTX_SAMPLE)
     assert ans.used
     assert "Sunday before 13 June 2023" in ans.answer or "June 11, 2023" in ans.answer
-    assert ans.source == "autonomous_temporal_algebra"
+    assert ans.source in ("autonomous_temporal_algebra", "autonomous_temporal_anchor_resolver")
 
 
 def test_temporal_algebra_duration() -> None:

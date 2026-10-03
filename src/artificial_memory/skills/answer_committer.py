@@ -148,6 +148,7 @@ def parse_turns(context: str) -> list[Turn]:
         line = raw.strip()
         if not line:
             continue
+        line = re.sub(r"^\[SPEAKER:[^\]]+\]\s*", "", line)
         dia_id = ""
         header_date = ""
         header = _HEADER.match(line)
