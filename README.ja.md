@@ -12,16 +12,17 @@ AIのための実験的認知長期メモリシステム。忘却を「完全削
 [![Status: v0.3.0 Apex Generation](https://img.shields.io/badge/status-v0.3.0%20Apex%20Generation-brightgreen.svg)](#v3-apex-generation-における進化点)
 [![Tests: 308 passed](https://img.shields.io/badge/tests-308%20passed-success.svg)](#再現手順-reproduction)
 [![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
-[![BEAM: 100% Precision](https://img.shields.io/badge/BEAM-100%25%20Precision-brightgreen.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
+[![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
 
 ---
 
 ## V3 (Apex Generation) における進化点
 
-Lethe Akribeia v0.3.0 は、実験的プロトタイプ（v0.2.0）から、極めて高い監査性と信頼性を備えたプロダクション級認知ランタイムへの大規模な跳躍を遂げました：
+Lethe Akribeia v0.3.0 は、実験的プロトタイプ（v0.2.0）から、極めて高い監査性と信頼性を備えた研究開発級（Research-grade）の認知ランタイムへの大規模な跳躍を遂げました：
 
 1. **三層分離診断アーキテクチャの確立**:
-   - **Layer 1（Oracle Recall: LongMemEval で 98.20%）**、**Layer 2（Reader on Hits: 82.08%）**、**Layer 3（End-to-End: 83.40%）** を完全分離し、「長期記憶の検索層は実質的に完成しており、ボトルネックは Reader の言語生成側にある」構造を明確に診断可能にしました。
+   - **Layer 1（Oracle Recall: LongMemEval で 98.20%）**、**Layer 2（Reader on Hits: 82.08%）**、**Layer 3（End-to-End: 83.40%）** を完全分離し、「長期記憶の検索層が極めて高い到達率（98.20%）を示しており、ボトルネックは Reader の言語生成側にある」構造を明確に診断可能にしました。
+
 2. **Subsystem H: ArithmeticDifferenceEngine（Zero-LLM 自律コミッター）の新規配備**:
    - 通貨差分（$300 − $30 = $270）、節約割引額、複数地点の日数合算、イベント時年齢逆算を 100% 決定論的アルゴリズムで計算する導出スキャフォールドを実装。
    - 7B Reader が偽拒絶（False Refusal）に陥っていた LongMemEval の難問 **+9問を回帰損失ゼロ（0 regressions）で完全救済**し、LongMemEval End-to-End を **83.40% (417/500)** へと押し上げました。
@@ -79,11 +80,11 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 | ベンチマーク / 評価スイート | 規模 (N) | **Layer 1: Oracle Recall** (証拠到達率) | **Layer 2: Reader on Hits** (7B Reader 正答率) | **Layer 3: End-to-End** (最終総合正答率) | 主な知見とアーキテクチャ境界 |
 |:---|:---:|:---:|:---:|:---:|:---|
 | **LongMemEval (全6機能)** | 500問 | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08%**<br>*(Reader単体・到達時)* | **83.40% (417/500)**<br>*(Subsystem H 救済: +9問)* | 記憶検索率は 98.20% に到達。新設の Subsystem H（算術差分エンジン）により偽拒絶 9問を回帰損失ゼロで救済。 |
-| **BEAM (100K 〜 10M トークン)** | 48問 | **100.0% (48/48)** | **100.0%** | **100.0%** | 決定論的タイムライン索引により、10万〜1000万トークンの長大対話からノイズなく針を抽出。 |
+| **BEAM (500K スケール)** | 48問 | **100.0% (48/48)** | **100.0%** | **100.0%** | 500K トークン規模で実測検証（決定論的タイムライン索引により 10M まで拡張可能）。48問の needle-in-haystack 質問で針の見落としゼロ。 |
 | **LoCoMo 1,540 (Single-Hop)** | 841問 | **83.71%** | **85.80%** | **77.65%** | 明示的事実の想起。Reader が証拠から素直に事実を抽出できる領域。 |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321問 | **81.62%** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **53.89%**<br>*(Committer強化: +8問)* | 複数期間の相対時間計算。キーワード密集度スコアリングと決定論的カレンダー正規化により精度向上。 |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321問 | **81.62%** | **57.25%**<br>*(7B は到達時の 42.8% で推論失敗)* | **51.09% (164/321)** | 複数期間の相対時間計算。決定論的カレンダー正規化が寄与。自律コミッターはコミット対象で精度 72.8%（生の 7B 生成比 +5.9pp）を達成。 |
 | **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282問 | **78.37%** | **55.20%** | **47.87%** | 異セッション間グラフリンク。今後の研究開発課題（フロンティア領域）。 |
-| **LoCoMo 1,540 (全体・非敵対的)** | 1,540問 | **80.65% (1,242/1,540)** | **72.54%** | **65.20% (1,004/1,540)** | 主幹ローカル 7B Reader と自律コミッターによる全問評価。 |
+| **LoCoMo 1,540 (全体・非敵対的)** | 1,540問 | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | 主幹ローカル 7B Reader による全問評価。McNemar 検定表（996/1,540）と完全一致。 |
 
 > [!NOTE]
 > **なぜ Oracle Recall と End-to-End を分離するのか？**  
@@ -109,7 +110,7 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 
 ### 正直な境界と未検証領域 (Honest Boundaries & Unverified Frontiers)
 - **フロンティア Reader によるスケール (120B / Gemini)**: 同一10問プローブでは Gemini Flash で 90.0% (9/10) を記録しましたが、「120B+ 級のモデルを接続すれば 1,540問全体で 100% になる」という主張は、計算資源・API予算を伴う実機検証を要する**現時点では未検証の仮説**です。
-- **決定論的自律オフロード (Autonomous Engine)**: Reader の四則演算ミスやフォーマット崩れをバイパスするため、Lethe はゼロ LLM 決定論的スキル（CHRONOS、集計、オントロジー解決器）を統合しています。7B Reader が F1 38.79% に沈んでいた難問ドリル 281問において、決定論的エンジンは **100% の問題にコミットし、F1 92.87%（回帰損失 0件）** を達成しました。
+- **決定論的自律オフロード (Autonomous Engine)**: Reader の四則演算ミスやフォーマット崩れをバイパスするため、Lethe はゼロ LLM 決定論的スキル（CHRONOS、集計、オントロジー解決器）を統合しています。7B Reader が F1 38.79% に沈んでいた難問ドリル 281問において、決定論的エンジンは**全281問に対して決定論的な回答コミットメントを生成し、F1 92.87%（回帰損失 0件）**を達成しました。
 - **先行研究・他システムとの比較**: LongMemEval では他システムも高い数値を報告しており（Sibyl Labs 95.6%, OMEGA 95.4% など）、LoCoMo でも異なるハーネス・ジャッジ下での報告が存在します。同一の凍結ジャッジ下での直接的な横並び比較は現在進行中の課題です。
 
 ---
@@ -180,7 +181,7 @@ pip install -e ".[vector,llm]"
 ```
 
 > [!NOTE]
-> **パッケージ移行方針**: 既存のコードベースおよび全ユニットテスト（82件）の後方互換性を完全に保つため、v0.2.0 では内部パッケージ名 `artificial_memory` を維持しています（CLI は `lethe` に刷新済み）。v0.3.0 にて `lethe` への完全エイリアス移行を予定しています。
+> **パッケージアーキテクチャに関する注記**: 再現可能なベンチマークハーネスおよび 308 件の単体テストスイートとの完全な後方互換性を維持するため、内部 Python モジュールは `artificial_memory` パッケージとして構成され、ユーザー向け CLI バイナリおよびエントリポイントは `lethe` として提供されます。
 
 ```bash
 # セッション開始
@@ -221,7 +222,7 @@ lethe timeline
 - **V3 (現在: Apex Baseline)**: 三層分離診断標準を確立し、LongMemEval で Oracle Recall 98.2% を達成。新設の Subsystem H (`ArithmeticDifferenceEngine`) により偽拒絶 +9問を完全救済して E2E 83.40% を記録。LoCoMo の時間ターン選択（+8問純増）を最適化し、単体テストを 308件（100% ALL PASS）へ拡充。
 - **V4 (次期: 認知的拡張 & 非時間暗黙状態の救済)**:
   - *非時間暗黙状態の自律救済*: 属性・所属などの暗黙的推論パターンを自律エンジンへ拡張し、残余の Reader 偽拒絶を撲滅、LongMemEval E2E **90%+** 超えを達成。
-  - *セッション間グラフ探索の強化*: `ppr_graph` とエンティティ結合を強化し、LoCoMo Multi-Hop の Oracle Recall を 80.65% から **90%+** へ引き上げ。
+  - *セッション間グラフ探索の強化*: `ppr_graph` とエンティティ結合を強化し、LoCoMo Multi-Hop の Oracle Recall を 78.37% から **90%+** へ（全体 Oracle Recall も 80.65% から **90%+** へ）引き上げ。
 - **V5 (世界最高峰: フロンティア統合)**:
   - Lethe の超高精度 MSC コンテキストを商用フロンティアモデル（Gemini 1.5 Pro, Claude 3.5, 120B+ オープンモデル）に接続し、全 1,540問における E2E 95%+ 天井を実証。
   - Kubernetes クラスタを跨ぐ分散マルチエージェント合意プロトコルの完成。

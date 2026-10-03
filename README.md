@@ -12,16 +12,16 @@ An experimental long-term memory system for AI that treats forgetting as progres
 [![Status: v0.3.0 Apex Generation](https://img.shields.io/badge/status-v0.3.0%20Apex%20Generation-brightgreen.svg)](#whats-new-in-v3-apex-generation)
 [![Tests: 308 passed](https://img.shields.io/badge/tests-308%20passed-success.svg)](#reproduction)
 [![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#evaluation-highlights-three-layer-architecture)
-[![BEAM: 100% Precision](https://img.shields.io/badge/BEAM-100%25%20Precision-brightgreen.svg)](#evaluation-highlights-three-layer-architecture)
+[![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#evaluation-highlights-three-layer-architecture)
 
 ---
 
 ## What's New in V3 (Apex Generation)
 
-Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prototype (v0.2.0) to a production-grade, highly auditable cognitive runtime:
+Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prototype (v0.2.0) to a research-grade, highly auditable cognitive runtime:
 
 1. **Three-Layer Diagnostic Architecture**:
-   - Decoupled **Layer 1 (Oracle Recall: 98.20% on LongMemEval)** from **Layer 2 (Reader on Hits: 82.08%)** and **Layer 3 (End-to-End: 83.40%)**, demonstrating that persistent memory retrieval is essentially solved while diagnosing the exact language model bottlenecks.
+   - Decoupled **Layer 1 (Oracle Recall: 98.20% on LongMemEval)** from **Layer 2 (Reader on Hits: 82.08%)** and **Layer 3 (End-to-End: 83.40%)**, demonstrating very high evidence retrieval recall on LongMemEval while diagnosing the exact language model bottlenecks.
 2. **Subsystem H: ArithmeticDifferenceEngine (Zero-LLM Autonomous Committer)**:
    - Built a deterministic derivation scaffold computing currency differentials ($300 − $30 = $270), savings/discounts, multi-location day sums, and chronological age offsets without a single LLM call.
    - Rescued **+9 difficult questions** from 7B Reader false refusals on LongMemEval with **0 regression losses**, pushing LongMemEval End-to-End to **83.40% (417/500)**.
@@ -31,6 +31,7 @@ Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prot
    - Added arithmetic difference suites, interval algebra, temporal compilation, speaker normalization, model sensitivity verification, corruption resilience, and derivation scaffolding suites.
 5. **Model Invariance Validation (7B vs. 1.5B)**:
    - Empirically demonstrated that a 5x parameter drop (7B → 1.5B) produces virtually zero performance divergence ($p = 0.9509$ on LoCoMo, $p = 0.4030$ on LongMemEval), validating context dominance.
+
 
 
 ---
@@ -79,11 +80,11 @@ We do not present Lethe Akribeia as a universal SOTA system. Rather, we empirica
 | Benchmark / Evaluation Suite | Scope (N) | **Layer 1: Oracle Recall** (Evidence Retrieval) | **Layer 2: Reader on Hits** (7B Reader Accuracy) | **Layer 3: End-to-End** (Final Accuracy) | Key Finding & Architectural Boundary |
 |:---|:---:|:---:|:---:|:---:|:---|
 | **LongMemEval (All 6 Capabilities)** | 500 Qs | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08%**<br>*(Reader alone on hits)* | **83.40% (417/500)**<br>*(+9 rescued via Subsystem H)* | Memory retrieval reaches 98.20%; Subsystem H (ArithmeticDifferenceEngine) recovers reader false refusals with 0 regressions. |
-| **BEAM (100K ~ 10M Horizon)** | 48 Qs | **100.0% (48/48)** | **100.0%** | **100.0%** | Deterministic timeline indexing extracts needles across 100K–10M tokens without context degradation. |
+| **BEAM (500K Horizon)** | 48 Qs | **100.0% (48/48)** | **100.0%** | **100.0%** | Deterministic timeline indexing extracts needles across 500K tokens without context degradation (extensible to 10M). |
 | **LoCoMo 1,540 (Single-Hop)** | 841 Qs | **83.71%** | **85.80%** | **77.65%** | Strong direct factual recall; Reader reliably extracts explicit entity facts. |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62%** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **53.89%**<br>*(+8 net via Committer)* | Multi-interval relative dates benefit from proximity density scoring and deterministic calendar normalization. |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62%** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **51.09% (164/321)** | Multi-interval relative dates benefit from deterministic calendar normalization; autonomous committer achieves 72.8% precision (+5.9pp over 7B on committed subset). |
 | **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282 Qs | **78.37%** | **55.20%** | **47.87%** | Open research frontier: cross-session graph linking across divergent topics. |
-| **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **72.54%** | **65.20% (1,004/1,540)** | Overall non-adversarial benchmark with primary local 7B Reader and autonomous committer. |
+| **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | Overall non-adversarial benchmark with primary local 7B Reader. |
 
 > [!NOTE]
 > **Why Separate Oracle Recall from End-to-End?**  
@@ -109,8 +110,9 @@ A central finding across 140+ hours of sweeps is that **Lethe's pre-compiled con
 
 ### Honest Boundaries & Unverified Frontiers
 - **Frontier Reader Scaling (120B / Gemini)**: While our small 10-question probe showed 90% (9/10) with Gemini Flash, asserting that a 120B+ model will achieve 100% on the full 1,540 suite is **an unverified hypothesis** pending compute budget.
-- **Autonomous Deterministic Offloading**: To bypass Reader arithmetic and formatting failures, Lethe incorporates zero-LLM deterministic skills (CHRONOS, counting, ontology resolvers). On a hard diagnostic drill of 281 questions where 7B Reader scored 38.79% F1, the deterministic engine committed answers at **100% resolution with 92.87% F1 and 0 regression losses**.
+- **Autonomous Deterministic Offloading**: To bypass Reader arithmetic and formatting failures, Lethe incorporates zero-LLM deterministic skills (CHRONOS, counting, ontology resolvers). On a hard diagnostic drill of 281 questions where 7B Reader scored 38.79% F1, the deterministic engine produced a deterministic commitment for all 281 questions, achieving **92.87% F1 with 0 regression losses**.
 - **Comparison with Contemporaneous Work**: Other systems report strong LongMemEval numbers (e.g., Sibyl Labs 95.6%, OMEGA 95.4%) and LoCoMo numbers under varying evaluation harnesses and judge models. Direct head-to-head evaluation under identical frozen judges remains ongoing.
+
 
 ---
 
@@ -178,7 +180,7 @@ pip install -e ".[vector,llm]"
 ```
 
 > [!NOTE]
-> **Package Migration Notice**: For complete backward compatibility with existing workflows and our 82-test suite, internal package imports remain under `artificial_memory` in v0.2.0 (CLI binaries are updated to `lethe`). Full alias migration to `lethe` is scheduled for v0.3.0.
+> **Package Architecture Notice**: For full backward compatibility with reproducible benchmark harnesses and the 308-test suite, internal Python modules remain packaged under `artificial_memory`, while the user-facing CLI binary is exposed as `lethe`.
 
 ```bash
 # Start a session
@@ -219,10 +221,11 @@ Evaluating 1,540 questions through commercial frontier APIs with massive context
 - **V3 (Current: Apex Baseline)**: Established the three-layer diagnostic standard, reached 98.2% Oracle Recall on LongMemEval, implemented Subsystem H (`ArithmeticDifferenceEngine`) rescuing +9 false-refusal questions to reach 83.40% E2E, refined LoCoMo temporal turn selection (+8 net correct), and expanded test coverage to 308 unit tests (100% passing).
 - **V4 (Next: Cognitive Expansion & Non-Temporal Semantic Rescue)**:
   - *Non-Temporal Semantic Rescue*: Expand autonomous pattern induction for implicit entity state questions to eliminate remaining Reader false abstentions, targeting **>90%** LME End-to-End.
-  - *Cross-Session Graph Traversal*: Upgrade `ppr_graph` and entity linking to raise LoCoMo Multi-Hop Oracle Recall from 80.65% to **90%+**.
+  - *Cross-Session Graph Traversal*: Upgrade `ppr_graph` and entity linking to raise LoCoMo Multi-Hop Oracle Recall from 78.37% to **90%+** (and overall from 80.65% to **90%+**).
 - **V5 (The Global Pinnacle: Frontier Synthesis)**:
   - Connect Lethe's high-recall MSC contexts to commercial frontier models (Gemini 1.5 Pro, Claude 3.5, 120B+ open models) to confirm the 95%+ E2E ceiling across all 1,540 questions.
   - Distributed multi-agent consensus protocols across Kubernetes clusters.
+
 
 ---
 
