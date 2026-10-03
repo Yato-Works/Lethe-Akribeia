@@ -162,7 +162,7 @@ class MinimumSufficientContextCompiler:
         scalable_retrieval_threshold: int = 10_000,
         scalable_candidate_budget: int = 256,
         evidence_widening: bool = True,
-        rescue_order: str = "pool",
+        rescue_order: str = "relevance",
         selection_window_cap: int = 32,
         rescue_token_bonus_per_unit: int = 130,
         condense: bool = False,
@@ -317,8 +317,9 @@ class MinimumSufficientContextCompiler:
         def _key(u):
             return u.ir.raw_content
 
-        strong = candidate_units[:12]
-        tail = candidate_units[12:]
+        strong_len = min(len(candidate_units), self.selection_window_cap)
+        strong = candidate_units[:strong_len]
+        tail = candidate_units[strong_len:]
         pool_order = {r.raw_content: idx for idx, r in enumerate(exp_res.evidence_pool)}
         rescue = [u for u in tail if _key(u) in pool_keys]
         rescue.sort(key=lambda u: pool_order.get(_key(u), 9999))
@@ -496,16 +497,16 @@ class MinimumSufficientContextCompiler:
             max_units = 25
             min_units_before_stop = 25
         elif self.evidence_widening:
-            max_units = min(self.selection_window_cap, 6 + rescue_quota)
-            min_units_before_stop = max_units
+            max_units = max(self.selection_window_cap, 6 + rescue_quota)
+            min_units_before_stop = min(max_units, max(12, 6 + rescue_quota))
         else:
-            max_units = 12
-            min_units_before_stop = 6
+            max_units = max(self.selection_window_cap, 16)
+            min_units_before_stop = min(max_units, 10)
         widening_budget_bonus = (
             self.rescue_token_bonus_per_unit * min(rescue_quota, self.selection_window_cap)
             if self.evidence_widening else 0
         )
-        effective_budget = target_token_budget + 700 + widening_budget_bonus if is_aggregation else target_token_budget + widening_budget_bonus
+        effective_budget = target_token_budget + 700 + widening_budget_bonus if is_aggregation else target_token_budget + widening_budget_bonus + 300
         cert = self.checker.check(query, intent, selected_units)
 
         # Track session diversity
@@ -532,7 +533,7 @@ class MinimumSufficientContextCompiler:
                     sid = sid_match.group(1)
                     session_count = sum(1 for su in selected_units
                                        if re.search(rf"\[{re.escape(sid)}(?:\s+on\s+[^\]]+)?\]", su.ir.raw_content))
-                    max_per_sess = 1 if is_aggregation else 2 if any(w in query.lower() for w in ["most", "least", "which", "compare", "difference"]) else 4
+                    max_per_sess = 1 if is_aggregation else 2 if any(w in query.lower() for w in ["most", "least", "which", "compare", "difference"]) else 6
                     if session_count >= max_per_sess:
                         continue
                     seen_sessions.add(sid)
@@ -544,7 +545,7 @@ class MinimumSufficientContextCompiler:
             # evidence has been inspected, we have broad coverage and substantial
             # context.  (Stopping at a fixed 6 units discarded ground-truth turns
             # ranked 7-19 - the dominant LoCoMo oracle-recall loss.)
-            if not is_aggregation and cert.is_sufficient and len(selected_units) >= min_units_before_stop and curr_tokens >= 250:
+            if not is_aggregation and cert.is_sufficient and len(selected_units) >= min_units_before_stop and curr_tokens >= 400:
                 break
 
         # Phase 2: Aggregation Query Enhancement - Second-pass retrieval for comprehensive session coverage

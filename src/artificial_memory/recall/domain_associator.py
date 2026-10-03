@@ -74,6 +74,32 @@ _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
     # Domestic & Indoor Activities
     "indoor": ("cooking", "cook", "treats", "baking", "home", "inside", "recipes"),
     "activity": ("hobby", "cooking", "games", "reading", "treats", "exercise", "walk"),
+
+    # Identity, Community & Pride
+    "identity": ("transgender", "lgbt", "lgbtq", "queer", "pride", "gender", "community", "inclusion", "transition"),
+    "pride": ("festival", "parade", "march", "lgbt", "lgbtq", "fest", "celebration", "community"),
+    "transgender": ("trans", "gender", "identity", "lgbt", "lgbtq", "community"),
+
+    # Wellbeing, Self-Care & Relaxation
+    "self-care": ("me-time", "relax", "unwind", "calm", "destress", "refresh", "care", "rest"),
+    "destress": ("relax", "unwind", "calm", "stress", "me-time", "running", "reading", "bath", "tea", "refresh"),
+
+    # Family, Youth & Mentorship
+    "children": ("kids", "child", "youth", "son", "daughter", "family", "mentorship", "mentor"),
+    "kids": ("children", "child", "youth", "son", "daughter", "family", "kid"),
+    "mentorship": ("mentor", "mentoring", "program", "youth", "community", "help", "support"),
+    "help": ("support", "mentorship", "mentor", "volunteering", "charity", "assist", "community"),
+    "adopt": ("adoption", "adopted", "foster", "child", "kid", "baby", "family"),
+
+    # Art & Inspiration
+    "art": ("paint", "painting", "draw", "drawing", "gallery", "exhibit", "exhibition", "pottery", "pots", "creative"),
+    "paint": ("art", "painting", "canvas", "colors", "sunset", "acrylic", "watercolor", "artist"),
+    "inspired": ("inspiration", "inspire", "motivate", "capture", "center", "unity"),
+
+    # Life Journey & Personality
+    "journey": ("adventure", "growing", "learning", "life", "path", "experience"),
+    "traits": ("personality", "kind", "supportive", "generous", "caring", "thoughtful", "character"),
+    "personality": ("traits", "kind", "supportive", "generous", "caring", "thoughtful", "character"),
 }
 
 from collections import defaultdict

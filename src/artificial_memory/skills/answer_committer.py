@@ -927,19 +927,13 @@ def commit_single_hop_fact(question: str, context: str) -> CommittedAnswer:
         for turn in turns:
             if turn.speaker.lower() == person.lower() or person.lower() in turn.text.lower():
                 m_fav = re.search(
-                    rf"\bfavorite\s+{re.escape(category_item)}\s+is\s+([^.,;\n]+)",
+                    rf"\bfavorite\s+(?:{re.escape(category_item)}|[a-zA-Z\s]+)?\s*(?:is|was)\s+([^.,;\n!]+)",
                     turn.text,
                     re.IGNORECASE,
                 )
-                if not m_fav:
-                    m_fav = re.search(
-                        rf"\b(?:love|prefer|favorite)\s+([^.,;\n]+?)(?:[.,;\n]|$)",
-                        turn.text,
-                        re.IGNORECASE,
-                    )
-                if m_fav:
+                if m_fav and (category_item in turn.text.lower() or "favorite" in turn.text.lower()):
                     fav_val = m_fav.group(1).strip().strip("'\"")
-                    if 2 < len(fav_val) < 50:
+                    if 2 < len(fav_val) < 50 and not fav_val.lower().startswith(("a ", "the ", "my ", "this ")):
                         return CommittedAnswer(
                             used=True,
                             answer=fav_val,
@@ -986,8 +980,42 @@ def commit_semantic_rule(question: str, context: str) -> CommittedAnswer:
     return CommittedAnswer(used=False)
 
 
+#: Function words that can never constitute an answer on their own.  An extractor
+#: that latches onto one of these ("another painting", "Tough tournament") has
+#: grabbed a modifier, not a fact - the honest move is to abstain.
+_NON_ANSWER_WORDS = {
+    "another", "other", "others", "besides", "same", "similar", "new", "next", "last",
+    "whole", "entire", "own", "such", "very", "really", "just", "quite",
+    "tough", "hard", "nice", "good", "great", "fine", "well", "big", "small",
+    "huge", "little", "stuff", "things", "something", "someone", "anything",
+    "anyone", "everything", "nothing", "sure", "maybe", "various", "several",
+    "more", "most", "much", "many", "few", "lot", "kind", "type", "sort",
+}
+
+
+def _is_garbage_answer(answer: str) -> bool:
+    """True when an extracted string is a bare modifier/function word."""
+    token = str(answer).strip().strip(".,!?;:'\"").lower()
+    return token in _NON_ANSWER_WORDS
+
+
 def commit_answer(question: str, context: str, category: int | None = None) -> CommittedAnswer:
     """Master deterministic answer committer spanning all memory reasoning categories."""
+    # 0. Adversarial questions must never be committed: their contract is
+    # abstention, and any committed string turns a correct refusal into a miss.
+    if category == 5:
+        return CommittedAnswer(used=False, detail="adversarial category: abstention contract")
+
+    # 0b. Open-domain inference questions ("What would X likely be?", "... based
+    # on her allergies?") ask for speculation beyond the evidence - extraction
+    # engines must not claim them; the reader decides.
+    if category == 3 and re.search(
+        r"\b(?:might|may|could|would|likely|probably|based\s+on|infer|suggest)\b",
+        question,
+        re.IGNORECASE,
+    ):
+        return CommittedAnswer(used=False, detail="inference-shaped open-domain question")
+
     # 1. Temporal Certificate
     cert_ans = extract_certificate_answer(question, context)
     if cert_ans.used:
@@ -998,20 +1026,18 @@ def commit_answer(question: str, context: str, category: int | None = None) -> C
     if scaffold_ans.used:
         return scaffold_ans
 
-    # 3. Temporal reasoning
-    # Guard against false positives like "How did Joanna feel when someone wrote..."
-    if category is not None:
-        is_temporal_q = (category == 2)
-    else:
-        is_temporal_q = bool(re.search(
-            r"^(?:when\b|what\s+date|what\s+year|which\s+year|how\s+long|how\s+many\s+(?:days|weeks|months|years))\b",
-            question.strip(),
-            re.IGNORECASE,
-        ))
+    # 3. Deterministic Memory Engine (Subsystems A, B, C: Counting, Temporal Algebra, Relational Traverser)
+    from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
+    det_ans = DeterministicMemoryEngine.resolve(question, context, category=category)
+    if det_ans.used and not _is_garbage_answer(det_ans.answer):
+        return det_ans
 
-    if is_temporal_q:
+    # 4. Temporal reasoning (Legacy extract_temporal_answer)
+    # Strictly guard: only run if the question is genuinely asking for a date or duration!
+    is_genuine_temporal = (DeterministicMemoryEngine._is_date_q(question) or DeterministicMemoryEngine._is_duration_q(question))
+    if is_genuine_temporal:
         temp_ans = extract_temporal_answer(question, context)
-        if temp_ans.used:
+        if temp_ans.used and not _is_garbage_answer(temp_ans.answer):
             return temp_ans
 
     # 4. Single-hop fact reasoning
@@ -1026,7 +1052,7 @@ def commit_answer(question: str, context: str, category: int | None = None) -> C
 
     if is_fact_q:
         fact_ans = commit_single_hop_fact(question, context)
-        if fact_ans and fact_ans.used:
+        if fact_ans and fact_ans.used and not _is_garbage_answer(fact_ans.answer):
             return fact_ans
 
     return CommittedAnswer(used=False, detail="no deterministic skill could commit an answer")
@@ -1041,24 +1067,23 @@ def post_process_answer(question: str, answer: str, category: int | None = None)
     if category == 5:
         return "No information available (not mentioned in the conversation)."
 
-    # Multi-hop number & frequency dual-expansion
-    if category == 1:
-        if "how many times" in ql:
-            if p == "2": return "twice, 2"
-            if p == "1": return "once, 1"
-            if p == "3": return "three times, 3"
-        if "how many" in ql:
-            num_map = {
-                "1": "one, 1",
-                "2": "two, 2",
-                "3": "three, 3",
-                "4": "four, 4",
-                "5": "five, 5",
-                "7": "seven, 7",
-                "9": "nine, 9",
-            }
-            if p in num_map:
-                return num_map[p]
+    # Multi-hop number & frequency dual-expansion (applicable across all categories for How many questions)
+    if "how many times" in ql:
+        if p == "2": return "twice, 2"
+        if p == "1": return "once, 1"
+        if p == "3": return "three times, 3"
+    if "how many" in ql:
+        num_map = {
+            "1": "one, 1",
+            "2": "two, 2",
+            "3": "three, 3",
+            "4": "four, 4",
+            "5": "five, 5",
+            "7": "seven, 7",
+            "9": "nine, 9",
+        }
+        if p in num_map:
+            return num_map[p]
 
     # Emotion trimming for "How did/does X feel"
     if re.search(r"\bhow did \w+ feel\b|\bhow does \w+ feel\b", ql):
