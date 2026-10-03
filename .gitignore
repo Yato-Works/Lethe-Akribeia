@@ -96,18 +96,37 @@ datasets/external/longmemeval_s_cleaned.json
 # Large intermediate benchmark caches & logs
 *.log
 *.err
+*.jsonl
+*.out
+benchmark_results/**/*.log
+benchmark_results/**/*.err
+benchmark_results/**/*.jsonl
+benchmark_results/**/*.out
 benchmark_results/logs/
 benchmark_results/_scorecard_snapshot.json
-benchmark_results/locomo_context_cache_*.jsonl
+benchmark_results/*context_cache*.jsonl
 benchmark_results/locomo10/mining_*/
-benchmark_results/locomo10_runs/*/
-
-# Intermediate evaluation dumps & scratch scripts
+benchmark_results/locomo10_runs/
 benchmark_results/_official_scoring/
-benchmark_results/weakness_remaining*.json
-benchmark_results/ab_*.json
+benchmark_results/window_sweep/
 benchmark_results/retrieval/
+benchmark_results/ab_*.json
+benchmark_results/weakness_*.json
+benchmark_results/*.txt
+benchmark_results/longmemeval/checkpoint*.json
+benchmark_results/longmemeval/grand_longmemeval_report_*_*.json
+
+# Scratch scripts & temporary inspection tools
+debug_*.py
+scripts/debug_*.py
+scripts/test_*.py
+scripts/inspect_*.py
+scripts/check_*.py
+scripts/ab_*.py
+scripts/benchmarks/test_*.py
 scripts/benchmarks/inspect_*.py
+scripts/benchmarks/debug_*.py
+scripts/benchmarks/_*.py
 scripts/benchmarks/analyze_*.py
 scripts/benchmarks/deep_dive_*.py
 scripts/benchmarks/purge_*.py
@@ -119,6 +138,7 @@ scripts/benchmarks/evaluate_true_strength.py
 scripts/benchmarks/evaluate_committer_*.py
 scripts/benchmarks/failure_taxonomy.py
 scripts/benchmarks/test_linguistic_precision_engine.py
+
 
 
 
