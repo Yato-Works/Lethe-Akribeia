@@ -26,6 +26,17 @@ _WORD_TO_NUM = {
     "thirty": 30, "forty": 40, "fifty": 50,
 }
 
+#: Common geographic region-to-subdivision ontology
+_GEOGRAPHIC_SUBSUMPTIONS: dict[str, set[str]] = {
+    "hawaii": {"maui", "honolulu", "oahu", "kauai", "kona", "hilo", "waikiki"},
+    "japan": {"tokyo", "kyoto", "osaka", "hokkaido", "okinawa", "shibuya", "shinjuku"},
+    "california": {"los angeles", "san francisco", "san diego", "san jose"},
+    "united states": {"us", "usa", "america", "chicago", "new york", "seattle", "boston"},
+    "uk": {"united kingdom", "london", "england", "scotland", "wales"},
+    "france": {"paris", "nice", "lyon", "marseille"},
+    "italy": {"rome", "milan", "florence", "venice"},
+}
+
 
 def _word_or_digit(token: str) -> int | None:
     token_clean = token.strip().lower()
@@ -34,31 +45,35 @@ def _word_or_digit(token: str) -> int | None:
     return _WORD_TO_NUM.get(token_clean)
 
 
+def _expand_entity_tokens(entity: str) -> set[str]:
+    """Extract and expand entity tokens with geographic subdivisions and aliases."""
+    tokens = {w.lower() for w in re.findall(r"\b[a-zA-Z]{3,}\b", entity)}
+    expanded = set(tokens)
+    for tok in tokens:
+        if tok in _GEOGRAPHIC_SUBSUMPTIONS:
+            expanded.update(_GEOGRAPHIC_SUBSUMPTIONS[tok])
+    return expanded
+
+
 class ArithmeticDifferenceEngine:
     """Deterministic arithmetic reasoner for deltas, savings, age, and multi-span durations."""
+
+    _ARITHMETIC_REGEX = re.compile(
+        r"\b(?:how\s+much\s+(?:more|less)\s+(?:did\s+\w+\s+)?(?:spend|pay|cost)|"
+        r"price\s+difference|difference\s+in\s+price|"
+        r"how\s+much\s+(?:did\s+\w+\s+)?(?:save|discount)|"
+        r"how\s+much\s+savings|"
+        r"how\s+old\s+was\s+\w+\s+when|"
+        r"total\s+(?:number\s+of\s+)?(?:days|weeks|months|hours|years)|"
+        r"how\s+many\s+(?:days|weeks|months|hours|years)\s+in\s+total|"
+        r"how\s+many\s+days\s+(?:did\s+\w+\s+spend\s+)?attending)\b",
+        re.IGNORECASE,
+    )
 
     @classmethod
     def is_arithmetic_question(cls, question: str) -> bool:
         """Check if question asks for an arithmetic delta, savings, or duration sum."""
-        ql = question.lower()
-        if any(p in ql for p in [
-            "how much more did i spend",
-            "how much more did i pay",
-            "difference in price",
-            "price difference",
-            "how much did i save",
-            "how much savings",
-            "how much discount",
-            "how old was i when",
-            "total number of days i spent",
-            "total number of days spent",
-            "how many days did i spend attending",
-            "how many weeks in total do i spent",
-            "how many weeks in total did i spend",
-            "total number of weeks",
-        ]):
-            return True
-        return False
+        return bool(cls._ARITHMETIC_REGEX.search(question))
 
     @classmethod
     def resolve_arithmetic(
@@ -71,13 +86,13 @@ class ArithmeticDifferenceEngine:
         ql = question.lower()
 
         # 1. Savings & Discount: "How much did I save on X at Y?"
-        if any(w in ql for w in ["save on", "savings on", "discount on", "did i save"]):
+        if any(w in ql for w in ["save on", "savings on", "discount on", "did i save", "how much did i save"]):
             ans_save = cls._resolve_savings(question, turns, context)
             if ans_save.used:
                 return ans_save
 
         # 2. Currency comparison: "How much more did I spend on X compared to Y?"
-        if any(w in ql for w in ["how much more", "difference in price", "price difference", "more did i spend"]):
+        if any(w in ql for w in ["how much more", "how much less", "difference in price", "price difference", "more did i spend", "more did i pay"]):
             ans_diff = cls._resolve_currency_difference(question, turns, context)
             if ans_diff.used:
                 return ans_diff
@@ -112,7 +127,6 @@ class ArithmeticDifferenceEngine:
     def _resolve_savings(cls, question: str, turns: list[Turn], context: str) -> CommittedAnswer:
         """Resolve savings: original price - paid price."""
         # Find item keywords from question
-        # e.g. "designer handbag at TK Maxx"
         m_item = re.search(r"(?:save|savings)\s+(?:on\s+)?(?:the\s+)?([a-zA-Z\s]+?)(?:\s+at\s+([a-zA-Z\s]+))?\??$", question, re.IGNORECASE)
         item_words = set(re.findall(r"\b[a-zA-Z]{3,}\b", m_item.group(1).lower())) if m_item else set()
 
@@ -156,10 +170,9 @@ class ArithmeticDifferenceEngine:
 
     @classmethod
     def _resolve_currency_difference(cls, question: str, turns: list[Turn], context: str) -> CommittedAnswer:
-        """Resolve price difference between two items or locations."""
-        # e.g. "How much more did I spend on accommodations per night in Hawaii compared to Tokyo?"
+        """Resolve price difference between two items or locations generically."""
         m = re.search(
-            r"(?:how much more|difference)\s+.*?\b(?:in|at|for|on)\s+([a-zA-Z\s]+?)\s+(?:compared to|than|and)\s+([a-zA-Z\s]+?)\??$",
+            r"(?:how much more|how much less|difference)\s+.*?\b(?:in|at|for|on)\s+([a-zA-Z\s]+?)\s+(?:compared to|than|and)\s+([a-zA-Z\s]+?)\??$",
             question,
             re.IGNORECASE,
         )
@@ -169,17 +182,12 @@ class ArithmeticDifferenceEngine:
         raw_a = m.group(1).strip()
         raw_b = m.group(2).strip()
 
-        # Clean location/entity strings
-        entity_a = re.sub(r"^(?:accommodations\s+(?:per\s+night\s+)?(?:in|at)\s+|in\s+|at\s+)", "", raw_a, flags=re.I).strip()
-        entity_b = re.sub(r"^(?:accommodations\s+(?:per\s+night\s+)?(?:in|at)\s+|in\s+|at\s+)", "", raw_b, flags=re.I).strip()
+        # Clean entity strings
+        entity_a = re.sub(r"^(?:accommodations\s+(?:per\s+night\s+)?(?:in|at)\s+|in\s+|at\s+|the\s+)", "", raw_a, flags=re.I).strip()
+        entity_b = re.sub(r"^(?:accommodations\s+(?:per\s+night\s+)?(?:in|at)\s+|in\s+|at\s+|the\s+)", "", raw_b, flags=re.I).strip()
 
-        # Handle geographic aliases
-        aliases_a = {entity_a.lower(), raw_a.lower()}
-        aliases_b = {entity_b.lower(), raw_b.lower()}
-        if any("hawaii" in a for a in aliases_a):
-            aliases_a.update(["hawaii", "maui", "honolulu", "oahu", "kauai"])
-        if any("tokyo" in b for b in aliases_b):
-            aliases_b.update(["tokyo", "shibuya", "shinjuku", "japan"])
+        tokens_a = _expand_entity_tokens(entity_a)
+        tokens_b = _expand_entity_tokens(entity_b)
 
         price_a: float | None = None
         price_b: float | None = None
@@ -189,17 +197,17 @@ class ArithmeticDifferenceEngine:
         for turn in turns:
             text = turn.text
             text_low = text.lower()
-            # Look for price in turn
             m_prices = re.findall(r"\$([0-9,]+(?:\.[0-9]+)?)", text)
             if not m_prices:
                 continue
 
             for p_str in m_prices:
                 val = float(p_str.replace(",", ""))
-                if any(a in text_low for a in aliases_a) and (price_a is None or "night" in text_low or "hotel" in text_low or "resort" in text_low or "hostel" in text_low):
+                # Generic token-overlap association between entity and turn text
+                if (any(t in text_low for t in tokens_a) or entity_a.lower() in text_low) and price_a is None:
                     price_a = val
                     ev_a = text
-                if any(b in text_low for b in aliases_b) and (price_b is None or "night" in text_low or "hotel" in text_low or "resort" in text_low or "hostel" in text_low):
+                elif (any(t in text_low for t in tokens_b) or entity_b.lower() in text_low) and price_b is None:
                     price_b = val
                     ev_b = text
 
@@ -261,9 +269,8 @@ class ArithmeticDifferenceEngine:
 
     @classmethod
     def _resolve_multi_location_days(cls, question: str, turns: list[Turn], context: str) -> CommittedAnswer:
-        """Resolve total number of days spent across locations (e.g. Japan and Chicago)."""
-        # e.g. "What is the total number of days I spent in Japan and Chicago?"
-        m = re.search(r"(?:total\s+number\s+of\s+days|how\s+many\s+days)\s+(?:i\s+)?spent(?:\s+in)?\s+([a-zA-Z\s]+?)\s+and\s+([a-zA-Z\s]+?)\??$", question, re.IGNORECASE)
+        """Resolve total number of days spent across locations generically."""
+        m = re.search(r"(?:total\s+(?:number\s+of\s+)?days|how\s+many\s+days)\s+(?:i\s+)?spent(?:\s+in)?\s+([a-zA-Z\s]+?)\s+and\s+([a-zA-Z\s]+?)\??$", question, re.IGNORECASE)
         if not m:
             return CommittedAnswer(used=False)
 
@@ -271,6 +278,9 @@ class ArithmeticDifferenceEngine:
         raw_b = m.group(2).strip()
         loc_a = re.sub(r"^(?:in|at|on)\s+", "", raw_a, flags=re.I).strip()
         loc_b = re.sub(r"^(?:in|at|on)\s+", "", raw_b, flags=re.I).strip()
+
+        tokens_a = _expand_entity_tokens(loc_a)
+        tokens_b = _expand_entity_tokens(loc_b)
 
         days_a: int | None = None
         days_b: int | None = None
@@ -282,8 +292,8 @@ class ArithmeticDifferenceEngine:
             text_low = text.lower()
 
             # Location A match
-            if loc_a.lower() in text_low or (loc_a.lower() == "japan" and "tokyo" in text_low):
-                m_days = re.search(r"\b(\d+)-day\s+(?:trip|vacation|stay)\b", text, re.IGNORECASE)
+            if any(t in text_low for t in tokens_a) or loc_a.lower() in text_low:
+                m_days = re.search(r"\b(?:spent\s+)?(\d+)(?:-|\s+)days?(?:\s+(?:trip|vacation|stay|exploring|in|at))?\b", text, re.IGNORECASE)
                 if m_days:
                     days_a = int(m_days.group(1))
                     ev_a = text
@@ -292,12 +302,12 @@ class ArithmeticDifferenceEngine:
                     if m_span:
                         start_d = int(m_span.group(1))
                         end_d = int(m_span.group(2))
-                        days_a = end_d - start_d  # 7 days
+                        days_a = end_d - start_d
                         ev_a = text
 
             # Location B match
-            if loc_b.lower() in text_low:
-                m_days = re.search(r"\b(\d+)-day\s+(?:trip|vacation|stay)\b", text, re.IGNORECASE)
+            if any(t in text_low for t in tokens_b) or loc_b.lower() in text_low:
+                m_days = re.search(r"\b(?:spent\s+)?(\d+)(?:-|\s+)days?(?:\s+(?:trip|vacation|stay|exploring|in|at))?\b", text, re.IGNORECASE)
                 if m_days:
                     days_b = int(m_days.group(1))
                     ev_b = text
@@ -317,7 +327,7 @@ class ArithmeticDifferenceEngine:
                 answer=ans_str,
                 source="autonomous_arithmetic_difference",
                 confidence=0.95,
-                detail=f"computed days in {loc_a} ({days_a}) + {loc_b} ({days_b}) = {total_days} days",
+                detail=f"computed days across {loc_a} ({days_a}d) and {loc_b} ({days_b}d) = {total_days} days",
                 evidence_turn=f"{ev_a} | {ev_b}"[:300],
             )
 

@@ -89,3 +89,51 @@ def test_commit_answer_integration_difference() -> None:
     committed = commit_answer(q, context)
     assert committed.used
     assert committed.answer == "$270"
+
+
+def test_generic_laptop_tablet_difference() -> None:
+    context = """
+    [D1:1 on 2024/01/10] user: I bought a high-end laptop for $1200 for my freelance work.
+    [D2:1 on 2024/01/15] user: Later I grabbed a budget tablet for $400 to read ebooks.
+    """
+    turns = parse_turns(context)
+    q = "How much more did I spend on the laptop compared to the tablet?"
+    ans = ArithmeticDifferenceEngine.resolve_arithmetic(q, turns, context)
+    assert ans.used
+    assert ans.answer == "$800"
+    assert ans.source == "autonomous_arithmetic_difference"
+
+
+def test_generic_store_discount_electronics() -> None:
+    context = """
+    [D1:1 on 2024/02/01] user: The 4K monitor was originally $450 at BestBuy, but I got it for $300 on Black Friday.
+    """
+    turns = parse_turns(context)
+    q = "How much did I save on the monitor at BestBuy?"
+    ans = ArithmeticDifferenceEngine.resolve_arithmetic(q, turns, context)
+    assert ans.used
+    assert ans.answer == "$150"
+
+
+def test_generic_career_change_age() -> None:
+    context = """
+    [D1:1 on 2024/03/05] user: I am 45 years old and reflecting on my career milestones.
+    [D2:1 on 2024/03/10] user: I changed my profession and joined tech for the past ten years.
+    """
+    turns = parse_turns(context)
+    q = "How old was I when I joined tech?"
+    ans = ArithmeticDifferenceEngine.resolve_arithmetic(q, turns, context)
+    assert ans.used
+    assert ans.answer == "35"
+
+
+def test_generic_multi_city_vacation_days() -> None:
+    context = """
+    [D1:1 on 2024/04/10] user: I spent 5 days exploring museums in Seattle.
+    [D2:1 on 2024/04/20] user: Then I took a 3-day weekend trip to Boston.
+    """
+    turns = parse_turns(context)
+    q = "What is the total number of days I spent in Seattle and Boston?"
+    ans = ArithmeticDifferenceEngine.resolve_arithmetic(q, turns, context)
+    assert ans.used
+    assert "8 days" in ans.answer

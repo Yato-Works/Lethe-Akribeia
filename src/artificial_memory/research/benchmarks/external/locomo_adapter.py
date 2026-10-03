@@ -1035,8 +1035,6 @@ class LoCoMoAdapter:
                 predicted_answer = re.sub(pattern, repl, predicted_answer, flags=re.IGNORECASE)
             # Strip surrounding quotes
             predicted_answer = predicted_answer.strip().strip('"\'')
-            if "abstract painting" in predicted_answer.lower() and "blue streaks" in pcc.context_text.lower():
-                predicted_answer = "An abstract painting with blue streaks on a wall."
         elif question.category == 5:
             # On Category 5, abstention is metric-optimal across the benchmark (444/446 items).
             predicted_answer = OFFICIAL_ABSTENTION_TEXT
