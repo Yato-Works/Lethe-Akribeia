@@ -29,7 +29,7 @@ Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prot
    - Refined `answer_committer` with keyword coverage weighting, speaker alignment, and explicit intent guards: improved committer accuracy on temporal questions from 67 to 75 correct (**+8 net correct, 0 regressions**; 72.8% precision vs 7B's 57.3% on committed subset).
 4. **Rigorous Test Suite Expanded from 82 to 308 Tests (100% Passing)**:
    - Added arithmetic difference suites, interval algebra, temporal compilation, speaker normalization, model sensitivity verification, corruption resilience, and derivation scaffolding suites.
-5. **Model Invariance Validation (7B vs. 1.5B)**:
+5. **Model Sensitivity Analysis (7B vs. 1.5B)**:
    - Empirically demonstrated that a ~4.7× parameter reduction (from 7B to 1.5B) produces virtually zero performance divergence ($p = 0.9509$ on LoCoMo, $p = 0.4030$ on LongMemEval), supporting the hypothesis that performance is strongly influenced by structured context quality.
 
 
