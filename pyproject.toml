@@ -41,20 +41,9 @@ dependencies = [
     "rich>=13.7",
     "pydantic>=2.7",
     "pydantic-settings>=2.3",
-    "fastapi>=0.110",
-    "uvicorn>=0.29",
-    "websockets>=12.0",
-    "httpx>=0.27",
-    "python-multipart>=0.0.9",
-    "jinja2>=3.1",
-    "aiofiles>=24.0",
-    "psycopg[binary]>=3.1",
-    "psycopg-pool>=3.1",
-    "pgvector>=0.2",
     "numpy>=1.24",
-    "faiss-cpu>=1.15.1",
 ]
-urls = {Homepage = "https://github.com/Yato-Works/artificial-memory", Repository = "https://github.com/Yato-Works/artificial-memory", Issues = "https://github.com/Yato-Works/artificial-memory/issues", Documentation = "https://github.com/Yato-Works/artificial-memory#readme"}
+urls = {Homepage = "https://github.com/Yato-Works/Lethe-Akribeia", Repository = "https://github.com/Yato-Works/Lethe-Akribeia", Issues = "https://github.com/Yato-Works/Lethe-Akribeia/issues", Documentation = "https://github.com/Yato-Works/Lethe-Akribeia#readme"}
 
 [project.scripts]
 am = "artificial_memory.cli.main:cli"
@@ -74,8 +63,13 @@ llm = [
     "openai>=1.30",
 ]
 vector = [
-    "faiss-cpu>=1.7",
+    "faiss-cpu>=1.7.4",
     "sentence-transformers>=2.2",
+]
+postgres = [
+    "psycopg[binary]>=3.1",
+    "psycopg-pool>=3.1",
+    "pgvector>=0.2",
 ]
 web = [
     "fastapi>=0.110",
@@ -96,13 +90,30 @@ mcp = [
 ]
 benchmarks = [
     # The pinned official LoCoMo scorer (third_party/benchmarks/locomo/task_eval/
-    # evaluation.py) computes F1 with an NLTK Porter stemmer.  Kept in an
+    # evaluation.py) computes F1 with an NLTK Porter stemmer. Kept in an
     # optional group so the runtime install stays lean.
     "nltk>=3.8",
 ]
 nli = [
     "transformers>=4.40",
     "torch>=2.2",
+]
+all = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "websockets>=12.0",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+    "jinja2>=3.1",
+    "aiofiles>=24.0",
+    "psycopg[binary]>=3.1",
+    "psycopg-pool>=3.1",
+    "pgvector>=0.2",
+    "faiss-cpu>=1.7.4",
+    "sentence-transformers>=2.2",
+    "ollama>=0.3",
+    "openai>=1.30",
+    "nltk>=3.8",
 ]
 
 [build-system]
