@@ -1,4 +1,9 @@
-# Artificial Memory — 総合ベンチマーク・ダッシュボード
+# Artificial Memory — 総合ベンチマーク・ダッシュボード (Historical Archive)
+
+> [!NOTE]
+> **Historical Archive / 過去の実験記録 (Superseded)**:  
+> このダッシュボードは v0.2 開発初期（2026-09-21 時点）の中間実験記録であり、v0.3.0 Apex Generation の正典結果ではありません。  
+> 現在の監査可能な正典メトリクスおよび再現手順は [`RESULTS_REGISTRY.md`](RESULTS_REGISTRY.md) および [`RESULTS_REGISTRY.json`](RESULTS_REGISTRY.json) を参照してください。
 
 生成日: 2026-09-21 / データ源: `benchmark_results/**`, `benchmark/results/**`
 

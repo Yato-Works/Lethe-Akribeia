@@ -2,7 +2,7 @@
 
 **Evaluation Type:** Diagnostic Targeted Stress-Test (Hard-Smoke Subset)  
 **Evaluator/Harness:** Official Upstream Scorer (`third_party/benchmarks/locomo/task_eval/evaluation.py`, Token F1)  
-**Reference Reader Model:** Llama-3.1-70B-Instruct / Nemotron-70B-Instruct (Zero-Shot Blind Inference)  
+**Reference Reader Model:** Qwen2.5-7B-Instruct / Local Dev Environment (Zero-Shot Blind Inference)  
 **Evaluated Set:** LoCoMo Hard-Smoke (60 Questions: 12 Qs × 5 Categories, Baseline Zero-Shot Misses)  
 **Target Hardware:** NVIDIA RTX 3050 (8GB VRAM) / Local Dev Environment  
 **Invariance Contract:** Axiom 1 (Write LLM Calls = 0 on Memory Ingestion)  
@@ -14,9 +14,10 @@
 This diagnostic evaluation investigates the **"Reasoning-Execution Gap"** identified in long-term memory benchmarks: instances where the gold evidentiary conversational turns are successfully retrieved and present in context, yet downstream language models fail to extract or calculate the correct answer due to complex interval dates, multi-location arithmetic, or conversational distractor turns.
 
 > [!NOTE]
-> **Scope Clarification**:  
-> This 60-question Hard-Smoke suite is a **diagnostic stress-test subset** curated from historical zero-baseline failures to rigorously evaluate deterministic reasoning co-processors.  
-> It is **not** a substitute for the full 1,540-question LoCoMo benchmark (where Lethe scores 64.68% E2E across all categories) nor the held-out validation split (`benchmark_config/holdout.yaml`).
+> **Scope & Provenance Clarification (Two Distinct 60-Q Suites)**:  
+> - **Historical Diagnostic Prototype (60 Qs)**: Early exploratory suite (`hard_smoke_60q.json`, 12 Qs × 5 categories of baseline zero-shot misses) used to prototype arithmetic and committer engines (scoring 99.54% Token F1 on prototype runs).
+> - **Auditable Frozen Snapshot (e2e_smoke_v9, 60 Qs)**: The frozen, auditable diagnostic run across 3 conversations (conv 0, 3, 5; 20 Qs each) evaluated under the official evaluation harness, recorded in [`benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json) (**73.77% Official Token F1**).
+> Neither diagnostic smoke suite substitutes for the full 1,540-question LoCoMo benchmark (where Lethe scores 64.68% binary / 51.89% official F1) nor the strict holdout split ([`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml)).
 
 ```
 ================================================================================
@@ -65,4 +66,4 @@ Comparison across engineering iterations on this diagnostic stress-test:
 
 ### Invariant 3: Generalization & Holdout Isolation
 - Specific heuristic token hacks (e.g. string squashing, character typos) have been purged in favor of general ontological expansion and grammatical linguistic normalization.
-- Formal separation of the development set (`conversations: [0, 1, 2, 4, 5, 6, 8, 9]`) from the independent holdout set (`conversations: [3, 7]`) as specified in [`benchmark_config/holdout.yaml`](file:///c:/Users/smily/Lethe-Akribeia/benchmark_config/holdout.yaml).
+- Formal separation of the development set (`conversations: [0, 1, 2, 4, 5, 6, 8, 9]`) from the independent holdout set (`conversations: [3, 7]`) as specified in [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml).

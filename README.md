@@ -86,19 +86,23 @@ We do not present Lethe Akribeia as a universal SOTA system. Rather, we empirica
 ```
 
 > [!IMPORTANT]
-> **Strict Evaluation Protocol & Data Separation**:  
-> All benchmarks are evaluated strictly against **official testbeds** and **official evaluation harnesses**. Prompts and hyperparameters were tuned strictly on separate diagnostic splits; the final benchmark sets (LoCoMo 1,540 questions, LongMemEval 500 questions, BEAM official suites) were **held completely separate** to prevent any data leakage or benchmark-specific overfitting.
+> **Evaluation Protocol & Scorer Provenance**:  
+> - **Official Benchmark Datasets**: All evaluations are conducted strictly against official benchmark datasets (LoCoMo 1,540, LongMemEval 500, BEAM 500K) with zero training on evaluation targets.
+> - **Official Upstream Harness**: Token-level F1 on LoCoMo is evaluated using the official upstream Stanford/SNAP evaluation harness (`official_locomo_score_*`, F1: 51.89% overall / 52.95% strict holdout).
+> - **Deterministic In-House Matchers**: Binary extraction accuracies (`is_correct`: LoCoMo 64.68%, LongMemEval 83.40%, BEAM 100%) are evaluated using fully deterministic, auditable rule-based matchers (word/stem overlap, hyphen/number normalization) to eliminate LLM-as-a-judge non-determinism, variance, and execution cost. All scoring matchers are 100% generic across datasets with zero test-item-specific branch logic.
+> Prompts and hyperparameters were tuned strictly on separate diagnostic splits; the final evaluation sets were **held completely separate** to prevent any data leakage or overfitting.
 
 ### Benchmark Summary Table (Three-Layer Decomposition)
 
 | Benchmark / Evaluation Suite | Scope (N) | **Layer 1: Oracle Recall** (Evidence Retrieval) | **Layer 2: Reader on Hits** (7B Reader Accuracy) | **Layer 3: End-to-End** (Final Accuracy) | Key Finding & Architectural Boundary |
 |:---|:---:|:---:|:---:|:---:|:---|
 | **LongMemEval (All 6 Capabilities)** | 500 Qs | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08% (403/491)**<br>*(7B alone on hits)* | **83.40% (417/500)**<br>*(Baseline 81.60% + 9 rescued)* | 7B alone scores 81.60% (408/500); Subsystem H (ArithmeticDifferenceEngine) deterministically resolves 9 false-refusal questions (0 regressions) raising E2E to 83.40%. See [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md). |
-| **BEAM (500K Horizon)** | 48 Qs | **100.0% (48/48)** | **100.0%** | **100.0%** | Evaluated at 500K tokens with 0 needle drops across 48 queries; larger horizons are an architectural design target rather than part of this reported evaluation. |
-| **LoCoMo 1,540 (Single-Hop)** | 841 Qs | **83.71%** | **85.80%** | **77.65%** | Strong direct factual recall; Reader reliably extracts explicit entity facts. |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62% (262/321)** | **57.25%**<br>*(7B fails on 42.8% of hits)* | **51.09% (164/321)** | Multi-interval relative dates benefit from deterministic calendar normalization; on the committed subset (109/321 Qs), autonomous committer achieves **70.64% precision (77/109)** with 0 LLM calls (backed by [`locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)). |
-| **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282 Qs | **78.37%** | **55.20%** | **47.87%** | Open research frontier: cross-session graph linking across divergent topics. |
-| **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | Overall non-adversarial benchmark with primary local 7B Reader (Binary extraction match: 64.68%; Official Token F1: 51.89%). |
+| **BEAM (500K Horizon)** | 20 Qs | **100.0% (20/20)** | **100.0%** | **100.0%** | Evaluated at 500K tokens with 0 needle drops across 20 queries (48 queries across full 100K–10M multi-scale suite). |
+| **LoCoMo 1,540 (Single-Hop Cat 4)** | 841 Qs | **83.71% (704/841)** | **86.51% (609/704)** | **78.00% (656/841)** | Strong direct factual recall; Reader reliably extracts explicit entity facts. |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62% (262/321)** | **56.87% (149/262)** | **50.16% (161/321)** | Multi-interval relative dates benefit from deterministic calendar normalization; on the committed subset (109/321 Qs), autonomous committer achieves **70.64% precision (77/109)** with 0 LLM calls (backed by [`locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)). |
+| **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282 Qs | **78.37% (221/282)** | **56.56% (125/221)** | **50.00% (141/282)** | Cross-session synthesis across divergent conversations. |
+| **LoCoMo 1,540 (Open-Domain Cat 3)** | 96 Qs | **57.29% (55/96)** | **58.18% (32/55)** | **39.58% (38/96)** | Commonsense preferences and conversational inference. |
+| **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **73.67% (915/1,242)** | **64.68% (996/1,540)** | Unified canonical evaluation with primary local 7B Reader (Binary extraction match: 64.68%; Official Token F1: 51.89%). Perfectly aligned across layers: 656 + 161 + 141 + 38 = 996 hits. |
 
 > [!NOTE]
 > **Why Separate Oracle Recall from End-to-End?**  
@@ -111,12 +115,12 @@ To eliminate ambiguity between binary extraction accuracy (`is_correct`) and off
 
 | Evaluation Slice | Scope ($N$) | Evaluation Purpose | Binary Extraction Accuracy (`is_correct`) | Official Metric (Token F1 / Recall) | Context & Protocol Reference |
 |:---|:---:|:---|:---:|:---:|:---|
-| **LoCoMo Full (Non-Adversarial)** | 1,540 Qs | Global end-to-end persistent memory benchmark | **64.68% (996/1,540)** | **51.89%** (postfix) / **41.53%** (baseline) | Full benchmark across all 10 long-term conversations. Verified in [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md). |
-| **LoCoMo Independent Holdout** | 390 Qs | Generalization validation (Held-out Conv 3 & 7: `conv-42`, `conv-48`) | **64.10% (250/390)** | **51.42%** Official Token F1 | Strictly isolated per [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml); zero heuristic tuning. |
+| **LoCoMo Full (Non-Adversarial)** | 1,540 Qs | Global end-to-end persistent memory benchmark | **64.68% (996/1,540)** | **51.89%** (postfix) / **40.80%** (true baseline; **41.53%** Qwen2.5-Coder-7B improved2) | Full benchmark across all 10 long-term conversations. Verified in [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md). |
+| **LoCoMo Independent Holdout & Validation** | 390 Qs | Generalization validation: `conv-48` (191 Qs strict clean holdout) & `conv-42` (199 Qs validation split) | **64.10% (250/390)** | **51.42%** Official Token F1<br>*(conv-48: 63.87% binary, 52.95% F1; conv-42: 64.32% binary, 49.96% F1)* | Strictly isolated per [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml); zero conversation-specific heuristic tuning. |
 | **LoCoMo Development Set** | 1,150 Qs | Development & iterative refinement (8 conversations) | **64.87% (746/1,150)** | **52.05%** Official Token F1 | Generalizes seamlessly to Holdout (52.05% Dev vs 51.42% Holdout F1, delta: -0.63pp, verifying no overfitting). |
-| **LoCoMo Hard-Smoke (Diagnostic)** | 60 Qs | Targeted stress-test on zero-baseline failure cohort | **100.0% (60/60)** (99.54% token overlap) | **73.77%** Official Token F1 | See [`report.md`](report.md) & [`official_score`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json); diagnostic suite for arithmetic & committer. |
+| **LoCoMo Diagnostic Smoke (e2e_smoke_v9, 60 Qs)** | 60 Qs | Targeted diagnostic smoke test across 3 conversations (convs 0, 3, 5) | **73.77%** Official Token F1 (frozen snapshot: e2e_smoke_20261002_v9; historical 60-q prototype: 99.54%) | **73.77%** Official Token F1 | See [`report.md`](report.md) & [`official_score`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json); diagnostic suite for arithmetic & committer. |
 | **LongMemEval (All 6 Capabilities)** | 500 Qs | Long-context multi-session memory retention | **83.40% (417/500)** (Final)<br>*(Baseline: 81.60%, 408/500)* | **98.20%** Oracle Recall<br>*(491/500 Evidence Retrieved)* | Full suite; baseline 81.60% + 9 rescued by Subsystem H. Backed by [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json). |
-| **BEAM Horizon** | 48 Qs | Extreme needle retrieval at 500K token scale | **100.0% (48/48)** | **100.0%** Needle Retrieval | 500,000 token horizon needle test; zero needle drop. |
+| **BEAM Horizon** | 20 Qs (500K) / 48 Qs (Suite) | Extreme needle retrieval at 500K token scale | **100.0% (20/20 at 500K)** | **100.0%** Needle Retrieval | 500,000 token horizon needle test; zero needle drop across evaluated scales. |
 
 ---
 
@@ -208,7 +212,7 @@ pip install -e ".[vector,llm]"
 ```
 
 > [!NOTE]
-> **Package Architecture Notice**: For full backward compatibility with reproducible benchmark harnesses and the 308-test suite, internal Python modules remain packaged under `artificial_memory`, while the user-facing CLI binary is exposed as `lethe`.
+> **Package Architecture Notice**: For full backward compatibility with reproducible benchmark harnesses and the 321 unit tests (740+ full test suite), internal Python modules remain packaged under `artificial_memory`, while the user-facing CLI binary is exposed as `lethe`.
 
 ```bash
 # Start a session
@@ -246,7 +250,7 @@ Evaluating 1,540 questions through commercial frontier APIs with massive context
 • LME E2E: 83.40% (+9 Rescued) • LoCoMo Oracle Recall > 90%       • Production Autonomous Standard
 ```
 
-- **V3 (Current: Apex Baseline)**: Established the three-layer diagnostic standard, reached 98.2% Oracle Recall on LongMemEval, implemented Subsystem H (`ArithmeticDifferenceEngine`) rescuing +9 false-refusal questions to reach 83.40% E2E, refined LoCoMo temporal turn selection (+8 net correct), and expanded test coverage to 321 unit tests (740+ total tests, 100% passing).
+- **V3 (Current: Apex Baseline)**: Established the three-layer diagnostic standard, reached 98.2% Oracle Recall on LongMemEval, implemented Subsystem H (`ArithmeticDifferenceEngine`) rescuing +9 false-refusal questions to reach 83.40% E2E, deployed autonomous zero-LLM committer for LoCoMo temporal queries (70.64% precision, 77/109 correct), and expanded test coverage to 321 unit tests (740+ total tests, 100% passing).
 - **V4 (Next: Cognitive Expansion & Non-Temporal Semantic Rescue)**:
   - *Non-Temporal Semantic Rescue*: Expand autonomous pattern induction for implicit entity state questions to eliminate remaining Reader false abstentions, targeting **>90%** LME End-to-End.
   - *Cross-Session Graph Traversal*: Upgrade `ppr_graph` and entity linking to raise LoCoMo Multi-Hop Oracle Recall from 78.37% to **90%+** (and overall from 80.65% to **90%+**).
@@ -267,10 +271,10 @@ pytest tests/unit/
 # 2. Automatically verify all canonical benchmark metrics and raw artifact provenance
 python scripts/benchmarks/verify_registry.py
 
-# 3. Run LoCoMo Official Scorer on baseline (Instruct 7B primary Reader)
+# 3. Run LoCoMo Official Scorer on reference run (Qwen2.5-Coder:7b improved2 checkpoint)
 python scripts/benchmarks/score_locomo_run_json.py --results benchmark_results/locomo1540/locomo_1540_improved2.json
 
-# 4. Inspect Three-Layer Decomposition (Oracle Recall vs Reader on Hits)
+# 4. Inspect Three-Layer Decomposition on canonical runs (Oracle Recall vs Reader on Hits)
 python scripts/benchmarks/three_layer_report.py
 
 # 5. Run Model Sensitivity pairing (7B vs 1.5B exact McNemar test)
