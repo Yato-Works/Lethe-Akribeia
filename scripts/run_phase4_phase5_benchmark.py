@@ -31,7 +31,7 @@ def main():
     open_qs = [q for q in questions if q.category == 3]
     single_qs = [q for q in questions if q.category == 4]
 
-    print(f"Loaded Conversation 0:")
+    print("Loaded Conversation 0:")
     print(f"  Total Turns: {len(turns)}")
     print(f"  Structured IR Records: {len(ir_records)}")
     print(f"  Category 3 (Open-Domain): {len(open_qs)} questions")

@@ -54,8 +54,8 @@ def main() -> None:
     n = len(common)
     tb, te = (sum(a["b"] for a in agg.values()), sum(a["e"] for a in agg.values()))
     ob, oe = (sum(a["b_ora"] for a in agg.values()), sum(a["e_ora"] for a in agg.values()))
-    print(f"\n| category | n | base acc | new acc | delta | base oracle | new oracle | "
-          f"delta | fix | reg |")
+    print("\n| category | n | base acc | new acc | delta | base oracle | new oracle | "
+          "delta | fix | reg |")
     print("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
     for cat in sorted(agg, key=lambda c: -agg[c]["n"]):
         a = agg[cat]

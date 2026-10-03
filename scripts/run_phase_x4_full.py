@@ -76,7 +76,7 @@ factual_acc = sum(1 for r in factual_results if r.is_correct) / len(factual_resu
 factual_ora = sum(1 for r in factual_results if r.oracle_recall) / len(factual_results) if factual_results else 0
 
 print("\n" + "=" * 70)
-print(f"AM APEX PHASE X.4 FINAL RESULTS (Conversation 0 - 199 Questions):")
+print("AM APEX PHASE X.4 FINAL RESULTS (Conversation 0 - 199 Questions):")
 print(f"  - Overall Answer Accuracy:  {tot_acc * 100:.1f}% ({sum(1 for r in results if r.is_correct)}/{len(results)})")
 print(f"  - Overall Oracle Recall:    {tot_ora * 100:.1f}% ({sum(1 for r in results if r.oracle_recall)}/{len(results)})")
 print(f"  - Factual Oracle Recall:    {factual_ora * 100:.1f}% ({sum(1 for r in factual_results if r.oracle_recall)}/{len(factual_results)})")

@@ -85,12 +85,12 @@ def main() -> None:
         HardenedAMPlayer(base_config, answerer=answerer),
     ]
 
-    print(f"\n[Configuration]")
+    print("\n[Configuration]")
     print(f"  Players: {[p.name for p in players]}")
     print(f"  Questions: {len(question_ids)} (1 per category across 10 categories)")
     print(f"  Context Budget: {base_config['context_budget']} tokens")
     print(f"  Frozen LLM: {answerer.model} @ {answerer.base_url}")
-    print(f"\n[Questions to be evaluated]")
+    print("\n[Questions to be evaluated]")
     for qid in question_ids:
         q = dataset.by_id(qid)
         print(f"  - [{q.category.value:<26}] {q.question}")

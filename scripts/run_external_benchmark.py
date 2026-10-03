@@ -109,7 +109,7 @@ def run_locomo_evaluation(adapter: LoCoMoAdapter, answerer: OllamaAnswerer, num_
     print("=" * 90)
 
     token_reduction = (1.0 - (mean_tokens / 7000.0)) * 100 if mean_tokens < 7000 else 0.0
-    print(f"\n>> KEY RESEARCH FINDING:")
+    print("\n>> KEY RESEARCH FINDING:")
     print(f"   Artificial Memory achieved a {token_reduction:.1f}% TOKEN REDUCTION compared to Mem0,")
     print(f"   with 0 WRITE-SIDE LLM CALLS (100% deterministic ingestion) and {p50_latency:.0f}ms latency!")
 

@@ -216,7 +216,7 @@ def main():
         out_file = RESULTS_DIR / f"conv_{c_idx}_results.json"
         if args.resume and out_file.exists():
             print(f"\n[Resuming: Found existing checkpoint for Conv {c_idx}, loading from {out_file}...]")
-            with open(out_file, "r", encoding="utf-8") as f:
+            with open(out_file, encoding="utf-8") as f:
                 data = json.load(f)
                 summary = data["summary"]
                 all_summaries.append(summary)
@@ -262,7 +262,7 @@ def main():
     print(f"Macro Oracle Recall:            {macro_ora * 100:.1f}%")
     print(f"Mean Context Tokens/Q:          {mean_tokens:.1f} tokens/Q (vs Mem0 ~7,000)")
     print(f"Mean Latency:                   {mean_latency:.1f} ms (vs Mem0 ~1,400 ms)")
-    print(f"Write LLM Calls:                0 calls (100% Free Deterministic Ingestion)")
+    print("Write LLM Calls:                0 calls (100% Free Deterministic Ingestion)")
     print(f"Total Benchmark Suite Time:     {total_global_time:.1f} s ({total_global_time / 60:.1f} min)")
     print("-" * 85)
     print("GLOBAL CATEGORY-BY-CATEGORY BREAKDOWN:")

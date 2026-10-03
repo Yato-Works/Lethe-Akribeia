@@ -45,7 +45,7 @@ def autopsy_locomo(adapter: LoCoMoAdapter) -> dict:
         if not conv_file.exists():
             continue
         
-        with open(conv_file, "r", encoding="utf-8") as f:
+        with open(conv_file, encoding="utf-8") as f:
             conv_data = json.load(f)
 
         turns, questions, ir_records = adapter.load_conversation(conv_idx=conv_idx)
@@ -113,7 +113,7 @@ def autopsy_longmemeval(adapter: LongMemEvalAdapter) -> dict:
     if not report_file.exists():
         return {"total": 0, "breakdown": {}}
 
-    with open(report_file, "r", encoding="utf-8") as f:
+    with open(report_file, encoding="utf-8") as f:
         data = json.load(f)
 
     items = adapter.load_dataset()

@@ -147,7 +147,7 @@ def _empty_summary(conv_idx: int, sample_id: str, retrieval_only: bool) -> dict:
 
 def load_failed_question_ids(results_path: Path) -> dict[int, set[str]]:
     """Load failed question IDs from a previous run, grouped by conversation index."""
-    with open(results_path, "r", encoding="utf-8") as f:
+    with open(results_path, encoding="utf-8") as f:
         data = json.load(f)
     
     failed_by_conv: dict[int, set[str]] = defaultdict(set)
@@ -166,7 +166,7 @@ def load_failed_question_ids(results_path: Path) -> dict[int, set[str]]:
 
 def load_question_ids(questions_path: Path) -> set[str]:
     """Load question IDs from a JSON file (list of strings or objects with question_id)."""
-    with open(questions_path, "r", encoding="utf-8") as f:
+    with open(questions_path, encoding="utf-8") as f:
         data = json.load(f)
     if isinstance(data, list):
         if data and isinstance(data[0], dict):
@@ -418,7 +418,7 @@ def main() -> None:
         for c_idx in convs:
             conv_file = out_dir / f"conv_{c_idx}_results.json"
             if conv_file.exists():
-                with open(conv_file, "r", encoding="utf-8") as f:
+                with open(conv_file, encoding="utf-8") as f:
                     data = json.load(f)
                     all_results.extend(data.get("results", []))
         

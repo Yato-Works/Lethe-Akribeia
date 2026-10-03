@@ -3,7 +3,7 @@
 import re
 
 # Read the current file
-with open(r"C:\Users\smily\artificial_memory\src\artificial_memory\memory\persona_store.py", "r") as f:
+with open(r"C:\Users\smily\artificial_memory\src\artificial_memory\memory\persona_store.py") as f:
     content = f.read()
 
 # Replace the _extract_experience_reasoning method

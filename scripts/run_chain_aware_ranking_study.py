@@ -15,7 +15,7 @@ import json
 import sys
 import time
 from pathlib import Path
-from typing import Sequence
+from collections.abc import Sequence
 
 sys.stdout.reconfigure(encoding="utf-8")
 

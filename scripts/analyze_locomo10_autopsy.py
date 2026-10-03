@@ -26,7 +26,7 @@ DATASET_PATH = Path("datasets/external/locomo10.json")
 adapter = LoCoMoAdapter()
 
 # 1. Load ground truth dataset to get full question details (evidence_ids, raw conversation turns)
-with open(DATASET_PATH, "r", encoding="utf-8") as f:
+with open(DATASET_PATH, encoding="utf-8") as f:
     raw_dataset = json.load(f)
 
 # Build question metadata lookup
@@ -56,7 +56,7 @@ for conv_idx, conv in enumerate(raw_dataset):
 all_results = []
 for conv_idx in range(10):
     f_path = RESULTS_DIR / f"conv_{conv_idx}_results.json"
-    with open(f_path, "r", encoding="utf-8") as f:
+    with open(f_path, encoding="utf-8") as f:
         d = json.load(f)
         for r in d["results"]:
             r["conv_idx"] = conv_idx
@@ -163,7 +163,7 @@ for r in mh_ora_pass:
         # We classify based on ground truth components
         mh_partial_ev.append(r)
 
-print(f"Multi-Hop Evidence Sufficiency Breakdown:")
+print("Multi-Hop Evidence Sufficiency Breakdown:")
 print(f"  * Multi-Evidence Questions (>=2 hops required): {len(mh_partial_ev)}")
 print(f"  * Single-Evidence Multi-Hop Questions:          {len(mh_complete_ev)}")
 print(f"  * Of the {len(mh_ora_true_acc_fail)} failures where Oracle=True:")
@@ -193,7 +193,7 @@ s_ora = sum(1 for r in single_ev_qs if r["oracle_recall"])
 s_acc = sum(1 for r in single_ev_qs if r["is_correct"])
 s_conv = s_acc / s_ora * 100 if s_ora else 0.0
 
-print(f"\nSingle-Evidence Performance (Exact Sufficiency = 1 Turn):")
+print("\nSingle-Evidence Performance (Exact Sufficiency = 1 Turn):")
 print(f"  * Evidence Sufficiency (ESR):  {s_ora} / {len(single_ev_qs)} ({s_ora / len(single_ev_qs) * 100:.1f}%)")
 print(f"  * Answer Accuracy:             {s_acc} / {len(single_ev_qs)} ({s_acc / len(single_ev_qs) * 100:.1f}%)")
 print(f"  * Conversion_sufficient:       {s_conv:.1f}% ({s_acc}/{s_ora})")
@@ -202,7 +202,7 @@ m_ora = sum(1 for r in multi_ev_qs if r["oracle_recall"])
 m_acc = sum(1 for r in multi_ev_qs if r["is_correct"])
 m_conv = m_acc / m_ora * 100 if m_ora else 0.0
 
-print(f"\nMulti-Evidence Performance (Requires >=2 Turns):")
+print("\nMulti-Evidence Performance (Requires >=2 Turns):")
 print(f"  * Loose Oracle Recall (>=1):   {m_ora} / {len(multi_ev_qs)} ({m_ora / len(multi_ev_qs) * 100:.1f}%)")
 print(f"  * Answer Accuracy:             {m_acc} / {len(multi_ev_qs)} ({m_acc / len(multi_ev_qs) * 100:.1f}%)")
 print(f"  * Conversion_loose:            {m_conv:.1f}% ({m_acc}/{m_ora})")

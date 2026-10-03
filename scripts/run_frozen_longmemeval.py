@@ -86,7 +86,7 @@ def main():
     print(f"Oracle Recall:            {overall_ora:5.1f}% ({total_ora}/{len(results)})")
     print(f"Mean Tokens / Question:   {overall_mean_tok:5.1f} tokens")
     print(f"Elapsed Time:             {elapsed:.1f}s ({elapsed/len(results):.2f}s / question)")
-    print(f"Frozen Baseline Ref:      78.0% (39/50)")
+    print("Frozen Baseline Ref:      78.0% (39/50)")
     print(f"Delta vs Baseline:        {overall_acc - 78.0:+5.1f} pt")
     print("=" * 85)
 

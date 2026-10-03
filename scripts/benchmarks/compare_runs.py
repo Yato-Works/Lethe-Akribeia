@@ -25,7 +25,7 @@ def load_official_module():
 def load_run(run_dir: Path) -> dict[str, dict]:
     out = {}
     for path in sorted(run_dir.glob("conv_*_results.json")):
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
             for r in data.get("results", []):
                 out[r["question_id"]] = r

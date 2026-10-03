@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run all 13 open-domain questions for Conv 0 with improved code + save results."""
-import sys, json, time
+import sys
+import json
+import time
 sys.path.insert(0, 'src')
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 

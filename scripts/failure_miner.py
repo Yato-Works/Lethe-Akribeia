@@ -43,7 +43,7 @@ class FailureLedgerEntry:
 
 def load_results(path: Path) -> dict:
     """Load results from a run file (conv_*_results.json or aggregated results.json)."""
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 

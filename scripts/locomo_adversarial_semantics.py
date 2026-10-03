@@ -192,7 +192,7 @@ def debug_qids() -> None:
         )
         for ratio, s, t in scored[:6]:
             print(f"    {ratio:.2f} [{s}] {t}")
-        print(f"  raw lines (first 6):")
+        print("  raw lines (first 6):")
         for line in c["context"].splitlines()[:6]:
             print(f"      |{line[:130]}")
 

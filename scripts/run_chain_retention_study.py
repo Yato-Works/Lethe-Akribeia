@@ -58,7 +58,7 @@ def main():
     results_chain = []
     comparison_table = []
 
-    print(f"\n>>> Running Condition A: Baseline P4 (K=10, Chain OFF)...")
+    print("\n>>> Running Condition A: Baseline P4 (K=10, Chain OFF)...")
     t0_base = time.perf_counter()
     adapter.compiler = compiler_baseline
     for i, q in enumerate(multihop_questions):
@@ -69,7 +69,7 @@ def main():
         print(f"  [Baseline {i+1:02d}/32] {status} (Ora:{ora}) | {res.tokens_used:3d} tok | Q: {q.question[:40]}")
     elapsed_base = time.perf_counter() - t0_base
 
-    print(f"\n>>> Running Condition B: Chain-Aware P4 (K=10 + Chain Reserve 3)...")
+    print("\n>>> Running Condition B: Chain-Aware P4 (K=10 + Chain Reserve 3)...")
     t0_chain = time.perf_counter()
     adapter.compiler = compiler_chain
     for i, q in enumerate(multihop_questions):

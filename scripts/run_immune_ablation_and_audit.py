@@ -19,7 +19,7 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Sequence
+from collections.abc import Sequence
 
 sys.stdout.reconfigure(encoding="utf-8")
 

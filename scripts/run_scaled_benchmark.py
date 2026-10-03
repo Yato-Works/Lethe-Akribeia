@@ -19,6 +19,7 @@ import json
 import sys
 import time
 from pathlib import Path
+from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "src"))
@@ -293,7 +294,7 @@ def main():
 
     dataset = load_dataset_from_json(dataset_path)
     print("=" * 80)
-    print(f"      SCALED BENCHMARK RUNNER (Multi-Axis & Ablation Edition)")
+    print("      SCALED BENCHMARK RUNNER (Multi-Axis & Ablation Edition)")
     print(f"      Suite: {args.suite.upper()} | Scenarios: {len(dataset.scenarios)} | Questions: {len(dataset.questions)}")
     print("=" * 80)
 
@@ -305,7 +306,7 @@ def main():
     am_metrics, am_scores, am_retrieval_acc, am_traces = run_am_player(dataset, answerer, diagnose=args.diagnose)
     all_metrics.append(am_metrics)
 
-    print(f"\n>> AM Decoupled Scores:")
+    print("\n>> AM Decoupled Scores:")
     print(f"   - Test A: Retrieval-only Accuracy : {am_retrieval_acc * 100:.1f}%")
     print(f"   - Test B: Answer Accuracy (w/ LLM): {am_metrics.accuracy * 100:.1f}%")
 

@@ -125,6 +125,27 @@ def main() -> None:
     no_adv_score = sum(no_adv) / len(no_adv) * 100 if no_adv else 0.0
     print(f"{'ALL (no cat5)':<14}{len(no_adv):>6}{no_adv_score:>12.2f}%")
 
+    # Compute Holdout (conv-42, conv-48) vs Dev (other 8) breakdown
+    holdout_ids = {"conv-42", "conv-48"}
+    holdout_f1: list[float] = []
+    dev_f1: list[float] = []
+    for sample in merged:
+        sid = sample["sample_id"]
+        ems, _, _ = official.eval_question_answering(
+            sample["qa"], f"{model_key}_prediction", metric="f1"
+        )
+        if sid in holdout_ids:
+            holdout_f1.extend(float(em) for em in ems)
+        else:
+            dev_f1.extend(float(em) for em in ems)
+
+    if holdout_f1:
+        h_score = sum(holdout_f1) / len(holdout_f1) * 100
+        print(f"{'Holdout (3,7)':<14}{len(holdout_f1):>6}{h_score:>12.2f}%")
+    if dev_f1:
+        d_score = sum(dev_f1) / len(dev_f1) * 100
+        print(f"{'Dev (8 convs)':<14}{len(dev_f1):>6}{d_score:>12.2f}%")
+
     out = REPO / args.out
     payload = {
         "tag": args.tag or Path(args.run).name,
@@ -133,6 +154,15 @@ def main() -> None:
         "n": len(all_f1),
         "official_f1": round(overall, 4),
         "official_f1_no_cat5": round(no_adv_score, 4),
+        "holdout": {
+            "n": len(holdout_f1),
+            "official_f1": round(sum(holdout_f1) / len(holdout_f1) * 100, 4) if holdout_f1 else None,
+            "conversations": sorted(list(holdout_ids)),
+        },
+        "dev": {
+            "n": len(dev_f1),
+            "official_f1": round(sum(dev_f1) / len(dev_f1) * 100, 4) if dev_f1 else None,
+        },
         "per_category": {
             CAT[c]: {
                 "n": len(per_cat_f1.get(CAT[c], [])),

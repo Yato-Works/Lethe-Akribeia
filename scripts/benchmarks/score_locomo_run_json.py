@@ -28,26 +28,27 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 REPO = Path(__file__).resolve().parents[2]
-NORMALIZED_DATASET = "benchmark_results/_official_scoring/locomo10_normalized.json"
+NORMALIZED_DATASET = "datasets/external/locomo10.json"
 SHARD_SIZE = 250
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Official LoCoMo scoring for a single results JSON")
-    parser.add_argument("--results", required=True, help="Results JSON produced by a LoCoMo runner")
-    parser.add_argument("--tag", required=True, help="Tag for the scratch run dir and output file")
+    parser.add_argument("--results", "--input", dest="results", required=True, help="Results JSON produced by a LoCoMo runner")
+    parser.add_argument("--tag", default=None, help="Tag for the scratch run dir and output file (defaults to filename stem)")
     parser.add_argument("--dataset", default=NORMALIZED_DATASET,
                         help="Dataset whose QA items carry an 'answer' key (see AM_APEX_STATUS.md)")
     args = parser.parse_args()
 
-    results_path = REPO / args.results
+    results_path = REPO / args.results if not Path(args.results).is_absolute() else Path(args.results)
+    tag = args.tag or results_path.stem
     payload = json.loads(results_path.read_text(encoding="utf-8"))
     rows = payload.get("results", payload)
     if not isinstance(rows, list) or not rows:
         print(f"No results found in {results_path}")
         return 1
 
-    run_dir = REPO / "benchmark_results" / "_official_scoring" / f"run_{args.tag}"
+    run_dir = REPO / "benchmark_results" / "_official_scoring" / f"run_{tag}"
     run_dir.mkdir(parents=True, exist_ok=True)
     for stale in run_dir.glob("conv_*_results.json"):
         stale.unlink()
@@ -71,14 +72,16 @@ def main() -> int:
 
     print(f"re-shaped {len(rows)} stored predictions into {shards} shard(s): {run_dir.relative_to(REPO)}")
 
-    out_json = f"benchmark_results/official_locomo_score_{args.tag}.json"
+    out_json = f"benchmark_results/official_locomo_score_{tag}.json"
+    beam_py = REPO / ".venv-benchmarks" / "beam" / "Scripts" / "python.exe"
+    py_exec = str(beam_py) if beam_py.exists() else sys.executable
     cmd = [
-        str(REPO / ".venv-benchmarks" / "beam" / "Scripts" / "python.exe"),
+        py_exec,
         str(REPO / "scripts" / "benchmarks" / "score_locomo_official.py"),
         "--run", str(run_dir.relative_to(REPO)).replace("\\", "/"),
         "--dataset", args.dataset,
         "--out", out_json,
-        "--tag", args.tag,
+        "--tag", tag,
     ]
     print("running pinned official scorer:", " ".join(cmd[1:]))
     return subprocess.call(cmd, cwd=str(REPO))

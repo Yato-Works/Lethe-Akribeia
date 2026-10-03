@@ -24,7 +24,7 @@ def load_official_module():
 def load_run(run_dir: Path) -> dict[str, dict]:
     out = {}
     for path in sorted(run_dir.glob("conv_*_results.json")):
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
             for r in data.get("results", []):
                 out[r["question_id"]] = r
@@ -32,15 +32,16 @@ def load_run(run_dir: Path) -> dict[str, dict]:
 
 def main():
     official = load_official_module()
+    ds_path = REPO / "datasets" / "external" / "locomo10.json"
+    dataset = json.load(open(ds_path, encoding="utf-8"))
     run = load_run(REPO / "benchmark_results" / "locomo10_runs" / "hard_smoke_phase5")
-    dataset = json.load(open(REPO / "benchmark_results" / "_official_scoring" / "locomo10_normalized.json", encoding="utf-8"))
-    
-    with open(REPO / "benchmark_results" / "hard_smoke_60q.json", "r", encoding="utf-8") as f:
+
+    with open(REPO / "benchmark_results" / "hard_smoke_60q.json", encoding="utf-8") as f:
         target_qids = set(json.load(f))
 
-    # Also load baseline v25 f1 for these exact questions
-    with open(REPO / "benchmark_results" / "_official_scoring" / "f1_by_question_full_v25.json", encoding="utf-8") as f:
-        v25_full = {x["qid"]: x for x in json.load(f)}
+    # Also load baseline v25 f1 if available
+    v25_path = REPO / "benchmark_results" / "_official_scoring" / "f1_by_question_full_v25.json"
+    v25_full = {x["qid"]: x for x in json.load(open(v25_path, encoding="utf-8"))} if v25_path.exists() else {}
 
     CAT_NAMES = {1: 'multi-hop', 2: 'temporal', 3: 'open-domain', 4: 'single-hop', 5: 'adversarial'}
     cat_scores_new = defaultdict(list)
@@ -63,8 +64,12 @@ def main():
                 pred_obj = run.get(qid)
                 pred_text = pred_obj.get("predicted_answer", "") if pred_obj else ""
                 
-                # Official scoring
-                s_new = official.qa_eval(gold, pred_text, cat, metric="f1") if pred_text else 0.0
+                # Prepare QA item for official eval_question_answering
+                qa_copy = dict(qa)
+                qa_copy["pred"] = str(pred_text)
+                qa_copy["answer"] = gold
+                ems, _, _ = official.eval_question_answering([qa_copy], eval_key="pred", metric="f1")
+                s_new = float(ems[0])
                 cat_scores_new[cat].append(s_new)
 
                 diffs.append((cat, qid, qa["question"], gold, v25_full.get(qid, {}).get("pred", ""), pred_text, s_old, s_new, s_new - s_old))

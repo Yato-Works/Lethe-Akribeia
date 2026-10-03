@@ -78,7 +78,7 @@ class _StageProbe:
     def __init__(self) -> None:
         self.orig_widen = msc_module.MinimumSufficientContextCompiler._apply_evidence_widening
 
-    def __enter__(self) -> "_StageProbe":
+    def __enter__(self) -> _StageProbe:
         self.state: dict = {}
         probe = self
 

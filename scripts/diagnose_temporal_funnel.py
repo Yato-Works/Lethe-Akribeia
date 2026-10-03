@@ -22,7 +22,7 @@ from pathlib import Path
 from collections import defaultdict
 
 conv0_file = Path("benchmark_results/frozen/locomo_conv0_frozen.json")
-with open(conv0_file, "r", encoding="utf-8") as f:
+with open(conv0_file, encoding="utf-8") as f:
     conv0_data = json.load(f)
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
@@ -138,7 +138,7 @@ for d in temporal_items:
 print("\n" + "=" * 80)
 print("             TEMPORAL 37-QUESTION FAILURE FUNNEL")
 print("=" * 80)
-print(f"Total Questions: 37")
+print("Total Questions: 37")
 print(f"├── Evidence Missing (Oracle Recall FAIL): {len(funnel['evidence_missing'])} ({len(funnel['evidence_missing'])/37*100:.1f}%)")
 print(f"└── Evidence Present (Oracle Recall PASS): {num_oracle} ({num_oracle/37*100:.1f}%)")
 print(f"     ├── Correct (PASS): {len(funnel['evidence_present']['pass'])} ({len(funnel['evidence_present']['pass'])/37*100:.1f}%)")

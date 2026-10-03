@@ -10,7 +10,7 @@ import argparse
 import hashlib
 import json
 import subprocess
-from datetime import datetime, timezone
+from datetime import datetime, timezone, UTC
 from pathlib import Path
 
 
@@ -59,7 +59,7 @@ def main() -> None:
         raise SystemExit(f"Files must exist before freezing: {', '.join(missing)}")
     manifest = {
         "schema_version": 1,
-        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "created_at_utc": datetime.now(UTC).isoformat(),
         "benchmark": args.benchmark,
         "official_repository": spec["official_repository"],
         "pinned_commit": spec["pinned_commit"],

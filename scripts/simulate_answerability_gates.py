@@ -153,6 +153,3 @@ def main() -> None:
             cells.append(gk / len(rs) * 100)
         print(f"{c:<14}{len(rs):>6}{sum(r['ok'] for r in rs) / len(rs) * 100:>7.1f}%"
               + "".join(f"{x:>7.1f}%" for x in cells))
-
-        ents.add(low)
-    return ents

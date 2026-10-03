@@ -61,9 +61,9 @@ class CrossModelBenchmark:
         results: list[ModelEvaluationRow] = []
 
         for model in self.models:
-            print(f"\n=======================================================")
+            print("\n=======================================================")
             print(f"  Evaluating Model: {model}")
-            print(f"=======================================================")
+            print("=======================================================")
             llm = OllamaAnswerer(model=model, base_url=self.ollama_url)
 
             no_mem_correct = 0

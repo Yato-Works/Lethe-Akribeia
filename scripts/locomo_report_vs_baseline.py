@@ -56,7 +56,7 @@ print(f"OVERALL oracle   {ob / n * 100:.2f}% -> {oe / n * 100:.2f}% "
       f"({(oe - ob) / n * 100:+.2f}pp)")
 print(f"tokens/Q         {tok_b / n:.1f} -> {tok_e / n:.1f}")
 
-print(f"\n| category | n | baseline acc | new acc | delta | baseline oracle | new oracle | delta | fix | reg |")
+print("\n| category | n | baseline acc | new acc | delta | baseline oracle | new oracle | delta | fix | reg |")
 print("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
 for cat in sorted(agg, key=lambda c: -agg[c]["n"]):
     a = agg[cat]

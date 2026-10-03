@@ -18,11 +18,11 @@ from artificial_memory.core.models import Conversation, Memory, MemoryType, Proj
 from artificial_memory.memory.vector_search import VectorSearchEngine, create_vector_search_engine
 from artificial_memory.recall.engine import BasicRecallEngine
 from artificial_memory.research.benchmarks.arena import ArenaQuestion, ArenaScenario
-from artificial_memory.research.benchmarks.llm import LLMAnswer, OllamaAnswerer
+from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 from artificial_memory.research.benchmarks.player import Answer, ControlledPlayer
 from artificial_memory.research.benchmarks.players import (
-    _SharedAnswerGeneration,
     _isolated_index_dir,
+    _SharedAnswerGeneration,
     get_shared_answerer,
 )
 from artificial_memory.storage.sqlite_store import SQLiteMemoryStore

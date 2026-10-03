@@ -54,6 +54,42 @@ ROUND_ROOT = Path("benchmark_results/failure_rounds")
 CAT = {1: "multi-hop", 2: "temporal", 3: "open-domain", 4: "single-hop", 5: "adversarial"}
 
 
+def load_base_run(base_name: str | Path) -> dict[str, dict]:
+    p = Path(base_name)
+    if not p.exists():
+        p = Path("benchmark_results") / base_name
+    if p.is_dir():
+        res = {}
+        for f in p.glob("conv_*_results.json"):
+            for item in json.loads(f.read_text(encoding="utf-8")):
+                res[item["question_id"]] = item
+        return res
+    elif p.is_file():
+        d = json.loads(p.read_text(encoding="utf-8"))
+        if isinstance(d, list):
+            return {item["question_id"]: item for item in d}
+        if "results" in d:
+            return {item["question_id"]: item for item in d["results"]}
+        return d
+    return {}
+
+
+def load_cache(path: Path) -> dict[str, CachedContext]:
+    if not path.exists():
+        return {}
+    res = {}
+    with path.open("r", encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                d = json.loads(line)
+                res[d["question_id"]] = CachedContext(
+                    context_text=d.get("context_text", ""),
+                    token_cost=d.get("token_cost", 0),
+                    is_abstention=d.get("is_abstention", False),
+                )
+    return res
+
+
 def select_questions(base: dict[str, dict], controls: int, seed: int) -> tuple[list[str], list[str]]:
     """Failures first, plus a random sample of correct ones (regression sensor)."""
     failures = [qid for qid, r in base.items() if not r["rescored_correct"]]

@@ -86,7 +86,7 @@ def main():
 
     if args.resume and checkpoint_file.exists():
         print(f"Resuming from checkpoint {checkpoint_file}...")
-        with open(checkpoint_file, "r", encoding="utf-8") as f:
+        with open(checkpoint_file, encoding="utf-8") as f:
             ckpt_data = json.load(f)
             for r in ckpt_data.get("results", []):
                 results.append(
@@ -177,7 +177,7 @@ def main():
     print(f"Memory Oracle Recall:           {overall_ora * 100:.1f}% ({total_oracle}/{total_qs})")
     print(f"Mean Context Tokens/Q:          {mean_tokens:.1f} tokens/Q")
     print(f"Mean Latency:                   {mean_lat:.1f} ms")
-    print(f"Write LLM Calls:                0 calls (100% Free Deterministic Ingestion)")
+    print("Write LLM Calls:                0 calls (100% Free Deterministic Ingestion)")
     print(f"Total Benchmark Suite Time:     {total_time:.1f} s ({total_time / 60:.1f} min)")
     print("-" * 85)
     print("QUESTION TYPE BREAKDOWN:")

@@ -62,7 +62,7 @@ if not conv1_file.exists():
 # Load all 10 conversations
 for i in range(10):
     f_path = results_dir / f"conv_{i}_results.json"
-    with open(f_path, "r", encoding="utf-8") as f:
+    with open(f_path, encoding="utf-8") as f:
         d = json.load(f)
         all_convs.append(d["summary"])
 

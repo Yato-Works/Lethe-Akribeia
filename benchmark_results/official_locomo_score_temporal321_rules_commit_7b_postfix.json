@@ -1,0 +1,42 @@
+{
+ "tag": "temporal321_rules_commit_7b_postfix",
+ "run_dir": "benchmark_results/_official_scoring/run_temporal321_rules_commit_7b_postfix",
+ "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
+ "n": 1540,
+ "official_f1": 51.8911,
+ "official_f1_no_cat5": 51.8911,
+ "holdout": {
+  "n": 390,
+  "official_f1": 51.4219,
+  "conversations": [
+   "conv-42",
+   "conv-48"
+  ]
+ },
+ "dev": {
+  "n": 1150,
+  "official_f1": 52.0503
+ },
+ "per_category": {
+  "multi-hop": {
+   "n": 282,
+   "official_f1": 33.9661
+  },
+  "temporal": {
+   "n": 321,
+   "official_f1": 56.327
+  },
+  "open-domain": {
+   "n": 96,
+   "official_f1": 24.759
+  },
+  "single-hop": {
+   "n": 841,
+   "official_f1": 59.3056
+  },
+  "adversarial": {
+   "n": 0,
+   "official_f1": null
+  }
+ }
+}

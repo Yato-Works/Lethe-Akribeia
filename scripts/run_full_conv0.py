@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run all 199 questions for Conv 0 with improved code."""
-import sys, json, time
+import sys
+import json
+import time
 sys.path.insert(0, 'src')
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
@@ -59,7 +61,7 @@ for r in results:
         cat_correct[r['category']] += 1
 
 overall_correct = sum(1 for r in results if r['correct'])
-print(f"\n=== CONV 0 RESULTS ===", flush=True)
+print("\n=== CONV 0 RESULTS ===", flush=True)
 print(f"Overall: {overall_correct}/{len(questions)} = {overall_correct/len(questions)*100:.1f}%", flush=True)
 for cat in sorted(cat_total.keys()):
     name = adapter.CATEGORY_NAMES.get(cat, str(cat))

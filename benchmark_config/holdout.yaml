@@ -1,21 +1,34 @@
 # LoCoMo Holdout Configuration
-# Conversations excluded from development/failure mining
-# These are used ONLY for final independent evaluation
+# Conversations excluded from iterative development and failure mining.
+# These provide an independent validation split to verify that improvements
+# generalize beyond development set patterns.
 
 holdout:
-  conversations: [3, 7]
-  description: "Fixed holdout set - never used for failure analysis or targeted fixes"
+  indices: [3, 7]
+  sample_ids: ["conv-42", "conv-48"]
+  question_counts:
+    conv-42: 199  # non-adversarial (cats 1-4)
+    conv-48: 191  # non-adversarial (cats 1-4)
+  total_questions: 390
+  description: "Fixed holdout conversations (conv-42, conv-48) - 390 non-adversarial questions"
 
 development:
-  conversations: [0, 1, 2, 4, 5, 6, 8, 9]
-  description: "Development set - used for failure mining, iterative improvement"
+  indices: [0, 1, 2, 4, 5, 6, 8, 9]
+  sample_ids: ["conv-26", "conv-30", "conv-41", "conv-43", "conv-44", "conv-47", "conv-49", "conv-50"]
+  question_counts:
+    conv-26: 152
+    conv-30: 81
+    conv-41: 152
+    conv-43: 178
+    conv-44: 123
+    conv-47: 150
+    conv-49: 156
+    conv-50: 158
+  total_questions: 1150
+  description: "Development set (8 conversations) - 1,150 non-adversarial questions"
 
 notes: |
-  Holdout conversations are completely isolated from the development loop:
-  - Not included in --failed re-runs
-  - Not analyzed by failure_miner.py
-  - Not targeted by individual fixes
-  - Only evaluated at major milestones (e.g., after each significant improvement batch)
-  
-  This prevents overfitting to specific conversation patterns and ensures
-  reported improvements generalize beyond the development set.
+  Holdout conversations (conv-42, conv-48) are isolated from prompt engineering:
+  - Total non-adversarial questions in LoCoMo: 1,540 (1,150 Dev + 390 Holdout).
+  - Used for independent evaluation to verify that retrieval and deterministic
+    reasoning gains generalize without conversation-specific tuning.

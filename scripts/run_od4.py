@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run all open-domain (cat 3) questions for Conv 0 with improved code."""
-import sys, json, time
+import sys
+import json
+import time
 sys.path.insert(0, 'src')
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer

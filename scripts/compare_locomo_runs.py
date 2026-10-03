@@ -90,17 +90,6 @@ def agg(results: list[dict]) -> tuple[float, float, float, float]:
 
 
 def show_samples(base: dict, exp: dict, qids: list[str], label: str, limit: int) -> None:
-
-
-    n = len(results)
-    ora = sum(1 for r in results if r["oracle_recall"]) / n if n else 0.0
-    cor = sum(1 for r in results if r.get("is_correct")) / n if n else 0.0
-    tok = sum(r.get("tokens_used", 0) for r in results) / n if n else 0.0
-    lat = sum(r.get("latency_ms", 0) for r in results) / n if n else 0.0
-    return cor, ora, tok, lat
-
-
-def show_samples(base: dict, exp: dict, qids: list[str], label: str, limit: int) -> None:
     print(f"\n--- {label} (up to {limit}) ---")
     for q in qids[:limit]:
         b, e = base[q], exp[q]

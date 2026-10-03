@@ -99,10 +99,10 @@ def main():
     print("\n" + "=" * 85)
     print("      AM APEX MULTI-HOP EVOLUTION LADDER")
     print("=" * 85)
-    print(f"1. Baseline P4 (No State):                  18.8% ( 6/32) | 361 tok")
-    print(f"2. Old StateSynthesizer (Retrieved State):  21.9% ( 7/32) | 363 tok")
+    print("1. Baseline P4 (No State):                  18.8% ( 6/32) | 361 tok")
+    print("2. Old StateSynthesizer (Retrieved State):  21.9% ( 7/32) | 363 tok")
     print(f"3. New StateCompiler (Deterministic State):  {acc:4.1f}% ({num_correct:2d}/32) | {mean_tok:3.0f} tok")
-    print(f"4. Gold State (Upper Bound):                68.8% (22/32) | 370 tok")
+    print("4. Gold State (Upper Bound):                68.8% (22/32) | 370 tok")
     print("=" * 85)
 
     out_file = RESULTS_DIR / "state_compiler_benchmark.json"

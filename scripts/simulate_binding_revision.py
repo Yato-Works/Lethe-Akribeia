@@ -127,11 +127,11 @@ def main() -> None:
         if not rows_cat:
             continue
         g = sum(v for k, v in rows_cat if k.endswith("False, True)"))
-        l = sum(v for k, v in rows_cat if k.endswith("True, False)"))
+        loss_val = sum(v for k, v in rows_cat if k.endswith("True, False)"))
         fired = sum(v for _, v in rows_cat)
         gained += g
-        lost += l
-        print(f"    {cat:<13} fired={fired:<5} gain={g:<5} loss={l:<5} net={g - l:+d}")
+        lost += loss_val
+        print(f"    {cat:<13} fired={fired:<5} gain={g:<5} loss={loss_val:<5} net={g - loss_val:+d}")
     print(f"\n  NET accuracy change: {gained - lost:+d} questions "
           f"(gain {gained} / loss {lost})")
 

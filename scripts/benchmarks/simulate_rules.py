@@ -145,7 +145,7 @@ for item in pool:
     else:
         still_remaining.append((item.get('qid'), q, score, pred, gt))
 
-print(f"=== ルール適用シミュレーション結果 ===")
+print("=== ルール適用シミュレーション結果 ===")
 print(f"現在プール総数: {len(pool)} 問")
 print(f"今回新規卒業 (F1 >= 0.999): {len(graduated_now)} 問 🎓")
 print(f"残存未達: {len(still_remaining)} 問")

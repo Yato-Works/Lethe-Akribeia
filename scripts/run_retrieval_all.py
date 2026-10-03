@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Run retrieval-only for all 8 dev convs, then LLM only on oracle=True questions."""
-import sys, json, time, os
+import sys
+import json
+import time
+import os
 sys.path.insert(0, 'src')
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
@@ -60,7 +63,7 @@ for conv_idx in dev_convs:
     
     all_results[conv_idx] = conv_results
 
-print(f"\n=== RETRIEVAL-ONLY COMPLETE ===", flush=True)
+print("\n=== RETRIEVAL-ONLY COMPLETE ===", flush=True)
 for conv_idx in dev_convs:
     r = all_results[conv_idx]
     total = len(r)

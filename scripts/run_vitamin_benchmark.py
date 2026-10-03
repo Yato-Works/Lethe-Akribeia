@@ -107,11 +107,11 @@ def main():
     print("\n" + "=" * 85)
     print("      AM APEX MULTI-HOP COMPLETE EVOLUTION LADDER")
     print("=" * 85)
-    print(f"1. Baseline P4 (No State):                  18.8% ( 6/32) | 361 tok")
-    print(f"2. Old StateSynthesizer (Retrieved State):  21.9% ( 7/32) | 362 tok")
-    print(f"3. StateCompiler C5/C6:                     43.8% (14/32) | 376 tok")
+    print("1. Baseline P4 (No State):                  18.8% ( 6/32) | 361 tok")
+    print("2. Old StateSynthesizer (Retrieved State):  21.9% ( 7/32) | 362 tok")
+    print("3. StateCompiler C5/C6:                     43.8% (14/32) | 376 tok")
     print(f"4. Phase VITAMIN (Current):                 {acc:4.1f}% ({num_correct:2d}/32) | {mean_tok:3.0f} tok")
-    print(f"5. Gold State (Upper Bound):                68.8% (22/32) | 370 tok")
+    print("5. Gold State (Upper Bound):                68.8% (22/32) | 370 tok")
     print("=" * 85)
 
     out_file = RESULTS_DIR / "vitamin_benchmark.json"

@@ -162,7 +162,7 @@ def main() -> int:
               f"hits eligible {h:4d}/{len(hit)}   "
               f"-> eligible questions {100 * (m + h) / len(probe):.2f}%")
 
-    print("\n=== per category: misses eligible under round-robin (W=%d) ===" % W)
+    print(f"\n=== per category: misses eligible under round-robin (W={W:d}) ===")
     grid: dict[str, Counter] = defaultdict(Counter)
     for p in miss:
         cat = CATEGORY_NAMES.get(p["category"], str(p["category"]))

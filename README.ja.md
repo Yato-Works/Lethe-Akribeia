@@ -11,7 +11,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: v0.3.0 Apex Generation](https://img.shields.io/badge/status-v0.3.0%20Apex%20Generation-brightgreen.svg)](#v3-apex-generation-における進化点)
-[![Tests: 308 passed](https://img.shields.io/badge/tests-308%20passed-success.svg)](#再現手順-reproduction)
+[![Tests: 321 passed](https://img.shields.io/badge/tests-321%20passed-success.svg)](#再現手順-reproduction)
 [![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
 [![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#評価ハイライト三層分離アーキテクチャ-three-layer-architecture)
 
@@ -38,17 +38,15 @@ Lethe Akribeia v0.3.0 は、実験的プロトタイプ（v0.2.0）から、極�
 
 1. **三層分離診断アーキテクチャの確立**:
    - **Layer 1（Oracle Recall: LongMemEval で 98.20%）**、**Layer 2（Reader on Hits: 82.08%）**、**Layer 3（Baseline 7B E2E: 81.60% → Final E2E: 83.40%）** を完全分離し、「長期記憶の検索層が極めて高い到達率（98.20%）を示しており、Reader 側の具体的な失敗モード（偽拒絶や算術ドリフトなど）を特定診断可能」な構造を確立しました。
-
 2. **Subsystem H: ArithmeticDifferenceEngine（Zero-LLM 自律コミッター）の新規配備**:
    - 通貨差分（$300 − $30 = $270）、節約割引額、複数地点の日数合算、イベント時年齢逆算を 100% 決定論的アルゴリズムで計算する導出スキャフォールドを実装。
-   - 7B Reader が偽拒絶（False Refusal）に陥っていた LongMemEval の難問 **+9問を回帰損失ゼロ（0 regressions）で完全救済**し、LongMemEval End-to-End を 81.60% (408/500) から **83.40% (417/500)** へと押し上げました。
-3. **[LoCoMo](https://github.com/snap-research/locomo)（Long-Context Conversation Benchmark; SNAP / スタンフォード大らによる長文対話ベンチマーク）のターン選択・多重度密度スコアリング最適化**:
-   - `answer_committer` にキーワードカバー率重み付け、話者アライメント、明示的非時間質問ガードを導入: 時間推論におけるコミッター正答数を 67問から 75問へと向上（**+8問純増、回帰損失ゼロ**；コミット対象サブセットにおいて 7B 単体の 57.3% に対し精度 72.8% を達成）。
-4. **テストスイートの爆発的拡充: 82件 → 308件 (100% ALL PASS)**:
-   - 算術差分、区間代数、時間コンパイル、発話者正規化、モデル感応性検証、破損耐性、および Derivation Scaffold テストスイートを網羅し、堅牢性を極限まで高めました。
+   - 7B Reader が偽拒絶（False Refusal）に陥っていた LongMemEval の難問 **+9問を回帰損失ゼロ（0 regressions）で完全救済**し、LongMemEval End-to-End を 81.60% (408/500) から **83.40% (417/500)** へと押し上げました（成果物: [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json)）。
+3. **[LoCoMo](https://github.com/snap-research/locomo)（SNAP / スタンフォード大らによる長文対話ベンチマーク）のターン選択・多重度密度スコアリング最適化**:
+   - `answer_committer` にキーワードカバー率重み付け、話者アライメント、明示的非時間質問ガードを導入: 要求対象サブセットにおいて、LLM 呼び出しゼロで **70.64% の高精度 (77/109問正解)** を達成（成果物: [`committer_metrics/locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)）。
+4. **テストスイートの爆発的拡充: 82件 → 321件 (100% ALL PASS, 総計 740件以上収集)**:
+   - 算術差分、区間代数、時間コンパイル、発話者正規化、モデル感応性検証、破損耐性、成果物自動検証（Results Registry Verifier）などの包括的テストスイートを追加。
 5. **モデル感度分析 (7B vs. 1.5B)**:
    - パラメータが約 4.7分の1（7B → 1.5B）に低下しても、同一文脈・プロンプト下で実質的な性能差が観測されないこと（LoCoMo $p=0.9509$, LongMemEval $p=0.4030$）を実証し、性能がモデル単体の規模よりも構造化された文脈品質に強く影響されるという仮説を支持する知見を得ました。
-
 
 ---
 
@@ -95,30 +93,30 @@ Lethe Akribeia は万能の SOTA システムとして誇張されるもので�
 
 | ベンチマーク / 評価スイート | 規模 (N) | **Layer 1: Oracle Recall** (証拠到達率) | **Layer 2: Reader on Hits** (7B Reader 正答率) | **Layer 3: End-to-End** (最終総合正答率) | 主な知見とアーキテクチャ境界 |
 |:---|:---:|:---:|:---:|:---:|:---|
-| **LongMemEval (全6機能)** | 500問 | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08% (403/491)**<br>*(7B単体・到達時)* | **83.40% (417/500)**<br>*(ベースライン 81.60% + 9問救済)* | 7B単体は 81.60% (408/500)。新設の Subsystem H（算術差分エンジン）により偽拒絶 9問を回帰損失ゼロで自律救済し、E2E 83.40% を達成。 |
+| **LongMemEval (全6機能)** | 500問 | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08% (403/491)**<br>*(7B単体・到達時)* | **83.40% (417/500)**<br>*(ベースライン 81.60% + 9問救済)* | 7B単体は 81.60% (408/500)。新設の Subsystem H（算術差分エンジン）により偽拒絶 9問を回帰損失ゼロで自律救済し、E2E 83.40% を達成。[`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて全指標を照合可能。 |
 | **BEAM (500K スケール)** | 48問 | **100.0% (48/48)** | **100.0%** | **100.0%** | 500K トークン規模で実測検証し、48問の needle-in-haystack 質問で針の見落としゼロ。より長大な地平へのスケールは設計目標であり、今回の実測報告には含まれません。 |
 | **LoCoMo 1,540 (Single-Hop)** | 841問 | **83.71%** | **85.80%** | **77.65%** | 明示的事実の想起。Reader が証拠から素直に事実を抽出できる領域。 |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321問 | **81.62% (262/321)** | **57.25%**<br>*(7B は到達時の 42.8% で推論失敗)* | **51.09% (164/321)** | 複数期間の相対時間計算。決定論的カレンダー正規化が寄与。コミッター介入サブセット（103/321問）において、精度 72.8% (75/103) を達成（コミッター前 67/103 に対し +8問純増；同一サブセットの 7B 単体 57.3% [59/103] に対し +16問リード、精度比 +15.5pp）。 |
+| **LoCoMo 1,540 (Temporal Cat 2)** | 321問 | **81.62% (262/321)** | **57.25%**<br>*(7B は到達時の 42.8% で推論失敗)* | **51.09% (164/321)** | 複数期間の相対時間計算。決定論的カレンダー正規化が寄与。コミッター介入サブセット（109/321問）において、LLM 呼び出しゼロで **70.64% の精度 (77/109問正解)** を達成（成果物: [`locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)）。 |
 | **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282問 | **78.37%** | **55.20%** | **47.87%** | 異セッション間グラフリンク。今後の研究開発課題（フロンティア領域）。 |
-| **LoCoMo 1,540 (全体・非敵対的)** | 1,540問 | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | 主幹ローカル 7B Reader による全問評価。McNemar 検定表（996/1,540）と完全一致。 |
+| **LoCoMo 1,540 (全体・非敵対的)** | 1,540問 | **80.65% (1,242/1,540)** | **72.54%** | **64.68% (996/1,540)** | 主幹ローカル 7B Reader による全問評価（抽出正答率: 64.68%、公式 Token F1: 51.89%）。成果物 [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて完全照合。 |
 
 > [!NOTE]
 > **なぜ Oracle Recall と End-to-End を分離するのか？**  
 > LongMemEval（500問）において、Lethe が証拠を逃したのは 500問中わずか 9問（Oracle Recall 98.20%、491/500）でした。証拠が到達した 491問中、7B Reader 単体は 403問を正解（到達時正答率 82.08% = 403/491）し、証拠外での正解5問を含めたベースライン E2E 正答率は 81.60%（408/500、初期ミス 92問）でした。これら初期ミス 92問を精査したところ、88/92問（95.7%）において必要な証拠がコンテキスト内に存在していたにもかかわらず、7B ローカル Reader が「証拠があるのに I don't know と拒絶する（偽拒絶）」または「カレンダーの四則演算ミス」によって落としていました。  
-> 決定論的導出エンジン（Subsystem H: ArithmeticDifferenceEngine）を導入することで、これら偽拒絶・算術計算のうち 9問を回帰損失ゼロ（0 regressions）で自律救済し、正答数を 408問 (81.60%) から 417問 (83.40%) へと引き上げました。
+> 決定論的導出エンジン（Subsystem H: ArithmeticDifferenceEngine）を導入することで、これら偽拒絶・算術計算のうち 9問を回帰損失ゼロ（0 regressions）で自律救済し、正答数を 408問 (81.60%) から 417問 (83.40%) へと引き上げました。全数値は `python scripts/benchmarks/verify_registry.py` で自動検証されます。
 
 ### 📊 評価指標・測定対象セット対応マトリクス（数字の交通整理）
 
-各ドキュメントやレポート間で異なる評価セット・指標が乱立して混乱を招かないよう、報告されている全数値の対象スコープと位置付けを一覧化します：
+バイナリ抽出正答率（`is_correct`）と公式評価ハーネス（Stanford/SNAP トークン F1 など）の混同を完全に排除するため、報告されている全数値の正確な指標名・対象スコープ・成果物参照を整理します：
 
-| 評価区分 | 規模 ($N$) | 評価目的 | 評価指標 | 実測値 | 文脈・プロトコル参照 |
+| 評価区分 | 規模 ($N$) | 評価目的 | バイナリ抽出正答率 (`is_correct`) | 公式指標 (Token F1 / 到達率) | 文脈・プロトコル参照 |
 |:---|:---:|:---|:---:|:---:|:---|
-| **LoCoMo 全問（非敵対的）** | 1,540問 | 長期対話記憶の全体汎化性能 | 公式 Token F1 | **64.68% (996/1,540)** | 全10対話・全カテゴリを通じた本番 E2E 正答率。 |
-| **LoCoMo 独立ホールドアウト** | 308問 | 汎化性の独立検証（完全隔離 Conv 3, 7） | 公式 Token F1 | **63.96% (197/308)** | [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml) に基づきチューニングから完全除外。過適合なしを実証。 |
-| **LoCoMo 開発セット** | 1,232問 | パイプライン開発・段階的改善（Conv 0,1,2,4,5,6,8,9） | 公式 Token F1 | **64.85% (799/1,232)** | 開発セットとホールドアウトの差は 0.89pp 以内であり、高い汎化性を維持。 |
-| **LoCoMo Hard-Smoke（診断）** | 60問 | ベースライン 0% 難問群の集中ストレステスト | 公式 Token F1 | **99.54% (60/60)** | [`report.md`](report.md) 参照。決定論的算術・コミッターのストレステスト。 |
-| **LongMemEval（全6機能）** | 500問 | 超長期対話・マルチセッション保持 | 公式 Accuracy | **83.40% (417/500)** | 全500問。ベースライン 81.60% + Subsystem H 救済 9問。 |
-| **BEAM Horizon** | 48問 | 500K トークン規模の超極限針探索 | 針到達率 | **100.0% (48/48)** | 500,000 トークン規模で針の見落としゼロ。 |
+| **LoCoMo 全問（非敵対的）** | 1,540問 | 長期対話記憶の全体汎化性能 | **64.68% (996/1,540)** | **51.89%** (postfix) / **41.53%** (baseline) | 全10対話を通じた総合評価。[`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にて完全検証済み。 |
+| **LoCoMo 独立ホールドアウト** | 390問 | 汎化性の独立検証（完全隔離 Conv 3, 7: `conv-42`, `conv-48`） | **64.10% (250/390)** | **51.42%** 公式 Token F1 | [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml) に基づきチューニングから完全除外。過適合なしを実証。 |
+| **LoCoMo 開発セット** | 1,150問 | パイプライン開発・段階的改善（8対話） | **64.87% (746/1,150)** | **52.05%** 公式 Token F1 | 開発セット 52.05% vs ホールドアウト 51.42% F1（乖離 -0.63pp）、過適合なく一般化。 |
+| **LoCoMo Hard-Smoke（診断）** | 60問 | ベースライン 0% 難問群の集中ストレステスト | **100.0% (60/60)** (99.54% トークン一致) | **73.77%** 公式 Token F1 | [`report.md`](report.md) & [`official_score`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json) 参照。自律コミッター・算術の診断セット。 |
+| **LongMemEval（全6機能）** | 500問 | 超長期対話・マルチセッション保持 | **83.40% (417/500)** (最終)<br>*(ベースライン: 81.60%, 408/500)* | **98.20%** Oracle Recall<br>*(491/500 証拠到達)* | 全500問。ベースライン 81.60% + Subsystem H 救済 9問。成果物 [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json)。 |
+| **BEAM Horizon** | 48問 | 500K トークン規模の超極限針探索 | **100.0% (48/48)** | **100.0%** 針到達率 | 500,000 トークン規模で針の見落としゼロ。 |
 
 ---
 
@@ -243,13 +241,13 @@ lethe timeline
 
 ```
 [V3 Apex (現在)] ─────────────► [V4 認知的拡張] ─────────────► [V5 フロンティア拡張 (Frontier Scale)]
-• 308件の単体テスト (100% 合格)  • 非時間暗黙的状態の自律救済        • フロンティア LLM (120B/Gemini/Claude)
+• 321件の単体テスト (100% 合格)  • 非時間暗黙的状態の自律救済        • フロンティア LLM (120B/Gemini/Claude)
 • LME Oracle Recall: 98.2%      • セッション間グラフ探索の拡張      • E2E ベンチマーク上限突破 (95%〜98%+)
 • Subsystem H (算術差分エンジン) • 目標: LME E2E > 90%                • 完全マルチエージェント Kubernetes メッシュ
 • LME E2E: 83.40% (+9問救済)    • LoCoMo Oracle Recall > 90%         • プロダクション自律メモリ標準
 ```
 
-- **V3 (現在: Apex Baseline)**: 三層分離診断標準を確立し、LongMemEval で Oracle Recall 98.2% を達成。新設の Subsystem H (`ArithmeticDifferenceEngine`) により偽拒絶 +9問を完全救済して E2E 83.40% を記録。LoCoMo の時間ターン選択（+8問純増）を最適化し、単体テストを 308件（100% ALL PASS）へ拡充。
+- **V3 (現在: Apex Baseline)**: 三層分離診断標準を確立し、LongMemEval で Oracle Recall 98.2% を達成。新設の Subsystem H (`ArithmeticDifferenceEngine`) により偽拒絶 +9問を完全救済して E2E 83.40% を記録。LoCoMo の時間ターン選択（+8問純増）を最適化し、単体テストを 321件（総計 740件以上、100% ALL PASS）へ拡充。
 - **V4 (次期: 認知的拡張 & 非時間暗黙状態の救済)**:
   - *非時間暗黙状態の自律救済*: 属性・所属などの暗黙的推論パターンを自律エンジンへ拡張し、残余の Reader 偽拒絶を撲滅、LongMemEval E2E **90%+** 超えを達成。
   - *セッション間グラフ探索の強化*: `ppr_graph` とエンティティ結合を強化し、LoCoMo Multi-Hop の Oracle Recall を 78.37% から **90%+** へ（全体 Oracle Recall も 80.65% から **90%+** へ）引き上げ。
@@ -264,20 +262,22 @@ lethe timeline
 すべての評価スクリプト、アダプター、およびスコアリングコードは完全に再現可能です：
 
 ```bash
-# 1. 完全単体テストスイートの実行 (308件, 100% 合格)
+# 1. 完全単体テストスイートの実行 (321件, 100% 合格)
 pytest tests/unit/
 
+# 2. 全公表ベンチマーク指標と生成果物（Provenance）の完全自動照合
+python scripts/benchmarks/verify_registry.py
 
-# 2. ベースラインに対する LoCoMo 公式スコア計算 (主幹 Instruct 7B モデル)
-python scripts/benchmarks/score_locomo_run_json.py --input benchmark_results/locomo1540/locomo_1540_improved2.json
+# 3. ベースラインに対する LoCoMo 公式スコア計算 (主幹 Instruct 7B モデル)
+python scripts/benchmarks/score_locomo_run_json.py --results benchmark_results/locomo1540/locomo_1540_improved2.json
 
-# 3. 三層分離レポートの確認 (Oracle Recall vs Reader on Hits)
+# 4. 三層分離レポートの確認 (Oracle Recall vs Reader on Hits)
 python scripts/benchmarks/three_layer_report.py
 
-# 4. モデル感度分析 (7B vs 1.5B 厳密 McNemar 検定) の実行
+# 5. モデル感度分析 (7B vs 1.5B 厳密 McNemar 検定) の実行
 python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json --claims benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json
 
-# 5. BEAM ベンチマークの実行 (500K scale)
+# 6. BEAM ベンチマークの実行 (500K scale)
 python scripts/run_coder7b_beam.py --scale 500K
 ```
 

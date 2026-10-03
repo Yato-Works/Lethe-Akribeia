@@ -199,7 +199,7 @@ def main() -> int:
         return f"S5 {e['s5_selection']} (window exhausted before reaching it)"
 
     counts = Counter(first_fail(e) for e in traced)
-    print("\n=== FIRST FAILING STAGE (misses traced: %d) ===" % len(traced))
+    print(f"\n=== FIRST FAILING STAGE (misses traced: {len(traced):d}) ===")
     for k, v in counts.most_common():
         print(f"  {k:58s} {v:4d}  ({100 * v / max(1, len(traced)):5.1f}%)")
 

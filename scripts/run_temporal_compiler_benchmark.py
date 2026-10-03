@@ -110,7 +110,7 @@ def main():
     print("\n" + "=" * 85)
     print("      AM APEX TEMPORAL EVOLUTION LADDER")
     print("=" * 85)
-    print(f"1. Baseline P4 (No State):                  10.8% ( 4/37) | 412 tok")
+    print("1. Baseline P4 (No State):                  10.8% ( 4/37) | 412 tok")
     print(f"2. Phase CHRONOS (Current Run):             {acc:4.1f}% ({num_correct:2d}/37) | {mean_tok:3.0f} tok")
     print(f"   Delta vs Baseline:                      {acc - 10.8:+5.1f} pt ({num_correct - 4:+2d} Qs)")
     print(f"   Oracle Recall Ceiling:                   {ora_pct:4.1f}% ({num_ora:2d}/37)")

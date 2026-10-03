@@ -1076,8 +1076,8 @@ class CheapScorers:
             rec = [(t - lo) / (hi - lo) for t in times]
         else:
             rec = [0.0 for _ in memories]
-        return [alpha * l + (1 - alpha) * s + gamma * r
-                for l, s, r in zip(lex_n, sem_n, rec)]
+        return [alpha * lx + (1 - alpha) * s + gamma * r
+                for lx, s, r in zip(lex_n, sem_n, rec)]
 
     def score_pool(self, name: str, query: str, memories: list) -> list:
         """Score a whole pool at once (required for intra-pool normalisation)."""

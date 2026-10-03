@@ -67,8 +67,7 @@ notes/
 scratch/
 CHANGE_SUMMARY.md
 OPTIMIZATION_PROGRESS.md
-report*.md
-report*.json
+!report.md
 
 # Local experiment scratch (TEMP redirection target, debug scripts, pickles)
 .tmp/
@@ -96,7 +95,6 @@ datasets/external/longmemeval_s_cleaned.json
 # Large intermediate benchmark caches & logs
 *.log
 *.err
-*.jsonl
 *.out
 benchmark_results/**/*.log
 benchmark_results/**/*.err
@@ -114,7 +112,6 @@ benchmark_results/ab_*.json
 benchmark_results/weakness_*.json
 benchmark_results/*.txt
 benchmark_results/longmemeval/checkpoint*.json
-benchmark_results/longmemeval/grand_longmemeval_report_*_*.json
 
 # Scratch scripts & temporary inspection tools
 debug_*.py

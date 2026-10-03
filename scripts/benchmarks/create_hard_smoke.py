@@ -5,7 +5,7 @@ from pathlib import Path
 def create_hard_smoke():
     repo = Path(".")
     v25_path = repo / "benchmark_results" / "_official_scoring" / "f1_by_question_full_v25.json"
-    with open(v25_path, "r", encoding="utf-8") as f:
+    with open(v25_path, encoding="utf-8") as f:
         data = json.load(f)
 
     # Group by category
