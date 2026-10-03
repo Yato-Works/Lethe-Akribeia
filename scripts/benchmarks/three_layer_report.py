@@ -138,7 +138,9 @@ def main() -> int:
         for suite in suites:
             if suite == "locomo1540":
                 d = REPO / "benchmark_results" / "locomo1540"
-                p = (REPO / "benchmark_results" / "locomo1540" / "locomo_final.json")
+                p = d / "temporal321_rules_commit_7b_postfix.json"
+                if not p.exists():
+                    p = d / "locomo_final.json"
                 if args.latest:
                     cands = [x for x in d.glob("*.json")
                              if not x.name.startswith(("smoke", "test"))]
@@ -146,8 +148,12 @@ def main() -> int:
             elif suite == "locomo10":
                 p = REPO / "benchmark_results" / "locomo10" / "full_locomo10_report.json"
             else:
-                p = find_latest(REPO / "benchmark_results" / "longmemeval",
-                                "grand_longmemeval_report_*.json")
+                d = REPO / "benchmark_results" / "longmemeval"
+                p = d / "grand_longmemeval_report_7b_rescued_834.json"
+                if not p.exists():
+                    p = d / "grand_longmemeval_report_7b_apex_ctx8192_postfix.json"
+                if not p.exists() or args.latest:
+                    p = find_latest(d, "grand_longmemeval_report_*.json")
             if p and p.exists():
                 targets.append((suite, p))
 

@@ -101,6 +101,20 @@ def verify_entry(entry: dict) -> tuple[bool, str]:
             return False, f"[{eid}] No dev questions found"
         measured = (dev_corr / dev_tot) * 100
 
+    elif str(entry.get("custom_eval", "")).startswith("cat"):
+        target_cat = int(entry["custom_eval"].replace("cat", ""))
+        results = data.get("results", [])
+        cat_corr = 0
+        cat_tot = 0
+        for r in results:
+            if int(r.get("category", 0)) == target_cat:
+                cat_tot += 1
+                if r.get("is_correct"):
+                    cat_corr += 1
+        if cat_tot == 0:
+            return False, f"[{eid}] No category {target_cat} questions found"
+        measured = (cat_corr / cat_tot) * 100
+
     if measured is None:
         return False, f"[{eid}] Could not extract measured value"
 
@@ -108,8 +122,8 @@ def verify_entry(entry: dict) -> tuple[bool, str]:
     diff = abs(measured - target)
     if diff > tol:
         return False, (
-            f"[{eid}] Value mismatch: target={target:.2f}%, measured={measured:.2f}%, "
-            f"diff={diff:.3f} > tol={tol:.2f}"
+            f"[{eid}] Value mismatch: target={target:.4f}, measured={measured:.4f}, "
+            f"diff={diff:.4f} > tol={tol:.4f}"
         )
 
     # 5. Check counts if provided
@@ -121,20 +135,31 @@ def verify_entry(entry: dict) -> tuple[bool, str]:
                 act_n = sum(1 for r in data["results"] if "conv-42" in r.get("question_id", "") or "conv-48" in r.get("question_id", ""))
             elif entry.get("custom_eval") == "dev_convs":
                 act_n = sum(1 for r in data["results"] if "conv-42" not in r.get("question_id", "") and "conv-48" not in r.get("question_id", ""))
+            elif str(entry.get("custom_eval", "")).startswith("cat"):
+                target_cat = int(entry["custom_eval"].replace("cat", ""))
+                act_n = sum(1 for r in data["results"] if int(r.get("category", 0)) == target_cat)
             else:
                 act_n = len(data["results"])
         elif entry.get("json_path") == "holdout.official_f1":
             act_n = data.get("holdout", {}).get("n")
         elif entry.get("json_path") == "dev.official_f1":
             act_n = data.get("dev", {}).get("n")
+        elif "total_questions" in data:
+            act_n = data["total_questions"]
+        elif "shared" in data:
+            act_n = data["shared"]
         elif "n" in data:
             act_n = data["n"]
         elif "counts" in data and "claimed" in data["counts"]:
             act_n = data["counts"]["claimed"]
+        elif "counts" in data and "n" in data["counts"]:
+            act_n = data["counts"]["n"]
 
         if act_n is not None and act_n != exp_n:
             return False, f"[{eid}] Sample count mismatch: expected {exp_n}, got {act_n}"
 
+    if entry.get("metric_type") == "p_value":
+        return True, f"[{eid}] PASS (target={target:.4f}, measured={measured:.4f})"
     return True, f"[{eid}] PASS (target={target:.2f}%, measured={measured:.2f}%)"
 
 

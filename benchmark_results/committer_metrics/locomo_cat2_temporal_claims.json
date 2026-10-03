@@ -2,7 +2,7 @@
   "label": "LoCoMo 1,540 - category 2 (temporal)",
   "suite": "locomo",
   "cache": "benchmark_results/locomo_context_cache_rules.jsonl",
-  "reader_run": "benchmark_results/locomo1540/temporal321_rules.json",
+  "reader_run": "benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json",
   "min_turn_score": 0.8,
   "counts": {
     "n": 321,
