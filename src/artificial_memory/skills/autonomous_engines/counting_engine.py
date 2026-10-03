@@ -73,9 +73,11 @@ _MEASURE_UNITS = {
 
 #: Frames that mark a standing total rather than one session's event.
 _STATIVE_FRAME = re.compile(
-    r"\b(?:in\s+total|altogether|all\s+together|in\s+all)\b"
+    r"\b(?:in\s+total|altogether|all\s+together|in\s+all|out\s+of)\b"
     r"|"
-    r"\b(?:have|has|own|owns)\s+(?:now\s+|currently\s+|exactly\s+|about\s+|around\s+)?\w*\s{0,1}",
+    r"\b(?:have|has|own|owns)\s+(?:now\s+|currently\s+|exactly\s+|about\s+|around\s+)?\w*\s{0,1}"
+    r"|"
+    r"\b(?:with|consisting\s+of|consists\s+of|composed\s+of|team\s+of)\b",
     re.IGNORECASE,
 )
 

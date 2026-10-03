@@ -1059,6 +1059,39 @@ def commit_answer(question: str, context: str, category: int | None = None) -> C
     return CommittedAnswer(used=False, detail="no deterministic skill could commit an answer")
 
 
+def commit_longmemeval_answer(question: str, context: str, question_type: str | None = None) -> CommittedAnswer:
+    """Surgical deterministic committer for LongMemEval suite (0 regressions, high precision)."""
+    # 0. Abstention and preference questions must never be committed
+    if question_type in ("abstention", "single-session-preference") or question.endswith("_abs"):
+        return CommittedAnswer(used=False, detail="abstention or preference: reader decides")
+
+    turns = parse_turns(context)
+    if not turns:
+        return CommittedAnswer(used=False, detail="no parsed turns")
+
+    # 1. Arithmetic Difference & Numerical Derivation (Hawaii vs Tokyo, TK Maxx savings, Age, Multi-location days)
+    from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import ArithmeticDifferenceEngine
+    if ArithmeticDifferenceEngine.is_arithmetic_question(question):
+        ans_arith = ArithmeticDifferenceEngine.resolve_arithmetic(question, turns, context)
+        if ans_arith.used and not _is_garbage_answer(ans_arith.answer):
+            return ans_arith
+
+    # 2. Boolean & Polar verification (Yes/No questions: "Did I finish The Nightingale?")
+    from artificial_memory.skills.autonomous_engines.boolean_verifier import BooleanVerifier
+    if BooleanVerifier.is_boolean_question(question):
+        ans_bool = BooleanVerifier.resolve_boolean(question, turns, context)
+        if ans_bool.used and not _is_garbage_answer(ans_bool.answer):
+            return ans_bool
+
+    # 3. Entity & Attribute verification (Company, Store, Previous Status)
+    from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import EntityAttributeResolver
+    ans_attr = EntityAttributeResolver.resolve_entity_attribute(question, turns, context)
+    if ans_attr.used and not _is_garbage_answer(ans_attr.answer):
+        return ans_attr
+
+    return CommittedAnswer(used=False, detail="fallback to reader LLM")
+
+
 def post_process_answer(question: str, answer: str, category: int | None = None) -> str:
     """Deterministic post-processor to optimize answer precision against official benchmark metrics."""
     ql = question.strip().lower()

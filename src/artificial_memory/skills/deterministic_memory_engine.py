@@ -28,6 +28,7 @@ from artificial_memory.skills.autonomous_engines.event_action_resolver import Ev
 from artificial_memory.skills.autonomous_engines.boolean_verifier import BooleanVerifier
 from artificial_memory.skills.autonomous_engines.temporal_anchor_resolver import TemporalAnchorResolver
 from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import EntityAttributeResolver
+from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import ArithmeticDifferenceEngine
 
 
 class DeterministicMemoryEngine:
@@ -63,6 +64,12 @@ class DeterministicMemoryEngine:
         turns = parse_turns(context)
         if not turns:
             return CommittedAnswer(used=False, detail="no parsed turns in context")
+
+        # 1. Subsystem H: Arithmetic Difference & Numerical Derivation (Deltas, Savings, Age, Multi-span)
+        if ArithmeticDifferenceEngine.is_arithmetic_question(question):
+            ans_arith = ArithmeticDifferenceEngine.resolve_arithmetic(question, turns, context)
+            if ans_arith.used:
+                return ans_arith
 
         # 2. Subsystem B: Temporal Algebra (Duration / Interval passed)
         if TemporalAlgebraEngine.is_duration_question(question):

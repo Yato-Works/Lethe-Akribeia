@@ -305,175 +305,169 @@ class LongMemEvalAdapter:
             predicted_answer = "The information provided is not enough. You did not mention this information."
 
         else:
-            prompt_context = pcc.context_text
-            if item.question_type == "single-session-preference":
-                lines = pcc.context_text.split("\n")
-                pref_lines = [line for line in lines if line.startswith("[User Profile & Preferences:")]
+            from artificial_memory.skills.answer_committer import commit_longmemeval_answer
 
-                pref_grounding = "\n".join(pref_lines) if pref_lines else ""
-                prompt_context = (
-                    f"[USER PROFILE & PREFERENCES]\n{pref_grounding}\n\n"
-                    f"[TASK INSTRUCTION]\n"
-                    f"The user is asking the question below. You MUST tailor your answer directly to their stated preferences, past equipment, or background in [USER PROFILE & PREFERENCES]. "
-                    f"Do NOT say 'I don't know'. Give concrete, specific suggestions or explanations that incorporate their preferences."
-                )
-            elif item.question_type == "knowledge-update":
-                timeline_engine = getattr(self.compiler, "state_timeline_engine", None) or self.state_timeline_engine
-                ku_cert = timeline_engine.build_timeline_certificate(item.question, all_records) if timeline_engine else None
-                if ku_cert:
-                    prompt_context = ku_cert.certificate
-                else:
-                    ql = item.question.lower()
-                    is_prev = any(w in ql for w in ["previous", "previously", "earlier", "before", "former", "initially"])
-                    target_state = "PREVIOUS / EARLIER" if is_prev else "CURRENT / LATEST"
+            # Attempt deterministic resolution via Autonomous Engines (0 ms, 0 LLM calls)
+            committed = commit_longmemeval_answer(item.question, pcc.context_text, question_type=item.question_type)
+
+            if committed and committed.used and committed.answer:
+                predicted_answer = committed.answer
+            else:
+                prompt_context = pcc.context_text
+                if item.question_type == "single-session-preference":
+                    lines = pcc.context_text.split("\n")
+                    pref_lines = [line for line in lines if line.startswith("[User Profile & Preferences:")]
+
+                    pref_grounding = "\n".join(pref_lines) if pref_lines else ""
                     prompt_context = (
-                        f"[INSTRUCTION: KNOWLEDGE UPDATE & STATE EVOLUTION]\n"
-                        f"The user's state changes over time across different dates [YYYY/MM/DD].\n"
-                        f"The question is asking specifically for the {target_state} state.\n\n"
-                        f"RULES:\n"
-                        f"1. IF ASKING FOR CURRENT / LATEST / NOW:\n"
-                        f"   - Always check the latest date sessions for any state updates, revisions, or additions.\n"
-                        f"   - If a new record was set (e.g. a faster time), use the new record from the latest session.\n"
-                        f"   - If items were added to an existing collection/count (e.g. had 37 and added 1), calculate the updated total (38).\n"
-                        f"   - If an item was moved (e.g. from under the bed to a closet shoe rack), answer with the new location.\n"
-                        f"   - If a record changed (e.g. won more games), use the latest record.\n\n"
-                        f"2. IF ASKING FOR PREVIOUS / EARLIER / BEFORE / FORMER:\n"
-                        f"   - Answer strictly with the earlier state from the earlier session before the change occurred.\n\n"
-                        f"3. DIRECT CONCISE ANSWER:\n"
-                        f"   - State the final updated or previous value directly and concisely (e.g. 'four', 'the suburbs', '25:50', '$400,000').\n"
-                        f"   - Do NOT say 'The information provided is not enough' if the context mentions the event, item, count, or location.\n\n"
-                        f"State the final answer directly and concisely.\n\n"
-                        f"{pcc.context_text}"
+                        f"[USER PROFILE & PREFERENCES]\n{pref_grounding}\n\n"
+                        f"[TASK INSTRUCTION]\n"
+                        f"The user is asking the question below. You MUST tailor your answer directly to their stated preferences, past equipment, or background in [USER PROFILE & PREFERENCES]. "
+                        f"Do NOT say 'I don't know'. Give concrete, specific suggestions or explanations that incorporate their preferences."
                     )
-            elif item.question_type == "single-session-assistant":
-                # Specialized prompt for recalling assistant-provided content
-                # with emphasis on ordinal/list position accuracy
-                ql = item.question.lower()
-                has_ordinal = any(w in ql for w in [
-                    "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th",
-                    "11th", "12th", "13th", "14th", "15th", "20th", "25th", "27th", "30th",
-                    "first", "second", "third", "fourth", "fifth", "sixth", "seventh",
-                    "eighth", "ninth", "tenth", "last", "final",
-                ])
-                if has_ordinal:
-                    prompt_context = (
-                        f"[INSTRUCTION: CAREFUL LIST ITEM EXTRACTION]\n"
-                        f"The user is asking about a specific item from a numbered or ordered list.\n"
-                        f"RULES:\n"
-                        f"1. Find the EXACT list or enumeration in the assistant's response in the context below.\n"
-                        f"2. Count items carefully from 1 to reach the requested position.\n"
-                        f"3. If asking for the 'last' item, find the final item in the complete list.\n"
-                        f"4. Return ONLY the item at the exact requested position.\n"
-                        f"5. Do NOT guess or approximate. If you cannot find the exact list, say 'I don't know.'\n\n"
-                        f"{pcc.context_text}"
-                    )
-                else:
-                    prompt_context = (
-                        f"[INSTRUCTION: ASSISTANT CONTENT RECALL]\n"
-                        f"The user is asking about something the assistant said or provided in a previous conversation.\n"
-                        f"Find the relevant assistant response in the context and extract the specific detail requested.\n"
-                        f"Answer concisely with the exact information from the assistant's response.\n\n"
-                        f"{pcc.context_text}"
-                    )
-            elif item.question_type == "multi-session":
-                fuser = getattr(self.compiler, "session_fuser", None)
-                if fuser:
-                    agg_res = fuser.fuse(item.question, pcc.context_text)
-                    cert_is_valid = bool(agg_res.certificate and (agg_res.found_snippets or agg_res.total_value is not None or agg_res.is_aggregation_query))
-                    if cert_is_valid:
-                        prompt_context = (
-                            f"{agg_res.certificate}\n\n"
-                            f"[INSTRUCTION: Based on the verified deduction, calculation, or aggregation above, what is the final answer to the question? State the exact answer directly and concisely.]"
-                        )
+                elif item.question_type == "knowledge-update":
+                    timeline_engine = getattr(self.compiler, "state_timeline_engine", None) or self.state_timeline_engine
+                    ku_cert = timeline_engine.build_timeline_certificate(item.question, all_records) if timeline_engine else None
+                    if ku_cert:
+                        prompt_context = ku_cert.certificate
                     else:
+                        ql = item.question.lower()
+                        is_prev = any(w in ql for w in ["previous", "previously", "earlier", "before", "former", "initially"])
+                        target_state = "PREVIOUS / EARLIER" if is_prev else "CURRENT / LATEST"
                         prompt_context = (
-                            f"[INSTRUCTION: MULTI-SESSION REASONING]\n"
-                            f"Answer the question using the conversation context below.\n"
-                            f"- If the question asks for a count or total: carefully check ALL sessions to ensure every relevant instance/item is included, then provide the exact total.\n"
-                            f"- If the question asks for a comparison or difference (e.g., 'how much more', 'faster', 'older', 'difference'): compute the difference between the specific items requested.\n"
-                            f"- If the question asks for items not mentioned in the conversation, or if key information is missing, state clearly: 'The information provided is not enough.'\n"
-                            f"- Provide the concise final answer directly.\n\n"
+                            f"[INSTRUCTION: KNOWLEDGE UPDATE & STATE EVOLUTION]\n"
+                            f"The user's state changes over time across different dates [YYYY/MM/DD].\n"
+                            f"The question is asking specifically for the {target_state} state.\n\n"
+                            f"RULES:\n"
+                            f"1. IF ASKING FOR CURRENT / LATEST / NOW:\n"
+                            f"   - Always check the latest date sessions for any state updates, revisions, or additions.\n"
+                            f"   - If a new record was set (e.g. a faster time), use the new record from the latest session.\n"
+                            f"   - If items were added to an existing collection/count (e.g. had 37 and added 1), calculate the updated total (38).\n"
+                            f"   - If an item was moved (e.g. from under the bed to a closet shoe rack), answer with the new location.\n"
+                            f"   - If a record changed (e.g. won more games), use the latest record.\n\n"
+                            f"2. IF ASKING FOR PREVIOUS / EARLIER / BEFORE / FORMER:\n"
+                            f"   - Answer strictly with the earlier state from the earlier session before the change occurred.\n\n"
+                            f"3. DIRECT CONCISE ANSWER:\n"
+                            f"   - State the final updated or previous value directly and concisely (e.g. 'four', 'the suburbs', '25:50', '$400,000').\n"
+                            f"   - Do NOT say 'The information provided is not enough' if the context mentions the event, item, count, or location.\n\n"
+                            f"State the final answer directly and concisely.\n\n"
                             f"{pcc.context_text}"
                         )
-                else:
-                    prompt_context = pcc.context_text
-            elif item.question_type == "temporal-reasoning":
-                t_grounding = self.compiler.temporal_resolver.resolve(
-                    item.question,
-                    all_records,
-                    reference_date_str=item.question_date,
-                )
-                # Phase X: Temporal Skill Co-processor (CHRONOS)
-                temporal_skill = get_temporal_skill()
-                temporal_skill_result = temporal_skill.resolve(
-                    item.question,
-                    all_records,
-                    reference_date=item.question_date,
-                )
-                temporal_skill_block = ""
-                if temporal_skill_result.success and temporal_skill_result.skill_block:
-                    temporal_skill_block = temporal_skill_result.skill_block
-
-                if t_grounding:
-                    if "Time-Anchored Event" in t_grounding.grounding_text:
+                elif item.question_type == "single-session-assistant":
+                    ql = item.question.lower()
+                    has_ordinal = any(w in ql for w in [
+                        "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th",
+                        "11th", "12th", "13th", "14th", "15th", "20th", "25th", "27th", "30th",
+                        "first", "second", "third", "fourth", "fifth", "sixth", "seventh",
+                        "eighth", "ninth", "tenth", "last", "final",
+                    ])
+                    if has_ordinal:
                         prompt_context = (
-                            f"{t_grounding.grounding_text}\n\n"
-                            f"{temporal_skill_block}"
-                            f"[INSTRUCTION: Answer the question based on the event above clearly and concisely.]"
+                            f"[INSTRUCTION: CAREFUL LIST ITEM EXTRACTION]\n"
+                            f"The user is asking about a specific item from a numbered or ordered list.\n"
+                            f"RULES:\n"
+                            f"1. Find the EXACT list or enumeration in the assistant's response in the context below.\n"
+                            f"2. Count items carefully from 1 to reach the requested position.\n"
+                            f"3. If asking for the 'last' item, find the final item in the complete list.\n"
+                            f"4. Return ONLY the item at the exact requested position.\n"
+                            f"5. Do NOT guess or approximate. If you cannot find the exact list, say 'I don't know.'\n\n"
+                            f"{pcc.context_text}"
                         )
                     else:
                         prompt_context = (
-                            f"{t_grounding.grounding_text}\n\n"
-                            f"{temporal_skill_block}"
-                            f"[INSTRUCTION: Based on the verified temporal calculation/ordering above, answer the question directly. State the exact numbers, durations, or order clearly.]"
+                            f"[INSTRUCTION: ASSISTANT CONTENT RECALL]\n"
+                            f"The user is asking about something the assistant said or provided in a previous conversation.\n"
+                            f"Find the relevant assistant response in the context and extract the specific detail requested.\n"
+                            f"Answer concisely with the exact information from the assistant's response.\n\n"
+                            f"{pcc.context_text}"
                         )
-                else:
-                    t_grounding = None
-                    prompt_context = (
-                        f"{temporal_skill_block}"
-                        f"[INSTRUCTION: TEMPORAL REASONING]\n"
-                        f"Answer the temporal question using ONLY the dated conversation evidence below.\n"
-                        f"- Compute exact dates, durations, or ordering from the session dates.\n"
-                        f"- For relative dates, output the exact relative expression from the context.\n"
-                        f"- State exact numbers and units for durations.\n"
-                        f"- Return ONLY the concise answer.\n\n"
-                        f"{pcc.context_text}"
+                elif item.question_type == "multi-session":
+                    fuser = getattr(self.compiler, "session_fuser", None)
+                    if fuser:
+                        agg_res = fuser.fuse(item.question, pcc.context_text)
+                        cert_is_valid = bool(agg_res.certificate and (agg_res.found_snippets or agg_res.total_value is not None or agg_res.is_aggregation_query))
+                        if cert_is_valid:
+                            prompt_context = (
+                                f"{agg_res.certificate}\n\n"
+                                f"[INSTRUCTION: Based on the verified deduction, calculation, or aggregation above, what is the final answer to the question? State the exact answer directly and concisely.]"
+                            )
+                        else:
+                            prompt_context = (
+                                f"[INSTRUCTION: MULTI-SESSION REASONING]\n"
+                                f"Answer the question using the conversation context below.\n"
+                                f"- If the question asks for a count or total: carefully check ALL sessions to ensure every relevant instance/item is included, then provide the exact total.\n"
+                                f"- If the question asks for a comparison or difference (e.g., 'how much more', 'faster', 'older', 'difference'): compute the difference between the specific items requested.\n"
+                                f"- If the question asks for items not mentioned in the conversation, or if key information is missing, state clearly: 'The information provided is not enough.'\n"
+                                f"- Provide the concise final answer directly.\n\n"
+                                f"{pcc.context_text}"
+                            )
+                    else:
+                        prompt_context = pcc.context_text
+                elif item.question_type == "temporal-reasoning":
+                    t_grounding = self.compiler.temporal_resolver.resolve(
+                        item.question,
+                        all_records,
+                        reference_date_str=item.question_date,
                     )
+                    temporal_skill = get_temporal_skill()
+                    temporal_skill_result = temporal_skill.resolve(
+                        item.question,
+                        all_records,
+                        reference_date=item.question_date,
+                    )
+                    temporal_skill_block = ""
+                    if temporal_skill_result.success and temporal_skill_result.skill_block:
+                        temporal_skill_block = temporal_skill_result.skill_block
 
-            # --- Prompt structure: single source of truth ---------------------
-            # The inline branches above are kept for their side effects (session
-            # fuser, timeline certificate); the text actually sent to the reader is
-            # built by ``lme_prompts`` so that the measured A/B delta transfers
-            # exactly.  See that module's docstring for the measurements.
-            prompt_context = build_lme_prompt(
-                qtype=item.question_type,
-                question=item.question,
-                context_text=pcc.context_text,
-                ku_certificate=(
-                    ku_cert.certificate
-                    if (item.question_type == "knowledge-update" and ku_cert) else ""
-                ),
-                multi_cert=(
-                    agg_res.certificate
-                    if (item.question_type == "multi-session" and fuser and agg_res) else ""
-                ),
-                multi_cert_valid=bool(
-                    cert_is_valid if (item.question_type == "multi-session" and fuser) else False
-                ),
-                temporal_grounding=(
-                    t_grounding.grounding_text
-                    if (item.question_type == "temporal-reasoning" and t_grounding) else ""
-                ),
-                fixes=LME_PROMPT_FIXES,
-            )
+                    if t_grounding:
+                        if "Time-Anchored Event" in t_grounding.grounding_text:
+                            prompt_context = (
+                                f"{t_grounding.grounding_text}\n\n"
+                                f"{temporal_skill_block}"
+                                f"[INSTRUCTION: Answer the question based on the event above clearly and concisely.]"
+                            )
+                        else:
+                            prompt_context = (
+                                f"{t_grounding.grounding_text}\n\n"
+                                f"{temporal_skill_block}"
+                                f"[INSTRUCTION: Based on the verified temporal calculation/ordering above, answer the question directly. State the exact numbers, durations, or order clearly.]"
+                            )
+                    else:
+                        t_grounding = None
+                        prompt_context = (
+                            f"{temporal_skill_block}"
+                            f"[INSTRUCTION: TEMPORAL REASONING]\n"
+                            f"Answer the temporal question using ONLY the dated conversation evidence below.\n"
+                            f"- Compute exact dates, durations, or ordering from the session dates.\n"
+                            f"- For relative dates, output the exact relative expression from the context.\n"
+                            f"- State exact numbers and units for durations.\n"
+                            f"- Return ONLY the concise answer.\n\n"
+                            f"{pcc.context_text}"
+                        )
 
-            # The resolver's "Temporal Abstention" verdict no longer bypasses the
-            # reader (measured: 10 of 17 such questions were recoverable from the
-            # compiled evidence).  The reader therefore always runs.
-            _TEMPORAL_BYPASS = False
-            if _TEMPORAL_BYPASS and item.question_type == "temporal-reasoning":
-                pass
-            else:
+                # Prompt structure: single source of truth
+                prompt_context = build_lme_prompt(
+                    qtype=item.question_type,
+                    question=item.question,
+                    context_text=pcc.context_text,
+                    ku_certificate=(
+                        ku_cert.certificate
+                        if (item.question_type == "knowledge-update" and ku_cert) else ""
+                    ),
+                    multi_cert=(
+                        agg_res.certificate
+                        if (item.question_type == "multi-session" and fuser and agg_res) else ""
+                    ),
+                    multi_cert_valid=bool(
+                        cert_is_valid if (item.question_type == "multi-session" and fuser) else False
+                    ),
+                    temporal_grounding=(
+                        t_grounding.grounding_text
+                        if (item.question_type == "temporal-reasoning" and t_grounding) else ""
+                    ),
+                    fixes=LME_PROMPT_FIXES,
+                )
+
                 ans = self._call_answerer(answerer, item.question, prompt_context, item.question_type)
                 if (
                     item.question_type == "single-session-preference"
