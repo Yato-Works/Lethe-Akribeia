@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-10-04
+
+### Added
+- **Auditable Results Registry & Automated Verification** (`benchmark_results/RESULTS_REGISTRY.json`, `scripts/benchmarks/verify_registry.py`):
+  - Machine-readable registry tracking 21 core headline benchmark metrics across LoCoMo 1,540, LongMemEval 500, BEAM 500K, and McNemar model sensitivity tests.
+  - One-command automated verifier (`verify_registry.py`) confirming 21/21 PASS (100% consistency against raw artifacts).
+- **Single Frozen Generic Matcher (`matcher-v2`)** (`LoCoMoAdapter.score_binary`):
+  - Unified live execution and offline re-scoring under a single, fully generic rule-based matcher with WideSlicer stemming.
+  - Completely purged all dataset-specific keyword enumerations (`HIGH_SPECIFICITY`, `liberal`, `national park`, phrase lists, etc.) and dead code (`evaluate_refined_gate`).
+- **Two-Tier Holdout Isolation Protocol** (`benchmark_config/holdout.yaml`):
+  - Formal division into Tier 1 (Strict Clean Holdout: `conv-48`, 191 Qs) with zero diagnostic history, and Tier 2 (Validation Split: `conv-42`, 199 Qs).
+- **Expanded Unit Test Suite**: Reached 328 unit tests (740+ total tests, 100% passing).
+
+### Changed
+- Clarified evaluation protocol taxonomy across READMEs: distinguishing official benchmark datasets and official LoCoMo Token F1 harness from deterministic in-house binary extraction matchers.
+
 ## [0.3.0] - 2026-10-01
 
 ### Added

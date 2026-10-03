@@ -1,6 +1,6 @@
 """Artificial Memory / Context Runtime Package."""
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 __author__ = "Artificial Memory Project"
 
 from artificial_memory.core.interfaces import (

@@ -1,6 +1,6 @@
 [project]
 name = "lethe-akribeia"
-version = "0.3.0"
+version = "0.3.1"
 description = "Lethe Akribeia - Experimental Cognitive Long-Term Memory System for AI (formerly Artificial Memory)"
 readme = "README.md"
 requires-python = ">=3.11"
