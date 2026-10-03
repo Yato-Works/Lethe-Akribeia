@@ -65,8 +65,8 @@ class UniversalEvidenceScorer:
 
     # Semantic concept expansions for common conversational categories
     SEMANTIC_EXPANSIONS = {
-        "pet": ["dog", "cat", "guinea pig", "oliver", "luna", "bailey", "oscar", "animal", "pets"],
-        "pets": ["dog", "cat", "guinea pig", "oliver", "luna", "bailey", "oscar", "animal"],
+        "pet": ["dog", "cat", "guinea pig", "oliver", "luna", "bailey", "oscar", "animal", "pets", "pig", "pigs", "hairless", "allergy", "allergic", "fur"],
+        "pets": ["dog", "cat", "guinea pig", "oliver", "luna", "bailey", "oscar", "animal", "pig", "pigs", "hairless", "allergy", "allergic", "fur"],
         "doctor": ["doctor", "doctors", "dr", "physician", "physicians", "specialist", "specialists", "dermatologist", "ent", "surgeon", "clinic", "appointment"],
         "doctors": ["doctor", "doctors", "dr", "physician", "physicians", "specialist", "specialists", "dermatologist", "ent", "surgeon", "clinic", "appointment"],
         "festival": ["festival", "festivals", "film festival", "sundance", "cannes", "tribeca", "fest", "screening"],
@@ -86,8 +86,6 @@ class UniversalEvidenceScorer:
         "kids": ["kid", "kids", "daughter", "son", "children", "daughter's", "son's", "baby", "babies", "one-year-old", "infant", "toddler", "family"],
         "having": ["had", "having", "owned", "bought", "kept", "reminds", "reminded", "childhood", "doll", "camera"],
         "had": ["had", "having", "owned", "bought", "kept", "reminds", "reminded", "childhood", "doll", "camera"],
-        "pet": ["dog", "cat", "guinea pig", "oliver", "luna", "bailey", "oscar", "animal", "pets", "pig", "pigs", "hairless", "allergy", "allergic", "fur"],
-        "pets": ["dog", "cat", "guinea pig", "oliver", "luna", "bailey", "oscar", "animal", "pig", "pigs", "hairless", "allergy", "allergic", "fur"],
         "job": ["filmmaker", "director", "producer", "writer", "author", "keeper", "artist", "store", "business", "studio", "filming"],
         "store": ["store", "shop", "boutique", "brand", "studio", "fashion", "online", "promotions", "pieces", "sweatshirts", "artist"],
         "promote": ["promote", "promoted", "promotions", "fashion", "artist", "limited-edition", "sweatshirts", "video", "online store"],

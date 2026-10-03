@@ -17,6 +17,7 @@ import re
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler

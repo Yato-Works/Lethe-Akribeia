@@ -59,13 +59,24 @@ htmlcov/
 
 # Internal planning, scratch notes, and design docs
 docs/planning/
+docs/reports/
 *.plan.txt
+*_Plan.txt
 *.memo.md
 notes/
 scratch/
+CHANGE_SUMMARY.md
+OPTIMIZATION_PROGRESS.md
+report*.md
+report*.json
 
-# Local experiment scratch (TEMP redirection target, debug scripts)
+# Local experiment scratch (TEMP redirection target, debug scripts, pickles)
 .tmp/
+.tmp_*
+_tmp_*
+*.pkl
+.pytest_bg_*.txt
+debug_*.py
 benchmark/results/_wiring_check/
 benchmark/results/_debug_runs/
 

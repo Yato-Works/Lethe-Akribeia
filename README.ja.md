@@ -1,5 +1,7 @@
 # Lethe Akribeia
 
+[ [English](README.md) | **日本語** ]
+
 > **忘却とは削除ではない。**  
 > **解像度の低下である。**
 

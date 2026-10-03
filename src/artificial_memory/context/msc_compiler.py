@@ -31,11 +31,11 @@ from artificial_memory.memory.persona_store import PersonaStore
 from artificial_memory.recall.adaptive_search import AdaptiveEvidenceSearcher
 from artificial_memory.recall.answer_verifier import AnswerVerifier
 from artificial_memory.recall.hierarchical_evidence_index import HierarchicalEvidenceIndex
+from artificial_memory.recall.ppr_graph import PPREvidenceGraph
 from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
 from artificial_memory.recall.proposition_integrity_gate import PropositionIntegrityGate
 from artificial_memory.recall.query_planner import QueryPlanner
 from artificial_memory.recall.state_reconstructor import StateReconstructor
-from artificial_memory.recall.ppr_graph import PPREvidenceGraph
 from artificial_memory.recall.state_supersession_engine import StateSupersessionEngine
 from artificial_memory.recall.state_timeline import StateTimelineEngine
 from artificial_memory.recall.temporal_resolver import TemporalResolver

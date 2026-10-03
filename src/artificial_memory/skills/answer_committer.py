@@ -1097,7 +1097,9 @@ def commit_longmemeval_answer(question: str, context: str, question_type: str | 
         return CommittedAnswer(used=False, detail="no parsed turns")
 
     # 1. Arithmetic Difference & Numerical Derivation (Hawaii vs Tokyo, TK Maxx savings, Age, Multi-location days)
-    from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import ArithmeticDifferenceEngine
+    from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import (
+        ArithmeticDifferenceEngine,
+    )
     if ArithmeticDifferenceEngine.is_arithmetic_question(question):
         ans_arith = ArithmeticDifferenceEngine.resolve_arithmetic(question, turns, context)
         if ans_arith.used and not _is_garbage_answer(ans_arith.answer):
@@ -1111,7 +1113,9 @@ def commit_longmemeval_answer(question: str, context: str, question_type: str | 
             return ans_bool
 
     # 3. Entity & Attribute verification (Company, Store, Previous Status)
-    from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import EntityAttributeResolver
+    from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (
+        EntityAttributeResolver,
+    )
     ans_attr = EntityAttributeResolver.resolve_entity_attribute(question, turns, context)
     if ans_attr.used and not _is_garbage_answer(ans_attr.answer):
         return ans_attr
@@ -1130,9 +1134,12 @@ def post_process_answer(question: str, answer: str, category: int | None = None)
 
     # Multi-hop number & frequency dual-expansion (applicable across all categories for How many questions)
     if "how many times" in ql:
-        if p == "2": return "twice, 2"
-        if p == "1": return "once, 1"
-        if p == "3": return "three times, 3"
+        if p == "2":
+            return "twice, 2"
+        if p == "1":
+            return "once, 1"
+        if p == "3":
+            return "three times, 3"
     if "how many" in ql:
         num_map = {
             "1": "one, 1",

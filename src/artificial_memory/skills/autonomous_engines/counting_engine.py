@@ -217,11 +217,16 @@ class CountingEngine:
                     if _FREQUENCY_RANGE.search(sentence):
                         continue
                     f_word = m_freq.group(1).lower()
-                    if f_word == "once": ans = "once, 1"
-                    elif f_word == "twice": ans = "twice, 2"
-                    elif "three" in f_word: ans = "three times, 3"
-                    elif "four" in f_word: ans = "four times, 4"
-                    else: ans = f_word
+                    if f_word == "once":
+                        ans = "once, 1"
+                    elif f_word == "twice":
+                        ans = "twice, 2"
+                    elif "three" in f_word:
+                        ans = "three times, 3"
+                    elif "four" in f_word:
+                        ans = "four times, 4"
+                    else:
+                        ans = f_word
                     # "how often" answers keep the evidence's own period:
                     # the evidence said "twice a week", so does the answer.
                     if "how often" in ql:

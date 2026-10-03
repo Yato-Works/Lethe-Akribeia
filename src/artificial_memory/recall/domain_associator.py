@@ -9,7 +9,7 @@ Directly prevents RETRIEVAL_FAILURE on character preference & lifestyle queries.
 from __future__ import annotations
 
 import re
-
+from collections import defaultdict
 
 #: Deterministic domain ontology mapping query cues -> associative memory keywords.
 _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
@@ -101,8 +101,6 @@ _DOMAIN_ONTOLOGY: dict[str, tuple[str, ...]] = {
     "traits": ("personality", "kind", "supportive", "generous", "caring", "thoughtful", "character"),
     "personality": ("traits", "kind", "supportive", "generous", "caring", "thoughtful", "character"),
 }
-
-from collections import defaultdict
 
 # Construct deterministic bidirectional associative graph
 _ASSOC_GRAPH: defaultdict[str, set[str]] = defaultdict(set)

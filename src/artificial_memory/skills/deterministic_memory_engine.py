@@ -21,14 +21,22 @@ from artificial_memory.skills.answer_committer import (
     _is_garbage_answer,
     parse_turns,
 )
-from artificial_memory.skills.autonomous_engines.counting_engine import CountingEngine
-from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import TemporalAlgebraEngine
-from artificial_memory.skills.autonomous_engines.relational_traverser import RelationalTraverser
-from artificial_memory.skills.autonomous_engines.event_action_resolver import EventActionResolver
+from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import (
+    ArithmeticDifferenceEngine,
+)
 from artificial_memory.skills.autonomous_engines.boolean_verifier import BooleanVerifier
-from artificial_memory.skills.autonomous_engines.temporal_anchor_resolver import TemporalAnchorResolver
-from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import EntityAttributeResolver
-from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import ArithmeticDifferenceEngine
+from artificial_memory.skills.autonomous_engines.counting_engine import CountingEngine
+from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (
+    EntityAttributeResolver,
+)
+from artificial_memory.skills.autonomous_engines.event_action_resolver import EventActionResolver
+from artificial_memory.skills.autonomous_engines.relational_traverser import RelationalTraverser
+from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (
+    TemporalAlgebraEngine,
+)
+from artificial_memory.skills.autonomous_engines.temporal_anchor_resolver import (
+    TemporalAnchorResolver,
+)
 
 
 class DeterministicMemoryEngine:

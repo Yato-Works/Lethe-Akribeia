@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import difflib
 import re
-from typing import Sequence
 
 from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
 

@@ -1,5 +1,7 @@
 # Lethe Akribeia
 
+[ **English** | [日本語](README.ja.md) ]
+
 > **Forgetting is not deletion.**  
 > **It is loss of resolution.**
 
