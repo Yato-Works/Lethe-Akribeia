@@ -45,3 +45,17 @@ def test_extract_ownership_bindings() -> None:
 
     assert ("Caroline", "has_relation", "Caroline's sister") in bindings
     assert ("Caroline", "has_relation", "Caroline's cat") in bindings
+
+
+def test_generate_attribution_certificate() -> None:
+    normalizer = SpeakerAttributionNormalizer()
+
+    turns = [
+        ("Caroline", "My sister plays violin and I love painting."),
+        ("Melanie", "I read Charlotte's Web and my dog is energetic."),
+    ]
+
+    cert = normalizer.generate_attribution_certificate("What instrument does Caroline's sister play?", turns)
+    assert "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]" in cert
+    assert "Caroline" in cert
+    assert "Caroline's sister" in cert

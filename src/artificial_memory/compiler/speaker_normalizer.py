@@ -108,3 +108,53 @@ class SpeakerAttributionNormalizer:
             bindings.append((clean_speaker, "has_relation", rel_entity))
 
         return bindings
+
+    def generate_attribution_certificate(
+        self,
+        question: str,
+        turns: list[tuple[str, str]],  # list of (speaker, text)
+    ) -> str:
+        """Generate a deterministic Speaker Attribution Certificate for named entities in the query.
+        
+        Explicitly states which speaker asserted what facts to eliminate actor cross-contamination.
+        """
+        # Detect named speakers in turns
+        named_speakers: set[str] = set()
+        for spk, _ in turns:
+            if spk and not self.is_generic_speaker(spk):
+                named_speakers.add(spk.strip())
+
+        if not named_speakers:
+            return ""
+
+        q_lower = question.lower()
+        relevant_speakers = [s for s in named_speakers if re.search(rf"\b{re.escape(s)}\b", q_lower, re.I)]
+        if not relevant_speakers and len(named_speakers) <= 3:
+            relevant_speakers = list(named_speakers)
+
+        if not relevant_speakers:
+            return ""
+
+        lines = ["[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]"]
+        for spk in sorted(relevant_speakers):
+            spk_bindings = []
+            spk_facts = []
+            for s, text in turns:
+                if s.strip().lower() == spk.lower():
+                    bindings = self.extract_ownership_bindings(text, spk)
+                    for _, _, obj in bindings:
+                        if obj not in spk_bindings:
+                            spk_bindings.append(obj)
+                    # Extract concise snippet
+                    clean_norm = self.normalize_turn(text, spk)
+                    if len(clean_norm) < 120 and clean_norm not in spk_facts:
+                        spk_facts.append(clean_norm)
+
+            lines.append(f"- Verified Actor: {spk}")
+            if spk_bindings:
+                lines.append(f"  * Relational Entities: {', '.join(spk_bindings[:4])}")
+            if spk_facts:
+                lines.append(f"  * Direct Claims: {spk_facts[0]}")
+
+        lines.append("[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]")
+        return "\n".join(lines) if len(lines) > 2 else ""

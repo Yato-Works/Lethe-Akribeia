@@ -382,9 +382,12 @@ class SessionFuser:
         lines = [
             f"[GLOBAL STATE AGGREGATION: Found {len(found_snippets)} distinct instance(s) across sessions:"
         ]
-        for sid, snip, val in found_snippets:
+        for sid, snip, val in found_snippets[:6]:
             val_str = f"${val:g}" if unit == "$" else f"{val:g} {unit}" if unit else f"{val:g}"
-            lines.append(f"- Session {sid}: \"{snip}\" ({val_str})")
+            clean_snip = snip.replace("\n", " ").strip()[:120]
+            lines.append(f"- Session {sid}: \"{clean_snip}\" ({val_str})")
+        if len(found_snippets) > 6:
+            lines.append(f"- ... and {len(found_snippets) - 6} more instance(s)")
 
         tot_str = f"${total_sum:g}" if unit == "$" else f"{total_sum:g} {unit}" if unit else f"{total_sum:g}"
         lines.append(f"Computed Total: {tot_str}.]")

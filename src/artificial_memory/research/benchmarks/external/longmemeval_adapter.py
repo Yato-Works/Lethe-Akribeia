@@ -140,6 +140,13 @@ class LongMemEvalAdapter:
             clean_gt = re.sub(rf"\b{w}\b", n, clean_gt)
             clean_ans = re.sub(rf"\b{w}\b", n, clean_ans)
 
+        # An empty answer must NEVER score correct: the substring rules
+        # below treat "" as contained in every gold string ("" in "2" is
+        # True).  Historical runs contain zero empty answers, so this guard
+        # does not move any published number.
+        if not ans_lower:
+            return False
+
         if is_abstention_gt:
             if pcc_is_abstention or any(w in ans_lower for w in [
                 "i don't know", "not mentioned", "not enough", "no information",
