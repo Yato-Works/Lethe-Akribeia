@@ -59,3 +59,16 @@ def test_generate_attribution_certificate() -> None:
     assert "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]" in cert
     assert "Caroline" in cert
     assert "Caroline's sister" in cert
+
+
+def test_annotate_turn_preserves_raw_text() -> None:
+    normalizer = SpeakerAttributionNormalizer()
+
+    raw = "I bought a luxury handbag for $1,200 yesterday."
+    annotated = normalizer.annotate_turn(raw, speaker="Rob")
+
+    # Raw text must be strictly preserved at the beginning
+    assert annotated.startswith(raw)
+    assert "[ANNOTATION:" in annotated
+    assert "actor=Rob" in annotated
+    assert "action=bought" in annotated

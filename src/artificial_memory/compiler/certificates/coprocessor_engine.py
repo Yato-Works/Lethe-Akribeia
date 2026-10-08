@@ -59,15 +59,18 @@ class CoProcessorEngine:
         t_cert = self.temporal_engine.generate(question, records, reference_date)
         if t_cert.has_certificate:
             blocks.append(t_cert.formatted_certificate)
-            # High-confidence deterministic override for pure mathematical calendar differences (days/weeks/intervals)
-            # Ordering and multi-hop month questions provide the comparison certificate to the reader for natural language synthesis
-            if (
-                t_cert.direct_answer_candidate
-                and plan.temporal_demand >= 0.85
-                and t_cert.query_type in ("recency", "interval")
-                and t_cert.difference_months is None
-            ):
-                override_answer = t_cert.direct_answer_candidate
+            # High-confidence deterministic override for pure mathematical calendar differences or verified certificates
+            if t_cert.direct_answer_candidate:
+                if (
+                    plan.temporal_demand >= 0.85
+                    and t_cert.query_type in ("recency", "interval")
+                    and t_cert.difference_months is None
+                ):
+                    override_answer = t_cert.direct_answer_candidate
+                elif t_cert.query_type == "date_anchor":
+                    override_answer = t_cert.direct_answer_candidate
+                elif t_cert.query_type == "ordering" and t_cert.direct_answer_candidate.startswith("First,"):
+                    override_answer = t_cert.direct_answer_candidate
 
         # 2. Aggregation & Event Ledger Co-processor
         a_cert = None

@@ -287,7 +287,7 @@ class V4CandidateRetriever:
 #   R23 - integration: R2 + R3 composed (compared against R2 = one variable)
 #   H1  - hygiene: anchor-priority prefill in the knapsack (prompt = R0)
 # ---------------------------------------------------------------------------
-SUPPORTED_CONDS = ("R0", "R1", "R2", "R3", "R23", "H1", "R6")
+SUPPORTED_CONDS = ("R0", "R1", "R2", "R3", "R23", "H1", "R6", "R7")
 
 _EVIDENCE_START_RE = re.compile(r"^(?:--- Event \d+|\[\S+(?: on .*)?\] (?:User|Assistant):)")
 
@@ -573,7 +573,7 @@ def main():
         for s_idx, session in enumerate(item.get("haystack_sessions", [])):
             s_date = dates[s_idx] if s_idx < len(dates) else ""
             sid = sids[s_idx] if s_idx < len(sids) else f"S{s_idx+1}"
-            for turn in session:
+            for turn_idx, turn in enumerate(session):
                 speaker = turn.get("role", "user")
                 content = turn.get("content", "")
                 header = f"[{sid} on {s_date}]" if s_date else f"[{sid}]"
@@ -584,6 +584,10 @@ def main():
                 for r in recs:
                     r.raw_content = line
                     r.time_scope = s_date
+                    if not r.metadata:
+                        r.metadata = {}
+                    r.metadata["session_id"] = sid
+                    r.metadata["turn_idx"] = turn_idx
                     all_records.append(r)
 
         # 2. Execution Planning (Demand Vector + Budget Bt)
@@ -595,7 +599,7 @@ def main():
         is_aggregation = bool(plan.dominant_mode == "aggregation")
         guaranteed_sids: set[str] = set()
 
-        if args.cond in ("R6", "R6_coverage"):
+        if args.cond in ("R6", "R6_coverage", "R7"):
             # Multi-Session Coverage Engine (R6 Core)
             # Plans evidence requirements (Concept Expansions + Self-Anchor Dual Queries)
             # and runs convergent multi-turn collection across fragmented sessions.
@@ -719,7 +723,7 @@ def main():
                 or plan.temporal_demand >= 0.85
                 or len(guaranteed_sids) > 1
             )
-            use_adaptive = bool(args.cond in ("R6", "R6_adaptive"))
+            use_adaptive = bool(args.cond in ("R6", "R7", "R6_adaptive"))
             compiled = compiler.compile(
                 question=q,
                 bundles=bundles,
@@ -761,7 +765,9 @@ def main():
             )
 
             ans_resp = answerer.answer(q, prompt_context)
-            pred = ans_resp.text
+            pred = ans_resp.text.strip()
+            if pred.endswith(".") and len(pred.split()) <= 2:
+                pred = pred[:-1].strip()
             tok_used = ans_resp.prompt_tokens
             lat_ms = ans_resp.latency_ms
 

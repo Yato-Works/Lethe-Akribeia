@@ -109,6 +109,51 @@ class SpeakerAttributionNormalizer:
 
         return bindings
 
+    def extract_event_annotations(self, text: str, speaker: str) -> list[str]:
+        """Deterministically extract structured event annotations from raw text.
+        
+        Extracts actor, action, and target object/entity without altering original wording.
+        """
+        clean_speaker = speaker.strip()
+        if not clean_speaker:
+            return []
+
+        annotations = []
+        # 1. Relational bindings
+        bindings = self.extract_ownership_bindings(text, clean_speaker)
+        for sub, rel, obj in bindings:
+            annotations.append(f"relation: {sub} -> {obj}")
+
+        # 2. Common first-person action verbs
+        # e.g. "I bought X", "I visited Y", "I read Z", "I attended W", "I started V"
+        act_patterns = [
+            (re.compile(r"\b(?:I|we)\s+(bought|purchased|got)\s+([^.,;!?\n]+)", re.I), "bought"),
+            (re.compile(r"\b(?:I|we)\s+(visited|went to|traveled to)\s+([^.,;!?\n]+)", re.I), "visited"),
+            (re.compile(r"\b(?:I|we)\s+(read|finished reading)\s+([^.,;!?\n]+)", re.I), "read"),
+            (re.compile(r"\b(?:I|we)\s+(attended|ran in|completed)\s+([^.,;!?\n]+)", re.I), "participated"),
+            (re.compile(r"\b(?:I|we)\s+(planted|grew)\s+([^.,;!?\n]+)", re.I), "planted"),
+            (re.compile(r"\b(?:I|we)\s+(earned|sold)\s+([^.,;!?\n]+)", re.I), "earned/sold"),
+        ]
+
+        for pat, act_type in act_patterns:
+            m = pat.search(text)
+            if m:
+                target = m.group(2).strip()
+                # Truncate long targets to key noun phrase
+                words = target.split()[:6]
+                clean_target = " ".join(words)
+                annotations.append(f"event: actor={clean_speaker} | action={act_type} | target={clean_target}")
+
+        return annotations
+
+    def annotate_turn(self, text: str, speaker: str) -> str:
+        """Format raw text with appended deterministic annotations preserving exact raw text."""
+        annos = self.extract_event_annotations(text, speaker)
+        if not annos:
+            return text
+        anno_block = " [ANNOTATION: " + "; ".join(annos[:3]) + "]"
+        return f"{text}{anno_block}"
+
     def generate_attribution_certificate(
         self,
         question: str,

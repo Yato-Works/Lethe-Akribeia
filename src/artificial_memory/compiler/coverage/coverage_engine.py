@@ -30,6 +30,8 @@ class MultiSessionCoverageEngine:
         retriever,
         reference_date: str | None = None,
         base_top_k: int = 45,
+        enable_pairwise: bool = True,
+        enable_concepts: bool = True,
     ) -> tuple[list[tuple[str, str, str, str]], dict[tuple[str, str], float], set[str]]:
         """Execute convergent retrieval to guarantee complete multi-session coverage.
 
@@ -57,7 +59,7 @@ class MultiSessionCoverageEngine:
         guaranteed_sids: set[str] = set()
 
         # 3. Targeted Pairwise / Dual-Entity Expansion (if differential/comparative/dual-conjunction)
-        if reqs.pairwise_requirements:
+        if reqs.pairwise_requirements and enable_pairwise:
             for pair in reqs.pairwise_requirements:
                 # Retrieve entity A turns
                 a_turns, a_scores = retriever.rank_turns(
@@ -85,7 +87,7 @@ class MultiSessionCoverageEngine:
                     merged_scores[key] = max(merged_scores.get(key, 0.0), s * 1.6, 25.0)
 
         # 4. Convergent Concept Ingestion (if abstract categories triggered)
-        if reqs.concept_subqueries:
+        if reqs.concept_subqueries and enable_concepts:
             stagnant_rounds = 0
             for subq in reqs.concept_subqueries[:10]:
                 c_turns, c_scores = retriever.rank_turns(
