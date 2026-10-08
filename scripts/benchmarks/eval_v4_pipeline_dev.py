@@ -287,7 +287,7 @@ class V4CandidateRetriever:
 #   R23 - integration: R2 + R3 composed (compared against R2 = one variable)
 #   H1  - hygiene: anchor-priority prefill in the knapsack (prompt = R0)
 # ---------------------------------------------------------------------------
-SUPPORTED_CONDS = ("R0", "R1", "R2", "R3", "R23", "H1", "R6", "R7")
+SUPPORTED_CONDS = ("R0", "R1", "R2", "R3", "R23", "H1", "R6", "R7", "R7.3")
 
 _EVIDENCE_START_RE = re.compile(r"^(?:--- Event \d+|\[\S+(?: on .*)?\] (?:User|Assistant):)")
 
@@ -599,7 +599,7 @@ def main():
         is_aggregation = bool(plan.dominant_mode == "aggregation")
         guaranteed_sids: set[str] = set()
 
-        if args.cond in ("R6", "R6_coverage", "R7"):
+        if args.cond in ("R6", "R6_coverage", "R7", "R7.3"):
             # Multi-Session Coverage Engine (R6 Core)
             # Plans evidence requirements (Concept Expansions + Self-Anchor Dual Queries)
             # and runs convergent multi-turn collection across fragmented sessions.
@@ -723,7 +723,7 @@ def main():
                 or plan.temporal_demand >= 0.85
                 or len(guaranteed_sids) > 1
             )
-            use_adaptive = bool(args.cond in ("R6", "R7", "R6_adaptive"))
+            use_adaptive = bool(args.cond in ("R6", "R7", "R7.3", "R6_adaptive"))
             compiled = compiler.compile(
                 question=q,
                 bundles=bundles,

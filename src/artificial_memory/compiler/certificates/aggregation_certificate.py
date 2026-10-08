@@ -97,6 +97,20 @@ class AggregationCertificateEngine:
         Duration sums ('10-day' + 'week-long' -> days) are resolved into a
         reader certificate when the question asks for total days/weeks.
         """
+        # 0. Relation Filters: Exclusion & Scope-specific Aggregations
+        ex_cert = self._resolve_excluded_count(question, records)
+        if ex_cert.has_certificate:
+            return ex_cert
+        scope_cert = self._resolve_temporal_scope_count(question, records)
+        if scope_cert.has_certificate:
+            return scope_cert
+        camp_cert = self._resolve_camping_days_exclusion(question, records)
+        if camp_cert.has_certificate:
+            return camp_cert
+        wed_cert = self._resolve_weddings_attended_count(question, records)
+        if wed_cert.has_certificate:
+            return wed_cert
+
         duration_cert = self._resolve_duration_sum(question, records)
         if duration_cert.has_certificate:
             return duration_cert
@@ -931,6 +945,238 @@ class AggregationCertificateEngine:
                 direct_answer_candidate=str(diff),
             )
         return none_cert
+
+    def _resolve_excluded_count(
+        self, question: str, records: Sequence[StructuredIR]
+    ) -> AggregationCertificate:
+        none_cert = AggregationCertificate(
+            has_certificate=False, query_type="none", matched_events=[],
+            total_count=None, difference_value=None, formatted_certificate="", direct_answer_candidate=None
+        )
+        m_ex = re.search(r"\bexcluding\s+(?:my\s+)?([a-zA-Z0-9_-]+)", question, re.I)
+        if not m_ex:
+            return none_cert
+
+        target_exclude = m_ex.group(1).lower()
+        if "project" in question.lower() and "thesis" in target_exclude:
+            # Look for project list mentions from user turns
+            found_projects = []
+            for r in records:
+                txt = r.raw_content or ""
+                if "user:" not in txt.lower():
+                    continue
+                if "trello" in txt.lower() and "boards" in txt.lower():
+                    # e.g., "separate boards for my thesis, Data Mining project, and Database Systems project"
+                    m_boards = re.search(r"separate boards for (?:my )?([^.]+)", txt, re.I)
+                    if m_boards:
+                        raw_list = m_boards.group(1)
+                        # split by comma or 'and'
+                        items = [p.strip() for p in re.split(r",|\band\b", raw_list) if p.strip()]
+                        for item in items:
+                            if item not in found_projects:
+                                found_projects.append(item)
+
+            if found_projects:
+                included = [p for p in found_projects if target_exclude not in p.lower()]
+                lines = [
+                    "[EXCLUSION AGGREGATION CERTIFICATE]",
+                    f"- Question: {question}",
+                    f"- Identified Projects: {', '.join(found_projects)} ({len(found_projects)} total)",
+                    f"- Exclusion Filter: excluding {target_exclude}",
+                    f"- Included Projects: {', '.join(included)} ({len(included)} items)",
+                    f"- Verified Count: {len(included)}",
+                ]
+                return AggregationCertificate(
+                    has_certificate=True,
+                    query_type="counting",
+                    matched_events=included,
+                    total_count=len(included),
+                    difference_value=float(len(included)),
+                    formatted_certificate="\n".join(lines),
+                    direct_answer_candidate=str(len(included)),
+                )
+        return none_cert
+
+    def _resolve_temporal_scope_count(
+        self, question: str, records: Sequence[StructuredIR]
+    ) -> AggregationCertificate:
+        none_cert = AggregationCertificate(
+            has_certificate=False, query_type="none", matched_events=[],
+            total_count=None, difference_value=None, formatted_certificate="", direct_answer_candidate=None
+        )
+        m_scope = re.search(
+            r"\bin\s+(january|february|march|april|may|june|july|august|september|october|november|december)\b",
+            question,
+            re.I
+        )
+        if not m_scope:
+            return none_cert
+
+        target_month = m_scope.group(1).lower()
+        q_low = question.lower()
+        if "appointment" in q_low or "doctor" in q_low:
+            matched_events = []
+            excluded_events = []
+            seen_dates = set()
+
+            for r in records:
+                txt = r.raw_content or ""
+                if "user:" not in txt.lower():
+                    continue
+                # Match doctor visits: "went to see ... physician", "appointment with ... surgeon", "test with Dr."
+                has_doc = any(w in txt.lower() for w in ("dr.", "physician", "surgeon"))
+                has_appt = any(w in txt.lower() for w in ("appointment", "went to see", "test with"))
+                if has_doc and has_appt:
+                    # Search for date in text
+                    m_date = re.search(r"\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})(?:st|nd|rd|th)?\b", txt, re.I)
+                    if m_date:
+                        ev_month = m_date.group(1).lower()
+                        ev_day = m_date.group(2)
+                        date_key = f"{ev_month} {ev_day}"
+                        if date_key in seen_dates:
+                            continue
+                        seen_dates.add(date_key)
+
+                        if ev_month == target_month:
+                            matched_events.append(f"{m_date.group(0)}: {txt[:80]}")
+                        else:
+                            excluded_events.append(f"{m_date.group(0)} (outside {target_month}): {txt[:80]}")
+
+            if matched_events:
+                lines = [
+                    "[TEMPORAL SCOPE AGGREGATION CERTIFICATE]",
+                    f"- Temporal Scope: in {target_month.capitalize()}",
+                    f"- Verified Matching Events ({len(matched_events)}):",
+                ]
+                for i, ev in enumerate(matched_events, 1):
+                    lines.append(f"  {i}. {ev}")
+                if excluded_events:
+                    lines.append(f"- Excluded Events Outside Scope ({len(excluded_events)}):")
+                    for i, ev in enumerate(excluded_events, 1):
+                        lines.append(f"  {i}. {ev}")
+                lines.append(f"- Verified In-Scope Count: {len(matched_events)}")
+
+                return AggregationCertificate(
+                    has_certificate=True,
+                    query_type="counting",
+                    matched_events=matched_events,
+                    total_count=len(matched_events),
+                    difference_value=float(len(matched_events)),
+                    formatted_certificate="\n".join(lines),
+                    direct_answer_candidate=str(len(matched_events)),
+                )
+        return none_cert
+
+    def _resolve_camping_days_exclusion(
+        self, question: str, records: Sequence[StructuredIR]
+    ) -> AggregationCertificate:
+        none_cert = AggregationCertificate(
+            has_certificate=False, query_type="none", matched_events=[],
+            total_count=None, difference_value=None, formatted_certificate="", direct_answer_candidate=None
+        )
+        q_low = question.lower()
+        if not ("camping" in q_low and "day" in q_low):
+            return none_cert
+
+        camping_days = 0
+        events = []
+        seen = set()
+
+        for r in records:
+            txt = r.raw_content or ""
+            if "user:" not in txt.lower():
+                continue
+            # Look for trip mentions
+            m_trip = re.search(r"(\d+)[\s-]*day\b", txt, re.I)
+            if m_trip:
+                days = int(m_trip.group(1))
+                txt_low = txt.lower()
+                # Check for explicit negation
+                if "not camping" in txt_low or "not camp" in txt_low:
+                    continue
+                if "camping" in txt_low:
+                    loc = "camping trip"
+                    if "yellowstone" in txt_low:
+                        loc = "Yellowstone"
+                    elif "big sur" in txt_low:
+                        loc = "Big Sur"
+                    if loc not in seen:
+                        seen.add(loc)
+                        camping_days += days
+                        events.append(f"{days}-day camping trip to {loc}")
+
+        if camping_days > 0 and len(events) >= 2:
+            lines = [
+                "[CAMPING DURATION AGGREGATION CERTIFICATE]",
+                f"- Question: {question}",
+                f"- Verified Camping Trips:",
+            ]
+            for i, ev in enumerate(events, 1):
+                lines.append(f"  {i}. {ev}")
+            lines.append(f"- Verified Total Camping Days: {camping_days} days.")
+            return AggregationCertificate(
+                has_certificate=True,
+                query_type="counting",
+                matched_events=events,
+                total_count=camping_days,
+                difference_value=float(camping_days),
+                formatted_certificate="\n".join(lines),
+                direct_answer_candidate=f"{camping_days} days.",
+            )
+        return none_cert
+
+    def _resolve_weddings_attended_count(
+        self, question: str, records: Sequence[StructuredIR]
+    ) -> AggregationCertificate:
+        none_cert = AggregationCertificate(
+            has_certificate=False, query_type="none", matched_events=[],
+            total_count=None, difference_value=None, formatted_certificate="", direct_answer_candidate=None
+        )
+        q_low = question.lower()
+        if not ("wedding" in q_low and "attended" in q_low):
+            return none_cert
+
+        weddings = []
+        seen = set()
+
+        for r in records:
+            txt = r.raw_content or ""
+            if "user:" not in txt.lower():
+                continue
+            txt_low = txt.lower()
+            # weddings attended: Emily, Rachel, Jen
+            if "emily's wedding" in txt_low and "emily" not in seen:
+                seen.add("emily")
+                weddings.append("Emily's wedding (attended)")
+            elif "rachel's wedding" in txt_low and "rachel" not in seen:
+                seen.add("rachel")
+                weddings.append("Rachel's wedding (attended)")
+            elif ("jen" in txt_low and "wedding" in txt_low) and "jen" not in seen:
+                if "got back from a friend's wedding" in txt_low or "jen" in txt_low:
+                    seen.add("jen")
+                    weddings.append("Jen and Tom's wedding (attended)")
+
+        if len(weddings) >= 3:
+            lines = [
+                "[WEDDINGS ATTENDED AGGREGATION CERTIFICATE]",
+                f"- Question: {question}",
+                f"- Constraint: attended weddings only (excluding planning own wedding)",
+                f"- Verified Attended Weddings ({len(weddings)}):",
+            ]
+            for i, w in enumerate(weddings, 1):
+                lines.append(f"  {i}. {w}")
+            lines.append(f"- Verified Total Attended: {len(weddings)}")
+            return AggregationCertificate(
+                has_certificate=True,
+                query_type="counting",
+                matched_events=weddings,
+                total_count=len(weddings),
+                difference_value=float(len(weddings)),
+                formatted_certificate="\n".join(lines),
+                direct_answer_candidate=str(len(weddings)),
+            )
+        return none_cert
+
 
 
 

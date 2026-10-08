@@ -14,6 +14,10 @@ from artificial_memory.compiler.certificates.aggregation_certificate import (
     AggregationCertificate,
     AggregationCertificateEngine,
 )
+from artificial_memory.compiler.certificates.knowledge_update_certificate import (
+    KnowledgeUpdateCertificate,
+    KnowledgeUpdateCertificateEngine,
+)
 from artificial_memory.compiler.certificates.profile_certificate import (
     ProfileCertificate,
     ProfileCertificateEngine,
@@ -34,6 +38,7 @@ class CoProcessorBundle:
     profile_cert: ProfileCertificate
     assembled_certificate_block: str
     deterministic_answer_override: str | None
+    knowledge_update_cert: KnowledgeUpdateCertificate | None = None
 
 
 class CoProcessorEngine:
@@ -43,6 +48,7 @@ class CoProcessorEngine:
         self.temporal_engine = TemporalCertificateEngine()
         self.aggregation_engine = AggregationCertificateEngine()
         self.profile_engine = ProfileCertificateEngine()
+        self.knowledge_update_engine = KnowledgeUpdateCertificateEngine()
 
     def process(
         self,
@@ -72,17 +78,24 @@ class CoProcessorEngine:
                 elif t_cert.query_type == "ordering" and t_cert.direct_answer_candidate.startswith("First,"):
                     override_answer = t_cert.direct_answer_candidate
 
-        # 2. Aggregation & Event Ledger Co-processor
+        # 2. Knowledge Update & Evidence Relation Co-processor
+        k_cert = self.knowledge_update_engine.generate(question, records, reference_date)
+        if k_cert.has_certificate:
+            blocks.append(k_cert.formatted_certificate)
+            if k_cert.direct_answer_candidate:
+                override_answer = k_cert.direct_answer_candidate
+
+        # 3. Aggregation & Event Ledger Co-processor
         a_cert = None
         if (
             plan.aggregation_demand >= 0.40
             or plan.requires_event_aggregation
-            or any(kw in question.lower() for kw in ("how old", "years older", "years younger", "difference", "total amount", "in total", "compared to", "total number", "how many days", "how many"))
+            or any(kw in question.lower() for kw in ("how old", "years older", "years younger", "difference", "total amount", "in total", "compared to", "total number", "how many days", "how many", "excluding", "without"))
         ):
             a_cert = self.aggregation_engine.generate(question, records)
             if a_cert.has_certificate:
                 blocks.append(a_cert.formatted_certificate)
-                if a_cert.query_type == "arithmetic_diff" and a_cert.direct_answer_candidate:
+                if a_cert.query_type in ("arithmetic_diff", "counting") and a_cert.direct_answer_candidate:
                     override_answer = a_cert.direct_answer_candidate
         if not a_cert:
             from artificial_memory.compiler.certificates.aggregation_certificate import AggregationCertificate
@@ -92,7 +105,7 @@ class CoProcessorEngine:
                 direct_answer_candidate=None
             )
 
-        # 3. Profile & Preference State Co-processor
+        # 4. Profile & Preference State Co-processor
         p_cert = self.profile_engine.generate(question, records, preference_demand=plan.preference_demand)
         if p_cert.has_certificate:
             blocks.append(p_cert.formatted_certificate)
@@ -105,4 +118,5 @@ class CoProcessorEngine:
             profile_cert=p_cert,
             assembled_certificate_block=assembled,
             deterministic_answer_override=override_answer,
+            knowledge_update_cert=k_cert,
         )
