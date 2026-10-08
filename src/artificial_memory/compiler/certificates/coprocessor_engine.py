@@ -18,6 +18,10 @@ from artificial_memory.compiler.certificates.knowledge_update_certificate import
     KnowledgeUpdateCertificate,
     KnowledgeUpdateCertificateEngine,
 )
+from artificial_memory.compiler.operators.query_operator_compiler import (
+    OperatorResult,
+    QueryOperatorCompiler,
+)
 from artificial_memory.compiler.certificates.profile_certificate import (
     ProfileCertificate,
     ProfileCertificateEngine,
@@ -39,6 +43,7 @@ class CoProcessorBundle:
     assembled_certificate_block: str
     deterministic_answer_override: str | None
     knowledge_update_cert: KnowledgeUpdateCertificate | None = None
+    operator_result: OperatorResult | None = None
 
 
 class CoProcessorEngine:
@@ -49,6 +54,7 @@ class CoProcessorEngine:
         self.aggregation_engine = AggregationCertificateEngine()
         self.profile_engine = ProfileCertificateEngine()
         self.knowledge_update_engine = KnowledgeUpdateCertificateEngine()
+        self.operator_compiler = QueryOperatorCompiler()
 
     def process(
         self,
@@ -60,6 +66,13 @@ class CoProcessorEngine:
         """Execute co-processors based on the execution plan's demand signals."""
         blocks: list[str] = []
         override_answer: str | None = None
+
+        # 0. Query Operator Compiler (INDEX, SLOT_LOOKUP, GOAL_GAP)
+        op_res = self.operator_compiler.compile_and_execute(question, records, reference_date)
+        if op_res.has_result:
+            blocks.append(op_res.formatted_proof)
+            if op_res.direct_answer:
+                override_answer = op_res.direct_answer
 
         # 1. Temporal Co-processor (Chronos)
         t_cert = self.temporal_engine.generate(question, records, reference_date)
@@ -110,6 +123,10 @@ class CoProcessorEngine:
         if p_cert.has_certificate:
             blocks.append(p_cert.formatted_certificate)
 
+        # Ensure high-precision Query Operator deterministic override takes ultimate precedence
+        if op_res.has_result and op_res.direct_answer:
+            override_answer = op_res.direct_answer
+
         assembled = "\n\n".join(blocks) if blocks else ""
 
         return CoProcessorBundle(
@@ -119,4 +136,5 @@ class CoProcessorEngine:
             assembled_certificate_block=assembled,
             deterministic_answer_override=override_answer,
             knowledge_update_cert=k_cert,
+            operator_result=op_res,
         )
