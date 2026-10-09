@@ -324,10 +324,13 @@ class Executor:
             _clause_starters = ("the ", "a ", "an ", "your ", "my ", "and ",
                                 "or ", "but ", "with ", "\"", "'", "along ",
                                 "for ", "to ", "of ", "'s ", "s name", "s the",
-                                "it ", "its ", "their ", "his ", "her ")
+                                "it ", "its ", "their ", "his ", "her ",
+                                "dear ", "hi ", "hello ", "hey ", "[", "{",
+                                "<", "re:", "fwd:", "subject:", "note:")
             # reject values carrying stray quote/punctuation artifacts — a
-            # clean slot value has none
-            _bad_chars = ('"', "!", "...", "—")
+            # clean slot value has none.  ':' / '[' / '{' mark a label or a
+            # header, never a value.
+            _bad_chars = ('"', "!", "...", "—", ":", "[", "{", "<")
             if (not val or len(val.split()) > 6
                     or val.lower().startswith(_clause_starters)
                     or any(c in val for c in _bad_chars)):

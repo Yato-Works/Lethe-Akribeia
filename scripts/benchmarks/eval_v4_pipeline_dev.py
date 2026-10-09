@@ -381,6 +381,12 @@ def filter_evidence(text: str, query: str) -> str:
     return "\n\n".join(head + [groups[i] for i in kept_idx])
 
 
+# Conditions that receive the general CoT arithmetic rules.  R0/R1/R2/R23 are
+# frozen contracts (byte-identical to, or a pure reorder/subset of, the
+# original pipeline), so CoT is added only to the R6/R7 line.
+_COT_CONDS = ("R6", "R6_coverage", "R6_adaptive", "R7", "R7.3")
+
+
 def build_prompt(
     cond: str,
     plan,
@@ -426,10 +432,14 @@ def build_prompt(
             "4. If multiple costs or items are mentioned in the evidence (e.g. vet visit $50 and medication $25), add them together: $50 + $25 = $75.\n"
             "5. DO NOT stop at the first amount or first session. Check EVERY detail in the evidence.\n"
             "6. NEVER say 'I don't know'. Compute the answer directly from the evidence available.\n"
-            "7. ARITHMETIC — compute step by step:\n"
-            "   - Money: read every digit and comma exactly ('$5,850' = 5850, NOT 6175). Sum only the user's own amounts; ignore illustrative reference figures.\n"
-            "   - Elapsed time: subtract the earlier date from the later, then convert (7 days = 1 week, ~30 days = 1 month).\n"
-            "   - Counting: enumerate items one by one and be careful with off-by-one (inclusive vs exclusive).\n\n"
+            # CoT arithmetic (general, no benchmark fitting) — skipped for the
+            # frozen R0 baseline contract.
+            + ("" if cond not in _COT_CONDS else
+               "7. ARITHMETIC — compute step by step:\n"
+               "   - Money: read every digit and comma exactly ('$5,850' = 5850, NOT 6175). Sum only the user's own amounts; ignore illustrative reference figures.\n"
+               "   - Elapsed time: subtract the earlier date from the later, then convert (7 days = 1 week, ~30 days = 1 month).\n"
+               "   - Counting: enumerate items one by one and be careful with off-by-one (inclusive vs exclusive).\n")
+            + "\n"
             f"Question date: {q_date or 'N/A'}\n\n"
             f"{ctx}\n\n"
             "Now, enumerate the relevant values and state the final computed answer directly:"
@@ -448,11 +458,16 @@ def build_prompt(
         "7. For questions asking 'How much more / less / faster / slower compared to...': calculate and state the difference (e.g. A - B = difference), NOT just the raw single amount.\n"
         "8. Use only the evidence; do not invent details that are not in it.\n"
         # --- CoT arithmetic (general, no benchmark fitting) ---
-        "9. ARITHMETIC — compute step by step, never guess:\n"
-        "   - Elapsed time ('how many days/weeks/months between X and Y', 'how long since'): find BOTH dates, subtract the earlier from the later, and divide to convert units (7 days = 1 week, ~30 days = 1 month). State the number and unit.\n"
-        "   - Money: read every digit and comma exactly ('$5,850' is five thousand eight hundred fifty, NOT $6175). Add the relevant amounts only; ignore illustrative figures that are not the user's own.\n"
-        "   - Counting: enumerate each matching item one by one, then report the count. Watch for off-by-one: count inclusively or exclusively exactly as the question's wording requires.\n"
-        "   - For any calculation, do the subtraction/addition on the actual numbers from the evidence, not by estimation.\n\n"
+        # R0/R1/R2/R23 are frozen contracts (byte-identical to, or a pure
+        # reorder/subset of, the original pipeline), so CoT is added only to
+        # the improved R6/R7 conditions.
+        + ("" if cond not in _COT_CONDS else
+           "9. ARITHMETIC — compute step by step, never guess:\n"
+           "   - Elapsed time ('how many days/weeks/months between X and Y', 'how long since'): find BOTH dates, subtract the earlier from the later, and divide to convert units (7 days = 1 week, ~30 days = 1 month). State the number and unit.\n"
+           "   - Money: read every digit and comma exactly ('$5,850' is five thousand eight hundred fifty, NOT $6175). Add the relevant amounts only; ignore illustrative figures that are not the user's own.\n"
+           "   - Counting: enumerate each matching item one by one, then report the count. Watch for off-by-one: count inclusively or exclusively exactly as the question's wording requires.\n"
+           "   - For any calculation, do the subtraction/addition on the actual numbers from the evidence, not by estimation.\n")
+        + "\n"
         f"Question date: {q_date or 'N/A'}\n\n"
         f"{ctx}"
     ]
