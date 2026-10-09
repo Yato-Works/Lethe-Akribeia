@@ -61,7 +61,10 @@ class ProfileCertificateEngine:
 
             # Textual preferences and background in user speech
             content = r.raw_content
-            if any(p.search(content) for p in self._PREF_PATTERNS):
+            # CLEAN-R7: only generic first-person preference patterns.
+            # Domain-specific keyword whitelists are intentionally excluded to
+            # prevent benchmark-topic-specific overfitting.
+            if any(p.search(content) for p in self._PREF_PATTERNS[:2]):
                 clean_stmt = re.sub(r"\s+", " ", content).strip()
                 if clean_stmt not in seen:
                     seen.add(clean_stmt)

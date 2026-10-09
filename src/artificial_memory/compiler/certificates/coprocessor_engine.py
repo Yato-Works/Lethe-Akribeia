@@ -68,11 +68,18 @@ class CoProcessorEngine:
         override_answer: str | None = None
 
         # 0. Query Operator Compiler (INDEX, SLOT_LOOKUP, GOAL_GAP)
-        op_res = self.operator_compiler.compile_and_execute(question, records, reference_date)
-        if op_res.has_result:
-            blocks.append(op_res.formatted_proof)
-            if op_res.direct_answer:
-                override_answer = op_res.direct_answer
+        # DISABLED in CLEAN-R7: QueryOperatorCompiler (R8/R8.1) embeds
+        # benchmark-specific constants and answers (e.g. total=140,
+        # babies=["Max",...], renov_cost=20000). Fully excluded from clean baseline.
+        # op_res = self.operator_compiler.compile_and_execute(question, records, reference_date)
+        # if op_res.has_result:
+        #     blocks.append(op_res.formatted_proof)
+        #     if op_res.direct_answer:
+        #         override_answer = op_res.direct_answer
+        from artificial_memory.compiler.operators.query_operator_compiler import OperatorResult
+        op_res = OperatorResult(
+            has_result=False, operator_name="NONE", formatted_proof="", direct_answer=None
+        )
 
         # 1. Temporal Co-processor (Chronos)
         t_cert = self.temporal_engine.generate(question, records, reference_date)
@@ -92,11 +99,15 @@ class CoProcessorEngine:
                     override_answer = t_cert.direct_answer_candidate
 
         # 2. Knowledge Update & Evidence Relation Co-processor
-        k_cert = self.knowledge_update_engine.generate(question, records, reference_date)
-        if k_cert.has_certificate:
-            blocks.append(k_cert.formatted_certificate)
-            if k_cert.direct_answer_candidate:
-                override_answer = k_cert.direct_answer_candidate
+        # DISABLED in CLEAN-R7: KnowledgeUpdateCertificateEngine uses
+        # topic-specific dispatch (sneaker/hawaii/korean/starbucks/coin) which
+        # constitutes benchmark overfitting. Excluded from clean baseline.
+        # k_cert = self.knowledge_update_engine.generate(question, records, reference_date)
+        # if k_cert.has_certificate:
+        #     blocks.append(k_cert.formatted_certificate)
+        #     if k_cert.direct_answer_candidate:
+        #         override_answer = k_cert.direct_answer_candidate
+        k_cert = None
 
         # 3. Aggregation & Event Ledger Co-processor
         a_cert = None

@@ -465,9 +465,18 @@ def main():
     parser.add_argument("--out", default="",
                         help="Explicit output json path (overrides --cond/--qid path derivation); "
                              "checkpoint becomes <stem>_ckpt.json next to it")
+    parser.add_argument("--split", default="dev", choices=("dev", "holdout"),
+                        help="Evaluation split: dev (250) or holdout (250). "
+                             "Both run the IDENTICAL pipeline code — only the qid list differs.")
     args = parser.parse_args()
 
-    with open(SPLIT_PATH, encoding="utf-8") as f:
+    if args.split == "holdout":
+        split_path = REPO / "benchmark_results" / "splits" / "lme_holdout_qids.json"
+        split_label = "holdout"
+    else:
+        split_path = REPO / "benchmark_results" / "splits" / "lme_dev_qids.json"
+        split_label = "dev"
+    with open(split_path, encoding="utf-8") as f:
         dev_qids = set(json.load(f))
 
     with open(DATASET_PATH, encoding="utf-8") as f:
@@ -476,11 +485,12 @@ def main():
     dev_items = [it for it in all_items if it["question_id"] in dev_qids]
     out_path = OUT_PATH
     ckpt_name = "lme_dev250_v4_checkpoint.json"
-    if args.cond != "R0":
+    if args.cond != "R0" or args.split != "dev":
         # Non-baseline conditions write to their own artefacts so the frozen
         # R0 baseline file is never overwritten by an experiment run.
-        out_path = OUT_PATH.parent / f"lme_dev250_v4_{args.cond}.json"
-        ckpt_name = f"lme_dev250_v4_{args.cond}_checkpoint.json"
+        tag = args.cond if args.split == "dev" else f"{args.cond}_{split_label}"
+        out_path = OUT_PATH.parent / f"lme_dev250_v4_{tag}.json"
+        ckpt_name = f"lme_dev250_v4_{tag}_checkpoint.json"
     if args.qid or args.qids:
         wanted = set()
         if args.qid:
