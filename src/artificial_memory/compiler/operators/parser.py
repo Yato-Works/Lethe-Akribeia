@@ -52,6 +52,12 @@ class QueryParser:
     def parse(self, question: str) -> A.Node | None:
         ql = question.lower()
 
+        # Confidence gate: never fire a deterministic operator on a question
+        # that is NOT a precise numeric/extraction ask.  Yes/No questions,
+        # advice/preference requests, and open-ended prompts belong to the LLM.
+        if _is_non_computational(ql):
+            return None
+
         # 1. GOAL_GAP — target minus current
         if any(c in ql for c in _GAP_CUES) and ("point" in ql or "step" in ql or "mile" in ql):
             return A.Gap(
@@ -209,6 +215,34 @@ _TOPIC_STOP = frozenset({
     "including", "combined", "across", "sessions", "session", "number",
     "count", "long", "time", "times", "went", "gone", "been", "being",
 })
+
+
+def _is_non_computational(ql: str) -> bool:
+    """True if the question is NOT a precise numeric/extraction ask.
+
+    Yes/No questions, advice/preference requests, and open-ended prompts must
+    be handled by the LLM, never overridden by a deterministic operator.  A
+    'Did I receive a higher discount?' or 'Do you have any ideas?' question
+    has no single computable answer, so firing RATIO/GAP on it is a false
+    positive.
+    """
+    # Yes/No openers
+    if re.match(r"^\s*(did|do|does|is|are|was|were|have|has|had|can|could|should|would|will)\b", ql):
+        # but allow genuine extraction phrasings that merely start with an aux
+        if not re.search(r"\bhow (many|much|old|long|far)\b", ql):
+            return True
+    # advice / preference / recommendation REQUESTS (explicit ask forms only —
+    # a bare "recommend"/"suggest" may be a past-fact reference like "the last
+    # venue you recommended", which IS a computable extraction).
+    advice = (
+        "do you have any", "any ideas", "any suggestions", "any tips",
+        "what should i", "do you think", "would it be", "help me",
+        "feeling", "stuck", "advice on", "what do you", "your opinion",
+        "can you recommend", "could you suggest", "would you recommend",
+    )
+    if any(a in ql for a in advice):
+        return True
+    return False
 
 
 def _detect_time_scope(ql: str) -> str | None:
