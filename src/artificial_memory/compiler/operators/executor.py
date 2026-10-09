@@ -173,6 +173,12 @@ class Executor:
             seen = {o.value.strip().lower() for o in obs if o.value.strip()}
             if not seen:
                 return None, proof
+            # CONFIDENCE GATE: a genuine object/people count is small.  A huge
+            # unique-value count (e.g. 440 'persons' from every proper noun in
+            # a distractor-heavy corpus) means the extractor grabbed noise, so
+            # defer to the LLM rather than emit a wild number.
+            if len(seen) > 15:
+                return None, f"[COUNT] {len(seen)} unique values; distractor-heavy; defer to LLM"
             return str(len(seen)), f"{proof}\nCOUNT: {len(seen)} unique"
 
         if isinstance(node, A.Filter):
