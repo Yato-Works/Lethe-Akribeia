@@ -284,9 +284,12 @@ def _is_non_computational(ql: str) -> bool:
         return True
     # Explicit retrospective-recall requests: "remind me the last venue",
     # "can you recall ...".  These are free-form retrieval, not a computable
-    # operator — the LLM reader handles them.
+    # operator — the LLM reader handles them.  BUT a recall that carries an
+    # explicit extraction cue ("remind me what was the 27th parameter on that
+    # list") IS a computable INDEX/lookup, so the recall gate yields to it.
     if re.search(r"\b(remind me|can you remind|could you remind|please remind)\b", ql):
-        return True
+        if not (_NTH_RE.search(ql) or "on that list" in ql or "on the list" in ql):
+            return True
     return False
 
 
