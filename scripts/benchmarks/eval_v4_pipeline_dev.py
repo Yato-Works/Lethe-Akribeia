@@ -425,7 +425,11 @@ def build_prompt(
             "3. If the question asks for a difference, comparison, or margin (e.g. 'difference in price/cost', 'how much faster/slower', 'how many years older/younger', 'how much more/less compared to'): find the two relevant values and calculate the difference (A - B = difference), NOT just the single amount or the sum!\n"
             "4. If multiple costs or items are mentioned in the evidence (e.g. vet visit $50 and medication $25), add them together: $50 + $25 = $75.\n"
             "5. DO NOT stop at the first amount or first session. Check EVERY detail in the evidence.\n"
-            "6. NEVER say 'I don't know'. Compute the answer directly from the evidence available.\n\n"
+            "6. NEVER say 'I don't know'. Compute the answer directly from the evidence available.\n"
+            "7. ARITHMETIC — compute step by step:\n"
+            "   - Money: read every digit and comma exactly ('$5,850' = 5850, NOT 6175). Sum only the user's own amounts; ignore illustrative reference figures.\n"
+            "   - Elapsed time: subtract the earlier date from the later, then convert (7 days = 1 week, ~30 days = 1 month).\n"
+            "   - Counting: enumerate items one by one and be careful with off-by-one (inclusive vs exclusive).\n\n"
             f"Question date: {q_date or 'N/A'}\n\n"
             f"{ctx}\n\n"
             "Now, enumerate the relevant values and state the final computed answer directly:"
@@ -442,7 +446,13 @@ def build_prompt(
         "5. If the question asks for current / new / updated (job, address, preference, status), provide the latest one. If the question asks for previous / earlier / former, provide the previous one from before the transition.\n"
         "6. For questions asking 'Did I...', 'Was I...', 'Have I...': answer 'Yes' or 'No' directly.\n"
         "7. For questions asking 'How much more / less / faster / slower compared to...': calculate and state the difference (e.g. A - B = difference), NOT just the raw single amount.\n"
-        "8. Use only the evidence; do not invent details that are not in it.\n\n"
+        "8. Use only the evidence; do not invent details that are not in it.\n"
+        # --- CoT arithmetic (general, no benchmark fitting) ---
+        "9. ARITHMETIC — compute step by step, never guess:\n"
+        "   - Elapsed time ('how many days/weeks/months between X and Y', 'how long since'): find BOTH dates, subtract the earlier from the later, and divide to convert units (7 days = 1 week, ~30 days = 1 month). State the number and unit.\n"
+        "   - Money: read every digit and comma exactly ('$5,850' is five thousand eight hundred fifty, NOT $6175). Add the relevant amounts only; ignore illustrative figures that are not the user's own.\n"
+        "   - Counting: enumerate each matching item one by one, then report the count. Watch for off-by-one: count inclusively or exclusively exactly as the question's wording requires.\n"
+        "   - For any calculation, do the subtraction/addition on the actual numbers from the evidence, not by estimation.\n\n"
         f"Question date: {q_date or 'N/A'}\n\n"
         f"{ctx}"
     ]
@@ -684,7 +694,10 @@ def main():
                 anchor_scores[nid] = score
 
         # 4. Deterministic Co-processor Reasoning & Certificates
-        bundle = coprocessor.process(q, all_records, plan, reference_date=q_date)
+        # Pass the retrieval-selected candidate records to the operator engine
+        # (via operator_records) so a SUM aggregates only relevant sessions,
+        # not distractor quantities from the full corpus.
+        bundle = coprocessor.process(q, all_records, plan, reference_date=q_date, operator_records=cand_records)
 
         # Check for 0-token deterministic override
         if bundle.deterministic_answer_override:
