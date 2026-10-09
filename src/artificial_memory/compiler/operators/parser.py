@@ -105,6 +105,18 @@ class QueryParser:
                 topic_terms=tuple(_topic_terms(ql)),
             )
 
+        # 4a. DATE_DIFF — elapsed time between two dated events.  This is pure
+        # calendar arithmetic the 7B reader keeps getting wrong on holdout
+        # (off-by-one, week/month confusion), so compute it deterministically.
+        _dd_unit = None
+        if re.search(r"\bhow (?:many|much)\s+(days?|weeks?|months?)\b", ql) and \
+           re.search(r"\b(between|passed|since|have passed|had passed)\b", ql):
+            m = re.search(r"\bhow (?:many|much)\s+(days?|weeks?|months?)\b", ql)
+            u = m.group(1).rstrip("s")
+            _dd_unit = {"day": "days", "week": "weeks", "month": "months"}.get(u, u + "s")
+        if _dd_unit:
+            return A.DateDiff(unit=_dd_unit, topic_terms=tuple(_topic_terms(ql)))
+
         # 4b. ORDER_FIRST — which of several events happened earliest
         # DISABLED: 'Which event happened first, X or Y?' requires comparing
         # the dates of MULTIPLE named events.  The event extractor cannot

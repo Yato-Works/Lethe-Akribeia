@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Sequence
 
 from artificial_memory.compiler.operators import ast_nodes as A
@@ -260,6 +261,25 @@ class Executor:
                 return None, "[SUPERSEDES] no clean value phrase; defer to LLM"
             return phrase, f"[SUPERSEDES {node.want}] {phrase}"
 
+        if isinstance(node, A.DateDiff):
+            # Collect distinct dates across the (topic-scoped) records, take the
+            # earliest and latest, and return their difference in the asked
+            # unit.  Defer if fewer than 2 distinct dates are resolvable.
+            dates = self._collect_distinct_dates(records, node.topic_terms)
+            if len(dates) < 2:
+                return None, f"[DATE_DIFF] need >=2 distinct dates, got {len(dates)}; defer to LLM"
+            dates.sort()
+            delta = (dates[-1] - dates[0]).days
+            if node.unit == "weeks":
+                val = round(delta / 7)
+            elif node.unit == "months":
+                val = round(delta / 30.44)
+            else:
+                val = delta
+            proof = (f"[DATE_DIFF] {dates[0].date()} -> {dates[-1].date()} "
+                     f"= {delta} days ~ {val} {node.unit}")
+            return f"{val} {node.unit}", proof
+
         if isinstance(node, A.OrderFirst):
             obs = extract_events(records)
             dated = [(parse_date(o.date) or parse_date(o.source), o) for o in obs]
@@ -352,6 +372,67 @@ class Executor:
             if not hit:
                 return False
         return True
+
+    @staticmethod
+    def _collect_distinct_dates(records, topic_terms: tuple):
+        """Collect distinct resolvable dates from records (topic-scoped if terms given).
+
+        Pulls dates from the structured date field AND from inline date
+        mentions inside the raw text ("recovered on 5/10", "on 2023/05/01"),
+        because the session-level time_scope is identical across a session's
+        records — the *event* dates live in the text.
+        """
+        terms = [t.lower() for t in topic_terms]
+        seen: set = set()
+        out = []
+        for r in records:
+            text = _text_of(r)
+            date_str = _date_of(r)
+            if terms:
+                low = text.lower()
+                if not any((t in low) or ((t[:-1] if t.endswith("s") else t) in low)
+                           for t in terms):
+                    continue
+            candidates = []
+            d0 = parse_date(date_str) or parse_date(text)
+            if d0 is not None:
+                candidates.append(d0)
+            # inline date mentions: YYYY/MM/DD, MM/DD/YYYY, MM/DD (year inferred)
+            for m in re.finditer(r"\b(\d{4})[/](\d{1,2})[/](\d{1,2})\b", text):
+                y, mo, dy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+                try:
+                    candidates.append(datetime(y, mo, dy))
+                except ValueError:
+                    pass
+            for m in re.finditer(r"\b(\d{1,2})[/](\d{1,2})[/](\d{4})\b", text):
+                mo, dy, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+                try:
+                    candidates.append(datetime(y, mo, dy))
+                except ValueError:
+                    pass
+            # bare MM/DD (year inherited from the record's own date, else the
+            # session time_scope year) — event dates are usually written short
+            ref_year = None
+            if date_str:
+                ym = re.search(r"\b(\d{4})\b", date_str)
+                if ym:
+                    ref_year = int(ym.group(1))
+            for m in re.finditer(r"\b(?<!\d)(\d{1,2})[/](\d{1,2})(?!\d)(?!\s*/)\b", text):
+                mo, dy = int(m.group(1)), int(m.group(2))
+                if mo < 1 or mo > 12 or dy < 1 or dy > 31:
+                    continue
+                y = ref_year or datetime.now().year
+                try:
+                    candidates.append(datetime(y, mo, dy))
+                except ValueError:
+                    pass
+            for d in candidates:
+                key = d.date()
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append(d)
+        return out
 
     @staticmethod
     def _topic_phrase(text: str, topic_terms: tuple) -> str | None:

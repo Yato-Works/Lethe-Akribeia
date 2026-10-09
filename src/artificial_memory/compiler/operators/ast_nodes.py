@@ -109,6 +109,19 @@ class OrderFirst(Node):
 
 
 @dataclass(frozen=True)
+class DateDiff(Node):
+    """Elapsed time between two dated events.
+
+    Deterministic calendar arithmetic: find the two dates in the records
+    (scoped by topic_terms) and return their difference in the asked unit
+    (days/weeks/months).  This is the R7 interval-algebra capability the LLM
+    reader keeps getting wrong (off-by-one, week/month confusion) on holdout.
+    """
+    unit: str                       # "days" | "weeks" | "months"
+    topic_terms: tuple = ()
+
+
+@dataclass(frozen=True)
 class SlotLookup(Node):
     """Retrieve a single attribute value for an entity."""
     operand: Node
@@ -160,6 +173,9 @@ def render(node: Node) -> str:
     if isinstance(node, Supersedes):
         terms = f", terms={list(node.topic_terms)}" if node.topic_terms else ""
         return f'SUPERSEDES({render(node.topic)}, want="{node.want}"{terms})'
+    if isinstance(node, DateDiff):
+        terms = f", terms={list(node.topic_terms)}" if node.topic_terms else ""
+        return f'DATE_DIFF(unit="{node.unit}"{terms})'
     if isinstance(node, OrderFirst):
         return f'ORDER_FIRST({render(node.operand)}, want="{node.want}")'
     if isinstance(node, SlotLookup):
