@@ -574,6 +574,27 @@ class Executor:
         """
         out: list[Observation] = []
         terms = [t.lower() for t in topic_terms]
+        # Prefer the RAREST term as the discriminator: a generic term like
+        # 'rewards' or 'need' appears in unrelated turns (e.g. a different
+        # loyalty program), letting them hijack the 'latest' pick.  When the
+        # question names a distinctive entity ('starbucks'), require it.
+        if terms:
+            from collections import Counter
+            df = Counter()
+            for r in records:
+                low = _text_of(r).lower()
+                for t in set(terms):
+                    b = t[:-1] if t.endswith("s") else t
+                    if t in low or b in low:
+                        df[t] += 1
+            present = [t for t in terms if df.get(t)]
+            if present:
+                # keep only terms that are discriminative (appear in <60% of
+                # records); if all are generic, fall back to requiring any
+                keepers = [t for t in present
+                           if df[t] <= max(1, int(0.6 * len(records)))]
+                if keepers:
+                    terms = keepers
         for r in records:
             text = _text_of(r)
             date = _date_of(r)
@@ -581,12 +602,19 @@ class Executor:
                 continue
             if terms:
                 low = text.lower()
-                base_hit = False
-                for t in terms:
-                    b = t[:-1] if t.endswith("s") else t
-                    if t in low or b in low:
-                        base_hit = True
-                        break
+                # With a discriminative term set we require ALL of them
+                # (e.g. both 'starbucks' and 'rewards' + 'stars'), so a
+                # different loyalty program's turn cannot match.
+                if len(terms) > 1:
+                    base_hit = all(
+                        (t in low) or ((t[:-1] if t.endswith("s") else t) in low)
+                        for t in terms
+                    )
+                else:
+                    base_hit = any(
+                        (t in low) or ((t[:-1] if t.endswith("s") else t) in low)
+                        for t in terms
+                    )
                 if not base_hit:
                     continue
             out.append(Observation(value=text, source=text, date=date))

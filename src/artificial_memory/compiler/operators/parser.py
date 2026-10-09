@@ -409,6 +409,12 @@ def _is_state_question(ql: str) -> bool:
         v in ql for v in _STATE_VERBS
     ):
         return True
+    # "how many stars do I NEED to reach gold", "do I currently own" —
+    # the *current required/held* value of something that is often revised
+    # over the conversation.  SUPERSEDES resolves it to the latest value and
+    # defers to the LLM when only one dated observation exists.
+    if re.search(r"\bdo i (?:need|require|own|have|use|keep|hold)\b", ql):
+        return True
     if any(c in ql for c in _PREVIOUS_CUES):
         return any(v in ql for v in _STATE_VERBS)
     if "now" in ql or "currently" in ql or "these days" in ql:
