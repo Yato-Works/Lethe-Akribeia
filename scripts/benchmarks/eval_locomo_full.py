@@ -272,12 +272,23 @@ def build_reader_prompt(question: str, context: str) -> str:
         "2. Reply with the final value only: a few words or one short sentence.\n"
         "3. NEVER reply \"I don't know\", \"not enough information\", \"not mentioned\", or any other refusal.\n"
         "4. Use only the evidence; do not invent details that are not in it.\n"
+        # EXHAUSTIVE ENUMERATION (dominant LoCoMo weakness).  Measured on the
+        # full 1,986-question corpus: 40% of questions (616/1540 excluding
+        # adversarial) have a LIST gold answer, and 64% of those fail (392 q)
+        # -- by far the largest weakness class, ~2x everything else combined.
+        # The reader consistently returns a SUBSET ('Her friends' when the gold
+        # is 'Her mentors, family, and friends') or hallucinates an extra item.
+        "5. EXHAUSTIVE ENUMERATION: if the question asks for a plural or a set "
+        "('what activities', 'which events', 'what kinds', 'who supports', "
+        "'where has X been'), do NOT stop at the first item. Scan EVERY evidence "
+        "line, collect ALL distinct matching items, and list them comma-separated. "
+        "Omitting an item is an error; listing only one when several exist is an error.\n\n"
         # RELATIVE-DATE RESOLUTION (LoCoMo weakness).  Measured on the full
         # corpus: ~10% of questions ask 'when' and the conversation states a
         # RELATIVE time ('yesterday', 'last week', 'next month'), while the
         # expected answer is the ABSOLUTE date.  Each evidence line carries its
         # session date in its header, so resolve it.
-        "5. DATE RESOLUTION: if the question asks WHEN and the evidence states a relative time "
+        "6. DATE RESOLUTION: if the question asks WHEN and the evidence states a relative time "
         "('yesterday', 'last week', 'next month', 'last year', 'the other day'), convert it to an "
         "ABSOLUTE date using the session date in that line's header (e.g. a line dated '8 May, 2023' "
         "saying 'yesterday' means '7 May 2023'). NEVER answer with the relative word itself.\n\n"
