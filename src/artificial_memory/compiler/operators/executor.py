@@ -263,7 +263,13 @@ class Executor:
             # first slot's value (the part after '=')
             first = obs[0].value
             val = first.split("=", 1)[1] if "=" in first else first
-            return val, f"[SLOT_LOOKUP] {first}"
+            # CONFIDENCE GATE: a slot value is a short, self-contained value
+            # (a name, a handle, a city) — never a clause.  A capture like
+            # 'tant: Great! You can name it ...' (a ':' misparse) is a long
+            # sentence fragment and must defer to the LLM, not override.
+            if not val or len(val.split()) > 6:
+                return None, "[SLOT_LOOKUP] value is a sentence fragment; defer to LLM"
+            return val.strip(), f"[SLOT_LOOKUP] {first}"
 
         return None, f"[UNSUPPORTED_NODE] {type(node).__name__}"
 
