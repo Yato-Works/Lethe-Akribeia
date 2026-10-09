@@ -14,14 +14,6 @@ from artificial_memory.compiler.certificates.aggregation_certificate import (
     AggregationCertificate,
     AggregationCertificateEngine,
 )
-from artificial_memory.compiler.certificates.knowledge_update_certificate import (
-    KnowledgeUpdateCertificate,
-    KnowledgeUpdateCertificateEngine,
-)
-from artificial_memory.compiler.operators.query_operator_compiler import (
-    OperatorResult,
-    QueryOperatorCompiler,
-)
 from artificial_memory.compiler.certificates.profile_certificate import (
     ProfileCertificate,
     ProfileCertificateEngine,
@@ -42,8 +34,6 @@ class CoProcessorBundle:
     profile_cert: ProfileCertificate
     assembled_certificate_block: str
     deterministic_answer_override: str | None
-    knowledge_update_cert: KnowledgeUpdateCertificate | None = None
-    operator_result: OperatorResult | None = None
 
 
 class CoProcessorEngine:
@@ -53,8 +43,6 @@ class CoProcessorEngine:
         self.temporal_engine = TemporalCertificateEngine()
         self.aggregation_engine = AggregationCertificateEngine()
         self.profile_engine = ProfileCertificateEngine()
-        self.knowledge_update_engine = KnowledgeUpdateCertificateEngine()
-        self.operator_compiler = QueryOperatorCompiler()
 
     def process(
         self,
@@ -66,20 +54,6 @@ class CoProcessorEngine:
         """Execute co-processors based on the execution plan's demand signals."""
         blocks: list[str] = []
         override_answer: str | None = None
-
-        # 0. Query Operator Compiler (INDEX, SLOT_LOOKUP, GOAL_GAP)
-        # DISABLED in CLEAN-R7: QueryOperatorCompiler (R8/R8.1) embeds
-        # benchmark-specific constants and answers (e.g. total=140,
-        # babies=["Max",...], renov_cost=20000). Fully excluded from clean baseline.
-        # op_res = self.operator_compiler.compile_and_execute(question, records, reference_date)
-        # if op_res.has_result:
-        #     blocks.append(op_res.formatted_proof)
-        #     if op_res.direct_answer:
-        #         override_answer = op_res.direct_answer
-        from artificial_memory.compiler.operators.query_operator_compiler import OperatorResult
-        op_res = OperatorResult(
-            has_result=False, operator_name="NONE", formatted_proof="", direct_answer=None
-        )
 
         # 1. Temporal Co-processor (Chronos)
         t_cert = self.temporal_engine.generate(question, records, reference_date)
@@ -97,17 +71,6 @@ class CoProcessorEngine:
                     override_answer = t_cert.direct_answer_candidate
                 elif t_cert.query_type == "ordering" and t_cert.direct_answer_candidate.startswith("First,"):
                     override_answer = t_cert.direct_answer_candidate
-
-        # 2. Knowledge Update & Evidence Relation Co-processor
-        # DISABLED in CLEAN-R7: KnowledgeUpdateCertificateEngine uses
-        # topic-specific dispatch (sneaker/hawaii/korean/starbucks/coin) which
-        # constitutes benchmark overfitting. Excluded from clean baseline.
-        # k_cert = self.knowledge_update_engine.generate(question, records, reference_date)
-        # if k_cert.has_certificate:
-        #     blocks.append(k_cert.formatted_certificate)
-        #     if k_cert.direct_answer_candidate:
-        #         override_answer = k_cert.direct_answer_candidate
-        k_cert = None
 
         # 3. Aggregation & Event Ledger Co-processor
         a_cert = None
@@ -134,10 +97,6 @@ class CoProcessorEngine:
         if p_cert.has_certificate:
             blocks.append(p_cert.formatted_certificate)
 
-        # Ensure high-precision Query Operator deterministic override takes ultimate precedence
-        if op_res.has_result and op_res.direct_answer:
-            override_answer = op_res.direct_answer
-
         assembled = "\n\n".join(blocks) if blocks else ""
 
         return CoProcessorBundle(
@@ -146,6 +105,4 @@ class CoProcessorEngine:
             profile_cert=p_cert,
             assembled_certificate_block=assembled,
             deterministic_answer_override=override_answer,
-            knowledge_update_cert=k_cert,
-            operator_result=op_res,
         )
