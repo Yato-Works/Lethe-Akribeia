@@ -114,7 +114,12 @@ class QueryParser:
 
         # 5. SUM — a quantity distributed across the corpus
         unit = _detect_unit(ql)
-        if unit and any(c in ql for c in _SUM_CUES) and "ago" not in ql:
+        # 'ago' only vetoes a pure duration probe like "how many weeks ago did
+        # I meet X" (the answer is a single elapsed interval, not a sum).  A
+        # legit aggregate "total pieces since ... three weeks ago" keeps SUM —
+        # there the unit being summed is NOT the word before 'ago'.
+        _pure_duration_ago = bool(re.search(r"\bhow (?:many|much)\s+\w+\s+ago\b", ql))
+        if unit and any(c in ql for c in _SUM_CUES) and not _pure_duration_ago:
             return A.Sum(operand=A.Extract(concept="numeric", unit=unit),
                          topic_terms=tuple(_topic_terms(ql)),
                          time_scope=_detect_time_scope(ql))
@@ -141,9 +146,14 @@ def _detect_unit(ql: str) -> str | None:
     # 0. Currency asks take precedence: "total amount I spent", "how much
     # money", "cost/price of" all count dollars, not a duration.  A relative
     # window word (months/weeks) must NOT be mistaken for the counted unit.
-    if re.search(r"\b(total )?(amount|money|cost|price|budget)\b", ql) or \
-       re.search(r"\b(paid|spent|charged)\b", ql):
-        return "dollars"
+    # BUT an explicit time unit in the ask wins — "how many hours ... spent
+    # playing games" counts hours, not dollars; only a bare "spent" with no
+    # explicit time unit defaults to dollars.
+    _explicit_time = re.search(r"\bhow (?:many|much)\s+(hours?|minutes?|days?|weeks?|months?|years?)\b", ql)
+    if not _explicit_time:
+        if re.search(r"\b(total )?(amount|money|cost|price|budget)\b", ql) or \
+           re.search(r"\b(paid|spent|charged)\b", ql):
+            return "dollars"
     # 1. The counted unit: "how many <noun>" / "how much <noun>"
     m = re.search(r"\bhow (?:many|much)\s+([a-z]+)", ql)
     if m:
