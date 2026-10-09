@@ -89,8 +89,13 @@ class QueryParser:
         if any(c in ql for c in _LAST_CUES) and ("list" in ql or "venue" in ql
                                                  or "item" in ql or "place" in ql
                                                  or "store" in ql or "option" in ql):
-            return A.Index(operand=A.Extract(concept="list"), ordinal=-1,
-                           selector="last", scope=scope)
+            # 'last year/month/week/day' is a TIME reference, not the tail of a
+            # list.  "the artist I started listening to last year" must not fire
+            # INDEX(LAST).  Only a 'last <list-object>' (or nth list marker)
+            # licenses the list-tail operator.
+            if not re.search(r"\blast\s+(year|month|week|day|time|semester)\b", ql):
+                return A.Index(operand=A.Extract(concept="list"), ordinal=-1,
+                               selector="last", scope=scope)
 
         # 4. SUPERSEDES — a state that changed over time
         if _is_state_question(ql):
