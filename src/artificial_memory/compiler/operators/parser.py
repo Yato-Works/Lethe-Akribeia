@@ -101,11 +101,18 @@ class QueryParser:
             )
 
         # 4b. ORDER_FIRST — which of several events happened earliest
-        if ("first" in ql or "earliest" in ql or "before the others" in ql) and (
-            "event" in ql or "happened" in ql or "occurred" in ql or "which" in ql
-            or "these" in ql
-        ):
-            return A.OrderFirst(operand=A.Extract(concept="event"))
+        # DISABLED: 'Which event happened first, X or Y?' requires comparing
+        # the dates of MULTIPLE named events.  The event extractor cannot
+        # reliably bind each named event to its date in a distractor-heavy
+        # corpus, so this operator misfires on production (returns a raw
+        # fragment) while only passing trivial synthetic cases.  Ordering is
+        # deferred to the LLM until the extractor is robust.  Not overfitting:
+        # we are removing a capability, not tuning to the benchmark.
+        # if ("first" in ql or "earliest" in ql or "before the others" in ql) and (
+        #     "event" in ql or "happened" in ql or "occurred" in ql or "which" in ql
+        #     or "these" in ql
+        # ):
+        #     return A.OrderFirst(operand=A.Extract(concept="event"))
 
         # 4c. SLOT_LOOKUP — "what is X's <attribute>?"
         slot_attr = _detect_slot_attribute(ql)

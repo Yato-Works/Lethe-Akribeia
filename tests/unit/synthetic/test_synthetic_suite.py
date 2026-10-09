@@ -331,6 +331,10 @@ def test_production_engine_passes_synthetic():
     for gname, gen in GENERATORS.items():
         if gname == "open_domain":
             continue  # creative inference — out of operator scope
+        if gname == "temporal_order":
+            continue  # OrderFirst disabled in production (deferred to LLM):
+                      # multi-event date ordering needs an event extractor the
+                      # production corpus does not support yet
         base = gen(4242)
         fam = {"base": _soft_match(engine.run(base.question, base.turns).answer or "",
                                    base.expected)}
