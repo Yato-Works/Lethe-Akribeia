@@ -239,7 +239,25 @@ class Executor:
             if len(num_obs) != 2:
                 return None, f"[RATIO] need exactly 2 topic values, got {len(num_obs)}; defer to LLM"
             vals = [(_num(o), o) for o in num_obs]
-            (n_num, n_obs), (d_num, d_obs) = vals[0], vals[1]
+            # ORIENT numerator/denominator by the 'percentage of X do Y hold'
+            # structure (English general rule): the value whose source mentions
+            # the 'of' phrase is the denominator; the subject is the numerator.
+            # Falling back to order-of-appearance is what produced 80% for a
+            # 20% question.  Only orient when BOTH sides are unambiguously
+            # matched; otherwise defer to the LLM rather than guess.
+            if node.denominator_terms and node.numerator_terms:
+                def _matches(obs, terms):
+                    low = _text_of(obs).lower()
+                    return any(t in low for t in terms)
+                den = [v for v in vals if _matches(v[1], node.denominator_terms)]
+                num = [v for v in vals if _matches(v[1], node.numerator_terms)]
+                if len(den) == 1 and len(num) == 1 and den[0] is not num[0]:
+                    (d_num, d_obs) = den[0]
+                    (n_num, n_obs) = num[0]
+                else:
+                    return None, "[RATIO] cannot orient numerator/denominator; defer to LLM"
+            else:
+                (n_num, n_obs), (d_num, d_obs) = vals[0], vals[1]
             if d_num == 0:
                 return None, "[RATIO] denominator is zero"
             pct = (n_num / d_num) * 100

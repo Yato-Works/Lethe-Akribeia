@@ -77,6 +77,8 @@ class QueryParser:
                 denominator=A.Extract(concept="numeric"),
                 as_percent=True,
                 topic_terms=tuple(_topic_terms(ql)),
+                denominator_terms=tuple(_ratio_of_denominator(ql)),
+                numerator_terms=tuple(_ratio_subject(ql)),
             )
 
         # 3. INDEX — nth item, or last item
@@ -351,6 +353,27 @@ def _topic_terms(ql: str) -> list[str]:
         seen.add(base)
         out.append(w)
     return out
+
+
+def _ratio_of_denominator(ql: str) -> list[str]:
+    """'percentage of <NOUN PHRASE> do <SUBJ> hold' — the phrase after 'of' is
+    the denominator (English general rule)."""
+    m = re.search(r"\bpercent(?:age)?\s+of\s+(.+?)\s+(?:do|does|did|that|which)\b", ql)
+    if not m:
+        m = re.search(r"\bpercent(?:age)?\s+of\s+(.+)$", ql)
+    if not m:
+        return []
+    words = re.findall(r"[a-z]+", m.group(1))
+    return [w for w in words if len(w) >= 3 and w not in _TOPIC_STOP][:4]
+
+
+def _ratio_subject(ql: str) -> list[str]:
+    """'... do <SUBJ> hold' — the subject doing the holding is the numerator."""
+    m = re.search(r"\b(?:do|does|did)\s+(.+?)\s+(?:hold|have|make|comprise|represent|account)\b", ql)
+    if not m:
+        return []
+    words = re.findall(r"[a-z]+", m.group(1))
+    return [w for w in words if len(w) >= 3 and w not in _TOPIC_STOP][:4]
 
 
 def _is_state_question(ql: str) -> bool:

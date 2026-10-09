@@ -82,6 +82,11 @@ class Ratio(Node):
     denominator: Node
     as_percent: bool = True
     topic_terms: tuple = ()  # numerator & denominator must be topic-scoped
+    # 'percentage of <DENOM> do <NUM> hold' — the noun phrase after 'of' is the
+    # denominator (English general rule), the subject doing the holding is the
+    # numerator.  Used to orient the two values instead of guessing by order.
+    denominator_terms: tuple = ()
+    numerator_terms: tuple = ()
 
 
 @dataclass(frozen=True)
