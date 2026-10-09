@@ -254,6 +254,11 @@ def _is_non_computational(ql: str) -> bool:
     )
     if any(a in ql for a in advice):
         return True
+    # Explicit retrospective-recall requests: "remind me the last venue",
+    # "can you recall ...".  These are free-form retrieval, not a computable
+    # operator — the LLM reader handles them.
+    if re.search(r"\b(remind me|can you remind|could you remind|please remind)\b", ql):
+        return True
     return False
 
 

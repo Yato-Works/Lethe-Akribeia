@@ -357,8 +357,11 @@ class Executor:
                 b = t[:-1] if t.endswith("s") else t
                 if t in sl or b in sl:
                     phrase = s.strip().rstrip(".,;:")
-                    # sanity: a usable phrase is short and non-empty
-                    if 2 <= len(phrase.split()) <= 40:
+                    # CONFIDENCE GATE: a state value is a short phrase (a
+                    # location, a brand, a name) — never a full sentence.  A
+                    # 40-word 'value' is descriptive prose and must defer to
+                    # the LLM.  Cap at 15 words.
+                    if 2 <= len(phrase.split()) <= 15:
                         return phrase
         return None
 
