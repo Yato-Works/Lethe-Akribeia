@@ -124,13 +124,32 @@ autopsy:
     Operator false positives are NOT the dominant failure mode (7 of 90).
     The main frontier is evidence selection/retrieval (42) and reader
     extraction (41). Reader-side prompt interventions were attempted and
-    reverted (force-extraction 0/4, counting rule 0/5, number-grounding 0/5):
-    prompt tuning does not move this cluster.
+    reverted (force-extraction 0/4, counting rule 0/5, number-grounding 0/5,
+    2-pass reader NO_EVIDENCE regressions): prompt tuning does not move this
+    cluster.
+
+# ------------------------------------------- measurement noise (IMPORTANT)
+noise_band:
+  reader: qwen2.5:7b-instruct via Ollama
+  deterministic_layers: >
+    Parser -> AST -> Executor (operators), TemporalCertificate,
+    AggregationCertificate. Given identical evidence these produce identical
+    output, so operator false positives are reproducible.
+  non_deterministic_layer: >
+    The LLM reader. Sampled, so the SAME code and SAME evidence can yield
+    different answers across runs.
+  measured_variance: >
+    Empirically verified: question 6aeb4375 answered 3 (FAIL) on one run and
+    4 (PASS) on the next with byte-identical inputs and code.
+  implication: >
+    A dev-250 difference of up to roughly +-2 questions (+-0.8pt) is noise.
+    NEVER treat a sub-2-question swing as a regression. To attribute a change
+    to code, compare the DETERMINISTIC layer (operator fires/false positives,
+    reproducible) rather than the headline accuracy.
 
 # ------------------------------------------------- next steps (agreed plan)
 next_steps:
   - "Tag this commit as clean-r7 and freeze it as the Clean Baseline"
   - "Keep the current holdout as DIAGNOSTIC data only"
   - "Secure a FRESH unseen split for final evaluation"
-  - "Experiment: Reader 2-pass (extract-then-resolve) as an isolated A/B"
   - "Experiment: evidence re-ranking and knapsack protection of answer turns"
