@@ -144,7 +144,11 @@ class QueryParser:
         _duration_probe = bool(re.search(
             r"\bhow (?:many|much)\s+(weeks?|months?|days?|hours?|minutes?|years?)\b"
             r"[^.?]*\b(ago|passed|since|elapsed|have passed|spent|spend)\b", ql))
-        if concept and any(c in ql for c in _COUNT_CUES) and not _duration_probe:
+        # An acquisition verb ("how many X did I catch/buy/order") counts the
+        # THINGS acquired, not events/people.  COUNT(event/person) would return
+        # 1 (one fishing trip) instead of the number of fish — defer to the LLM.
+        _acquisition = bool(re.search(r"\bdid i (?:catch|caught|buy|bought|order|ordered|get|got|find|found|pick|picked)\b", ql))
+        if concept and any(c in ql for c in _COUNT_CUES) and not _duration_probe and not _acquisition:
             return A.Count(operand=A.Extract(concept=concept))
 
         return None
