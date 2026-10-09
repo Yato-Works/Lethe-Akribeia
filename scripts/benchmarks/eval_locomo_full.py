@@ -87,11 +87,15 @@ def load_questions(conv: dict) -> list[dict]:
     out = []
     sample_id = conv.get("sample_id", "x")
     for i, qa in enumerate(conv.get("qa", [])):
+        # cat5 (adversarial) stores its gold under 'adversarial_answer' instead
+        # of 'answer'.  Without this fallback all 446 adversarial questions
+        # would read as empty gold and be scored 0 unfairly.
+        gold = qa.get("answer", qa.get("adversarial_answer", ""))
         out.append({
             "question_id": f"lc_{sample_id}_{i}",
             "sample_id": sample_id,
             "question": qa["question"],
-            "answer": str(qa.get("answer", "")),
+            "answer": str(gold),
             "category": int(qa.get("category", 0)),
             "evidence": qa.get("evidence", []),
         })
@@ -198,7 +202,7 @@ _REL_PATTERNS = [
 ]
 
 
-def resolve_relative_dates(answer: str, context: str) -> str:
+def resolve_relative_dates(answer: str, context: str, question: str = "") -> str:
     """Deterministically convert a relative-time answer to an absolute date.
 
     Weakness found on the LoCoMo full corpus: ~10% of questions ask 'when' and
@@ -226,18 +230,34 @@ def resolve_relative_dates(answer: str, context: str) -> str:
     if not chosen:
         return answer
     pat, delta, _unit = chosen
-    # find the best evidence line: one whose text shares a content word with
-    # the question is ideal, but the model already selected the line, so use
-    # the FIRST line in the context that carries a parseable date.
+    # Pick the RIGHT evidence line, not merely the first dated one.  Using the
+    # first dated line was measurably harmful: 71 of 167 when-failures on the
+    # full corpus were dates this resolver produced from the wrong line
+    # (e.g. gold '7 May 2023' answered '26 June 2023').
+    # Require the candidate line to share a content word with the QUESTION, so
+    # we resolve against the line the question is actually about.
+    q_words = {w for w in re.findall(r"[a-z]{4,}", question.lower())
+               if w not in {"when", "what", "where", "which", "does", "did",
+                            "have", "has", "was", "were", "the", "and"}}
+    fallback = None
     for line in context.split("\n"):
         if not line.strip().startswith("["):
             continue
         d = _parse_session_date(line)
         if d is None:
             continue
-        from datetime import timedelta
-        resolved = d + timedelta(days=delta)
-        return f"{resolved.day} {resolved.strftime('%B')} {resolved.year}"
+        if fallback is None:
+            fallback = d
+        low = line.lower()
+        if any(w in low for w in q_words):
+            from datetime import timedelta
+            resolved = d + timedelta(days=delta)
+            return f"{resolved.day} {resolved.strftime('%B')} {resolved.year}"
+    # No question-matching dated line: refuse to guess rather than emit a
+    # wrong absolute date.  A wrong date scores the same as a relative leak
+    # but is harder to spot, so abstain and keep the original answer.
+    if fallback is None:
+        return answer
     return answer
 
 
@@ -348,7 +368,7 @@ def run(args) -> None:
             # Deterministic relative-date resolution (LoCoMo weakness).  Only
             # for 'when' questions, so a substantive answer is never rewritten.
             if re.search(r"\bwhen\b", q["question"], re.I):
-                pred = resolve_relative_dates(pred, compiled.context_text)
+                pred = resolve_relative_dates(pred, compiled.context_text, q["question"])
 
             ok = score(pred, q["answer"])
         except Exception as e:  # a single failure must not kill a 1986-q run
