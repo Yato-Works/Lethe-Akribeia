@@ -134,6 +134,12 @@ def _detect_unit(ql: str) -> str | None:
     quantity being counted — over incidental time scopes like 'three weeks
     ago' which describe the window, not the counted unit.
     """
+    # 0. Currency asks take precedence: "total amount I spent", "how much
+    # money", "cost/price of" all count dollars, not a duration.  A relative
+    # window word (months/weeks) must NOT be mistaken for the counted unit.
+    if re.search(r"\b(total )?(amount|money|cost|price|budget)\b", ql) or \
+       re.search(r"\b(paid|spent|charged)\b", ql):
+        return "dollars"
     # 1. The counted unit: "how many <noun>" / "how much <noun>"
     m = re.search(r"\bhow (?:many|much)\s+([a-z]+)", ql)
     if m:
