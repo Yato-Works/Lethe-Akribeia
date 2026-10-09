@@ -52,10 +52,44 @@ def _date_of(r) -> str:
 #  numeric + unit  (SUM, RATIO, GAP, FILTER-by-unit)
 # --------------------------------------------------------------------------- #
 
+# A countable noun that can carry a bare quantity: "<number> <noun>".
+# Allows one intervening adjective ("five short stories", "three red books")
+# so compound nouns match, but not arbitrary words.
+_COUNT_NOUN = (
+    r"short stories|stories|poems|poem|books?|coins?|records?|pieces?|"
+    r"essays?|articles?|novels?|chapters?|games?|movies?|films?|songs?|"
+    r"classes?|sessions?|meetings?|trips?|visits?|hours?|days?|weeks?|"
+    r"months?|years?|points?|miles?|dollars?",
+)
+
+# Bare integer or decimal, followed by a measurement unit OR a countable
+# noun.  This captures "17 poems", "1 piece", "5 short stories" as well as
+# "70 hours", "$200,000", "10%".
 _NUM_UNIT = re.compile(
     r"\b(\d{1,6}(?:,\d{3})*(?:\.\d+)?)\s*"
     r"(hours?|hrs?|minutes?|mins?|days?|weeks?|months?|years?|"
-    r"points?|pts?|books?|coins?|records?|miles?|km|dollars?|\$|%)",
+    r"points?|pts?|books?|coins?|records?|miles?|km|dollars?|\$|%|"
+    rf"{_COUNT_NOUN})",
+    re.I,
+)
+
+# Number words (English) used as quantities, e.g. "five short stories".
+# NOTE: vague quantifiers ("a", "an", "couple", "few", "several") are
+# deliberately EXCLUDED — "a book" is not reliably a count of 1, and
+# guessing would inject noise into every SUM.  Only unambiguous number
+# words map to integers.
+_NUM_WORDS = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+    "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+    "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40,
+    "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90,
+}
+
+# "<number word> [optional single adjective] <countable noun>"
+_NUMWORD_COUNT = re.compile(
+    rf"\b({'|'.join(_NUM_WORDS)})\s+(?:\w+\s+)??({_COUNT_NOUN})\b",
     re.I,
 )
 
@@ -75,20 +109,70 @@ def _norm_unit(raw: str) -> str:
     return _UNIT_ALIASES.get(u, u)
 
 
-def extract_numeric(records: Sequence, unit: str | None = None) -> list[Observation]:
-    """Extract (number, unit) observations, optionally filtered to one unit."""
+def extract_numeric(records: Sequence, unit: str | None = None,
+                    completion_only: bool = False) -> list[Observation]:
+    """Extract (number, unit) observations, optionally filtered to one unit.
+
+    Recognises both digit quantities ("17 poems") and number-word quantities
+    ("five short stories").  Unit normalisation maps synonyms (hr->hours).
+
+    When ``completion_only`` is True, only quantities that sit in a
+    completion context are returned — i.e. the number is governed by a verb
+    like "have written / completed / finished five short stories".  This keeps
+    a "how many have you completed" SUM from counting incidental mentions
+    ("a connection between the two stories", "one piece of clothing to pack"),
+    which reference an object rather than assert a completed count.
+    """
     out: list[Observation] = []
     for r in records:
         text = _text_of(r)
         date = _date_of(r)
+
+        # Pass 1: digit + unit
         for m in _NUM_UNIT.finditer(text):
             raw_num, raw_unit = m.group(1), m.group(2)
             u = _norm_unit(raw_unit)
             if unit and u != unit.lower():
                 continue
+            if completion_only and not _in_completion_context(text, m.start()):
+                continue
             num = raw_num.replace(",", "")
             out.append(Observation(value=f"{num} {u}", source=text.strip(), date=date))
+
+        # Pass 2: number-word + countable noun
+        for m in _NUMWORD_COUNT.finditer(text):
+            word, noun = m.group(1).lower(), m.group(2).lower()
+            n = _NUM_WORDS[word]
+            u = _norm_unit(noun)
+            if unit and u != unit.lower() and u.rstrip("s") != unit.lower():
+                continue
+            if completion_only and not _in_completion_context(text, m.start()):
+                continue
+            out.append(Observation(value=f"{n} {u}", source=text.strip(), date=date))
     return out
+
+
+# Verbs that assert a quantity has been produced/completed (vs. merely
+# mentioned).  Dataset-agnostic: these are generic English completion verbs.
+_COMPLETION_VERBS = (
+    "written", "wrote", "completed", "complete", "finished", "finish",
+    "published", "publish", "read", "watched", "attended", "earned", "saved",
+    "bought", "purchased", "made", "built", "collected", "achieved", "done",
+    "produced", "recorded",
+)
+
+
+def _in_completion_context(text: str, pos: int) -> bool:
+    """True if the quantity at ``pos`` is governed by a completion verb.
+
+    Looks in a short window immediately BEFORE the number for a completion
+    verb (optionally preceded by have/has/had/'ve).  Falls back to False.
+    """
+    window = text[max(0, pos - 60):pos].lower()
+    for v in _COMPLETION_VERBS:
+        if re.search(rf"\b{re.escape(v)}\b", window):
+            return True
+    return False
 
 
 # --------------------------------------------------------------------------- #

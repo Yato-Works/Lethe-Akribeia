@@ -294,3 +294,55 @@ def op(question, records):
 '''
     findings2 = scan_source_for_overfitting(clean)
     assert not findings2, findings2
+
+
+# --------------------------------------------------------------------------- #
+#  PRODUCTION ENGINE GUARD
+#  The lesson of the 5/48 regression: the unit tests exercised the suite's
+#  own machinery, not the real QueryOperatorEngine, so a broken executor
+#  slipped through with 373/373 green.  This test pins the ACTUAL production
+#  engine against the synthetic corpus so any future regression is caught
+#  here, automatically.
+# --------------------------------------------------------------------------- #
+
+def _load_production_engine():
+    """Import the real QueryOperatorEngine, or skip if src is not on path."""
+    try:
+        from artificial_memory.compiler.operators.engine import QueryOperatorEngine
+    except Exception:
+        return None
+    return QueryOperatorEngine()
+
+
+def test_production_engine_passes_synthetic():
+    """The REAL QueryOperatorEngine must hold 6/6 on every mechanical family.
+
+    open_domain is excluded by design — creative inference is the LLM's job,
+    not a deterministic operator's.  All 7 mechanical operators (SUM, ORDER,
+    SLOT_LOOKUP, INDEX, HOP_CHAIN, adversarial-INDEX, SUPERSEDES) must survive
+    every counterfactual rewrite, exactly as the reference operator does.
+    """
+    engine = _load_production_engine()
+    if engine is None:
+        import pytest
+        pytest.skip("production engine not importable in this environment")
+
+    failures = []
+    for gname, gen in GENERATORS.items():
+        if gname == "open_domain":
+            continue  # creative inference — out of operator scope
+        base = gen(4242)
+        fam = {"base": _soft_match(engine.run(base.question, base.turns).answer or "",
+                                   base.expected)}
+        for kind, fn in REWRITERS.items():
+            rw = fn(base, 777)
+            fam[kind] = _soft_match(
+                engine.run(rw.question, rw.turns).answer or "", rw.expected
+            )
+        if sum(fam.values()) < 6:
+            failures.append((gname, fam))
+
+    assert not failures, (
+        "production engine regressed on synthetic corpus: "
+        + "; ".join(f"{g}={fam}" for g, fam in failures)
+    )

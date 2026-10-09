@@ -139,9 +139,10 @@ def render(node: Node) -> str:
     if isinstance(node, Filter):
         return f"FILTER({render(node.operand)}, {node.predicate.kind}={node.predicate.value!r})"
     if isinstance(node, Index):
+        scope = f', scope="{node.scope}"' if node.scope else ""
         if node.selector == "last":
-            return f"INDEX({render(node.operand)}, LAST)"
-        return f"INDEX({render(node.operand)}, {node.ordinal})"
+            return f"INDEX({render(node.operand)}, LAST{scope})"
+        return f"INDEX({render(node.operand)}, {node.ordinal}{scope})"
     if isinstance(node, Ratio):
         return f"RATIO({render(node.numerator)} / {render(node.denominator)})"
     if isinstance(node, Gap):

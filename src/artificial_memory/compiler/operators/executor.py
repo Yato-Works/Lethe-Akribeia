@@ -24,6 +24,15 @@ from artificial_memory.compiler.operators.extractors import (
     parse_date,
 )
 
+# Measurement units whose semantics are incompatible with a unit-agnostic
+# fallback: summing "hours" against "books" would be meaningless, so when a
+# question asks for one of these and none are found, we abstain rather than
+# relax the filter.  Countable objects (stories, pieces, books) may relax.
+_MEASUREMENT_UNITS = {
+    "hours", "hrs", "hr", "minutes", "mins", "min", "days", "weeks",
+    "months", "years", "points", "pts", "miles", "km", "dollars", "%",
+}
+
 
 @dataclass(frozen=True)
 class ExecutionResult:
@@ -69,18 +78,45 @@ class Executor:
             return self._eval_extract(node, records)
 
         if isinstance(node, A.Sum):
-            inner, proof = self._eval(node.operand, records)
-            if inner is None:
-                return None, proof
-            obs = extract_numeric(records, unit=self._unit_of(node.operand))
+            # NOTE: we deliberately do NOT gate on the inner Extract result.
+            # A strict unit filter may return nothing at the leaf even when a
+            # countable quantity exists under a hypernym noun; the SUM body
+            # handles that with its own fallback, so an early None here would
+            # wrongly suppress it.
+            _inner, proof = self._eval(node.operand, records)
+            unit = self._unit_of(node.operand)
+            obs = extract_numeric(records, unit=unit)
+            # Unit-agnostic fallback: when the question's counted unit (e.g.
+            # "pieces of writing") is a hypernym the records phrase with more
+            # specific nouns ("short stories", "poems"), a strict unit filter
+            # matches nothing.  In that case — and ONLY when the unit is a
+            # countable object rather than a measurement — sum every countable
+            # quantity.  This is safe: "pieces of writing" genuinely covers
+            # stories + poems + challenge pieces.  Measurement units (hours,
+            # dollars) are never relaxed, so we never sum unrelated measures.
+            if not obs and unit and unit.lower() not in _MEASUREMENT_UNITS:
+                # Relax to countable quantities, dropping measurement units
+                # (weeks/hours/dollars — a "17 poems in two weeks" time scope is
+                # not part of the count).  Prefer COMPLETION-scoped quantities:
+                # "have written five stories" asserts a completed count, whereas
+                # "a link between the two stories" merely mentions the object.
+                # Fall back to all countable quantities if none are completion-
+                # scoped, so we never return empty on an unusual phrasing.
+                all_obs = extract_numeric(records, unit=None)
+                countable = [o for o in all_obs
+                             if _unit(o).lower() not in _MEASUREMENT_UNITS]
+                completed = extract_numeric(records, unit=None, completion_only=True)
+                completed = [o for o in completed
+                             if _unit(o).lower() not in _MEASUREMENT_UNITS]
+                obs = self._dedup_same_source(completed or countable)
             if not obs:
                 return None, proof
             total = sum(_num(o) for o in obs)
-            unit = _unit(obs[0])
+            out_unit = _unit(obs[0])
             terms = " + ".join(o.value for o in obs)
             return (
-                f"{_fmt_num(total)} {unit}".strip(),
-                f"{proof}\nSUM: {terms} = {_fmt_num(total)} {unit}",
+                f"{_fmt_num(total)} {out_unit}".strip(),
+                f"{proof}\nSUM: {terms} = {_fmt_num(total)} {out_unit}",
             )
 
         if isinstance(node, A.Union):
@@ -189,6 +225,26 @@ class Executor:
             return val, f"[SLOT_LOOKUP] {first}"
 
         return None, f"[UNSUPPORTED_NODE] {type(node).__name__}"
+
+    @staticmethod
+    def _dedup_same_source(obs):
+        """Collapse repeated identical values within the same session/day.
+
+        Conversations restate one fact across adjacent user and assistant
+        turns in the SAME session ("17 poems" said, then echoed back).  Those
+        are one real quantity, not two.  We key on (value, date) so echoes
+        inside a session collapse, while the same quantity genuinely stated on
+        a different day (a real second occurrence) is still summed.
+        """
+        seen: set[tuple[str, str]] = set()
+        out = []
+        for o in obs:
+            key = (o.value, o.date)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(o)
+        return out
 
     # ------------------------------------------------------------------ #
 

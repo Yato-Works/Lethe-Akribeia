@@ -117,11 +117,41 @@ class QueryParser:
 # --------------------------------------------------------------------------- #
 
 def _detect_unit(ql: str) -> str | None:
+    """Detect the unit of the quantity being asked about.
+
+    Prefers the noun immediately after 'how many/much <noun>' — that is the
+    quantity being counted — over incidental time scopes like 'three weeks
+    ago' which describe the window, not the counted unit.
+    """
+    # 1. The counted unit: "how many <noun>" / "how much <noun>"
+    m = re.search(r"\bhow (?:many|much)\s+([a-z]+)", ql)
+    if m:
+        head = m.group(1)
+        if head in _UNIT_WORDS:
+            return _UNIT_WORDS[head]
+        # a counted noun right after how many: "how many pieces", "how many books"
+        if head.rstrip("s") in _COUNTABLE_HEADS:
+            return head
+        # "how many total pieces" / "how many pieces of X" -> skip fillers
+        m2 = re.search(r"\bhow many\s+(?:total\s+|more\s+|additional\s+)?([a-z]+)", ql)
+        if m2 and m2.group(1).rstrip("s") in _COUNTABLE_HEADS:
+            return m2.group(1)
+    # 2. Fall back to any explicit unit word in the question
     words = re.findall(r"[a-z]+", ql)
     for w in words:
         if w in _UNIT_WORDS:
             return _UNIT_WORDS[w]
     return None
+
+
+# Countable heads that act as a unit when they directly follow "how many".
+_COUNTABLE_HEADS = {
+    "piece", "book", "coin", "record", "story", "poem", "essay", "article",
+    "novel", "chapter", "game", "movie", "film", "song", "class", "session",
+    "meeting", "trip", "visit", "hour", "day", "week", "month", "year",
+    "point", "mile", "dollar", "item", "device", "place", "venue", "person",
+    "baby", "event", "project",
+}
 
 
 _EVENT_HINTS = ("festival", "event", "concert", "class", "trip", "show",
