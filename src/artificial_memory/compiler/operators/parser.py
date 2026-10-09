@@ -298,6 +298,12 @@ def _topic_terms(ql: str) -> list[str]:
 
 
 def _is_state_question(ql: str) -> bool:
+    # Retrospective recall is NOT a state-evolution question.  "Remind me the
+    # Instagram handle from our previous conversation" asks what was SAID,
+    # not how a fact changed over time — firing SUPERSEDES there is a false
+    # positive.  The LLM reader handles recall.
+    if re.search(r"\b(remind me|looking back|going through|going over|recall)\b", ql):
+        return False
     # "where are my X" / "where is my X" is inherently a state question even
     # without an explicit state verb in the phrasing.
     if re.search(r"\bwhere\s+(are|is)\s+(my|the)\b", ql):
