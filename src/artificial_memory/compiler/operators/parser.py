@@ -110,9 +110,11 @@ class QueryParser:
         # 4a. DATE_DIFF — elapsed time between two dated events.  This is pure
         # calendar arithmetic the 7B reader keeps getting wrong on holdout
         # (off-by-one, week/month confusion), so compute it deterministically.
+        # 'how many days before/after the Rack Fest did I participate in X' is
+        # the gap between two events, NOT a count of events.
         _dd_unit = None
         if re.search(r"\bhow (?:many|much)\s+(days?|weeks?|months?)\b", ql) and \
-           re.search(r"\b(between|passed|since|have passed|had passed)\b", ql):
+           re.search(r"\b(between|passed|since|have passed|had passed|before|after)\b", ql):
             m = re.search(r"\bhow (?:many|much)\s+(days?|weeks?|months?)\b", ql)
             u = m.group(1).rstrip("s")
             _dd_unit = {"day": "days", "week": "weeks", "month": "months"}.get(u, u + "s")
