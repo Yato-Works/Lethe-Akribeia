@@ -285,7 +285,8 @@ class Executor:
             # conjunction, quote) — those are clause fragments, not values.
             _clause_starters = ("the ", "a ", "an ", "your ", "my ", "and ",
                                 "or ", "but ", "with ", "\"", "'", "along ",
-                                "for ", "to ", "of ")
+                                "for ", "to ", "of ", "'s ", "s name", "s the",
+                                "it ", "its ", "their ", "his ", "her ")
             # reject values carrying stray quote/punctuation artifacts — a
             # clean slot value has none
             _bad_chars = ('"', "!", "...", "—")
