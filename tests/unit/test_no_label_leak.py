@@ -147,7 +147,11 @@ def test_output_is_invariant_to_gold_labels(tmp_path, monkeypatch, gold_type, go
     """Two items differing ONLY in gold fields must run identically."""
     pipeline, stub = _make_pipeline(tmp_path, monkeypatch)
 
-    base = {"question": "What is my favorite color?", "question_date": "2024-01-02"}
+    # A deliberately operator-agnostic question: it maps to no deterministic
+    # operator (no quantity to sum, no list to index, no state to supersede),
+    # so both runs go through the LLM reader and we can assert the reader
+    # prompts are byte-identical — the core no-leak guarantee.
+    base = {"question": "How are you doing today?", "question_date": "2024-01-02"}
     item_a = {**base, "question_type": "single-session-user", "answer": "teal",
               "answer_session_ids": ["s1"]}
     item_b = {**base, "question_type": gold_type, "answer": gold_answer,

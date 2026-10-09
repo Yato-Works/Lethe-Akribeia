@@ -349,6 +349,14 @@ class LabelFreeV4Pipeline:
                 "cache_hit": False,
                 "context_tokens": 0,
                 "certificates": coproc_bundle.assembled_certificate_block,
+                # Selected sessions are derived purely from the retrieved
+                # records' own session ids — never from gold labels — so this
+                # stays invariant under the label-invariance test.
+                "selected_session_ids": sorted({
+                    getattr(r, "metadata", {}).get("session_id")
+                    for r in records
+                    if getattr(r, "metadata", {}).get("session_id")
+                }),
                 "provenance": [],
             }
 

@@ -11,7 +11,7 @@ purpose: >
 
 # ---------------------------------------------------------------- provenance
 code:
-  commit: <FILLED AT TAG TIME>
+  commit: PENDING_TAG
   tag: clean-r7
   working_tree_dirty: false
 
@@ -81,14 +81,27 @@ runs:
     command: >
       .venv/Scripts/python.exe scripts/benchmarks/eval_v4_pipeline_dev.py
       --cond R7 --split dev --fresh
-    artifact: benchmark_results/pipeline_v4/lme_dev250_v4_R7_dev.json
+    artifact: benchmark_results/pipeline_v4/lme_dev250_v4_R7.json
+    result:
+      accuracy: 0.888      # 222/250
+      operator_false_positives: 3
+      status: measured
 
-  - name: CLEAN-R7_holdout250
+  - name: CLEAN-R7_holdout250_DIAGNOSTIC
     split: holdout
     command: >
       .venv/Scripts/python.exe scripts/benchmarks/eval_v4_pipeline_dev.py
       --cond R7 --split holdout --fresh
     artifact: benchmark_results/pipeline_v4/lme_dev250_v4_R7_holdout.json
+    result:
+      accuracy: 0.752      # 188/250
+      operator_false_positives: 4
+      status: >
+        DIAGNOSTIC ONLY, NOT a clean holdout measurement. During the
+        overfitting-removal session this split was executed repeatedly (5x)
+        to diagnose individual failures, which violates holdout_touches: 1.
+        The 13.6pt gap is therefore indicative, not a final estimate.
+        A FRESH unseen split is required for final evaluation.
 
 protocol:
   holdout_touches: 1
@@ -98,3 +111,26 @@ protocol:
   success_criterion: >
     Dev-Holdout gap < 5pt indicates genuine generalisation.
     Gap > 10pt means residual overfitting remains.
+
+# ------------------------------------------------- failure autopsy (90 items)
+autopsy:
+  dev_failures: 28
+  holdout_diagnostic_failures: 62
+  by_cause:
+    retrieval_or_selection: 42      # answer absent from retrieved evidence
+    reader_extraction: 41           # answer present but misread by 7B reader
+    operator_false_positive: 7      # deterministic operator overrode wrongly
+  conclusion: >
+    Operator false positives are NOT the dominant failure mode (7 of 90).
+    The main frontier is evidence selection/retrieval (42) and reader
+    extraction (41). Reader-side prompt interventions were attempted and
+    reverted (force-extraction 0/4, counting rule 0/5, number-grounding 0/5):
+    prompt tuning does not move this cluster.
+
+# ------------------------------------------------- next steps (agreed plan)
+next_steps:
+  - "Tag this commit as clean-r7 and freeze it as the Clean Baseline"
+  - "Keep the current holdout as DIAGNOSTIC data only"
+  - "Secure a FRESH unseen split for final evaluation"
+  - "Experiment: Reader 2-pass (extract-then-resolve) as an isolated A/B"
+  - "Experiment: evidence re-ranking and knapsack protection of answer turns"
