@@ -204,8 +204,19 @@ def _detect_unit(ql: str) -> str | None:
         if m2 and m2.group(1).rstrip("s") in _COUNTABLE_HEADS:
             return m2.group(1)
     # 2. Fall back to any explicit unit word in the question
+    #    A time unit governed by a WINDOW word (past/last/recent/over/in the
+    #    ... months) describes the window, not the counted unit — 'total weight
+    #    of feed in the past two months' sums POUNDS, not months.  Skip a time
+    #    unit that appears inside a window phrase.
     words = re.findall(r"[a-z]+", ql)
+    _window_units = set()
+    for _wm in re.finditer(
+            r"\b(?:past|last|recent|previous|over|within|these|those|in the)\s+"
+            r"(?:\w+\s+){0,2}?(hours?|minutes?|days?|weeks?|months?|years?)\b", ql):
+        _window_units.add(_wm.group(1))
     for w in words:
+        if w in _window_units:
+            continue
         if w in _UNIT_WORDS:
             return _UNIT_WORDS[w]
     return None
