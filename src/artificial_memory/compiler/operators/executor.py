@@ -144,6 +144,24 @@ class Executor:
             distinct_sources = {o.source for o in obs}
             if len(distinct_sources) > 8:
                 return None, f"[SUM] {len(distinct_sources)} distinct sources; distractor-heavy; defer to LLM"
+            # CONFIDENCE GATE: a single source carrying many same-unit values
+            # (e.g. a turn listing '$5,000, $15,000, $20,000 ...' as illustrative
+            # figures) is reference material, not the user's own quantities.
+            # A real contribution is one value per source.  Collapse each source
+            # to its single value and drop sources that carry a suspicious pile.
+            _per_source: dict[str, list] = {}
+            for o in obs:
+                _per_source.setdefault(o.source, []).append(o)
+            collapsed = []
+            for _src, _lst in _per_source.items():
+                if len(_lst) > 3:
+                    # >3 same-unit values in one turn is a distractor list;
+                    # take only the first (the salient one) if the turn asserts
+                    # a single topic value, else defer.
+                    collapsed.extend(_lst[:1])
+                else:
+                    collapsed.extend(_lst)
+            obs = collapsed
             total = sum(_num(o) for o in obs)
             out_unit = _unit(obs[0])
             terms = " + ".join(o.value for o in obs)
