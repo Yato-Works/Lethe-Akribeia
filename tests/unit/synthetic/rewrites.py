@@ -197,8 +197,31 @@ def rewrite_count(item: SyntheticItem, seed: int) -> SyntheticItem:
     """
     rng = make_rng(seed)
     turns = list(item.turns)
-    extra_n = rng.randint(2, 30)
     new_date = "2099-01-01"
+
+    # State / lookup operators are not count-sensitive.  Appending a
+    # topic-less quantity turn must be IGNORED by a correctly topic-scoped
+    # operator, so the answer is unchanged — that is exactly what we assert.
+    if item.operator in ("SUPERSEDES", "ORDER_FIRST", "SLOT_LOOKUP", "INDEX", "HOP_CHAIN"):
+        extra_n = rng.randint(2, 30)
+        extra = SyntheticTurn(
+            speaker="user",
+            text=f"On {new_date} I also spent {extra_n} hours on something else.",
+            date=new_date,
+            session_id=f"s{len({t.session_id for t in turns})}",
+        )
+        turns.append(extra)
+        return SyntheticItem(
+            item_id=f"{item.item_id}_cnt",
+            question=item.question,
+            turns=tuple(turns),
+            expected=item.expected,   # unchanged — distractor must be ignored
+            operator=item.operator,
+            family="count",
+            provenance=f"{item.provenance}<-count:{seed}",
+        )
+
+    extra_n = rng.randint(2, 30)
     # Match the unit of the base item so the appended turn is a genuine
     # additional data point for the SAME quantity (not a unit-mismatched one).
     base_unit = item.expected.split()[-1] if item.expected else "hours"

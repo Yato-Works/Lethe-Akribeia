@@ -8,6 +8,7 @@ structurally impossible: execution has no topic to dispatch on.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Sequence
 
@@ -196,14 +197,22 @@ class Executor:
             return str(_fmt_num(gap)), f"[GAP] {_fmt_num(target)} - {_fmt_num(current)} = {_fmt_num(gap)}"
 
         if isinstance(node, A.Supersedes):
-            obs = self._collect_state(node.topic, records, None)
+            obs = self._collect_state(node.topic, records, None,
+                                      topic_terms=node.topic_terms)
             dated = [(parse_date(o.date) or parse_date(o.source), o) for o in obs]
             dated = [(d, o) for d, o in dated if d is not None]
             if len(dated) < 2:
                 return None, "[SUPERSEDES] need >=2 dated observations"
             dated.sort(key=lambda x: x[0])
             chosen = dated[-1][1] if node.want == "latest" else dated[0][1]
-            return chosen.value, f"[SUPERSEDES {node.want}] {chosen.value}"
+            # Extract the topic-scoped value PHRASE, never the raw turn text.
+            # A raw header like "[session on date] User: ..." is never a valid
+            # answer, so we refuse (return None -> LLM handles it) rather than
+            # override with noise.
+            phrase = self._topic_phrase(chosen.value, node.topic_terms)
+            if not phrase:
+                return None, "[SUPERSEDES] no clean value phrase; defer to LLM"
+            return phrase, f"[SUPERSEDES {node.want}] {phrase}"
 
         if isinstance(node, A.OrderFirst):
             obs = extract_events(records)
@@ -225,6 +234,30 @@ class Executor:
             return val, f"[SLOT_LOOKUP] {first}"
 
         return None, f"[UNSUPPORTED_NODE] {type(node).__name__}"
+
+    @staticmethod
+    def _topic_phrase(text: str, topic_terms: tuple) -> str | None:
+        """Extract the topic-scoped value phrase from a raw turn.
+
+        Strips the conversation header (``[session on date] Role:``) and
+        returns the sentence that mentions the topic entity.  Never returns the
+        raw turn text: if no topic-bearing sentence is found, returns None so
+        the caller defers to the LLM instead of overriding with noise.
+        """
+        # strip header prefix like "[sess on 2023/...] User:"
+        body = re.sub(r"^\s*\[[^\]]*\]\s*\w*:?\s*", "", text)
+        sentences = re.split(r"(?<=[.!?])\s+", body)
+        terms = [t.lower() for t in topic_terms]
+        for s in sentences:
+            sl = s.lower()
+            for t in terms:
+                b = t[:-1] if t.endswith("s") else t
+                if t in sl or b in sl:
+                    phrase = s.strip().rstrip(".,;:")
+                    # sanity: a usable phrase is short and non-empty
+                    if 2 <= len(phrase.split()) <= 40:
+                        return phrase
+        return None
 
     @staticmethod
     def _dedup_same_source(obs):
@@ -281,18 +314,32 @@ class Executor:
                 return self._collect(child, records)
         return extract_numeric(records)
 
-    def _collect_state(self, node: A.Node, records: Sequence, _unused) -> list[Observation]:
+    def _collect_state(self, node: A.Node, records: Sequence, _unused,
+                       topic_terms: tuple = ()) -> list[Observation]:
         """Collect dated text observations for state evolution (SUPERSEDES).
 
         Unlike numeric extraction, a 'state' is any dated utterance; we keep
-        them all and let date-ordering pick the latest/earliest.
+        them all and let date-ordering pick the latest/earliest.  When
+        ``topic_terms`` is given, only records mentioning the topic entity are
+        kept, so an unrelated later turn cannot hijack the 'latest' pick.
         """
         out: list[Observation] = []
+        terms = [t.lower() for t in topic_terms]
         for r in records:
             text = _text_of(r)
             date = _date_of(r)
             if not text or not date:
                 continue
+            if terms:
+                low = text.lower()
+                base_hit = False
+                for t in terms:
+                    b = t[:-1] if t.endswith("s") else t
+                    if t in low or b in low:
+                        base_hit = True
+                        break
+                if not base_hit:
+                    continue
             out.append(Observation(value=text, source=text, date=date))
         return out
 

@@ -85,6 +85,7 @@ class QueryParser:
             return A.Supersedes(
                 topic=A.Extract(concept="state"),
                 want="earliest" if any(c in ql for c in _PREVIOUS_CUES) else "latest",
+                topic_terms=tuple(_topic_terms(ql)),
             )
 
         # 4b. ORDER_FIRST — which of several events happened earliest
@@ -194,6 +195,34 @@ def _detect_scope(question: str) -> str | None:
     """
     m = re.search(r"\b(?:in|for|at|of)\s+([A-Z][a-zA-Z]+)\b", question)
     return m.group(1) if m else None
+
+
+_TOPIC_STOP = frozenset({
+    "where", "what", "when", "which", "currently", "keep", "kept", "store",
+    "stored", "have", "has", "had", "the", "my", "your", "are", "were",
+    "with", "that", "this", "into", "from", "does", "did", "done", "now",
+    "these", "days", "there", "their", "them", "then", "than", "also",
+})
+
+
+def _topic_terms(ql: str) -> list[str]:
+    """Content words that identify the topic entity of a state question.
+
+    e.g. 'where do i keep my brass compasses' -> ['compasses'].  Used by
+    SUPERSEDES to pick the value phrase from a dated observation instead of
+    returning the whole raw turn text.
+    """
+    words = re.findall(r"[a-z]+", ql)
+    terms = [w for w in words if len(w) >= 4 and w not in _TOPIC_STOP]
+    out: list[str] = []
+    seen: set[str] = set()
+    for w in terms:
+        base = w[:-1] if w.endswith("s") else w
+        if base in seen:
+            continue
+        seen.add(base)
+        out.append(w)
+    return out
 
 
 def _is_state_question(ql: str) -> bool:

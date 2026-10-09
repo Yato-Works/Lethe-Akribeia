@@ -91,6 +91,8 @@ class Supersedes(Node):
     """Latest-dated observation of a topic supersedes earlier ones."""
     topic: Node
     want: str = "latest"   # "latest" | "earliest"
+    topic_terms: tuple = ()  # scope words (e.g. "sneakers", "compasses")
+                              # used to pick the value phrase, not the whole turn
 
 
 @dataclass(frozen=True)
@@ -148,7 +150,8 @@ def render(node: Node) -> str:
     if isinstance(node, Gap):
         return f"GAP({render(node.target)} - {render(node.current)})"
     if isinstance(node, Supersedes):
-        return f'SUPERSEDES({render(node.topic)}, want="{node.want}")'
+        terms = f", terms={list(node.topic_terms)}" if node.topic_terms else ""
+        return f'SUPERSEDES({render(node.topic)}, want="{node.want}"{terms})'
     if isinstance(node, OrderFirst):
         return f'ORDER_FIRST({render(node.operand)}, want="{node.want}")'
     if isinstance(node, SlotLookup):
