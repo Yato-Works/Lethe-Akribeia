@@ -126,7 +126,13 @@ class QueryParser:
 
         # 6. COUNT / UNION over events or persons
         concept = _detect_concept(ql)
-        if concept and any(c in ql for c in _COUNT_CUES):
+        # A COUNT counts objects/people/events, never elapsed time.  "How many
+        # weeks ago did I attend X" and "how many months have passed since Y"
+        # are duration probes — the answer is a single interval, not a count.
+        _duration_probe = bool(re.search(
+            r"\bhow (?:many|much)\s+(weeks?|months?|days?|hours?|minutes?|years?)\b"
+            r"[^.?]*\b(ago|passed|since|elapsed|have passed|spent|spend)\b", ql))
+        if concept and any(c in ql for c in _COUNT_CUES) and not _duration_probe:
             return A.Count(operand=A.Extract(concept=concept))
 
         return None
