@@ -304,6 +304,11 @@ def _is_state_question(ql: str) -> bool:
     # positive.  The LLM reader handles recall.
     if re.search(r"\b(remind me|looking back|going through|going over|recall)\b", ql):
         return False
+    # "How many projects have I led?" is a COUNT, not a state change.  A
+    # present-perfect ("have/has/had ... + past participle") describes
+    # accumulated history, not a fact superseded by a later value — defer.
+    if re.search(r"\b(have|has|had)\b[^.?]*\b(led|won|run|done|made|built|completed|finished|attended|visited|tried|seen|read|watched)\b", ql):
+        return False
     # "where are my X" / "where is my X" is inherently a state question even
     # without an explicit state verb in the phrasing.
     if re.search(r"\bwhere\s+(are|is)\s+(my|the)\b", ql):
