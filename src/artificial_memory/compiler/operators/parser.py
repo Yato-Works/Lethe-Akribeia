@@ -15,8 +15,12 @@ from artificial_memory.compiler.operators import ast_nodes as A
 
 # Generic operation cues (surface forms of the six cognitive operators).
 _SUM_CUES = (
-    "how many", "how much", "total", "in total", "altogether", "combined",
-    "sum", "overall",
+    # Explicit aggregate expressions ONLY.  A bare "how many / how much" is
+    # NOT a sum — it may be a COUNT ("how many cuisines"), a possession
+    # ("how many coins do I have"), or a duration ("how many weeks ago").
+    # Only an explicit total/combined cue licenses the SUM operator.
+    "in total", "altogether", "combined", "total number", "total amount",
+    "sum of", "overall total", "total ",
 )
 _COUNT_CUES = ("how many", "number of", "count")
 _LAST_CUES = ("last", "final", "most recent")
@@ -110,7 +114,7 @@ class QueryParser:
 
         # 5. SUM — a quantity distributed across the corpus
         unit = _detect_unit(ql)
-        if unit and any(c in ql for c in _SUM_CUES):
+        if unit and any(c in ql for c in _SUM_CUES) and "ago" not in ql:
             return A.Sum(operand=A.Extract(concept="numeric", unit=unit),
                          topic_terms=tuple(_topic_terms(ql)),
                          time_scope=_detect_time_scope(ql))
