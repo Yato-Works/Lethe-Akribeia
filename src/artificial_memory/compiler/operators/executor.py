@@ -267,7 +267,17 @@ class Executor:
             # (a name, a handle, a city) — never a clause.  A capture like
             # 'tant: Great! You can name it ...' (a ':' misparse) is a long
             # sentence fragment and must defer to the LLM, not override.
-            if not val or len(val.split()) > 6:
+            # Also reject values that start with a function word (article,
+            # conjunction, quote) — those are clause fragments, not values.
+            _clause_starters = ("the ", "a ", "an ", "your ", "my ", "and ",
+                                "or ", "but ", "with ", "\"", "'", "along ",
+                                "for ", "to ", "of ")
+            # reject values carrying stray quote/punctuation artifacts — a
+            # clean slot value has none
+            _bad_chars = ('"', "!", "...", "—")
+            if (not val or len(val.split()) > 6
+                    or val.lower().startswith(_clause_starters)
+                    or any(c in val for c in _bad_chars)):
                 return None, "[SLOT_LOOKUP] value is a sentence fragment; defer to LLM"
             return val.strip(), f"[SLOT_LOOKUP] {first}"
 
