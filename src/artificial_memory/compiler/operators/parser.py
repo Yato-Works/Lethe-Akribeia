@@ -212,7 +212,7 @@ def _detect_concept(ql: str) -> str | None:
     return None
 
 
-_STATE_VERBS = ("keep", "store", "live", "move", "work", "own", "have", "use")
+_STATE_VERBS = ("keep", "store", "live", "move", "kept", "stored", "moved")
 
 
 def _detect_slot_attribute(ql: str) -> str | None:
