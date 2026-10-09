@@ -34,7 +34,8 @@ class QueryOperatorEngine:
         self.parser = QueryParser()
         self.executor = Executor()
 
-    def run(self, question: str, records: Sequence) -> OperatorOutcome:
+    def run(self, question: str, records: Sequence,
+            reference_date: str | None = None) -> OperatorOutcome:
         ast = self.parser.parse(question)
         if ast is None:
             return OperatorOutcome(
@@ -46,7 +47,7 @@ class QueryOperatorEngine:
         # content words.  This is a dataset-agnostic relevance filter, NOT a
         # benchmark shortcut — it holds for any "how many <topic> ..." query.
         scoped = self._scope_to_topic(ast, question, records)
-        res: ExecutionResult = self.executor.execute(ast, scoped)
+        res: ExecutionResult = self.executor.execute(ast, scoped, reference_date=reference_date)
         return OperatorOutcome(
             has_result=res.has_result,
             answer=res.answer,

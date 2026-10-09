@@ -23,6 +23,7 @@ from artificial_memory.compiler.certificates.temporal_certificate import (
     TemporalCertificateEngine,
 )
 from artificial_memory.compiler.execution_planner import ExecutionPlan
+from artificial_memory.compiler.operators.engine import OperatorOutcome, QueryOperatorEngine
 from artificial_memory.core.ir.structured import StructuredIR
 
 
@@ -34,6 +35,7 @@ class CoProcessorBundle:
     profile_cert: ProfileCertificate
     assembled_certificate_block: str
     deterministic_answer_override: str | None
+    operator_outcome: OperatorOutcome | None = None
 
 
 class CoProcessorEngine:
@@ -43,6 +45,10 @@ class CoProcessorEngine:
         self.temporal_engine = TemporalCertificateEngine()
         self.aggregation_engine = AggregationCertificateEngine()
         self.profile_engine = ProfileCertificateEngine()
+        # Generalised operator engine (CLEAN-R7 rebuild).  Validated by the
+        # synthetic counterfactual suite; extracts values from records at run
+        # time, so it cannot overfit the way the R8.1 compiler did.
+        self.operator_engine = QueryOperatorEngine()
 
     def process(
         self,
@@ -50,17 +56,37 @@ class CoProcessorEngine:
         records: Sequence[StructuredIR],
         plan: ExecutionPlan,
         reference_date: str | None = None,
+        operator_records: Sequence[StructuredIR] | None = None,
     ) -> CoProcessorBundle:
-        """Execute co-processors based on the execution plan's demand signals."""
+        """Execute co-processors based on the execution plan's demand signals.
+
+        ``operator_records`` optionally narrows the record set the operator
+        engine sees.  A SUM over the FULL corpus would add distractor
+        quantities from unrelated sessions; the retrieval stage already
+        selected the relevant candidate records, so the operator should reason
+        over those.  Falls back to ``records`` when not provided.
+        """
         blocks: list[str] = []
         override_answer: str | None = None
+
+        # 0. Generalised Operator Engine (SUM/UNION/COUNT/INDEX/RATIO/GAP/
+        #    SUPERSEDES/ORDER_FIRST/SLOT_LOOKUP).  Runs FIRST and, on success,
+        #    provides a deterministic 0-token override with an auditable proof.
+        #    When it fires, it wins: the heuristic certs below may still emit
+        #    their certificate blocks for provenance, but must NOT overwrite a
+        #    deterministic operator answer.
+        op_outcome = self.operator_engine.run(question, operator_records if operator_records is not None else records, reference_date=reference_date)
+        op_has_override = bool(op_outcome.has_result and op_outcome.answer)
+        if op_has_override:
+            blocks.append(op_outcome.proof)
+            override_answer = op_outcome.answer
 
         # 1. Temporal Co-processor (Chronos)
         t_cert = self.temporal_engine.generate(question, records, reference_date)
         if t_cert.has_certificate:
             blocks.append(t_cert.formatted_certificate)
             # High-confidence deterministic override for pure mathematical calendar differences or verified certificates
-            if t_cert.direct_answer_candidate:
+            if t_cert.direct_answer_candidate and not op_has_override:
                 if (
                     plan.temporal_demand >= 0.85
                     and t_cert.query_type in ("recency", "interval")
@@ -82,7 +108,7 @@ class CoProcessorEngine:
             a_cert = self.aggregation_engine.generate(question, records)
             if a_cert.has_certificate:
                 blocks.append(a_cert.formatted_certificate)
-                if a_cert.query_type in ("arithmetic_diff", "counting") and a_cert.direct_answer_candidate:
+                if a_cert.query_type in ("arithmetic_diff", "counting") and a_cert.direct_answer_candidate and not op_has_override:
                     override_answer = a_cert.direct_answer_candidate
         if not a_cert:
             from artificial_memory.compiler.certificates.aggregation_certificate import AggregationCertificate
@@ -97,6 +123,9 @@ class CoProcessorEngine:
         if p_cert.has_certificate:
             blocks.append(p_cert.formatted_certificate)
 
+        # A successful operator result is a fully deterministic answer derived
+        # from the records — it takes precedence over the heuristic certs, but
+        # ONLY the operator may claim the override once it has produced one.
         assembled = "\n\n".join(blocks) if blocks else ""
 
         return CoProcessorBundle(
@@ -105,4 +134,5 @@ class CoProcessorEngine:
             profile_cert=p_cert,
             assembled_certificate_block=assembled,
             deterministic_answer_override=override_answer,
+            operator_outcome=op_outcome,
         )

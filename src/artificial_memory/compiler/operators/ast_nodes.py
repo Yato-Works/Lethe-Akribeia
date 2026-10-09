@@ -47,6 +47,8 @@ class Sum(Node):
     operand: Node
     topic_terms: tuple = ()  # scope words; quantities must come from records
                              # mentioning the topic, else defer to the LLM
+    time_scope: str | None = None  # relative window ("last_month", "last_year");
+                                   # quantities outside the window are dropped
 
 
 @dataclass(frozen=True)
@@ -135,7 +137,9 @@ def render(node: Node) -> str:
             parts.append(f', action="{node.action}"')
         return "".join(parts) + ")"
     if isinstance(node, Sum):
-        return f"SUM({render(node.operand)})"
+        terms = f", terms={list(node.topic_terms)}" if node.topic_terms else ""
+        scope = f', scope="{node.time_scope}"' if node.time_scope else ""
+        return f"SUM({render(node.operand)}{terms}{scope})"
     if isinstance(node, Union):
         return f'UNION({render(node.operand)}, dedup="{node.dedup_key}")'
     if isinstance(node, Count):

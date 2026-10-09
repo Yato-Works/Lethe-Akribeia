@@ -58,10 +58,11 @@ def _unit(obs: Observation) -> str:
 class Executor:
     """Executes an Operator AST deterministically.  No question string in."""
 
-    def execute(self, ast: A.Node, records: Sequence) -> ExecutionResult:
+    def execute(self, ast: A.Node, records: Sequence,
+                reference_date: str | None = None) -> ExecutionResult:
         rendered = A.render(ast)
         try:
-            answer, proof = self._eval(ast, records)
+            answer, proof = self._eval(ast, records, reference_date)
         except Exception as exc:  # a crash must never fabricate an answer
             return ExecutionResult(
                 has_result=False, answer=None,
@@ -74,7 +75,8 @@ class Executor:
 
     # ------------------------------------------------------------------ #
 
-    def _eval(self, node: A.Node, records: Sequence) -> tuple[str | None, str]:
+    def _eval(self, node: A.Node, records: Sequence,
+              reference_date: str | None = None) -> tuple[str | None, str]:
         if isinstance(node, A.Extract):
             return self._eval_extract(node, records)
 
@@ -84,7 +86,7 @@ class Executor:
             # countable quantity exists under a hypernym noun; the SUM body
             # handles that with its own fallback, so an early None here would
             # wrongly suppress it.
-            _inner, proof = self._eval(node.operand, records)
+            _inner, proof = self._eval(node.operand, records, reference_date)
             unit = self._unit_of(node.operand)
             obs = extract_numeric(records, unit=unit)
             # Unit-agnostic fallback: when the question's counted unit (e.g.
@@ -119,6 +121,20 @@ class Executor:
             # topic, we defer to the LLM rather than override with noise.
             if node.topic_terms and not self._all_topic_scoped(obs, node.topic_terms):
                 return None, "[SUM] untrusted sources; defer to LLM"
+            # TIME-SCOPE FILTER: a relative window ("last month", "past few
+            # months") must bound the sum.  Without a reference date we cannot
+            # resolve the window, so we defer to the LLM rather than sum the
+            # entire history.  With one, drop quantities dated outside the
+            # window; if any lack a resolvable date, defer (never guess).
+            if node.time_scope:
+                if not reference_date:
+                    return None, "[SUM] relative window without reference date; defer to LLM"
+                windowed = self._filter_by_window(obs, node.time_scope, reference_date)
+                if windowed is None:
+                    return None, "[SUM] undated quantity in window; defer to LLM"
+                obs = windowed
+                if not obs:
+                    return None, "[SUM] no quantities in window; defer to LLM"
             total = sum(_num(o) for o in obs)
             out_unit = _unit(obs[0])
             terms = " + ".join(o.value for o in obs)
@@ -241,6 +257,38 @@ class Executor:
             return val, f"[SLOT_LOOKUP] {first}"
 
         return None, f"[UNSUPPORTED_NODE] {type(node).__name__}"
+
+    @staticmethod
+    def _filter_by_window(obs, time_scope: str, reference_date: str):
+        """Keep observations whose date falls in the relative window.
+
+        Returns the filtered list, or None if any observation lacks a
+        resolvable date (so the caller defers to the LLM rather than summing a
+        partially-dated set).  Window is measured back from ``reference_date``.
+        """
+        from datetime import datetime, timedelta
+        ref = parse_date(reference_date)
+        if ref is None:
+            return None
+        windows = {
+            "last_week": timedelta(days=7),
+            "last_month": timedelta(days=31),
+            "last_year": timedelta(days=366),
+            "past_weeks": timedelta(days=28),
+            "past_months": timedelta(days=120),
+        }
+        delta = windows.get(time_scope)
+        if delta is None:
+            return None
+        start = ref - delta
+        kept = []
+        for o in obs:
+            d = parse_date(o.date) or parse_date(o.source)
+            if d is None:
+                return None  # undated -> cannot confirm it is in-window
+            if start <= d <= ref:
+                kept.append(o)
+        return kept
 
     @staticmethod
     def _all_topic_scoped(obs, topic_terms: tuple) -> bool:

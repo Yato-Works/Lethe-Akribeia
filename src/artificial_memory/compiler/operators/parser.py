@@ -104,7 +104,8 @@ class QueryParser:
         unit = _detect_unit(ql)
         if unit and any(c in ql for c in _SUM_CUES):
             return A.Sum(operand=A.Extract(concept="numeric", unit=unit),
-                         topic_terms=tuple(_topic_terms(ql)))
+                         topic_terms=tuple(_topic_terms(ql)),
+                         time_scope=_detect_time_scope(ql))
 
         # 6. COUNT / UNION over events or persons
         concept = _detect_concept(ql)
@@ -208,6 +209,30 @@ _TOPIC_STOP = frozenset({
     "including", "combined", "across", "sessions", "session", "number",
     "count", "long", "time", "times", "went", "gone", "been", "being",
 })
+
+
+def _detect_time_scope(ql: str) -> str | None:
+    """Detect a relative time window in the question.
+
+    Returns a canonical token ('last_week', 'last_month', 'last_year',
+    'past_months', 'past_week') when the question restricts the quantity to a
+    relative window ("last month", "past few months", "previous year").  SUM
+    uses this to drop quantities outside the window instead of summing the
+    entire history.  Returns None when no relative window is expressed.
+    """
+    if re.search(r"\blast (?:week|7 days)\b", ql):
+        return "last_week"
+    if re.search(r"\blast month\b", ql):
+        return "last_month"
+    if re.search(r"\blast year\b", ql):
+        return "last_year"
+    if re.search(r"\bpast (?:few |several |couple of )?months?\b", ql):
+        return "past_months"
+    if re.search(r"\bpast (?:few |several )?weeks?\b", ql):
+        return "past_weeks"
+    if re.search(r"\bpast year\b", ql):
+        return "last_year"
+    return None
 
 
 def _topic_terms(ql: str) -> list[str]:
