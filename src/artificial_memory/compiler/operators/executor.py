@@ -135,6 +135,14 @@ class Executor:
                 obs = windowed
                 if not obs:
                     return None, "[SUM] no quantities in window; defer to LLM"
+            # CONFIDENCE GATE: a legit distributed quantity lives in a handful
+            # of turns.  If the same-unit values come from many distinct
+            # records, the corpus is distractor-heavy and the total is
+            # untrustworthy (e.g. 'how many hours playing games' summed 1675h
+            # from unrelated turns).  Defer to the LLM rather than emit noise.
+            distinct_sources = {o.source for o in obs}
+            if len(distinct_sources) > 8:
+                return None, f"[SUM] {len(distinct_sources)} distinct sources; distractor-heavy; defer to LLM"
             total = sum(_num(o) for o in obs)
             out_unit = _unit(obs[0])
             terms = " + ".join(o.value for o in obs)
