@@ -103,7 +103,8 @@ class QueryParser:
         # 5. SUM — a quantity distributed across the corpus
         unit = _detect_unit(ql)
         if unit and any(c in ql for c in _SUM_CUES):
-            return A.Sum(operand=A.Extract(concept="numeric", unit=unit))
+            return A.Sum(operand=A.Extract(concept="numeric", unit=unit),
+                         topic_terms=tuple(_topic_terms(ql)))
 
         # 6. COUNT / UNION over events or persons
         concept = _detect_concept(ql)
@@ -202,6 +203,10 @@ _TOPIC_STOP = frozenset({
     "stored", "have", "has", "had", "the", "my", "your", "are", "were",
     "with", "that", "this", "into", "from", "does", "did", "done", "now",
     "these", "days", "there", "their", "them", "then", "than", "also",
+    # generic question/quantity fillers — never a topic entity
+    "many", "much", "total", "spend", "spent", "since", "started", "again",
+    "including", "combined", "across", "sessions", "session", "number",
+    "count", "long", "time", "times", "went", "gone", "been", "being",
 })
 
 

@@ -225,9 +225,20 @@ def rewrite_count(item: SyntheticItem, seed: int) -> SyntheticItem:
     # Match the unit of the base item so the appended turn is a genuine
     # additional data point for the SAME quantity (not a unit-mismatched one).
     base_unit = item.expected.split()[-1] if item.expected else "hours"
+    # Include a topic word so a topic-scoped operator trusts this turn as a
+    # genuine same-topic data point (a topic-less "doing it" would be — and
+    # should be — rejected by the confidence gate).
+    topic_word = "the same activity"
+    if item.operator == "SUM":
+        # reuse the QUESTION's topic entity so the added turn is on-topic
+        import re as _re
+        qwords = [w for w in _re.findall(r"[a-z]+", item.question.lower())
+                  if len(w) >= 5 and w not in ("total", "spend", "spent", "since")]
+        if qwords:
+            topic_word = qwords[-1]
     extra = SyntheticTurn(
         speaker="user",
-        text=f"On {new_date} I also spent {extra_n} {base_unit} doing it.",
+        text=f"On {new_date} I also spent {extra_n} {base_unit} on {topic_word}.",
         date=new_date,
         session_id=f"s{len({t.session_id for t in turns})}",
     )

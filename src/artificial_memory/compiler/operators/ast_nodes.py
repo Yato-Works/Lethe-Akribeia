@@ -45,6 +45,8 @@ class Extract(Node):
 @dataclass(frozen=True)
 class Sum(Node):
     operand: Node
+    topic_terms: tuple = ()  # scope words; quantities must come from records
+                             # mentioning the topic, else defer to the LLM
 
 
 @dataclass(frozen=True)

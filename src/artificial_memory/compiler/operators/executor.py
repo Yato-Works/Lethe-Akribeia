@@ -112,6 +112,13 @@ class Executor:
                 obs = self._dedup_same_source(completed or countable)
             if not obs:
                 return None, proof
+            # CONFIDENCE GATE: every summed quantity must come from a record
+            # that mentions the question's topic.  A distractor-heavy corpus
+            # carries unrelated same-unit quantities ("6 years", "1000
+            # classes") that would pollute the total; if ANY source lacks the
+            # topic, we defer to the LLM rather than override with noise.
+            if node.topic_terms and not self._all_topic_scoped(obs, node.topic_terms):
+                return None, "[SUM] untrusted sources; defer to LLM"
             total = sum(_num(o) for o in obs)
             out_unit = _unit(obs[0])
             terms = " + ".join(o.value for o in obs)
@@ -234,6 +241,29 @@ class Executor:
             return val, f"[SLOT_LOOKUP] {first}"
 
         return None, f"[UNSUPPORTED_NODE] {type(node).__name__}"
+
+    @staticmethod
+    def _all_topic_scoped(obs, topic_terms: tuple) -> bool:
+        """True iff every observation's source mentions a topic term.
+
+        Used as a confidence gate: if any contributing quantity comes from a
+        record unrelated to the question's topic, the aggregate is untrustworthy
+        and we defer to the LLM instead of overriding.
+        """
+        terms = [t.lower() for t in topic_terms]
+        if not terms:
+            return True
+        for o in obs:
+            src = (o.source or "").lower()
+            hit = False
+            for t in terms:
+                b = t[:-1] if t.endswith("s") else t
+                if t in src or b in src:
+                    hit = True
+                    break
+            if not hit:
+                return False
+        return True
 
     @staticmethod
     def _topic_phrase(text: str, topic_terms: tuple) -> str | None:
