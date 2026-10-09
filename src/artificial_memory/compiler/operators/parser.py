@@ -63,6 +63,7 @@ class QueryParser:
             return A.Gap(
                 target=A.Extract(concept="numeric", unit="points"),
                 current=A.Extract(concept="numeric", unit="points"),
+                topic_terms=tuple(_topic_terms(ql)),
             )
 
         # 2. RATIO — a percentage / fraction of two quantities
@@ -71,6 +72,7 @@ class QueryParser:
                 numerator=A.Extract(concept="numeric"),
                 denominator=A.Extract(concept="numeric"),
                 as_percent=True,
+                topic_terms=tuple(_topic_terms(ql)),
             )
 
         # 3. INDEX — nth item, or last item

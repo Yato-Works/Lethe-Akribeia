@@ -197,10 +197,15 @@ class Executor:
 
         if isinstance(node, A.Ratio):
             num_obs = extract_numeric(records)
-            # numerator = first matching, denominator = second distinct value
+            # CONFIDENCE GATE: numerator and denominator must be topic-scoped
+            # and there must be EXACTLY two candidate values.  A distractor-
+            # heavy corpus carries unrelated numbers that would otherwise be
+            # picked by position and produce a nonsense ratio.
+            if node.topic_terms:
+                num_obs = [o for o in num_obs if self._all_topic_scoped([o], node.topic_terms)]
+            if len(num_obs) != 2:
+                return None, f"[RATIO] need exactly 2 topic values, got {len(num_obs)}; defer to LLM"
             vals = [(_num(o), o) for o in num_obs]
-            if len(vals) < 2:
-                return None, "[RATIO] need two numeric values"
             (n_num, n_obs), (d_num, d_obs) = vals[0], vals[1]
             if d_num == 0:
                 return None, "[RATIO] denominator is zero"
@@ -212,9 +217,13 @@ class Executor:
 
         if isinstance(node, A.Gap):
             num_obs = extract_numeric(records, unit="points")
+            # CONFIDENCE GATE: exactly two topic-scoped point values, so
+            # target/current are unambiguous.  Otherwise defer to the LLM.
+            if node.topic_terms:
+                num_obs = [o for o in num_obs if self._all_topic_scoped([o], node.topic_terms)]
+            if len(num_obs) != 2:
+                return None, f"[GAP] need exactly 2 topic points, got {len(num_obs)}; defer to LLM"
             nums = [_num(o) for o in num_obs]
-            if len(nums) < 2:
-                return None, "[GAP] need target and current points"
             target, current = max(nums), min(nums)
             gap = target - current
             return str(_fmt_num(gap)), f"[GAP] {_fmt_num(target)} - {_fmt_num(current)} = {_fmt_num(gap)}"

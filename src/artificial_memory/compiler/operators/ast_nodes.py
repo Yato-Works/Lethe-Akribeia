@@ -81,6 +81,7 @@ class Ratio(Node):
     numerator: Node
     denominator: Node
     as_percent: bool = True
+    topic_terms: tuple = ()  # numerator & denominator must be topic-scoped
 
 
 @dataclass(frozen=True)
@@ -88,6 +89,7 @@ class Gap(Node):
     """target - current, both extracted."""
     target: Node
     current: Node
+    topic_terms: tuple = ()  # the two point values must be topic-scoped
 
 
 @dataclass(frozen=True)
