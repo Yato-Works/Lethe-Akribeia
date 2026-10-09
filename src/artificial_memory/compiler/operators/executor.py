@@ -220,11 +220,19 @@ class Executor:
             items = extract_list(records, scope=node.scope)
             if not items:
                 return None, "[INDEX] no list found"
+            # CONFIDENCE GATE: an indexed value must be a clean list item, not a
+            # labeled field ('Customs Broker: responsible ...') or a header.
+            # A colon/bracket marks a label, never an item.
+            _idx_bad = lambda s: bool(s) and any(c in s for c in (":", "[", "{", "<", "\n")) and len(s.split()) > 8
             if node.selector == "last" or node.ordinal == -1:
                 chosen = items[-1]
+                if _idx_bad(chosen):
+                    return None, "[INDEX LAST] value is a labeled field; defer to LLM"
                 return chosen, f"[INDEX LAST] of {len(items)}: {chosen}"
             if 1 <= node.ordinal <= len(items):
                 chosen = items[node.ordinal - 1]
+                if _idx_bad(chosen):
+                    return None, f"[INDEX {node.ordinal}] value is a labeled field; defer to LLM"
                 return chosen, f"[INDEX {node.ordinal}] of {len(items)}: {chosen}"
             return None, f"[INDEX] ordinal {node.ordinal} out of range (len {len(items)})"
 
