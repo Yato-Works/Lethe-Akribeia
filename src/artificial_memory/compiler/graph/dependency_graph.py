@@ -142,4 +142,27 @@ class EvidenceDependencyGraph:
                 rationale=f"Anchored bundle for {anchor_id}",
             ))
 
+        # COVERAGE FIX (LoCoMo full-corpus audit).  Only ANCHOR nodes received
+        # bundles, so every non-anchor turn was structurally unreachable: it had
+        # no bundle, therefore could never be selected, therefore could never
+        # reach the reader.  Measured on the LoCoMo full corpus this was the
+        # dominant failure mode for inference questions -- for 35 of 41
+        # cat3 questions whose evidence turn was not retrieved, the answer turn
+        # lived in a session that WAS retrieved but was never an anchor.
+        # A conversation has 500-700 turns but only ~45 anchors, so the vast
+        # majority of turns (including most answer turns) were invisible.
+        # Give each remaining turn a single-node bundle so it can compete on
+        # its own merits instead of being structurally excluded.
+        for node_id, node in self.nodes.items():
+            if node_id in visited_nodes:
+                continue
+            visited_nodes.add(node_id)
+            bundles.append(EvidenceBundle(
+                bundle_id=f"B_{node_id}",
+                primary_node_id=node_id,
+                member_nodes=[node],
+                total_tokens=node.tokens,
+                rationale=f"Coverage bundle for unanchored turn {node_id}",
+            ))
+
         return bundles
