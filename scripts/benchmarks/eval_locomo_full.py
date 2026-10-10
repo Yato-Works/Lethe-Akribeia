@@ -317,6 +317,44 @@ def _scaled_budget(base_budget: int, pool_tokens: int,
     return int(max(base_budget, min(cap, max(floor, scaled))))
 
 
+def _enumeration_probe_turns(question: str, all_turns, retriever,
+                             already: set, max_extra: int = 6) -> list:
+    """Extra candidate turns for ENUMERATION questions.
+
+    A list-gold question ('what activities does Melanie do?') has its answer
+    items spread across many turns, and those turns are frequently lexically
+    unrelated to the question -- measured: the missing item's turn sits OUTSIDE
+    top-45 retrieval and carries anchor score 0.0, so neither a larger
+    retrieval window (base_top_k 45 -> 150 changed nothing) nor a bigger token
+    budget (550 -> 2400 still admitted only 3 of 4 items) can surface it.
+
+    Only 38% of list-gold questions have ALL their items in the reader context,
+    so the model returns a SUBSET -- and it cannot do otherwise, because the
+    remaining items were never shown to it.
+
+    Strategy: run a second retrieval pass using the question's PLURAL HEAD as
+    the query ('activities', 'events', 'books').  Each item-bearing turn usually
+    mentions that head noun, which the original question-only query does not
+    weight heavily.
+    """
+    import re as _re
+    m = _re.search(r"\b(activities|events|things|kinds|types|places|books|songs|movies|foods|dishes|hobbies|sports|games|names|cities|countries|states)\b",
+                   question.lower())
+    if not m:
+        return []
+    head = m.group(1)
+    extra, _scores = retriever.rank_turns(head, all_turns, top_k=max_extra * 3)
+    out = []
+    for t in extra:
+        key = (t[0], t[3])
+        if key in already:
+            continue
+        out.append(t)
+        if len(out) >= max_extra:
+            break
+    return out
+
+
 def build_reader_prompt(question: str, context: str) -> str:
     return (
         "[INSTRUCTION: EVIDENCE-FIRST ANSWERING]\n"
@@ -410,6 +448,17 @@ def run(args) -> None:
             cand = [t for t in all_turns if t[0] in top_sids]
             if not cand:
                 cand = list(top_turns[:25])
+
+            # ENUMERATION RECALL.  For list-gold questions the answer items
+            # live in turns that rank outside top-45 and score 0.0, so they are
+            # invisible to both the retriever and the knapsack.  Add a second
+            # pass keyed on the question's plural head so the missing items can
+            # compete at all.
+            _probe = _enumeration_probe_turns(
+                q["question"], all_turns, retriever,
+                already={(t[0], t[3]) for t in cand})
+            if _probe:
+                cand = cand + _probe
 
             # BUDGET CALIBRATION.  The per-mode budget is calibrated for SHORT
             # conversations; LoCoMo candidate pools run ~290 turns / ~9,000
