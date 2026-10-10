@@ -224,6 +224,15 @@ class V4CandidateRetriever:
                     elif diff_days <= 14:
                         score *= 1.4
 
+            # Event action & relative temporal anchor boost for 'when' queries
+            if _re.search(r"\bwhen\b", query, _re.I):
+                if _re.search(r"\b(went|attended|joined|ran|signed up|celebrated|visited|bought|started|finished|yesterday|last week|last night|last month|ago|last saturday|last friday|last sunday|last tuesday|last wednesday|last thursday)\b", content, _re.I):
+                    score *= 2.0
+                # Target speaker attribution boost
+                for q_spk in proper_nouns:
+                    if q_spk in speaker.lower():
+                        score *= 1.5
+
             scored.append((score, turn))
             turn_scores[(sid, content)] = score
 
@@ -508,7 +517,7 @@ def build_prompt(
             # frozen R0 baseline contract.
             + ("" if cond not in _COT_CONDS else
                "7. ARITHMETIC — compute step by step:\n"
-               "   - Money: read every digit and comma exactly ('$5,850' = 5850, NOT 6175). Sum only the user's own amounts; ignore illustrative reference figures.\n"
+               "   - Money: read every digit and comma exactly (a four-digit amount written with a thousands separator is that number of units, NOT a different figure). Sum only the user's own amounts; ignore illustrative reference figures.\n"
                "   - Elapsed time: subtract the earlier date from the later, then convert (7 days = 1 week, ~30 days = 1 month).\n"
                "   - Counting: enumerate items one by one and be careful with off-by-one (inclusive vs exclusive).\n")
             + "\n"
@@ -536,7 +545,7 @@ def build_prompt(
         + ("" if cond not in _COT_CONDS else
            "9. ARITHMETIC — compute step by step, never guess:\n"
            "   - Elapsed time ('how many days/weeks/months between X and Y', 'how long since'): find BOTH dates, subtract the earlier from the later, and divide to convert units (7 days = 1 week, ~30 days = 1 month). State the number and unit.\n"
-           "   - Money: read every digit and comma exactly ('$5,850' is five thousand eight hundred fifty, NOT $6175). Add the relevant amounts only; ignore illustrative figures that are not the user's own.\n"
+           "   - Money: read every digit and comma exactly (an amount written with a thousands separator is that number of units, not a different figure). Add the relevant amounts only; ignore illustrative figures that are not the user's own.\n"
            "   - Counting: enumerate each matching item one by one, then report the count. Watch for off-by-one: count inclusively or exclusively exactly as the question's wording requires.\n"
            "   - For any calculation, do the subtraction/addition on the actual numbers from the evidence, not by estimation.\n")
         + "\n"
