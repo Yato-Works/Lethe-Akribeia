@@ -287,7 +287,17 @@ class V4CandidateRetriever:
 #   R23 - integration: R2 + R3 composed (compared against R2 = one variable)
 #   H1  - hygiene: anchor-priority prefill in the knapsack (prompt = R0)
 # ---------------------------------------------------------------------------
-SUPPORTED_CONDS = ("R0", "R1", "R2", "R3", "R23", "H1", "R6", "R7", "R7.3")
+#   R6  - coverage engine + aggregation certificates
+#   R7  - + temporal interval algebra + state timelines (CLEAN baseline)
+#   R7.3- + evidence relation graph
+#   R7_2pass - R7 evidence, but the reader is split into two LLM calls:
+#        Pass 1 quotes the verbatim source line(s) for the question;
+#        Pass 2 resolves the final answer FROM THAT QUOTE only.  Isolated
+#        A/B experiment: identical evidence and operators to R7, only the
+#        reader decomposition changes.  Does not touch R0/R1/R2/R7.
+# ---------------------------------------------------------------------------
+SUPPORTED_CONDS = ("R0", "R1", "R2", "R3", "R23", "H1", "R6", "R7", "R7.3",
+                   "R7_2pass")
 
 _EVIDENCE_START_RE = re.compile(r"^(?:--- Event \d+|\[\S+(?: on .*)?\] (?:User|Assistant):)")
 
@@ -385,6 +395,68 @@ def filter_evidence(text: str, query: str) -> str:
 # frozen contracts (byte-identical to, or a pure reorder/subset of, the
 # original pipeline), so CoT is added only to the R6/R7 line.
 _COT_CONDS = ("R6", "R6_coverage", "R6_adaptive", "R7", "R7.3")
+
+# 2-pass reader prompts. Pass 1 grounds the question in a verbatim quote; pass
+# 2 answers from that quote alone.  The point is to break the reader's habit of
+# latching onto the LAST number in a sentence (e.g. "brought 7 shirts ... but
+# only ended up wearing 3") by forcing an explicit quote step first.
+_2PASS_EXTRACT_PROMPT = (
+    "[TASK: EVIDENCE EXTRACTION]\n"
+    "You are given conversation evidence and a question.\n"
+    "Quote VERBATIM the exact line(s) from the evidence that answer the question.\n"
+    "RULES:\n"
+    "1. Copy the source text EXACTLY as written — do not paraphrase, summarise, or compute.\n"
+    "2. If the question asks about an ACTION (what was bought/packed/acquired/inherited), quote the clause that states that action and its number.\n"
+    "3. If several lines are relevant, quote all of them, one per line, each prefixed with its source tag.\n"
+    "4. If the evidence genuinely does not contain the answer, reply exactly: NO_EVIDENCE\n"
+    "5. Do NOT answer the question here. Only extract.\n\n"
+    "Question date: {q_date}\n\n"
+    "{ctx}\n\n"
+    "QUESTION: {q}\n\n"
+    "Verbatim quote(s):"
+)
+
+_2PASS_RESOLVE_PROMPT = (
+    "[TASK: ANSWER RESOLUTION]\n"
+    "You are given a question and a VERBATIM QUOTE extracted from the evidence.\n"
+    "Answer the question using ONLY that quote.\n"
+    "RULES:\n"
+    "1. Reply with the final value only: a few words or one short sentence.\n"
+    "2. If the question asks for a number, match the number to the EXACT action or entity asked about — not a neighbouring number in the same sentence.\n"
+    "3. If the quote does not support an answer, reply: NOT_IN_QUOTE\n"
+    "4. Never reply 'I don't know' when the quote does contain the answer.\n\n"
+    "Question date: {q_date}\n\n"
+    "QUOTE:\n{quote}\n\n"
+    "QUESTION: {q}\n\n"
+    "Answer:"
+)
+
+
+def answer_two_pass(answerer, question: str, context: str, q_date: str):
+    """R7_2pass reader: extract a verbatim quote, then resolve from it.
+
+    Returns (final_answer, pass1_text, pass2_text, total_prompt_tokens,
+    total_latency_ms).  Isolated experiment path — R0/R1/R2/R7 are untouched.
+    """
+    p1 = _2PASS_EXTRACT_PROMPT.format(q=question, ctx=context, q_date=q_date or "N/A")
+    r1 = answerer._chat([{"role": "user", "content": p1}],
+                        answerer.max_tokens or 512)
+    quote = r1.text.strip()
+    # If pass 1 found nothing, do not fabricate in pass 2.
+    if not quote or quote.upper().startswith("NO_EVIDENCE"):
+        return "I don't know.", quote, "", r1.prompt_tokens, r1.latency_ms
+    p2 = _2PASS_RESOLVE_PROMPT.format(q=question, quote=quote, q_date=q_date or "N/A")
+    r2 = answerer._chat([{"role": "user", "content": p2}],
+                        answerer.max_tokens or 512)
+    ans = r2.text.strip()
+    if ans.endswith(".") and len(ans.split()) <= 2:
+        ans = ans[:-1].strip()
+    if ans.upper().startswith("NOT_IN_QUOTE"):
+        # Pass 2 could not resolve; fall back to the quote itself trimmed.
+        ans = quote.splitlines()[-1].strip() if quote else "I don't know."
+    return (ans, quote, r2.text.strip(),
+            r1.prompt_tokens + r2.prompt_tokens,
+            r1.latency_ms + r2.latency_ms)
 
 
 def build_prompt(
@@ -792,22 +864,34 @@ def main():
         r6_features[qid] = r6_f
 
         # 7. Prompt Reader (condition variants live in build_prompt)
+        two_pass_quote = ""
         if not bundle.deterministic_answer_override:
-            prompt_context = build_prompt(
-                cond=args.cond,
-                plan=plan,
-                is_aggregation=is_aggregation,
-                compiled_ctx_str=compiled_ctx_str,
-                q=q,
-                q_date=q_date,
-            )
+            if args.cond == "R7_2pass":
+                # Isolated A/B: identical evidence/operators to R7, only the
+                # reader is decomposed into extract-then-resolve.
+                prompt_context = build_prompt(
+                    cond="R7", plan=plan, is_aggregation=is_aggregation,
+                    compiled_ctx_str=compiled_ctx_str, q=q, q_date=q_date,
+                )
+                pred, _q1, _q2, tok_used, lat_ms = answer_two_pass(
+                    answerer, q, compiled_ctx_str, q_date)
+                two_pass_quote = _q1
+            else:
+                prompt_context = build_prompt(
+                    cond=args.cond,
+                    plan=plan,
+                    is_aggregation=is_aggregation,
+                    compiled_ctx_str=compiled_ctx_str,
+                    q=q,
+                    q_date=q_date,
+                )
 
-            ans_resp = answerer.answer(q, prompt_context)
-            pred = ans_resp.text.strip()
-            if pred.endswith(".") and len(pred.split()) <= 2:
-                pred = pred[:-1].strip()
-            tok_used = ans_resp.prompt_tokens
-            lat_ms = ans_resp.latency_ms
+                ans_resp = answerer.answer(q, prompt_context)
+                pred = ans_resp.text.strip()
+                if pred.endswith(".") and len(pred.split()) <= 2:
+                    pred = pred[:-1].strip()
+                tok_used = ans_resp.prompt_tokens
+                lat_ms = ans_resp.latency_ms
 
         # P0-2: freeze the exact reader input (context cache) so Reader-side
         # experiments (R5) can replay identical inputs without recompiling.
@@ -840,7 +924,6 @@ def main():
             is_abstention_gt=is_abstention_reference,
             pcc_is_abstention=is_abstention_reference,
         )
-
         # Fill in the outcome into the R6 feature row (1A visualization)
         # Resumed items are not re-computed, so only update features we own.
         if qid in r6_features:
@@ -857,6 +940,7 @@ def main():
             "deterministic_override": bool(bundle.deterministic_answer_override),
             "prompt_tokens": tok_used,
             "latency_ms": lat_ms,
+            "two_pass_quote": two_pass_quote,
             "r6_features": feature_dict(r6_features[qid]),
         })
 

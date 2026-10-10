@@ -151,7 +151,6 @@ class BudgetedCognitiveCompiler:
                 # Gate: bundle must either have anchor score, cover query terms, or continue an already-selected evidence session
                 if not overlap and not in_sel_sid and anc_score <= 0.0:
                     continue
-
                 new_words = overlap - covered_words
                 # If it contributes NO new query words and has no anchor score and is not continuing an existing session, skip it
                 if not in_sel_sid and not new_words and anc_score <= 0.0:
