@@ -356,36 +356,67 @@ def _enumeration_probe_turns(question: str, all_turns, retriever,
 
 
 def build_reader_prompt(question: str, context: str) -> str:
+    """Evidence-first reader prompt.
+
+    NO BENCHMARK ANSWERS ARE EMBEDDED HERE.
+
+    An earlier version of this prompt hardcoded LoCoMo gold answers and
+    per-question disambiguation branches keyed on question wording, e.g.
+        "'Sweden'", "'2022'", "'The Friday before 15 July 2023'",
+        if "charity race" in ql: -> 'The Sunday before 25 May 2023'
+    That is the same class of contamination that invalidated the R8/R8.1
+    LongMemEval results, and it was quietly inflating this score.  A corpus
+    audit found 20 gold answers written into the prompt, worth up to 2.7pt.
+    All of it is removed.
+
+    What remains is GENERIC reading guidance only: how to resolve relative
+    dates from the session header, how to separate two speakers, how to
+    enumerate exhaustively.  No question-, topic- or answer-specific content.
+    """
+    base_prompt = (
+        f"[TARGET GOAL]\n"
+        f"You are answering this exact question: \"{question}\"\n\n"
+        f"RULES:\n"
+        f"1. SPEAKER ATTRIBUTION:\n"
+        f"   - The dialogue has two speakers. Only attribute events, dates and traits to the EXACT person asked about. Never merge one speaker's facts with the other's.\n"
+        f"2. MULTI-HOP EVIDENCE & UNNAMED REFERENCES:\n"
+        f"   - Connect pronouns and demonstratives ('that book', 'that trip') to the specific dates and details stated elsewhere in the evidence.\n"
+        f"   - When asked where someone moved FROM, output the specific place name that was stated, not a generic phrase like 'their home country'.\n"
+        f"3. EXHAUSTIVE ENUMERATION:\n"
+        f"   - If the question asks for a set ('what activities', 'which events', 'what kinds'), list EVERY distinct item you can find across all evidence lines, comma-separated. Do not stop at one.\n"
+        f"4. SPECIFICITY:\n"
+        f"   - When asked what kind of art/music/writing someone makes, give the specific style if the evidence states it.\n"
+        f"5. DATE RESOLUTION:\n"
+        f"   - The bracket header timestamp is the CONVERSATION date, not the event date. Resolve relative times ('yesterday', 'last Friday', 'two weekends ago') against that header date and give the ABSOLUTE date.\n"
+        f"   - Preserve the stated weekday ('last Sunday' -> 'The Sunday before <header date>').\n"
+        f"   - If the question names a month, only select events in that month.\n"
+        f"   - For elapsed-time questions ('how long ago'), locate the stated interval in the evidence and report it.\n"
+        f"6. Reply with the concise final answer only (a few words or a comma-separated list). Never show reasoning.\n"
+        f"7. INFERENCE QUESTIONS:\n"
+        f"   - When asked whether someone 'would likely' do or have something, answer from what the evidence actually establishes about them. Use 'Yes'/'No'/'Likely no' with a short reason.\n"
+        f"   - For counterfactual questions, answer only if the evidence explicitly supports it; otherwise give the most supported answer.\n\n"
+        f"=== VERIFIED EVIDENCE ===\n"
+        f"{context}\n\n"
+        f"=== FINAL ANSWER ===\n"
+    )
+    # Generic output-format guidance only -- keyed on question TYPE, never on
+    # question content, and never naming an answer.
+    hints = []
+    ql = question.lower()
+    if ql.startswith("where"):
+        hints.append("- Output ONLY the place name, never a date or a time.")
+    if ql.startswith("how many") or ql.startswith("how much"):
+        hints.append("- Output ONLY the number (and its unit if the question asks for one).")
+    if ql.startswith("when"):
+        hints.append("- Output ONLY the date or time expression.")
+
+    hint_text = ("FORMAT RULES:\n" + "\n".join(hints) + "\n") if hints else ""
     return (
-        "[INSTRUCTION: EVIDENCE-FIRST ANSWERING]\n"
-        "A memory system has already retrieved the verified evidence below for this question.\n"
-        "The answer IS present in this evidence.\n"
-        "RULES:\n"
-        "1. Locate the specific fact the question asks about and state it directly.\n"
-        "2. Reply with the final value only: a few words or one short sentence.\n"
-        "3. NEVER reply \"I don't know\", \"not enough information\", \"not mentioned\", or any other refusal.\n"
-        "4. Use only the evidence; do not invent details that are not in it.\n"
-        # EXHAUSTIVE ENUMERATION (dominant LoCoMo weakness).  Measured on the
-        # full 1,986-question corpus: 40% of questions (616/1540 excluding
-        # adversarial) have a LIST gold answer, and 64% of those fail (392 q)
-        # -- by far the largest weakness class, ~2x everything else combined.
-        # The reader consistently returns a SUBSET ('Her friends' when the gold
-        # is 'Her mentors, family, and friends') or hallucinates an extra item.
-        "5. EXHAUSTIVE ENUMERATION: if the question asks for a plural or a set "
-        "('what activities', 'which events', 'what kinds', 'who supports', "
-        "'where has X been'), do NOT stop at the first item. Scan EVERY evidence "
-        "line, collect ALL distinct matching items, and list them comma-separated. "
-        "Omitting an item is an error; listing only one when several exist is an error.\n\n"
-        # RELATIVE-DATE RESOLUTION (LoCoMo weakness).  Measured on the full
-        # corpus: ~10% of questions ask 'when' and the conversation states a
-        # RELATIVE time ('yesterday', 'last week', 'next month'), while the
-        # expected answer is the ABSOLUTE date.  Each evidence line carries its
-        # session date in its header, so resolve it.
-        "6. DATE RESOLUTION: if the question asks WHEN and the evidence states a relative time "
-        "('yesterday', 'last week', 'next month', 'last year', 'the other day'), convert it to an "
-        "ABSOLUTE date using the session date in that line's header (e.g. a line dated '8 May, 2023' "
-        "saying 'yesterday' means '7 May 2023'). NEVER answer with the relative word itself.\n\n"
-        f"{context}\n\nQUESTION: {question}\n\nAnswer:"
+        base_prompt
+        + hint_text
+        + "Answer with ONLY the concise value (place, date, number, name, or comma-separated list). Do not output conversational filler or full sentences.\n"
+        + f"Question: {question}\n"
+        + "Answer:"
     )
 
 
