@@ -360,14 +360,12 @@ def build_reader_prompt(question: str, context: str) -> str:
 
     NO BENCHMARK ANSWERS ARE EMBEDDED HERE.
 
-    An earlier version of this prompt hardcoded LoCoMo gold answers and
-    per-question disambiguation branches keyed on question wording, e.g.
-        "'Sweden'", "'2022'", "'The Friday before 15 July 2023'",
-        if "charity race" in ql: -> 'The Sunday before 25 May 2023'
-    That is the same class of contamination that invalidated the R8/R8.1
-    LongMemEval results, and it was quietly inflating this score.  A corpus
-    audit found 20 gold answers written into the prompt, worth up to 2.7pt.
-    All of it is removed.
+    An earlier version of this prompt hardcoded dataset gold answers and
+    per-question disambiguation branches keyed on question wording.  That is
+    the same class of contamination that invalidated the R8/R8.1 LongMemEval
+    results, and it was quietly inflating this score.  A corpus audit found
+    20 gold answers written into the prompt, worth up to 2.7pt.  All of it is
+    removed.  See git log for commit fa00a9c for the exact list.
 
     What remains is GENERIC reading guidance only: how to resolve relative
     dates from the session header, how to separate two speakers, how to
