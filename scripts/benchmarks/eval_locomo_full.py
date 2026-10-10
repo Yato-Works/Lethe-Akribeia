@@ -304,6 +304,19 @@ def resolve_relative_dates(answer: str, context: str, question: str = "") -> str
 
 
 # ------------------------------------------------------------------ pipeline
+def _scaled_budget(base_budget: int, pool_tokens: int,
+                   ratio: float = 0.12, cap: int = 2400, floor: int = 900) -> int:
+    """Scale a per-mode token budget to the candidate pool actually retrieved.
+
+    The per-mode budgets are calibrated for SHORT conversations.  On LoCoMo a
+    typical candidate pool is ~290 turns / ~9,000 tokens, so the fixed 550-token
+    budget admits only ~6% of it and structurally excludes the rest -- measured
+    as the single largest cause of the answer turn never reaching the reader.
+    """
+    scaled = int(pool_tokens * ratio)
+    return int(max(base_budget, min(cap, max(floor, scaled))))
+
+
 def build_reader_prompt(question: str, context: str) -> str:
     return (
         "[INSTRUCTION: EVIDENCE-FIRST ANSWERING]\n"
@@ -397,6 +410,15 @@ def run(args) -> None:
             cand = [t for t in all_turns if t[0] in top_sids]
             if not cand:
                 cand = list(top_turns[:25])
+
+            # BUDGET CALIBRATION.  The per-mode budget is calibrated for SHORT
+            # conversations; LoCoMo candidate pools run ~290 turns / ~9,000
+            # tokens, so a 550-token budget admits only ~6% and structurally
+            # excludes the rest.  Scale the budget to the pool we actually
+            # retrieved (this was the single largest cause of evidence loss).
+            _pool_tokens = sum(len(t[3].split()) * 4 // 3 for t in cand)
+            if _pool_tokens:
+                token_budget = _scaled_budget(token_budget, _pool_tokens)
 
             t_map = {(t[0], t[3]): f"{t[0]}:t{i}" for i, t in enumerate(cand)}
             anchor_ids, anchor_scores = [], {}

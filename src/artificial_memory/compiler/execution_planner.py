@@ -27,6 +27,12 @@ class MemoryTopology:
     competing_values_count: int
     has_assistant_records: bool
     has_user_records: bool
+    # Token volume of the caller's CANDIDATE pool (what retrieval actually
+    # handed us).  The per-mode budget is calibrated for short conversations;
+    # without this the planner cannot tell a 300-token pool from a 9,000-token
+    # one and silently starves the latter.  Optional so existing callers that
+    # do not know their pool size keep the old fixed behaviour.
+    candidate_tokens: int = 0
 
 
 @dataclass(frozen=True)
@@ -265,6 +271,22 @@ class CognitiveExecutionPlanner:
         recommended_budget = budget_map.get(dominant_mode, 600)
         if (agg_demand >= 0.5 or dominant_mode == "aggregation") and topology.session_count >= 3:
             recommended_budget = max(recommended_budget, 900)
+
+        # CANDIDATE-POOL SCALING (LoCoMo full-corpus audit).  A fixed per-mode
+        # budget is calibrated for SHORT conversations.  LoCoMo conversations
+        # run 500-700 turns; measured: a typical candidate pool is ~290 turns /
+        # ~9,000 tokens, so a 550-token budget admits only ~6% of it and
+        # structurally excludes the rest.  This was the single largest cause of
+        # evidence loss -- the answer turn never reached the reader.
+        # Scale by the candidate pool the CALLER actually retrieved.  The
+        # previous attempt read topology.total_records, but callers pass an
+        # empty records list to plan(), so it was always 0 and never fired.
+        _cand = getattr(topology, "candidate_tokens", 0) or 0
+        if _cand > 0:
+            # Allocate enough budget to cover a meaningful share of the pool,
+            # capped so a pathological pool cannot blow the context window.
+            scaled = int(_cand * 0.12)
+            recommended_budget = int(max(recommended_budget, min(2400, max(900, scaled))))
 
         # 5. Co-processor Triggers
         requires_chronos = temporal_demand >= 0.7
