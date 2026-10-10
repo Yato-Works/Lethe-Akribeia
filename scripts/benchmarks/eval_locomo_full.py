@@ -460,12 +460,29 @@ def run(args) -> None:
 
     out = REPO / "benchmark_results" / "locomo_full.json"
     out.parent.mkdir(parents=True, exist_ok=True)
+    # Write to a UNIQUE path per run.  Every run previously wrote to the same
+    # locomo_full.json, so a stale background run finishing late would silently
+    # clobber a newer, more-correct result (this actually happened: an old
+    # 32.98% run overwrote the 47.13% artifact).  A timestamped file makes each
+    # run's output independently verifiable and undeletable by a late arrival.
+    import datetime as _dt
+    _stamp = _dt.datetime.now().strftime("%Y%m%d_%H%M%S")
+    out = out.with_name(f"locomo_full_{_stamp}.json")
+    # Also keep the stable 'latest' pointer for convenience.
+    latest = out.parent / "locomo_full.json"
     with open(out, "w", encoding="utf-8") as f:
         json.dump({"accuracy": correct / total, "results": results,
                    "per_category": {str(k): {"correct": sum(v), "total": len(v)}
                                     for k, v in by_cat.items()}},
                   f, ensure_ascii=False, indent=2)
+    with open(latest, "w", encoding="utf-8") as f:
+        json.dump({"accuracy": correct / total,
+                   "source": out.name,
+                   "per_category": {str(k): {"correct": sum(v), "total": len(v)}
+                                    for k, v in by_cat.items()}},
+                  f, ensure_ascii=False, indent=2)
     print(f"\nSaved -> {out}")
+    print(f"Latest -> {latest}")
 
 
 def main() -> None:
