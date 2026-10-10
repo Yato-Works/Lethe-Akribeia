@@ -138,10 +138,13 @@ def score(pred: str, gold: str) -> bool:
     # yes/no exact
     if g in _YESNO:
         return p in _YESNO and p == g
-    # numeric equality
+    # numeric equality.  GATED on _is_list: gold 'The week before 2 May, 2022'
+    # and pred '2 May, 2022' share the first number, but the prediction dropped
+    # the offset, so it is WRONG.  Only the containment rules below (which
+    # compare full strings) may settle those.
     pn = re.findall(r"\d+", p)
     gn = re.findall(r"\d+", g)
-    if gn and pn and gn[0] == pn[0]:
+    if gn and pn and gn[0] == pn[0] and not _is_list:
         return True
     # token overlap >= 60% of gold tokens (never for list golds)
     gt = [w for w in g.split() if len(w) > 2]
@@ -180,21 +183,22 @@ def score(pred: str, gold: str) -> bool:
     # PREFIX MATCH: the prediction is the opening of the gold answer.
     # LoCoMo gold answers are often verbose hedged sentences ('Likely no;
     # though she likes reading...') while a correct short answer is 'No' or
-    # 'national park'.  A prediction that is a prefix / leading fragment of
-    # the gold is a correct partial answer, not a miss.  Measured: ~13 of 107
-    # 'failures' on a 150-question sample were exactly this.
-    if len(p) >= 3 and g.startswith(p):
+    # 'national park'.  GATED on _is_list: for a list gold, a one-item prefix
+    # ('Summer Sounds' for 'Summer Sounds, Matt Patterson') is incomplete
+    # enumeration, which must not be credited.
+    if len(p) >= 3 and g.startswith(p) and not _is_list:
         return True
     # leading-token match for hedged golds: gold opens with a hedge word
     # ('likely', 'probably', 'yes', 'no', 'somewhat') — if the prediction
-    # carries the same stance word, accept.
+    # carries the same stance word, accept.  GATED on _is_list: a hedge-word
+    # rule must not become a back door for crediting one item of a list.
     _hedge = ("likely", "probably", "yes", "no", "somewhat", "perhaps")
     gp = g.split()[0] if g.split() else ""
     pp = p.split()[0] if p.split() else ""
-    if gp in _hedge and pp == gp:
+    if gp in _hedge and pp == gp and not _is_list:
         return True
     # hedge-word appears anywhere in gold and pred carries the same stance
-    if gp in _hedge and any(h == pp for h in _hedge if h in g):
+    if gp in _hedge and any(h == pp for h in _hedge if h in g) and not _is_list:
         return True
     return False
 
