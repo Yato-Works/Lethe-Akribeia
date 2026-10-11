@@ -16,6 +16,7 @@ from artificial_memory.compiler.certificates.coprocessor_engine import CoProcess
 from artificial_memory.compiler.graph.dependency_graph import EvidenceBundle, EvidenceNode
 from artificial_memory.compiler.speaker_normalizer import SpeakerAttributionNormalizer
 from artificial_memory.compiler.sufficiency_judge import EvidenceSufficiencyJudge, SufficiencyAssessment
+from artificial_memory.context.temporal_normalizer import TemporalNormalizer
 
 
 @dataclass(frozen=True)
@@ -36,6 +37,7 @@ class BudgetedCognitiveCompiler:
 
     def __init__(self) -> None:
         self.speaker_normalizer = SpeakerAttributionNormalizer()
+        self.temporal_normalizer = TemporalNormalizer()
         self.judge = EvidenceSufficiencyJudge()
 
     @property
@@ -57,7 +59,7 @@ class BudgetedCognitiveCompiler:
         co_processor_bundle: CoProcessorBundle | None = None,
         anchor_scores: dict[str, float] | None = None,
         is_multi_session: bool = False,
-        anchor_prefill: bool = False,
+        anchor_prefill: bool = True,
         adaptive_escalation: bool = False,
     ) -> CompiledContext:
         """Select optimal subset of bundles under token_budget and format context."""
@@ -108,11 +110,14 @@ class BudgetedCognitiveCompiler:
                 return max((anchor_scores.get(n.node_id, 0.0)
                             for n in b.member_nodes), default=0.0)
 
+            # Admit as many top evidence anchors as fit within 85% of budget
+            prefill_budget = int(effective_budget * 0.85)
             prefill = sorted((b for b in valid_candidates if _max_anc(b) > 0.0),
-                             key=_max_anc, reverse=True)[:5]
+                             key=_max_anc, reverse=True)
             prefill_ids = set()
+            session_counts: dict[str, int] = {}
             for b in prefill:
-                if current_tokens + b.total_tokens > effective_budget:
+                if current_tokens + b.total_tokens > prefill_budget:
                     continue
                 selected_bundles.append(b)
                 current_tokens += b.total_tokens
@@ -120,6 +125,7 @@ class BudgetedCognitiveCompiler:
                 for n in b.member_nodes:
                     covered_words.update(re.findall(r"\b[a-zA-Z0-9_-]+\b", n.raw_text.lower()))
                     selected_sids.add(n.session_id)
+                    session_counts[n.session_id] = session_counts.get(n.session_id, 0) + 1
             if prefill_ids:
                 valid_candidates = [b for b in valid_candidates
                                     if b.bundle_id not in prefill_ids]
@@ -156,14 +162,22 @@ class BudgetedCognitiveCompiler:
                 if not in_sel_sid and not new_words and anc_score <= 0.0:
                     continue
 
-                gain = anc_score * 2.5 + len(new_words) * 8.0 + len(overlap) * 2.0
-
+                # Adaptive marginal utility:
+                # Diminish score if session is already represented and contributes no new query terms,
+                # while preserving high-relevance complementary turns and rewarding unseen candidate sessions.
                 if is_multi_session:
-                    if not in_sel_sid:
-                        gain += 4.0  # Moderate bonus for exploring a new candidate session
-                else:
                     if in_sel_sid:
-                        gain += 6.0  # Session coherence bonus for single-session narrative
+                        k = max((session_counts.get(sid, 0) for sid in b_sids), default=1)
+                        if not new_words and anc_score < 10.0:
+                            anc_term = (anc_score * 2.5) / (1.0 + 0.8 * k)
+                        else:
+                            anc_term = anc_score * 2.5
+                        gain = anc_term + len(new_words) * 8.0
+                    else:
+                        # Unseen candidate session: full anchor score + exploration bonus
+                        gain = anc_score * 2.5 + len(new_words) * 8.0 + (6.0 if anc_score > 0 else 2.0)
+                else:
+                    gain = anc_score * 2.5 + len(new_words) * 8.0 + (6.0 if in_sel_sid else 0.0)
 
                 novel_entities = min(3.0, len(set().union(*[n.entities for n in b.member_nodes])) * 0.1) if b.member_nodes else 0.0
                 gain += novel_entities
@@ -184,6 +198,7 @@ class BudgetedCognitiveCompiler:
             for n in best_bundle.member_nodes:
                 covered_words.update(re.findall(r"\b[a-zA-Z0-9_-]+\b", n.raw_text.lower()))
                 selected_sids.add(n.session_id)
+                session_counts[n.session_id] = session_counts.get(n.session_id, 0) + 1
 
             valid_candidates = [b for b in valid_candidates if b.bundle_id != best_bundle.bundle_id]
 
@@ -208,6 +223,8 @@ class BudgetedCognitiveCompiler:
             date_str = f" on {n.session_date}" if n.session_date else ""
             spk_str = n.speaker.capitalize()
             norm_text = self.speaker_normalizer.normalize_turn(n.raw_text, speaker=n.speaker)
+            if n.session_date:
+                norm_text = self.temporal_normalizer.normalize(norm_text, n.session_date)
             line = f"[{n.session_id}{date_str}] {spk_str}: {norm_text}"
             body_lines.append(line)
             provenance.append(f"{n.node_id} ({n.tokens} tok)")

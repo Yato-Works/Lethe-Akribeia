@@ -52,6 +52,15 @@ class CompiledTemporalState:
 class TemporalCompiler:
     """Deterministic Temporal Compiler."""
 
+    # Capitalised tokens that are question scaffolding, not a person's name.
+    _NON_SUBJECT_TOKENS = frozenset({
+        "what", "when", "where", "which", "who", "why", "how", "the", "did",
+        "does", "was", "were", "has", "have", "had", "monday", "tuesday",
+        "wednesday", "thursday", "friday", "saturday", "sunday", "january",
+        "february", "march", "april", "may", "june", "july", "august",
+        "september", "october", "november", "december",
+    })
+
     WEEKDAY_MAP = {
         "monday": "Monday",
         "tuesday": "Tuesday",
@@ -280,11 +289,16 @@ class TemporalCompiler:
         q_lower = query.lower()
 
         # 1. Identify Subject
+        #
+        # GENERIC: extract the person from the query itself.  This used to be
+        #     if "melanie" in q_lower: subject = "Melanie"
+        #     elif "caroline" in q_lower: subject = "Caroline"
+        # i.e. the compiler shipped with the evaluation corpus's cast baked in.
         subject = ""
-        if "melanie" in q_lower:
-            subject = "Melanie"
-        elif "caroline" in q_lower:
-            subject = "Caroline"
+        for name in re.findall(r"\b([A-Z][a-z]{2,})\b", query):
+            if name.lower() not in self._NON_SUBJECT_TOKENS:
+                subject = name
+                break
 
         # 2. Extract Event Keywords from Query.  A small stemmer makes this
         # deterministic lexical retrieval robust to ordinary inflections.

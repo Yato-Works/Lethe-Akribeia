@@ -29,6 +29,34 @@ class IntegrityDecision:
 class PropositionIntegrityGate:
     """Validates whether retrieved propositions actually affirm the query's proposition."""
 
+    # Words that look like capitalised names but are not people.
+    _NON_PERSON_TOKENS = frozenset({
+        "i", "the", "a", "an", "and", "or", "but", "if", "when", "what",
+        "who", "where", "why", "how", "which", "monday", "tuesday",
+        "wednesday", "thursday", "friday", "saturday", "sunday", "january",
+        "february", "march", "april", "may", "june", "july", "august",
+        "september", "october", "november", "december", "christmas",
+    })
+
+    def _named_people(self, text: str) -> set[str]:
+        """Extract capitalised tokens that plausibly name a person.
+
+        Deliberately generic: it knows nothing about any particular corpus.
+        Sentence-initial capitals are excluded by only accepting tokens that
+        are followed by a lowercase word (i.e. not start-of-sentence).
+        """
+        names = set()
+        for m in re.finditer(r"\b([A-Z][a-z]{2,})\b(?!\s*[a-z])", text):
+            tok = m.group(1)
+            if tok.lower() in self._NON_PERSON_TOKENS:
+                continue
+            # require a preceding lowercase word so we skip sentence starts
+            start = m.start()
+            prefix = text[max(0, start - 12):start].strip()
+            if prefix and prefix[-1].islower():
+                names.add(tok)
+        return names
+
     def check(
         self,
         plan: QueryPlan,
@@ -84,20 +112,39 @@ class PropositionIntegrityGate:
                 recommended_abstention=True,
             )
 
-        # 3. Conversational Entity Swap Check (Caroline vs Melanie)
-        if "caroline" in q_lower:
-            melanie_patterns = [
-                r"\bcharity\s+race\b", r"\brunning\b", r"\bshoes\b", r"\bcamping\b",
-                r"\bson\b", r"\baccident\b", r"\bgrand\s+canyon\b", r"\bpottery\b",
-                r"\bcolors\s+and\s+patterns\b", r"\bclassical\s+music\b", r"\bmusicians\b",
-                r"\bmodern\s+music\b", r"\binstrument\b", r"\bcaf[eé]\b", r"\bsetback\b",
-                r"\bmeteor\b", r"\bbeach\b", r"\bblack\s+and\s+white\s+bowl\b",
-            ]
-            if any(re.search(p, q_lower) for p in melanie_patterns):
-                if "help children" not in q_lower:
+        # 3. Cross-subject attribution check (GENERIC).
+        #
+        # This block used to hardcode the cast and plot of a specific
+        # evaluation corpus -- two speakers, plus per-character trigger lists
+        # ("charity race", "grand canyon", "necklace", "stained glass", "Oscar
+        # is X's pet", and a comment citing a specific dialogue id).  That is
+        # label/ semantic-level contamination by construction: the gate knew
+        # the benchmark.  Removed; see docs/AUDIT_contamination_and_gaming.md.
+        #
+        # The generic version of the same idea: the queried object must be
+        # affirmed OF the queried subject.  If every proposition that binds the
+        # queried object binds it to a different person, the answer does not
+        # transfer -- that is an attribution failure, not a match.
+        if query_subject and propositions:
+            q_words = set(re.findall(r"[a-z]{4,}", q_lower))
+            obj_terms = {
+                w for p in propositions for w in re.findall(r"[a-z]{4,}", str(p.object).lower())
+                if w in q_words
+            }
+            if obj_terms:
+                affirms_subject = any(
+                    query_subject in p.subject.lower()
+                    for p in propositions
+                    if any(w in str(p.object).lower() for w in obj_terms)
+                )
+                if not affirms_subject:
+                    others = ", ".join(sorted(
+                        {p.subject.strip() for p in propositions if p.subject.strip()}
+                    )[:2])
                     note = (
-                        "[Proposition Integrity Warning: The conversation attributes this experience to Melanie, "
-                        "NOT Caroline. The correct answer is: None / Not mentioned.]"
+                        f"[Proposition Integrity Warning: The evidence attributes this to {others}, "
+                        f"but the query asks about {query_subject}. "
+                        f"The correct answer is: None / Not mentioned.]"
                     )
                     return IntegrityDecision(
                         is_valid=False,
@@ -106,58 +153,6 @@ class PropositionIntegrityGate:
                         grounding_note=note,
                         recommended_abstention=True,
                     )
-
-        if "melanie" in q_lower:
-            caroline_patterns = [
-                r"\bnecklace\b", r"\bgrandma\b", r"\badoption\b", r"\bcounseling\b",
-                r"\bart\s+show\b", r"\bdad\b", r"\blocal\s+church\b", r"\bstained\s+glass\b",
-                r"\bneighborhood\b", r"\brainbow\b", r"\bsong\b", r"\bcourageous\b",
-                r"\bbrave\b", r"\bhorseback\b", r"\boscar\b", r"\bplace\s+does\s+melanie\b",
-            ]
-            # Classical music is Melanie's own interest (D15:28), not Caroline's —
-            # a Melanie question about a classical work is answerable, not an entity swap.
-            melanie_classical = re.search(
-                r"vivaldi|four\s+seasons|classical|bach|mozart|beethoven",
-                q_lower,
-            )
-            if not melanie_classical and any(re.search(p, q_lower) for p in caroline_patterns):
-                note = (
-                    "[Proposition Integrity Warning: The conversation attributes this experience to Caroline, "
-                    "NOT Melanie. The correct answer is: None / Not mentioned.]"
-                )
-                return IntegrityDecision(
-                    is_valid=False,
-                    subject_matched=False,
-                    predicate_matched=False,
-                    grounding_note=note,
-                    recommended_abstention=True,
-                )
-
-        if "grandpa" in q_lower and "caroline" in q_lower:
-            note = (
-                "[Proposition Integrity Warning: The conversation mentions grandma, NOT grandpa. "
-                "The correct answer is: None / Not mentioned.]"
-            )
-            return IntegrityDecision(
-                is_valid=False,
-                subject_matched=False,
-                predicate_matched=False,
-                grounding_note=note,
-                recommended_abstention=True,
-            )
-
-        if "oscar" in q_lower and "melanie" in q_lower:
-            note = (
-                "[Proposition Integrity Warning: Oscar is Caroline's pet, NOT Melanie's. "
-                "The correct answer is: No / None.]"
-            )
-            return IntegrityDecision(
-                is_valid=False,
-                subject_matched=False,
-                predicate_matched=False,
-                grounding_note=note,
-                recommended_abstention=True,
-            )
 
         return IntegrityDecision(
             is_valid=True,

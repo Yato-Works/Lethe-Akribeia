@@ -36,45 +36,36 @@ class CompiledState:
 
         prov = f" (supported_by: [{', '.join(self.supported_by)}])" if self.supported_by else ""
 
-        # VITAMIN-1: Canonicalization & Query-Conditioned Phrasing
+        # Generic, evidence-driven phrasing.
+        #
+        # This block used to hardcode the facts of one evaluation corpus as
+        # literal strings -- "Melanie read the book \"Becoming Nicole\"",
+        # "Caroline participated in mentoring program and school speech",
+        # "Melanie went on a hike after the roadtrip on 19 October 2023",
+        # "pets' names are Oliver, Luna, Bailey", "identity is Transgender
+        # woman", and more.  Verified against the corpus: 7 of those strings
+        # are exact or near-exact gold answers.  That is Label-level
+        # contamination -- the compiler shipped with the answer key.
+        #
+        # Everything below is derived from (subject, property, value), which
+        # are extracted from the evidence at runtime.  No corpus fact survives.
+        # See docs/AUDIT_contamination_and_gaming.md.
         if prop == "identity":
-            return f"[STATE] {subj}'s identity is Transgender woman.{prov}"
-        elif prop == "negative experience support":
-            return f"[STATE] {subj} is supported by her mentors, family, and friends when she has a negative experience.{prov}"
-        elif prop == "book read from suggestion":
-            return f"[STATE] Melanie read the book \"Becoming Nicole\" from Caroline's suggestion.{prov}"
-        elif prop == "events to help children":
-            return f"[STATE] Caroline participated in mentoring program and school speech to help children.{prov}"
-        elif prop == "transition changes":
-            return f"[STATE] Caroline has faced changes to her body and losing unsupportive friends during her transition journey.{prov}"
-        elif prop == "symbols":
-            return f"[STATE] {subj}'s important symbols include rainbow flag and transgender symbol.{prov}"
-        elif prop == "lgbtq participation":
-            return f"[STATE] {subj} participates in the LGBTQ community through activist group, pride parades, art show, and mentoring program.{prov}"
-        elif prop == "shared painted subject":
-            return f"[STATE] Caroline and Melanie have both painted sunsets.{prov}"
-        elif prop == "hike after roadtrip":
-            return f"[STATE] Melanie went on a hike after the roadtrip on 19 October 2023.{prov}"
-        elif prop == "beach visits count":
-            return f"[STATE] {subj} has gone to the beach 2 times.{prov}"
-        elif prop == "children count":
-            return f"[STATE] {subj}'s children count is {val}.{prov}"
-        elif prop == "pets names":
-            return f"[STATE] {subj}'s pets' names are Oliver, Luna, Bailey.{prov}"
-        elif prop == "paintings":
-            return f"[STATE] {subj} has painted horse, sunset, sunrise.{prov}"
-        elif any(w in prop.lower() for w in ["activities", "items", "events", "symbols", "hobbies", "artists", "bands", "books", "pets", "instruments", "types"]):
+            return f"[STATE] {subj}'s identity is {val}.{prov}"
+        if any(w in prop.lower() for w in (
+            "activities", "items", "events", "symbols", "hobbies", "artists",
+            "bands", "books", "pets", "instruments", "types",
+        )):
             return f"[STATE] {subj}'s {prop} include {val}.{prov}"
-        elif any(w in prop.lower() for w in ["relationship", "status"]):
+        if any(w in prop.lower() for w in ("relationship", "status")):
             return f"[STATE] {subj}'s relationship status is {val}.{prov}"
-        elif any(w in prop.lower() for w in ["home country", "origin", "moved from"]):
+        if any(w in prop.lower() for w in ("home country", "origin", "moved from")):
             return f"[STATE] {subj}'s home country is {val}.{prov}"
-        elif any(w in prop.lower() for w in ["career", "career path", "profession"]):
+        if any(w in prop.lower() for w in ("career", "profession")):
             return f"[STATE] {subj}'s career path is {val}.{prov}"
-        elif any(w in prop.lower() for w in ["count", "times", "children"]):
+        if any(w in prop.lower() for w in ("count", "times", "children")):
             return f"[STATE] {subj}'s {prop} is {val}.{prov}"
-        else:
-            return f"[STATE] {subj}'s {prop} is {val}.{prov}"
+        return f"[STATE] {subj}'s {prop} is {val}.{prov}"
 
 
 class StateCompiler:
@@ -84,6 +75,15 @@ class StateCompiler:
         "melanie", "caroline", "user", "assistant", "system", "me", "i", "you",
         "he", "she", "they", "we", "it",
     }
+
+    # Capitalised tokens that are question scaffolding, not the subject.
+    _NON_SUBJECT_TOKENS = frozenset({
+        "what", "when", "where", "which", "who", "why", "how", "the", "did",
+        "does", "was", "were", "has", "have", "had", "monday", "tuesday",
+        "wednesday", "thursday", "friday", "saturday", "sunday", "january",
+        "february", "march", "april", "may", "june", "july", "august",
+        "september", "october", "november", "december",
+    })
 
     # Common syntactic target property extractors
     PROPERTY_EXTRACTION_RULES = [
@@ -146,7 +146,17 @@ class StateCompiler:
         q_lower = query.lower()
 
         # 1. Identify Target Subject and Target Property
-        target_subject = "Caroline" if "caroline" in q_lower else "Melanie" if "melanie" in q_lower else ""
+        #
+        # GENERIC: the subject is taken from the query itself, never from a
+        # hardcoded cast list.  This used to read
+        #     target_subject = "Caroline" if "caroline" in q_lower
+        #                     else "Melanie" if "melanie" in q_lower else ""
+        # which baked the speakers of one evaluation corpus into the compiler.
+        target_subject = ""
+        for name in re.findall(r"\b([A-Z][a-z]{2,})\b", query):
+            if name.lower() not in self._NON_SUBJECT_TOKENS:
+                target_subject = name
+                break
         target_property = ""
         expected_anchors: list[str] = []
 
