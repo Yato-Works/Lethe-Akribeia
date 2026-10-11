@@ -187,3 +187,66 @@ That is the opposite of what an inflated-scorer artefact looks like.
 
 Both are recorded here because they mean some previously reported numbers were
 crediting incomplete enumeration answers.
+
+---
+
+## Value analysis of the second-pass recall — NOT WORTH KEEPING AS DEFAULT
+
+Cost/benefit across all five categories, under the FIXED production scorer and
+the strict rubric.  Existing artifacts only, no new model runs.
+
+**Cost:** +45% total run time (63.3 -> 91.8 min) for ~60 extra candidate turns
+per question.
+
+**Accuracy, fixed production scorer:**
+
+| category | n | baseline | 2-pass | delta | p | |
+|---|---|---|---|---|---|---|
+| single-hop | 282 | 27.66% | 28.72% | +1.06pt | 0.5465 | ns |
+| multi-hop | 321 | 68.22% | 68.85% | +0.62pt | 0.6831 | ns |
+| temporal | 96 | 35.42% | 36.46% | +1.04pt | 1.0000 | ns |
+| open-domain | 841 | 61.47% | 60.88% | **-0.59pt** | 0.4990 | ns |
+| adversarial | 446 | 26.01% | 27.80% | +1.79pt | 0.1338 | ns |
+| **TOTAL** | **1986** | **48.54%** | **48.99%** | **+0.45pt** | **0.3619** | **ns** |
+
+**Strict rubric (STRICT+NEAR):**
+
+| category | n | baseline | 2-pass | delta | p | |
+|---|---|---|---|---|---|---|
+| single-hop | 282 | 10.64% | 10.28% | **-0.35pt** | 1.0000 | ns |
+| multi-hop | 321 | 28.04% | 27.41% | **-0.62pt** | 0.6171 | ns |
+| temporal | 96 | 21.88% | 22.92% | +1.04pt | 1.0000 | ns |
+| open-domain | 841 | 40.78% | 41.97% | +1.19pt | 0.0525 | ns |
+| adversarial | 446 | 19.73% | 20.63% | +0.90pt | 0.3865 | ns |
+| **TOTAL** | **1986** | **28.80%** | **29.41%** | **+0.60pt** | **0.0961** | **ns** |
+
+**Not one category is significant under either scoring rule.**
+
+### The decisive test: enumeration questions, where it was supposed to work
+
+Restricted to the 528 questions whose gold is an enumeration (the exact shape
+the second pass was built for):
+
+| | baseline | 2-pass | delta | p | |
+|---|---|---|---|---|---|
+| enumeration golds (n=528) | 32.77% | 32.95% | **+0.19pt** | 1.0000 | ns |
+
+The mechanism was justified by cat1's list-gold weakness. On exactly that
+subset it moves nothing.
+
+### Verdict
+
+The second-pass recall **improves evidence retention by +1.59pt (reproducible,
+measured without an LLM) but has not been shown to improve accuracy anywhere** —
+not overall, not per category, and not on the subset it was designed for — at
++45% runtime cost.
+
+It stays behind `--second-pass` (off by default) as an experiment, and is no
+longer a candidate for the default pipeline. This retracts the earlier
+"REAL NET +21 questions / SIGNIFICANT" reading from 18d6b4d, which the scorer
+bug had manufactured.
+
+**What is still true:** retrieval and the compiler are not the binding
+constraint on score. Evidence retention improved and accuracy did not follow.
+That leaves the reader, or the reader-plus-scorer pair, as the place to look —
+but that is now a hypothesis with clean evidence behind it, not a diagnosis.
