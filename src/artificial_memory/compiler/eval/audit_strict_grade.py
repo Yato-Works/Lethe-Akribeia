@@ -73,6 +73,26 @@ _CLAUSE_LEAD = re.compile(
 )
 
 
+# A part opening with a -ing word that is NOT in the finite-verb list is treated
+# as a noun phrase: 'Improving education and infrastructure' is an enumeration,
+# and refusing that lets a subset answer ('education') earn credit.  Derived
+# from the comma-free golds that fire this branch.
+_GERUND_LEAD = re.compile(r"^[A-Za-z]+ing\b", re.I)
+
+# A finite verb in the SECOND position marks a clause, not an enumeration:
+# 'Taking walks and clear her mind' is prose.  Same verb set as _CLAUSE_LEAD.
+_FINITE_LEAD = re.compile(
+    r"^(?:changed?|changing|started?|starting|read|reads|reading|wrote|writing|"
+    r"went|going|goes|got|getting|took|taking|takes|made|making|makes|"
+    r"bought|buying|learned|learning|helped|helping|decided|deciding|"
+    r"wanted|wanting|tried|trying|needed|needing|felt|feeling|"
+    r"found|finding|lost|losing|moved|moving|joined|joining|"
+    r"carving|ensuring|visualizing|balancing|improving|"
+    r"loves?|loving|likes?|liking|enjoys?|enjoying|prefers?|preferring)\b",
+    re.I,
+)
+
+
 def is_list_gold(gold: str) -> bool:
     """Is this gold an enumeration answer (>=2 comma-separated items)?
 
@@ -103,8 +123,16 @@ def is_list_gold(gold: str) -> bool:
             return False
         if any(len(p.split()) > 3 for p in and_parts[:2]):
             return False
+        # A gerund-led part is ambiguous: 'Improving education and
+        # infrastructure' is an enumeration, while 'to de-stress and clear her
+        # mind' is a clause.  Treat a GERUND as a noun phrase (so it stays an
+        # enumeration and a subset answer is refused), but only when the second
+        # part is also a bare noun phrase with no finite verb.
         if any(_CLAUSE_LEAD.match(p) for p in and_parts[:2]):
-            return False
+            if not any(_GERUND_LEAD.match(p) for p in and_parts[:2]):
+                return False
+            if any(_FINITE_LEAD.match(p) for p in and_parts[1:2]):
+                return False
         chunks = and_parts
     heads = chunks[:2]
     if any(len(c.split()) > 6 for c in heads):

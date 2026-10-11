@@ -136,6 +136,37 @@ def test_clause_lead_regex_is_balanced():
     assert not _CLAUSE_LEAD.match("Roses")
 
 
+def test_gerund_led_enumeration_is_not_a_clause():
+    """A gerund-led part is a noun phrase, so a subset answer must be refused.
+
+    Outstanding issue #4.  'Improving education and infrastructure' was being
+    read as a clause, which gave it the permissive containment path -- and a
+    subset answer then earned credit:
+        score('education', 'Improving education and infrastructure') was True
+    An incomplete answer must not be credited.
+    """
+    import sys
+    from pathlib import Path
+
+    harness = Path(__file__).resolve().parents[2] / "scripts" / "benchmarks"
+    sys.path.insert(0, str(harness))
+    from eval_locomo_full import score  # noqa: E402
+
+    for g in ("Improving education and infrastructure",
+              "Taking walks and hiking",
+              "Writing lyrics and notes"):
+        assert is_list_gold(g), g
+        # one item of the enumeration must not pass
+        assert score(g.split(" and ")[-1].strip(), g) is False, g
+    # the full enumeration, in either separator, does pass
+    assert score("education, infrastructure",
+                 "Improving education and infrastructure") is True
+    assert score("walks, hiking", "Taking walks and hiking") is True
+    # a genuine clause is still not an enumeration
+    assert not is_list_gold("Changed his diet and started walking regularly")
+    assert not is_list_gold("to de-stress and clear her mind")
+
+
 def test_single_item_gold_still_allows_containment():
     """Non-list golds keep the containment credit the production scorer gives."""
     assert grade("her mental health", "mental health") == NEAR
