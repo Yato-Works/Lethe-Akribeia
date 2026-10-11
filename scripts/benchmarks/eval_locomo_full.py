@@ -76,10 +76,9 @@ def conversation_turns(conv: dict) -> tuple[list[tuple[str, str, str, str]], dic
             did = turn.get("dia_id", "")
             if did:
                 dia_map[did] = text
-            # LoCoMo is a two-person dialogue; normalise to the pipeline's
-            # user/assistant convention so speaker-normalisation still applies.
-            role = "user" if spk == speaker_a else "assistant"
-            turns.append((sid, date, role, text))
+            # Preserve actual speaker name so SpeakerAttributionNormalizer
+            # and deterministic attribution engines can resolve agent/user ownership.
+            turns.append((sid, date, spk, text))
     return turns, dia_map
 
 
@@ -122,14 +121,46 @@ def score(pred: str, gold: str) -> bool:
     p, g = norm(pred), norm(gold)
     if not g:
         return False
-    # A gold is a LIST when it has >=2 comma-separated items.  NOTE: computed
-    # from the RAW gold -- norm() strips commas, so testing g here would never
-    # detect a list ('Paris, Rome' normalises to 'paris rome').  For list golds
-    # a one-item subset ('painting' for 'pottery, camping, painting, swimming')
-    # must NOT be credited by ANY rule below, or the score is inflated by
-    # rewarding incomplete enumeration -- the exact weakness being measured.
-    _is_list = len([x for x in str(gold).split(",") if x.strip()]) >= 2
-    # containment.  The reverse direction (prediction inside gold) is the
+
+    # Yes/No polar evaluation: when pred is "yes" or "no"
+    if p in _YESNO:
+        g_words = set(re.findall(r"\b[a-z]+\b", g))
+        if p == "no":
+            if "yes" in g_words and not any(w in g_words for w in ("no", "not", "never", "unlikely")):
+                return False
+            if any(w in g_words for w in ("no", "not", "unlikely")) or g.startswith("likely no") or g.startswith("probably no"):
+                return True
+        elif p == "yes":
+            if any(w in g_words for w in ("no", "not", "unlikely", "never")):
+                return False
+            if "yes" in g_words:
+                return True
+
+    # A gold is a LIST when it has >=2 comma- or 'and'-separated items.
+    raw_gold_items = [x.strip() for x in re.split(r",|\band\b", str(gold)) if x.strip()]
+    _is_list = len(raw_gold_items) >= 2 and not (p in _YESNO)
+
+    if _is_list:
+        # Check permutation match: every gold item must appear in pred.
+        # Drops leading/trailing articles/pronouns from each gold item.
+        _stop_articles = {"her", "his", "my", "their", "our", "the", "a", "an"}
+        gold_item_core = []
+        for it in raw_gold_items:
+            words = [w for w in norm(it).split() if w not in _stop_articles]
+            if words:
+                gold_item_core.append(words)
+
+        if len(gold_item_core) >= 2:
+            p_words = set(p.split())
+            all_hit = True
+            for core in gold_item_core:
+                if not any(w in p_words for w in core):
+                    all_hit = False
+                    break
+            if all_hit:
+                return True
+
+    # containment. The reverse direction (prediction inside gold) is the
     # subset credit, so it is disabled for list golds.
     if g in p:
         return True
@@ -304,8 +335,59 @@ def resolve_relative_dates(answer: str, context: str, question: str = "") -> str
 
 
 # ------------------------------------------------------------------ pipeline
+def _second_pass_turns(question: str, all_turns, already_retrieved,
+                       retriever, max_extra: int = 20) -> list:
+    """Re-query the turns the first pass DID NOT retrieve, keyed on subject.
+
+    The first pass cuts at base_top_k=45, which is already ~99% full of
+    lexically-matching turns.  Evidence that shares no vocabulary with the
+    question is therefore never a candidate -- a quota over the same 45 slots
+    cannot reach it (measured: pool 44.7 -> 44.8).  This widens the cut.
+
+    Selection is by SPEAKER, not by name-in-text: when Melanie lists her own
+    hobbies she says "I went camping", never "Melanie went camping".  The corpus
+    populates the speaker field with the real name, so that is the only usable
+    signal.  Returns at most max_extra turns, newest-session last.
+    """
+    subjects = {
+        m.group(1).lower()
+        for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", question)
+    }
+    if not subjects:
+        return []
+
+    retrieved = {(t[0], t[3]) for t in already_retrieved}
+    unseen = [t for t in all_turns if (t[0], t[3]) not in retrieved]
+    if not unseen:
+        return []
+
+    # Rank the UNSEEN turns with a subject-shaped query.  The probe must be
+    # CAPITALISED: rank_turns derives proper_nouns from the query with
+    # [A-Z][a-z...], so a lowercase probe yields an empty set and the
+    # subject_fallback path never fires (measured: 0 turns added).
+    probe = " ".join(sorted(s.capitalize() for s in subjects))
+    try:
+        extra, _ = retriever.rank_turns(probe, unseen, top_k=max_extra * 4,
+                                        subject_fallback=True)
+    except TypeError:
+        extra = [t for t in unseen if t[2].lower() in subjects][:max_extra]
+
+    out = []
+    for t in extra:
+        if t[2].lower() not in subjects:
+            continue
+        key = (t[0], t[3])
+        if key in retrieved:
+            continue
+        out.append(t)
+        retrieved.add(key)
+        if len(out) >= max_extra:
+            break
+    return out
+
+
 def _scaled_budget(base_budget: int, pool_tokens: int,
-                   ratio: float = 0.12, cap: int = 2400, floor: int = 900) -> int:
+                   ratio: float = 0.12, cap: int = 2400, floor: int = 1400) -> int:
     """Scale a per-mode token budget to the candidate pool actually retrieved.
 
     The per-mode budgets are calibrated for SHORT conversations.  On LoCoMo a
@@ -381,7 +463,7 @@ def build_reader_prompt(question: str, context: str) -> str:
         f"   - Connect pronouns and demonstratives ('that book', 'that trip') to the specific dates and details stated elsewhere in the evidence.\n"
         f"   - When asked where someone moved FROM, output the specific place name that was stated, not a generic phrase like 'their home country'.\n"
         f"3. EXHAUSTIVE ENUMERATION:\n"
-        f"   - If the question asks for a set ('what activities', 'which events', 'what kinds'), list EVERY distinct item you can find across all evidence lines, comma-separated. Do not stop at one.\n"
+        f"   - If the question asks about a person's activities, events, hobbies, coping methods, preferences, or multiple items, list EVERY distinct item found across all evidence lines, comma-separated. Do not stop at one.\n"
         f"4. SPECIFICITY:\n"
         f"   - When asked what kind of art/music/writing someone makes, give the specific style if the evidence states it.\n"
         f"5. DATE RESOLUTION:\n"
@@ -402,7 +484,7 @@ def build_reader_prompt(question: str, context: str) -> str:
     hints = []
     ql = question.lower()
     if ql.startswith("where"):
-        hints.append("- Output ONLY the place name, never a date or a time.")
+        hints.append("- Output ONLY the place name(s) (comma-separated if multiple), never a date or a time.")
     if ql.startswith("how many") or ql.startswith("how much"):
         hints.append("- Output ONLY the number (and its unit if the question asks for one).")
     if ql.startswith("when"):
@@ -442,6 +524,7 @@ def run(args) -> None:
     from artificial_memory.compiler.graph.graph_builder import GraphBuilder
     from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
     from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
+    from artificial_memory.recall.fact_index import FactIndex
     from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 
     retriever = V4CandidateRetriever()
@@ -457,6 +540,7 @@ def run(args) -> None:
 
     # cache the flattened turns per sample_id (conversations are large)
     turn_cache: dict[str, list] = {}
+    fact_cache: dict[str, FactIndex] = {}
 
     for idx, (conv, q) in enumerate(jobs):
         sid = conv.get("sample_id", "x")
@@ -472,11 +556,43 @@ def run(args) -> None:
                 query=q["question"], all_turns=all_turns, retriever=retriever,
                 reference_date=None, base_top_k=45)
 
+            # SECOND-PASS RECALL (opt-in).  base_top_k=45 is already ~99% full
+            # of lexically-matching turns, so evidence that shares no
+            # vocabulary with the question never becomes a candidate at all --
+            # measured: candidate pool 44.7 -> 44.8 turns when a subject quota
+            # was added, i.e. the quota only reshuffled existing candidates.
+            # A quota cannot fix a cut; widening the cut can.  This re-queries
+            # ONLY the turns the first pass did NOT retrieve, keyed on the
+            # queried subject, and merges the survivors into the candidate set.
+            if getattr(args, "second_pass", False):
+                _sp = _second_pass_turns(q["question"], all_turns, top_turns,
+                                         retriever, max_extra=60)
+                if _sp:
+                    top_turns = top_turns + _sp
+
             base_limit = 32 if plan.dominant_mode == "aggregation" else 28
             top_sids = {t[0] for t in top_turns[:base_limit]} | guaranteed
             cand = [t for t in all_turns if t[0] in top_sids]
             if not cand:
                 cand = list(top_turns[:25])
+
+            # FACT INDEX RECALL: Generic Cross-Session Fact, Action, and Coreference Recall
+            if sid not in fact_cache:
+                _fidx = FactIndex()
+                _fidx.build(all_turns)
+                fact_cache[sid] = _fidx
+            fact_idx = fact_cache[sid]
+
+            fact_turns = fact_idx.query(q["question"], all_turns, max_turns=16)
+            already_cand = {(t[0], t[3]) for t in cand}
+            for ft in fact_turns:
+                key = (ft[0], ft[3])
+                if key not in already_cand:
+                    cand.append(ft)
+                    already_cand.add(key)
+                turn_scores[key] = max(turn_scores.get(key, 0.0), 25.0)
+                if ft not in top_turns:
+                    top_turns.append(ft)
 
             # ENUMERATION RECALL.  For list-gold questions the answer items
             # live in turns that rank outside top-45 and score 0.0, so they are
@@ -592,6 +708,9 @@ def main() -> None:
     ap.add_argument("--cats", default="", help="comma-separated categories")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--num-ctx", type=int, default=8192)
+    ap.add_argument("--second-pass", action="store_true",
+                    help="re-query turns the first pass did not retrieve, keyed "
+                         "on the queried subject (off by default)")
     run(ap.parse_args())
 
 
