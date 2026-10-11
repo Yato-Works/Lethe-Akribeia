@@ -35,6 +35,24 @@ class CompiledContext:
 class BudgetedCognitiveCompiler:
     """Submodular Knapsack Evidence Compiler under strict token budgets."""
 
+    # Head nouns whose answer is a SET of instances rather than one value.
+    # Form-based only: no question content, no corpus vocabulary.
+    _ENUMERATION_HEADS = (
+        "activities", "activity", "events", "event", "kinds", "kind",
+        "items", "item", "things", "thing", "hobbies", "hobby",
+        "places", "place", "books", "book", "movies", "movie",
+        "instruments", "instrument", "sports", "sport", "foods", "food",
+        "topics", "topic", "examples", "example", "instances",
+    )
+
+    _STOP_WORDS = frozenset({
+        "what", "which", "who", "whom", "whose", "where", "when", "why",
+        "how", "did", "do", "does", "was", "were", "has", "have", "had",
+        "is", "are", "the", "a", "an", "of", "to", "in", "on", "for",
+        "and", "or", "all", "any", "some", "many", "much", "i", "my",
+        "me", "we", "our", "you", "your", "their", "his", "her",
+    })
+
     def __init__(self) -> None:
         self.speaker_normalizer = SpeakerAttributionNormalizer()
         self.temporal_normalizer = TemporalNormalizer()
@@ -50,6 +68,34 @@ class BudgetedCognitiveCompiler:
             "think", "wondering", "please", "look", "looking", "interested",
             "back", "previous", "conversation", "conversations", "remind", "remember", "recall", "talked", "discussed", "mention", "mentioned"
         })
+
+    def _detect_enumeration(self, question: str) -> tuple[bool, set[str]]:
+        """Is this an enumeration question, and who is being asked about?
+
+        Returns (is_enumeration, subjects).  Subjects are capitalised names in
+        the question, or a possessive owner ("Melanie's ...").  Form-based:
+        the head noun decides, never the question's topic.
+        """
+        ql = question.lower()
+        if not any(h in ql for h in self._ENUMERATION_HEADS):
+            return False, set()
+        subjects = {m.group(1) for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", question)}
+        return (bool(subjects), {s.lower() for s in subjects})
+
+    def _bundle_names_subject(self, bundle, subjects: set[str]) -> bool:
+        """True if any member of the bundle names one of the queried subjects.
+
+        Used only for the enumeration escape hatch: for a "list everything X
+        does" question, X's own turns are admissible evidence even when they
+        share no vocabulary with the question.
+        """
+        if not subjects:
+            return False
+        for n in bundle.member_nodes:
+            text = n.raw_text.lower()
+            if any(s in text for s in subjects):
+                return True
+        return False
 
     def compile(
         self,
@@ -102,6 +148,13 @@ class BudgetedCognitiveCompiler:
 
         # Pool of valid bundles within budget
         valid_candidates = [b for b in bundles if b.total_tokens <= effective_budget]
+
+        # ENUMERATION DETECTION.  A question whose head noun asks for a set
+        # ("what activities/events/kinds/items...") is answered by collecting
+        # every instance the subject mentions.  Those instances live in turns
+        # that share no vocabulary with the question, which the gate below used
+        # to reject outright.  Keyed on FORM only.
+        enumeration, enum_subjects = self._detect_enumeration(question)
 
         # H1 anchor-priority pre-fill (opt-in): admit the bundles of the
         # TOP-ranked anchors BEFORE density fill.  Without this, the
@@ -161,7 +214,23 @@ class BudgetedCognitiveCompiler:
 
                 # Gate: bundle must either have anchor score, cover query terms, or continue an already-selected evidence session
                 if not overlap and not in_sel_sid and anc_score <= 0.0:
-                    continue
+                    # ENUMERATION ESCAPE HATCH.
+                    # An enumeration question ("what activities does X do?",
+                    # "which events...", "what kinds of...") is answered by
+                    # collecting EVERY distinct instance the subject mentions,
+                    # and those instances are by definition scattered across
+                    # turns that share no vocabulary with the question.  This
+                    # gate was the measured reason 42pt of retrieved evidence
+                    # never reached the reader (77.2% retrieved -> 35.0% in
+                    # context).
+                    #
+                    # For an enumeration question, a bundle whose members name
+                    # the queried subject is admitted even with zero query
+                    # overlap.  Keyed on the question's FORM (the enumerated
+                    # head noun), never on its content -- see
+                    # tests/unit/audit_contamination.py.
+                    if not (enumeration and self._bundle_names_subject(b, enum_subjects)):
+                        continue
                 new_words = overlap - covered_words
                 # If it contributes NO new query words and has no anchor score and is not continuing an existing session, skip it
                 if not in_sel_sid and not new_words and anc_score <= 0.0:
