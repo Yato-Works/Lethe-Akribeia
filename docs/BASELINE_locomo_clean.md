@@ -136,3 +136,54 @@ the reader does not reliably convert that into correct answers. This is the same
 wall measured earlier — 100% evidence retention still produced only 40%
 accuracy. The bottleneck is now unambiguously the READER, not retrieval and not
 the compiler.
+
+---
+
+## Strict grading audit — the verdict on the second-pass recall
+
+Tool: `artificial_memory/compiler/eval/audit_strict_grade.py`, rubric pinned by
+`tests/unit/test_audit_strict_grade.py`.  Arms graded by one fixed rule set;
+nothing about the treatment leaks into grading.
+
+Rubric: STRICT (exact) / NEAR (containment, list golds excluded) / PARTIAL
+(token overlap >=0.5 or fuzzy >=0.85, which is what the production scorer
+accepts) / WRONG.  A PARTIAL credit is deliberately NOT counted as an
+improvement.
+
+| | baseline | second-pass |
+|---|---|---|
+| strict | 20.8% (414) | 21.3% (424) |
+| near | 9.3% (184) | 9.6% (190) |
+| partial | 29.6% (405) | 28.9% (412) |
+| wrong | 49.5% (983) | 48.3% (960) |
+
+| McNemar tier | baseline | 2-pass | delta | b | c | p | |
+|---|---|---|---|---|---|---|---|
+| STRICT only | 414 | 424 | +0.50pt | 17 | 27 | 0.1742 | not significant |
+| **STRICT+NEAR** | **598** | **614** | **+0.81pt** | 16 | 32 | **0.0293** | **SIGNIFICANT** |
+| STRICT+NEAR+PARTIAL | 1003 | 1026 | +1.16pt | 29 | 52 | 0.0140 | SIGNIFICANT |
+
+REAL changes (those leaving or entering the tolerant band):
+- 32 real improvements, 11 real regressions, **net +21 questions**
+- STRICT-only is not significant on its own: the gain is not just extra exact
+  matches, it is wrong -> near/strict conversions (16 wrong->strict, 9 wrong->near)
+
+**VERDICT: the second-pass improvement is REAL.** Under a rubric that is
+stricter than production — it refuses subset credit for enumeration golds, which
+the production scorer had been granting — the effect gets *stronger*, not weaker
+(p 0.0140 on the full tolerant band vs p 0.0649 under the earlier looser rubric).
+
+That is the opposite of what an inflated-scorer artefact looks like.
+
+### Two real bugs the strict rubric exposed in the OLD scorer
+
+1. **Subset credit in the tolerant band.** `grade("Rome", "Paris, Rome")` is
+   PARTIAL under the production scorer (token overlap 1.0) but is an incomplete
+   answer. The strict rubric refuses it at every tier.
+2. **Prose misread as a list.** A comma is not sufficient to make an
+   enumeration gold: `"Likely no, though she likes reading"` was treated as a
+   list, which blocked the containment credit it legitimately earns. The strict
+   rubric requires short, non-clausal items.
+
+Both are recorded here because they mean some previously reported numbers were
+crediting incomplete enumeration answers.
