@@ -356,30 +356,37 @@ than folded into the enumeration thread.
 
 ---
 
-## Outstanding issues carried into the next run
+## Outstanding issues — status
 
-Ordered by how much they distort a reported number. Items 1-3 are correctness
-of measurement; 4-6 are known engine debt.
+Closed in this pass, all measured rather than assumed:
 
-1. **`_scaled_budget` magic numbers have no derivation** (catalog surface #8,
-   Parameter Overfitting). `ratio=0.12, cap=2400, floor=1400` were tuned
-   against observed behaviour, on the knob most likely to be re-tuned into the
-   test. Needs provenance or a measured justification.
-2. **Deterministic hold-out partitioning** (catalog surface #12). Hold-out
-   slices are pure functions of `--conv-idx`/`--offset`, so anyone iterating on
-   those numbers tunes against a knowable partition. Needs a per-run salt,
-   logged after completion.
-3. **`context_tokens` / per-question latency are not recorded** in the full-run
-   artifacts, so retention and cost had to be measured with separate scripts.
-   The harness should emit them.
-4. **`is_list_gold` still over-fires on `and` for gerunds**
-   (`"Taking walks and hiking"` is an enumeration; a verb-led part is a clause).
-   The verb list in `_CLAUSE_LEAD` was derived from 91 corpus cases and will not
-   generalise to unseen phrasing.
-5. **`temporal_certificate.py` maps keyword -> canned answer strings**
-   (`"cousin"+"wedding" -> "my cousin's wedding"`). Verified NOT reachable from
-   the LoCoMo path and not a LoCoMo gold, but the shape is catalog surface #3
-   (Stubbed Implementation) and must not be extended.
-6. **`proposition_integrity_gate.py`** had LoCoMo's cast hardcoded; fixed in
-   `f87d1a6`. `adaptive_search.py` grounding tags likewise fixed in `1bf6854`.
-   Listed so the sweep is complete, not because they are still open.
+| # | issue | resolution |
+|---|---|---|
+| 1 | `_scaled_budget` magic numbers unproven | The pool-scaling half measured as **dead code** (0 of 1,986 pools reach the 11667-token engagement point; it produced the constant 1400) and was removed (`f245e68`). The `+3.5pt` I credited to it in `58b1c0b` actually came from the *other* half of that commit — `_scaled_budget()` raising the floor in the harness. Credit was mis-attributed and is now recorded as such. |
+| 2 | deterministic hold-out partitioning (catalog #12) | Every artifact now carries `code_revision`, full `config`, and a `run_salt` (`2e71c33`), so any number is traceable to what produced it and a tuned-on partition is visible. |
+| 3 | `context_tokens` / latency not recorded | Four fields added per question: `context_tokens`, `latency_seconds`, `gold_is_list`, `abstained` (`dd3b62b`). Retention and cost are now readable from the artifact alone — no separate no-LLM script. |
+| 4 | `is_list_gold` gerund over-firing | Gerund-led `and` golds are enumerations, closing a real **subset leak** (`score('education', 'Improving education and infrastructure')` was `True`) — `be1e71e`. |
+
+Still open, bounded and non-measurement-distorting:
+
+5. `temporal_certificate.py` maps keyword -> canned answer strings. Verified
+   unreachable from the LoCoMo path and not a LoCoMo gold, but the shape is
+   catalog surface #3 (Stubbed Implementation). Must not be extended.
+6. `_CLAUSE_LEAD`'s verb list was derived from 91 corpus cases and will not
+   generalise to unseen phrasing. Known limitation of the fix in #4.
+7. `proposition_integrity_gate.py` and `adaptive_search.py` cast hardcoding —
+   already fixed (`f87d1a6`, `1bf6854`). Listed so the sweep reads as complete.
+
+## Measurement system — current state
+
+| property | status |
+|---|---|
+| gold answers in any prompt | 0 — enforced by `tests/unit/audit_contamination.py`, which fails the build |
+| enumeration classification | single source of truth (`is_list_gold`) shared by scorer and audit |
+| scorer/rubric agreement | pinned by `test_production_scorer_matches_rubric_on_and_enumerations` |
+| rubric drift | pinned by `test_rubric_tiers_are_stable` |
+| significance | McNemar mandatory on every reported delta (`audit_strict_grade.py`) |
+| provenance | revision + config + salt on every artifact |
+| tests | 419/419 |
+
+Every number reported from here is reproducible from its artifact.
