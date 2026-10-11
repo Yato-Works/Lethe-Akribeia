@@ -194,7 +194,11 @@ def run_pipeline(jobs: list[tuple[dict, dict]], mode: str, num_ctx: int = 8192) 
                 closure_fallback_turns = 0
                 if (closure_res.closure_state.termination_reason
                         == "no_further_expansion_possible"):
-                    _fb_keys = {(t[0], t[3]) for t in cand}
+                    # Snapshot the pre-fallback pool so only genuinely NEW turns
+                    # get fallback anchors.
+                    _pre_fallback_keys = {(t[0], t[3]) for t in cand}
+                    _fb_keys: set[tuple[str, str]] = set()
+                    _fb_scores: dict[tuple[str, str], float] = {}
                     for req in closure_res.requirement_details:
                         if req.status.value not in ("unresolved", "partially_supported"):
                             continue
@@ -214,7 +218,7 @@ def run_pipeline(jobs: list[tuple[dict, dict]], mode: str, num_ctx: int = 8192) 
                         for probe_text in probes:
                             if not probe_text or not probe_text.strip():
                                 continue
-                            fb_extra, _fb_scores = retriever.rank_turns(
+                            fb_extra, _fb_s = retriever.rank_turns(
                                 probe_text, all_turns, top_k=8)
                             for et in fb_extra:
                                 k = (et[0], et[3])
@@ -222,8 +226,20 @@ def run_pipeline(jobs: list[tuple[dict, dict]], mode: str, num_ctx: int = 8192) 
                                     cand.append(et)
                                     _fb_keys.add(k)
                                     closure_fallback_turns += 1
+                                _fb_scores[k] = max(
+                                    _fb_scores.get(k, 0.0), _fb_s.get(k, 0.0))
+                else:
+                    _fb_keys = set()
+                    _fb_scores = {}
+                    _pre_fallback_keys = set()
 
                 t_map = {(t[0], t[3]): f"{t[0]}:t{i}" for i, t in enumerate(cand)}
+                # Fallback turns must be ANCHORED or the knapsack will never
+                # select them.  Measured failure: adding 12 candidate turns to
+                # conv-30_9 changed context_tokens by 0 (1394 -> 1394), because
+                # the new turns were in the pool and got bundles but carried no
+                # anchor score, so they lost every selection round.
+                fallback_anchor_ids: list[str] = []
                 anchor_ids = []
                 anchor_scores = {}
                 for t in top_turns:
@@ -231,6 +247,17 @@ def run_pipeline(jobs: list[tuple[dict, dict]], mode: str, num_ctx: int = 8192) 
                     if nid and nid not in anchor_ids:
                         anchor_ids.append(nid)
                         anchor_scores[nid] = turn_scores.get((t[0], t[3]), 1.0)
+
+                # Anchor the turns this fallback contributed, scored by the
+                # rank_turns score that selected them.
+                for k in _fb_keys:
+                    if k in _pre_fallback_keys:
+                        continue
+                    nid = t_map.get(k)
+                    if nid and nid not in anchor_ids:
+                        anchor_ids.append(nid)
+                        anchor_scores[nid] = _fb_scores.get(k, 2.0)
+                        fallback_anchor_ids.append(nid)
 
                 for req in closure_res.requirement_details:
                     for stid in req.supporting_turn_ids:
