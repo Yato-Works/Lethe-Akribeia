@@ -85,11 +85,22 @@ class AdaptiveEvidenceSearcher:
                         n_text = n.raw_text.lower()
                         if missing_cue and missing_cue in n_text:
                             expanded_props.append(n)
-                            # Create deterministic entity grounding tag
-                            if "home country" in missing_cue and "sweden" in n_text:
-                                grounding_tags.append("[Entity Grounding: Caroline's home country = Sweden]")
-                            elif "necklace" in missing_cue and "sweden" in n_text:
-                                grounding_tags.append("[Entity Grounding: Caroline's necklace = graduation gift from grandma in Sweden]")
+                            # Generic grounding: echo the property the evidence
+                            # actually states, rather than a hardcoded fact.
+                            #
+                            # This used to emit literal corpus answers --
+                            # "[Entity Grounding: Caroline's home country =
+                            # Sweden]" and "Caroline's necklace = graduation
+                            # gift from grandma in Sweden" -- i.e. it wrote the
+                            # answer key straight into the reader's context.
+                            cue_terms = [
+                                w for w in re.findall(r"[a-z]{4,}", missing_cue)
+                                if w in n_text
+                            ]
+                            if cue_terms:
+                                grounding_tags.append(
+                                    f"[Entity Grounding: {cue_terms[0]} present in evidence]"
+                                )
 
                 # Interleave expanded high-value nodes
                 seen_ids = {p.id for p in current_selection}

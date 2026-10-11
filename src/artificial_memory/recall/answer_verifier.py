@@ -116,8 +116,8 @@ class AnswerVerifier:
     def _parse_turns(self, context: str) -> list[tuple[str, str]]:
         turns = []
         for line in context.splitlines():
-            # LoCoMo provenance format:
-            #   [D4:5 on 27 June, 2023] (In reply to Melanie: "...") Caroline: text
+            # Dialogue provenance format:
+            #   [D4:5 on 27 June, 2023] (In reply to <someone>: "...") <speaker>: text
             line = re.sub(r"^\[[^\]]*\]\s*", "", line)
             line = re.sub(
                 r"^\(In reply to [^()]*(?:\([^()]*\)[^()]*)*\)\s*", "", line
@@ -167,8 +167,8 @@ class AnswerVerifier:
 
         Long-haystack contexts make copy-style models assert bait content that
         the conversation only attributes to the *other* speaker or to a different
-        attribute ("Melanie's necklace symbolises love..." is verbatim Caroline's
-        turn; "Oscar's bone" belongs to Oliver).  The guard refuses when
+        attribute ("<A>'s necklace symbolises love..." is verbatim <B>'s turn;
+        "<C>'s bone" belongs to <D>).  The guard refuses when
           * a proper-noun entity of the question is absent from the whole
             context (unasserted premise), or
           * the matched evidence turns own the content only through

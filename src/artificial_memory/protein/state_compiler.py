@@ -38,17 +38,11 @@ class CompiledState:
 
         # Generic, evidence-driven phrasing.
         #
-        # This block used to hardcode the facts of one evaluation corpus as
-        # literal strings -- "Melanie read the book \"Becoming Nicole\"",
-        # "Caroline participated in mentoring program and school speech",
-        # "Melanie went on a hike after the roadtrip on 19 October 2023",
-        # "pets' names are Oliver, Luna, Bailey", "identity is Transgender
-        # woman", and more.  Verified against the corpus: 7 of those strings
-        # are exact or near-exact gold answers.  That is Label-level
-        # contamination -- the compiler shipped with the answer key.
-        #
-        # Everything below is derived from (subject, property, value), which
-        # are extracted from the evidence at runtime.  No corpus fact survives.
+        # This block used to return literal facts of one evaluation corpus as
+        # canned [STATE] strings.  Verified against that corpus: 7 of them were
+        # exact or near-exact gold answers.  That is Label-level contamination
+        # -- the compiler shipped with the answer key.  All of it is gone; the
+        # exact removed strings are recorded in git history, not here.
         # See docs/AUDIT_contamination_and_gaming.md.
         if prop == "identity":
             return f"[STATE] {subj}'s identity is {val}.{prov}"
