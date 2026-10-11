@@ -69,6 +69,33 @@ was one the baseline got right.
    7B model's real context limit and how output tokens are accounted.  This
    decides whether ECE is salvageable before any more evidence plumbing.
 
+## Separate artifact found while triaging cat1 (do not confuse with the above)
+
+Re-scoring the 1986-question run `locomo_full_20261010_151930.json` with the
+CURRENT scorer flips 107 questions to PASS:
+
+| | value |
+|---|---|
+| recorded | 1009/1986 = 50.81% |
+| re-scored | 1116/1986 = 56.19% |
+| delta | +107 questions, **+5.39pt** |
+| by category | cat1 15, cat2 55, cat3 6, cat4 21, cat5 10 |
+
+**This is not an improvement.** The predictions are byte-identical; the run
+predates the current scorer. 5 of the 107 were cat1 list-gold questions marked
+FAIL only because the answer listed the same items in a different order
+(`'Paris, Rome'` vs `'Rome, Paris'`), which the current scorer handles.
+
+So there are now TWO independent inflation artifacts, both pointing the same
+direction and both noise:
+
+1. contaminated reader prompt (gold answers embedded) — up to 2.72pt
+2. stale scorer — +5.39pt on re-scoring
+
+A clean comparison requires one full run with the de-contaminated prompt AND
+the current scorer together. Until that run exists, no LoCoMo headline number
+is trustworthy, and neither 50.81% nor 56.19% should be quoted as progress.
+
 ## Note on _scaled_budget
 
 Its floor is 1400 (`floor: int = 1400` in
