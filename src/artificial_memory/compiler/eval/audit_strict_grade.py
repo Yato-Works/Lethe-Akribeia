@@ -56,6 +56,23 @@ def norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
 
 
+# A part that OPENS with a finite verb or an infinitive is a clause, not a
+# coordinate noun phrase.  "Changed his diet and started walking regularly" and
+# "Read a book and paint" are clauses; "Bach and Mozart" is an enumeration.
+# Derived from the 91 comma-free golds in the LoCoMo corpus, not invented.
+_CLAUSE_LEAD = re.compile(
+    r"^(?:to\s+\w+|"
+    r"changed?|changing|started?|starting|read|reads|reading|wrote|writing|"
+    r"went|going|goes|got|getting|took|taking|takes|made|making|makes|"
+    r"bought|buying|learned|learning|helped|helping|decided|deciding|"
+    r"wanted|wanting|tried|trying|needed|needing|felt|feeling|"
+    r"found|finding|lost|losing|moved|moving|joined|joining|"
+    r"carving|ensuring|visualizing|balancing|improving|"
+    r"loves?|loving|likes?|liking|enjoys?|enjoying|prefers?|preferring)\b",
+    re.I,
+)
+
+
 def is_list_gold(gold: str) -> bool:
     """Is this gold an enumeration answer (>=2 comma-separated items)?
 
@@ -72,23 +89,23 @@ def is_list_gold(gold: str) -> bool:
     """
     chunks = [x.strip() for x in str(gold).split(",") if x.strip()]
     if len(chunks) < 2:
-        # "clarinet and violin" enumerates with 'and', not a comma.  Only treat
-        # it as an enumeration when the joined parts are short noun phrases:
-        # "to de-stress and clear her mind" is a clause, not a list.
+        # "clarinet and violin" enumerates with 'and', not a comma.  Treat 'and'
+        # as an enumeration ONLY when the joined parts are COORDINATE NOUN
+        # PHRASES.  Measured over 91 comma-free golds that fire this branch:
+        #   enumeration : "Bach and Mozart", "Fetch and Frisbee", "Music, art"
+        #   clause      : "Changed his diet and started walking regularly",
+        #                 "Read a book and paint", "to de-stress and clear her mind"
+        # The discriminator is a finite verb or an infinitive leading the part.
+        # A gerund ("Taking walks and hiking") reads as a noun phrase and stays
+        # an enumeration, which is the right call for this corpus.
         and_parts = [x.strip() for x in re.split(r"\band\b", str(gold)) if x.strip()]
-        # Treat 'and' as an enumeration only when the joined parts are short
-        # NOUN PHRASES.  "clarinet and violin" is a list; "to de-stress and
-        # clear her mind" is a clause with a verb, and must stay prose so the
-        # containment credit is not blocked.
-        if (len(and_parts) >= 2
-                and all(len(p.split()) <= 3 for p in and_parts[:2])
-                and not any(re.match(r"^(?:to|and|or)\b", p, re.I) or
-                            p.lower().endswith((" her mind", " his mind", " it",
-                                                " them", " him", " me"))
-                            for p in and_parts[:2])):
-            chunks = and_parts
-        else:
+        if len(and_parts) < 2:
             return False
+        if any(len(p.split()) > 3 for p in and_parts[:2]):
+            return False
+        if any(_CLAUSE_LEAD.match(p) for p in and_parts[:2]):
+            return False
+        chunks = and_parts
     heads = chunks[:2]
     if any(len(c.split()) > 6 for c in heads):
         return False

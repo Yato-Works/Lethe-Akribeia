@@ -77,6 +77,37 @@ def test_enumeration_uses_and_as_well_as_comma():
     assert grade("clarinet and violin", "clarinet and violin") == STRICT
 
 
+def test_and_enumeration_vs_clause():
+    """'and' joins an enumeration only between coordinate noun phrases.
+
+    Rule derived from the 91 comma-free golds in the corpus, not invented:
+      enumeration : "Bach and Mozart", "Roses and dahlias", "Free and light"
+      clause      : "Changed his diet and started walking regularly",
+                    "Read a book and paint", "to de-stress and clear her mind"
+    The discriminator is a finite verb or an infinitive leading the part.
+    """
+    # enumerations
+    for g in ("Bach and Mozart", "Fetch and Frisbee", "Roses and dahlias",
+              "Free and light", "Two cats and a dog", "Music and art"):
+        assert is_list_gold(g), g
+        assert grade(g.split(" and ")[0], g) == WRONG, g
+    # clauses -- containment credit must still work
+    for g in ("Changed his diet and started walking regularly",
+              "Read a book and paint",
+              "to de-stress and clear her mind"):
+        assert not is_list_gold(g), g
+
+
+def test_clause_lead_regex_is_balanced():
+    """The pattern must compile: an earlier version had an unterminated group."""
+    from artificial_memory.compiler.eval.audit_strict_grade import _CLAUSE_LEAD
+    assert _CLAUSE_LEAD.match("Changed his diet")
+    assert _CLAUSE_LEAD.match("Read a book")
+    assert _CLAUSE_LEAD.match("to de-stress")
+    assert not _CLAUSE_LEAD.match("Bach")
+    assert not _CLAUSE_LEAD.match("Roses")
+
+
 def test_single_item_gold_still_allows_containment():
     """Non-list golds keep the containment credit the production scorer gives."""
     assert grade("her mental health", "mental health") == NEAR
