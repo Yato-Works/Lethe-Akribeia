@@ -250,3 +250,44 @@ bug had manufactured.
 constraint on score. Evidence retention improved and accuracy did not follow.
 That leaves the reader, or the reader-plus-scorer pair, as the place to look —
 but that is now a hypothesis with clean evidence behind it, not a diagnosis.
+
+---
+
+## A2 step 1 — enumeration output contract: `count` is noise
+
+Owner's plan: change ONE clause, measure it, decide.  First clause tested is
+`--enum-contract count` ("count the distinct items in the evidence first, then
+list exactly that many; re-read if the list is shorter than the count").
+
+Slice: same 150 questions, same seed, `off` vs `count`.  Elapsed 7.2 min both.
+
+| | accuracy | b | c | discordant | p | |
+|---|---|---|---|---|---|---|
+| off | 100/150 (66.67%) | 3 | 3 | 6 | 0.6831 | ns |
+| count | 100/150 (66.67%) | | | | | |
+
+3 questions flipped to correct, 3 flipped to wrong, net 0.
+
+**Not only null — the regressions are worse in kind.**  Two of the three losses
+are degradations, not swaps:
+
+    GT   : A painting inspired by sunsets with a pi...
+    off  : abstract painting          (partially right)
+    count: I don't know.              (gave up)
+
+    GT   : Likely no
+    off  : No                          (right, scored)
+    count: Yes, Caroline would still want to pursue...   (wrong AND confident)
+
+The second is exactly the failure mode recorded earlier when the prompt told
+the model to reason: a correct hedged answer flipped to a confident wrong one.
+**`count` reproduces that failure mode and is rejected.**
+
+This is the second time "elaborate the reader prompt" has been measured and
+failed (the first being "推論せよ").  The accumulating evidence is that prompt
+elaboration is not the lever — which is itself the useful finding.
+
+Remaining untested clauses: `evidence`, `attribute`.  Given two consecutive
+null/negative results from prompt elaboration, these are lower priority than
+the reader-plus-scorer pair, where the strict-rubric work already found a real
+defect (227 misclassified enumeration golds, 51 still over-firing on 'and').
