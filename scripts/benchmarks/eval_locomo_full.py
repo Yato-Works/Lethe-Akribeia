@@ -154,11 +154,16 @@ def score(pred: str, gold: str) -> bool:
     _is_list = is_list_gold(gold) and not (p in _YESNO)
 
     if _is_list:
-        # Check permutation match: every gold item must appear in pred.
+        # Permutation match: every gold item must appear in the prediction.
+        # Split gold items on commas AND on 'and', mirroring _items() in the
+        # strict rubric.  With a comma-only split, an 'and'-enumerated gold
+        # ('Dramas and emotionally-driven films') stays a single chunk, never
+        # reaches the >=2 check, and a correct comma-rephrased answer
+        # ('dramas, emotionally-driven films') is scored WRONG.
         # Drops leading/trailing articles/pronouns from each gold item.
         _stop_articles = {"her", "his", "my", "their", "our", "the", "a", "an"}
+        raw_gold_items = [x.strip() for x in re.split(r",|\band\b", str(gold)) if x.strip()]
         gold_item_core = []
-        raw_gold_items = [x.strip() for x in str(gold).split(",") if x.strip()]
         for it in raw_gold_items:
             words = [w for w in norm(it).split() if w not in _stop_articles]
             if words:

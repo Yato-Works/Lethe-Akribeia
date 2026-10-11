@@ -77,6 +77,34 @@ def test_enumeration_uses_and_as_well_as_comma():
     assert grade("clarinet and violin", "clarinet and violin") == STRICT
 
 
+def test_production_scorer_matches_rubric_on_and_enumerations():
+    """The harness scorer and the strict rubric must agree on these.
+
+    Regression: the harness split gold items on commas only, so an
+    'and'-enumerated gold stayed one chunk and a correct comma-rephrased answer
+    was scored WRONG.  Found while diagnosing cat4:
+        GOLD : Dramas and emotionally-driven films
+        base : dramas and emotionally-driven films   -> correct
+        2pass: dramas, emotionally-driven films      -> WRONG (same items)
+    """
+    import sys
+    from pathlib import Path
+
+    harness = Path(__file__).resolve().parents[2] / "scripts" / "benchmarks"
+    sys.path.insert(0, str(harness))
+    from eval_locomo_full import score  # noqa: E402
+
+    assert score("dramas, emotionally-driven films",
+                 "Dramas and emotionally-driven films") is True
+    assert score("dramas and emotionally-driven films",
+                 "Dramas and emotionally-driven films") is True
+    # a subset of an enumeration is still wrong
+    assert score("dramas", "Dramas and emotionally-driven films") is False
+    assert score("clarinet", "clarinet and violin") is False
+    # order does not matter
+    assert score("Rome, Paris", "Paris, Rome") is True
+
+
 def test_and_enumeration_vs_clause():
     """'and' joins an enumeration only between coordinate noun phrases.
 

@@ -291,3 +291,65 @@ Remaining untested clauses: `evidence`, `attribute`.  Given two consecutive
 null/negative results from prompt elaboration, these are lower priority than
 the reader-plus-scorer pair, where the strict-rubric work already found a real
 defect (227 misclassified enumeration golds, 51 still over-firing on 'and').
+
+---
+
+## cat4 diagnosis, and one more scorer bug it exposed
+
+cat4 is 841 of 1,986 questions (largest category) and regressed -0.59pt under
+the second pass.  Shape of its 327 failures:
+
+| failure shape | n | share |
+|---|---|---|
+| answered wrongly | 220 | 67.3% |
+| abstained | 107 | 32.7% |
+| enumeration gold | 92 | 28.1% |
+
+Accuracy does **not** degrade with gold length (1-2 words 67.0%, 3-5 words
+57.6%, 6-10 words 58.3%, 11+ words 61.6%), so long answers are not the problem.
+The abstentions are not laziness either — their golds are specific unrecoverable
+details (`"a cup with a dog face on it"`, `"Trans Lives Matter"`,
+`"Finding Freedom"`), which a 7B reader will not reproduce verbatim.
+
+### The -0.59pt cat4 regression is a SCORER artifact, now fixed
+
+Diffing the two arms per question surfaced this pair:
+
+    GOLD : Dramas and emotionally-driven films
+    base : dramas and emotionally-driven films    -> credited
+    2pass: dramas, emotionally-driven films       -> WRONG
+
+Same two items, different separator. The harness list-branch split gold items on
+**commas only**, so an `and`-enumerated gold stayed a single chunk, never
+reached the `>= 2` permutation check, and fell through to containment — which is
+gated off for list golds. The comma-rephrased correct answer scored WRONG.
+
+Fixed by splitting gold items on commas and `and`, mirroring `_items()` in the
+strict rubric.
+
+A/B against `HEAD`'s scorer on the stored predictions (not a hand
+reconstruction — the committed file was imported directly):
+
+| arm | newly credited | newly failed | net |
+|---|---|---|---|
+| baseline | 24 | 0 | +24 |
+| 2-pass | 27 | 1 | +26 |
+
+Every newly credited case is a legitimate re-separation (`Bach and Mozart` /
+`Bach, Mozart`; `education and infrastructure` / `education, infrastructure`).
+The single newly-failed case is correct behaviour: gold
+`"To set goals, track achievements, and find areas for improvement"` vs pred
+`"to stay on track, visualize goals and tokenize successes"` — `tokenize
+successes` is not in the gold, and the old scorer had credited it through loose
+word overlap.
+
+**Both arms gain, the second pass gains slightly more, so this does not change
+the arm comparison. Verdict unchanged: NOT SIGNIFICANT at every tier.**
+
+### What cat4 actually is
+
+The largest category is dominated by **specific-detail recall the reader cannot
+reproduce verbatim**, not by enumeration and not by length. That is a different
+problem from cat1's list-gold coverage, and neither the retrieval work nor the
+reader prompt work has addressed it. Recorded as the next distinct target rather
+than folded into the enumeration thread.
