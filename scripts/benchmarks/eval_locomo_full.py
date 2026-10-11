@@ -557,6 +557,9 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off")
     )
 
 
+ABSTENTIONS = {"i don't know.", "", "not mentioned", "none"}
+
+
 def run(args) -> None:
     data = load_locomo(Path(args.data))
     wanted = set(int(x) for x in args.cats.split(",")) if args.cats else None
@@ -600,6 +603,7 @@ def run(args) -> None:
     fact_cache: dict[str, FactIndex] = {}
 
     for idx, (conv, q) in enumerate(jobs):
+        t_q = time.perf_counter()
         sid = conv.get("sample_id", "x")
         if sid not in turn_cache:
             turn_cache[sid] = conversation_turns(conv["conversation"])
@@ -698,14 +702,23 @@ def run(args) -> None:
                 pred = resolve_relative_dates(pred, compiled.context_text, q["question"])
 
             ok = score(pred, q["answer"])
+            ctx_tokens = getattr(compiled, "total_tokens", 0)
         except Exception as e:  # a single failure must not kill a 1986-q run
             pred = f"<ERROR: {type(e).__name__}: {e}>"
             ok = False
+            ctx_tokens = 0
 
         results.append({
             "question_id": q["question_id"], "category": q["category"],
             "question": q["question"], "ground_truth": q["answer"],
             "predicted_answer": pred, "is_correct": ok,
+            # Recorded so evidence retention and cost can be measured from the
+            # artifact alone.  Without these, every retention or latency question
+            # needed a separate no-LLM script re-running the whole pipeline.
+            "context_tokens": ctx_tokens,
+            "latency_seconds": round(time.perf_counter() - t_q, 3),
+            "gold_is_list": is_list_gold(str(q["answer"])),
+            "abstained": str(pred).strip().lower() in ABSTENTIONS,
         })
         by_cat[q["category"]].append(ok)
 
