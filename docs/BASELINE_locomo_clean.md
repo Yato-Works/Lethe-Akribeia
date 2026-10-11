@@ -390,3 +390,59 @@ Still open, bounded and non-measurement-distorting:
 | tests | 419/419 |
 
 Every number reported from here is reproducible from its artifact.
+
+---
+
+## All full runs re-scored under the current scorer
+
+The scorer changed four times this session, so recorded `is_correct` values are
+not comparable across artifacts.  Every full run re-scored under one rule set:
+
+| artifact | recorded | re-scored |
+|---|---|---|
+| `locomo_full_20261010_133824` (contaminated prompt) | 50.81% | **56.70%** |
+| `locomo_full_20261010_151930` (contaminated prompt) | 50.81% | **56.65%** |
+| `locomo_full_20261010_115839` | 47.28% | 52.82% |
+| `locomo_full_20261011_230313` (second pass) | 46.68% | 50.35% |
+| `locomo_full_20261011_195837` (clean baseline) | 46.32% | 49.75% |
+| `locomo_full_20261012_014752` (clean, current) | 49.75% | 49.75% |
+
+**Paired McNemar, newest vs each, n=1986:**
+
+| comparison | delta | b | c | p | |
+|---|---|---|---|---|---|
+| vs contaminated `133824` | **-6.95pt** | 306 | 168 | 0.0000 | SIG |
+| vs contaminated `151930` | **-6.90pt** | 306 | 169 | 0.0000 | SIG |
+| vs `115839` | -3.07pt | 273 | 212 | 0.0064 | SIG |
+| vs second-pass `230313` | -0.60pt | 45 | 33 | 0.2127 | ns |
+| vs clean baseline `195837` | ±0.00pt | 0 | 0 | 1.0000 | ns |
+
+### What contamination was actually worth
+
+**-6.95pt, p=0.0000, 306 questions that only the contaminated prompt got right.**
+The gap between the honest 49.75% and the contaminated 56.70% is real, large,
+and highly significant — this is not a rounding artefact.
+
+Note the direction of the correction: the contaminated runs recorded 50.81% at
+the time, and re-scoring them under the *current, stricter* scorer lifts them to
+56.70%. Two effects compound there — the contaminated prompt genuinely produced
+answers the clean pipeline does not (that is the -6.95pt, the real contamination
+gain), and the older scorer was also more permissive. Both inflate, and they
+point the same way.
+
+### Current honest standing
+
+**49.75% (988/1986)**, clean prompt, current scorer, no contamination, guard
+CLEAN, 419/419 tests.
+
+| category | acc | |
+|---|---|---|
+| single-hop | 28.0% | 79/282 |
+| multi-hop | 68.2% | 219/321 |
+| temporal | 35.4% | 34/96 |
+| open-domain | 63.9% | 537/841 |
+| adversarial | 26.7% | 119/446 |
+
+Caveat on this artifact: it began before the run-manifest and per-question
+diagnostic fields landed, so it carries the old six fields and no manifest. Its
+revision is therefore not self-recorded. The next run will be.
