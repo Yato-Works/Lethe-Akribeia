@@ -80,3 +80,59 @@ Ranked by correctable volume, using the CLEAN numbers:
 
 - 50.81% / 56.19% — both produced under contamination and/or a stale scorer.
 - Any LongMemEval dev/holdout number quoted without its scorer revision.
+
+---
+
+## End-to-end result of the second-pass recall (measured, 1,986 questions)
+
+Full run with `--second-pass` (`4cf32dd`), artifact
+`locomo_full_20261011_230313.json`, vs this baseline
+`locomo_full_20261011_195837.json`:
+
+| category | baseline | second-pass | delta |
+|---|---|---|---|
+| cat1 single-hop | 22.0% (62) | 22.3% (63) | +0.4pt |
+| cat2 multi-hop | 68.2% (219) | 68.8% (221) | +0.6pt |
+| cat3 temporal | 30.2% (29) | 30.2% (29) | ±0 |
+| cat4 open-domain | 59.2% (498) | 59.1% (497) | -0.1pt |
+| cat5 adversarial | 25.1% (112) | 26.2% (117) | +1.1pt |
+| **TOTAL** | **46.32% (920)** | **46.68% (927)** | **+0.35pt** |
+
+**Conversion efficiency: evidence retention +1.59pt produced only +0.35pt of
+score — 22%. 78% of the evidence gain was wasted.**
+
+Per-question accounting:
+- 38 questions flipped to correct
+- 31 questions flipped to wrong
+- net +7
+
+Character of the flips:
+- the 31 regressions: 19 of 31 were only correct via scorer tolerance (neither
+  exact nor substring matches)
+- the 38 gains: 36 of 38 were only correct via scorer tolerance
+
+Both sides of the ledger are dominated by tolerant partial matches, so the net
++7 sits inside the scorer's noise band. +0.35pt is not a claim of improvement.
+
+### Dilution hypothesis — TESTED AND REJECTED
+
+The obvious explanation for 38 gains / 31 regressions is that 60 extra turns
+dilute signal density so the knapsack drops turns it previously kept.
+Measured on cat1 (n=281), off vs on:
+
+| | off | on |
+|---|---|---|
+| avg context lines | 33.1 | 41.8 |
+| avg subject lines | 26.1 | 35.2 |
+| evidence retained | 45.9% | 50.9% |
+| **signal density (subject/context)** | **0.79** | **0.84** |
+
+Density went UP, not down. The added turns were the queried subject's own
+turns, which is exactly what an enumeration question wants. Dilution is
+therefore not the mechanism.
+
+**Honest position:** the second pass genuinely improves evidence retention, and
+the reader does not reliably convert that into correct answers. This is the same
+wall measured earlier — 100% evidence retention still produced only 40%
+accuracy. The bottleneck is now unambiguously the READER, not retrieval and not
+the compiler.
