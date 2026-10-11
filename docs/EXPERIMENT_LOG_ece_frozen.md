@@ -69,8 +69,48 @@ was one the baseline got right.
    7B model's real context limit and how output tokens are accounted.  This
    decides whether ECE is salvageable before any more evidence plumbing.
 
-## Separate artifact found while triaging cat1 (do not confuse with the above)
+## Contamination audit of the LoCoMo path (pre-baseline-run clearance)
 
+Full-corpus sweep: every string literal in every prompt/answer-building
+function was checked against all 1,427 LoCoMo gold answers and all 414
+LongMemEval gold answers (`tests/unit/audit_contamination.py`).
+
+Result: **VERDICT: CLEAN**.
+
+The reader prompt retains only `'Yes'` / `'Likely no'`, which are generic
+yes/no answer vocabulary, not benchmark-specific answers, and zero
+question-content branches.
+
+The audit was then narrowed to the six modules the LoCoMo harness actually
+imports — `budgeted_compiler`, `coverage_engine`, `execution_planner`,
+`graph_builder`, `fact_index`, `research.benchmarks.llm` — and re-run against
+every gold answer of length >= 10 chars:
+
+  all six modules: 0 hits
+
+So no contamination is reachable from the LoCoMo evaluation path.
+
+### Found but OUT OF SCOPE (not in the LoCoMo path, recorded for honesty)
+
+A repo-wide sweep (beyond the evaluation path) surfaced 80 lines containing a
+gold answer string. Most are docstring/comment examples or generic vocabulary
+lists. Two are worth flagging even though they are unreachable from LoCoMo:
+
+1. `src/artificial_memory/recall/proposition_integrity_gate.py` hardcodes
+   LoCoMo's own characters and their attributes (`Caroline` vs `Melanie`,
+   `charity race`, `Grand Canyon`, `black and white bowl`) as bespoke
+   detection patterns. It is benchmark-specific tuning, but it is imported
+   only by `context/msc_compiler.py` (a different benchmark), never by the
+   LoCoMo harness. **Not affecting any number reported here; should be
+   generalised before that module is used for a public score.**
+
+2. `src/artificial_memory/compiler/certificates/temporal_certificate.py`
+   maps keyword -> canned answer strings ("cousin"+"wedding" ->
+   "my cousin's wedding"). Those strings are not LoCoMo gold answers (verified:
+   0 exact and 0 substring matches), and the module is not in the LoCoMo path,
+   but the pattern itself is the cheat shape and should not be extended.
+
+## Separate artifact found while triaging cat1 (do not confuse with the above)
 Re-scoring the 1986-question run `locomo_full_20261010_151930.json` with the
 CURRENT scorer flips 107 questions to PASS:
 
