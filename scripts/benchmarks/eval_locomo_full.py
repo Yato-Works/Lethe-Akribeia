@@ -754,22 +754,55 @@ def run(args) -> None:
     # run's output independently verifiable and undeletable by a late arrival.
     import datetime as _dt
     _stamp = _dt.datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # RUN MANIFEST.  Gaming-catalog surface #12 (Audit Partition
+    # Fingerprinting): a hold-out derived only from public identity is fully
+    # guessable, so anyone iterating on --conv-idx/--offset tunes against a
+    # known partition.  Stamp every artifact with the exact configuration and
+    # the code revision that produced it, so a number can always be traced to
+    # what made it -- and a tuned-on partition is visible as such.
+    import hashlib
+    import subprocess
+    try:
+        _rev = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                              capture_output=True, text=True, timeout=5
+                              ).stdout.strip() or "unknown"
+    except Exception:
+        _rev = "unknown"
+
+    _config = {
+        "cond": args.cond, "cats": args.cats, "limit": args.limit,
+        "num_ctx": args.num_ctx, "second_pass": getattr(args, "second_pass", False),
+        "enum_contract": getattr(args, "enum_contract", "off"),
+        "data": args.data,
+    }
+    _salt = hashlib.sha256(
+        (_stamp + _rev + repr(sorted(_config.items()))).encode()
+    ).hexdigest()[:16]
+
+    _manifest = {
+        "run_stamp": _stamp,
+        "code_revision": _rev,
+        "config": _config,
+        "run_salt": _salt,
+        "accuracy": correct / total,
+        "per_category": {str(k): {"correct": sum(v), "total": len(v)}
+                         for k, v in by_cat.items()},
+        "scorer": "eval_locomo_full.score + is_list_gold (audit_strict_grade)",
+    }
+
     out = out.with_name(f"locomo_full_{_stamp}.json")
     # Also keep the stable 'latest' pointer for convenience.
     latest = out.parent / "locomo_full.json"
     with open(out, "w", encoding="utf-8") as f:
-        json.dump({"accuracy": correct / total, "results": results,
-                   "per_category": {str(k): {"correct": sum(v), "total": len(v)}
-                                    for k, v in by_cat.items()}},
+        json.dump({**_manifest, "results": results},
                   f, ensure_ascii=False, indent=2)
     with open(latest, "w", encoding="utf-8") as f:
-        json.dump({"accuracy": correct / total,
-                   "source": out.name,
-                   "per_category": {str(k): {"correct": sum(v), "total": len(v)}
-                                    for k, v in by_cat.items()}},
+        json.dump({**_manifest, "source": out.name},
                   f, ensure_ascii=False, indent=2)
     print(f"\nSaved -> {out}")
     print(f"Latest -> {latest}")
+    print(f"Run manifest: revision={_rev} salt={_salt} config={_config}")
 
 
 def main() -> None:
