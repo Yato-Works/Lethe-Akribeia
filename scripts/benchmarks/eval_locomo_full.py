@@ -451,7 +451,7 @@ def _enumeration_probe_turns(question: str, all_turns, retriever,
     return out
 
 
-def build_reader_prompt(question: str, context: str) -> str:
+def build_reader_prompt(question: str, context: str, enum_contract: str = "off") -> str:
     """Evidence-first reader prompt.
 
     NO BENCHMARK ANSWERS ARE EMBEDDED HERE.
@@ -505,8 +505,46 @@ def build_reader_prompt(question: str, context: str) -> str:
         hints.append("- Output ONLY the date or time expression.")
 
     hint_text = ("FORMAT RULES:\n" + "\n".join(hints) + "\n") if hints else ""
+
+    # ENUMERATION OUTPUT CONTRACT (opt-in, one clause at a time).
+    #
+    # Rule 3 already tells the model to enumerate exhaustively, but it gives the
+    # model nothing to CHECK against, and 63% of enumeration questions come back
+    # with a subset.  Each option below is a single additional clause, selectable
+    # so they can be measured one at a time rather than shipped as a bundle.
+    #
+    # 'count'     -- re-read the evidence and state how many distinct items exist
+    #                before listing them.
+    # 'evidence'  -- list only items the evidence actually states, and never
+    #                invent an item to reach a rounder count.
+    # 'attribute' -- keep the person/date/object each item belongs to attached.
+    #
+    # Off by default: the standing result is that "tell the model to reason"
+    # made things WORSE once already, so prompt elaboration is not assumed to help.
+    contract = ""
+    if enum_contract == "count":
+        contract = (
+            "ENUMERATION CHECK:\n"
+            "Before answering, count how many DISTINCT items the evidence states for this "
+            "question. Then list exactly those items, comma-separated. If you list fewer "
+            "than you counted, re-read the evidence and add the missing items.\n\n"
+        )
+    elif enum_contract == "evidence":
+        contract = (
+            "ENUMERATION CHECK:\n"
+            "List only items the evidence explicitly states. Never add an item you did not "
+            "read, and never drop an item because the list already looks long enough.\n\n"
+        )
+    elif enum_contract == "attribute":
+        contract = (
+            "ENUMERATION CHECK:\n"
+            "When listing items, keep attached which person each item belongs to and when it "
+            "happened, so items from different people are never merged.\n\n"
+        )
+
     return (
         base_prompt
+        + contract
         + hint_text
         + "Answer with ONLY the concise value (place, date, number, name, or comma-separated list). Do not output conversational filler or full sentences.\n"
         + f"Question: {question}\n"
@@ -644,7 +682,8 @@ def run(args) -> None:
                 is_multi_session=len(top_sids) > 1, adaptive_escalation=True)
 
             pred = answerer.answer(q["question"],
-                                   build_reader_prompt(q["question"], compiled.context_text)).text.strip()
+                                   build_reader_prompt(q["question"], compiled.context_text,
+                                                       enum_contract=getattr(args, "enum_contract", "off"))).text.strip()
             if pred.endswith(".") and len(pred.split()) <= 2:
                 pred = pred[:-1].strip()
 
@@ -725,6 +764,10 @@ def main() -> None:
     ap.add_argument("--second-pass", action="store_true",
                     help="re-query turns the first pass did not retrieve, keyed "
                          "on the queried subject (off by default)")
+    ap.add_argument("--enum-contract", default="off",
+                    choices=["off", "count", "evidence", "attribute"],
+                    help="one extra enumeration clause in the reader prompt; "
+                         "each is measured separately (off by default)")
     run(ap.parse_args())
 
 
