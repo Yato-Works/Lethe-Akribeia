@@ -353,3 +353,33 @@ reproduce verbatim**, not by enumeration and not by length. That is a different
 problem from cat1's list-gold coverage, and neither the retrieval work nor the
 reader prompt work has addressed it. Recorded as the next distinct target rather
 than folded into the enumeration thread.
+
+---
+
+## Outstanding issues carried into the next run
+
+Ordered by how much they distort a reported number. Items 1-3 are correctness
+of measurement; 4-6 are known engine debt.
+
+1. **`_scaled_budget` magic numbers have no derivation** (catalog surface #8,
+   Parameter Overfitting). `ratio=0.12, cap=2400, floor=1400` were tuned
+   against observed behaviour, on the knob most likely to be re-tuned into the
+   test. Needs provenance or a measured justification.
+2. **Deterministic hold-out partitioning** (catalog surface #12). Hold-out
+   slices are pure functions of `--conv-idx`/`--offset`, so anyone iterating on
+   those numbers tunes against a knowable partition. Needs a per-run salt,
+   logged after completion.
+3. **`context_tokens` / per-question latency are not recorded** in the full-run
+   artifacts, so retention and cost had to be measured with separate scripts.
+   The harness should emit them.
+4. **`is_list_gold` still over-fires on `and` for gerunds**
+   (`"Taking walks and hiking"` is an enumeration; a verb-led part is a clause).
+   The verb list in `_CLAUSE_LEAD` was derived from 91 corpus cases and will not
+   generalise to unseen phrasing.
+5. **`temporal_certificate.py` maps keyword -> canned answer strings**
+   (`"cousin"+"wedding" -> "my cousin's wedding"`). Verified NOT reachable from
+   the LoCoMo path and not a LoCoMo gold, but the shape is catalog surface #3
+   (Stubbed Implementation) and must not be extended.
+6. **`proposition_integrity_gate.py`** had LoCoMo's cast hardcoded; fixed in
+   `f87d1a6`. `adaptive_search.py` grounding tags likewise fixed in `1bf6854`.
+   Listed so the sweep is complete, not because they are still open.
