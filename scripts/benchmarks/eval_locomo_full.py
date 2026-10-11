@@ -35,6 +35,11 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 
+# The strict rubric is the single source of truth for "is this gold an
+# enumeration answer".  Sharing it keeps the production scorer and the audit in
+# agreement instead of letting them drift apart.
+from artificial_memory.compiler.eval.audit_strict_grade import is_list_gold  # noqa: E402
+
 CAT_NAMES = {
     1: "single-hop",
     2: "multi-hop",
@@ -136,15 +141,24 @@ def score(pred: str, gold: str) -> bool:
             if "yes" in g_words:
                 return True
 
-    # A gold is a LIST when it has >=2 comma- or 'and'-separated items.
-    raw_gold_items = [x.strip() for x in re.split(r",|\band\b", str(gold)) if x.strip()]
-    _is_list = len(raw_gold_items) >= 2 and not (p in _YESNO)
+    # A gold is a LIST when it enumerates >=2 items.
+    #
+    # A comma alone is NOT sufficient.  Ordinary prose contains commas
+    # ("Likely no, though she likes reading") and would be misread as an
+    # enumeration, which routes it into the list branch below and blocks the
+    # containment credit it legitimately earns.  Measured: 365 golds in the
+    # LoCoMo corpus are misclassified by the comma-only rule.
+    #
+    # Reuse the strict rubric's definition so the production scorer and the
+    # audit can never disagree about what counts as an enumeration answer.
+    _is_list = is_list_gold(gold) and not (p in _YESNO)
 
     if _is_list:
         # Check permutation match: every gold item must appear in pred.
         # Drops leading/trailing articles/pronouns from each gold item.
         _stop_articles = {"her", "his", "my", "their", "our", "the", "a", "an"}
         gold_item_core = []
+        raw_gold_items = [x.strip() for x in str(gold).split(",") if x.strip()]
         for it in raw_gold_items:
             words = [w for w in norm(it).split() if w not in _stop_articles]
             if words:

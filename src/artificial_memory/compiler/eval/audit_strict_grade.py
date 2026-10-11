@@ -72,19 +72,44 @@ def is_list_gold(gold: str) -> bool:
     """
     chunks = [x.strip() for x in str(gold).split(",") if x.strip()]
     if len(chunks) < 2:
-        return False
+        # "clarinet and violin" enumerates with 'and', not a comma.  Only treat
+        # it as an enumeration when the joined parts are short noun phrases:
+        # "to de-stress and clear her mind" is a clause, not a list.
+        and_parts = [x.strip() for x in re.split(r"\band\b", str(gold)) if x.strip()]
+        # Treat 'and' as an enumeration only when the joined parts are short
+        # NOUN PHRASES.  "clarinet and violin" is a list; "to de-stress and
+        # clear her mind" is a clause with a verb, and must stay prose so the
+        # containment credit is not blocked.
+        if (len(and_parts) >= 2
+                and all(len(p.split()) <= 3 for p in and_parts[:2])
+                and not any(re.match(r"^(?:to|and|or)\b", p, re.I) or
+                            p.lower().endswith((" her mind", " his mind", " it",
+                                                " them", " him", " me"))
+                            for p in and_parts[:2])):
+            chunks = and_parts
+        else:
+            return False
     heads = chunks[:2]
     if any(len(c.split()) > 6 for c in heads):
         return False
-    # a clause-heavy chunk ("though she likes reading") is prose, not an item
-    clause_starters = ("though", "because", "which", "who", "that", "and ",
-                       "but ", "while", "when ", "so ", "she ", "he ", "they ")
-    return not any(c.lower().startswith(clause_starters) for c in heads)
+    # a clause-heavy chunk ("though she likes reading") is prose, not an item.
+    # Matched on WORD boundaries: prefix matching misreads "Thoughtful" as
+    # "though" and wrongly demotes a real enumeration answer.
+    clause_re = re.compile(
+        r"^(?:though|because|which|who|that|but|while|when|so|she|he|they)\b",
+        re.I,
+    )
+    return not any(clause_re.match(c) for c in heads)
 
 
 def _items(s: str) -> set[str]:
-    """Item set of an enumeration answer, normalised."""
-    return {norm(x) for x in str(s).split(",") if norm(x)}
+    """Item set of an enumeration answer, normalised.
+
+    Splits on commas and on the conjunction 'and', matching how enumeration
+    golds are actually written in this corpus ("clarinet and violin").
+    """
+    parts = re.split(r",|\band\b", str(s))
+    return {norm(x) for x in parts if norm(x)}
 
 
 def _list_relation(pred: str, gold: str) -> str:
@@ -107,34 +132,27 @@ def grade(pred: str, gold: str) -> str:
     p, g = norm(pred), norm(gold)
     if not g:
         return WRONG
+    # An enumeration answer is settled by item-set relation and by nothing
+    # else.  Doing this FIRST is what stops token overlap from crediting a
+    # subset: measured, "Rome" vs "Paris, Rome" scores 1.0 token overlap.
+    if is_list_gold(gold) or is_list_gold(pred):
+        return _list_relation(pred, gold)
     if p == g:
         return STRICT
     if g in p:
-        # A list gold only matches when the prediction enumerates the same set.
-        # Super/subset in either direction is an incomplete or over-complete
-        # answer, neither of which is what was asked.
-        if is_list_gold(gold) or is_list_gold(pred):
-            return _list_relation(pred, gold)
         return NEAR
     # An empty prediction is contained in every gold, so require it to carry
     # real content before granting containment credit.
-    if p and p in g and not is_list_gold(gold):
+    if p and p in g:
         return NEAR
     pt, gt = set(p.split()), set(g.split())
     if pt and gt:
         shorter = pt if len(pt) <= len(gt) else gt
         if len(pt & gt) / max(1, len(shorter)) >= 0.5:
-            # A list gold gets NO subset credit at any tier.  "Rome" for
-            # "Paris, Rome" is a complete answer to a different question, and
-            # the tolerant band is exactly where that used to slip through.
-            if is_list_gold(gold) and not is_list_gold(pred):
-                return WRONG
             return PARTIAL
     if len(pt) > 3 and len(gt) >= 4:
         if any(difflib.SequenceMatcher(None, a, b).ratio() >= 0.85
                for a in pt for b in gt):
-            if is_list_gold(gold) and not is_list_gold(pred):
-                return WRONG
             return PARTIAL
     return WRONG
 

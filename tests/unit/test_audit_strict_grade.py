@@ -50,8 +50,31 @@ def test_rubric_tiers_are_stable():
 def test_list_gold_gets_no_subset_credit():
     assert is_list_gold("Paris, Rome")
     assert is_list_gold("pottery, camping, painting, swimming")
+    assert is_list_gold("Figurines, shoes")
+    # enumerated with 'and' rather than a comma
+    assert is_list_gold("clarinet and violin")
+    assert is_list_gold("a letter and a card")
+    assert is_list_gold("Thoughtful, authentic, driven")
     assert not is_list_gold("Sweden")
-    assert not is_list_gold("a letter and a card")  # single comma-free item
+    # prose that merely contains a comma is not an enumeration
+    assert not is_list_gold("Likely no, though she likes reading")
+    assert not is_list_gold("Yes, she is supportive")
+
+
+def test_clause_matching_is_word_boundary_not_prefix():
+    """'Thoughtful' must not be read as the clause starter 'though'.
+
+    Prefix matching demoted a real 3-item enumeration answer, which let a
+    subset prediction earn containment credit.
+    """
+    assert is_list_gold("Thoughtful, authentic, driven")
+    assert grade("Thoughtful, authentic", "Thoughtful, authentic, driven") == WRONG
+
+
+def test_enumeration_uses_and_as_well_as_comma():
+    """'clarinet and violin' is an enumeration even without a comma."""
+    assert grade("clarinet", "clarinet and violin") == WRONG
+    assert grade("clarinet and violin", "clarinet and violin") == STRICT
 
 
 def test_single_item_gold_still_allows_containment():
@@ -60,6 +83,20 @@ def test_single_item_gold_still_allows_containment():
     assert grade("to de-stress", "To de-stress and clear her mind") == NEAR
     # substring, but not a contiguous word-boundary containment -> tolerated
     assert grade("a handwritten letter", "a letter") == PARTIAL
+
+
+def test_list_gold_is_graded_by_set_not_substring():
+    """Any enumeration answer is settled by item-set relation, never by overlap.
+
+    Two items of a three-item gold is an incomplete answer, and an extra item
+    is a wrong one.  Token overlap would credit both.
+    """
+    assert grade("Thoughtful, authentic", "Thoughtful, authentic, driven") == WRONG
+    assert grade("clarinet", "clarinet and violin") == WRONG
+    assert grade("Rome", "Paris, Rome") == WRONG
+    # order does not matter
+    assert grade("Rome, Paris", "Paris, Rome") == STRICT
+    assert grade("painting, pottery", "pottery, painting") == STRICT
 
 
 def test_audit_reports_noise_as_noise():
