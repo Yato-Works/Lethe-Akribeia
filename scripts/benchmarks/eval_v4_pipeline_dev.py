@@ -172,7 +172,22 @@ class V4CandidateRetriever:
         all_turns: list[tuple[str, str, str, str]],  # (sid, date, speaker, content)
         top_k: int = 35,
         reference_date: str | None = None,
+        subject_fallback: bool = False,
     ) -> tuple[list[tuple[str, str, str, str]], dict[tuple[str, str], float]]:
+        """Rank turns by lexical relevance.
+
+        ``subject_fallback`` is OPT-IN and defaults to False so the frozen
+        LongMemEval contract is untouched.  When True, a turn that shares NO
+        query vocabulary but names the queried subject is kept as a low-scored
+        candidate instead of being discarded.
+
+        Why: without it, a turn with zero lexical overlap is dropped before
+        scoring, so it is unreachable at ANY top_k.  Measured on LoCoMo --
+        for "What activities does Melanie partake in?" (gold: pottery, camping,
+        painting, swimming), 3 of 4 evidence turns were unreachable even at
+        top_k=419, because "camping"/"swimming" appear in turns sharing no
+        vocabulary with the question.
+        """
         from datetime import datetime
         import re as _re
         q_words = self.expand_query_words(query)
@@ -195,6 +210,20 @@ class V4CandidateRetriever:
 
             overlap = q_words & (t_words | t_roots)
             if not overlap:
+                # SUBJECT FALLBACK (opt-in).  Normally a turn with no lexical
+                # overlap is discarded before scoring and is therefore
+                # unreachable at any top_k.  Enumeration answers live exactly
+                # in such turns, and the subject's NAME never appears in them:
+                # when Melanie lists her own hobbies she says "I went camping",
+                # never "Melanie went camping".  So the only usable signal is
+                # the SPEAKER field, which the corpus populates with the real
+                # name.  Measured: for "What activities does Melanie partake
+                # in?" all 4 evidence turns are spoken by Melanie and none of
+                # them contain the word "Melanie".
+                if subject_fallback and proper_nouns:
+                    if speaker.lower() in proper_nouns:
+                        scored.append((0.05, turn))
+                        turn_scores[(sid, content)] = 0.05
                 continue
 
             term_score = 0.0
@@ -237,6 +266,22 @@ class V4CandidateRetriever:
             turn_scores[(sid, content)] = score
 
         scored.sort(key=lambda x: x[0], reverse=True)
+
+        if subject_fallback:
+            # QUOTA, not a floor score.  A flat 0.05 loses to every lexical
+            # match, and there are routinely 45+ of those, so subject turns
+            # never made the cut (measured: 198 fallback candidates, 0 reached
+            # top-45).  Reserve the last third of top_k for subject-scoped
+            # turns so the queried person's own turns are always represented,
+            # regardless of vocabulary overlap.
+            lexical = [t for s, t in scored if s > 0.05]
+            subject = [t for s, t in scored if s <= 0.05]
+            quota = max(1, top_k // 3)
+            keep_subject = min(len(subject), quota)
+            keep_lexical = min(len(lexical), top_k - keep_subject)
+            picked = lexical[:keep_lexical] + subject[:keep_subject]
+            return picked, turn_scores
+
         return [t for _, t in scored[:top_k]], turn_scores
 
     def is_aggregation_query(self, query: str) -> bool:
