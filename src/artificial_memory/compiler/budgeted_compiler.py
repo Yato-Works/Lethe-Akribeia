@@ -93,6 +93,12 @@ class BudgetedCognitiveCompiler:
         selected_sids: set[str] = set()
         covered_words: set[str] = set()
         current_tokens = 0
+        # Initialised unconditionally: session_counts is read by the multi-session
+        # marginal-utility branch below, which runs whether or not the anchor
+        # pre-fill above ran.  When it lived only inside the pre-fill block,
+        # compile() raised UnboundLocalError for any caller that passed an empty
+        # anchor_scores dict.
+        session_counts: dict[str, int] = {}
 
         # Pool of valid bundles within budget
         valid_candidates = [b for b in bundles if b.total_tokens <= effective_budget]
@@ -115,7 +121,6 @@ class BudgetedCognitiveCompiler:
             prefill = sorted((b for b in valid_candidates if _max_anc(b) > 0.0),
                              key=_max_anc, reverse=True)
             prefill_ids = set()
-            session_counts: dict[str, int] = {}
             for b in prefill:
                 if current_tokens + b.total_tokens > prefill_budget:
                     continue
