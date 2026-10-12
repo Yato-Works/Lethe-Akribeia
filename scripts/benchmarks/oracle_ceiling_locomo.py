@@ -28,6 +28,7 @@ Its numbers do not describe this pipeline, which is why this is written fresh.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -43,6 +44,27 @@ from artificial_memory.compiler.graph.graph_builder import GraphBuilder  # noqa:
 from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler  # noqa: E402
 
 DATA = ROOT / "datasets" / "external" / "locomo10.json"
+
+
+# The compiled context is NOT verbatim: SpeakerAttributionNormalizer rewrites
+# first-person to third-person ("I went to X" -> "<name> went to X"), so a
+# raw-text probe against the original dia_id text never matches and every
+# retention figure is understated.  Probe on CONTENT WORDS instead, which
+# survive the rewrite.
+_CONTENT_STOP = frozenset({
+    "i", "im", "ive", "id", "ill", "my", "me", "mine", "we", "our", "us",
+    "you", "your", "the", "a", "an", "and", "or", "but", "to", "of", "in",
+    "on", "at", "for", "with", "was", "were", "is", "are", "be", "been",
+    "it", "its", "this", "that", "these", "those", "so", "very", "just",
+    "went", "go", "going", "had", "has", "have", "did", "do", "does",
+})
+
+
+def _probe(text: str, n: int = 5) -> str:
+    """Content-word signature of an evidence turn, robust to person rewriting."""
+    words = re.findall(r"[a-z0-9]+", str(text).lower())
+    keep = [w for w in words if w not in _CONTENT_STOP and len(w) > 2]
+    return " ".join(keep[:n])
 
 
 def main() -> int:
@@ -61,7 +83,8 @@ def main() -> int:
             continue
         for q in E.load_questions(conv):
             ev = [e for e in (q.get("evidence") or []) if dia_map.get(e)]
-            probes = [dia_map[e][:40] for e in ev if len(dia_map[e]) >= 40]
+            probes = [_probe(dia_map[e]) for e in ev
+                      if len(dia_map[e]) >= 40 and _probe(dia_map[e])]
             if not probes:
                 continue
 
@@ -79,8 +102,15 @@ def main() -> int:
             mark("4_context", cat)
             mark("5_oracle", cat)
 
+            def present(ctx: str) -> bool:
+                words = set(re.findall(r"[a-z0-9]+", ctx.lower()))
+                return any(
+                    sum(1 for w in p.split() if w in words) >= max(2, len(p.split()) - 1)
+                    for p in probes
+                )
+
             top, _ = retriever.rank_turns(q["question"], turns, top_k=45)
-            in_pool = any(any(p in t[3] for t in top) for p in probes)
+            in_pool = any(present(t[3]) for t in top)
             if in_pool:
                 hit("1_pool", cat)
 
@@ -90,8 +120,7 @@ def main() -> int:
                           if (t[0], t[3]) in t_map]
             edg = gb.build(list(top), [])
             bundles = edg.form_bundles(anchor_ids, max_bundle_tokens=150)
-            if any(any(p in n.raw_text for b in bundles for n in b.member_nodes)
-                   for p in probes):
+            if any(present(n.raw_text) for b in bundles for n in b.member_nodes):
                 hit("2_bundled", cat)
             budget = E._scaled_budget(plan.recommended_budget,
                                       sum(len(t[3].split()) * 4 // 3 for t in top))
@@ -102,14 +131,13 @@ def main() -> int:
                                    token_budget=budget,
                                    anchor_scores={a: 5.0 for a in anchor_ids},
                                    is_multi_session=False, adaptive_escalation=True)
-                if any(p in out.context_text for p in probes):
+                if present(out.context_text):
                     hit("4_context", cat)
             except Exception:
                 pass
 
             # STAGE 5 -- ORACLE: force the gold turn to the very top anchor
-            gold_keys = [(t[0], t[3]) for t in top
-                         if any(p in t[3] for p in probes)]
+            gold_keys = [(t[0], t[3]) for t in top if present(t[3])]
             oracle_ids = []
             for k in gold_keys:
                 nid = t_map.get(k)
@@ -121,7 +149,7 @@ def main() -> int:
                                      token_budget=budget,
                                      anchor_scores={a: 900.0 for a in oracle_ids},
                                      is_multi_session=False, adaptive_escalation=True)
-                if any(p in out_o.context_text for p in probes):
+                if present(out_o.context_text):
                     hit("5_oracle", cat)
             except Exception:
                 pass
