@@ -134,13 +134,68 @@ class V4CandidateRetriever:
     _RE_LAST_DOW   = re.compile(r"\blast\s+(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b", re.I)
     _WORD_TO_INT   = {"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7}
 
+    # ABSOLUTE date mentions.  _parse_relative_date only handled relative
+    # expressions ("3 weeks ago"), so an absolute mention parsed to None and the
+    # date-proximity boost silently never fired.  Measured on the questions the
+    # Oracle Search said evidence alone fixes: 5 of 7 returned None, and the
+    # failures are exactly this shape -- "in April 2022", "on 1 May, 2022",
+    # "between August 11 and August 15 2023".
+    _MONTHS = {
+        "january": 1, "february": 2, "march": 3, "april": 4, "may": 5,
+        "june": 6, "july": 7, "august": 8, "september": 9, "october": 10,
+        "november": 11, "december": 12,
+    }
+    # "on 1 May, 2022" / "1 May 2022" / "May 1, 2022"
+    _RE_ABS_DAY_MONTH = re.compile(
+        r"\b(?:on\s+)?(\d{1,2})(?:st|nd|rd|th)?\s+"
+        r"(january|february|march|april|may|june|july|august|september|october|"
+        r"november|december)\w*,?\s*(\d{4})\b", re.I)
+    _RE_ABS_MONTH_DAY = re.compile(
+        r"\b(january|february|march|april|may|june|july|august|september|october|"
+        r"november|december)\w*\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})\b", re.I)
+    # "in April 2022" / "July 2022" -- month + year, no day
+    _RE_ABS_MONTH_YEAR = re.compile(
+        r"\b(?:in\s+)?(january|february|march|april|may|june|july|august|"
+        r"september|october|november|december)\w*,?\s*(\d{4})\b", re.I)
+    # "between August 11 and August 15 2023" -- take the second bound
+    _RE_ABS_BETWEEN = re.compile(
+        r"\bbetween\s+\w+\s+\d{1,2}\s+and\s+(?:(\w+)\s+)?(\d{1,2})(?:st|nd|rd|th)?"
+        r"(?:\s+(\w+))?,?\s*(\d{4})\b", re.I)
+
     @classmethod
     def _parse_relative_date(cls, query: str, reference_date: str | None) -> "datetime | None":
-        """Parse a relative date expression from the query and return the target datetime."""
-        if not reference_date:
-            return None
+        """Parse a date expression from the query into a target datetime.
+
+        Handles BOTH relative ("3 weeks ago", "last week") and ABSOLUTE
+        ("in April 2022", "on 1 May, 2022", "between August 11 and August 15
+        2023") mentions.  Absolute mentions need no reference date, so they are
+        tried FIRST -- otherwise the `if not reference_date` guard returns None
+        before they are ever considered, which is exactly what happened before:
+        the LoCoMo harness always passes reference_date=None, so every absolute
+        date question silently lost the date-proximity boost.
+        """
         import re as _re
         from datetime import datetime, timedelta
+
+        # ---- ABSOLUTE dates (no reference_date needed) ---------------------
+        if (mg := cls._RE_ABS_DAY_MONTH.search(query)):
+            return datetime(int(mg.group(3)), cls._MONTHS[mg.group(2).lower()],
+                            int(mg.group(1)))
+        if (mg := cls._RE_ABS_MONTH_DAY.search(query)):
+            return datetime(int(mg.group(3)), cls._MONTHS[mg.group(1).lower()],
+                            int(mg.group(2)))
+        if (mg := cls._RE_ABS_BETWEEN.search(query)):
+            month = (mg.group(1) or mg.group(3) or "").lower()
+            if month in cls._MONTHS:
+                return datetime(int(mg.group(4)), cls._MONTHS[month],
+                                int(mg.group(2)))
+        if (mg := cls._RE_ABS_MONTH_YEAR.search(query)):
+            # no day given -- target the middle of the month
+            return datetime(int(mg.group(2)), cls._MONTHS[mg.group(1).lower()], 15)
+
+        # ---- RELATIVE dates (need a reference date) ------------------------
+        if not reference_date:
+            return None
         m = _re.search(r"(\d{4})/(\d{2})/(\d{2})", reference_date)
         if not m:
             return None
