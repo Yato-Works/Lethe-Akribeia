@@ -60,12 +60,13 @@ def main() -> int:
     buckets = Counter()
     by_cat = Counter()
     examples = {}
+    unanswerable_ids = []
 
     for conv in data:
         turns, _ = E.conversation_turns(conv["conversation"])
         if not turns:
             continue
-        # every word in this conversation, for 'does the answer exist at all'
+        # every token in this conversation, for 'does the answer exist at all'
         corpus_words = set()
         for t in turns:
             corpus_words.update(re.findall(r"[a-z0-9]+", t[3].lower()))
@@ -74,24 +75,30 @@ def main() -> int:
             r = recorded.get(q["question_id"])
             if r is None or r["is_correct"]:
                 continue                      # failures only
-            gold_words = content(q["answer"])
-            if not gold_words:
-                buckets["no_content_gold"] += 1
+
+            # Probe on ALL gold tokens, digits included.  The earlier version
+            # used content-words-only, which silently dropped every temporal or
+            # yes/no gold ('2022', '15 June, 2023', 'No', '3') into a separate
+            # 'no content' bucket -- 64 questions, 40 of them cat2, that were
+            # never actually audited for answerability.  Those golds ARE
+            # checkable: their digits and month names appear in session headers.
+            gold_tokens = [w for w in re.findall(r"[a-z0-9]+",
+                                                 str(q["answer"]).lower())
+                           if w not in STOP]
+            if not gold_tokens:
+                buckets["no_checkable_tokens"] += 1
                 continue
 
-            # is ANY gold content word present anywhere in the conversation?
-            present = {w for w in gold_words if w in corpus_words}
-            # also try word-numbers ('Four' -> 'four')
-            if not present:
-                g = str(q["answer"]).lower().strip()
-                if g in WORDNUM:
-                    w = str(WORDNUM[g])
-                    if w in corpus_words:
-                        present = {w}
+            present = {w for w in gold_tokens if w in corpus_words}
+            if not present and str(q["answer"]).lower().strip() in WORDNUM:
+                w = str(WORDNUM[str(q["answer"]).lower().strip()])
+                if w in corpus_words:
+                    present = {w}
 
-            cov = len(present) / len(gold_words)
+            cov = len(present) / len(gold_tokens)
             if cov == 0:
                 key = "UNANSWERABLE_gold_absent_everywhere"
+                unanswerable_ids.append(q["question_id"])
             elif cov < 0.5:
                 key = "WEAK_gold_mostly_absent"
             else:
@@ -105,11 +112,12 @@ def main() -> int:
     print("=" * 78)
     print("IS THE GOLD ANSWER DERIVABLE FROM THE CONVERSATION AT ALL?")
     print("=" * 78)
-    print(f"failures examined: {total}")
+    print(f"failures examined          : {total}")
+    print(f"  of the 1,986 total       : {total/1986*100:.1f}%")
     print()
     for k in ("UNANSWERABLE_gold_absent_everywhere",
               "WEAK_gold_mostly_absent", "ANSWERABLE_gold_present",
-              "no_content_gold"):
+              "no_checkable_tokens"):
         c = buckets[k]
         if not c:
             continue
@@ -117,7 +125,12 @@ def main() -> int:
         if k in examples:
             qq, gt, cov = examples[k]
             print(f"      e.g. {qq[:56]}")
-            print(f"           GT {gt[:44]}  | gold-word presence {cov}")
+            print(f"           GT {gt[:44]}  | gold-token presence {cov}")
+    print()
+    print("RECONCILIATION -- every failure is in exactly one bucket:")
+    for k, c in sorted(buckets.items(), key=lambda kv: -kv[1]):
+        print(f"  {k:38s} {c:4d}")
+    print(f"  {'SUM':38s} {total:4d}   (must equal the failure count)")
     print()
     print("per category (unanswerable / weak / answerable):")
     for cat in (1, 2, 3, 4, 5):
@@ -127,10 +140,21 @@ def main() -> int:
         print(f"  cat{cat}   {u:4d} / {w:4d} / {a:4d}")
     print()
     un = buckets["UNANSWERABLE_gold_absent_everywhere"]
-    print(f"VERDICT: {un} failures ({un/total*100:.1f}%) have a gold answer whose")
-    print("  content appears NOWHERE in the conversation.  No retrieval, reader,")
-    print("  or scoring change can ever answer those -- the ceiling on this")
-    print("  benchmark is 1,986 -", un, "=", 1986 - un, "questions at best.")
+    print(f"CANDIDATE CEILING (conditional, not established):")
+    print(f"  {un} of {total} FAILURES have a gold whose tokens appear nowhere in")
+    print(f"  the conversation, so at most {1986 - un} of 1,986 questions are")
+    print(f"  answerable = {(1986-un)/1986*100:.1f}%.")
+    print()
+    print("  TWO CAVEATS, and they are why this is a CANDIDATE and not a ceiling:")
+    print("   1. This is a LEXICAL test.  A gold may be derivable from a synonym,")
+    print("      a paraphrase, or an indirect description whose words differ.")
+    print("      The 71 are 'no string match found', not 'proven unanswerable'.")
+    print("   2. It was measured on FAILURES only.  Unanswerable questions that")
+    print("      were answered correctly by luck are not counted, so the true")
+    print("      unanswerable population may be larger than this.")
+    print()
+    print(f"  unanswerable question ids ({len(unanswerable_ids)}):")
+    print("   ", ", ".join(unanswerable_ids[:12]), "...")
     return 0
 
 
