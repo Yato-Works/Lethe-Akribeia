@@ -446,3 +446,78 @@ CLEAN, 419/419 tests.
 Caveat on this artifact: it began before the run-manifest and per-question
 diagnostic fields landed, so it carries the old six fields and no manifest. Its
 revision is therefore not self-recorded. The next run will be.
+
+---
+
+## Oracle ceiling — "can this engine emit the correct evidence for EVERY question?"
+
+Eli's proposal: get the engine to a state where it surfaces the right evidence
+100% of the time, so the remaining gap is provably the reader, and a 120B reader
+would then be expected to score near 100%. That would make the engine's quality
+model-independent.
+
+Two new instruments, both no-LLM, both on the **real** LoCoMo path (the harness's
+own retriever -> graph_builder -> form_bundles -> budgeted_compiler.compile).
+
+NOTE: the pre-existing `scripts/benchmarks/oracle_funnel.py` measures a different
+path (`msc_compiler` / `StateReconstructor`) that the LoCoMo harness never calls,
+so its numbers do not describe this pipeline. These were written fresh.
+
+### `scripts/benchmarks/oracle_ceiling_locomo.py`
+
+Stage funnel over the 1,955 questions with identifiable gold evidence:
+
+| stage | result | meaning |
+|---|---|---|
+| candidate pool | 77.2% | retriever put it in the pool |
+| bundled | 77.2% | it received an EvidenceBundle |
+| **compiled context (real run)** | **35.0%** | it reached the reader |
+| **oracle (gold forced to top anchor)** | **36.6%** | survives when told exactly where it is |
+
+Per category, real vs oracle headroom: cat1 +6.4pt, cat3 +4.5pt, cat2 +0.9pt,
+cat4 +0.6pt, cat5 +0.5pt.
+
+**Forcing the gold turn to the top anchor with score 900 buys only +1.6pt.**
+Anchoring is not the constraint.
+
+### `scripts/benchmarks/diag_budget_vs_gate.py`
+
+Holds everything fixed and only raises the token budget:
+
+| budget | evidence in context |
+|---|---|
+| 1400 | 35.0% |
+| 2400 | 35.0% |
+| 4000 | 35.0% |
+| 6000 | 35.0% |
+| 8192 | 35.0% |
+
+**5.8x the budget, +0.0pt.** A perfectly flat line.
+
+### Conclusion
+
+The binding constraint is the **bundle-selection gate** in
+`budgeted_compiler.compile`, not retrieval, not anchoring, and not the token
+budget. Two independent manipulations agree: forcing the gold to the top anchor
+gains +1.6pt, and 5.8x the tokens gain +0.0pt. If the budget were the limit,
+raising it would have moved the number; if anchoring were the limit, oracle
+forcing would have recovered far more than 1.6pt.
+
+So Eli's target state — "correct evidence for every question" — is **not
+reachable by retrieval or anchoring alone, and is not reachable by buying tokens
+either.** The gate is what has to change.
+
+What the gate currently requires of a bundle (all three, or it is skipped):
+  1. an anchor score, OR
+  2. lexical overlap with the question, OR
+  3. continuation of an already-selected session
+
+Evidence that satisfies none is dropped. That is a deliberate precision choice,
+and the enumeration escape hatch (`9091af6`) was built to relax it for
+enumeration questions — but it measured inert, because the evidence it needed to
+admit never became a candidate in the first place.
+
+The honest framing for the 120B-reader idea: **the engine cannot yet be shown to
+emit the correct evidence for every question, so a 120B reader's score would not
+yet be interpretable as a pure reader measurement.** Closing the gate gap is the
+prerequisite, and it is now isolated to one function.
