@@ -521,3 +521,60 @@ The honest framing for the 120B-reader idea: **the engine cannot yet be shown to
 emit the correct evidence for every question, so a 120B reader's score would not
 yet be interpretable as a pure reader measurement.** Closing the gate gap is the
 prerequisite, and it is now isolated to one function.
+
+---
+
+## Reconciled accounting — the retrieval gap is 0.9%, and the 21pt is gone
+
+Eli asked two arithmetic questions before Oracle Search was designed on top of
+these numbers. Both are answered by a single classified pass
+(`scripts/benchmarks/diag_reconcile_audits.py`).
+
+**Q1 — the missing 7.** One population, classified once:
+
+| | n |
+|---|---|
+| total questions | 1986 |
+| temporal gold (resolved from session header) | 277 |
+| no evidence field | 8 |
+| gold has no content words (`yes`/`no`/…) | 33 |
+| annotation related to the answer | **1455** |
+| annotation unrelated to the answer | **213** |
+
+`1455 + 213 + 277 + 8 + 33 = 1986`, exactly. The earlier "247 unrelated / 1709
+testable / 7 missing" came from two audits classifying with different rules; the
+unrelated count is 213, not 247.
+
+**Q2 — the 0.2% denominator.** It was computed on the retrieval audit's own
+population (1,955 questions with ≥40-char evidence), not on the 1,668 the
+annotation audit used. Mixing them is what produced the "0.2–11.9pt range".
+
+**Reconciled result, one population, one rule** (ANY gold content word present
+in the retrieved pool):
+
+| population | n | evidence NOT in pool |
+|---|---|---|
+| annotation supports the answer (**valid retrieval tests**) | 1455 | **13 (0.9%)** |
+| annotation unrelated to the answer | 213 | 3 (1.4%) |
+
+**The 21pt does not exist. The honest retrieval gap is 0.9%.** The 11.9pt
+strict-rule figure and the 0.2pt loose-rule figure were both real measurements
+of different things — neither was the complement of the oracle test's 78.9%.
+
+**Population for Oracle Search: the 1,455 annotation-valid questions.**
+
+## Oracle Search — what perfect retrieval would buy
+
+`scripts/benchmarks/oracle_search.py`. The gold **answer** is never shown; only
+the annotated evidence turn, appended to the normal context. Same model, same
+prompt builder, same scorer. Per-question extra token cost recorded.
+
+Smoke test (6 questions): normal 50.0% → oracle 66.7% (+16.7pt), 1 fixed, 0
+broken, 2 still wrong with gold evidence in hand.
+
+No answer leakage, verified by inspection: the fixed question is "Where did
+Caroline move from 4 years ago?" where the normal arm answers "Caroline's home
+country" and the oracle arm answers "Sweden". The model derived that from the
+evidence turn; an injected answer string would not require derivation.
+
+Full 1,455-question run in progress.
