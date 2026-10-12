@@ -641,3 +641,60 @@ must be measured against this regression risk, not just the gain.
 Note also the ceiling: even with perfect evidence on the annotation-valid
 population, accuracy is 62.68%, not 100%. 543 questions survive. Those are the
 reader's, and they are now the largest single block of failures.
+
+---
+
+## Absolute-date retrieval fix — FIRST REAL SCORE IMPROVEMENT (+1.11pt, p=0.0005)
+
+Found by following the Oracle Search result, which said cat2/cat4 are
+retrieval-bound. Every cat2 question that evidence alone fixes is temporally
+scoped, which led to the date-proximity boost — and to two stacked bugs in it.
+
+**Bug 1** (`8138cad`): `_parse_relative_date` handled only relative expressions
+("3 weeks ago"). An absolute mention ("in April 2022") parsed to None. Worse, the
+`if not reference_date` guard sat at the top of the function and the harness
+always passes `reference_date=None`, so absolute dates were unreachable, not
+merely unhandled. 240 of 1,986 questions (cat4 132, cat5 59, cat2 37) lost the
+boost silently.
+
+**Result of bug-1 fix alone: 100% IDENTICAL predictions across all 1,986
+questions.** Not "no improvement" — the feature never executed.
+
+**Bug 2** (`0171927`): the boost compares the parsed query date to the SESSION
+date with `_re.search(r"(\d{4})/(\d{2})/(\d{2})", date)`. LoCoMo session headers
+are prose — `"10:31 am on 13 October, 2023"` — so the ISO pattern never matches,
+`session_dt` is never built, and the 3.0x/2.0x/1.4x proximity boost is dead code
+no matter how well the query date parses.
+
+Verified by A/B on one question, boost on vs off, before the fix:
+
+    'What did Mel and her kids paint in their latest project in July 2023?'
+    OFF: session_8 (15 Jul) / session_11 (14 Aug) / session_18 (20 Oct)
+    ON : session_8 (15 Jul) / session_11 (14 Aug) / session_18 (20 Oct)  IDENTICAL
+
+After the fix the ON arm returns session_8 / session_8 / session_8 — all
+15 July 2023, the target month.
+
+### Result
+
+| | baseline | + date fix | delta |
+|---|---|---|---|
+| **TOTAL** | **49.75%** | **50.86%** | **+1.11pt** |
+| cat1 single-hop | 28.0% | 28.7% | +0.7pt |
+| cat2 multi-hop | 68.2% | 69.5% | +1.2pt |
+| cat3 temporal | 35.4% | 36.5% | +1.0pt |
+| cat4 open-domain | 63.9% | **65.5%** | **+1.7pt** |
+| cat5 adversarial | 26.7% | 26.9% | +0.2pt |
+
+McNemar, paired, n=1986: b=8 (worse), c=30 (better), discordant=38,
+**p=0.0005 SIGNIFICANT**. No category regresses.
+
+**Mechanism confirmed: 30 of 30 improved questions contain an absolute date.**
+85 of 1,986 predictions changed (vs 0 after bug-1 alone), which is the direct
+evidence the code now runs.
+
+This is the first change in the session that improves the honest end-to-end
+score with statistical significance — and it required noticing that a
+"successful" full run producing byte-identical predictions meant the feature
+was inert. 432 tests were green the whole time; none of them exercised the
+session-date path.
