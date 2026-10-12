@@ -698,3 +698,65 @@ score with statistical significance — and it required noticing that a
 "successful" full run producing byte-identical predictions meant the feature
 was inert. 432 tests were green the whole time; none of them exercised the
 session-date path.
+
+---
+
+## cat2 is NOT a multi-hop problem — it is temporal, and the offset fix was rejected
+
+Acted on the Oracle Search signal that cat2 is retrieval-bound (+45.2pt
+available from evidence alone). Measured cat2's 98 remaining failures before
+building anything.
+
+**cat2 failure shape:**
+
+| shape | n | share |
+|---|---|---|
+| temporal (`When…` / `How long…` / `How many … ago`) | 63 | 64.3% |
+| other | 35 | 35.7% |
+| abstained | 41 | 41.8% |
+| answered wrongly | 57 | 58.2% |
+
+**63 of 63 temporal questions have a date/duration as the gold answer.** cat2's
+failures are not multi-hop chaining at all — they are temporal reasoning and
+temporal *formatting*. The multi-hop plan was aimed at the wrong target.
+
+### Attempted fix: offset-date resolution — REJECTED, 0 gain / 15 regressions
+
+17 of the 63 temporal failures share a number with the gold but carry or lack an
+offset expression:
+
+    GT  : The Friday before 23January, 2022
+    PRED: 23 January 2022
+
+Hypothesis: teach `resolve_relative_dates` offset arithmetic ("the Friday before
+X" → X − 1 day) so the prediction lands on the gold's shape.
+
+**Result: 0 questions improved, 15 regressed.** The offset arithmetic converts
+predictions that were ALREADY CORRECT into wrong dates:
+
+    GT  : The week before 1 January 2023      (already scoring correct)
+    PRED: the week before 1 January 2023
+    RES : 25 December 2022                    (now wrong)
+
+The gold phrases the offset but still *names* the anchor date, so "the week
+before 1 January 2023" is the correct answer — and my arithmetic rewrote it into
+a different date. Reverted.
+
+Also found en route: the corpus writes offsets with no space — `"23January"`,
+`"3June"` — so a whitespace-requiring pattern never matches the gold's own
+shape. Worth knowing, but it does not rescue the approach.
+
+**Why this was the right thing to refuse.** The remaining 12 offset cases are a
+*scorer* question, not an engine one: the prediction carries the right date and
+the gold adds an offset phrase. I deliberately gated numeric equality on
+`_is_list` in `ff0227f` precisely so that "2 May, 2022" could not be credited
+for "The week before 2 May, 2022". Loosening that to rescue these 12 would be
+score inflation dressed as a fix — exactly the mistake this session has already
+retracted twice.
+
+**Honest position on cat2:** its failures are temporal, and the ones that look
+rescuable are blocked by a deliberate anti-inflation rule, not by a bug. The
+real temporal weakness is the 73% with genuinely wrong dates (e.g. GT "In 2013"
+vs PRED "2012-06-03", GT "two weeks" vs PRED "2"), which is reader-side date
+reasoning — the thing the earlier "tell the model to reason" prompt also failed
+to fix.
