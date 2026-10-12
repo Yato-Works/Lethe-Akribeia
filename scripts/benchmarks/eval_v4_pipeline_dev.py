@@ -299,6 +299,26 @@ class V4CandidateRetriever:
                 dm = _re.search(r"(\d{4})/(\d{2})/(\d{2})", date)
                 if dm:
                     session_dt = datetime(int(dm.group(1)), int(dm.group(2)), int(dm.group(3)))
+                else:
+                    # LoCoMo session headers are prose, not ISO:
+                    #   '10:31 am on 13 October, 2023'
+                    # The YYYY/MM/DD pattern above never matches, so the
+                    # date-proximity boost silently never fired even after
+                    # _parse_relative_date learned absolute dates.  Measured:
+                    # ranking was byte-identical with the boost on and off.
+                    sm = _re.search(
+                        r"(\d{1,2})(?:st|nd|rd|th)?\s+"
+                        r"(january|february|march|april|may|june|july|august|"
+                        r"september|october|november|december)\w*,?\s*(\d{4})",
+                        date, _re.I)
+                    if sm:
+                        session_dt = datetime(
+                            int(sm.group(3)),
+                            self._MONTHS[sm.group(2).lower()],
+                            int(sm.group(1)))
+                    else:
+                        session_dt = None
+                if dm or session_dt is not None:
                     diff_days = abs((session_dt - target_dt).days)
                     # Strong boost for sessions within ±3 days of target date
                     if diff_days <= 3:
