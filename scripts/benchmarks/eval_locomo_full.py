@@ -456,7 +456,8 @@ def _enumeration_probe_turns(question: str, all_turns, retriever,
     return out
 
 
-def build_reader_prompt(question: str, context: str, enum_contract: str = "off") -> str:
+def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
+                        no_abstain: bool = False) -> str:
     """Evidence-first reader prompt.
 
     NO BENCHMARK ANSWERS ARE EMBEDDED HERE.
@@ -547,8 +548,31 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off")
             "happened, so items from different people are never merged.\n\n"
         )
 
+    # ABSTENTION GUIDANCE (opt-in, off by default).
+    #
+    # Measured: 468 of 1,986 predictions (23.6%) are abstentions, and 310 of
+    # those had the gold evidence IN the compiled context (gold-word coverage
+    # >= 0.5).  The prompt neither permits nor forbids abstaining, so the model
+    # decides on its own and gets it wrong two times in three.
+    #
+    # This clause asks for the best supported answer from the evidence shown,
+    # without inventing anything.  It does NOT tell the model to guess beyond the
+    # evidence, and it does not forbid an honest "not stated" -- the point is to
+    # stop it abstaining when the answer is sitting in the context.
+    abstain_clause = ""
+    if no_abstain:
+        abstain_clause = (
+            "ANSWER FROM THE EVIDENCE:\n"
+            "Answer using what the evidence above states. If it states the "
+            "answer, give it -- do not decline because you are unsure of the "
+            "wording. Say the information is not stated only when the evidence "
+            "genuinely does not cover it. Never invent a detail you did not "
+            "read.\n\n"
+        )
+
     return (
         base_prompt
+        + abstain_clause
         + contract
         + hint_text
         + "Answer with ONLY the concise value (place, date, number, name, or comma-separated list). Do not output conversational filler or full sentences.\n"
@@ -692,7 +716,8 @@ def run(args) -> None:
 
             pred = answerer.answer(q["question"],
                                    build_reader_prompt(q["question"], compiled.context_text,
-                                                       enum_contract=getattr(args, "enum_contract", "off"))).text.strip()
+                                                       enum_contract=getattr(args, "enum_contract", "off"),
+                                                       no_abstain=getattr(args, "no_abstain", False))).text.strip()
             if pred.endswith(".") and len(pred.split()) <= 2:
                 pred = pred[:-1].strip()
 
@@ -819,6 +844,8 @@ def main() -> None:
                     choices=["off", "count", "evidence", "attribute"],
                     help="one extra enumeration clause in the reader prompt; "
                          "each is measured separately (off by default)")
+    ap.add_argument("--no-abstain", action="store_true",
+                    help="add the answer-from-the-evidence clause (off by default)")
     run(ap.parse_args())
 
 
