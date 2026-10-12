@@ -12,6 +12,7 @@ level, the gate is the constraint and more tokens buy nothing.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -26,9 +27,25 @@ from artificial_memory.compiler.graph.graph_builder import GraphBuilder  # noqa:
 from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler  # noqa: E402
 
 DATA = ROOT / "datasets" / "external" / "locomo10.json"
-# Model supports 32768; the harness asks ollama for 8192.  Sweep up to and past
-# that so the ceiling is found, not assumed.
 BUDGETS = [1400, 2400, 4000, 6000, 8192]
+
+# The compiled context is NOT verbatim: SpeakerAttributionNormalizer rewrites
+# first person to third person ("I went to X" -> "<name> went to X").  A raw-text
+# probe never matches and understates retention by ~48pt (measured).  Probe on
+# content words instead.
+_CONTENT_STOP = frozenset({
+    "i", "im", "ive", "id", "ill", "my", "me", "mine", "we", "our", "us",
+    "you", "your", "the", "a", "an", "and", "or", "but", "to", "of", "in",
+    "on", "at", "for", "with", "was", "were", "is", "are", "be", "been",
+    "it", "its", "this", "that", "these", "those", "so", "very", "just",
+    "went", "go", "going", "had", "has", "have", "did", "do", "does",
+})
+
+
+def _probe(text: str, n: int = 5) -> str:
+    words = re.findall(r"[a-z0-9]+", str(text).lower())
+    keep = [w for w in words if w not in _CONTENT_STOP and len(w) > 2]
+    return " ".join(keep[:n])
 
 
 def main() -> int:
@@ -47,10 +64,18 @@ def main() -> int:
             continue
         for q in E.load_questions(conv):
             ev = [e for e in (q.get("evidence") or []) if dia_map.get(e)]
-            probes = [dia_map[e][:40] for e in ev if len(dia_map[e]) >= 40]
+            probes = [_probe(dia_map[e]) for e in ev
+                      if len(dia_map[e]) >= 40 and _probe(dia_map[e])]
             if not probes:
                 continue
             total += 1
+
+            def present(ctx: str) -> bool:
+                words = set(re.findall(r"[a-z0-9]+", ctx.lower()))
+                return any(
+                    sum(1 for w in p.split() if w in words) >= max(2, len(p.split()) - 1)
+                    for p in probes
+                )
 
             top, _ = retriever.rank_turns(q["question"], turns, top_k=45)
             plan = planner.plan(q["question"], [])
@@ -68,7 +93,7 @@ def main() -> int:
                                        is_multi_session=False, adaptive_escalation=True)
                 except Exception:
                     continue
-                if any(p in out.context_text for p in probes):
+                if present(out.context_text):
                     hits[bud] += 1
 
     print("=" * 72)
