@@ -578,3 +578,66 @@ country" and the oracle arm answers "Sweden". The model derived that from the
 evidence turn; an injected answer string would not require derivation.
 
 Full 1,455-question run in progress.
+
+---
+
+## ORACLE SEARCH RESULT — the decision experiment
+
+`benchmark_results/oracle_search_20261012_170747.json`, n=1455 annotation-valid
+questions, same model / same prompt / same scorer, gold **answer** never shown —
+only the annotated evidence turn appended to the normal context.
+
+| | normal | + gold evidence | delta |
+|---|---|---|---|
+| **overall** | **48.38%** | **62.68%** | **+14.30pt** |
+| cat1 single-hop | 30.1% | 52.8% | +22.7pt |
+| cat2 multi-hop | 29.0% | 74.2% | **+45.2pt** |
+| cat3 temporal | 37.1% | 45.7% | +8.6pt |
+| cat4 open-domain | 66.3% | 83.4% | +17.1pt |
+| cat5 adversarial | 27.4% | 29.7% | +2.2pt |
+
+McNemar, paired: b=52 (broke), c=260 (fixed), discordant=312,
+**p≈0, SIGNIFICANT**. Cost: median 61 extra tokens per question.
+
+**260 questions fixed by evidence alone. 543 (37.3%) still wrong WITH the gold
+evidence in the context.**
+
+### What this settles
+
+Both directions of the earlier debate now have numbers:
+
+1. **Retrieval is worth investing in — for cat2 and cat4.** cat2 gains +45.2pt
+   from evidence alone, which means its 29.0% normal accuracy is almost entirely
+   a retrieval problem. Same for cat4 (+17.1pt). For those categories the
+   engine's evidence selection, not the reader, is the binding constraint.
+
+2. **The reader is the constraint for cat5.** +2.2pt only. cat5 is the
+   adversarial category, whose correct behaviour is to *abstain* when the
+   information does not exist. Handing the reader more evidence does not help it
+   decide "this is not stated" — that is a reader/scorer judgement problem.
+
+3. **The 52 broken questions are a real cost of adding evidence**, concentrated
+   in cat5 (30) and cat4 (15). Several are cases where the model had the right
+   hedged answer and the extra evidence pushed it to a confident wrong one —
+   the same failure mode already on record for "tell the model to reason".
+
+### Consequence for the plan
+
+The earlier framing "the reader is the bottleneck" was too coarse. The accurate
+statement is category-dependent:
+
+| category | binding constraint |
+|---|---|
+| cat2 multi-hop | **retrieval** (+45.2pt available from evidence alone) |
+| cat4 open-domain | **retrieval** (+17.1pt) |
+| cat1 single-hop | **mixed** (+22.7pt) |
+| cat3 temporal | **mixed** (+8.6pt) |
+| cat5 adversarial | **reader / scorer** (+2.2pt — evidence cannot help) |
+
+So retrieval work is justified, but it must be aimed at cat2/cat4, and the 52
+regressions show evidence injection is not free — a real retrieval improvement
+must be measured against this regression risk, not just the gain.
+
+Note also the ceiling: even with perfect evidence on the annotation-valid
+population, accuracy is 62.68%, not 100%. 543 questions survive. Those are the
+reader's, and they are now the largest single block of failures.
