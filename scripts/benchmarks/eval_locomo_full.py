@@ -109,6 +109,47 @@ def load_questions(conv: dict) -> list[dict]:
 # ------------------------------------------------------------------ scoring
 _YESNO = {"yes", "no"}
 
+#: Month names, used only to recognise a day-of-month inside a date string.
+_MONTH_WORDS = {
+    "january", "february", "march", "april", "may", "june", "july", "august",
+    "september", "october", "november", "december",
+}
+
+#: Day-of-month patterns: '10 May' / 'May 10', with an optional ordinal suffix.
+_DATE_DAY_BEFORE = re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)")
+_DATE_DAY_AFTER = re.compile(r"\b([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?\b")
+
+
+def _date_days(text: str) -> set[str]:
+    """Day-of-month numbers this string commits to, as normalised strings.
+
+    Only numbers adjacent to a MONTH NAME count, so a stray number in prose
+    ('she has 3 cats') is never mistaken for a day.
+    """
+    days: set[str] = set()
+    for m in _DATE_DAY_BEFORE.finditer(text.lower()):
+        num, word = m.group(1), m.group(2)
+        if word in _MONTH_WORDS:
+            days.add(str(int(num)))
+    for m in _DATE_DAY_AFTER.finditer(text.lower()):
+        word, num = m.group(1), m.group(2)
+        if word in _MONTH_WORDS:
+            days.add(str(int(num)))
+    return days
+
+
+def _date_contradiction(p: str, g: str) -> bool:
+    """True when both sides name a day-of-month and they disagree.
+
+    A disagreement on the day is a factual contradiction: '10 May, 2023' is not
+    '27 May, 2023' however much month and year they share.  Without this guard the
+    60%-token rule silently drops 1-2 digit days and credits the wrong date.
+    """
+    pd, gd = _date_days(p), _date_days(g)
+    if not pd or not gd:
+        return False
+    return not (pd & gd)
+
 
 def score(pred: str, gold: str) -> bool:
     """Deterministic containment scorer.
@@ -125,6 +166,26 @@ def score(pred: str, gold: str) -> bool:
 
     p, g = norm(pred), norm(gold)
     if not g:
+        return False
+
+    # DATE CONTRADICTION GUARD -- placed FIRST, before every credit rule.
+    #
+    # Two rules below both credit a wrong DATE when only the day differs:
+    #   pred '10 May, 2023'  gold '27 May, 2023'   -> was scored CORRECT
+    #   pred '25 June, 2023' gold '24 June, 2023'  -> was scored CORRECT
+    #   pred 'The Tuesday before 20 July 2023'
+    #        gold '7 May 2023'                     -> was scored CORRECT
+    # The 60%-token rule drops 1-2 digit day numbers via its len(w) > 2 filter,
+    # so 'may' and '2023' carry the whole score; and the either-direction
+    # containment rule credits a lone shared year.  Measured on 188 committer
+    # claims: 8 of 159 credits were spurious this way (5.0%).
+    #
+    # When BOTH sides name a day-of-month and they disagree, that is a factual
+    # contradiction, and no amount of month/year agreement can rescue it.  It must
+    # therefore run BEFORE the credit rules, not after -- an earlier placement
+    # after the containment checks let 'The week before 13 October 2023' credit
+    # against 'On the night of October 30, 2023' through the shared month.
+    if _date_contradiction(p, g):
         return False
 
     # Yes/No polar evaluation: when pred is "yes" or "no"
@@ -188,6 +249,7 @@ def score(pred: str, gold: str) -> bool:
     # yes/no exact
     if g in _YESNO:
         return p in _YESNO and p == g
+
     # numeric equality.  GATED on _is_list: gold 'The week before 2 May, 2022'
     # and pred '2 May, 2022' share the first number, but the prediction dropped
     # the offset, so it is WRONG.  Only the containment rules below (which
