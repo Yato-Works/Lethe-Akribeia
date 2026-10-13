@@ -57,22 +57,30 @@ class EntityAttributeResolver:
         # 1. Nickname: "What nickname does X use for Y?" - evidence says
         #    "call(s) her Jo", "Jo for short", "we call her Jo".
         if "nickname" in ql or "nick name" in ql:
-            nick = cls._extract_nickname(turns)
+            target = cls._question_subject(question)
+            nick = cls._extract_nickname(turns, target)
             if nick:
+                nick_value, nick_turn = nick
                 return CommittedAnswer(
                     used=True,
-                    answer=nick,
+                    answer=nick_value,
                     source="autonomous_entity_attribute_resolver",
                     confidence=0.92,
-                    detail=f"nickname extracted from evidence: '{nick}'",
+                    detail=f"nickname extracted from evidence: '{nick_value}'",
+                    evidence_turn=nick_turn.dia_id,
                 )
             return CommittedAnswer(used=False)
 
         # 2. Gaming console / medium: "What console does X play on?" - the
         #    speaker's own "on my <console>" / "on the <console>" mentions.
         if re.search(r"\b(?:console|platform|system|device)\b", ql):
+            target = cls._question_subject(question)
+            if not target:
+                return CommittedAnswer(used=False, detail="console target speaker is ambiguous")
             found: list[str] = []
             for turn in turns:
+                if turn.speaker.lower() != target.lower():
+                    continue
                 s_low = turn.text.lower()
                 for c in _CONSOLES:
                     if re.search(rf"\b{re.escape(c)}\b", s_low) and c not in found:
@@ -84,6 +92,11 @@ class EntityAttributeResolver:
                     source="autonomous_entity_attribute_resolver",
                     confidence=0.88,
                     detail=f"consoles mentioned in evidence: {found[:3]}",
+                    evidence_turn=next(
+                        (t.dia_id for t in turns if t.speaker.lower() == target.lower()
+                         and any(re.search(rf"\b{re.escape(c)}\b", t.text.lower()) for c in found)),
+                        "",
+                    ),
                 )
             return CommittedAnswer(used=False)
 
@@ -170,6 +183,7 @@ class EntityAttributeResolver:
                 source="autonomous_entity_attribute_resolver",
                 confidence=0.78,
                 detail=f"attribute extracted from {evidence_turn.speaker}'s turn: '{answer}'",
+                evidence_turn=evidence_turn.dia_id,
             )
 
         return CommittedAnswer(used=False)
@@ -198,7 +212,7 @@ class EntityAttributeResolver:
 
     @classmethod
     def _extract_generic_attribute(cls, question: str,
-                                   turns: list) -> tuple[str, str] | None:
+                                   turns: list[Turn]) -> tuple[str, Turn] | None:
         """Extract a subject's attribute from that subject's own turns.
 
         Returns (answer, evidence_speaker) or None.
@@ -228,21 +242,16 @@ class EntityAttributeResolver:
         # sentence-initial words must be excluded first: 'What is Caroline's
         # identity?' matches 'What' as the first capitalised token, and without
         # this guard the subject becomes 'What' and no turn ever matches.
-        subj = None
-        for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", question):
-            w = m.group(1)
-            if w.lower() in STOPWORDS or w.lower() in _INTERROGATIVES:
-                continue
-            subj = w
-            break
-        if not subj:
-            m2 = re.search(r"\b([a-z]{3,})'s\b", ql)
-            if m2:
-                subj = m2.group(1).capitalize()
+        subj = cls._question_subject(question)
+        if subj:
+            subj_l = subj.lower()
+        else:
+            subj_l = ""
+        # Keep the extraction below intentionally name-based: a role such as
+        # 'user' is valid in LongMemEval, while an absent/ambiguous subject is
+        # not safe to attribute to any speaker.
         if not subj:
             return None
-        subj_l = subj.lower()
-
         # Which shape?  "What is X's <head>?" or "What did X <verb>?"
         head = None
         for h in cls._ATTRIBUTE_HEADS:
@@ -516,17 +525,29 @@ class EntityAttributeResolver:
         return None
 
     @classmethod
-    def _extract_nickname(cls, turns: list[Turn]) -> str | None:
+    def _question_subject(cls, question: str) -> str | None:
+        """Return the named/role subject, or None when attribution is unsafe."""
+        for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", question):
+            w = m.group(1)
+            if w.lower() not in STOPWORDS and w.lower() not in _INTERROGATIVES:
+                return w
+        m = re.search(r"\b(user|assistant)\b", question, re.I)
+        return m.group(1) if m else None
+
+    @classmethod
+    def _extract_nickname(cls, turns: list[Turn], target: str | None) -> tuple[str, Turn] | None:
         """First nickname captured from 'call(s) me/him/her X' or 'X for short'."""
         for turn in turns:
+            if target and turn.speaker.lower() != target.lower():
+                continue
             for m_n in re.finditer(
                 r"\b(?:calls?|called|calling)\s+(?:me|him|her|them)\s+[\"']?([A-Z][a-z]{1,12})[\"']?",
                 turn.text,
             ):
                 cand = m_n.group(1)
                 if cand.lower() not in STOPWORDS:
-                    return cand
+                    return cand, turn
             m_short = re.search(r"\b([A-Z][a-z]{1,12})\s+for\s+short\b", turn.text)
             if m_short and m_short.group(1).lower() not in STOPWORDS:
-                return m_short.group(1)
+                return m_short.group(1), turn
         return None
