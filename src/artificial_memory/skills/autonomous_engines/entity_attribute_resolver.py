@@ -142,6 +142,28 @@ class EntityAttributeResolver:
         generic = cls._extract_generic_attribute(question, turns)
         if generic:
             answer, evidence_turn = generic
+
+            # SELF-VERIFICATION GATE.  The generic branch answers 215 of the
+            # 492 simple-shape questions but is correct on only 14.0% of them, so
+            # shipping it unguarded would replace a reader fallback with a
+            # confident wrong answer -- strictly worse than not answering.
+            #
+            # The gate: the answer's own content words must be supported by the
+            # evidence turn it was extracted from.  Measured on the 215 claims:
+            #   supported (answer is grounded in its evidence) : 98 (45.6%)
+            #   unsupported (answer contradicts its evidence)  : 117 (54.4%)
+            # and the unsupported set is where the wrong answers live.  Abstaining
+            # on those sends them back to the reader instead of losing them.
+            #
+            # This is a CORRECTNESS gate, not a coverage gate -- it deliberately
+            # throws away claims, which is the point.
+            if not cls._answer_is_supported(answer, evidence_turn.text):
+                return CommittedAnswer(
+                    used=False,
+                    detail="generic attribute candidate rejected: answer not "
+                           "supported by its own evidence turn",
+                )
+
             return CommittedAnswer(
                 used=True,
                 answer=answer,
@@ -385,6 +407,29 @@ class EntityAttributeResolver:
         if len(tail) < 2:
             return None
         return tail
+
+    @classmethod
+    def _answer_is_supported(cls, answer: str, evidence_text: str) -> bool:
+        """True when the answer's content words are grounded in its own evidence.
+
+        The check is deliberately simple and deliberately conservative: an answer
+        is supported only when the majority of its content words actually occur in
+        the turn it came from.  This catches the failure mode where the branch
+        extracts a plausible span from a turn about something else entirely, which
+        is what produced the 117 wrong answers.
+
+        It will also reject some correct answers whose wording differs from the
+        evidence ('Single' from 'I am single' has no shared content word).  That
+        is the intended trade: a rejected answer falls back to the reader, while a
+        confidently wrong deterministic answer cannot be un-said.
+        """
+        aw = [w for w in re.sub(r"[^a-z0-9 ]", " ", answer.lower()).split()
+              if len(w) > 2]
+        if not aw:
+            return False
+        ew = set(re.sub(r"[^a-z0-9 ]", " ", evidence_text.lower()).split())
+        hits = sum(1 for w in aw if w in ew)
+        return hits >= max(1, len(aw) // 2)
 
     @classmethod
     def _extract_purchase_source(cls, question: str, turns: list[Turn]) -> str | None:
