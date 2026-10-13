@@ -141,13 +141,13 @@ class EntityAttributeResolver:
         # a retraction.
         generic = cls._extract_generic_attribute(question, turns)
         if generic:
-            answer, evidence_speaker = generic
+            answer, evidence_turn = generic
             return CommittedAnswer(
                 used=True,
                 answer=answer,
                 source="autonomous_entity_attribute_resolver",
                 confidence=0.78,
-                detail=f"attribute extracted from {evidence_speaker}'s turn: '{answer}'",
+                detail=f"attribute extracted from {evidence_turn.speaker}'s turn: '{answer}'",
             )
 
         return CommittedAnswer(used=False)
@@ -247,7 +247,10 @@ class EntityAttributeResolver:
 
         probe = head or verb
 
-        # Strategy 1: head-noun probe.
+        # Strategy 1: head-noun probe.  Returns the Turn, not just the speaker,
+        # so callers can audit which turn was used.  (The two strategies must
+        # agree on the return shape -- branch 2 returns a Turn, and a str/Turn
+        # mismatch here crashed the audit that had to classify wrong answers.)
         for t in own:
             txt = t.text.strip()
             low = txt.lower()
@@ -258,13 +261,12 @@ class EntityAttributeResolver:
                     continue
             answer = cls._noun_phrase_after(txt, probe)
             if answer:
-                return answer, t.speaker
+                return answer, t
 
         # Strategy 2: self-claim extraction for the synonym gap.
         claim = cls._extract_self_claim(ql, own, head)
         if claim:
-            answer, t = claim
-            return answer, t.speaker
+            return claim
         return None
 
     #: Predicate shapes a subject uses to state something about THEMSELVES.
