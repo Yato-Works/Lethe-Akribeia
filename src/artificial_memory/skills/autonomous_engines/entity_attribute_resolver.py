@@ -33,6 +33,15 @@ STOPWORDS = {
     "her", "its", "they", "them", "he", "she", "it", "that", "this", "then",
 }
 
+#: Sentence-initial interrogatives.  A naive 'first capitalised word' subject
+#: match picks these up instead of the person being asked about, which silently
+#: makes the generic-attribute branch abstain on every question.
+_INTERROGATIVES = frozenset({
+    "what", "when", "where", "who", "whom", "whose", "which", "why", "how",
+    "did", "does", "do", "is", "are", "was", "were", "has", "have", "had",
+    "can", "could", "would", "should", "will", "if",
+})
+
 
 class EntityAttributeResolver:
     """Deterministically extracts personal attributes and factual entity traits."""
@@ -114,7 +123,136 @@ class EntityAttributeResolver:
                     detail=f"previous status extracted: '{status_val}'",
                 )
 
+        # 6. GENERIC ATTRIBUTE: "What is X's <noun>?" / "What did X <verb>?"
+        #
+        # The single largest broadenable block found in the coverage audit: 457
+        # of the 492 'What/Which/Who did|does|is|was|has' questions are refused,
+        # 94.1% of all committer abstentions.  They are plain fact extraction,
+        # not reasoning:
+        #   'What is Caroline's identity?'          GT 'Transgender woman'
+        #   'What is Caroline's relationship status?' GT 'Single'
+        #   'What did Caroline research?'           GT 'Adoption agencies'
+        #
+        # Method: identify the subject from the question, restrict to turns that
+        # subject spoke, and return the noun phrase that follows the question's
+        # head noun in the evidence.  Speaker restriction is the integrity rule
+        # -- without it the engine would attribute another person's fact to the
+        # queried subject, which is the failure mode that already cost this repo
+        # a retraction.
+        generic = cls._extract_generic_attribute(question, turns)
+        if generic:
+            answer, evidence_speaker = generic
+            return CommittedAnswer(
+                used=True,
+                answer=answer,
+                source="autonomous_entity_attribute_resolver",
+                confidence=0.78,
+                detail=f"attribute extracted from {evidence_speaker}'s turn: '{answer}'",
+            )
+
         return CommittedAnswer(used=False)
+
+    #: Head nouns that name a PERSONAL ATTRIBUTE rather than an event or object.
+    #: Form-based only; nothing keyed on corpus vocabulary.
+    _ATTRIBUTE_HEADS = (
+        "identity", "status", "occupation", "job", "career", "profession",
+        "hobby", "hobbies", "goal", "goals", "plan", "plans", "feeling",
+        "feelings", "reason", "reasons", "favourite", "favorite", "preference",
+        "preferences", "dream", "dreams", "background", "major", "degree",
+    )
+
+    _NOISE_TAIL = re.compile(
+        r"\b(?:and|but|so|because|which|that|while|though|however)\b.*$", re.I)
+
+    @classmethod
+    def _extract_generic_attribute(cls, question: str,
+                                   turns: list) -> tuple[str, str] | None:
+        """Extract a subject's attribute from that subject's own turns.
+
+        Returns (answer, evidence_speaker) or None.  Two integrity rules:
+          * the evidence must come from a turn the queried subject actually
+            spoke, so another person's fact is never attributed to them
+          * if the subject spoke no turn in the context, abstain rather than
+            fall back to any turn
+        """
+        ql = question.lower().strip()
+        # Subject = the capitalised name in the question.  Interrogatives and
+        # sentence-initial words must be excluded first: 'What is Caroline's
+        # identity?' matches 'What' as the first capitalised token, and without
+        # this guard the subject becomes 'What' and no turn ever matches.
+        subj = None
+        for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", question):
+            w = m.group(1)
+            if w.lower() in STOPWORDS or w.lower() in _INTERROGATIVES:
+                continue
+            subj = w
+            break
+        if not subj:
+            m2 = re.search(r"\b([a-z]{3,})'s\b", ql)
+            if m2:
+                subj = m2.group(1).capitalize()
+        if not subj:
+            return None
+        subj_l = subj.lower()
+
+        # Which shape?  "What is X's <head>?" or "What did X <verb>?"
+        head = None
+        for h in cls._ATTRIBUTE_HEADS:
+            if re.search(rf"\b{h}\b", ql):
+                head = h
+                break
+        verb = None
+        if head is None:
+            mv = re.search(r"\bwhat\s+(?:did|does|do|has|have)\s+" +
+                           re.escape(subj_l) + r"\s+([a-z]+)", ql)
+            if mv:
+                verb = mv.group(1)
+
+        if head is None and verb is None:
+            return None
+
+        # Restrict to the subject's own turns -- the integrity rule.
+        own = [t for t in turns if t.speaker.lower() == subj_l]
+        if not own:
+            return None
+
+        probe = head or verb
+        for t in own:
+            txt = t.text.strip()
+            low = txt.lower()
+            if probe and probe not in low:
+                # for the verb shape, the evidence may use a different surface
+                # form; only require the subject's own claim to be self-referential
+                if verb and not re.search(r"\b(i|my|me)\b", low):
+                    continue
+                if head:
+                    continue
+            answer = cls._noun_phrase_after(txt, probe)
+            if answer:
+                return answer, t.speaker
+        return None
+
+    @classmethod
+    def _noun_phrase_after(cls, text: str, probe: str | None) -> str | None:
+        """First noun-ish span at or after `probe`, trimmed of trailing clauses."""
+        if not probe:
+            return None
+        low = text.lower()
+        idx = low.find(probe)
+        if idx < 0:
+            return None
+        tail = text[idx + len(probe):].strip()
+        tail = tail.lstrip(" :,-").strip()
+        tail = cls._NOISE_TAIL.sub("", tail).strip(" .,;:")
+        if not tail:
+            return None
+        # cap length: an attribute is a short phrase, not a sentence
+        words = tail.split()
+        if len(words) > 8:
+            tail = " ".join(words[:8])
+        if len(tail) < 2:
+            return None
+        return tail
 
     @classmethod
     def _extract_purchase_source(cls, question: str, turns: list[Turn]) -> str | None:
