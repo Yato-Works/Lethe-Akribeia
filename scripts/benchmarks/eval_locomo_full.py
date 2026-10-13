@@ -151,6 +151,85 @@ def _date_contradiction(p: str, g: str) -> bool:
     return not (pd & gd)
 
 
+#: Cardinal words the corpus uses in counting answers.
+_NUMERAL_WORDS = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+    "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
+    "twice": 2,
+}
+
+#: Counted nouns.  A numeral only counts as a QUANTITY when it quantifies
+#: something; a lone year or a house number is not a count of the asked thing.
+_COUNT_NOUNS = (
+    "times?|dogs?|cats?|pets?|kids?|children|childs?|weeks?|months?|years?|"
+    "days?|hours?|minutes?|birds?|fish|rabbits?|hamsters?|turtles?|pupp(?:y|ies)|"
+    "books?|cars?|trips?|roadtrips?|tournaments?|marathons?|hikes?|sessions?"
+)
+
+#: A quantity = a cardinal (word or digits) followed by an optional counted noun.
+#: The noun is optional so '2' vs '3' is caught too, but the ANCHOR requirement
+#: below is what keeps this from firing on every digit in a sentence.
+_QUANTITY_RE = re.compile(
+    rf"\b(?:{ '|'.join(_NUMERAL_WORDS) }|\d+)\b(?:\s+(?:{_COUNT_NOUNS})\b)?",
+    re.I,
+)
+
+#: A bare 4-digit year is not a counted quantity, so exclude it from the
+#: quantity scan.  '22 August, 2023' must still be caught by the YEAR rule below,
+#: which compares years explicitly.
+_YEAR_RE = re.compile(r"\b(1\d{3}|20\d{2})\b")
+
+
+def _quantity_values(text: str) -> set[int]:
+    """Cardinal quantities this string commits to.
+
+    Numerals adjacent to a counted noun are included; a bare 4-digit year is
+    excluded here (handled by _year_values) because 'in 2023' is a date, not a
+    count.  A bare numeral with no noun is kept so '2' vs '3' is still caught.
+    """
+    out: set[int] = set()
+    lowered = text.lower()
+    for m in _QUANTITY_RE.finditer(lowered):
+        token = m.group(0).split()[0]
+        if token.isdigit():
+            value = int(token)
+            if len(token) == 4 and 1000 <= value <= 2999:
+                continue        # a year, not a count
+        else:
+            value = _NUMERAL_WORDS[token]
+        out.add(value)
+    return out
+
+
+def _year_values(text: str) -> set[int]:
+    """Four-digit years this string names."""
+    return {int(m.group(1)) for m in _YEAR_RE.finditer(text)}
+
+
+def _numeral_contradiction(p: str, g: str) -> bool:
+    """True when both sides state a quantity and the quantities disagree.
+
+    'two dogs' is not 'three dogs', and '2 weeks' is not 'three weeks', however
+    much the rest of the sentence agrees.  The 50%-either-direction token-overlap
+    rule below credits those as correct, because 'dogs' or 'weeks' carries the
+    overlap and the differing numeral is never compared.  Measured on 46 stored
+    runs / 17,604 pred-gold pairs: 382 pairs state conflicting numerals and 32
+    of them (8.4%) were credited correct.
+
+    Narrow on purpose, so it cannot eat legitimate credits:
+      * only fires when BOTH sides name a quantity, and
+      * only when the quantity sets are DISJOINT (a prediction naming several
+        quantities, one of which matches, is not a contradiction).
+    """
+    pq, gq = _quantity_values(p), _quantity_values(g)
+    if pq and gq and not (pq & gq):
+        return True
+    py, gy = _year_values(p), _year_values(g)
+    if py and gy and not (py & gy):
+        return True
+    return False
+
+
 def score(pred: str, gold: str) -> bool:
     """Deterministic containment scorer.
 
@@ -186,6 +265,25 @@ def score(pred: str, gold: str) -> bool:
     # after the containment checks let 'The week before 13 October 2023' credit
     # against 'On the night of October 30, 2023' through the shared month.
     if _date_contradiction(p, g):
+        return False
+
+    # NUMERAL CONTRADICTION GUARD -- also placed FIRST, before every credit rule.
+    #
+    # Same disease as the date guard, different unit.  The either-direction
+    # 50%-overlap rule below shares one content word ('dogs', 'weeks') and
+    # credits the answer while the DISAGREEING NUMERAL is never compared:
+    #   pred 'two dogs'   gold 'three dogs'  -> was scored CORRECT
+    #   pred '5 dogs'     gold '2 dogs'      -> was scored CORRECT
+    #   pred 'ten times'  gold 'two times'   -> was scored CORRECT
+    #   pred '22 August, 2023'  gold 'August 2022'  -> was scored CORRECT
+    # Measured on 46 stored runs / 17,604 pairs: 382 conflicting-numeral pairs,
+    # 32 credited correct (8.4%).  A count is a factual claim; a wrong count is
+    # wrong however many other words it shares with gold.
+    #
+    # Deliberately narrow: both sides must state a quantity, and the quantity
+    # sets must be disjoint.  A prediction naming several quantities, one of
+    # which matches, is not a contradiction and still gets its credit.
+    if _numeral_contradiction(p, g):
         return False
 
     # Yes/No polar evaluation: when pred is "yes" or "no"

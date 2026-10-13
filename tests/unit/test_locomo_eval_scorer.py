@@ -79,3 +79,43 @@ class TestBaselineSanity:
 
     def test_unrelated_rejected(self):
         assert score("France", "Sweden") is False
+
+    def test_wrong_count_word_is_rejected(self):
+        # This was an xfail recording a KNOWN scorer defect: the token-overlap
+        # rule credited a wrong count word because 'times' carried the overlap
+        # and the differing numeral was never compared.  The NUMERAL
+        # CONTRADICTION guard fixed it, so this is now a hard assertion.
+        #
+        # Measured on 46 stored runs / 17,604 pairs: 382 conflicting-numeral
+        # pairs, 32 credited correct (8.4%).
+        assert score("four times, 4", "three times") is False
+
+    def test_conflicting_quantity_nouns_are_rejected(self):
+        assert score("two dogs", "three dogs") is False
+        assert score("5 dogs", "2 dogs") is False
+        assert score("ten times", "two times") is False
+        assert score("2 weeks", "three weeks") is False
+        assert score("0 years", "three years") is False
+
+    def test_conflicting_years_are_rejected(self):
+        assert score("22 August, 2023", "August 2022") is False
+        assert score("8 October 2023", "October 2022") is False
+
+    # The guard must not eat the credits it was never meant to touch.
+    def test_agreed_quantities_still_pass(self):
+        assert score("two dogs", "two dogs") is True
+        assert score("three times", "three times") is True
+        assert score("2 dogs", "two dogs") is True
+        assert score("3 dogs", "three dogs") is True
+        assert score("4 months", "four months") is True
+
+    def test_guard_is_silent_when_gold_names_no_quantity(self):
+        assert score("two dogs", "she has dogs") is True
+        assert score("5 cats", "cats") is True
+
+    def test_multi_quantity_prediction_matching_gold_is_not_a_contradiction(self):
+        # gold's value is present among the prediction's quantities.
+        assert score("two dogs and three cats", "three cats") is True
+
+    def test_shared_year_prediction_may_be_more_precise(self):
+        assert score("22 August, 2023", "August 2023") is True

@@ -1,0 +1,224 @@
+{
+  "label": "numeral-guard-before-after-all-stored-runs",
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score",
+  "guard": "_numeral_contradiction, placed after _date_contradiction and before all credit rules",
+  "runs_scanned": 46,
+  "total_pairs": 17604,
+  "correct_before_guard": 9059,
+  "correct_after_guard": 9027,
+  "spurious_credits_removed": 32,
+  "real_credits_broke": 0,
+  "verdict": "clean fix",
+  "both_direction_check": {
+    "script": "scripts/benchmarks/check_numeral_guard.py",
+    "cases": 29,
+    "must_be_wrong": 17,
+    "must_be_correct": 10,
+    "guard_must_be_silent": 2,
+    "all_pass": true
+  },
+  "pytest": "490 passed, 1 xpassed",
+  "removed_credits": [
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "2 weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_7",
+      "pred": "0 years",
+      "gold": "three years",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_59",
+      "pred": "5 months",
+      "gold": "4 months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-48_134",
+      "pred": "two years",
+      "gold": "one year",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-48_211",
+      "pred": "two years",
+      "gold": "one year",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-50_51",
+      "pred": "22 August, 2023",
+      "gold": "August 2022",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "two weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-48_134",
+      "pred": "two years",
+      "gold": "one year",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-48_211",
+      "pred": "two years",
+      "gold": "one year",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-49_58",
+      "pred": "8 October 2023",
+      "gold": "October 2022",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "two weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-48_134",
+      "pred": "two years",
+      "gold": "one year",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-48_211",
+      "pred": "two years",
+      "gold": "one year",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-49_58",
+      "pred": "8 October 2023",
+      "gold": "October 2022",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-26_12",
+      "pred": "2 years ago",
+      "gold": "10 years ago",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-26_12",
+      "pred": "2 years ago",
+      "gold": "10 years ago",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-26_12",
+      "pred": "3 years ago",
+      "gold": "10 years ago",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-30_31",
+      "pred": "5 months",
+      "gold": "six months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "4 weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_59",
+      "pred": "5 months",
+      "gold": "4 months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-30_31",
+      "pred": "5 months",
+      "gold": "six months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "4 weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_59",
+      "pred": "5 months",
+      "gold": "4 months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-30_31",
+      "pred": "5 months",
+      "gold": "six months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "4 weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_59",
+      "pred": "5 months",
+      "gold": "4 months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-30_31",
+      "pred": "5 months",
+      "gold": "six months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "4 weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_59",
+      "pred": "5 months",
+      "gold": "4 months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-30_31",
+      "pred": "5 months",
+      "gold": "six months",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-43_16",
+      "pred": "4 weeks",
+      "gold": "three weeks",
+      "numeral_conflict": true
+    },
+    {
+      "qid": "lc_conv-44_59",
+      "pred": "5 months",
+      "gold": "4 months",
+      "numeral_conflict": true
+    }
+  ],
+  "retracted_claim": {
+    "file": "benchmark_results/rnd_counting_discovery_after_20261013.json",
+    "qid": "lc_conv-44_17",
+    "gold": "three times",
+    "engine_answer": "four times, 4",
+    "old_verdict": "correct",
+    "new_verdict": "wrong",
+    "note": "the earlier FIXED 1 was manufactured by the defect this guard removes; real engine gain on these cohorts is 0"
+  }
+}
