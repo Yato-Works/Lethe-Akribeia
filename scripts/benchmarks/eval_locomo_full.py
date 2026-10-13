@@ -585,6 +585,7 @@ ABSTENTIONS = {"i don't know.", "", "not mentioned", "none"}
 
 
 def run(args) -> None:
+    args.use_committer = not getattr(args, "no_committer", False)
     data = load_locomo(Path(args.data))
     wanted = set(int(x) for x in args.cats.split(",")) if args.cats else None
 
@@ -714,17 +715,50 @@ def run(args) -> None:
                 token_budget=token_budget, anchor_scores=anchor_scores,
                 is_multi_session=len(top_sids) > 1, adaptive_escalation=True)
 
-            pred = answerer.answer(q["question"],
-                                   build_reader_prompt(q["question"], compiled.context_text,
-                                                       enum_contract=getattr(args, "enum_contract", "off"),
-                                                       no_abstain=getattr(args, "no_abstain", False))).text.strip()
-            if pred.endswith(".") and len(pred.split()) <= 2:
-                pred = pred[:-1].strip()
+            # DETERMINISTIC COMMITTER (fallback, not override).
+            #
+            # Eli's architecture: 8 deterministic engines already exist in
+            # skills/autonomous_engines/ (temporal algebra, temporal anchor,
+            # arithmetic difference, boolean verifier, counting, entity
+            # attribute, event action, relational traverser) with 82 tests --
+            # and none was wired into this harness.  Every number reported this
+            # session came from 7B free generation alone.
+            #
+            # commit_answer claims a question only when an engine can answer it
+            # deterministically, and carries turn-level provenance the reader
+            # cannot produce.  Measured offline on cat2/temporal (n=321): claims
+            # 118 at 69.5% accuracy, agreeing with the reader on 75, uniquely
+            # solving 7, losing 7 -- so OVERRIDING the reader would net +0.
+            # Hence FALLBACK: committer answers what it claims, reader answers
+            # the rest, which preserves the reader's 7 unique wins.
+            committed = None
+            if getattr(args, "use_committer", True):
+                try:
+                    from artificial_memory.skills.answer_committer import (
+                        commit_answer, post_process_answer,
+                    )
+                    _c = commit_answer(q["question"], compiled.context_text,
+                                       q["category"])
+                    if _c.used and str(_c.answer).strip():
+                        committed = post_process_answer(
+                            q["question"], str(_c.answer).strip(), q["category"])
+                except Exception:
+                    committed = None
 
-            # Deterministic relative-date resolution (LoCoMo weakness).  Only
-            # for 'when' questions, so a substantive answer is never rewritten.
-            if re.search(r"\bwhen\b", q["question"], re.I):
-                pred = resolve_relative_dates(pred, compiled.context_text, q["question"])
+            if committed:
+                pred = committed
+            else:
+                pred = answerer.answer(q["question"],
+                                       build_reader_prompt(q["question"], compiled.context_text,
+                                                           enum_contract=getattr(args, "enum_contract", "off"),
+                                                           no_abstain=getattr(args, "no_abstain", False))).text.strip()
+                if pred.endswith(".") and len(pred.split()) <= 2:
+                    pred = pred[:-1].strip()
+
+                # Deterministic relative-date resolution (LoCoMo weakness).  Only
+                # for 'when' questions, so a substantive answer is never rewritten.
+                if re.search(r"\bwhen\b", q["question"], re.I):
+                    pred = resolve_relative_dates(pred, compiled.context_text, q["question"])
 
             ok = score(pred, q["answer"])
             ctx_tokens = getattr(compiled, "total_tokens", 0)
@@ -732,6 +766,7 @@ def run(args) -> None:
             pred = f"<ERROR: {type(e).__name__}: {e}>"
             ok = False
             ctx_tokens = 0
+            committed = None
 
         results.append({
             "question_id": q["question_id"], "category": q["category"],
@@ -744,6 +779,11 @@ def run(args) -> None:
             "latency_seconds": round(time.perf_counter() - t_q, 3),
             "gold_is_list": is_list_gold(str(q["answer"])),
             "abstained": str(pred).strip().lower() in ABSTENTIONS,
+            # True when the deterministic committer answered instead of the 7B
+            # reader.  Recorded because the date-boost lesson is that "wired in"
+            # is not evidence -- only a non-zero count plus a changed prediction
+            # count proves the path executes.
+            "committer_claimed": bool(committed),
         })
         by_cat[q["category"]].append(ok)
 
@@ -846,6 +886,8 @@ def main() -> None:
                          "each is measured separately (off by default)")
     ap.add_argument("--no-abstain", action="store_true",
                     help="add the answer-from-the-evidence clause (off by default)")
+    ap.add_argument("--no-committer", action="store_true",
+                    help="disable the deterministic committer fallback")
     run(ap.parse_args())
 
 
