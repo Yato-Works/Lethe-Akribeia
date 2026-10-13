@@ -164,16 +164,42 @@ class EntityAttributeResolver:
     _NOISE_TAIL = re.compile(
         r"\b(?:and|but|so|because|which|that|while|though|however)\b.*$", re.I)
 
+    #: Head nouns this engine OWNS -- it does not reach for another specialist's
+    #: territory.  'job'/'occupation'/'location'/'residence' are owned by the
+    #: higher-priority commit_single_hop_fact; claiming them here silently stole
+    #: 'What is Bob's job?' from that engine and broke its dispatcher-priority
+    #: test.  A new capability must not quietly take over an existing specialist.
+    _DEFERRED_HEADS = frozenset({
+        "job", "occupation", "profession", "career", "location", "residence",
+        "hometown", "name", "nickname", "pet",
+    })
+
     @classmethod
     def _extract_generic_attribute(cls, question: str,
                                    turns: list) -> tuple[str, str] | None:
         """Extract a subject's attribute from that subject's own turns.
 
-        Returns (answer, evidence_speaker) or None.  Two integrity rules:
+        Returns (answer, evidence_speaker) or None.
+
+        INTEGRITY RULES (both matter):
           * the evidence must come from a turn the queried subject actually
-            spoke, so another person's fact is never attributed to them
+            spoke, so another person's fact is never attributed to them -- this
+            is the failure mode that already cost this repo a retraction
           * if the subject spoke no turn in the context, abstain rather than
             fall back to any turn
+
+        TWO STRATEGIES, tried in order:
+          1. HEAD-NOUN probe -- works when the question's head noun appears in
+             the evidence ('What is Caroline's career?' / 'my career is...').
+             217 of the 492 simple-shape questions.
+          2. SELF-CLAIM extraction -- for the SYNONYM gap, where the head noun
+             never appears in the evidence:
+                 'What is Caroline's relationship status?' / 'I am single.'
+                 'What is Caroline's identity?' / 'I identify as a transgender woman'
+             A keyword probe cannot bridge 'status' -> 'single', so instead of
+             matching on the attribute name, extract the predicate-value claim
+             the subject makes about themselves, then rank candidates by how
+             well the claim's SHAPE fits the question's demand.
         """
         ql = question.lower().strip()
         # Subject = the capitalised name in the question.  Interrogatives and
@@ -201,6 +227,9 @@ class EntityAttributeResolver:
             if re.search(rf"\b{h}\b", ql):
                 head = h
                 break
+        if head in cls._DEFERRED_HEADS:
+            # Another specialist owns this head noun.  Defer so it can claim it.
+            return None
         verb = None
         if head is None:
             mv = re.search(r"\bwhat\s+(?:did|does|do|has|have)\s+" +
@@ -217,12 +246,12 @@ class EntityAttributeResolver:
             return None
 
         probe = head or verb
+
+        # Strategy 1: head-noun probe.
         for t in own:
             txt = t.text.strip()
             low = txt.lower()
             if probe and probe not in low:
-                # for the verb shape, the evidence may use a different surface
-                # form; only require the subject's own claim to be self-referential
                 if verb and not re.search(r"\b(i|my|me)\b", low):
                     continue
                 if head:
@@ -230,6 +259,107 @@ class EntityAttributeResolver:
             answer = cls._noun_phrase_after(txt, probe)
             if answer:
                 return answer, t.speaker
+
+        # Strategy 2: self-claim extraction for the synonym gap.
+        claim = cls._extract_self_claim(ql, own, head)
+        if claim:
+            answer, t = claim
+            return answer, t.speaker
+        return None
+
+    #: Predicate shapes a subject uses to state something about THEMSELVES.
+    #: Each entry is (compiled pattern, attribute CLASS).  The class is what the
+    #: question side is matched against -- never the surface wording, so a
+    #: synonym gap cannot silently drop a claim.
+    _SELF_CLAIM_PATTERNS = (
+        # 'I am single' / 'I am a teacher' -> STATE
+        (re.compile(r"\bi\s+(?:am|'m)\s+(?:a\s+|an\s+)?([a-z][a-z\s-]{2,28})", re.I), "state"),
+        # 'I identify as a transgender woman' -> IDENTITY
+        (re.compile(r"\bi\s+identify\s+as\s+(?:a\s+|an\s+)?([a-z][a-z\s-]{2,28})", re.I), "identity"),
+        # 'I work as a nurse' / 'I am working as ...' -> OCCUPATION
+        (re.compile(r"\bi\s+(?:work|worked)\s+(?:as|at)\s+(?:a\s+|an\s+)?([a-z][a-z\s-]{2,28})", re.I), "occupation"),
+        # 'I enjoy running' / 'I love pottery' -> PREFERENCE
+        (re.compile(r"\bi\s+(?:enjoy|love|like|prefer)\s+([a-z][a-z\s-]{2,28})", re.I), "preference"),
+        # 'I want to ...' / 'I hope to ...' -> GOAL
+        (re.compile(r"\bi\s+(?:want|hope|plan|wish)\s+to\s+([a-z][a-z\s-]{2,28})", re.I), "goal"),
+        # 'I feel ...' -> FEELING
+        (re.compile(r"\bi\s+feel\s+(?:like\s+)?([a-z][a-z\s-]{2,28})", re.I), "feeling"),
+    )
+
+    #: Which question head nouns demand which claim class, IN PRIORITY ORDER.
+    #: Form-based mapping from QUESTION MEANING to CLAIM CLASS, deliberately not
+    #: surface-to-surface.
+    #:
+    #: Order matters and is strict: a head noun first tries its OWN class and
+    #: only falls back to a related one.  'identity' demands 'identity' first --
+    #: without that, 'What is Caroline's identity?' matched the generic 'I am
+    #: single' state-claim and answered 'single', which is a confidently wrong
+    #: deterministic answer.
+    _HEAD_TO_CLASS = {
+        "identity": ("identity",),
+        "state": ("state",),
+        "status": ("state", "identity"),
+        "occupation": ("occupation",),
+        "job": ("occupation",),
+        "profession": ("occupation",),
+        "career": ("occupation", "goal"),
+        "hobby": ("preference",),
+        "hobbies": ("preference",),
+        "preference": ("preference",),
+        "preferences": ("preference",),
+        "favourite": ("preference",),
+        "favorite": ("preference",),
+        "goal": ("goal",),
+        "goals": ("goal",),
+        "plan": ("goal",),
+        "plans": ("goal",),
+        "dream": ("goal",),
+        "dreams": ("goal",),
+        "feeling": ("feeling",),
+        "feelings": ("feeling",),
+    }
+
+    @classmethod
+    def _extract_self_claim(cls, ql: str, own: list, head: str | None):
+        """Extract a self-claim whose CLASS matches what the question demands.
+
+        This is the synonym-gap bridge: instead of requiring the question's head
+        noun to appear in the evidence, it extracts (claim_class, value) pairs
+        from the subject's own turns and matches the QUESTION'S DEMANDED CLASS.
+        'What is Caroline's relationship status?' demands class 'state'/'identity',
+        and 'I am single.' supplies class 'state' -- so they meet without sharing
+        a single word.
+
+        ABSTAINS rather than guessing when no claim's class matches, because a
+        wrong deterministic answer is worse than a reader fallback.
+        """
+        if not head or head not in cls._HEAD_TO_CLASS:
+            return None
+        # Honour the class priority order: try the head noun's own class first
+        # and only then a related fallback.  Collecting per class and returning
+        # the highest-priority hit is what stops 'I am single' answering an
+        # 'identity' question.
+        by_class: dict[str, tuple[str, object]] = {}
+        for t in own:
+            txt = t.text.strip()
+            for pat, cls_name in cls._SELF_CLAIM_PATTERNS:
+                if cls_name in by_class:
+                    continue
+                m = pat.search(txt)
+                if not m:
+                    continue
+                value = m.group(1).strip()
+                value = cls._NOISE_TAIL.sub("", value).strip(" .,;:")
+                if not value or len(value) < 2:
+                    continue
+                words = value.split()
+                if len(words) > 8:
+                    value = " ".join(words[:8])
+                by_class[cls_name] = (value, t)
+
+        for wanted_class in cls._HEAD_TO_CLASS[head]:
+            if wanted_class in by_class:
+                return by_class[wanted_class]
         return None
 
     @classmethod
