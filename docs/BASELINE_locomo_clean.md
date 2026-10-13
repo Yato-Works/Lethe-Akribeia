@@ -760,3 +760,40 @@ real temporal weakness is the 73% with genuinely wrong dates (e.g. GT "In 2013"
 vs PRED "2012-06-03", GT "two weeks" vs PRED "2"), which is reader-side date
 reasoning — the thing the earlier "tell the model to reason" prompt also failed
 to fix.
+
+---
+
+## Committer vs reader, per question — they solve DIFFERENT questions
+
+Eli's question after finding 8 deterministic engines in `skills/autonomous_engines/`
+that the LoCoMo harness never calls. `commit_sweep.py` was run offline (no LLM) on
+the cat2/temporal slice, n=321, dumping per-question `commit_correct` /
+`reader_correct`.
+
+**Q1 — is the identical 69.5% the same answers?** No.
+
+| | n |
+|---|---|
+| both correct | 75 |
+| committer only | 7 |
+| reader only | 7 |
+| both wrong | 29 |
+| sum | 118 |
+
+Two independent solvers that agree on 75 and each uniquely solve 7. A committer
+that **overrides** the reader on its claims nets **+0** — it gains 7 and destroys 7.
+
+So the integration must be a **fallback**, not an override: committer first,
+reader on whatever it abstains from. That preserves the 7 reader-only wins.
+
+**Q2 — is the abstention correct?**
+
+| | n | |
+|---|---|---|
+| committer abstained | 203 | |
+| reader got those right | 78 (38.4%) | abstention was wrong for these |
+| neither route solved | 125 (61.6%) | consistent with the 109 UNANSWERABLE + 327 SCORER_REJECTED blocks |
+
+**Expected value of wiring it as a fallback:** ~+7 questions on this slice
+(~+0.4pt if it generalises), and 118 fewer LLM calls. Small, but the first
+structural change aimed at a measured block instead of a prompt tweak.
