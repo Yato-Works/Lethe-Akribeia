@@ -1,0 +1,132 @@
+{
+  "total_joined": 1974,
+  "total_failures": 987,
+  "clusters": {
+    "F2_evidence_present_but_unanswered": {
+      "count": 442,
+      "example_ids": [
+        "lc_conv-26_2",
+        "lc_conv-26_18",
+        "lc_conv-26_23",
+        "lc_conv-26_40",
+        "lc_conv-26_47"
+      ],
+      "shapes": {
+        "what_thing": 250,
+        "where_place": 24,
+        "what_count": 11,
+        "when_date": 38,
+        "yesno": 7,
+        "why_reason": 19,
+        "other": 85,
+        "what_person": 7,
+        "when_bare": 1
+      },
+      "gold_in_context": {
+        "full": 433,
+        "unknown": 9
+      },
+      "categories": {
+        "3": 11,
+        "1": 77,
+        "4": 173,
+        "5": 135,
+        "2": 46
+      },
+      "engine_claims_rate": 0.0
+    },
+    "F4_engine_claims_but_wrong": {
+      "count": 294,
+      "example_ids": [
+        "lc_conv-26_0",
+        "lc_conv-26_9",
+        "lc_conv-26_10",
+        "lc_conv-26_15",
+        "lc_conv-26_16"
+      ],
+      "shapes": {
+        "when_date": 113,
+        "other": 24,
+        "what_thing": 133,
+        "what_count": 16,
+        "what_person": 1,
+        "where_place": 3,
+        "yesno": 2,
+        "when_bare": 2
+      },
+      "gold_in_context": {
+        "full": 232,
+        "partial": 30,
+        "absent": 32
+      },
+      "categories": {
+        "2": 127,
+        "1": 46,
+        "4": 73,
+        "5": 46,
+        "3": 2
+      },
+      "engine_claims_rate": 1.0
+    },
+    "F3_gold_partially_in_context": {
+      "count": 126,
+      "example_ids": [
+        "lc_conv-26_22",
+        "lc_conv-26_32",
+        "lc_conv-26_39",
+        "lc_conv-26_77",
+        "lc_conv-26_142"
+      ],
+      "shapes": {
+        "yesno": 4,
+        "what_thing": 79,
+        "other": 26,
+        "why_reason": 7,
+        "where_place": 3,
+        "when_date": 2,
+        "what_person": 5
+      },
+      "gold_in_context": {
+        "partial": 126
+      },
+      "categories": {
+        "3": 22,
+        "1": 51,
+        "4": 31,
+        "5": 19,
+        "2": 3
+      },
+      "engine_claims_rate": 0.0
+    },
+    "F5_gold_not_in_context": {
+      "count": 125,
+      "example_ids": [
+        "lc_conv-26_11",
+        "lc_conv-26_27",
+        "lc_conv-26_34",
+        "lc_conv-26_49",
+        "lc_conv-26_69"
+      ],
+      "shapes": {
+        "where_place": 4,
+        "yesno": 11,
+        "what_thing": 55,
+        "when_date": 10,
+        "other": 37,
+        "what_person": 3,
+        "what_count": 5
+      },
+      "gold_in_context": {
+        "absent": 125
+      },
+      "categories": {
+        "1": 25,
+        "3": 33,
+        "2": 23,
+        "5": 22,
+        "4": 22
+      },
+      "engine_claims_rate": 0.0
+    }
+  }
+}
