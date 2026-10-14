@@ -1,0 +1,106 @@
+{
+  "label": "phase 1 -- over-committing when_date answers traced to their branch",
+  "n": 6,
+  "branches": {
+    "extracted relative temporal anchor": 4,
+    "relative event anchor": 1,
+    "extracted explicit date": 1
+  },
+  "gold_absent_count": 5,
+  "person_absent_in_evidence_count": 1,
+  "cases": [
+    {
+      "question_id": "lc_conv-30_38",
+      "question": "When did Gina go to a dance class with a group of friends?",
+      "gold": "21 July 2023",
+      "engine_answer": "The Friday before 23 July 2023",
+      "branch": "extracted relative temporal anchor",
+      "source": "autonomous_temporal_algebra",
+      "detail": "extracted relative temporal anchor 'The Friday before 23 July 2023'",
+      "evidence_turn_id": "D19:6",
+      "evidence_turn_text": "Hah, yeah!) But really having a creative space for dancers is so important. last Friday (the Friday before 23 July 2023) at dance class with a group of friends I felt it. Your studio will be",
+      "person_asked": "gina",
+      "person_in_evidence_turn": true,
+      "gold_present_in_context": false,
+      "gold_context_lines": []
+    },
+    {
+      "question_id": "lc_conv-42_35",
+      "question": "When did Nate take time off to chill with his pets?",
+      "gold": "The weekend of 22August, 2022.",
+      "engine_answer": "23 May, 2022",
+      "branch": "relative event anchor",
+      "source": "autonomous_temporal_algebra",
+      "detail": "relative event anchor 'the other day' in D13:1",
+      "evidence_turn_id": null,
+      "evidence_turn_text": null,
+      "person_asked": "nate",
+      "person_in_evidence_turn": false,
+      "gold_present_in_context": false,
+      "gold_context_lines": []
+    },
+    {
+      "question_id": "lc_conv-44_11",
+      "question": "When did Andrew go rock climbing?",
+      "gold": "June 11, 2023",
+      "engine_answer": "The Sunday before 13 June 2023",
+      "branch": "extracted relative temporal anchor",
+      "source": "autonomous_temporal_algebra",
+      "detail": "extracted relative temporal anchor 'The Sunday before 13 June 2023'",
+      "evidence_turn_id": "D8:1",
+      "evidence_turn_text": "Hey! Long time no chat. last Sunday (the Sunday before 13 June 2023) was awesome - my friends and I took a rock climbing class and I made it to the top! It was a fantastic experience and now",
+      "person_asked": "andrew",
+      "person_in_evidence_turn": true,
+      "gold_present_in_context": false,
+      "gold_context_lines": []
+    },
+    {
+      "question_id": "lc_conv-44_37",
+      "question": "When did Audrey get into an accident in the park?",
+      "gold": "between October 19 and 24, 2023",
+      "engine_answer": "The week before 24 October 2023",
+      "branch": "extracted relative temporal anchor",
+      "source": "autonomous_temporal_algebra",
+      "detail": "extracted relative temporal anchor 'The week before 24 October 2023'",
+      "evidence_turn_id": "D25:2",
+      "evidence_turn_text": "Hey! Ha, glad you had fun at the wine tasting. Yeah, trying new things can be cool. By the way, I had an unexpected adventure last week (the week before 24 October 2023). I had an accident w",
+      "person_asked": "audrey",
+      "person_in_evidence_turn": true,
+      "gold_present_in_context": false,
+      "gold_context_lines": []
+    },
+    {
+      "question_id": "lc_conv-47_59",
+      "question": "When did John and his gaming friends organize the charity tournament?",
+      "gold": "On the night of October 30 to 31, 2022",
+      "engine_answer": "27 April, 2022",
+      "branch": "extracted explicit date",
+      "source": "autonomous_temporal_algebra",
+      "detail": "extracted explicit date '27 April, 2022'",
+      "evidence_turn_id": "D8:30",
+      "evidence_turn_text": "Wow, that's impressive! I'm really enjoying games like this, they really make me think. What do you think of strategy board games? I played one with friends two days ago (27 April 2022), it'",
+      "person_asked": "john",
+      "person_in_evidence_turn": true,
+      "gold_present_in_context": false,
+      "gold_context_lines": []
+    },
+    {
+      "question_id": "lc_conv-50_17",
+      "question": "When did Calvin have a car incident?",
+      "gold": "on the Friday before 21 June, 2023",
+      "engine_answer": "The week before 16 May 2023",
+      "branch": "extracted relative temporal anchor",
+      "source": "autonomous_temporal_algebra",
+      "detail": "extracted relative temporal anchor 'The week before 16 May 2023'",
+      "evidence_turn_id": "D6:3",
+      "evidence_turn_text": "Hey Dave, not everything has been going smoothly. I had an incident last week (the week before 16 May 2023) where my place got flooded, but thankfully, I managed to save my music gear and fa",
+      "person_asked": "calvin",
+      "person_in_evidence_turn": true,
+      "gold_present_in_context": true,
+      "gold_context_lines": [
+        "[D9:1 on 3:15 pm on 21 June, 2023] Calvin: Hi Dave! Nice to hear from you. Since last chat, some things have happened. I had a lil car accident last F",
+        "[D9:3 on 3:15 pm on 21 June, 2023] (In reply to Dave: \"Sorry to hear about the car accident, Calvin. I'm glad to hear that nobody was hurt. Dealing wi"
+      ]
+    }
+  ]
+}
