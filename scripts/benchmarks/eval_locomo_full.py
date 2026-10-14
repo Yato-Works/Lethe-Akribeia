@@ -230,6 +230,51 @@ def _numeral_contradiction(p: str, g: str) -> bool:
     return False
 
 
+#: Month name -> number.  Local to the guards so they do not depend on the
+#: definition order of the relative-date resolver's own map further down.
+_MONTH_NUM = {m: i for i, m in enumerate(
+    ["january", "february", "march", "april", "may", "june", "july",
+     "august", "september", "october", "november", "december"], start=1)}
+
+
+def _month_values(text: str) -> set[int]:
+    """Month numbers this string names, 1-12.
+
+    Uses a local map rather than _MONTHS, which is defined further down the file for
+    the relative-date resolver; depending on definition order across a 1,000-line
+    scorer is how a guard ends up silently inert.
+    """
+    return {_MONTH_NUM[w] for w in re.findall(r"[a-z]+", str(text).lower())
+            if w in _MONTH_NUM}
+
+
+def _month_contradiction(p: str, g: str) -> bool:
+    """True when both sides name a month and the months disagree.
+
+    THIRD defect of the same family, and the largest of the three.  The date guard
+    (c449aa0) fixed day-of-month; the numeral guard (e6a305f) fixed counts.  Months
+    were still unguarded, and the 50%-token-overlap rule credited them because its
+    `len(w) > 2` filter drops the 1-2 digit DAY, leaving month+year to carry the
+    score while the differing month is invisible:
+
+        pred 'March 5 2023'      gold '5 May 2023'        -> was scored CORRECT
+        pred '15 December 2023'  gold 'August 15, 2023'   -> was scored CORRECT
+        pred '26 August 2023'    gold 'November 2023'     -> was scored CORRECT
+
+    Measured across all 46 stored runs / 2,083 month-naming pairs: 318 pairs state
+    conflicting months and 109 of them (34.3%) were credited correct.  That is 3.4x
+    the numeral defect and 4x the day defect in absolute count.
+
+    Narrow by construction, same as its siblings: fires only when BOTH sides name a
+    month AND the month sets are disjoint.  A prediction naming several months where
+    one matches gold is not a contradiction.
+    """
+    pm, gm = _month_values(p), _month_values(g)
+    if pm and gm and not (pm & gm):
+        return True
+    return False
+
+
 def score(pred: str, gold: str) -> bool:
     """Deterministic containment scorer.
 
@@ -284,6 +329,24 @@ def score(pred: str, gold: str) -> bool:
     # sets must be disjoint.  A prediction naming several quantities, one of
     # which matches, is not a contradiction and still gets its credit.
     if _numeral_contradiction(p, g):
+        return False
+
+    # MONTH CONTRADICTION GUARD -- third of the family, placed with its siblings.
+    #
+    # The date guard fixed day-of-month and the numeral guard fixed counts.  Months
+    # were still unguarded, and this is the LARGEST of the three: measured over all
+    # 46 stored runs / 2,083 month-naming pairs, 318 state conflicting months and
+    # 109 of them (34.3%) were credited correct -- 3.4x the numeral defect.
+    #
+    #   pred 'March 5 2023'      gold '5 May 2023'       -> was scored CORRECT
+    #   pred '26 August 2023'    gold 'November 2023'    -> was scored CORRECT
+    #   pred '15 December 2023'  gold 'August 15, 2023'  -> was scored CORRECT
+    #
+    # Mechanism: the 50%-token-overlap rule's `len(w) > 2` filter drops the 1-2 digit
+    # DAY, so month+year carry the score and the differing month is never compared.
+    # Narrow like its siblings: both sides must name a month, and the month sets must
+    # be disjoint.
+    if _month_contradiction(p, g):
         return False
 
     # Yes/No polar evaluation: when pred is "yes" or "no"

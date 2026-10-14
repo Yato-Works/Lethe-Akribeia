@@ -18,7 +18,7 @@ import pytest
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 
-from eval_locomo_full import score
+from eval_locomo_full import _month_contradiction, score
 
 
 class TestListOrderEquivalence:
@@ -66,6 +66,27 @@ class TestHedgedYesNoMatching:
 
         gold_pos = "Yes, since she collects classic children's books"
         assert score("No", gold_pos) is False
+
+
+    def test_conflicting_months_are_rejected(self):
+        assert score("March 5 2023", "5 May 2023") is False
+        assert score("15 December 2023", "August 15, 2023") is False
+        assert score("26 August 2023", "November 2023") is False
+        assert score("12 November 2023", "September 2023") is False
+
+    # The month guard must not eat the credits it was never meant to touch.
+    def test_agreed_months_still_pass(self):
+        assert score("2 September 2022", "September 2, 2022") is True
+        assert score("11 September 2023", "September 11, 2023") is True
+        assert score("8 May, 2023", "May 8, 2023") is True
+
+    def test_guard_is_silent_when_one_side_names_no_month(self):
+        # The guard must not claim a contradiction it has no basis for.
+        assert _month_contradiction("August 2023", "in the summer") is False
+        assert _month_contradiction("June", "June") is False
+
+    def test_multi_month_prediction_matching_gold_is_not_a_contradiction(self):
+        assert score("I visited in June and again in May", "May") is True
 
 
 class TestBaselineSanity:
