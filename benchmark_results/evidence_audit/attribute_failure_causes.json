@@ -1,0 +1,205 @@
+{
+  "label": "phase C attribute failure causes",
+  "wrong": {
+    "n": 19,
+    "counts": {
+      "NO_OBJECT_NOUN": 3,
+      "DEICTIC": 11,
+      "OTHER": 3,
+      "PARTIAL_SET": 2
+    },
+    "rows": [
+      {
+        "question_id": "lc_conv-30_40",
+        "question": "What is Jon's favorite style of dance?",
+        "gold": "Contemporary",
+        "answer": "running my own studio",
+        "detail": "attribute extracted from Jon's turn: 'running my own studio'",
+        "cause": "NO_OBJECT_NOUN",
+        "why": "asked for a 'style', got 'running my own studio'"
+      },
+      {
+        "question_id": "lc_conv-42_88",
+        "question": "What is one of Joanna's favorite movies?",
+        "gold": "\"Eternal Sunshineof the Spotless Mind\"",
+        "answer": "getting immersed in the feeli",
+        "detail": "attribute extracted from Joanna's turn: 'getting immersed in the feeli'",
+        "cause": "NO_OBJECT_NOUN",
+        "why": "asked for a 'movies', got 'getting immersed in the fe'"
+      },
+      {
+        "question_id": "lc_conv-42_90",
+        "question": "What is Nate's favorite movie trilogy?",
+        "gold": "Lord of the Rings",
+        "answer": "action",
+        "detail": "attribute extracted from Nate's turn: 'action'",
+        "cause": "DEICTIC",
+        "why": "value 'action' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-42_91",
+        "question": "What is Nate's favorite book series about?",
+        "gold": "dragons",
+        "answer": "this series",
+        "detail": "attribute extracted from Nate's turn: 'this series'",
+        "cause": "DEICTIC",
+        "why": "value 'this series' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-42_95",
+        "question": "What is Nate's favorite video game?",
+        "gold": "Xenoblade Chronicles",
+        "answer": "fantasy",
+        "detail": "attribute extracted from Nate's turn: 'fantasy'",
+        "cause": "DEICTIC",
+        "why": "value 'fantasy' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-42_113",
+        "question": "What is Nate's favorite genre of movies?",
+        "gold": "Fantasy and sci-fi",
+        "answer": "action",
+        "detail": "attribute extracted from Nate's turn: 'action'",
+        "cause": "DEICTIC",
+        "why": "value 'action' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-42_155",
+        "question": "What is Nate's favorite dish from the cooking show he hosted?",
+        "gold": "Coconut milk ice cream",
+        "answer": "action",
+        "detail": "attribute extracted from Nate's turn: 'action'",
+        "cause": "DEICTIC",
+        "why": "value 'action' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-42_156",
+        "question": "What is one of Nate's favorite dairy-free treats besides coconut milk ice cream?",
+        "gold": "dairy-free chocolate mousse",
+        "answer": "coconut milk",
+        "detail": "attribute extracted from Nate's turn: 'coconut milk'",
+        "cause": "OTHER",
+        "why": "unclassified; detail=attribute extracted from Nate's turn: 'coconut mil"
+      },
+      {
+        "question_id": "lc_conv-43_134",
+        "question": "What is one of Tim's favorite fantasy TV shows, as mentioned on November 11, 2023?",
+        "gold": "\"That\"",
+        "answer": "how they take me to other pla",
+        "detail": "attribute extracted from Tim's turn: 'how they take me to other pla'",
+        "cause": "DEICTIC",
+        "why": "value 'how they take me to other pl' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-43_166",
+        "question": "What is John's favorite book series?",
+        "gold": "Harry Potter",
+        "answer": "non-fiction books about perso",
+        "detail": "attribute extracted from John's turn: 'non-fiction books about perso'",
+        "cause": "OTHER",
+        "why": "unclassified; detail=attribute extracted from John's turn: 'non-fiction"
+      },
+      {
+        "question_id": "lc_conv-44_79",
+        "question": "What is Audrey's favorite recipe that she shares with Andrew on 3 July, 2023?",
+        "gold": "Chicken Pot Pie",
+        "answer": "cooking",
+        "detail": "attribute extracted from Audrey's turn: 'cooking'",
+        "cause": "DEICTIC",
+        "why": "value 'cooking' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-44_80",
+        "question": "What dish is one of Audrey's favorite dishes that includes garlic and is shared with Andrew on 3 July, 2023?",
+        "gold": "Roasted Chicken",
+        "answer": "the smell",
+        "detail": "attribute extracted from Audrey's turn: 'the smell'",
+        "cause": "DEICTIC",
+        "why": "value 'the smell' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-47_86",
+        "question": "What type of pizza is James' favorite?",
+        "gold": "Pepperoni",
+        "answer": "also cheese pizza",
+        "detail": "attribute extracted from James's turn: 'also cheese pizza'",
+        "cause": "DEICTIC",
+        "why": "value 'also cheese pizza' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-47_87",
+        "question": "What type of pizza is John's favorite?",
+        "gold": "Hawaiian",
+        "answer": "pizza too",
+        "detail": "attribute extracted from John's turn: 'pizza too'",
+        "cause": "OTHER",
+        "why": "unclassified; detail=attribute extracted from John's turn: 'pizza too'"
+      },
+      {
+        "question_id": "lc_conv-48_25",
+        "question": "What are Jolene's favorite books?",
+        "gold": "Sapiens, Avalanche by Neal Stephenson",
+        "answer": "Sapiens, Detroit",
+        "detail": "possessive set ['book', 'favorite']: ['Sapiens', 'Detroit']",
+        "cause": "PARTIAL_SET",
+        "why": "answer items ['detroit', 'sapiens'] not all in gold ['avalanche by neal stephenson', 'sapiens']"
+      },
+      {
+        "question_id": "lc_conv-48_90",
+        "question": "What are Jolene's favorite books?",
+        "gold": "Sapiens, Avalanche by Neal Stephenson",
+        "answer": "Sapiens, Detroit",
+        "detail": "possessive set ['book', 'favorite']: ['Sapiens', 'Detroit']",
+        "cause": "PARTIAL_SET",
+        "why": "answer items ['detroit', 'sapiens'] not all in gold ['avalanche by neal stephenson', 'sapiens']"
+      },
+      {
+        "question_id": "lc_conv-48_140",
+        "question": "What is the favorite game Jolene plays with her partner?",
+        "gold": "It takes two",
+        "answer": "creating a serene space with",
+        "detail": "attribute extracted from Jolene's turn: 'creating a serene space with'",
+        "cause": "NO_OBJECT_NOUN",
+        "why": "asked for a 'game', got 'creating a serene space wi'"
+      },
+      {
+        "question_id": "lc_conv-48_172",
+        "question": "What was one of Jolene's favorite games to play with her mom on the nintendo wii game system?",
+        "gold": "Monster Hunter: World",
+        "answer": "switch",
+        "detail": "consoles mentioned in evidence: ['switch']",
+        "cause": "DEICTIC",
+        "why": "value 'switch' is not an object noun phrase"
+      },
+      {
+        "question_id": "lc_conv-50_151",
+        "question": "What hobby did Calvin take up recently?",
+        "gold": "Photography",
+        "answer": "how's",
+        "detail": "attribute extracted from Calvin's turn: 'how's'",
+        "cause": "DEICTIC",
+        "why": "value \"how's\" is not an object noun phrase"
+      }
+    ]
+  },
+  "correct_control": {
+    "n": 1,
+    "counts": {
+      "OTHER": 1
+    },
+    "rows": [
+      {
+        "question_id": "lc_conv-48_118",
+        "question": "What is one of Jolene's favorite dishes?",
+        "gold": "lasagna",
+        "answer": "lasagna",
+        "detail": "extracted favorite 'lasagna' for dishes",
+        "cause": "OTHER",
+        "why": "unclassified; detail=extracted favorite 'lasagna' for dishes"
+      }
+    ]
+  },
+  "shared_causes": [
+    "OTHER"
+  ]
+}

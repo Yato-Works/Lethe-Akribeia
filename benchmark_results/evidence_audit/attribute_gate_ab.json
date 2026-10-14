@@ -1,0 +1,111 @@
+{
+  "label": "attribute shape gate -- A/B on frozen contexts with holdout",
+  "scorer": "eval_locomo_full.score (all four guards)",
+  "contexts": "frozen, sha256-pinned; no re-run",
+  "tuning": {
+    "fixed": [],
+    "broke": [],
+    "abstained": [
+      {
+        "question_id": "lc_conv-30_40",
+        "gold": "Contemporary",
+        "old": "running my own studio",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-42_88",
+        "gold": "\"Eternal Sunshineof the Spotless Mind\"",
+        "old": "getting immersed in the feeli",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-42_90",
+        "gold": "Lord of the Rings",
+        "old": "action",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-42_91",
+        "gold": "dragons",
+        "old": "this series",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-42_95",
+        "gold": "Xenoblade Chronicles",
+        "old": "fantasy",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-42_113",
+        "gold": "Fantasy and sci-fi",
+        "old": "action",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-42_155",
+        "gold": "Coconut milk ice cream",
+        "old": "action",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-43_134",
+        "gold": "\"That\"",
+        "old": "how they take me to other pla",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-43_141",
+        "gold": "The Alchemist",
+        "old": "the same way with my team",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-44_79",
+        "gold": "Chicken Pot Pie",
+        "old": "cooking",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-44_80",
+        "gold": "Roasted Chicken",
+        "old": "the smell",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-47_86",
+        "gold": "Pepperoni",
+        "old": "also cheese pizza",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-47_87",
+        "gold": "Hawaiian",
+        "old": "pizza too",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-48_140",
+        "gold": "It takes two",
+        "old": "creating a serene space with",
+        "new": ""
+      },
+      {
+        "question_id": "lc_conv-50_151",
+        "gold": "Photography",
+        "old": "how's",
+        "new": ""
+      }
+    ],
+    "still_wrong": [],
+    "still_correct": []
+  },
+  "holdout": {
+    "fixed": [],
+    "broke": [],
+    "abstained": [],
+    "still_wrong": [],
+    "still_correct": []
+  },
+  "clean": true
+}

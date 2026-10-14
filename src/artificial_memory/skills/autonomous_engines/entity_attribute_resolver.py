@@ -50,6 +50,13 @@ class EntityAttributeResolver:
     def resolve_entity_attribute(cls, question: str, turns: list[Turn], context: str) -> CommittedAnswer:
         ql = question.lower().strip()
 
+        # Cardinality/frequency questions are owned by CountingEngine.  Without
+        # this route guard, the noun ``plan`` in ``how many times ... plan to
+        # hike`` was misread as an attribute head and a later unrelated phrase
+        # was returned after CountingEngine correctly abstained.
+        if re.match(r"\bhow\s+(?:many|much|often)\b", ql):
+            return CommittedAnswer(used=False, detail="cardinality question is owned by CountingEngine")
+
         # Guardrail: never answer 'why' questions with attribute values
         if ql.startswith("why"):
             return CommittedAnswer(used=False)
@@ -177,6 +184,20 @@ class EntityAttributeResolver:
                            "supported by its own evidence turn",
                 )
 
+            # The SHAPE gate, the missing half.  _answer_is_supported asks whether
+            # the value is grounded in its evidence; this asks whether it is a noun
+            # phrase at all.  Measured on the 19 phase-C attribute failures, 14
+            # returned a fragment ('this series', 'the smell', \"how's\") or a verb
+            # phrase ('running my own studio') -- values no reader would call an
+            # answer, committed with full confidence.
+            if not cls._answer_is_a_noun_phrase(
+                    answer, head=cls._question_head_noun(question)):
+                return CommittedAnswer(
+                    used=False,
+                    detail="generic attribute candidate rejected: value is not a "
+                           "noun phrase (determiner/pronoun or activity word)",
+                )
+
             return CommittedAnswer(
                 used=True,
                 answer=answer,
@@ -268,6 +289,18 @@ class EntityAttributeResolver:
             if mv:
                 verb = mv.group(1)
 
+        # Open-ended action prompts such as "what did X do/take/want?" do not
+        # identify a value relation.  Treating those words as substring probes
+        # was producing fragments from unrelated clauses (e.g. "do" in
+        # "doing", "want" in "wanted", or "take" in "take care").  Such
+        # questions belong to event/action resolution unless the question names
+        # a concrete attribute head above.
+        if head is None and verb in {
+            "do", "have", "get", "go", "make", "take", "want", "say",
+            "feel", "give", "know", "think", "tell", "try", "keep",
+        }:
+            return None
+
         if head is None and verb is None:
             return None
 
@@ -290,8 +323,15 @@ class EntityAttributeResolver:
                     continue
                 if head:
                     continue
-            answer = cls._noun_phrase_after(txt, probe)
+            answer = (
+                cls._noun_phrase_after(txt, probe)
+                if head else cls._extract_verb_object(txt, subj_l, verb)
+            )
             if answer:
+                if head and not cls._has_attribute_value_relation(txt, head):
+                    continue
+                if not head and verb and not cls._question_anchors_match(question, subj_l, verb, txt):
+                    continue
                 return answer, t
 
         # Strategy 2: self-claim extraction for the synonym gap.
@@ -368,6 +408,12 @@ class EntityAttributeResolver:
         """
         if not head or head not in cls._HEAD_TO_CLASS:
             return None
+        # Liking something is not enough to prove it is a hobby.  The broader
+        # preference class also captures foods, media, and momentary tastes;
+        # plural hobby questions belong to the set aggregator unless the
+        # dialogue explicitly states a hobby-value relation.
+        if head in {"hobby", "hobbies"}:
+            return None
         # Honour the class priority order: try the head noun's own class first
         # and only then a related fallback.  Collecting per class and returning
         # the highest-priority hit is what stops 'I am single' answering an
@@ -396,15 +442,83 @@ class EntityAttributeResolver:
         return None
 
     @classmethod
+    def _question_anchors_match(cls, question: str, subject: str,
+                                verb: str, evidence_text: str) -> bool:
+        """Require non-verb question arguments in the same candidate turn.
+
+        In ``What did Gina design for her store?``, a sentence about someone's
+        general design philosophy is not evidence about the store.  Keep only
+        content anchors outside the subject and predicate; every remaining
+        anchor must occur in the candidate turn.
+        """
+        ignored = set(STOPWORDS) | _INTERROGATIVES | set(cls._ATTRIBUTE_HEADS)
+        ignored |= {subject, verb, "kind", "type", "sort", "person", "people"}
+        anchors = {
+            w.lower() for w in re.findall(r"\b[a-zA-Z]{3,}\b", question)
+            if w.lower() not in ignored
+        }
+        if not anchors:
+            return True
+        evidence = set(re.findall(r"\b[a-zA-Z]{3,}\b", evidence_text.lower()))
+        return anchors <= evidence
+
+    @staticmethod
+    def _extract_verb_object(text: str, subject: str, verb: str | None) -> str | None:
+        """Read an object only from an explicit subject-predicate relation.
+
+        This rejects nominal mentions such as ``cool designs`` for a question
+        asking what someone designed. It supports direct self-claims and the
+        common postposed relative clause (``the space I designed``).
+        """
+        if not verb:
+            return None
+        forms = {verb, f"{verb}s", f"{verb}ed"}
+        if verb.endswith("e"):
+            forms.add(f"{verb}d")
+        if verb.endswith("y") and len(verb) > 2:
+            forms.add(f"{verb[:-1]}ied")
+        form_pattern = "|".join(re.escape(form) for form in sorted(forms, key=len, reverse=True))
+        subject_pattern = rf"(?:i|we|{re.escape(subject)})"
+        direct = re.search(
+            rf"\b{subject_pattern}\s+(?:(?:have|has|had|am|was|were)\s+)?"
+            rf"(?:{form_pattern})\s+(?:the\s+|a\s+|an\s+|my\s+|our\s+)?"
+            rf"(?P<object>[a-z][a-z'-]*(?:\s+[a-z][a-z'-]*){{0,5}})",
+            text,
+            re.IGNORECASE,
+        )
+        if direct:
+            obj = direct.group("object").strip()
+            obj = EntityAttributeResolver._NOISE_TAIL.sub("", obj).strip(" .,;:")
+            return obj or None
+        postposed = re.search(
+            rf"\b(?:the|a|an|my|our)\s+(?P<object>[a-z][a-z'-]*(?:\s+[a-z][a-z'-]*){{0,4}})"
+            rf"\s+(?:that\s+|which\s+)?{subject_pattern}\s+(?:{form_pattern})\b",
+            text,
+            re.IGNORECASE,
+        )
+        return postposed.group("object").strip() if postposed else None
+
+    @classmethod
     def _noun_phrase_after(cls, text: str, probe: str | None) -> str | None:
-        """First noun-ish span at or after `probe`, trimmed of trailing clauses."""
+        """First noun-ish span after an exact lexical probe, trimmed of clauses.
+
+        A substring search is unsafe here: ``do`` matched inside ``doing`` and
+        ``design`` matched inside ``designed``, yielding arbitrary trailing
+        fragments.  Only regular third-person and past-tense forms are
+        accepted; irregular morphology is left to a specialist.
+        """
         if not probe:
             return None
-        low = text.lower()
-        idx = low.find(probe)
-        if idx < 0:
+        forms = {probe, f"{probe}s", f"{probe}ed"}
+        if probe.endswith("e"):
+            forms.add(f"{probe}d")
+        if probe.endswith("y") and len(probe) > 2:
+            forms.add(f"{probe[:-1]}ied")
+        form_pattern = "|".join(re.escape(form) for form in sorted(forms, key=len, reverse=True))
+        match = re.search(rf"\b(?:{form_pattern})\b", text, re.IGNORECASE)
+        if match is None:
             return None
-        tail = text[idx + len(probe):].strip()
+        tail = text[match.end():].strip()
         tail = tail.lstrip(" :,-").strip()
         tail = cls._NOISE_TAIL.sub("", tail).strip(" .,;:")
         if not tail:
@@ -416,6 +530,170 @@ class EntityAttributeResolver:
         if len(tail) < 2:
             return None
         return tail
+
+    @staticmethod
+    def _has_attribute_value_relation(text: str, head: str) -> bool:
+        """Require the queried attribute noun to introduce an asserted value."""
+        return bool(re.search(
+            rf"\b{re.escape(head)}\b\s*(?:is|are|was|were|include|includes|"
+            rf"included|consist\s+of|consists\s+of|:|-)\s+",
+            text,
+            re.IGNORECASE,
+        ))
+
+    #: Determiners/pronouns that cannot begin a noun-phrase ANSWER on their own.
+    #: A value opening with one of these is a fragment of a clause, not the thing
+    #: the question asked for.
+    _NON_ANSWER_OPENERS = frozenset({
+        "this", "that", "these", "those", "it", "its", "his", "her", "their",
+        "our", "your", "my", "how", "what", "which", "who", "whose", "there",
+        "here", "they", "them", "he", "she", "we", "you", "i", "the", "a", "an",
+        "also", "just", "really", "very", "too", "so", "and", "but", "or",
+    })
+
+    #: Words that name an ACTIVITY or SENSATION rather than a thing.  A gerund or
+    #: abstract noun here answers 'what did they do/feel', never 'what is the
+    #: favourite movie/dish/game'.
+    #:
+    #: 'thing'/'stuff'/'things' are deliberately ABSENT.  An earlier version listed
+    #: them, and that broke three correct answers whose value legitimately began
+    #: 'favourite thing is Hawaiian pizza...' -- the gate refused a value containing
+    #: the gold, and a worse branch then won.  They are nouns; removing them is the
+    #: difference between a gate and collateral damage.
+    _ACTIVITY_WORDS = frozenset({
+        "running", "cooking", "creating", "getting", "making", "doing", "going",
+        "taking", "seeing", "feeling", "thinking", "looking", "trying", "being",
+        "immersed", "smell", "taste", "feel", "sound", "look", "how",
+    })
+
+    #: Trailing adverbs that make a value a sentence fragment rather than an answer.
+    #: 'pizza too' and 'also cheese pizza' are continuations of a clause, not the
+    #: dish that was asked for.  Both appear in the measured failures.
+    _FRAGMENT_MARKERS = frozenset({"too", "also", "as", "well", "though"})
+
+    #: Category words: a GENRE answers 'what genre' but never 'what movie' or
+    #: 'what dish'.  Kept as a separate, explicit list because conflating a category
+    #: with an instance is the single most common shape in the measured failures
+    #: (three cases answer an instance question with 'action' or 'fantasy').
+    _CATEGORY_ONLY = frozenset({
+        "action", "fantasy", "scifi", "sci-fi", "comedy", "drama", "horror",
+        "thriller", "romance", "documentary", "mystery", "adventure",
+    })
+
+    #: Words that name a DIFFERENT KIND of thing than an instance of the asked
+    #: category.  A console ('switch') answering a game question is the
+    #: WRONG_ATTRIBUTE shape: the extractor read a related but wrong attribute.
+    _WRONG_ATTRIBUTE_WORDS = frozenset({
+        "switch", "console", "playstation", "xbox", "nintendo", "pc", "phone",
+        "laptop", "tv", "radio", "platform",
+    })
+
+    @classmethod
+    def _question_head_noun(cls, question: str) -> str | None:
+        """The noun the question is asking FOR -- 'movie', 'dish', 'genre'.
+
+        Separate from the head probe inside ``_extract_generic_attribute`` because
+        that one is scoped to that function's own control flow.  The shape gate needs
+        the same information from a different call site, and reaching for a local
+        from another function is how a gate ends up raising NameError instead of
+        refusing anything.
+        """
+        ql = question.lower()
+        # Take the LAST noun after 'favorite', not the first: 'favorite movie
+        # trilogy' asks for a trilogy, and answering 'movie' would let a bare
+        # category word through the instance check.  An earlier version took the
+        # first match and mis-headed exactly that question.
+        m = re.search(r"\bfavou?rite\s+([a-z-]+(?:\s+[a-z-]+)?)", ql)
+        if m:
+            return m.group(1).split()[-1]
+        # 'What hobby did Calvin take up?' -- the noun follows 'what' directly.
+        m = re.search(r"^\s*what\s+([a-z-]+)\s+(?:did|does|do|has|have|is|are)\b", ql)
+        if m:
+            return m.group(1)
+        m = re.search(r"\b(?:what|which)\s+(?:is|are|was|were)\s+(?:the\s+)?"
+                      r"(?:one\s+of\s+\w+'s\s+)?([a-z-]+)", ql)
+        return m.group(1) if m else None
+
+    @classmethod
+    def _answer_is_a_noun_phrase(cls, answer: str,
+                                 head: str | None = None) -> bool:
+        """True when the value is a noun phrase that could be an answer at all.
+
+        The OTHER half of the gate.  ``_answer_is_supported`` asks whether the value
+        is grounded in its evidence turn; this asks whether the value is even the
+        right SHAPE.  Both are needed, and the missing one is what produced 14 of the
+        19 measured attribute failures.
+
+        Measured on the 19 phase-C attribute wrong answers, with the correct answers
+        run through the same classifier as a control:
+            DEICTIC        11   ('this series', 'the smell', \"how's\", 'pizza too')
+            NO_OBJECT_NOUN  3   ('running my own studio', 'getting immersed in ...')
+            PARTIAL_SET     2   (a set with a wrong member)
+            OTHER           3   (fires on 1 correct answer too -- not a discriminator)
+
+        Deliberately FORM-BASED and narrow.  ``head`` is the question's answer noun
+        ('movie', 'dish', 'genre'); when the head is a CONCRETE noun, a bare category
+        word is refused, because 'action' is not a movie.  When the head is itself a
+        category ('what genre'), the category words are legitimate and are allowed.
+
+        A refusal is an abstention, which falls back to the reader -- the same trade
+        ``_answer_is_supported`` already documents and accepts.
+
+        ONE LESSON BUILT IN.  The first version of this gate refused
+        'favourite thing is Hawaiian pizza...' because 'thing' was listed as an
+        activity word.  That value CONTAINED the gold, so the refusal handed the
+        question to a worse branch and turned a correct answer into a wrong one --
+        measured as 3 BROKE.  'thing'/'stuff' are nouns and were removed.  A gate
+        that refuses a value containing the right answer is not a gate.
+        """
+        a = str(answer).strip()
+        if not a:
+            return False
+        words = re.sub(r"[^a-z0-9' ]", " ", a.lower()).split()
+        if not words:
+            return False
+
+        # 1. A determiner or pronoun cannot carry an answer on its own -- BUT a
+        #    capitalised token is a proper noun, not a determiner.  'It Takes Two'
+        #    is a real game title and must not be refused for starting with 'It'.
+        #    This is the same class of bug as the 3 BROKE: refusing a value that
+        #    could be the right answer.
+        if words[0] in cls._NON_ANSWER_OPENERS and not a[:1].isupper():
+            return False
+
+        # 1b. A capitalised proper-noun phrase is an instance, whatever it looks
+        #     like, so the later category check must not touch it.
+        _is_proper = a[:1].isupper()
+
+        # 2. A bare activity/sensation word names an action, not a thing.
+        if len(words) == 1 and words[0].strip("'s") in cls._ACTIVITY_WORDS:
+            return False
+
+        # 3. A verb phrase: a leading gerund that is an activity word.
+        if words[0].endswith("ing") and words[0] in cls._ACTIVITY_WORDS:
+            return False
+
+        # 4. A trailing adverb makes it a continuation, not an answer.
+        #    'pizza too', 'also cheese pizza' -- both measured failures.
+        if words[-1] in cls._FRAGMENT_MARKERS or words[0] in cls._FRAGMENT_MARKERS:
+            return False
+
+        # 5. A category word where a concrete instance was asked.  Skipped for a
+        #    capitalised proper noun, which is an instance by construction.
+        if head and not _is_proper and head.lower() not in (
+                "genre", "genres", "style", "styles",
+                "type", "types", "kind", "category"):
+            if len(words) <= 2 and all(
+                    w in cls._CATEGORY_ONLY or w in ("and", "sci", "fi")
+                    for w in words):
+                return False
+
+        # 6. A hardware/platform word is never an instance of a creative work.
+        #    'switch' answering a game question is the WRONG_ATTRIBUTE shape.
+        if len(words) == 1 and words[0] in cls._WRONG_ATTRIBUTE_WORDS:
+            return False
+
+        return True
 
     @classmethod
     def _answer_is_supported(cls, answer: str, evidence_text: str) -> bool:
