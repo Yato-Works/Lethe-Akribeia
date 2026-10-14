@@ -18,7 +18,7 @@ import pytest
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 
-from eval_locomo_full import _month_contradiction, score
+from eval_locomo_full import _has_content_overlap, _month_contradiction, score
 
 
 class TestListOrderEquivalence:
@@ -87,6 +87,26 @@ class TestHedgedYesNoMatching:
 
     def test_multi_month_prediction_matching_gold_is_not_a_contradiction(self):
         assert score("I visited in June and again in May", "May") is True
+
+
+    def test_article_only_credit_is_rejected(self):
+        # The content-overlap requirement: a shared article is not an answer.
+        assert score("the", "The Alchemist") is False
+        assert score("the book", "The Alchemist") is False
+        assert score("The Name of the Wind", "The Alchemist") is False
+        assert score("The headliner", "The Fireworks") is False
+
+    def test_short_label_credits_survive(self):
+        """The set most at risk: a careless stopword list would veto these."""
+        assert score("She is lactose intolerant", "lactose intolerance") is True
+        assert score("a letter", "a handwritten letter") is True
+        assert score(
+            "Chicken dish with garlic, lemon, and herbs", "Roasted Chicken") is True
+        assert score("She moved from Sweden", "Sweden") is True
+
+    def test_content_free_gold_is_not_vetoed(self):
+        # A gold with no content words at all must not be blocked by this guard.
+        assert _has_content_overlap("the", "the") is True
 
 
 class TestBaselineSanity:

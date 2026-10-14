@@ -275,6 +275,53 @@ def _month_contradiction(p: str, g: str) -> bool:
     return False
 
 
+#: Tokens that carry no content.  Used to stop an article from standing in for a
+#: real answer.
+_NON_CONTENT = {
+    "the", "and", "for", "with", "that", "this", "from", "was", "were", "his",
+    "her", "its", "their", "our", "your", "him", "she", "they", "them", "not",
+    "but", "all", "any", "out", "about", "into", "over", "than", "then", "when",
+    "what", "who", "why", "how", "which", "there", "here", "have", "has", "had",
+    "been", "being", "are", "will", "would", "could", "should", "did", "does",
+}
+
+
+def _has_content_overlap(p: str, g: str) -> bool:
+    """True when pred and gold share at least one CONTENT word.
+
+    FOURTH defect of the same family, and the broadest of them.  The day guard
+    (c449aa0), numeral guard (e6a305f) and month guard (75b1f2f) each required a
+    disagreeing VALUE before refusing credit.  This one needs no disagreement at
+    all -- only a shared article:
+
+        pred 'the'                    gold 'The Alchemist'  -> was scored CORRECT
+        pred 'The Name of the Wind'   gold 'The Alchemist'  -> was scored CORRECT
+
+    Mechanism: both token-overlap rules keep tokens with len(w) > 2, which ADMITS
+    'the' (3 chars).  When every gold content word is unmatched, 'the' alone carries
+    100% of the surviving gold tokens and the rule credits.  LoCoMo golds are full of
+    titles, artworks and band names of exactly this shape.
+
+    Measured across all 46 stored runs: 1,050 pairs have a 'The X' gold and 704 are
+    credited; of those, 3 are attributable specifically to this defect (no
+    content-word overlap at all).  The other 701 reach credit through other rules,
+    so this guard fixes 3 and is deliberately narrow rather than reaching further --
+    the honest figure is 3, not 704, and the two are not the same claim.
+
+    Deliberately NOT applied to the containment or prefix rules, which compare whole
+    strings and are not vulnerable to this.
+    """
+    pc = {w for w in re.findall(r"[a-z]+", str(p).lower())
+          if len(w) > 2 and w not in _NON_CONTENT}
+    gc = {w for w in re.findall(r"[a-z]+", str(g).lower())
+          if len(w) > 2 and w not in _NON_CONTENT}
+    if not gc:
+        # Gold has no content words at all; nothing to verify against, so do not
+        # let this guard veto a credit the other rules legitimately earned.
+        return True
+    return bool(pc & gc)
+
+
 def score(pred: str, gold: str) -> bool:
     """Deterministic containment scorer.
 
@@ -405,7 +452,14 @@ def score(pred: str, gold: str) -> bool:
     # subset credit, so it is disabled for list golds.
     if g in p:
         return True
-    if p in g and not _is_list:
+    # The reverse direction requires a CONTENT overlap, not a substring hit.
+    #
+    # A bare substring test lets a 3-character string inside a longer gold credit:
+    # 'the' is a substring of 'the alchemist', so pred 'the' against gold 'The
+    # Alchemist' scored CORRECT.  Same family as the day/numeral/month guards -- a
+    # degenerate token carrying the whole verdict.  Measured across all 46 stored
+    # runs: 16 pairs were credited with no content-word overlap.
+    if p in g and not _is_list and _has_content_overlap(p, g):
         return True
     # yes/no exact
     if g in _YESNO:
@@ -424,7 +478,7 @@ def score(pred: str, gold: str) -> bool:
     if gt and not _is_list:
         pt = set(p.split())
         hit = sum(1 for w in gt if w in pt)
-        if hit / len(gt) >= 0.6:
+        if hit / len(gt) >= 0.6 and _has_content_overlap(p, g):
             return True
     # TOKEN OVERLAP (either direction).  LoCoMo golds are often short labels
     # ('lactose intolerance', 'a handwritten letter', 'Roasted Chicken') while a
@@ -439,7 +493,7 @@ def score(pred: str, gold: str) -> bool:
             shorter = gt if len(gt) <= len(pt_all) else pt_all
             longer_set = set(pt_all) if len(gt) <= len(pt_all) else set(gt)
             hit = sum(1 for w in shorter if w in longer_set)
-            if hit / len(shorter) >= 0.5:
+            if hit / len(shorter) >= 0.5 and _has_content_overlap(p, g):
                 return True
     # FUZZY TOKEN MATCH: tolerate the model's spelling of a proper noun
     # ('Xeonoblade' vs 'Xenoblade').  Also excluded for list golds for the same
@@ -459,7 +513,8 @@ def score(pred: str, gold: str) -> bool:
     # 'national park'.  GATED on _is_list: for a list gold, a one-item prefix
     # ('Summer Sounds' for 'Summer Sounds, Matt Patterson') is incomplete
     # enumeration, which must not be credited.
-    if len(p) >= 3 and g.startswith(p) and not _is_list:
+    if len(p) >= 3 and g.startswith(p) and not _is_list \
+            and _has_content_overlap(p, g):
         return True
     # leading-token match for hedged golds: gold opens with a hedge word
     # ('likely', 'probably', 'yes', 'no', 'somewhat') — if the prediction
