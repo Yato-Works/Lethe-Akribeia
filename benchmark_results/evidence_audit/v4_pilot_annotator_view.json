@@ -1,0 +1,546 @@
+{
+  "label": "what the annotator receives -- NO gold, NO prior prediction, NO cohort label",
+  "n": 90,
+  "cases": [
+    {
+      "question_id": "lc_conv-26_195",
+      "question": "How did Caroline feel after the accident?",
+      "conversation": "conv-26",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-26_33",
+      "question": "When did Caroline go to a pride parade during the summer?",
+      "conversation": "conv-26",
+      "category": 2
+    },
+    {
+      "question_id": "lc_conv-26_40",
+      "question": "How many times has Melanie gone to the beach in 2023?",
+      "conversation": "conv-26",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-30_57",
+      "question": "What advice does Gina give to Jon about running a successful business?",
+      "conversation": "conv-30",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-41_108",
+      "question": "What did Maria say it was like being at the waterfall in Oregon?",
+      "conversation": "conv-41",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-41_154",
+      "question": "Who inspired John to start volunteering?",
+      "conversation": "conv-41",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-41_28",
+      "question": "What causes does John feel passionate about supporting?",
+      "conversation": "conv-41",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-42_10",
+      "question": "What emotions is Joanna feeling about  the screenplay she submitted?",
+      "conversation": "conv-42",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-42_119",
+      "question": "What does Nate feel he could do when out in cool places like Whispering Falls?",
+      "conversation": "conv-42",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-42_140",
+      "question": "What inspired Joanna's new script in July 2022?",
+      "conversation": "conv-42",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-42_244",
+      "question": "What does Joanna rely on for cheer and joy?",
+      "conversation": "conv-42",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-42_252",
+      "question": "What project is Nate working on in his notebook on November 9, 2022?",
+      "conversation": "conv-42",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_1",
+      "question": "What are John's goals for his career that are not related to his basketball skills?",
+      "conversation": "conv-43",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "question": "What did Tim recently start learning in addition to being part of a travel club and working on studies?",
+      "conversation": "conv-43",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-43_185",
+      "question": "How does Tim feel while surfing?",
+      "conversation": "conv-43",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_78",
+      "question": "What did John celebrate at a restaurant with teammates?",
+      "conversation": "conv-43",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-44_49",
+      "question": "What does Audrey view her pets as?",
+      "conversation": "conv-44",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-44_83",
+      "question": "What special memories does Audrey have with her childhood dog, Max?",
+      "conversation": "conv-44",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-47_176",
+      "question": "Where does John get his ideas from?",
+      "conversation": "conv-47",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-47_20",
+      "question": "How many charity tournaments has John organized till date?",
+      "conversation": "conv-47",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-47_83",
+      "question": "What impresses John about Japan?",
+      "conversation": "conv-47",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_131",
+      "question": "How does Jolene describe the time spent with her snakes and partner?",
+      "conversation": "conv-48",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_41",
+      "question": "What ways do Deborah and Jolene use to enhance their yoga practice?",
+      "conversation": "conv-48",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-48_52",
+      "question": "When did Jolene lose a lot of progress in her work?",
+      "conversation": "conv-48",
+      "category": 2
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "question": "What sports activity has Sam been doing to stay active while dealing with the knee injury?",
+      "conversation": "conv-49",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "question": "Which activity do Evan and Sam plan on doing together during September 2023?",
+      "conversation": "conv-49",
+      "category": 2
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "question": "What novel is Evan reading that he finds gripping?",
+      "conversation": "conv-49",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-50_113",
+      "question": "What activity did Calvin enjoy during his summer drives?",
+      "conversation": "conv-50",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-50_23",
+      "question": "What is Dave's main passion?",
+      "conversation": "conv-50",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-50_35",
+      "question": "When did Calvin book flight tickets to Boston?",
+      "conversation": "conv-50",
+      "category": 2
+    },
+    {
+      "question_id": "lc_conv-26_153",
+      "question": "What are Melanie's plans for the summer with respect to adoption?",
+      "conversation": "conv-26",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-26_196",
+      "question": "What was Caroline's reaction to her children enjoying the Grand Canyon?",
+      "conversation": "conv-26",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-30_96",
+      "question": "What kind of professional experience did Jon get accepted for on May 23, 2023?",
+      "conversation": "conv-30",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-30_97",
+      "question": "Where is Gina's HR internship?",
+      "conversation": "conv-30",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-41_152",
+      "question": "What is John's main focus in international politics?",
+      "conversation": "conv-41",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-41_162",
+      "question": "What areas is John particularly interested in for art appreciation?",
+      "conversation": "conv-41",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-41_182",
+      "question": "Why did Maria feel inspired to join the military after the visit to the hospital?",
+      "conversation": "conv-41",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-42_208",
+      "question": "For how long has Nate had his snakes?",
+      "conversation": "conv-42",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-42_246",
+      "question": "What inspires Joanna to create music for her characters?",
+      "conversation": "conv-42",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-42_248",
+      "question": "What did Nate find in old notebooks last week that prompted him to reflect on her progress as a writer?",
+      "conversation": "conv-42",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_113",
+      "question": "Which basketball team does Tim support?",
+      "conversation": "conv-43",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-43_179",
+      "question": "What is Tim's position on the team he signed with?",
+      "conversation": "conv-43",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_196",
+      "question": "What special memory does \"Fifty Shades of Grey\" bring to Tim?",
+      "conversation": "conv-43",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_225",
+      "question": "How long has John been playing the piano for, as of December 2023?",
+      "conversation": "conv-43",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_29",
+      "question": "What schools did John play basketball in and how many years was he with his team during high school?",
+      "conversation": "conv-43",
+      "category": 1
+    },
+    {
+      "question_id": "lc_conv-44_132",
+      "question": "What did Andrew set up in the backyard for their dogs on June 26, 2023?",
+      "conversation": "conv-44",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-44_148",
+      "question": "Why does Andrew make jewelry out of recycled objects?",
+      "conversation": "conv-44",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-47_133",
+      "question": "What type of game is John's upcoming mobile game?",
+      "conversation": "conv-47",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-47_157",
+      "question": "What did the system John created help the illegal organization with?",
+      "conversation": "conv-47",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-47_187",
+      "question": "What game is James hooked on playing on 5 November, 2022?",
+      "conversation": "conv-47",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-47_31",
+      "question": "How many days did James plan to spend on his trip in Canada?",
+      "conversation": "conv-47",
+      "category": 2
+    },
+    {
+      "question_id": "lc_conv-48_174",
+      "question": "Why did Jolene have to reschedule their meeting with Deborah on September 8, 2023?",
+      "conversation": "conv-48",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_211",
+      "question": "For how long has Jolene had Lucifer as a pet?",
+      "conversation": "conv-48",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-49_180",
+      "question": "How did Sam start his transformation journey two years ago?",
+      "conversation": "conv-49",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-49_191",
+      "question": "What dance activity did Evan and his partner try in a recent weekend?",
+      "conversation": "conv-49",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-49_96",
+      "question": "What does the bonsai tree symbolize for Evan?",
+      "conversation": "conv-49",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-50_12",
+      "question": "When was Calvin's concert in Tokyo?",
+      "conversation": "conv-50",
+      "category": 2
+    },
+    {
+      "question_id": "lc_conv-50_168",
+      "question": "What clothing brand does Calvin own that he is proud of?",
+      "conversation": "conv-50",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-50_199",
+      "question": "Who did Dave invite to see him perform in Boston on 13 November, 2023?",
+      "conversation": "conv-50",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-50_93",
+      "question": "What is Dave's advice to Calvin regarding his dreams?",
+      "conversation": "conv-50",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-26_107",
+      "question": "What is Melanie's reason for getting into running?",
+      "conversation": "conv-26",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "question": "How long has Melanie been creating art?",
+      "conversation": "conv-26",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-26_152",
+      "question": "What did Caroline realize after her charity race?",
+      "conversation": "conv-26",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-30_42",
+      "question": "What kind of dance piece did Gina's team perform to win first place?",
+      "conversation": "conv-30",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-41_138",
+      "question": "What activity did Maria take up with her friends from church in August 2023?",
+      "conversation": "conv-41",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-41_147",
+      "question": "What is the name of Maria's second puppy?",
+      "conversation": "conv-41",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-42_126",
+      "question": "What special items did Nate get for everyone at his gaming party?",
+      "conversation": "conv-42",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-42_134",
+      "question": "What recipe Nate offer to share with Joanna?",
+      "conversation": "conv-42",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "question": "What did Nate take to the beach in Tampa?",
+      "conversation": "conv-42",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-42_221",
+      "question": "What did Joanna make and share with her vegan diet group?",
+      "conversation": "conv-42",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_104",
+      "question": "What spice did John add to the soup for flavor?",
+      "conversation": "conv-43",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-43_213",
+      "question": "What does Tim write on the whiteboard to help him stay motivated?",
+      "conversation": "conv-43",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-43_91",
+      "question": "When did John meet back up with his teammates after his trip in August 2023?",
+      "conversation": "conv-43",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-43_94",
+      "question": "What is the main intention behind Tim wanting to attend the book conference?",
+      "conversation": "conv-43",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-44_102",
+      "question": "Why does Audrey make jewelry out of recycled objects?",
+      "conversation": "conv-44",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-44_121",
+      "question": "What is Andrew planning to do with Scout, Toby, and Buddy?",
+      "conversation": "conv-44",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-44_155",
+      "question": "What type of drink did Andrew recently try at a new spot in town?",
+      "conversation": "conv-44",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-47_130",
+      "question": "What instrument did James used to play when he was younger?",
+      "conversation": "conv-47",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-47_160",
+      "question": "What is Max good at doing according to John?",
+      "conversation": "conv-47",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "question": "What instrument is John learning to play as of 27 March, 2022?",
+      "conversation": "conv-47",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_128",
+      "question": "What album does Deborah recommend for meditation and deep relaxation?",
+      "conversation": "conv-48",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_154",
+      "question": "What feeling does Deborah get when she thinks about the time spent with her mom at their special spot?",
+      "conversation": "conv-48",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_173",
+      "question": "What course did Jolene sign up for on 6 September 2023?",
+      "conversation": "conv-48",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-48_233",
+      "question": "What did Jolene do with their mom's old friends?",
+      "conversation": "conv-48",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-49_146",
+      "question": "What did Evan and his partner share with their extended family on January 5, 2024?",
+      "conversation": "conv-49",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-49_155",
+      "question": "How does Evan describe being out on the water while kayaking and watching the sunset?",
+      "conversation": "conv-49",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-49_175",
+      "question": "What kind of writing does Evan enjoy as a form of expression?",
+      "conversation": "conv-49",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-50_134",
+      "question": "What is the toughest part of car restoration according to Dave?",
+      "conversation": "conv-50",
+      "category": 4
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "question": "What did Calvin recently start a blog about?",
+      "conversation": "conv-50",
+      "category": 5
+    },
+    {
+      "question_id": "lc_conv-50_99",
+      "question": "How did Calvin meet Frank Ocean?",
+      "conversation": "conv-50",
+      "category": 4
+    }
+  ]
+}

@@ -1,0 +1,956 @@
+{
+  "label": "V4 mission 4 -- stratified pilot selection, drawn before annotation",
+  "seed": 20261015,
+  "per_cohort": 30,
+  "n": 90,
+  "selection_method": "proportional stratification on (conversation, category), deterministic seed, sorted within stratum",
+  "gold_used_for_sampling": false,
+  "by_cohort_conversation": {
+    "FAILURE_WRONG|conv-26": 3,
+    "FAILURE_WRONG|conv-30": 1,
+    "FAILURE_WRONG|conv-41": 3,
+    "FAILURE_WRONG|conv-42": 5,
+    "FAILURE_WRONG|conv-43": 4,
+    "FAILURE_WRONG|conv-44": 2,
+    "FAILURE_WRONG|conv-47": 3,
+    "FAILURE_WRONG|conv-48": 3,
+    "FAILURE_WRONG|conv-49": 3,
+    "FAILURE_WRONG|conv-50": 3,
+    "FAILURE_ABSTAIN|conv-26": 2,
+    "FAILURE_ABSTAIN|conv-30": 2,
+    "FAILURE_ABSTAIN|conv-41": 3,
+    "FAILURE_ABSTAIN|conv-42": 3,
+    "FAILURE_ABSTAIN|conv-43": 5,
+    "FAILURE_ABSTAIN|conv-44": 2,
+    "FAILURE_ABSTAIN|conv-47": 4,
+    "FAILURE_ABSTAIN|conv-48": 2,
+    "FAILURE_ABSTAIN|conv-49": 3,
+    "FAILURE_ABSTAIN|conv-50": 4,
+    "CONTROL_CORRECT|conv-26": 3,
+    "CONTROL_CORRECT|conv-30": 1,
+    "CONTROL_CORRECT|conv-41": 2,
+    "CONTROL_CORRECT|conv-42": 4,
+    "CONTROL_CORRECT|conv-43": 4,
+    "CONTROL_CORRECT|conv-44": 3,
+    "CONTROL_CORRECT|conv-47": 3,
+    "CONTROL_CORRECT|conv-48": 4,
+    "CONTROL_CORRECT|conv-49": 3,
+    "CONTROL_CORRECT|conv-50": 3
+  },
+  "by_cohort_category": {
+    "FAILURE_WRONG|5": 7,
+    "FAILURE_WRONG|2": 4,
+    "FAILURE_WRONG|1": 8,
+    "FAILURE_WRONG|4": 11,
+    "FAILURE_ABSTAIN|5": 22,
+    "FAILURE_ABSTAIN|4": 5,
+    "FAILURE_ABSTAIN|1": 1,
+    "FAILURE_ABSTAIN|2": 2,
+    "CONTROL_CORRECT|4": 22,
+    "CONTROL_CORRECT|5": 8
+  },
+  "selected": [
+    {
+      "question_id": "lc_conv-26_195",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-26",
+      "category": 5,
+      "question": "How did Caroline feel after the accident?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Grateful and thankful for her family"
+    },
+    {
+      "question_id": "lc_conv-26_33",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-26",
+      "category": 2,
+      "question": "When did Caroline go to a pride parade during the summer?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "The week before 3 July 2023"
+    },
+    {
+      "question_id": "lc_conv-26_40",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-26",
+      "category": 1,
+      "question": "How many times has Melanie gone to the beach in 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "2"
+    },
+    {
+      "question_id": "lc_conv-30_57",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-30",
+      "category": 4,
+      "question": "What advice does Gina give to Jon about running a successful business?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "build relationships with customers, create a strong brand image, stay positive"
+    },
+    {
+      "question_id": "lc_conv-41_108",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-41",
+      "category": 4,
+      "question": "What did Maria say it was like being at the waterfall in Oregon?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Like being in a fairy tale"
+    },
+    {
+      "question_id": "lc_conv-41_154",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-41",
+      "category": 5,
+      "question": "Who inspired John to start volunteering?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "His aunt"
+    },
+    {
+      "question_id": "lc_conv-41_28",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-41",
+      "category": 1,
+      "question": "What causes does John feel passionate about supporting?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Veterans, schools, infrastructure"
+    },
+    {
+      "question_id": "lc_conv-42_10",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-42",
+      "category": 1,
+      "question": "What emotions is Joanna feeling about  the screenplay she submitted?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Relief, excitement,worry, hope,anxiety."
+    },
+    {
+      "question_id": "lc_conv-42_119",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-42",
+      "category": 4,
+      "question": "What does Nate feel he could do when out in cool places like Whispering Falls?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "write a whole movie"
+    },
+    {
+      "question_id": "lc_conv-42_140",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-42",
+      "category": 4,
+      "question": "What inspired Joanna's new script in July 2022?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Woodhaven's interesting past and people"
+    },
+    {
+      "question_id": "lc_conv-42_244",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-42",
+      "category": 5,
+      "question": "What does Joanna rely on for cheer and joy?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "her turtles"
+    },
+    {
+      "question_id": "lc_conv-42_252",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-42",
+      "category": 5,
+      "question": "What project is Nate working on in his notebook on November 9, 2022?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "A suspenseful thriller set in a small Midwestern town"
+    },
+    {
+      "question_id": "lc_conv-43_1",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-43",
+      "category": 1,
+      "question": "What are John's goals for his career that are not related to his basketball skills?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "get endorsements, build his brand, do charity work"
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-43",
+      "category": 4,
+      "question": "What did Tim recently start learning in addition to being part of a travel club and working on studies?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "an instrument"
+    },
+    {
+      "question_id": "lc_conv-43_185",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-43",
+      "category": 5,
+      "question": "How does Tim feel while surfing?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "super exciting and free-feeling"
+    },
+    {
+      "question_id": "lc_conv-43_78",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-43",
+      "category": 4,
+      "question": "What did John celebrate at a restaurant with teammates?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "a tough win"
+    },
+    {
+      "question_id": "lc_conv-44_49",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-44",
+      "category": 1,
+      "question": "What does Audrey view her pets as?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Family"
+    },
+    {
+      "question_id": "lc_conv-44_83",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-44",
+      "category": 4,
+      "question": "What special memories does Audrey have with her childhood dog, Max?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Long walks in the neighborhood, exploring new paths, sharing worries and hopes"
+    },
+    {
+      "question_id": "lc_conv-47_176",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-47",
+      "category": 5,
+      "question": "Where does John get his ideas from?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "books, movies, dreams"
+    },
+    {
+      "question_id": "lc_conv-47_20",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-47",
+      "category": 1,
+      "question": "How many charity tournaments has John organized till date?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "two"
+    },
+    {
+      "question_id": "lc_conv-47_83",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-47",
+      "category": 4,
+      "question": "What impresses John about Japan?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Technologically advanced megacities and tasty street food"
+    },
+    {
+      "question_id": "lc_conv-48_131",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-48",
+      "category": 4,
+      "question": "How does Jolene describe the time spent with her snakes and partner?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Valuable and relaxing"
+    },
+    {
+      "question_id": "lc_conv-48_41",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-48",
+      "category": 1,
+      "question": "What ways do Deborah and Jolene use to enhance their yoga practice?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "candles, music, essential oils"
+    },
+    {
+      "question_id": "lc_conv-48_52",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-48",
+      "category": 2,
+      "question": "When did Jolene lose a lot of progress in her work?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "last week of July 2023"
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-49",
+      "category": 5,
+      "question": "What sports activity has Sam been doing to stay active while dealing with the knee injury?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Swimming"
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-49",
+      "category": 2,
+      "question": "Which activity do Evan and Sam plan on doing together during September 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "painting"
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-49",
+      "category": 4,
+      "question": "What novel is Evan reading that he finds gripping?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "The Great Gatsby"
+    },
+    {
+      "question_id": "lc_conv-50_113",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-50",
+      "category": 4,
+      "question": "What activity did Calvin enjoy during his summer drives?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "feeling the wind blowing through his hair"
+    },
+    {
+      "question_id": "lc_conv-50_23",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-50",
+      "category": 1,
+      "question": "What is Dave's main passion?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "auto engineering"
+    },
+    {
+      "question_id": "lc_conv-50_35",
+      "cohort": "FAILURE_WRONG",
+      "conversation": "conv-50",
+      "category": 2,
+      "question": "When did Calvin book flight tickets to Boston?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "last week of August 2023"
+    },
+    {
+      "question_id": "lc_conv-26_153",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-26",
+      "category": 5,
+      "question": "What are Melanie's plans for the summer with respect to adoption?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "researching adoption agencies"
+    },
+    {
+      "question_id": "lc_conv-26_196",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-26",
+      "category": 5,
+      "question": "What was Caroline's reaction to her children enjoying the Grand Canyon?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "She was happy and thankful"
+    },
+    {
+      "question_id": "lc_conv-30_96",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-30",
+      "category": 5,
+      "question": "What kind of professional experience did Jon get accepted for on May 23, 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "fashion internship"
+    },
+    {
+      "question_id": "lc_conv-30_97",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-30",
+      "category": 5,
+      "question": "Where is Gina's HR internship?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "fashion department of an international company"
+    },
+    {
+      "question_id": "lc_conv-41_152",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-41",
+      "category": 5,
+      "question": "What is John's main focus in international politics?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Improving education and infrastructure"
+    },
+    {
+      "question_id": "lc_conv-41_162",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-41",
+      "category": 5,
+      "question": "What areas is John particularly interested in for art appreciation?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "education and infrastructure"
+    },
+    {
+      "question_id": "lc_conv-41_182",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-41",
+      "category": 5,
+      "question": "Why did Maria feel inspired to join the military after the visit to the hospital?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "seeing the resilience of the veterans"
+    },
+    {
+      "question_id": "lc_conv-42_208",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-42",
+      "category": 5,
+      "question": "For how long has Nate had his snakes?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "3 years"
+    },
+    {
+      "question_id": "lc_conv-42_246",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-42",
+      "category": 5,
+      "question": "What inspires Joanna to create music for her characters?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "visuals to help bring the characters alive in her head so she can write better"
+    },
+    {
+      "question_id": "lc_conv-42_248",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-42",
+      "category": 5,
+      "question": "What did Nate find in old notebooks last week that prompted him to reflect on her progress as a writer?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "early writings"
+    },
+    {
+      "question_id": "lc_conv-43_113",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-43",
+      "category": 4,
+      "question": "Which basketball team does Tim support?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "The Wolves"
+    },
+    {
+      "question_id": "lc_conv-43_179",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-43",
+      "category": 5,
+      "question": "What is Tim's position on the team he signed with?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "shooting guard"
+    },
+    {
+      "question_id": "lc_conv-43_196",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-43",
+      "category": 5,
+      "question": "What special memory does \"Fifty Shades of Grey\" bring to Tim?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Watching it with his family"
+    },
+    {
+      "question_id": "lc_conv-43_225",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-43",
+      "category": 5,
+      "question": "How long has John been playing the piano for, as of December 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "about four months"
+    },
+    {
+      "question_id": "lc_conv-43_29",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-43",
+      "category": 1,
+      "question": "What schools did John play basketball in and how many years was he with his team during high school?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Middle school, high school, and college and he was with his high school team for 4 years."
+    },
+    {
+      "question_id": "lc_conv-44_132",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-44",
+      "category": 5,
+      "question": "What did Andrew set up in the backyard for their dogs on June 26, 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "a doggy play area with agility stuff and toys"
+    },
+    {
+      "question_id": "lc_conv-44_148",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-44",
+      "category": 5,
+      "question": "Why does Andrew make jewelry out of recycled objects?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "To show love for creativity and sustainability"
+    },
+    {
+      "question_id": "lc_conv-47_133",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-47",
+      "category": 4,
+      "question": "What type of game is John's upcoming mobile game?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "2D adventure"
+    },
+    {
+      "question_id": "lc_conv-47_157",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-47",
+      "category": 5,
+      "question": "What did the system John created help the illegal organization with?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "tracking inventory, resources, and donations"
+    },
+    {
+      "question_id": "lc_conv-47_187",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-47",
+      "category": 5,
+      "question": "What game is James hooked on playing on 5 November, 2022?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "FIFA 23"
+    },
+    {
+      "question_id": "lc_conv-47_31",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-47",
+      "category": 2,
+      "question": "How many days did James plan to spend on his trip in Canada?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "19 days"
+    },
+    {
+      "question_id": "lc_conv-48_174",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-48",
+      "category": 4,
+      "question": "Why did Jolene have to reschedule their meeting with Deborah on September 8, 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Jolene already had plans"
+    },
+    {
+      "question_id": "lc_conv-48_211",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-48",
+      "category": 5,
+      "question": "For how long has Jolene had Lucifer as a pet?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "one year"
+    },
+    {
+      "question_id": "lc_conv-49_180",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-49",
+      "category": 5,
+      "question": "How did Sam start his transformation journey two years ago?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Changed his diet and started walking regularly"
+    },
+    {
+      "question_id": "lc_conv-49_191",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-49",
+      "category": 5,
+      "question": "What dance activity did Evan and his partner try in a recent weekend?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Snowshoeing"
+    },
+    {
+      "question_id": "lc_conv-49_96",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-49",
+      "category": 4,
+      "question": "What does the bonsai tree symbolize for Evan?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "strength and resilience"
+    },
+    {
+      "question_id": "lc_conv-50_12",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-50",
+      "category": 2,
+      "question": "When was Calvin's concert in Tokyo?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "last week of May 2023"
+    },
+    {
+      "question_id": "lc_conv-50_168",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-50",
+      "category": 5,
+      "question": "What clothing brand does Calvin own that he is proud of?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "Ferrari"
+    },
+    {
+      "question_id": "lc_conv-50_199",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-50",
+      "category": 5,
+      "question": "Who did Dave invite to see him perform in Boston on 13 November, 2023?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "his old high school buddy"
+    },
+    {
+      "question_id": "lc_conv-50_93",
+      "cohort": "FAILURE_ABSTAIN",
+      "conversation": "conv-50",
+      "category": 4,
+      "question": "What is Dave's advice to Calvin regarding his dreams?",
+      "A_verdict": "INCORRECT",
+      "gold_eval_only": "to never forget his dreams"
+    },
+    {
+      "question_id": "lc_conv-26_107",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-26",
+      "category": 4,
+      "question": "What is Melanie's reason for getting into running?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "To de-stress and clear her mind"
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-26",
+      "category": 4,
+      "question": "How long has Melanie been creating art?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "7 years"
+    },
+    {
+      "question_id": "lc_conv-26_152",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-26",
+      "category": 5,
+      "question": "What did Caroline realize after her charity race?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "self-care is important"
+    },
+    {
+      "question_id": "lc_conv-30_42",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-30",
+      "category": 4,
+      "question": "What kind of dance piece did Gina's team perform to win first place?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "\"Finding Freedom\""
+    },
+    {
+      "question_id": "lc_conv-41_138",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-41",
+      "category": 4,
+      "question": "What activity did Maria take up with her friends from church in August 2023?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "community work"
+    },
+    {
+      "question_id": "lc_conv-41_147",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-41",
+      "category": 4,
+      "question": "What is the name of Maria's second puppy?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Shadow"
+    },
+    {
+      "question_id": "lc_conv-42_126",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-42",
+      "category": 4,
+      "question": "What special items did Nate get for everyone at his gaming party?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Custom controller decorations"
+    },
+    {
+      "question_id": "lc_conv-42_134",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-42",
+      "category": 4,
+      "question": "What recipe Nate offer to share with Joanna?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "vegan ice cream recipe"
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-42",
+      "category": 4,
+      "question": "What did Nate take to the beach in Tampa?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "turtles"
+    },
+    {
+      "question_id": "lc_conv-42_221",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-42",
+      "category": 5,
+      "question": "What did Joanna make and share with her vegan diet group?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "vegan ice cream"
+    },
+    {
+      "question_id": "lc_conv-43_104",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-43",
+      "category": 4,
+      "question": "What spice did John add to the soup for flavor?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "sage"
+    },
+    {
+      "question_id": "lc_conv-43_213",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-43",
+      "category": 5,
+      "question": "What does Tim write on the whiteboard to help him stay motivated?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "motivational quotes and strategies"
+    },
+    {
+      "question_id": "lc_conv-43_91",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-43",
+      "category": 4,
+      "question": "When did John meet back up with his teammates after his trip in August 2023?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Aug 15th"
+    },
+    {
+      "question_id": "lc_conv-43_94",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-43",
+      "category": 4,
+      "question": "What is the main intention behind Tim wanting to attend the book conference?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "to learn more about literature and create a stronger bond to it"
+    },
+    {
+      "question_id": "lc_conv-44_102",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-44",
+      "category": 4,
+      "question": "Why does Audrey make jewelry out of recycled objects?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "To show love for creativity and sustainability"
+    },
+    {
+      "question_id": "lc_conv-44_121",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-44",
+      "category": 4,
+      "question": "What is Andrew planning to do with Scout, Toby, and Buddy?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Take them to a nearby park"
+    },
+    {
+      "question_id": "lc_conv-44_155",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-44",
+      "category": 5,
+      "question": "What type of drink did Andrew recently try at a new spot in town?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "sushi"
+    },
+    {
+      "question_id": "lc_conv-47_130",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-47",
+      "category": 4,
+      "question": "What instrument did James used to play when he was younger?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "guitar"
+    },
+    {
+      "question_id": "lc_conv-47_160",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-47",
+      "category": 5,
+      "question": "What is Max good at doing according to John?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "catching frisbees in mid-air"
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-47",
+      "category": 4,
+      "question": "What instrument is John learning to play as of 27 March, 2022?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Drums"
+    },
+    {
+      "question_id": "lc_conv-48_128",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-48",
+      "category": 4,
+      "question": "What album does Deborah recommend for meditation and deep relaxation?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "'Sleep'"
+    },
+    {
+      "question_id": "lc_conv-48_154",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-48",
+      "category": 4,
+      "question": "What feeling does Deborah get when she thinks about the time spent with her mom at their special spot?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "peace and gratitude"
+    },
+    {
+      "question_id": "lc_conv-48_173",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-48",
+      "category": 4,
+      "question": "What course did Jolene sign up for on 6 September 2023?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "meditation"
+    },
+    {
+      "question_id": "lc_conv-48_233",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-48",
+      "category": 5,
+      "question": "What did Jolene do with their mom's old friends?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "reminisced and looked through photos"
+    },
+    {
+      "question_id": "lc_conv-49_146",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-49",
+      "category": 4,
+      "question": "What did Evan and his partner share with their extended family on January 5, 2024?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "their marriage"
+    },
+    {
+      "question_id": "lc_conv-49_155",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-49",
+      "category": 4,
+      "question": "How does Evan describe being out on the water while kayaking and watching the sunset?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "peaceful"
+    },
+    {
+      "question_id": "lc_conv-49_175",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-49",
+      "category": 5,
+      "question": "What kind of writing does Evan enjoy as a form of expression?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "creative writing"
+    },
+    {
+      "question_id": "lc_conv-50_134",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-50",
+      "category": 4,
+      "question": "What is the toughest part of car restoration according to Dave?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Paying extra attention to detail"
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-50",
+      "category": 5,
+      "question": "What did Calvin recently start a blog about?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "Car mods"
+    },
+    {
+      "question_id": "lc_conv-50_99",
+      "cohort": "CONTROL_CORRECT",
+      "conversation": "conv-50",
+      "category": 4,
+      "question": "How did Calvin meet Frank Ocean?",
+      "A_verdict": "CORRECT",
+      "gold_eval_only": "At a music festival in Tokyo"
+    }
+  ],
+  "annotator_view_ids": [
+    "lc_conv-26_195",
+    "lc_conv-26_33",
+    "lc_conv-26_40",
+    "lc_conv-30_57",
+    "lc_conv-41_108",
+    "lc_conv-41_154",
+    "lc_conv-41_28",
+    "lc_conv-42_10",
+    "lc_conv-42_119",
+    "lc_conv-42_140",
+    "lc_conv-42_244",
+    "lc_conv-42_252",
+    "lc_conv-43_1",
+    "lc_conv-43_146",
+    "lc_conv-43_185",
+    "lc_conv-43_78",
+    "lc_conv-44_49",
+    "lc_conv-44_83",
+    "lc_conv-47_176",
+    "lc_conv-47_20",
+    "lc_conv-47_83",
+    "lc_conv-48_131",
+    "lc_conv-48_41",
+    "lc_conv-48_52",
+    "lc_conv-49_173",
+    "lc_conv-49_52",
+    "lc_conv-49_93",
+    "lc_conv-50_113",
+    "lc_conv-50_23",
+    "lc_conv-50_35",
+    "lc_conv-26_153",
+    "lc_conv-26_196",
+    "lc_conv-30_96",
+    "lc_conv-30_97",
+    "lc_conv-41_152",
+    "lc_conv-41_162",
+    "lc_conv-41_182",
+    "lc_conv-42_208",
+    "lc_conv-42_246",
+    "lc_conv-42_248",
+    "lc_conv-43_113",
+    "lc_conv-43_179",
+    "lc_conv-43_196",
+    "lc_conv-43_225",
+    "lc_conv-43_29",
+    "lc_conv-44_132",
+    "lc_conv-44_148",
+    "lc_conv-47_133",
+    "lc_conv-47_157",
+    "lc_conv-47_187",
+    "lc_conv-47_31",
+    "lc_conv-48_174",
+    "lc_conv-48_211",
+    "lc_conv-49_180",
+    "lc_conv-49_191",
+    "lc_conv-49_96",
+    "lc_conv-50_12",
+    "lc_conv-50_168",
+    "lc_conv-50_199",
+    "lc_conv-50_93",
+    "lc_conv-26_107",
+    "lc_conv-26_132",
+    "lc_conv-26_152",
+    "lc_conv-30_42",
+    "lc_conv-41_138",
+    "lc_conv-41_147",
+    "lc_conv-42_126",
+    "lc_conv-42_134",
+    "lc_conv-42_196",
+    "lc_conv-42_221",
+    "lc_conv-43_104",
+    "lc_conv-43_213",
+    "lc_conv-43_91",
+    "lc_conv-43_94",
+    "lc_conv-44_102",
+    "lc_conv-44_121",
+    "lc_conv-44_155",
+    "lc_conv-47_130",
+    "lc_conv-47_160",
+    "lc_conv-47_72",
+    "lc_conv-48_128",
+    "lc_conv-48_154",
+    "lc_conv-48_173",
+    "lc_conv-48_233",
+    "lc_conv-49_146",
+    "lc_conv-49_155",
+    "lc_conv-49_175",
+    "lc_conv-50_134",
+    "lc_conv-50_194",
+    "lc_conv-50_99"
+  ]
+}
