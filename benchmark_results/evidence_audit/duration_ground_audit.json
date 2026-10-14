@@ -1,0 +1,1173 @@
+{
+  "label": "phase 1 -- DURATION ground audit (43 questions, not 8)",
+  "n": 43,
+  "by_source": {
+    "EXPLICIT_SPAN": 19,
+    "GOLD_NOT_A_SPAN": 2,
+    "SPAN_OFF_TOPIC": 14,
+    "NO_SPAN": 8
+  },
+  "by_verdict": {
+    "correct": 14,
+    "wrong": 6,
+    "abstain": 23
+  },
+  "rows": [
+    {
+      "question_id": "lc_conv-26_10",
+      "cache_qid": "conv-26-qa-010",
+      "conversation": "26",
+      "question": "How long has Caroline had her current group of friends for?",
+      "gold": "4 years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D3:13",
+          "sentence": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country.",
+          "span": "4 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D4:5",
+          "sentence": "A friend made it for my 18th birthday ten years ago (2013).",
+          "span": "ten years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D7:1",
+          "sentence": "So much has happened since we last spoke - I went to an LGBTQ conference two days ago (10 July 2023) and it was really special.",
+          "span": "two days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_12",
+      "cache_qid": "conv-26-qa-012",
+      "conversation": "26",
+      "question": "How long ago was Caroline's 18th birthday?",
+      "gold": "10 years ago",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 6,
+      "spans": [
+        {
+          "turn_id": "D4:5",
+          "sentence": "A friend made it for my 18th birthday ten years ago (2013).",
+          "span": "ten years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D7:1",
+          "sentence": "So much has happened since we last spoke - I went to an LGBTQ conference two days ago (10 July 2023) and it was really special.",
+          "span": "two days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D15:21",
+          "sentence": "I started playing acoustic guitar about five years ago (2018); it's been a great way to express myself and escape into my emotions",
+          "span": "five years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:13",
+          "sentence": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country.",
+          "span": "4 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:1",
+          "sentence": "It made me reflect on how far I've come since I started transitioning three years ago (2020).",
+          "span": "three years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_68",
+      "cache_qid": "conv-26-qa-068",
+      "conversation": "26",
+      "question": "How long has Melanie been practicing art?",
+      "gold": "Since 2016",
+      "current_verdict": "wrong",
+      "source": "GOLD_NOT_A_SPAN",
+      "n_spans": 4,
+      "spans": [
+        {
+          "turn_id": "D4:5",
+          "sentence": "A friend made it for my 18th birthday ten years ago (2013).",
+          "span": "ten years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:16",
+          "sentence": "5 years already!",
+          "span": "5 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:13",
+          "sentence": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country.",
+          "span": "4 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D16:8",
+          "sentence": "Seven years now, and I've finally found my real muses: painting and pottery.",
+          "span": "Seven years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_90",
+      "cache_qid": "conv-26-qa-090",
+      "conversation": "26",
+      "question": "How long have Mel and her husband been married?",
+      "gold": "Mel and her husband have been married for 5 years.",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 4,
+      "spans": [
+        {
+          "turn_id": "D3:16",
+          "sentence": "5 years already!",
+          "span": "5 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:13",
+          "sentence": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country.",
+          "span": "4 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D7:1",
+          "sentence": "So much has happened since we last spoke - I went to an LGBTQ conference two days ago (10 July 2023) and it was really special.",
+          "span": "two days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D15:21",
+          "sentence": "I started playing acoustic guitar about five years ago (2018); it's been a great way to express myself and escape into my emotions",
+          "span": "five years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "cache_qid": "conv-26-qa-132",
+      "conversation": "26",
+      "question": "How long has Melanie been creating art?",
+      "gold": "7 years",
+      "current_verdict": "correct",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D3:16",
+          "sentence": "5 years already!",
+          "span": "5 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:13",
+          "sentence": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country.",
+          "span": "4 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D16:8",
+          "sentence": "Seven years now, and I've finally found my real muses: painting and pottery.",
+          "span": "Seven years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_31",
+      "cache_qid": "conv-30-qa-031",
+      "conversation": "30",
+      "question": "How long did it take for Jon to open his studio?",
+      "gold": "six months",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-41_63",
+      "cache_qid": "conv-41-qa-063",
+      "conversation": "41",
+      "question": "How many weeks passed between Maria adopting Coco and Shadow?",
+      "gold": "two weeks",
+      "current_verdict": "wrong",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D30:1",
+          "sentence": "Guess what - I got a puppy two weeks ago!",
+          "span": "two weeks",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-41_104",
+      "cache_qid": "conv-41-qa-104",
+      "conversation": "41",
+      "question": "How long was Max a part of John's family?",
+      "gold": "10 years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D17:1",
+          "sentence": "He was such an important part of our family for 10 years and it's so hard to think he's not here wagging that tail anymore.",
+          "span": "10 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 2
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-41_170",
+      "cache_qid": "conv-41-qa-170",
+      "conversation": "41",
+      "question": "How long was Max a part of Maria's family?",
+      "gold": "10 years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 2,
+      "spans": [
+        {
+          "turn_id": "D17:1",
+          "sentence": "He was such an important part of our family for 10 years and it's so hard to think he's not here wagging that tail anymore.",
+          "span": "10 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 2
+        },
+        {
+          "turn_id": "D30:1",
+          "sentence": "Guess what - I got a puppy two weeks ago!",
+          "span": "two weeks",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_6",
+      "cache_qid": "conv-42-qa-006",
+      "conversation": "42",
+      "question": "How long has Nate had his first two turtles?",
+      "gold": "three years",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D2:12",
+          "sentence": "I've had them for 3 years now and they bring me tons of joy!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_43",
+      "cache_qid": "conv-42-qa-043",
+      "conversation": "42",
+      "question": "How long did it take for Joanna to finish writing her book?",
+      "gold": "four months",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D2:12",
+          "sentence": "I've had them for 3 years now and they bring me tons of joy!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_100",
+      "cache_qid": "conv-42-qa-100",
+      "conversation": "42",
+      "question": "For how long has Nate had his turtles?",
+      "gold": "3 years",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D2:12",
+          "sentence": "I've had them for 3 years now and they bring me tons of joy!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_208",
+      "cache_qid": "conv-42-qa-208",
+      "conversation": "42",
+      "question": "For how long has Nate had his snakes?",
+      "gold": "3 years",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D2:12",
+          "sentence": "I've had them for 3 years now and they bring me tons of joy!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_16",
+      "cache_qid": "conv-43-qa-016",
+      "conversation": "43",
+      "question": "After how many weeks did Tim reconnect with the fellow Harry Potter fan from California?",
+      "gold": "three weeks",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-43_29",
+      "cache_qid": "conv-43-qa-029",
+      "conversation": "43",
+      "question": "What schools did John play basketball in and how many years was he with his team during high school?",
+      "gold": "Middle school, high school, and college and he was with his high school team for 4 years.",
+      "current_verdict": "abstain",
+      "source": "GOLD_NOT_A_SPAN",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 3
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_81",
+      "cache_qid": "conv-43-qa-081",
+      "conversation": "43",
+      "question": "How long has John been surfing?",
+      "gold": "five years",
+      "current_verdict": "wrong",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D3:27",
+          "sentence": "I started surfing five years ago (2018) and it's been great.",
+          "span": "five years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D21:13",
+          "sentence": "I've been playing for about four months now and it's been an amazing adventure.",
+          "span": "four months",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_100",
+      "cache_qid": "conv-43-qa-100",
+      "conversation": "43",
+      "question": "How long did John and his high school basketball teammates play together?",
+      "gold": "Four years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 4
+        },
+        {
+          "turn_id": "D21:13",
+          "sentence": "I've been playing for about four months now and it's been an amazing adventure.",
+          "span": "four months",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:27",
+          "sentence": "I started surfing five years ago (2018) and it's been great.",
+          "span": "five years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_144",
+      "cache_qid": "conv-43-qa-144",
+      "conversation": "43",
+      "question": "How long does John usually hold the yoga pose he shared with Tim?",
+      "gold": "30-60 seconds",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D20:10",
+          "sentence": "I typically hold it for 30-60 seconds.",
+          "span": "60 seconds",
+          "hedged": false,
+          "is_range": true,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D3:27",
+          "sentence": "I started surfing five years ago (2018) and it's been great.",
+          "span": "five years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_148",
+      "cache_qid": "conv-43-qa-148",
+      "conversation": "43",
+      "question": "How long has Tim been playing the piano for, as of December 2023?",
+      "gold": "about four months",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 2,
+      "spans": [
+        {
+          "turn_id": "D21:13",
+          "sentence": "I've been playing for about four months now and it's been an amazing adventure.",
+          "span": "four months",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_199",
+      "cache_qid": "conv-43-qa-199",
+      "conversation": "43",
+      "question": "How long did Tim and his high school basketball teammates play together?",
+      "gold": "Four years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 4
+        },
+        {
+          "turn_id": "D21:13",
+          "sentence": "I've been playing for about four months now and it's been an amazing adventure.",
+          "span": "four months",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D3:27",
+          "sentence": "I started surfing five years ago (2018) and it's been great.",
+          "span": "five years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_225",
+      "cache_qid": "conv-43-qa-225",
+      "conversation": "43",
+      "question": "How long has John been playing the piano for, as of December 2023?",
+      "gold": "about four months",
+      "current_verdict": "wrong",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D21:13",
+          "sentence": "I've been playing for about four months now and it's been an amazing adventure.",
+          "span": "four months",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D9:4",
+          "sentence": "We were teammates for four years in high school, so we've played together for quite some time.",
+          "span": "four years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D20:10",
+          "sentence": "I typically hold it for 30-60 seconds.",
+          "span": "60 seconds",
+          "hedged": false,
+          "is_range": true,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_7",
+      "cache_qid": "conv-44-qa-007",
+      "conversation": "44",
+      "question": "How many years passed between Audrey adopting Pixie and her other three dogs?",
+      "gold": "three years",
+      "current_verdict": "wrong",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D1:7",
+          "sentence": "I've had them for 3 years!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_34",
+      "cache_qid": "conv-44-qa-034",
+      "conversation": "44",
+      "question": "How many months passed between Andrew adopting Toby and Buddy?",
+      "gold": "three months",
+      "current_verdict": "correct",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D1:7",
+          "sentence": "I've had them for 3 years!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_47",
+      "cache_qid": "conv-44-qa-047",
+      "conversation": "44",
+      "question": "How many months passed between Andrew adopting Buddy and Scout",
+      "gold": "one month",
+      "current_verdict": "correct",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D1:7",
+          "sentence": "I've had them for 3 years!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_59",
+      "cache_qid": "conv-44-qa-059",
+      "conversation": "44",
+      "question": "How long has it been since Andrew adopted his first pet, as of November 2023?",
+      "gold": "4 months",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-44_76",
+      "cache_qid": "conv-44-qa-076",
+      "conversation": "44",
+      "question": "How long does Audrey typically walk her dogs for?",
+      "gold": "about an hour",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 2,
+      "spans": [
+        {
+          "turn_id": "D1:7",
+          "sentence": "I've had them for 3 years!",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D14:8",
+          "sentence": "The hike took us two hours and it was stunning!",
+          "span": "two hours",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_87",
+      "cache_qid": "conv-44-qa-087",
+      "conversation": "44",
+      "question": "How long did the trail hike that Audrey went on with her pups take?",
+      "gold": "Two hours",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D14:8",
+          "sentence": "The hike took us two hours and it was stunning!",
+          "span": "two hours",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_31",
+      "cache_qid": "conv-47-qa-031",
+      "conversation": "47",
+      "question": "How many days did James plan to spend on his trip in Canada?",
+      "gold": "19 days",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D28:3",
+          "sentence": "Three days ago my apartment lost power - so annoying because I had just gotten to the big reveal in that game!",
+          "span": "Three days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D8:11",
+          "sentence": "By the way, three days ago I bought myself an adventure book with fantasy novels and cool arts.",
+          "span": "three days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D16:7",
+          "sentence": "Just three days ago, I was surfing.",
+          "span": "three days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_53",
+      "cache_qid": "conv-47-qa-053",
+      "conversation": "47",
+      "question": "How long did it take for James to complete his Witcher-inspired game?",
+      "gold": "six months",
+      "current_verdict": "wrong",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D6:6",
+          "sentence": "I got the idea from a walk with my dogs two weeks ago.",
+          "span": "two weeks",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D21:9",
+          "sentence": "Fingers crossed, one day I'll make my own awesome strategy game!",
+          "span": "one day",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D28:3",
+          "sentence": "Three days ago my apartment lost power - so annoying because I had just gotten to the big reveal in that game!",
+          "span": "Three days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_62",
+      "cache_qid": "conv-47-qa-062",
+      "conversation": "47",
+      "question": "How long did James and Samantha date for before deciding to move in together?",
+      "gold": "nearly three months",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D23:13",
+          "sentence": "Yes, two days ago (2 September 2022) I signed up for a cooking class.",
+          "span": "two days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D6:6",
+          "sentence": "I got the idea from a walk with my dogs two weeks ago.",
+          "span": "two weeks",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D28:3",
+          "sentence": "Three days ago my apartment lost power - so annoying because I had just gotten to the big reveal in that game!",
+          "span": "Three days",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_64",
+      "cache_qid": "conv-47-qa-064",
+      "conversation": "47",
+      "question": "How long did John practice chess for before winning the chess tournament?",
+      "gold": "nearly four months",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D6:6",
+          "sentence": "I got the idea from a walk with my dogs two weeks ago.",
+          "span": "two weeks",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_73",
+      "cache_qid": "conv-47-qa-073",
+      "conversation": "47",
+      "question": "How long has John been playing the drums as of 27 March, 2022?",
+      "gold": "One month",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-48_33",
+      "cache_qid": "conv-48-qa-033",
+      "conversation": "48",
+      "question": "How long have Jolene and her partner been together?",
+      "gold": "for three years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D7:7",
+          "sentence": "We're not married yet but we've been together for three years.",
+          "span": "three years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D13:17",
+          "sentence": "I've been doing them sporadically for about 3 years now and they've had a real positive effect on me.",
+          "span": "3 years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D20:21",
+          "sentence": "Been doing it for 3 years.",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_46",
+      "cache_qid": "conv-48-qa-046",
+      "conversation": "48",
+      "question": "How long did Jolene work on the robotics project given to her by her Professor?",
+      "gold": "four months",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 1,
+      "spans": [
+        {
+          "turn_id": "D10:4",
+          "sentence": "I'm using the Pomodoro Technique - 25 minutes work, 5-minute break - to avoid burnout but I'm still struggling to prioritize.",
+          "span": "25 minutes",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_49",
+      "cache_qid": "conv-48-qa-049",
+      "conversation": "48",
+      "question": "How long has Jolene been doing yoga and meditation?",
+      "gold": "about 3 years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D13:17",
+          "sentence": "I've been doing them sporadically for about 3 years now and they've had a real positive effect on me.",
+          "span": "3 years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D20:21",
+          "sentence": "Been doing it for 3 years.",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D7:7",
+          "sentence": "We're not married yet but we've been together for three years.",
+          "span": "three years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_134",
+      "cache_qid": "conv-48-qa-134",
+      "conversation": "48",
+      "question": "For how long has Jolene had Seraphim as a pet?",
+      "gold": "one year",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D28:26",
+          "sentence": "I've had her for two years now.",
+          "span": "two years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D13:17",
+          "sentence": "I've been doing them sporadically for about 3 years now and they've had a real positive effect on me.",
+          "span": "3 years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D7:7",
+          "sentence": "We're not married yet but we've been together for three years.",
+          "span": "three years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_157",
+      "cache_qid": "conv-48-qa-157",
+      "conversation": "48",
+      "question": "How long has Jolene been doing yoga?",
+      "gold": "3 years",
+      "current_verdict": "correct",
+      "source": "EXPLICIT_SPAN",
+      "n_spans": 4,
+      "spans": [
+        {
+          "turn_id": "D13:17",
+          "sentence": "I've been doing them sporadically for about 3 years now and they've had a real positive effect on me.",
+          "span": "3 years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D20:21",
+          "sentence": "Been doing it for 3 years.",
+          "span": "3 years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 1
+        },
+        {
+          "turn_id": "D28:26",
+          "sentence": "I've had her for two years now.",
+          "span": "two years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D7:7",
+          "sentence": "We're not married yet but we've been together for three years.",
+          "span": "three years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_211",
+      "cache_qid": "conv-48-qa-211",
+      "conversation": "48",
+      "question": "For how long has Jolene had Lucifer as a pet?",
+      "gold": "one year",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D28:26",
+          "sentence": "I've had her for two years now.",
+          "span": "two years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D13:17",
+          "sentence": "I've been doing them sporadically for about 3 years now and they've had a real positive effect on me.",
+          "span": "3 years",
+          "hedged": true,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D7:7",
+          "sentence": "We're not married yet but we've been together for three years.",
+          "span": "three years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_39",
+      "cache_qid": "conv-49-qa-039",
+      "conversation": "49",
+      "question": "How many months lapsed between Sam's first and second doctor's appointment?",
+      "gold": "three months",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-49_70",
+      "cache_qid": "conv-49-qa-070",
+      "conversation": "49",
+      "question": "How long did Evan and his partner date before getting married?",
+      "gold": "four months",
+      "current_verdict": "abstain",
+      "source": "SPAN_OFF_TOPIC",
+      "n_spans": 3,
+      "spans": [
+        {
+          "turn_id": "D8:14",
+          "sentence": "It all started when a friend of mine gave me this painting one day, it inspired me a lot and that's when I started painting.",
+          "span": "one day",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D5:7",
+          "sentence": "I've been working on it for two years now, so there have been ups and downs, but I'm doing my best.",
+          "span": "two years",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        },
+        {
+          "turn_id": "D11:6",
+          "sentence": "By the way, something happened two weeks ago!",
+          "span": "two weeks",
+          "hedged": false,
+          "is_range": false,
+          "topic_overlap": 0
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_61",
+      "cache_qid": "conv-50-qa-061",
+      "conversation": "50",
+      "question": "How long did Dave's work on the Ford Mustang take?",
+      "gold": "nearly two months",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-50_62",
+      "cache_qid": "conv-50-qa-062",
+      "conversation": "50",
+      "question": "How long was the car modification workshop in San Francisco?",
+      "gold": "two weeks",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    },
+    {
+      "question_id": "lc_conv-50_71",
+      "cache_qid": "conv-50-qa-071",
+      "conversation": "50",
+      "question": "How long did Calvin plan to stay in Japan?",
+      "gold": "A few months",
+      "current_verdict": "abstain",
+      "source": "NO_SPAN",
+      "n_spans": 0,
+      "spans": []
+    }
+  ]
+}
