@@ -1,0 +1,1141 @@
+{
+  "label": "phase 2 -- explicit frequency ground audit over the 21 OCCURRENCE questions",
+  "n": 21,
+  "by_source": {
+    "OFF_TOPIC": 11,
+    "VAGUE": 5,
+    "EXPLICIT": 4,
+    "ABSENT": 1
+  },
+  "by_verdict": {
+    "abstain": 21
+  },
+  "rows": [
+    {
+      "question_id": "lc_conv-26_40",
+      "cache_qid": "conv-26-qa-040",
+      "conversation": "26",
+      "question": "How many times has Melanie gone to the beach in 2023?",
+      "gold": "2",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 2,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D10:10",
+          "speaker": "Melanie",
+          "sentence": "We don't go often, usually only once or twice a year.",
+          "count": 1,
+          "vague": true,
+          "interval": null,
+          "period": "a year",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D10:9",
+          "speaker": "Caroline",
+          "sentence": "Do you do it often with the kids?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": false
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-26_117",
+      "cache_qid": "conv-26-qa-117",
+      "conversation": "26",
+      "question": "How often does Melanie go to the beach with her kids?",
+      "gold": "once or twice a year",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 1,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D10:10",
+          "speaker": "Melanie",
+          "sentence": "We don't go often, usually only once or twice a year.",
+          "count": 1,
+          "vague": true,
+          "interval": null,
+          "period": "a year",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-26_174",
+      "cache_qid": "conv-26-qa-174",
+      "conversation": "26",
+      "question": "How often does Caroline go to the beach with her kids?",
+      "gold": "once or twice a year",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "VAGUE",
+      "n_statements": 2,
+      "n_on_topic": 1,
+      "statements": [
+        {
+          "turn_id": "D10:9",
+          "speaker": "Caroline",
+          "sentence": "Do you do it often with the kids?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "kid"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D10:10",
+          "speaker": "Melanie",
+          "sentence": "We don't go often, usually only once or twice a year.",
+          "count": 1,
+          "vague": true,
+          "interval": null,
+          "period": "a year",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": false
+        }
+      ],
+      "best": {
+        "turn_id": "D10:9",
+        "speaker": "Caroline",
+        "sentence": "Do you do it often with the kids?",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "kid"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-41_79",
+      "cache_qid": "conv-41-qa-079",
+      "conversation": "41",
+      "question": "How often does John take his kids to the park?",
+      "gold": "A few times a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 3,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D8:8",
+          "speaker": "John",
+          "sentence": "Yeah, we go a few times a week.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D8:7",
+          "speaker": "Maria",
+          "sentence": "Do you take your kid to the park often?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 2,
+          "turn_terms": [
+            "park",
+            "take"
+          ],
+          "speaker_match": false
+        },
+        {
+          "turn_id": "D22:17",
+          "speaker": "John",
+          "sentence": "I see them at least once a week.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-41_92",
+      "cache_qid": "conv-41-qa-092",
+      "conversation": "41",
+      "question": "How often does John work out with his family?",
+      "gold": "Three times a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "VAGUE",
+      "n_statements": 2,
+      "n_on_topic": 1,
+      "statements": [
+        {
+          "turn_id": "D22:5",
+          "speaker": "John",
+          "sentence": "I sometimes doubt if I'm making a difference, but knowing there's people who understand my work means a lot and helps keep me goin",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "work"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D8:8",
+          "speaker": "John",
+          "sentence": "Yeah, we go a few times a week.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D22:5",
+        "speaker": "John",
+        "sentence": "I sometimes doubt if I'm making a difference, but knowing there's people who understand my work means a lot and helps keep me goin",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "work"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-41_119",
+      "cache_qid": "conv-41-qa-119",
+      "conversation": "41",
+      "question": "How often does John get to see sunsets like the one he shared with Maria?",
+      "gold": "At least once a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 1,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D22:17",
+          "speaker": "John",
+          "sentence": "I see them at least once a week.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-41_158",
+      "cache_qid": "conv-41-qa-158",
+      "conversation": "41",
+      "question": "How often does John take his kids to the library?",
+      "gold": "A few times a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 3,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D8:8",
+          "speaker": "John",
+          "sentence": "Yeah, we go a few times a week.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D8:7",
+          "speaker": "Maria",
+          "sentence": "Do you take your kid to the park often?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "take"
+          ],
+          "speaker_match": false
+        },
+        {
+          "turn_id": "D22:17",
+          "speaker": "John",
+          "sentence": "I see them at least once a week.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-41_165",
+      "cache_qid": "conv-41-qa-165",
+      "conversation": "41",
+      "question": "How often does Maria work out with her family?",
+      "gold": "Three times a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 1,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D13:6",
+          "speaker": "Maria",
+          "sentence": "How often do you all workout together?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-42_19",
+      "cache_qid": "conv-42-qa-019",
+      "conversation": "42",
+      "question": "How many times has Joanna found new hiking trails?",
+      "gold": "twice",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "VAGUE",
+      "n_statements": 3,
+      "n_on_topic": 1,
+      "statements": [
+        {
+          "turn_id": "D11:15",
+          "speaker": "Joanna",
+          "sentence": "I think about my life too sometimes when I'm out and about, but there was something special about these trails that made me feel l",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "trail"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:20",
+          "speaker": "Joanna",
+          "sentence": "A few times.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D11:15",
+        "speaker": "Joanna",
+        "sentence": "I think about my life too sometimes when I'm out and about, but there was something special about these trails that made me feel l",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "trail"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-42_49",
+      "cache_qid": "conv-42-qa-049",
+      "conversation": "42",
+      "question": "How many times has Joanna's scripts been rejected?",
+      "gold": "Twice",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 4,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D5:1",
+          "speaker": "Joanna",
+          "sentence": "Sometimes I'm so relieved, but other times I just feel anxious about what comes next.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:20",
+          "speaker": "Joanna",
+          "sentence": "A few times.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D14:3",
+          "speaker": "Joanna",
+          "sentence": "It can feel like a step back sometimes.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-42_53",
+      "cache_qid": "conv-42-qa-053",
+      "conversation": "42",
+      "question": "How many times has Nate taken his turtles on a walk?",
+      "gold": "Twice.",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 1,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D8:15",
+          "speaker": "Nate",
+          "sentence": "Sometimes I even bring them in the kitchen so they can watch me make food like this!",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-43_49",
+      "cache_qid": "conv-43-qa-049",
+      "conversation": "43",
+      "question": "How many times has John injured his ankle?",
+      "gold": "two times",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 2,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D12:24",
+          "speaker": "John",
+          "sentence": "Yeah, I've had the chance to meet him a few times.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D17:15",
+          "speaker": "John",
+          "sentence": "And that's just what we need sometimes.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-44_17",
+      "cache_qid": "conv-44-qa-017",
+      "conversation": "44",
+      "question": "How many times did Audrey and Andew plan to hike together?",
+      "gold": "three times",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT",
+      "n_statements": 4,
+      "n_on_topic": 2,
+      "statements": [
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "They're city dogs and we explore all the time.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "We go on adventures together very often.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "together"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D27:4",
+          "speaker": "Audrey",
+          "sentence": "I try to meet up with other dog owners once a week for tips from other parents and so they can all play together.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 1,
+          "turn_terms": [
+            "together"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D14:4",
+          "speaker": "Audrey",
+          "sentence": "I take them to the park twice a week for practice - it's been a great bonding experience.",
+          "count": 2,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D1:9",
+        "speaker": "Audrey",
+        "sentence": "We go on adventures together very often.",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "together"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-44_86",
+      "cache_qid": "conv-44-qa-086",
+      "conversation": "44",
+      "question": "How often does Audrey take her pups to the park for practice?",
+      "gold": "Twice a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT",
+      "n_statements": 7,
+      "n_on_topic": 2,
+      "statements": [
+        {
+          "turn_id": "D5:10",
+          "speaker": "Audrey",
+          "sentence": "I take them on road trips once every couple of months.",
+          "count": 1,
+          "vague": false,
+          "interval": "every couple of months",
+          "period": "every couple of months",
+          "topic_overlap": 1,
+          "turn_terms": [
+            "take"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D14:4",
+          "speaker": "Audrey",
+          "sentence": "I take them to the park twice a week for practice - it's been a great bonding experience.",
+          "count": 2,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 3,
+          "turn_terms": [
+            "park",
+            "practice",
+            "take"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "They're city dogs and we explore all the time.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "We go on adventures together very often.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D27:4",
+          "speaker": "Audrey",
+          "sentence": "I try to meet up with other dog owners once a week for tips from other parents and so they can all play together.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D5:10",
+        "speaker": "Audrey",
+        "sentence": "I take them on road trips once every couple of months.",
+        "count": 1,
+        "vague": false,
+        "interval": "every couple of months",
+        "period": "every couple of months",
+        "topic_overlap": 1,
+        "turn_terms": [
+          "take"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-44_94",
+      "cache_qid": "conv-44-qa-094",
+      "conversation": "44",
+      "question": "How often does Audrey take her dogs for walks?",
+      "gold": "Multiple times a day",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT",
+      "n_statements": 5,
+      "n_on_topic": 2,
+      "statements": [
+        {
+          "turn_id": "D19:10",
+          "speaker": "Audrey",
+          "sentence": "Very often, multiple times a day even, it's a great exercise for them and great bonding time for us.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": "a day",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "They're city dogs and we explore all the time.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "dog"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "We go on adventures together very often.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D27:4",
+          "speaker": "Audrey",
+          "sentence": "I try to meet up with other dog owners once a week for tips from other parents and so they can all play together.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D5:10",
+          "speaker": "Audrey",
+          "sentence": "I take them on road trips once every couple of months.",
+          "count": 1,
+          "vague": false,
+          "interval": "every couple of months",
+          "period": "every couple of months",
+          "topic_overlap": 1,
+          "turn_terms": [
+            "take"
+          ],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D1:9",
+        "speaker": "Audrey",
+        "sentence": "They're city dogs and we explore all the time.",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "dog"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-44_118",
+      "cache_qid": "conv-44-qa-118",
+      "conversation": "44",
+      "question": "How often does Audrey meet up with other dog owners for tips and playdates?",
+      "gold": "Once a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "EXPLICIT",
+      "n_statements": 5,
+      "n_on_topic": 1,
+      "statements": [
+        {
+          "turn_id": "D27:4",
+          "speaker": "Audrey",
+          "sentence": "I try to meet up with other dog owners once a week for tips from other parents and so they can all play together.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 4,
+          "turn_terms": [
+            "meet",
+            "other",
+            "owner",
+            "tip"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D27:3",
+          "speaker": "Andrew",
+          "sentence": "How often do you hang out with the dog owners group?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "owner"
+          ],
+          "speaker_match": false
+        },
+        {
+          "turn_id": "D19:10",
+          "speaker": "Audrey",
+          "sentence": "Very often, multiple times a day even, it's a great exercise for them and great bonding time for us.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": "a day",
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "They're city dogs and we explore all the time.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D1:9",
+          "speaker": "Audrey",
+          "sentence": "We go on adventures together very often.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D27:4",
+        "speaker": "Audrey",
+        "sentence": "I try to meet up with other dog owners once a week for tips from other parents and so they can all play together.",
+        "count": 1,
+        "vague": false,
+        "interval": null,
+        "period": "a week",
+        "topic_overlap": 4,
+        "turn_terms": [
+          "meet",
+          "other",
+          "owner",
+          "tip"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-44_143",
+      "cache_qid": "conv-44-qa-143",
+      "conversation": "44",
+      "question": "How often does Andrew take his dogs for walks?",
+      "gold": "Multiple times a day",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "VAGUE",
+      "n_statements": 3,
+      "n_on_topic": 2,
+      "statements": [
+        {
+          "turn_id": "D5:9",
+          "speaker": "Andrew",
+          "sentence": "Do you take them on road trips often?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "take"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D19:9",
+          "speaker": "Andrew",
+          "sentence": "How often do you take them for walks?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 2,
+          "turn_terms": [
+            "take",
+            "walk"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D27:3",
+          "speaker": "Andrew",
+          "sentence": "How often do you hang out with the dog owners group?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D5:9",
+        "speaker": "Andrew",
+        "sentence": "Do you take them on road trips often?",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "take"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-44_157",
+      "cache_qid": "conv-44-qa-157",
+      "conversation": "44",
+      "question": "How often does Andrew meet up with other dog owners for tips and playdates?",
+      "gold": "Once a week",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "VAGUE",
+      "n_statements": 3,
+      "n_on_topic": 1,
+      "statements": [
+        {
+          "turn_id": "D27:4",
+          "speaker": "Audrey",
+          "sentence": "I try to meet up with other dog owners once a week for tips from other parents and so they can all play together.",
+          "count": 1,
+          "vague": false,
+          "interval": null,
+          "period": "a week",
+          "topic_overlap": 4,
+          "turn_terms": [
+            "meet",
+            "other",
+            "owner",
+            "tip"
+          ],
+          "speaker_match": false
+        },
+        {
+          "turn_id": "D27:3",
+          "speaker": "Andrew",
+          "sentence": "How often do you hang out with the dog owners group?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 1,
+          "turn_terms": [
+            "owner"
+          ],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D19:9",
+          "speaker": "Andrew",
+          "sentence": "How often do you take them for walks?",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": {
+        "turn_id": "D27:3",
+        "speaker": "Andrew",
+        "sentence": "How often do you hang out with the dog owners group?",
+        "count": null,
+        "vague": true,
+        "interval": null,
+        "period": null,
+        "topic_overlap": 1,
+        "turn_terms": [
+          "owner"
+        ],
+        "speaker_match": true
+      }
+    },
+    {
+      "question_id": "lc_conv-48_19",
+      "cache_qid": "conv-48-qa-019",
+      "conversation": "48",
+      "question": "How many times has Jolene been to France?",
+      "gold": "two times",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 3,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D7:5",
+          "speaker": "Jolene",
+          "sentence": "He started joining me sometimes, which is nice for bonding and relaxing.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D14:10",
+          "speaker": "Jolene",
+          "sentence": "I'm really pushing myself to succeed, and sometimes it feels overwhelming.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        },
+        {
+          "turn_id": "D27:7",
+          "speaker": "Jolene",
+          "sentence": "Sometimes we get too focused on the big stuff and don't appreciate all the tiny wins.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-49_43",
+      "cache_qid": "conv-49-qa-043",
+      "conversation": "49",
+      "question": "How often does Sam get health checkups?",
+      "gold": "every three months",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "ABSENT",
+      "n_statements": 0,
+      "n_on_topic": 0,
+      "statements": [],
+      "best": null
+    },
+    {
+      "question_id": "lc_conv-50_18",
+      "cache_qid": "conv-50-qa-018",
+      "conversation": "50",
+      "question": "How many times has Calvin had to deal with insurance paperwork?",
+      "gold": "two times",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "source": "OFF_TOPIC",
+      "n_statements": 1,
+      "n_on_topic": 0,
+      "statements": [
+        {
+          "turn_id": "D24:17",
+          "speaker": "Calvin",
+          "sentence": "Sometimes I wish I could go back to places like the one in the photo below.",
+          "count": null,
+          "vague": true,
+          "interval": null,
+          "period": null,
+          "topic_overlap": 0,
+          "turn_terms": [],
+          "speaker_match": true
+        }
+      ],
+      "best": null
+    }
+  ]
+}

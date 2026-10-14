@@ -1,0 +1,1554 @@
+{
+  "label": "phase 1 -- explicit cardinality ground audit over the 22 ENTITY questions",
+  "n_entity": 22,
+  "n_with_numeral": 22,
+  "n_count_ground": 3,
+  "n_event_matched": 3,
+  "reachable_qids": [
+    "lc_conv-42_133",
+    "lc_conv-42_222",
+    "lc_conv-44_60"
+  ],
+  "rows": [
+    {
+      "question_id": "lc_conv-26_75",
+      "cache_qid": "conv-26-qa-075",
+      "conversation": "26",
+      "question": "How many children does Melanie have?",
+      "gold": "3",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 9,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D9:17",
+          "speaker": "Melanie",
+          "sentence": "My kids and I just finished another painting like our last one.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:10",
+          "speaker": "Caroline",
+          "sentence": "And here's one of the adoption agencies I'm looking into.",
+          "numeral": "1",
+          "meaning": "THING:of",
+          "counted": "of",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D4:8",
+          "speaker": "Melanie",
+          "sentence": "The 2 younger kids love nature.",
+          "numeral": "2",
+          "meaning": "THING:younger",
+          "counted": "younger",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D3:13",
+          "speaker": "Caroline",
+          "sentence": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country.",
+          "numeral": "4",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D3:16",
+          "speaker": "Melanie",
+          "sentence": "5 years already!",
+          "numeral": "5",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:13",
+          "speaker": "Caroline",
+          "sentence": "This support network has been amazing.",
+          "numeral": "2",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-41_62",
+      "cache_qid": "conv-41-qa-062",
+      "conversation": "41",
+      "question": "How many dogs has Maria adopted from the dog shelter she volunteers at?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 14,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D2:2",
+          "speaker": "John",
+          "sentence": "I've been networking with some people to get their input.",
+          "numeral": "2",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D29:2",
+          "speaker": "John",
+          "sentence": "last weekend (the weekend before 9 August 2023), I participated in a community event to raise money for a good cause.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D19:8",
+          "speaker": "John",
+          "sentence": "It feels like all the hard work I've put in has paid off now that I'm an assistant manager- it's like a stepping stone for bigger things.",
+          "numeral": "1",
+          "meaning": "THING:for",
+          "counted": "for",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D20:9",
+          "speaker": "Maria",
+          "sentence": "There are so many, but one that stands out was when I met someone special at the shelter.",
+          "numeral": "1",
+          "meaning": "THING:that",
+          "counted": "that",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D21:1",
+          "speaker": "Maria",
+          "sentence": "Sorry I didn't get back to you sooner...",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D11:16",
+          "speaker": "Maria",
+          "sentence": "It was cool to see everyone together, eating and supporting each other.",
+          "numeral": "1",
+          "meaning": "THING:together",
+          "counted": "together",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-42_52",
+      "cache_qid": "conv-42-qa-052",
+      "conversation": "42",
+      "question": "How many of Joanna's writing have made it to the big screen?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 10,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D6:9",
+          "speaker": "Nate",
+          "sentence": "Do you have any advice for someone like me who wants to pursue writing?",
+          "numeral": "1",
+          "meaning": "THING:like",
+          "counted": "like",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D4:10",
+          "speaker": "Joanna",
+          "sentence": "I can't stop thinking about the screenplay, so I just started writing another one while I wait to hear back about how the first one did.",
+          "numeral": "1",
+          "meaning": "THING:while",
+          "counted": "while",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:3",
+          "speaker": "Joanna",
+          "sentence": "I'm working on one with my group called \"Finding Home.\" It's a script about a girl on a journey to find her true home.",
+          "numeral": "1",
+          "meaning": "THING:with",
+          "counted": "with",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:3",
+          "speaker": "Joanna",
+          "sentence": "I've been working on for a while, such a relief to have it all done!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D28:25",
+          "speaker": "Nate",
+          "sentence": "The tank is big enough now for three, so I figured why not!",
+          "numeral": "3",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-42_62",
+      "cache_qid": "conv-42-qa-062",
+      "conversation": "42",
+      "question": "How many letters has Joanna recieved?",
+      "gold": "Two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 10,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D14:5",
+          "speaker": "Joanna",
+          "sentence": "It's disheartening not knowing why it didn't work out.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:9",
+          "speaker": "Nate",
+          "sentence": "Do you have any advice for someone like me who wants to pursue writing?",
+          "numeral": "1",
+          "meaning": "THING:like",
+          "counted": "like",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D18:5",
+          "speaker": "Joanna",
+          "sentence": "last week (the week before 14 August 2022), someone wrote me a letter after reading an online blog post I made about a hard moment in my life.",
+          "numeral": "1",
+          "meaning": "THING:wrote",
+          "counted": "wrote",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:3",
+          "speaker": "Joanna",
+          "sentence": "I'm working on one with my group called \"Finding Home.\" It's a script about a girl on a journey to find her true home.",
+          "numeral": "1",
+          "meaning": "THING:with",
+          "counted": "with",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-42_68",
+      "cache_qid": "conv-42-qa-068",
+      "conversation": "42",
+      "question": "How many hikes has Joanna been on?",
+      "gold": "Four",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 6,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D24:4",
+          "speaker": "Joanna",
+          "sentence": "Pets have a way of brightening our days.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D10:7",
+          "speaker": "Joanna",
+          "sentence": "How did it feel to finally win one?",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D16:1",
+          "speaker": "Joanna",
+          "sentence": "I just got done submitting my recent screenplay to a film contest just to see how others might like it!",
+          "numeral": "1",
+          "meaning": "THING:submitting",
+          "counted": "submitting",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D3:2",
+          "speaker": "Nate",
+          "sentence": "Sending some positive vibes and hoping someone likes it enough to get it on the big screen - that would be awesome!",
+          "numeral": "1",
+          "meaning": "THING:likes",
+          "counted": "likes",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-42_69",
+      "cache_qid": "conv-42-qa-069",
+      "conversation": "42",
+      "question": "How many turtles does Nate have?",
+      "gold": "Three",
+      "current_answer": "three, 3",
+      "current_verdict": "correct",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 7,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D6:9",
+          "speaker": "Nate",
+          "sentence": "Do you have any advice for someone like me who wants to pursue writing?",
+          "numeral": "1",
+          "meaning": "THING:like",
+          "counted": "like",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D5:6",
+          "speaker": "Nate",
+          "sentence": "They're also low-maintenance and calming.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:12",
+          "speaker": "Nate",
+          "sentence": "I've had them for 3 years now and they bring me tons of joy!",
+          "numeral": "3",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:12",
+          "speaker": "Nate",
+          "sentence": "This trilogy is one of my faves.",
+          "numeral": "1",
+          "meaning": "THING:of",
+          "counted": "of",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D28:25",
+          "speaker": "Nate",
+          "sentence": "The tank is big enough now for three, so I figured why not!",
+          "numeral": "3",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:4",
+          "speaker": "Nate",
+          "sentence": "It's gonna be my 4th one!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "ordinal attached to 'turtle' proves total 3"
+    },
+    {
+      "question_id": "lc_conv-42_78",
+      "cache_qid": "conv-42-qa-078",
+      "conversation": "42",
+      "question": "How many video game tournaments has Nate participated in?",
+      "gold": "nine",
+      "current_answer": "four, 4",
+      "current_verdict": "wrong",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 11,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D6:7",
+          "speaker": "Nate",
+          "sentence": "Yeah actually - I'm currently participating in the video game tournament again and it's INTENSE!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:1",
+          "speaker": "Nate",
+          "sentence": "I'm really proud that I can make money doing what I love.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:1",
+          "speaker": "Nate",
+          "sentence": "This one was online!",
+          "numeral": "1",
+          "meaning": "THING:was",
+          "counted": "was",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D22:2",
+          "speaker": "Nate",
+          "sentence": "I still can't believe I made so much money from it.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D28:13",
+          "speaker": "Nate",
+          "sentence": "Yeah actually - creating gaming content for YouTube.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "ordinal attached to 'video' proves total 4"
+    },
+    {
+      "question_id": "lc_conv-42_79",
+      "cache_qid": "conv-42-qa-079",
+      "conversation": "42",
+      "question": "How many screenplays has Joanna written?",
+      "gold": "three",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 10,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D16:1",
+          "speaker": "Joanna",
+          "sentence": "I just got done submitting my recent screenplay to a film contest just to see how others might like it!",
+          "numeral": "1",
+          "meaning": "THING:submitting",
+          "counted": "submitting",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:3",
+          "speaker": "Joanna",
+          "sentence": "I've been working on for a while, such a relief to have it all done!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D4:10",
+          "speaker": "Joanna",
+          "sentence": "I can't stop thinking about the screenplay, so I just started writing another one while I wait to hear back about how the first one did.",
+          "numeral": "1",
+          "meaning": "THING:while",
+          "counted": "while",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:3",
+          "speaker": "Joanna",
+          "sentence": "I'm working on one with my group called \"Finding Home.\" It's a script about a girl on a journey to find her true home.",
+          "numeral": "1",
+          "meaning": "THING:with",
+          "counted": "with",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-42_80",
+      "cache_qid": "conv-42-qa-080",
+      "conversation": "42",
+      "question": "How many tournaments has Nate won?",
+      "gold": "seven",
+      "current_answer": "four, 4",
+      "current_verdict": "wrong",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 8,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D17:1",
+          "speaker": "Nate",
+          "sentence": "I'm really proud that I can make money doing what I love.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:1",
+          "speaker": "Nate",
+          "sentence": "This one was online!",
+          "numeral": "1",
+          "meaning": "THING:was",
+          "counted": "was",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D22:2",
+          "speaker": "Nate",
+          "sentence": "I still can't believe I made so much money from it.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:9",
+          "speaker": "Nate",
+          "sentence": "Do you have any advice for someone like me who wants to pursue writing?",
+          "numeral": "1",
+          "meaning": "THING:like",
+          "counted": "like",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:9",
+          "speaker": "Nate",
+          "sentence": "Can't wait to hear about your next one.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:4",
+          "speaker": "Nate",
+          "sentence": "It's gonna be my 4th one!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "ordinal attached to 'tournament' proves total 4"
+    },
+    {
+      "question_id": "lc_conv-42_133",
+      "cache_qid": "conv-42-qa-133",
+      "conversation": "42",
+      "question": "How many people attended the gaming party hosted by Nate in June 2022?",
+      "gold": "7",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 11,
+      "ground_kind": "PEOPLE",
+      "event_match": true,
+      "grounds": [
+        {
+          "turn_id": "D16:1",
+          "speaker": "Joanna",
+          "sentence": "I just got done submitting my recent screenplay to a film contest just to see how others might like it!",
+          "numeral": "1",
+          "meaning": "THING:submitting",
+          "counted": "submitting",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D14:24",
+          "speaker": "Nate",
+          "sentence": "I'm even getting everyone custom controller decorations just for coming!",
+          "numeral": "1",
+          "meaning": "THING:custom",
+          "counted": "custom",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D16:6",
+          "speaker": "Nate",
+          "sentence": "There were 7 people that attended, and 6 of them said they'd want to do it again next month (July 2022)!",
+          "numeral": "7",
+          "meaning": "PEOPLE",
+          "counted": "people",
+          "matches_asked": true
+        },
+        {
+          "turn_id": "D6:9",
+          "speaker": "Nate",
+          "sentence": "Do you have any advice for someone like me who wants to pursue writing?",
+          "numeral": "1",
+          "meaning": "THING:like",
+          "counted": "like",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-42_136",
+      "cache_qid": "conv-42-qa-136",
+      "conversation": "42",
+      "question": "How many video game tournaments has Nate won by July 10, 2022?",
+      "gold": "Four",
+      "current_answer": "four, 4",
+      "current_verdict": "correct",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 10,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D17:1",
+          "speaker": "Nate",
+          "sentence": "I'm really proud that I can make money doing what I love.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:1",
+          "speaker": "Nate",
+          "sentence": "This one was online!",
+          "numeral": "1",
+          "meaning": "THING:was",
+          "counted": "was",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D22:2",
+          "speaker": "Nate",
+          "sentence": "I still can't believe I made so much money from it.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:7",
+          "speaker": "Nate",
+          "sentence": "Yeah actually - I'm currently participating in the video game tournament again and it's INTENSE!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:11",
+          "speaker": "Nate",
+          "sentence": "I'm sure it will do just as well as your last one!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:9",
+          "speaker": "Nate",
+          "sentence": "Can't wait to hear about your next one.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "ordinal attached to 'video' proves total 4"
+    },
+    {
+      "question_id": "lc_conv-42_222",
+      "cache_qid": "conv-42-qa-222",
+      "conversation": "42",
+      "question": "How many people attended the gaming party hosted by Joanna in June 2022?",
+      "gold": "7",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 13,
+      "ground_kind": "PEOPLE",
+      "event_match": true,
+      "grounds": [
+        {
+          "turn_id": "D16:6",
+          "speaker": "Nate",
+          "sentence": "There were 7 people that attended, and 6 of them said they'd want to do it again next month (July 2022)!",
+          "numeral": "7",
+          "meaning": "PEOPLE",
+          "counted": "people",
+          "matches_asked": true
+        },
+        {
+          "turn_id": "D16:1",
+          "speaker": "Joanna",
+          "sentence": "I just got done submitting my recent screenplay to a film contest just to see how others might like it!",
+          "numeral": "1",
+          "meaning": "THING:submitting",
+          "counted": "submitting",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D15:3",
+          "speaker": "Joanna",
+          "sentence": "But I'm kind of a sucker for any superhero - everyone has their own rad story and powers.",
+          "numeral": "1",
+          "meaning": "THING:has",
+          "counted": "has",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D23:2",
+          "speaker": "Joanna",
+          "sentence": "Sometimes it's good to step outside our comfort zones and explore new things.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:8",
+          "speaker": "Joanna",
+          "sentence": "It sounds like it would be difficult to go through so many days of intense gaming!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D9:3",
+          "speaker": "Joanna",
+          "sentence": "I'm working on one with my group called \"Finding Home.\" It's a script about a girl on a journey to find her true home.",
+          "numeral": "1",
+          "meaning": "THING:with",
+          "counted": "with",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-43_17",
+      "cache_qid": "conv-43-qa-017",
+      "conversation": "43",
+      "question": "How many games has John mentioned winning?",
+      "gold": "6",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 14,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D22:3",
+          "speaker": "Tim",
+          "sentence": "Everyone had cool costumes.",
+          "numeral": "1",
+          "meaning": "THING:had",
+          "counted": "had",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:15",
+          "speaker": "John",
+          "sentence": "Winning a championship is my number one goal.",
+          "numeral": "1",
+          "meaning": "THING:goal",
+          "counted": "goal",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D3:5",
+          "speaker": "John",
+          "sentence": "After that, we celebrated at a restaurant, laughing and reliving the intense moments - it felt amazing!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D21:8",
+          "speaker": "John",
+          "sentence": "Money-wise, I've gotten some cool endorsement deals.",
+          "numeral": "1",
+          "meaning": "THING:some",
+          "counted": "some",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:13",
+          "speaker": "John",
+          "sentence": "When I turned ten, dad signed me up for a local league, and I've been playing ever since.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D13:4",
+          "speaker": "John",
+          "sentence": "It was an intense season with both tough losses and great wins.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-44_45",
+      "cache_qid": "conv-44-qa-045",
+      "conversation": "44",
+      "question": "How many pets will Andrew have, as of December 2023?",
+      "gold": "three",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 13,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D13:13",
+          "speaker": "Andrew",
+          "sentence": "It has been one of the most rewarding things I've ever done.",
+          "numeral": "1",
+          "meaning": "THING:of",
+          "counted": "of",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D8:23",
+          "speaker": "Andrew",
+          "sentence": "Your dogs look so content in that picture.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:3",
+          "speaker": "Andrew",
+          "sentence": "And the one in the picture is adorable!",
+          "numeral": "1",
+          "meaning": "THING:in",
+          "counted": "in",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D13:3",
+          "speaker": "Andrew",
+          "sentence": "Seeing them so content makes me happy, it really makes me realize how special and full of love they are!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:13",
+          "speaker": "Andrew",
+          "sentence": "Yeah I would't want to be punished, let alone puppies and dogs.",
+          "numeral": "1",
+          "meaning": "THING:puppies",
+          "counted": "puppies",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:14",
+          "speaker": "Andrew",
+          "sentence": "Hope I find one soon.",
+          "numeral": "1",
+          "meaning": "THING:soon",
+          "counted": "soon",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-44_46",
+      "cache_qid": "conv-44-qa-046",
+      "conversation": "44",
+      "question": "How many pets did Andrew have, as of September 2023?",
+      "gold": "one",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 8,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D8:23",
+          "speaker": "Andrew",
+          "sentence": "Your dogs look so content in that picture.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:3",
+          "speaker": "Andrew",
+          "sentence": "And the one in the picture is adorable!",
+          "numeral": "1",
+          "meaning": "THING:in",
+          "counted": "in",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:13",
+          "speaker": "Andrew",
+          "sentence": "Yeah I would't want to be punished, let alone puppies and dogs.",
+          "numeral": "1",
+          "meaning": "THING:puppies",
+          "counted": "puppies",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D13:12",
+          "speaker": "Audrey",
+          "sentence": "They listen without judging and give us the best unconditional love.",
+          "numeral": "10",
+          "meaning": "THING:without",
+          "counted": "without",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D18:4",
+          "speaker": "Audrey",
+          "sentence": "I make sure to do at least one self-care activity each day - like treating myself to something nice.",
+          "numeral": "1",
+          "meaning": "THING:self",
+          "counted": "self",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D19:2",
+          "speaker": "Audrey",
+          "sentence": "Had some bumps though - last Friday (the Friday before 24 September 2023) at the park one of my pups saw something and pulled so hard the leash busted",
+          "numeral": "1",
+          "meaning": "THING:of",
+          "counted": "of",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-44_60",
+      "cache_qid": "conv-44-qa-060",
+      "conversation": "44",
+      "question": "How many dogs does Andrew have?",
+      "gold": "3",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 20,
+      "ground_kind": "THING:dogs",
+      "event_match": true,
+      "grounds": [
+        {
+          "turn_id": "D15:1",
+          "speaker": "Audrey",
+          "sentence": "Hey Andrew, since we last spoke I got another tattoo of my four dogs on my arm!",
+          "numeral": "4",
+          "meaning": "THING:dogs",
+          "counted": "dogs",
+          "matches_asked": true
+        },
+        {
+          "turn_id": "D15:3",
+          "speaker": "Audrey",
+          "sentence": "I'd love to have more, but four is enough for now.",
+          "numeral": "4",
+          "meaning": "THING:is",
+          "counted": "is",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D15:3",
+          "speaker": "Audrey",
+          "sentence": "They keep me busy and I want to make sure I give each of them the attention they deserve - four dogs is already a lot!",
+          "numeral": "10",
+          "meaning": "THING:dogs",
+          "counted": "dogs",
+          "matches_asked": true
+        },
+        {
+          "turn_id": "D15:3",
+          "speaker": "Audrey",
+          "sentence": "I took them all to the vet and got them checked up, it was such a havoc that next time I'll bring them one by one.",
+          "numeral": "1",
+          "meaning": "THING:by",
+          "counted": "by",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D15:2",
+          "speaker": "Andrew",
+          "sentence": "Have you been thinking about getting more fur babies or is four enough?",
+          "numeral": "4",
+          "meaning": "THING:enough",
+          "counted": "enough",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D25:1",
+          "speaker": "Andrew",
+          "sentence": "A reminder to step out of the comfort zone!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-47_8",
+      "cache_qid": "conv-47-qa-008",
+      "conversation": "47",
+      "question": "How many pets does James have?",
+      "gold": "Three dogs.",
+      "current_answer": "three, 3",
+      "current_verdict": "correct",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 9,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D17:22",
+          "speaker": "James",
+          "sentence": "I stayed there quite a bit, but at least I had one more country to add to my bucket list!",
+          "numeral": "1",
+          "meaning": "THING:more",
+          "counted": "more",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D17:21",
+          "speaker": "John",
+          "sentence": "It’s a pity that I don’t have pets, I’ll definitely get one someday.",
+          "numeral": "1",
+          "meaning": "THING:someday",
+          "counted": "someday",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:15",
+          "speaker": "James",
+          "sentence": "My two dogs are the best pals ever, right?",
+          "numeral": "2",
+          "meaning": "THING:dogs",
+          "counted": "dogs",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:19",
+          "speaker": "James",
+          "sentence": "If you're interested, I can help find the perfect one for you - you'd make a great pet parent!",
+          "numeral": "1",
+          "meaning": "THING:for",
+          "counted": "for",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D4:2",
+          "speaker": "James",
+          "sentence": "It was so intense and fun!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D7:4",
+          "speaker": "James",
+          "sentence": "Yeah, I have one.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "matched 'three dog' (stated total)"
+    },
+    {
+      "question_id": "lc_conv-47_20",
+      "cache_qid": "conv-47-qa-020",
+      "conversation": "47",
+      "question": "How many charity tournaments has John organized till date?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 15,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D10:6",
+          "speaker": "John",
+          "sentence": "It took some planning and coordination, but seeing everyone come together for a good cause was so rewarding.",
+          "numeral": "1",
+          "meaning": "THING:come",
+          "counted": "come",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D10:4",
+          "speaker": "John",
+          "sentence": "Lots showed up and we made a bunch of money for charity!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D29:3",
+          "speaker": "John",
+          "sentence": "Everyone had a blast raising money for the kids' hospital.",
+          "numeral": "1",
+          "meaning": "THING:had",
+          "counted": "had",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D29:3",
+          "speaker": "John",
+          "sentence": "The atmosphere was awesome and everyone was so competitive.",
+          "numeral": "1",
+          "meaning": "THING:was",
+          "counted": "was",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D12:6",
+          "speaker": "John",
+          "sentence": "Though I didn't win the tournament, I still received some money for the 2nd place.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D29:5",
+          "speaker": "John",
+          "sentence": "Everyone was so hyped, and it felt great knowing we were playing for a good cause.",
+          "numeral": "1",
+          "meaning": "THING:was",
+          "counted": "was",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-49_3",
+      "cache_qid": "conv-49-qa-003",
+      "conversation": "49",
+      "question": "How many Prius has Evan owned?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 9,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D18:1",
+          "speaker": "Evan",
+          "sentence": "I've hit a bit of a snag - my new Prius, the one I just bought, broke down.",
+          "numeral": "1",
+          "meaning": "THING:i",
+          "counted": "i",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D18:3",
+          "speaker": "Evan",
+          "sentence": "But, I guess it's just one of those things - even new cars can have problems.",
+          "numeral": "1",
+          "meaning": "THING:of",
+          "counted": "of",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D1:3",
+          "speaker": "Sam",
+          "sentence": "Wow, not bad, what happened to the old one?",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D5:5",
+          "speaker": "Evan",
+          "sentence": "These are the ones who bring lots of joy even through the hard times.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D5:7",
+          "speaker": "Evan",
+          "sentence": "My healthy road has been a long one.",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D5:7",
+          "speaker": "Evan",
+          "sentence": "I've been working on it for two years now, so there have been ups and downs, but I'm doing my best.",
+          "numeral": "2",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-49_6",
+      "cache_qid": "conv-49-qa-006",
+      "conversation": "49",
+      "question": "How many roadtrips did Evan take in May 2023?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 9,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D9:11",
+          "speaker": "Sam",
+          "sentence": "I haven't gone on a road trip in ages, but I love being surrounded by nature.",
+          "numeral": "1",
+          "meaning": "THING:on",
+          "counted": "on",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D1:7",
+          "speaker": "Sam",
+          "sentence": "I love hiking, but it's been ages since I've done it.",
+          "numeral": "1",
+          "meaning": "THING:it",
+          "counted": "it",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D1:7",
+          "speaker": "Sam",
+          "sentence": "I did this hike with my dad way back when I was ten.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D1:8",
+          "speaker": "Evan",
+          "sentence": "How far did you two hike?",
+          "numeral": "2",
+          "meaning": "THING:hike",
+          "counted": "hike",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:11",
+          "speaker": "Evan",
+          "sentence": "But unfortunately it won't help you with your weight problem, besides painting I recommend exercising!",
+          "numeral": "8",
+          "meaning": "THING:problem",
+          "counted": "problem",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D1:22",
+          "speaker": "Evan",
+          "sentence": "Have a good one!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-50_47",
+      "cache_qid": "conv-50-qa-047",
+      "conversation": "50",
+      "question": "How many car shows has Dave attended?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 12,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D1:2",
+          "speaker": "Dave",
+          "sentence": "I attended this awesome event recently.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:4",
+          "speaker": "Dave",
+          "sentence": "Is this your first one?",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D22:3",
+          "speaker": "Dave",
+          "sentence": "Yeah, this one looks great!",
+          "numeral": "1",
+          "meaning": "THING:looks",
+          "counted": "looks",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D7:2",
+          "speaker": "Dave",
+          "sentence": "He's been having some trouble with the engine, but now it's done by myself!",
+          "numeral": "1",
+          "meaning": "THING:by",
+          "counted": "by",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D25:15",
+          "speaker": "Dave",
+          "sentence": "Ever since I was ten, I've been fascinated with how machines work.",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:3",
+          "speaker": "Calvin",
+          "sentence": "I had an incident last week (the week before 16 May 2023) where my place got flooded, but thankfully, I managed to save my music gear and favorite mic",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    },
+    {
+      "question_id": "lc_conv-50_59",
+      "cache_qid": "conv-50-qa-059",
+      "conversation": "50",
+      "question": "How many Ferraris does Calvin own?",
+      "gold": "two",
+      "current_answer": "",
+      "current_verdict": "abstain",
+      "quantity_type": "ENTITY",
+      "explicit_grounds": 13,
+      "ground_kind": "NONE",
+      "event_match": false,
+      "grounds": [
+        {
+          "turn_id": "D23:17",
+          "speaker": "Dave",
+          "sentence": "Must be one amazing ride.",
+          "numeral": "1",
+          "meaning": "THING:amazing",
+          "counted": "amazing",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D6:3",
+          "speaker": "Calvin",
+          "sentence": "I had an incident last week (the week before 16 May 2023) where my place got flooded, but thankfully, I managed to save my music gear and favorite mic",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:9",
+          "speaker": "Calvin",
+          "sentence": "Which one was your favorite?",
+          "numeral": "1",
+          "meaning": "THING:was",
+          "counted": "was",
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D4:2",
+          "speaker": "Calvin",
+          "sentence": "Congrats on opening your own car maintenance shop!",
+          "numeral": "10",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D2:17",
+          "speaker": "Calvin",
+          "sentence": "Can't wait to share it with everyone!",
+          "numeral": "1",
+          "meaning": "UNKNOWN",
+          "counted": null,
+          "matches_asked": false
+        },
+        {
+          "turn_id": "D7:1",
+          "speaker": "Calvin",
+          "sentence": "So much has gone down.",
+          "numeral": "1",
+          "meaning": "THING:down",
+          "counted": "down",
+          "matches_asked": false
+        }
+      ],
+      "engine_detail": "fallback to LLM reader"
+    }
+  ]
+}
