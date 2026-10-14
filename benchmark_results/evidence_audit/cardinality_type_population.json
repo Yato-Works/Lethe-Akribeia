@@ -1,0 +1,512 @@
+{
+  "label": "cardinality type population and the occurrence-path confusion",
+  "by_type": {
+    "OCCURRENCE": 21,
+    "ENTITY": 22,
+    "DURATION": 8
+  },
+  "wrong_by_type": {
+    "OCCURRENCE": 20,
+    "ENTITY": 19,
+    "DURATION": 6
+  },
+  "confusion": [
+    {
+      "question_id": "lc_conv-42_52",
+      "type": "ENTITY",
+      "question": "How many of Joanna's writing have made it to the big screen?",
+      "gold": "two",
+      "answer": "nine times, 9",
+      "detail": "counted 9 distinct activity sessions: ['D15:1', 'D25:2', 'D25:3', 'D27:6', 'D28:7', 'D3:1', 'D4:10', 'D5:1', '",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_133",
+      "type": "ENTITY",
+      "question": "How many people attended the gaming party hosted by Nate in June 2022?",
+      "gold": "7",
+      "answer": "ten times, 10",
+      "detail": "counted 10 distinct activity sessions: ['D14:20', 'D14:23', 'D14:8', 'D14:9', 'D16:2', 'D16:6', 'D16:8', 'D23:",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_222",
+      "type": "ENTITY",
+      "question": "How many people attended the gaming party hosted by Joanna in June 2022?",
+      "gold": "7",
+      "answer": "twice, 2",
+      "detail": "counted 2 distinct activity sessions: ['D16:2', 'D23:1']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-50_47",
+      "type": "ENTITY",
+      "question": "How many car shows has Dave attended?",
+      "gold": "two",
+      "answer": "eight times, 8",
+      "detail": "counted 8 distinct activity sessions: ['D10:16', 'D10:2', 'D14:12', 'D14:2', 'D1:2', 'D22:2', 'D3:13', 'D8:13'",
+      "verdict": "wrong"
+    }
+  ],
+  "rows": [
+    {
+      "question_id": "lc_conv-26_40",
+      "type": "OCCURRENCE",
+      "question": "How many times has Melanie gone to the beach in 2023?",
+      "gold": "2",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-26_75",
+      "type": "ENTITY",
+      "question": "How many children does Melanie have?",
+      "gold": "3",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-26_117",
+      "type": "OCCURRENCE",
+      "question": "How often does Melanie go to the beach with her kids?",
+      "gold": "once or twice a year",
+      "answer": "twice, 2",
+      "detail": "counted 2 distinct activity sessions: ['D10:10', 'D10:8']",
+      "verdict": "correct"
+    },
+    {
+      "question_id": "lc_conv-26_174",
+      "type": "OCCURRENCE",
+      "question": "How often does Caroline go to the beach with her kids?",
+      "gold": "once or twice a year",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-41_62",
+      "type": "ENTITY",
+      "question": "How many dogs has Maria adopted from the dog shelter she volunteers at?",
+      "gold": "two",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-41_63",
+      "type": "DURATION",
+      "question": "How many weeks passed between Maria adopting Coco and Shadow?",
+      "gold": "two weeks",
+      "answer": "2 months",
+      "detail": "calculated delta: 2023-08-11 to 2023-06-16 = 2 months",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-41_79",
+      "type": "OCCURRENCE",
+      "question": "How often does John take his kids to the park?",
+      "gold": "A few times a week",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-41_92",
+      "type": "OCCURRENCE",
+      "question": "How often does John work out with his family?",
+      "gold": "Three times a week",
+      "answer": "twice, 2",
+      "detail": "counted 2 distinct activity sessions: ['D22:5', 'D4:2']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-41_119",
+      "type": "OCCURRENCE",
+      "question": "How often does John get to see sunsets like the one he shared with Maria?",
+      "gold": "At least once a week",
+      "answer": "nine times, 9",
+      "detail": "counted 9 distinct activity sessions: ['D10:13', 'D19:2', 'D19:22', 'D20:4', 'D21:26', 'D22:17', 'D32:9', 'D4:",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-41_158",
+      "type": "OCCURRENCE",
+      "question": "How often does John take his kids to the library?",
+      "gold": "A few times a week",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-41_165",
+      "type": "OCCURRENCE",
+      "question": "How often does Maria work out with her family?",
+      "gold": "Three times a week",
+      "answer": "twice, 2",
+      "detail": "counted 2 distinct activity sessions: ['D13:4', 'D13:6']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_19",
+      "type": "OCCURRENCE",
+      "question": "How many times has Joanna found new hiking trails?",
+      "gold": "twice",
+      "answer": "four times, 4",
+      "detail": "counted 4 distinct activity sessions: ['D11:11', 'D11:3', 'D14:19', 'D8:4']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_49",
+      "type": "OCCURRENCE",
+      "question": "How many times has Joanna's scripts been rejected?",
+      "gold": "Twice",
+      "answer": "six times, 6",
+      "detail": "counted 6 distinct activity sessions: ['D18:8', 'D20:1', 'D29:6', 'D3:2', 'D5:2', 'D6:1']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_52",
+      "type": "ENTITY",
+      "question": "How many of Joanna's writing have made it to the big screen?",
+      "gold": "two",
+      "answer": "nine times, 9",
+      "detail": "counted 9 distinct activity sessions: ['D15:1', 'D25:2', 'D25:3', 'D27:6', 'D28:7', 'D3:1', 'D4:10', 'D5:1', '",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_53",
+      "type": "OCCURRENCE",
+      "question": "How many times has Nate taken his turtles on a walk?",
+      "gold": "Twice.",
+      "answer": "five times, 5",
+      "detail": "counted 5 distinct activity sessions: ['D13:2', 'D20:2', 'D24:9', 'D25:15', 'D27:8']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_62",
+      "type": "ENTITY",
+      "question": "How many letters has Joanna recieved?",
+      "gold": "Two",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-42_68",
+      "type": "ENTITY",
+      "question": "How many hikes has Joanna been on?",
+      "gold": "Four",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-42_69",
+      "type": "ENTITY",
+      "question": "How many turtles does Nate have?",
+      "gold": "Three",
+      "answer": "three, 3",
+      "detail": "ordinal attached to 'turtle' proves total 3",
+      "verdict": "correct"
+    },
+    {
+      "question_id": "lc_conv-42_78",
+      "type": "ENTITY",
+      "question": "How many video game tournaments has Nate participated in?",
+      "gold": "nine",
+      "answer": "four, 4",
+      "detail": "ordinal attached to 'video' proves total 4",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_79",
+      "type": "ENTITY",
+      "question": "How many screenplays has Joanna written?",
+      "gold": "three",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-42_80",
+      "type": "ENTITY",
+      "question": "How many tournaments has Nate won?",
+      "gold": "seven",
+      "answer": "four, 4",
+      "detail": "ordinal attached to 'tournament' proves total 4",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_133",
+      "type": "ENTITY",
+      "question": "How many people attended the gaming party hosted by Nate in June 2022?",
+      "gold": "7",
+      "answer": "ten times, 10",
+      "detail": "counted 10 distinct activity sessions: ['D14:20', 'D14:23', 'D14:8', 'D14:9', 'D16:2', 'D16:6', 'D16:8', 'D23:",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-42_136",
+      "type": "ENTITY",
+      "question": "How many video game tournaments has Nate won by July 10, 2022?",
+      "gold": "Four",
+      "answer": "four, 4",
+      "detail": "ordinal attached to 'video' proves total 4",
+      "verdict": "correct"
+    },
+    {
+      "question_id": "lc_conv-42_222",
+      "type": "ENTITY",
+      "question": "How many people attended the gaming party hosted by Joanna in June 2022?",
+      "gold": "7",
+      "answer": "twice, 2",
+      "detail": "counted 2 distinct activity sessions: ['D16:2', 'D23:1']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-43_16",
+      "type": "DURATION",
+      "question": "After how many weeks did Tim reconnect with the fellow Harry Potter fan from California?",
+      "gold": "three weeks",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-43_17",
+      "type": "ENTITY",
+      "question": "How many games has John mentioned winning?",
+      "gold": "6",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-43_29",
+      "type": "DURATION",
+      "question": "What schools did John play basketball in and how many years was he with his team during high school?",
+      "gold": "Middle school, high school, and college and he was with his high school team for 4 years.",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-43_49",
+      "type": "OCCURRENCE",
+      "question": "How many times has John injured his ankle?",
+      "gold": "two times",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-44_7",
+      "type": "DURATION",
+      "question": "How many years passed between Audrey adopting Pixie and her other three dogs?",
+      "gold": "three years",
+      "answer": "one year",
+      "detail": "calculated delta: 2023-04-02 to 2023-07-08 = one year",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-44_17",
+      "type": "OCCURRENCE",
+      "question": "How many times did Audrey and Andew plan to hike together?",
+      "gold": "three times",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-44_34",
+      "type": "DURATION",
+      "question": "How many months passed between Andrew adopting Toby and Buddy?",
+      "gold": "three months",
+      "answer": "3 months",
+      "detail": "calculated delta: 2023-11-22 to 2023-08-24 = 3 months",
+      "verdict": "correct"
+    },
+    {
+      "question_id": "lc_conv-44_45",
+      "type": "ENTITY",
+      "question": "How many pets will Andrew have, as of December 2023?",
+      "gold": "three",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-44_46",
+      "type": "ENTITY",
+      "question": "How many pets did Andrew have, as of September 2023?",
+      "gold": "one",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-44_47",
+      "type": "DURATION",
+      "question": "How many months passed between Andrew adopting Buddy and Scout",
+      "gold": "one month",
+      "answer": "1 month",
+      "detail": "calculated delta: 2023-11-22 to 2023-10-19 = 1 month",
+      "verdict": "correct"
+    },
+    {
+      "question_id": "lc_conv-44_60",
+      "type": "ENTITY",
+      "question": "How many dogs does Andrew have?",
+      "gold": "3",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-44_86",
+      "type": "OCCURRENCE",
+      "question": "How often does Audrey take her pups to the park for practice?",
+      "gold": "Twice a week",
+      "answer": "six times, 6",
+      "detail": "counted 6 distinct activity sessions: ['D14:2', 'D14:4', 'D19:2', 'D1:9', 'D27:2', 'D7:1']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-44_94",
+      "type": "OCCURRENCE",
+      "question": "How often does Audrey take her dogs for walks?",
+      "gold": "Multiple times a day",
+      "answer": "twice, 2",
+      "detail": "counted 2 distinct activity sessions: ['D1:9', 'D5:8']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-44_118",
+      "type": "OCCURRENCE",
+      "question": "How often does Audrey meet up with other dog owners for tips and playdates?",
+      "gold": "Once a week",
+      "answer": "twelve times, 12",
+      "detail": "counted 12 distinct activity sessions: ['D14:2', 'D16:6', 'D1:9', 'D23:14', 'D27:2', 'D27:4', 'D4:21', 'D4:23'",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-44_143",
+      "type": "OCCURRENCE",
+      "question": "How often does Andrew take his dogs for walks?",
+      "gold": "Multiple times a day",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-44_157",
+      "type": "OCCURRENCE",
+      "question": "How often does Andrew meet up with other dog owners for tips and playdates?",
+      "gold": "Once a week",
+      "answer": "four times, 4",
+      "detail": "counted 4 distinct activity sessions: ['D19:7', 'D27:3', 'D27:5', 'D2:8']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-47_8",
+      "type": "ENTITY",
+      "question": "How many pets does James have?",
+      "gold": "Three dogs.",
+      "answer": "three, 3",
+      "detail": "matched 'three dog' (stated total)",
+      "verdict": "correct"
+    },
+    {
+      "question_id": "lc_conv-47_20",
+      "type": "ENTITY",
+      "question": "How many charity tournaments has John organized till date?",
+      "gold": "two",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-47_31",
+      "type": "DURATION",
+      "question": "How many days did James plan to spend on his trip in Canada?",
+      "gold": "19 days",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-48_19",
+      "type": "OCCURRENCE",
+      "question": "How many times has Jolene been to France?",
+      "gold": "two times",
+      "answer": "three times, 3",
+      "detail": "counted 3 distinct activity sessions: ['D15:15', 'D2:1', 'D7:2']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-49_3",
+      "type": "ENTITY",
+      "question": "How many Prius has Evan owned?",
+      "gold": "two",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-49_6",
+      "type": "ENTITY",
+      "question": "How many roadtrips did Evan take in May 2023?",
+      "gold": "two",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-49_39",
+      "type": "DURATION",
+      "question": "How many months lapsed between Sam's first and second doctor's appointment?",
+      "gold": "three months",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-49_43",
+      "type": "OCCURRENCE",
+      "question": "How often does Sam get health checkups?",
+      "gold": "every three months",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    },
+    {
+      "question_id": "lc_conv-50_18",
+      "type": "OCCURRENCE",
+      "question": "How many times has Calvin had to deal with insurance paperwork?",
+      "gold": "two times",
+      "answer": "three times, 3",
+      "detail": "counted 3 distinct activity sessions: ['D9:1', 'D9:2', 'D9:3']",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-50_47",
+      "type": "ENTITY",
+      "question": "How many car shows has Dave attended?",
+      "gold": "two",
+      "answer": "eight times, 8",
+      "detail": "counted 8 distinct activity sessions: ['D10:16', 'D10:2', 'D14:12', 'D14:2', 'D1:2', 'D22:2', 'D3:13', 'D8:13'",
+      "verdict": "wrong"
+    },
+    {
+      "question_id": "lc_conv-50_59",
+      "type": "ENTITY",
+      "question": "How many Ferraris does Calvin own?",
+      "gold": "two",
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "verdict": "abstain"
+    }
+  ]
+}
