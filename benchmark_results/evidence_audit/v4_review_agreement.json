@@ -1,0 +1,803 @@
+{
+  "label": "independent review joined to the key; agreement and weighted estimates",
+  "reviewer": "Eli",
+  "review_status": "PROVISIONAL_NOT_ADJUDICATED",
+  "reviewer_caveat": "This is a text-only model first pass, not human ground truth and not a pristine third-party blind audit. The separate reviewer key and engine verdicts were not inspected, but prior conversation context discussed the audit process. REVIEW_REQUIRED is intentionally used for relative/absolute date gaps and potentially image-dependent cases. Recheck labels before unblinding; do not treat the distribution as a confirmed population estimate.",
+  "review_mode": "independent text-only first pass over the attached blind pack; did not inspect the separate reviewer key or engine verdicts. However, this conversation included prior discussion of the audit process, so this is not a pristine third-party blind review.",
+  "summary_vs_file_discrepancy": {
+    "spoken_summary": {
+      "PARTIAL_SUPPORT": 37,
+      "REVIEW_REQUIRED": 9,
+      "COMPOSITIONAL_SUPPORT": 7,
+      "DIRECT_SUPPORT": 2,
+      "PARAPHRASE_SUPPORT": 3,
+      "ABSENT": 2
+    },
+    "delivered_file": {
+      "ANNOTATION_ISSUE": 3,
+      "REVIEW_REQUIRED": 36,
+      "PARTIAL_SUPPORT": 5,
+      "DIRECT_SUPPORT": 4,
+      "COMPOSITIONAL_SUPPORT": 5,
+      "ABSENT": 7
+    },
+    "delivered_csv_agrees_with_json": true,
+    "resolution": "the file is authoritative; the spoken summary was of a different or earlier pass and is not used as a data source"
+  },
+  "is_inter_annotator_agreement": false,
+  "second_annotator_available": false,
+  "n_reviewed": 60,
+  "n_joined": 60,
+  "pack_ids": 60,
+  "unjoined": 0,
+  "eli_label_distribution": {
+    "ANNOTATION_ISSUE": 3,
+    "REVIEW_REQUIRED": 36,
+    "PARTIAL_SUPPORT": 5,
+    "DIRECT_SUPPORT": 4,
+    "COMPOSITIONAL_SUPPORT": 5,
+    "ABSENT": 7
+  },
+  "engine_s1_distribution": {
+    "VERBATIM_ABSENT": 60
+  },
+  "label_vs_outcome": {
+    "SUPPORTING": {
+      "n": 9,
+      "correct": 0,
+      "wrong": 0,
+      "abstain": 9
+    },
+    "UNDECIDED": {
+      "n": 44,
+      "correct": 0,
+      "wrong": 0,
+      "abstain": 44
+    },
+    "NOT_SUPPORTING": {
+      "n": 7,
+      "correct": 0,
+      "wrong": 0,
+      "abstain": 7
+    }
+  },
+  "weighted_population_estimate": {
+    "UNDECIDED": 103.3,
+    "SUPPORTING": 20.9,
+    "NOT_SUPPORTING": 16.7
+  },
+  "rows": [
+    {
+      "question_id": "lc_conv-26_1",
+      "joined": true,
+      "eli_label": "ANNOTATION_ISSUE",
+      "eli_rationale": "D1:14 says “last year” about the lake sunrise; nothing in the conversation anchors that relative phrase to 2022. The supplied absolute-year gold cannot be established.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:12"
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "The conversation refers to a book recommended earlier, but the title “Nothing Is Impossible” is not stated in the text. It may depend on an image or omitted visual context.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D7:8"
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_50",
+      "joined": true,
+      "eli_label": "PARTIAL_SUPPORT",
+      "eli_rationale": "Caroline repeatedly supports transgender people and LGBTQ+ rights, making “Liberal” plausible, but political leaning is not explicitly stated and cannot be concluded uniquely from these views.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D12:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_63",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D15:11 says the talent show is “next month”; no absolute-date anchor establishes September 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D15:11"
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_72",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D17:4 says a friend adopted “last year”; the conversation does not anchor that phrase to 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D17:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-26_73",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D17:8 says Melanie got hurt “last month”; no absolute-date anchor establishes September 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D17:8"
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_1",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D1:3 says Gina lost her DoorDash job “this month”; the conversation does not establish January 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_10",
+      "joined": true,
+      "eli_label": "ANNOTATION_ISSUE",
+      "eli_rationale": "D5:5–7 establishes that Gina teamed up with a local artist, but provides no date or relative-time expression supporting February 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D5:5"
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_7",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D2:1 says she “just launched” an ad campaign, but there is no anchor for 29 January 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D2:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_76",
+      "joined": true,
+      "eli_label": "DIRECT_SUPPORT",
+      "eli_rationale": "D15:12–19 repeatedly expresses excitement and anticipation about the upcoming grand opening.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D15:18",
+        "D15:19"
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_77",
+      "joined": true,
+      "eli_label": "DIRECT_SUPPORT",
+      "eli_rationale": "D16:3 explicitly says Gina made a limited-edition line and identifies the item as a hoodie.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D16:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-30_95",
+      "joined": true,
+      "eli_label": "DIRECT_SUPPORT",
+      "eli_rationale": "D9:10 says “one of my trophies from a dance contest,” directly supporting a trophy.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D9:10"
+      ]
+    },
+    {
+      "question_id": "lc_conv-41_10",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D7:5 says Maria met Jean “yesterday”; the conversation does not anchor that to 24 February 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D7:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-41_20",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D11:3–5 says the Pacific Northwest road trip was “last year,” but does not anchor that phrase to 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D11:3",
+        "D11:5"
+      ]
+    },
+    {
+      "question_id": "lc_conv-41_24",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D13:3 says John started family boot camps “last month”; the conversation does not establish April 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D13:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_19",
+      "joined": true,
+      "eli_label": "COMPOSITIONAL_SUPPORT",
+      "eli_rationale": "D8:4 describes finding a trail yesterday and D11:3 says Joanna went hiking and found more trails. These support two occasions of finding trails.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D8:4",
+        "D11:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_2",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The conversation text does not mention “Eternal Sunshine of the Spotless Mind” or when Joanna first watched it.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:18"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_41",
+      "joined": true,
+      "eli_label": "ANNOTATION_ISSUE",
+      "eli_rationale": "The chocolate raspberry tart is discussed (e.g. D21:11), but no date for making it is given; 5 October 2022 is not recoverable from the conversation.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D22:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_53",
+      "joined": true,
+      "eli_label": "PARTIAL_SUPPORT",
+      "eli_rationale": "D25:15 explicitly describes one occasion when Nate took the turtles for a walk; the text reviewed does not establish a second occasion.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D5:4",
+        "D25:15"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_57",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D26:21 says Joanna would bring recipes to share, but the absolute date 5 November 2022 is not established by the conversation text available here.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D26:19"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_73",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D28:22 places Joanna hiking near Fort Wayne last summer, which supports the Indiana location, but does not anchor the requested summer to 2021.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D28:22"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_89",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "The conversation says Nate chose a hair color but never names the color in text; the pack’s image-dependent rule applies.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D7:1",
+        "D7:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-42_91",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "The conversation refers to “this series” and its battles/characters, but does not name dragons in text; the answer may depend on an image of the book.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D9:14"
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_16",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D3:2 and D5:1 establish a conversation and later reconnection, but the text does not establish a three-week interval.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D3:2",
+        "D5:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_0",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The conversation mentions Audrey’s dogs and later adoption events, but does not establish the year she adopted her first three dogs.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:7"
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_13",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D9:1 establishes that Audrey got a new place, but no date or relative-time expression anchors it to June 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D9:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_43",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The reviewed conversation text does not establish Minnesota as the location where Audrey and Andrew live.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D11:9"
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_0",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The reviewed conversation text does not state that John has obesity or provide evidence sufficient to identify that as his suspected health problem.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:27"
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_15",
+      "joined": true,
+      "eli_label": "PARTIAL_SUPPORT",
+      "eli_rationale": "Civilization VI is mentioned (D8:22), and James discusses strategy games, but the conversation does not establish when he started playing it.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D8:29"
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_43",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D20:17 says John is organizing a gaming night with siblings “next month”; no absolute-date anchor establishes September 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D20:17"
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_47",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D23:1 says James asked Samantha to be his girlfriend “yesterday”; no anchor establishes 3 September 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D23:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_48",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D23:5–6 establishes a planned baseball game “next Sunday,” but no anchor establishes 11 September 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D23:5",
+        "D23:6"
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_65",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D31:1 says the family is currently on a road trip and has visited Mark and Josh, but the conversation does not anchor that event to 7 November 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D31:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_12",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D2:7 says Deborah received the letter “yesterday”; no absolute-date anchor establishes 26 January 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D2:7"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_28",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "The conversation text reviewed here does not name Colombia. The country may be represented only in a visual or other omitted context, so I am not forcing ABSENT.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D4:33"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_32",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D6:10 says Bali was one of Deborah’s favorites “last year”; the conversation does not anchor that to 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D6:10"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_48",
+      "joined": true,
+      "eli_label": "COMPOSITIONAL_SUPPORT",
+      "eli_rationale": "D13:15 places Jolene doing yoga on Mount Talkeetna during her internship; the state answer Alaska follows from that place reference, though it is an inference.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D13:15"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_50",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D13:17 and D20:21 say Jolene has practiced yoga for about three years, but there is no absolute-date anchor to establish 2020.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D13:17"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_57",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D19:2 says the console was gifted on “the 17th,” but the month and year are not established there.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D19:2"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_6",
+      "joined": true,
+      "eli_label": "DIRECT_SUPPORT",
+      "eli_rationale": "D1:8–9 explicitly says both Jolene and Deborah have a pendant that reminds them of their mothers.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:8",
+        "D1:9"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_7",
+      "joined": true,
+      "eli_label": "COMPOSITIONAL_SUPPORT",
+      "eli_rationale": "D1:8 says Jolene’s mother gave her the pendant in Paris in 2010; Paris supports France as the country.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D1:8"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_75",
+      "joined": true,
+      "eli_label": "COMPOSITIONAL_SUPPORT",
+      "eli_rationale": "D27:12 describes a card game about cats with cards and attacks, which strongly matches Exploding Kittens, although the name itself is not spoken.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D27:12"
+      ]
+    },
+    {
+      "question_id": "lc_conv-48_81",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "The conversation shows Jolene considering surfing and looking for a time/place for a lesson, but does not establish an agreement to go surfing in October 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D29:34"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_25",
+      "joined": true,
+      "eli_label": "PARTIAL_SUPPORT",
+      "eli_rationale": "The conversation contains health and weight concerns, but the text reviewed does not establish that Evan began taking his health seriously in 2021.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D5:6",
+        "D5:7"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_39",
+      "joined": true,
+      "eli_label": "PARTIAL_SUPPORT",
+      "eli_rationale": "Doctor/check-up references occur, but the text reviewed does not establish two appointments separated by three months.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D2:6",
+        "D7:2"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_47",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "Evan confirms skiing in Banff (D8:28), but no date in the conversation anchors it to July 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D8:26",
+        "D8:27",
+        "D8:28"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_58",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D12:2 says Evan started lifting weights “one year ago”; no absolute-date anchor establishes October 2022.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D12:2"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_59",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D13:10 says Sam and his mate are going to try kayaking “now,” but the conversation does not anchor that to 14 October 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D13:10"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_70",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The conversation reviewed does not state how long Evan and his partner dated before marriage.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D5:1",
+        "D21:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_75",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "The conversation mentions Evan getting married “last week,” but does not anchor the announcement to 5 January 2024.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D23:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_79",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D23:23 says the honeymoon in Canada is planned for “next month,” but no absolute-date anchor establishes February 2024.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D23:23"
+      ]
+    },
+    {
+      "question_id": "lc_conv-49_80",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D25:2 mentions an embarrassing drunken night but gives no date; 9 January 2023 is not established.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D24:3"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_34",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The conversation mentions Dave going to a workshop in San Francisco (D14:1), but the reviewed text does not establish when he returned.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D17:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_36",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D18:1 says the album dropped “on the 11th,” supporting the day number but not September 2023 without an absolute-date anchor.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D18:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_39",
+      "joined": true,
+      "eli_label": "ABSENT",
+      "eli_rationale": "The reviewed conversation discusses Dave’s car-restoration interests but does not establish a preference between a Dodge Charger and a Subaru Forester.",
+      "eli_class": "NOT_SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": []
+    },
+    {
+      "question_id": "lc_conv-50_4",
+      "joined": true,
+      "eli_label": "COMPOSITIONAL_SUPPORT",
+      "eli_rationale": "The conversation discusses meeting/visiting in Boston; Boston is in the United States, supporting the country answer by geographic inference.",
+      "eli_class": "SUPPORTING",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D3:9",
+        "D3:10"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_52",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D24:17 says Calvin will go to Tokyo “next month,” but the conversation does not anchor that to November 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D24:17"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_55",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D26:1 says Calvin visited Boston sights “yesterday”; no absolute-date anchor establishes 24 October 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D26:1"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_65",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D27:6 says Dave took the picture “last month”; the conversation does not anchor that to September 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D27:6"
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_69",
+      "joined": true,
+      "eli_label": "REVIEW_REQUIRED",
+      "eli_rationale": "D30:5 says Dave bought the camera “this month,” but no absolute-date anchor establishes November 2023.",
+      "eli_class": "UNDECIDED",
+      "engine_verdict": "abstain",
+      "engine_s1": "VERBATIM_ABSENT",
+      "dataset_evidence": [
+        "D30:05"
+      ]
+    }
+  ]
+}
