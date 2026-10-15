@@ -1,0 +1,61 @@
+{
+  "label": "V4 mission 20 -- benchmark-wide loss decomposition (auditable run)",
+  "baseline": {
+    "head": "b222186",
+    "production_changed": false
+  },
+  "auditable_run": {
+    "correct": 137,
+    "wrong": 113,
+    "abstain": 1736,
+    "accuracy_pct": 6.898288016112789
+  },
+  "unauditable_run": {
+    "correct": 1009,
+    "accuracy_pct": 50.8,
+    "provenance": "absent -- not merged, not reported as current"
+  },
+  "by_category": {
+    "1": {
+      "n": 282,
+      "correct": 11,
+      "wrong": 27,
+      "abstain": 244
+    },
+    "2": {
+      "n": 321,
+      "correct": 70,
+      "wrong": 19,
+      "abstain": 232
+    },
+    "3": {
+      "n": 96,
+      "correct": 2,
+      "wrong": 5,
+      "abstain": 89
+    },
+    "4": {
+      "n": 841,
+      "correct": 43,
+      "wrong": 49,
+      "abstain": 749
+    },
+    "5": {
+      "n": 446,
+      "correct": 11,
+      "wrong": 13,
+      "abstain": 422
+    }
+  },
+  "first_blocking_stage": {
+    "s1_source_evidence": 493,
+    "NONE_RECORDED": 610,
+    "s4_speaker_attribution": 375,
+    "s2_preserved_in_memory": 367,
+    "s5_subject_attribution": 4
+  },
+  "blocking_rule": "value contains UNKNOWN/ABSENT/NOT_FOUND/NO_TOKENS/PARTIAL/NONE",
+  "h9_reader_correct": 685,
+  "h9_n": 989,
+  "n_questions": 1986
+}
