@@ -1,0 +1,1119 @@
+{
+  "label": "V4 mission 8 -- answer-selection failure decomposition (anatomy only)",
+  "n": 28,
+  "conversations": 10,
+  "h1": {
+    "CONFIRMED": 16,
+    "NOT_H1": 8,
+    "POSSIBLE": 2,
+    "UNKNOWN": 2
+  },
+  "h2": {
+    "NOT_H2": 21,
+    "POSSIBLE": 7
+  },
+  "h3": {
+    "CONFIRMED": 26,
+    "UNKNOWN": 2
+  },
+  "confusion_kinds": {
+    "event": 28,
+    "time": 11,
+    "person": 1
+  },
+  "gold_in_given_context": 26,
+  "rows": [
+    {
+      "question_id": "lc_conv-26_111",
+      "conversation": "conv-26",
+      "question": "What creative project do Mel and her kids do together besides pottery?",
+      "gold": "painting",
+      "prediction": "They enjoy hiking in the mountains and exploring forests together.",
+      "raw_output": "They enjoy hiking in the mountains and exploring forests together.",
+      "gold_source_turns": [
+        "D1:6",
+        "D1:13",
+        "D1:15",
+        "D1:16"
+      ],
+      "gold_speakers": [
+        "Caroline",
+        "Melanie"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D8:34",
+        "D16:2",
+        "D17:26"
+      ],
+      "pred_speakers": [
+        "Melanie"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D1:6', 'D1:13', 'D1:15'] (given to the Reader) while the answer came from ['D8:34', 'D16:2', 'D17:26']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-30_45",
+      "conversation": "conv-30",
+      "question": "What is Jon's attitude towards being part of the dance festival?",
+      "gold": "Glad",
+      "prediction": "Jon is excited and fulfilled by the performance at the festival, as it allows him to share his passion and see his students succeed.",
+      "raw_output": "Jon is excited and fulfilled by the performance at the festival, as it allows him to share his passion and see his students succeed.",
+      "gold_source_turns": [
+        "D1:28",
+        "D11:17",
+        "D14:6",
+        "D14:16"
+      ],
+      "gold_speakers": [
+        "Gina",
+        "Jon"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D5:2"
+      ],
+      "pred_speakers": [
+        "Jon"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D1:28', 'D11:17', 'D14:6'] (given to the Reader) while the answer came from ['D5:2']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-30_71",
+      "conversation": "conv-30",
+      "question": "How does Gina describe the studio that Jon has opened?",
+      "gold": "amazing",
+      "prediction": "Gina describes Jon's studio as a place for dancers to grow and a creative space for self-expression.",
+      "raw_output": "Gina describes Jon's studio as a place for dancers to grow and a creative space for self-expression.",
+      "gold_source_turns": [
+        "D1:16",
+        "D1:18",
+        "D11:6",
+        "D14:1"
+      ],
+      "gold_speakers": [
+        "Gina",
+        "Jon"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D19:6",
+        "D13:5",
+        "D13:6"
+      ],
+      "pred_speakers": [
+        "Gina",
+        "Jon"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D1:16', 'D1:18', 'D11:6'] (given to the Reader) while the answer came from ['D19:6', 'D13:5', 'D13:6']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-41_128",
+      "conversation": "conv-41",
+      "question": "In what activity did Maria and her church friends participate in July 2023?",
+      "gold": "hiking",
+      "prediction": "They had a picnic.",
+      "raw_output": "They had a picnic.",
+      "gold_source_turns": [
+        "D16:1",
+        "D18:5",
+        "D25:2"
+      ],
+      "gold_speakers": [
+        "John",
+        "Maria"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D24:6",
+        "D31:19",
+        "D8:2"
+      ],
+      "pred_speakers": [
+        "John",
+        "Maria"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D16:1', 'D18:5', 'D25:2'] (given to the Reader) while the answer came from ['D24:6', 'D31:19', 'D8:2']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "conversation": "conv-42",
+      "question": "How did Nate feel when someone wrote him a letter after reading his blog post?",
+      "gold": "Touched",
+      "prediction": "Nate felt surreal and thought it was nice work.",
+      "raw_output": "Nate felt surreal and thought it was nice work.",
+      "gold_source_turns": [
+        "D18:5"
+      ],
+      "gold_speakers": [
+        "Joanna"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D25:6",
+        "D12:12",
+        "D15:2"
+      ],
+      "pred_speakers": [
+        "Joanna",
+        "Nate"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D18:5'] (given to the Reader) while the answer came from ['D25:6', 'D12:12', 'D15:2']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-43_101",
+      "conversation": "conv-43",
+      "question": "How was John's experience in New York City?",
+      "gold": "Amazing",
+      "prediction": "John enjoyed his trip to New York City, mentioning he loves discovering new cities and that he shared a picture from his visit.",
+      "raw_output": "John enjoyed his trip to New York City, mentioning he loves discovering new cities and that he shared a picture from his visit.",
+      "gold_source_turns": [
+        "D1:18",
+        "D11:13",
+        "D11:14",
+        "D11:16"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D9:6"
+      ],
+      "pred_speakers": [
+        "John"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D1:18', 'D11:13', 'D11:14'] (given to the Reader) while the answer came from ['D9:6']",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "2 turn(s) carry other same-kind values (name), e.g. ['harry', 'london', 'potter']",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D1:18",
+          "kind": "name",
+          "others": [
+            "harry",
+            "london",
+            "potter"
+          ]
+        },
+        {
+          "turn": "D9:6",
+          "kind": "name",
+          "others": [
+            "city",
+            "new",
+            "york"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "conversation": "conv-43",
+      "question": "What did Tim recently start learning in addition to being part of a travel club and working on studies?",
+      "gold": "an instrument",
+      "prediction": "Tim recently started learning to play the violin.",
+      "raw_output": "Tim recently started learning to play the violin.",
+      "gold_source_turns": [
+        "D21:9",
+        "D21:10"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D21:11",
+        "D1:5",
+        "D1:11"
+      ],
+      "pred_speakers": [
+        "John",
+        "Tim"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D21:9', 'D21:10'] (given to the Reader) while the answer came from ['D21:11', 'D1:5', 'D1:11']",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "1 turn(s) carry other same-kind values (name), e.g. ['minnesota', 'wolves']",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D1:5",
+          "kind": "name",
+          "others": [
+            "minnesota",
+            "wolves"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_152",
+      "conversation": "conv-43",
+      "question": "What kind of game did John have a career-high in assists in?",
+      "gold": "basketball",
+      "prediction": "A big game against their rival.",
+      "raw_output": "A big game against their rival.",
+      "gold_source_turns": [
+        "D11:5",
+        "D11:13",
+        "D11:14",
+        "D11:15"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D23:3",
+        "D16:6",
+        "D16:10"
+      ],
+      "pred_speakers": [
+        "John"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D16:10', 'D16:6']",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "1 turn(s) carry other same-kind values (name), e.g. ['english', 'friday']",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D23:3",
+          "kind": "name",
+          "others": [
+            "english",
+            "friday"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-43_162",
+      "conversation": "conv-43",
+      "question": "What new fantasy TV series is Tim excited about?",
+      "gold": "\"The Wheel of Time\"",
+      "prediction": "Tim is excited about a new fantasy TV series coming out in January 2024.",
+      "raw_output": "Tim is excited about a new fantasy TV series coming out in January 2024.",
+      "gold_source_turns": [
+        "D26:36"
+      ],
+      "gold_speakers": [
+        "Tim"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D26:34",
+        "D26:36",
+        "D7:6"
+      ],
+      "pred_speakers": [
+        "Tim"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D26:36']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-43_223",
+      "conversation": "conv-43",
+      "question": "What did John recently start learning in addition to being part of a travel club and working on studies?",
+      "gold": "an instrument",
+      "prediction": "John recently started learning how to market himself and boost his brand.",
+      "raw_output": "John recently started learning how to market himself and boost his brand.",
+      "gold_source_turns": [
+        "D21:9",
+        "D21:10"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D21:8",
+        "D11:17",
+        "D11:18"
+      ],
+      "pred_speakers": [
+        "John",
+        "Tim"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D21:9', 'D21:10'] (given to the Reader) while the answer came from ['D21:8', 'D11:17', 'D11:18']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-43_234",
+      "conversation": "conv-43",
+      "question": "Which language is John learning?",
+      "gold": "German",
+      "prediction": "John is learning Spanish.",
+      "raw_output": "John is learning Spanish.",
+      "gold_source_turns": [
+        "D27:5",
+        "D27:6",
+        "D27:7",
+        "D27:12"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D27:6",
+        "D27:7",
+        "D27:8"
+      ],
+      "pred_speakers": [
+        "John",
+        "Tim"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D27:6', 'D27:7']",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "1 turn(s) carry other same-kind values (name), e.g. ['french', 'spanish']",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D27:7",
+          "kind": "name",
+          "others": [
+            "french",
+            "spanish"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-44_107",
+      "conversation": "conv-44",
+      "question": "How do Audrey's dogs react to snow?",
+      "gold": "Confused",
+      "prediction": "They hate it.",
+      "raw_output": "They hate it.",
+      "gold_source_turns": [
+        "D23:12"
+      ],
+      "gold_speakers": [
+        "Audrey"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D22:12",
+        "D23:12"
+      ],
+      "pred_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D23:12']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-44_49",
+      "conversation": "conv-44",
+      "question": "What does Audrey view her pets as?",
+      "gold": "Family",
+      "prediction": "Audrey views her pets as sources of joy and companionship.",
+      "raw_output": "Audrey views her pets as sources of joy and companionship.",
+      "gold_source_turns": [
+        "D10:15",
+        "D15:14",
+        "D15:15",
+        "D2:16"
+      ],
+      "gold_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "gold_in_given_context": false,
+      "pred_source_turns": [
+        "D24:4",
+        "D10:18",
+        "D12:1"
+      ],
+      "pred_speakers": [
+        "Andrew"
+      ],
+      "H1_different_turn": "POSSIBLE",
+      "H1_why": "gold in ['D10:15', 'D15:14', 'D15:15'] but that turn is NOT in the frozen context; answer from ['D24:4', 'D10:18', 'D12:1']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-44_50",
+      "conversation": "conv-44",
+      "question": "What is a skill that Audrey learned to take care of her dogs?",
+      "gold": "Grooming",
+      "prediction": "Audrey joined a dog owners group to learn how to better take care of her dogs.",
+      "raw_output": "Audrey joined a dog owners group to learn how to better take care of her dogs.",
+      "gold_source_turns": [
+        "D16:2",
+        "D16:3",
+        "D16:4",
+        "D16:5"
+      ],
+      "gold_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D27:2",
+        "D27:5",
+        "D27:6"
+      ],
+      "pred_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D16:2', 'D16:3', 'D16:4'] (given to the Reader) while the answer came from ['D27:2', 'D27:5', 'D27:6']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-44_60",
+      "conversation": "conv-44",
+      "question": "How many dogs does Andrew have?",
+      "gold": "3",
+      "prediction": "Andrew has 5 dogs now, including the newly adopted one.",
+      "raw_output": "Andrew has 5 dogs now, including the newly adopted one.",
+      "gold_source_turns": [
+        "D1:7",
+        "D10:9",
+        "D11:32"
+      ],
+      "gold_speakers": [
+        "Audrey"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [],
+      "pred_speakers": [],
+      "H1_different_turn": "UNKNOWN",
+      "H1_why": "could not locate either side in the source",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "1 turn(s) carry other same-kind values (name), e.g. ['panda', 'pepper', 'precious']",
+      "H3_confusion": "UNKNOWN",
+      "H3_why": "could not trace both sides to source turns",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D1:7",
+          "kind": "name",
+          "others": [
+            "panda",
+            "pepper",
+            "precious"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-47_162",
+      "conversation": "conv-47",
+      "question": "How did James relax in his free time on 9 July, 2022?",
+      "gold": "Reading",
+      "prediction": "James mentioned that he likes to read to relax.",
+      "raw_output": "James mentioned that he likes to read to relax.",
+      "gold_source_turns": [
+        "D14:7",
+        "D14:8",
+        "D16:8",
+        "D8:12"
+      ],
+      "gold_speakers": [
+        "James",
+        "John"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D16:8",
+        "D1:3",
+        "D12:9"
+      ],
+      "pred_speakers": [
+        "James",
+        "John"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D16:8']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-47_163",
+      "conversation": "conv-47",
+      "question": "What new hobby did John become interested in on 9 July, 2022?",
+      "gold": "Extreme sports",
+      "prediction": "John became interested in metal detecting on 9 July, 2022.",
+      "raw_output": "John became interested in metal detecting on 9 July, 2022.",
+      "gold_source_turns": [
+        "D16:5"
+      ],
+      "gold_speakers": [
+        "James"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [],
+      "pred_speakers": [],
+      "H1_different_turn": "UNKNOWN",
+      "H1_why": "could not locate either side in the source",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "UNKNOWN",
+      "H3_why": "could not trace both sides to source turns",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-47_3",
+      "conversation": "conv-47",
+      "question": "Do both James and John have pets?",
+      "gold": "No",
+      "prediction": "Yes, both James and John have pets.",
+      "raw_output": "Yes, both James and John have pets.",
+      "gold_source_turns": [
+        "D1:4",
+        "D1:6",
+        "D1:18",
+        "D1:20"
+      ],
+      "gold_speakers": [
+        "James",
+        "John"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D23:1"
+      ],
+      "pred_speakers": [
+        "James"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D1:4', 'D1:6', 'D1:18'] (given to the Reader) while the answer came from ['D23:1']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-48_77",
+      "conversation": "conv-48",
+      "question": "Where did Jolene and her partner find a cool diving spot?",
+      "gold": "Phuket",
+      "prediction": "They found a cool dive spot during a scuba diving lesson the Friday before 17 September 2023.",
+      "raw_output": "They found a cool dive spot during a scuba diving lesson the Friday before 17 September 2023.",
+      "gold_source_turns": [
+        "D27:1"
+      ],
+      "gold_speakers": [
+        "Jolene"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D29:4"
+      ],
+      "pred_speakers": [
+        "Jolene"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D27:1'] (given to the Reader) while the answer came from ['D29:4']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-49_109",
+      "conversation": "conv-49",
+      "question": "What fun activity did Evan mention doing in July 2023?",
+      "gold": "skiing",
+      "prediction": "Evan mentioned working on a watercolor painting in July 2023.",
+      "raw_output": "Evan mentioned working on a watercolor painting in July 2023.",
+      "gold_source_turns": [
+        "D23:26",
+        "D8:27",
+        "D8:28",
+        "D8:29"
+      ],
+      "gold_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D1:17",
+        "D11:6",
+        "D11:7"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D23:26', 'D8:27', 'D8:28'] (given to the Reader) while the answer came from ['D1:17', 'D11:6', 'D11:7']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "conversation": "conv-49",
+      "question": "What sports activity has Sam been doing to stay active while dealing with the knee injury?",
+      "gold": "Swimming",
+      "prediction": "Sam has been doing painting to stay active while dealing with the knee injury.",
+      "raw_output": "Sam has been doing painting to stay active while dealing with the knee injury.",
+      "gold_source_turns": [
+        "D24:17",
+        "D9:6",
+        "D9:7"
+      ],
+      "gold_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D11:3",
+        "D11:2",
+        "D9:2"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D24:17', 'D9:6', 'D9:7'] (given to the Reader) while the answer came from ['D11:3', 'D11:2', 'D9:2']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "conversation": "conv-49",
+      "question": "Which activity do Evan and Sam plan on doing together during September 2023?",
+      "gold": "painting",
+      "prediction": "They plan to paint together next Saturday.",
+      "raw_output": "They plan to paint together next Saturday.",
+      "gold_source_turns": [
+        "D1:11",
+        "D1:15",
+        "D1:17",
+        "D10:7"
+      ],
+      "gold_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D10:14",
+        "D16:24",
+        "D10:11"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D10:11']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "conversation": "conv-49",
+      "question": "What novel is Evan reading that he finds gripping?",
+      "gold": "The Great Gatsby",
+      "prediction": "Evan is reading a new mystery novel that he finds gripping.",
+      "raw_output": "Evan is reading a new mystery novel that he finds gripping.",
+      "gold_source_turns": [
+        "D4:10"
+      ],
+      "gold_speakers": [
+        "Evan"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D4:8",
+        "D4:10",
+        "D11:15"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D4:10']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-50_160",
+      "conversation": "conv-50",
+      "question": "What is Calvin's new business venture as of 1 May, 2023?",
+      "gold": "Car maintenance shop",
+      "prediction": "Calvin's new business venture as of 1 May, 2023 is touring with Frank Ocean.",
+      "raw_output": "Calvin's new business venture as of 1 May, 2023 is touring with Frank Ocean.",
+      "gold_source_turns": [
+        "D23:1",
+        "D4:1",
+        "D4:2"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D14:4",
+        "D15:2",
+        "D3:9"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D23:1', 'D4:1', 'D4:2'] (given to the Reader) while the answer came from ['D14:4', 'D15:2', 'D3:9']",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "1 turn(s) carry other same-kind values (name), e.g. ['frank', 'ocean']",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D15:2",
+          "kind": "name",
+          "others": [
+            "frank",
+            "ocean"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_189",
+      "conversation": "conv-50",
+      "question": "What specific location in Tokyo does Calvin mention being excited to avoid?",
+      "gold": "Shinjuku",
+      "prediction": "Shibuya Crossing",
+      "raw_output": "Shibuya Crossing",
+      "gold_source_turns": [
+        "D24:19",
+        "D24:20"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D24:19"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "H1_different_turn": "NOT_H1",
+      "H1_why": "both gold and answer trace to the same turn ['D24:19']",
+      "H2_competing_values": "POSSIBLE",
+      "H2_why": "3 turn(s) carry other same-kind values (name), e.g. ['crossing', 'shibuya', 'square']",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different event",
+      "confusion_kinds": [
+        "event"
+      ],
+      "competitors": [
+        {
+          "turn": "D24:19",
+          "kind": "name",
+          "others": [
+            "crossing",
+            "shibuya",
+            "square",
+            "times",
+            "tokyo"
+          ]
+        },
+        {
+          "turn": "D24:20",
+          "kind": "name",
+          "others": [
+            "boston",
+            "tokyo"
+          ]
+        },
+        {
+          "turn": "D24:19",
+          "kind": "name",
+          "others": [
+            "crossing",
+            "shibuya",
+            "square",
+            "times",
+            "tokyo"
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "lc_conv-50_23",
+      "conversation": "conv-50",
+      "question": "What is Dave's main passion?",
+      "gold": "auto engineering",
+      "prediction": "Dave's main passion is working on cars.",
+      "raw_output": "Dave's main passion is working on cars.",
+      "gold_source_turns": [
+        "D13:3",
+        "D13:4",
+        "D3:12",
+        "D5:5"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "gold_in_given_context": false,
+      "pred_source_turns": [
+        "D4:21",
+        "D12:2",
+        "D12:4"
+      ],
+      "pred_speakers": [
+        "Dave"
+      ],
+      "H1_different_turn": "POSSIBLE",
+      "H1_why": "gold in ['D13:3', 'D13:4', 'D3:12'] but that turn is NOT in the frozen context; answer from ['D4:21', 'D12:2', 'D12:4']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-50_57",
+      "conversation": "conv-50",
+      "question": "Which hobby did Dave pick up in October 2023?",
+      "gold": "photography",
+      "prediction": "Restoring and modifying cars.",
+      "raw_output": "Restoring and modifying cars.",
+      "gold_source_turns": [
+        "D27:2",
+        "D27:8",
+        "D27:9",
+        "D27:10"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D12:4",
+        "D3:12"
+      ],
+      "pred_speakers": [
+        "Dave"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D27:2', 'D27:8', 'D27:9'] (given to the Reader) while the answer came from ['D12:4', 'D3:12']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different time+event",
+      "confusion_kinds": [
+        "time",
+        "event"
+      ],
+      "competitors": []
+    },
+    {
+      "question_id": "lc_conv-50_87",
+      "conversation": "conv-50",
+      "question": "What was Calvin excited to do after getting his car fixed on 7 July, 2023?",
+      "gold": "get back on the road",
+      "prediction": "Cruising around.",
+      "raw_output": "Cruising around.",
+      "gold_source_turns": [
+        "D10:1"
+      ],
+      "gold_speakers": [
+        "Dave"
+      ],
+      "gold_in_given_context": true,
+      "pred_source_turns": [
+        "D10:2"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "H1_different_turn": "CONFIRMED",
+      "H1_why": "gold in ['D10:1'] (given to the Reader) while the answer came from ['D10:2']",
+      "H2_competing_values": "NOT_H2",
+      "H2_why": "no other same-kind value found near either side",
+      "H3_confusion": "CONFIRMED",
+      "H3_why": "wrong answer maps to a different person+event",
+      "confusion_kinds": [
+        "person",
+        "event"
+      ],
+      "competitors": []
+    }
+  ]
+}
