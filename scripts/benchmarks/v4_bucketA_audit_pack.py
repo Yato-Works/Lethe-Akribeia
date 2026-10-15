@@ -141,8 +141,9 @@ def main() -> int:
             "gold_answer": str(qa.get("answer", "")),
             "engine_verdict": r.get("verdict"),
             "engine_prediction": r.get("prediction"),
-            # AUDIT SURFACE (shown to the annotator)
-            "source_turns": conv_turns.get(k[0], []),
+            # the conversation this case belongs to; its turns live ONCE in the
+            # top-level "conversations" map rather than being copied into every case
+            "source_conversation": k[0],
             # WITHHELD from the audit surface, kept for the reviewer
             "reviewer_only": {
                 "dataset_evidence_ids": qa.get("evidence", []),
@@ -258,12 +259,24 @@ def main() -> int:
                            "for -- not whether the gold wording appears verbatim"),
         "category_distribution_population": cat_dist,
         "join_verified_by": "gold answer equality across the two key namespaces",
+        "note_on_layout": ("source_turns are NOT duplicated per case.  Each case carries "
+                           "conversation, and the full turn list for that conversation "
+                           "lives once in 'conversations'.  An earlier version embedded "
+                           "the whole conversation in every case, producing 18.9MB / "
+                           "7.9MB files where the same turns were repeated dozens of "
+                           "times -- unusable for hand auditing."),
+        "conversations": {sid: conv_turns.get(sid, []) for sid in
+                          sorted({c["conversation"] for c in sample})},
         "cases": sample,
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 
     OUT_FULL.write_text(json.dumps({
         "label": "V4 mission 22 -- ALL Bucket A cases (full population, not sampled)",
         "population_n": len(cases),
+        "note_on_layout": ("conversation turns are stored once in 'conversations' and "
+                           "referenced by conversation id, not duplicated per case"),
+        "conversations": {sid: conv_turns.get(sid, []) for sid in
+                          sorted({c["conversation"] for c in cases})},
         "cases": sorted(cases, key=lambda c: c["question_id"]),
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 
