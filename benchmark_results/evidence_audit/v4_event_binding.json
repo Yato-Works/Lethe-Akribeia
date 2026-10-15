@@ -1,0 +1,2372 @@
+{
+  "label": "V4 mission 9 -- event binding decomposition with a non-vacuous control",
+  "baseline": {
+    "head": "e13ebf1",
+    "production_changed": false,
+    "evidence_binding": "unwired, preserved"
+  },
+  "control_definition": "correct event = the returned-and-correct value located in the source; rival = nearest other same-kind value",
+  "n_failure": 28,
+  "n_control": 16,
+  "skipped_controls": [
+    [
+      "lc_conv-30_42",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-41_147",
+      "correct value not located in source"
+    ],
+    [
+      "lc_conv-42_126",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-43_104",
+      "correct value not located in source"
+    ],
+    [
+      "lc_conv-43_213",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-44_155",
+      "correct value not located in source"
+    ],
+    [
+      "lc_conv-47_130",
+      "correct value not located in source"
+    ],
+    [
+      "lc_conv-47_160",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-48_128",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-48_154",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-48_233",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-49_146",
+      "correct value not located in source"
+    ],
+    [
+      "lc_conv-49_155",
+      "no rival event found -- no pair to measure"
+    ],
+    [
+      "lc_conv-49_175",
+      "no rival event found -- no pair to measure"
+    ]
+  ],
+  "failures": [
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-26_111",
+      "conversation": "conv-26",
+      "question": "What creative project do Mel and her kids do together besides pottery?",
+      "gold": "painting",
+      "prediction": "They enjoy hiking in the mountains and exploring forests together.",
+      "gold_turns": [
+        "D11:11",
+        "D11:12",
+        "D11:8",
+        "D12:6"
+      ],
+      "gold_speakers": [
+        "Caroline",
+        "Melanie"
+      ],
+      "pred_turns": [
+        "D16:2",
+        "D17:26",
+        "D8:34"
+      ],
+      "pred_speakers": [
+        "Melanie"
+      ],
+      "A_min_distance": 6,
+      "A_distances": [
+        292,
+        102,
+        58,
+        26,
+        164,
+        208
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": 3,
+      "B_gold_date": "2023-05-08",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-07-15",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 68,
+      "B_same_date": false,
+      "B_gold_header": "1:56 pm on 8 May, 2023",
+      "B_pred_header": "1:51 pm on 15 July, 2023",
+      "C_kind": "BOTH_ACTIVITY_DIFFERENT",
+      "C_gold_activity": [
+        "painting"
+      ],
+      "C_pred_activity": [
+        "hiking"
+      ],
+      "C_shared_tokens": [
+        "a",
+        "cool",
+        "it",
+        "s"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-30_45",
+      "conversation": "conv-30",
+      "question": "What is Jon's attitude towards being part of the dance festival?",
+      "gold": "Glad",
+      "prediction": "Jon is excited and fulfilled by the performance at the festival, as it allows him to share his passion and see his students succeed.",
+      "gold_turns": [
+        "D11:17",
+        "D14:16",
+        "D14:6",
+        "D17:17"
+      ],
+      "gold_speakers": [
+        "Gina",
+        "Jon"
+      ],
+      "pred_turns": [
+        "D5:2"
+      ],
+      "pred_speakers": [
+        "Jon"
+      ],
+      "A_min_distance": 31,
+      "A_distances": [
+        91,
+        54,
+        90,
+        244,
+        87,
+        31
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 7,
+      "B_gold_date": "2023-01-20",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-02-08",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 19,
+      "B_same_date": false,
+      "B_gold_header": "4:04 pm on 20 January, 2023",
+      "B_pred_header": "9:32 am on 8 February, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [
+        "dancing"
+      ],
+      "C_shared_tokens": [
+        "awesome",
+        "be",
+        "it",
+        "to"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-30_71",
+      "conversation": "conv-30",
+      "question": "How does Gina describe the studio that Jon has opened?",
+      "gold": "amazing",
+      "prediction": "Gina describes Jon's studio as a place for dancers to grow and a creative space for self-expression.",
+      "gold_turns": [
+        "D11:6",
+        "D14:1",
+        "D15:6",
+        "D17:1"
+      ],
+      "gold_speakers": [
+        "Gina",
+        "Jon"
+      ],
+      "pred_turns": [
+        "D13:5",
+        "D13:6",
+        "D19:6"
+      ],
+      "pred_speakers": [
+        "Gina",
+        "Jon"
+      ],
+      "A_min_distance": 7,
+      "A_distances": [
+        41,
+        40,
+        165,
+        101,
+        102,
+        23
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 3,
+      "B_gold_date": "2023-01-20",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-07-23",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 184,
+      "B_same_date": false,
+      "B_gold_header": "4:04 pm on 20 January, 2023",
+      "B_pred_header": "6:46 pm on 23 July, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "dance",
+        "i",
+        "it",
+        "last",
+        "to"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-41_128",
+      "conversation": "conv-41",
+      "question": "In what activity did Maria and her church friends participate in July 2023?",
+      "gold": "hiking",
+      "prediction": "They had a picnic.",
+      "gold_turns": [
+        "D16:1",
+        "D18:5",
+        "D25:2"
+      ],
+      "gold_speakers": [
+        "John",
+        "Maria"
+      ],
+      "pred_turns": [
+        "D24:6",
+        "D31:19",
+        "D8:2"
+      ],
+      "pred_speakers": [
+        "John",
+        "Maria"
+      ],
+      "A_min_distance": 13,
+      "A_distances": [
+        359,
+        199,
+        463,
+        320,
+        160,
+        424
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 1,
+      "B_gold_date": "2023-05-25",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-07-17",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 53,
+      "B_same_date": false,
+      "B_gold_header": "1:24 pm on 25 May, 2023",
+      "B_pred_header": "3:34 pm on 17 July, 2023",
+      "C_kind": "BOTH_ACTIVITY_DIFFERENT",
+      "C_gold_activity": [
+        "hiking"
+      ],
+      "C_pred_activity": [
+        "picnic"
+      ],
+      "C_shared_tokens": [
+        "a",
+        "i",
+        "it",
+        "we"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-42_226",
+      "conversation": "conv-42",
+      "question": "How did Nate feel when someone wrote him a letter after reading his blog post?",
+      "gold": "Touched",
+      "prediction": "Nate felt surreal and thought it was nice work.",
+      "gold_turns": [
+        "D18:5"
+      ],
+      "gold_speakers": [
+        "Joanna"
+      ],
+      "pred_turns": [
+        "D12:12",
+        "D15:2",
+        "D25:6"
+      ],
+      "pred_speakers": [
+        "Joanna",
+        "Nate"
+      ],
+      "A_min_distance": 57,
+      "A_distances": [
+        179,
+        116,
+        57
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 17,
+      "B_gold_date": "2022-08-14",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-10-25",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 72,
+      "B_same_date": false,
+      "B_gold_header": "6:12 pm on 14 August, 2022",
+      "B_pred_header": "8:16 pm on 25 October, 2022",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "reading"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "hard",
+        "i",
+        "it",
+        "my"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-43_101",
+      "conversation": "conv-43",
+      "question": "How was John's experience in New York City?",
+      "gold": "Amazing",
+      "prediction": "John enjoyed his trip to New York City, mentioning he loves discovering new cities and that he shared a picture from his visit.",
+      "gold_turns": [
+        "D11:13",
+        "D11:14",
+        "D11:16",
+        "D11:20"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "pred_turns": [
+        "D9:6"
+      ],
+      "pred_speakers": [
+        "John"
+      ],
+      "A_min_distance": 1,
+      "A_distances": [
+        621,
+        419,
+        223,
+        64,
+        274,
+        174
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 4,
+      "B_gold_date": "2023-05-21",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-08-26",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 97,
+      "B_same_date": false,
+      "B_gold_header": "7:48 pm on 21 May, 2023",
+      "B_pred_header": "6:59 pm on 26 August, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "walking"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "i",
+        "it",
+        "love",
+        "of",
+        "to"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-43_146",
+      "conversation": "conv-43",
+      "question": "What did Tim recently start learning in addition to being part of a travel club and working on studies?",
+      "gold": "an instrument",
+      "prediction": "Tim recently started learning to play the violin.",
+      "gold_turns": [
+        "D21:10",
+        "D21:9"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "pred_turns": [
+        "D1:11",
+        "D1:5",
+        "D21:11"
+      ],
+      "pred_speakers": [
+        "John",
+        "Tim"
+      ],
+      "A_min_distance": 1,
+      "A_distances": [
+        1,
+        314,
+        320,
+        2,
+        313,
+        319
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 6,
+      "B_gold_date": "2023-12-06",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-12-06",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "5:34 pm on 6 December, 2023",
+      "B_pred_header": "5:34 pm on 6 December, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "travel"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "i",
+        "it"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-43_152",
+      "conversation": "conv-43",
+      "question": "What kind of game did John have a career-high in assists in?",
+      "gold": "basketball",
+      "prediction": "A big game against their rival.",
+      "gold_turns": [
+        "D11:13",
+        "D11:14",
+        "D11:15",
+        "D11:17"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "pred_turns": [
+        "D16:10",
+        "D16:6",
+        "D23:3"
+      ],
+      "pred_speakers": [
+        "John"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        281,
+        451,
+        447,
+        305,
+        135,
+        139
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 15,
+      "B_gold_date": "2023-09-21",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-12-11",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 81,
+      "B_same_date": false,
+      "B_gold_header": "8:17 pm on 21 September, 2023",
+      "B_pred_header": "8:28 pm on 11 December, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "basketball"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-43_162",
+      "conversation": "conv-43",
+      "question": "What new fantasy TV series is Tim excited about?",
+      "gold": "\"The Wheel of Time\"",
+      "prediction": "Tim is excited about a new fantasy TV series coming out in January 2024.",
+      "gold_turns": [
+        "D26:36"
+      ],
+      "gold_speakers": [
+        "Tim"
+      ],
+      "pred_turns": [
+        "D26:34",
+        "D26:36",
+        "D7:6"
+      ],
+      "pred_speakers": [
+        "Tim"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        177,
+        0,
+        2
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2023-12-26",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-12-26",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "3:35 pm on 26 December, 2023",
+      "B_pred_header": "3:35 pm on 26 December, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "coming",
+        "new",
+        "s",
+        "series"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-43_223",
+      "conversation": "conv-43",
+      "question": "What did John recently start learning in addition to being part of a travel club and working on studies?",
+      "gold": "an instrument",
+      "prediction": "John recently started learning how to market himself and boost his brand.",
+      "gold_turns": [
+        "D21:10",
+        "D21:9"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "pred_turns": [
+        "D11:17",
+        "D11:18",
+        "D21:8"
+      ],
+      "pred_speakers": [
+        "John",
+        "Tim"
+      ],
+      "A_min_distance": 1,
+      "A_distances": [
+        270,
+        271,
+        2,
+        269,
+        270,
+        1
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 2,
+      "B_gold_date": "2023-12-06",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-12-06",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "5:34 pm on 6 December, 2023",
+      "B_pred_header": "5:34 pm on 6 December, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "travel"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i",
+        "it",
+        "new",
+        "on"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-43_234",
+      "conversation": "conv-43",
+      "question": "Which language is John learning?",
+      "gold": "German",
+      "prediction": "John is learning Spanish.",
+      "gold_turns": [
+        "D27:12",
+        "D27:13",
+        "D27:5",
+        "D27:6"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "pred_turns": [
+        "D27:6",
+        "D27:7",
+        "D27:8"
+      ],
+      "pred_speakers": [
+        "John",
+        "Tim"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        2,
+        0,
+        1,
+        5,
+        7,
+        6
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2024-01-02",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2024-01-02",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "5:26 pm on 2 January, 2024",
+      "B_pred_header": "5:26 pm on 2 January, 2024",
+      "C_kind": "BOTH_ACTIVITY_DIFFERENT",
+      "C_gold_activity": [
+        "traveling"
+      ],
+      "C_pred_activity": [
+        "travel"
+      ],
+      "C_shared_tokens": [
+        "german",
+        "i",
+        "it",
+        "know",
+        "wow",
+        "you"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-44_107",
+      "conversation": "conv-44",
+      "question": "How do Audrey's dogs react to snow?",
+      "gold": "Confused",
+      "prediction": "They hate it.",
+      "gold_turns": [
+        "D23:12"
+      ],
+      "gold_speakers": [
+        "Audrey"
+      ],
+      "pred_turns": [
+        "D22:12",
+        "D23:12"
+      ],
+      "pred_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        13,
+        0
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2023-10-13",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-10-06",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -7,
+      "B_same_date": false,
+      "B_gold_header": "4:22 pm on 13 October, 2023",
+      "B_pred_header": "9:41 pm on 6 October, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "running"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "is"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-44_49",
+      "conversation": "conv-44",
+      "question": "What does Audrey view her pets as?",
+      "gold": "Family",
+      "prediction": "Audrey views her pets as sources of joy and companionship.",
+      "gold_turns": [
+        "D10:15",
+        "D15:14",
+        "D15:15",
+        "D23:18"
+      ],
+      "gold_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "pred_turns": [
+        "D10:18",
+        "D12:1",
+        "D24:4"
+      ],
+      "pred_speakers": [
+        "Andrew"
+      ],
+      "A_min_distance": 3,
+      "A_distances": [
+        3,
+        352,
+        53,
+        236,
+        113,
+        186
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-07-03",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-10-19",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 108,
+      "B_same_date": false,
+      "B_gold_header": "8:32 pm on 3 July, 2023",
+      "B_pred_header": "6:12 pm on 19 October, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "cooking"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i",
+        "in",
+        "of",
+        "s",
+        "to",
+        "used"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-44_50",
+      "conversation": "conv-44",
+      "question": "What is a skill that Audrey learned to take care of her dogs?",
+      "gold": "Grooming",
+      "prediction": "Audrey joined a dog owners group to learn how to better take care of her dogs.",
+      "gold_turns": [
+        "D16:2",
+        "D16:3",
+        "D16:4",
+        "D16:5"
+      ],
+      "gold_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "pred_turns": [
+        "D27:2",
+        "D27:5",
+        "D27:6"
+      ],
+      "pred_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "A_min_distance": 281,
+      "A_distances": [
+        303,
+        304,
+        300,
+        302,
+        303,
+        299
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 3,
+      "B_gold_date": "2023-08-19",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-11-04",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 77,
+      "B_same_date": false,
+      "B_gold_header": "9:19 pm on 19 August, 2023",
+      "B_pred_header": "7:59 pm on 4 November, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "care",
+        "i",
+        "my",
+        "new",
+        "of"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-44_60",
+      "conversation": "conv-44",
+      "question": "How many dogs does Andrew have?",
+      "gold": "3",
+      "prediction": "Andrew has 5 dogs now, including the newly adopted one.",
+      "gold_turns": [
+        "D10:9",
+        "D11:32",
+        "D1:7"
+      ],
+      "gold_speakers": [
+        "Audrey"
+      ],
+      "pred_turns": [],
+      "pred_speakers": [],
+      "A_min_distance": null,
+      "A_distances": [],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-03-27",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": null,
+      "B_pred_conf": "NONE",
+      "B_delta_days": null,
+      "B_same_date": false,
+      "B_gold_header": "1:10 pm on 27 March, 2023",
+      "B_pred_header": "",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": []
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-47_162",
+      "conversation": "conv-47",
+      "question": "How did James relax in his free time on 9 July, 2022?",
+      "gold": "Reading",
+      "prediction": "James mentioned that he likes to read to relax.",
+      "gold_turns": [
+        "D14:7",
+        "D14:8",
+        "D16:8",
+        "D8:12"
+      ],
+      "gold_speakers": [
+        "James",
+        "John"
+      ],
+      "pred_turns": [
+        "D12:9",
+        "D16:8",
+        "D1:3"
+      ],
+      "pred_speakers": [
+        "James",
+        "John"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        0,
+        163,
+        86,
+        54,
+        109,
+        32
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2022-06-16",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-07-09",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 23,
+      "B_same_date": false,
+      "B_gold_header": "5:07 pm on 16 June, 2022",
+      "B_pred_header": "5:13 pm on 9 July, 2022",
+      "C_kind": "BOTH_ACTIVITY_SAME",
+      "C_gold_activity": [
+        "reading"
+      ],
+      "C_pred_activity": [
+        "reading"
+      ],
+      "C_shared_tokens": [
+        "reading"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-47_163",
+      "conversation": "conv-47",
+      "question": "What new hobby did John become interested in on 9 July, 2022?",
+      "gold": "Extreme sports",
+      "prediction": "John became interested in metal detecting on 9 July, 2022.",
+      "gold_turns": [
+        "D16:5"
+      ],
+      "gold_speakers": [
+        "James"
+      ],
+      "pred_turns": [],
+      "pred_speakers": [],
+      "A_min_distance": null,
+      "A_distances": [],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2022-07-09",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": null,
+      "B_pred_conf": "NONE",
+      "B_delta_days": null,
+      "B_same_date": false,
+      "B_gold_header": "5:13 pm on 9 July, 2022",
+      "B_pred_header": "",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": []
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-47_3",
+      "conversation": "conv-47",
+      "question": "Do both James and John have pets?",
+      "gold": "No",
+      "prediction": "Yes, both James and John have pets.",
+      "gold_turns": [
+        "D10:1",
+        "D10:10",
+        "D10:2",
+        "D10:4"
+      ],
+      "gold_speakers": [
+        "James",
+        "John"
+      ],
+      "pred_turns": [
+        "D23:1"
+      ],
+      "pred_speakers": [
+        "James"
+      ],
+      "A_min_distance": 1,
+      "A_distances": [
+        234,
+        279,
+        53,
+        308,
+        191,
+        147
+      ],
+      "A_adjacent": true,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2022-03-17",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-09-04",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 171,
+      "B_same_date": false,
+      "B_gold_header": "3:47 pm on 17 March, 2022",
+      "B_pred_header": "9:23 pm on 4 September, 2022",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i",
+        "it",
+        "m",
+        "you"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-48_77",
+      "conversation": "conv-48",
+      "question": "Where did Jolene and her partner find a cool diving spot?",
+      "gold": "Phuket",
+      "prediction": "They found a cool dive spot during a scuba diving lesson the Friday before 17 September 2023.",
+      "gold_turns": [
+        "D27:1"
+      ],
+      "gold_speakers": [
+        "Jolene"
+      ],
+      "pred_turns": [
+        "D29:4"
+      ],
+      "pred_speakers": [
+        "Jolene"
+      ],
+      "A_min_distance": 46,
+      "A_distances": [
+        46
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 6,
+      "B_gold_date": "2023-09-12",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-09-17",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 5,
+      "B_same_date": false,
+      "B_gold_header": "2:18 pm on 12 September, 2023",
+      "B_pred_header": "1:24 pm on 17 September, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "awesome",
+        "i",
+        "last"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-49_109",
+      "conversation": "conv-49",
+      "question": "What fun activity did Evan mention doing in July 2023?",
+      "gold": "skiing",
+      "prediction": "Evan mentioned working on a watercolor painting in July 2023.",
+      "gold_turns": [
+        "D23:26",
+        "D8:27",
+        "D8:28",
+        "D8:29"
+      ],
+      "gold_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "pred_turns": [
+        "D11:6",
+        "D11:7",
+        "D1:17"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "A_min_distance": 265,
+      "A_distances": [
+        444,
+        445,
+        470,
+        442,
+        443,
+        468
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 3,
+      "B_gold_date": "2024-01-06",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-05-18",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -233,
+      "B_same_date": false,
+      "B_gold_header": "1:32 pm on 6 January, 2024",
+      "B_pred_header": "1:47 pm on 18 May, 2023",
+      "C_kind": "BOTH_ACTIVITY_DIFFERENT",
+      "C_gold_activity": [
+        "skiing"
+      ],
+      "C_pred_activity": [
+        "painting"
+      ],
+      "C_shared_tokens": []
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-49_173",
+      "conversation": "conv-49",
+      "question": "What sports activity has Sam been doing to stay active while dealing with the knee injury?",
+      "gold": "Swimming",
+      "prediction": "Sam has been doing painting to stay active while dealing with the knee injury.",
+      "gold_turns": [
+        "D24:17",
+        "D9:6",
+        "D9:7"
+      ],
+      "gold_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "pred_turns": [
+        "D11:2",
+        "D11:3",
+        "D9:2"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "A_min_distance": 4,
+      "A_distances": [
+        458,
+        459,
+        5,
+        293,
+        294,
+        160
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": 10,
+      "B_gold_date": "2024-01-10",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-10-06",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -96,
+      "B_same_date": false,
+      "B_gold_header": "12:17 am on 10 January, 2024",
+      "B_pred_header": "8:57 pm on 6 October, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "swimming",
+        "walking",
+        "yoga"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "it"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-49_52",
+      "conversation": "conv-49",
+      "question": "Which activity do Evan and Sam plan on doing together during September 2023?",
+      "gold": "painting",
+      "prediction": "They plan to paint together next Saturday.",
+      "gold_turns": [
+        "D10:11",
+        "D10:12",
+        "D10:7",
+        "D10:8"
+      ],
+      "gold_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "pred_turns": [
+        "D10:11",
+        "D10:14",
+        "D16:24"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        104,
+        7,
+        10,
+        330,
+        441,
+        444
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2023-05-18",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-09-11",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 116,
+      "B_same_date": false,
+      "B_gold_header": "1:47 pm on 18 May, 2023",
+      "B_pred_header": "9:28 am on 11 September, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "painting"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "you"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-49_93",
+      "conversation": "conv-49",
+      "question": "What novel is Evan reading that he finds gripping?",
+      "gold": "The Great Gatsby",
+      "prediction": "Evan is reading a new mystery novel that he finds gripping.",
+      "gold_turns": [
+        "D4:10"
+      ],
+      "gold_speakers": [
+        "Evan"
+      ],
+      "pred_turns": [
+        "D11:15",
+        "D4:10",
+        "D4:8"
+      ],
+      "pred_speakers": [
+        "Evan",
+        "Sam"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        336,
+        0,
+        2
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2023-07-27",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-07-27",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "10:52 am on 27 July, 2023",
+      "B_pred_header": "10:52 am on 27 July, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "reading"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "flavored",
+        "great",
+        "i",
+        "it",
+        "novel",
+        "s"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-50_160",
+      "conversation": "conv-50",
+      "question": "What is Calvin's new business venture as of 1 May, 2023?",
+      "gold": "Car maintenance shop",
+      "prediction": "Calvin's new business venture as of 1 May, 2023 is touring with Frank Ocean.",
+      "gold_turns": [
+        "D23:1",
+        "D4:1",
+        "D4:2"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "pred_turns": [
+        "D14:4",
+        "D15:2",
+        "D3:9"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "A_min_distance": 34,
+      "A_distances": [
+        169,
+        161,
+        147,
+        34,
+        364,
+        350
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-10-15",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-08-14",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -62,
+      "B_same_date": false,
+      "B_gold_header": "9:39 am on 15 October, 2023",
+      "B_pred_header": "12:35 am on 14 August, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "i",
+        "in",
+        "it",
+        "know",
+        "like"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-50_189",
+      "conversation": "conv-50",
+      "question": "What specific location in Tokyo does Calvin mention being excited to avoid?",
+      "gold": "Shinjuku",
+      "prediction": "Shibuya Crossing",
+      "gold_turns": [
+        "D24:19",
+        "D24:20"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "pred_turns": [
+        "D24:19"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "A_min_distance": 0,
+      "A_distances": [
+        1,
+        0
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 0,
+      "B_gold_date": "2023-10-19",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-10-19",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "10:11 am on 19 October, 2023",
+      "B_pred_header": "10:11 am on 19 October, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "again",
+        "amazing",
+        "at",
+        "can",
+        "crossing",
+        "definitely"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-50_23",
+      "conversation": "conv-50",
+      "question": "What is Dave's main passion?",
+      "gold": "auto engineering",
+      "prediction": "Dave's main passion is working on cars.",
+      "gold_turns": [
+        "D13:3",
+        "D13:4",
+        "D3:12",
+        "D5:5"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "pred_turns": [
+        "D12:2",
+        "D12:4",
+        "D4:21"
+      ],
+      "pred_speakers": [
+        "Dave"
+      ],
+      "A_min_distance": 12,
+      "A_distances": [
+        369,
+        51,
+        371,
+        432,
+        12,
+        434
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-08-11",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-05-01",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -102,
+      "B_same_date": false,
+      "B_gold_header": "5:22 pm on 11 August, 2023",
+      "B_pred_header": "6:24 pm on 1 May, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i",
+        "is",
+        "on"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-50_57",
+      "conversation": "conv-50",
+      "question": "Which hobby did Dave pick up in October 2023?",
+      "gold": "photography",
+      "prediction": "Restoring and modifying cars.",
+      "gold_turns": [
+        "D27:10",
+        "D27:2",
+        "D27:8",
+        "D27:9"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "pred_turns": [
+        "D12:4",
+        "D3:12"
+      ],
+      "pred_speakers": [
+        "Dave"
+      ],
+      "A_min_distance": 7,
+      "A_distances": [
+        7,
+        376,
+        84,
+        285,
+        76,
+        293
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-10-29",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-08-03",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -87,
+      "B_same_date": false,
+      "B_gold_header": "10:49 am on 29 October, 2023",
+      "B_pred_header": "1:12 pm on 3 August, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "photography"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i"
+      ]
+    },
+    {
+      "group": "FAILURE",
+      "question_id": "lc_conv-50_87",
+      "conversation": "conv-50",
+      "question": "What was Calvin excited to do after getting his car fixed on 7 July, 2023?",
+      "gold": "get back on the road",
+      "prediction": "Cruising around.",
+      "gold_turns": [
+        "D10:1"
+      ],
+      "gold_speakers": [
+        "Dave"
+      ],
+      "pred_turns": [
+        "D10:2"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "A_min_distance": 1,
+      "A_distances": [
+        1
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 13,
+      "B_gold_date": "2023-07-07",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-07-07",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "7:56 pm on 7 July, 2023",
+      "B_pred_header": "7:56 pm on 7 July, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "car",
+        "hey",
+        "right",
+        "s",
+        "you"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-26_107",
+      "conversation": "conv-26",
+      "question": "What is Melanie's reason for getting into running?",
+      "gold": "To de-stress and clear her mind",
+      "prediction": "To de-stress.",
+      "control_rival": "The support group has made me feel accepted and given me courage to embrace myse",
+      "gold_turns": [
+        "D1:5",
+        "D7:20",
+        "D7:22"
+      ],
+      "gold_speakers": [
+        "Caroline",
+        "Melanie"
+      ],
+      "pred_turns": [
+        "D1:7"
+      ],
+      "pred_speakers": [
+        "Caroline"
+      ],
+      "A_min_distance": 2,
+      "A_distances": [
+        351,
+        349,
+        2
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-07-12",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-05-08",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -65,
+      "B_same_date": false,
+      "B_gold_header": "4:33 pm on 12 July, 2023",
+      "B_pred_header": "1:56 pm on 8 May, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [
+        "running"
+      ],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "to"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-26_132",
+      "conversation": "conv-26",
+      "question": "How long has Melanie been creating art?",
+      "gold": "7 years",
+      "prediction": "Melanie has been creating art for about seven years.",
+      "control_rival": "Seven years now, and I've finally found my real muses: painting and pottery. It'",
+      "gold_turns": [
+        "D13:11",
+        "D15:21",
+        "D16:6"
+      ],
+      "gold_speakers": [
+        "Caroline",
+        "Melanie"
+      ],
+      "pred_turns": [
+        "D16:8"
+      ],
+      "pred_speakers": [
+        "Melanie"
+      ],
+      "A_min_distance": 2,
+      "A_distances": [
+        2,
+        78,
+        15
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": 40,
+      "B_gold_date": "2023-08-23",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-09-13",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 21,
+      "B_same_date": false,
+      "B_gold_header": "3:31 pm on 23 August, 2023",
+      "B_pred_header": "12:09 am on 13 September, 2023",
+      "C_kind": "BOTH_ACTIVITY_SAME",
+      "C_gold_activity": [
+        "painting"
+      ],
+      "C_pred_activity": [
+        "painting"
+      ],
+      "C_shared_tokens": [
+        "i",
+        "painting",
+        "s"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-26_152",
+      "conversation": "conv-26",
+      "question": "What did Caroline realize after her charity race?",
+      "gold": "self-care is important",
+      "prediction": "Caroline realized how important it is for others to have a support system.",
+      "control_rival": "I went to a LGBTQ support group yesterday and it was so powerful.",
+      "gold_turns": [
+        "D10:5",
+        "D3:5",
+        "D7:7"
+      ],
+      "gold_speakers": [
+        "Caroline"
+      ],
+      "pred_turns": [
+        "D1:3"
+      ],
+      "pred_speakers": [
+        "Caroline"
+      ],
+      "A_min_distance": 20,
+      "A_distances": [
+        340,
+        265,
+        20
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-07-12",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-05-08",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -65,
+      "B_same_date": false,
+      "B_gold_header": "4:33 pm on 12 July, 2023",
+      "B_pred_header": "1:56 pm on 8 May, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "i",
+        "it",
+        "so",
+        "support",
+        "to"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-41_138",
+      "conversation": "conv-41",
+      "question": "What activity did Maria take up with her friends from church in August 2023?",
+      "gold": "community work",
+      "prediction": "Maria took up community work with her friends from church.",
+      "control_rival": "I haven't been able to volunteer much lately, but I definitely care about it. La",
+      "gold_turns": [
+        "D23:13",
+        "D25:2",
+        "D28:8"
+      ],
+      "gold_speakers": [
+        "John",
+        "Maria"
+      ],
+      "pred_turns": [
+        "D28:11"
+      ],
+      "pred_speakers": [
+        "John"
+      ],
+      "A_min_distance": 3,
+      "A_distances": [
+        3,
+        82,
+        62
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-08-05",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-08-05",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "5:19 pm on 5 August, 2023",
+      "B_pred_header": "5:19 pm on 5 August, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "community",
+        "i",
+        "it",
+        "took",
+        "work"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-42_134",
+      "conversation": "conv-42",
+      "question": "What recipe Nate offer to share with Joanna?",
+      "gold": "vegan ice cream recipe",
+      "prediction": "Nate offered to share a coconut milk ice cream recipe with Joanna.",
+      "control_rival": "Thanks! On another note, I made vegan ice cream last Friday and shared it with s",
+      "gold_turns": [
+        "D21:10",
+        "D21:6",
+        "D29:10"
+      ],
+      "gold_speakers": [
+        "Nate"
+      ],
+      "pred_turns": [
+        "D16:8"
+      ],
+      "pred_speakers": [
+        "Nate"
+      ],
+      "A_min_distance": 121,
+      "A_distances": [
+        125,
+        121,
+        341
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2022-09-14",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-06-24",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -82,
+      "B_same_date": false,
+      "B_gold_header": "1:43 pm on 14 September, 2022",
+      "B_pred_header": "10:55 am on 24 June, 2022",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "cream",
+        "i",
+        "ice",
+        "it",
+        "made",
+        "my"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-42_196",
+      "conversation": "conv-42",
+      "question": "What did Nate take to the beach in Tampa?",
+      "gold": "turtles",
+      "prediction": "Nate took his turtles to the beach in Tampa.",
+      "control_rival": "Hey Jo! Been ages since we last talked. Here's something cool that happened the ",
+      "gold_turns": [
+        "D10:1",
+        "D11:7",
+        "D29:6"
+      ],
+      "gold_speakers": [
+        "Joanna",
+        "Nate"
+      ],
+      "pred_turns": [
+        "D13:1"
+      ],
+      "pred_speakers": [
+        "Nate"
+      ],
+      "A_min_distance": 33,
+      "A_distances": [
+        33,
+        55,
+        411
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2022-11-11",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-05-25",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -170,
+      "B_same_date": false,
+      "B_gold_header": "12:06 am on 11 November, 2022",
+      "B_pred_header": "3:00 pm on 25 May, 2022",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [
+        "walk"
+      ],
+      "C_shared_tokens": [
+        "i",
+        "it",
+        "s",
+        "to",
+        "took"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-42_221",
+      "conversation": "conv-42",
+      "question": "What did Joanna make and share with her vegan diet group?",
+      "gold": "vegan ice cream",
+      "prediction": "Joanna made vegan ice cream and shared it with some people in her vegan diet group.",
+      "control_rival": "I'm good! Was super nervous last week when I shared my book with my writers grou",
+      "gold_turns": [
+        "D16:8",
+        "D21:4",
+        "D21:6"
+      ],
+      "gold_speakers": [
+        "Nate"
+      ],
+      "pred_turns": [
+        "D19:6"
+      ],
+      "pred_speakers": [
+        "Joanna"
+      ],
+      "A_min_distance": 51,
+      "A_distances": [
+        51,
+        70,
+        68
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 14,
+      "B_gold_date": "2022-06-24",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-08-22",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 59,
+      "B_same_date": false,
+      "B_gold_header": "10:55 am on 24 June, 2022",
+      "B_pred_header": "10:57 am on 22 August, 2022",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "awesome",
+        "group",
+        "i",
+        "it",
+        "last",
+        "my"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-43_91",
+      "conversation": "conv-43",
+      "question": "When did John meet back up with his teammates after his trip in August 2023?",
+      "gold": "Aug 15th",
+      "prediction": "On the 15th of August 2023.",
+      "control_rival": "I went to a place in London a few years ago - it was like walking into a Harry P",
+      "gold_turns": [
+        "D1:11",
+        "D1:15",
+        "D7:1"
+      ],
+      "gold_speakers": [
+        "John"
+      ],
+      "pred_turns": [
+        "D1:18"
+      ],
+      "pred_speakers": [
+        "Tim"
+      ],
+      "A_min_distance": 3,
+      "A_distances": [
+        3,
+        7,
+        595
+      ],
+      "A_adjacent": false,
+      "A_same_session": true,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-08-17",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-05-21",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -88,
+      "B_same_date": false,
+      "B_gold_header": "7:54 pm on 17 August, 2023",
+      "B_pred_header": "7:48 pm on 21 May, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [
+        "walking"
+      ],
+      "C_shared_tokens": [
+        "a",
+        "amazing",
+        "few",
+        "i",
+        "it",
+        "of"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-43_94",
+      "conversation": "conv-43",
+      "question": "What is the main intention behind Tim wanting to attend the book conference?",
+      "gold": "to learn more about literature and create a stronger bond to it",
+      "prediction": "To learn more about literature and create a stronger bond to it.",
+      "control_rival": "Definitely! I'm focusing on better shooting and making more of an impact on the ",
+      "gold_turns": [
+        "D26:21",
+        "D3:7",
+        "D7:6"
+      ],
+      "gold_speakers": [
+        "John",
+        "Tim"
+      ],
+      "pred_turns": [
+        "D11:17"
+      ],
+      "pred_speakers": [
+        "John"
+      ],
+      "A_min_distance": 372,
+      "A_distances": [
+        472,
+        564,
+        372
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-08-17",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-09-21",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 35,
+      "B_same_date": false,
+      "B_gold_header": "7:54 pm on 17 August, 2023",
+      "B_pred_header": "8:17 pm on 21 September, 2023",
+      "C_kind": "ONE_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [
+        "basketball"
+      ],
+      "C_shared_tokens": [
+        "a",
+        "an",
+        "help",
+        "i",
+        "it",
+        "m"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-44_102",
+      "conversation": "conv-44",
+      "question": "Why does Audrey make jewelry out of recycled objects?",
+      "gold": "To show love for creativity and sustainability",
+      "prediction": "To show her love of creativity and sustainability, and to give recycled objects new life.",
+      "control_rival": "Yeah, dogs sure know how to find the simple joys of life! Appreciating the littl",
+      "gold_turns": [
+        "D10:18",
+        "D22:5",
+        "D22:6"
+      ],
+      "gold_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "pred_turns": [
+        "D22:4"
+      ],
+      "pred_speakers": [
+        "Andrew"
+      ],
+      "A_min_distance": 1,
+      "A_distances": [
+        308,
+        1,
+        2
+      ],
+      "A_adjacent": true,
+      "A_same_session": true,
+      "A_ctx_distance": 1,
+      "B_gold_date": "2023-10-06",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-10-06",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": 0,
+      "B_same_date": true,
+      "B_gold_header": "9:41 pm on 6 October, 2023",
+      "B_pred_header": "9:41 pm on 6 October, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i",
+        "jewelry",
+        "of",
+        "recycled",
+        "things",
+        "to"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-44_121",
+      "conversation": "conv-44",
+      "question": "What is Andrew planning to do with Scout, Toby, and Buddy?",
+      "gold": "Take them to a nearby park",
+      "prediction": "Take them to a nearby park.",
+      "control_rival": "Hey Andrew! Good to see ya! What's been up since we last talked?",
+      "gold_turns": [
+        "D11:5",
+        "D14:4",
+        "D28:10"
+      ],
+      "gold_speakers": [
+        "Andrew",
+        "Audrey"
+      ],
+      "pred_turns": [
+        "D1:1"
+      ],
+      "pred_speakers": [
+        "Audrey"
+      ],
+      "A_min_distance": 57,
+      "A_distances": [
+        499,
+        127,
+        57
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-11-22",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-03-27",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -240,
+      "B_same_date": false,
+      "B_gold_header": "9:02 am on 22 November, 2023",
+      "B_pred_header": "1:10 pm on 27 March, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "s",
+        "to",
+        "we"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-47_72",
+      "conversation": "conv-47",
+      "question": "What instrument is John learning to play as of 27 March, 2022?",
+      "gold": "Drums",
+      "prediction": "John is learning to play drums as of 27 March, 2022.",
+      "control_rival": "The last time I played at the slot machines, I was so engrossed in the game that",
+      "gold_turns": [
+        "D13:12",
+        "D24:12",
+        "D24:15"
+      ],
+      "gold_speakers": [
+        "James",
+        "John"
+      ],
+      "pred_turns": [
+        "D1:30"
+      ],
+      "pred_speakers": [
+        "James"
+      ],
+      "A_min_distance": 67,
+      "A_distances": [
+        335,
+        67,
+        332
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2022-06-13",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2022-03-17",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -88,
+      "B_same_date": false,
+      "B_gold_header": "4:30 pm on 13 June, 2022",
+      "B_pred_header": "3:47 pm on 17 March, 2022",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "i",
+        "of",
+        "played",
+        "t"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-48_173",
+      "conversation": "conv-48",
+      "question": "What course did Jolene sign up for on 6 September 2023?",
+      "gold": "meditation",
+      "prediction": "Jolene signed up for a meditation course at a retreat near a lake.",
+      "control_rival": "Hey Deb! Been super hectic with internship and stuff. That retreat sounds awesom",
+      "gold_turns": [
+        "D13:16",
+        "D25:1",
+        "D27:1"
+      ],
+      "gold_speakers": [
+        "Deborah",
+        "Jolene"
+      ],
+      "pred_turns": [
+        "D14:2"
+      ],
+      "pred_speakers": [
+        "Jolene"
+      ],
+      "A_min_distance": 13,
+      "A_distances": [
+        287,
+        328,
+        13
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-09-06",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-06-26",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -72,
+      "B_same_date": false,
+      "B_gold_header": "8:31 pm on 6 September, 2023",
+      "B_pred_header": "9:17 am on 26 June, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "i",
+        "retreat"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-50_134",
+      "conversation": "conv-50",
+      "question": "What is the toughest part of car restoration according to Dave?",
+      "gold": "Paying extra attention to detail",
+      "prediction": "Paying extra attention to detail isn't easy, but it pays off.",
+      "control_rival": "Hey Dave! Great to hear from you, card night sounds like a blast! Always love ha",
+      "gold_turns": [
+        "D25:19",
+        "D25:21",
+        "D25:22"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "pred_turns": [
+        "D15:2"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "A_min_distance": 206,
+      "A_distances": [
+        206,
+        209,
+        208
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-10-23",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-08-22",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -62,
+      "B_same_date": false,
+      "B_gold_header": "2:17 pm on 23 October, 2023",
+      "B_pred_header": "11:06 am on 22 August, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "is",
+        "it",
+        "off",
+        "paying",
+        "to"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-50_194",
+      "conversation": "conv-50",
+      "question": "What did Calvin recently start a blog about?",
+      "gold": "Car mods",
+      "prediction": "Calvin didn't start a blog; Dave recently started a blog on car mods.",
+      "control_rival": "Hey Calvin! Nice to meet you too! Things have been going well since we last talk",
+      "gold_turns": [
+        "D13:2",
+        "D20:1",
+        "D28:8"
+      ],
+      "gold_speakers": [
+        "Calvin",
+        "Dave"
+      ],
+      "pred_turns": [
+        "D1:2"
+      ],
+      "pred_speakers": [
+        "Dave"
+      ],
+      "A_min_distance": 67,
+      "A_distances": [
+        356,
+        200,
+        67
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": null,
+      "B_gold_date": "2023-11-02",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-03-23",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -224,
+      "B_same_date": false,
+      "B_gold_header": "5:46 pm on 2 November, 2023",
+      "B_pred_header": "11:53 am on 23 March, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "car",
+        "i",
+        "it",
+        "on",
+        "s"
+      ]
+    },
+    {
+      "group": "CONTROL",
+      "question_id": "lc_conv-50_99",
+      "conversation": "conv-50",
+      "question": "How did Calvin meet Frank Ocean?",
+      "gold": "At a music festival in Tokyo",
+      "prediction": "Calvin met Frank Ocean at a music festival in Tokyo.",
+      "control_rival": "That event sounds great! Something really exciting happened to me - I just had a",
+      "gold_turns": [
+        "D15:4",
+        "D3:9",
+        "D7:1"
+      ],
+      "gold_speakers": [
+        "Calvin"
+      ],
+      "pred_turns": [
+        "D1:3"
+      ],
+      "pred_speakers": [
+        "Calvin"
+      ],
+      "A_min_distance": 103,
+      "A_distances": [
+        417,
+        103,
+        512
+      ],
+      "A_adjacent": false,
+      "A_same_session": false,
+      "A_ctx_distance": 12,
+      "B_gold_date": "2023-08-22",
+      "B_gold_conf": "HEADER",
+      "B_pred_date": "2023-03-23",
+      "B_pred_conf": "HEADER",
+      "B_delta_days": -152,
+      "B_same_date": false,
+      "B_gold_header": "11:06 am on 22 August, 2023",
+      "B_pred_header": "11:53 am on 23 March, 2023",
+      "C_kind": "NEITHER_ACTIVITY",
+      "C_gold_activity": [],
+      "C_pred_activity": [],
+      "C_shared_tokens": [
+        "a",
+        "great",
+        "i",
+        "mansion",
+        "my",
+        "s"
+      ]
+    }
+  ]
+}
