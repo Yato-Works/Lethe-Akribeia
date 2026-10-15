@@ -1,0 +1,112 @@
+{
+  "label": "V4 evidence consolidation M5-M13, re-derived from frozen artefacts",
+  "baseline_head": "3d0f6fc",
+  "production_changed": false,
+  "supported": [
+    "Adding candidates does not help: top-50 found 1 more gold-like string than top-20 (M5).",
+    "Adding context does not help: full source was net 0 on the stratified 90, at +21% tokens (M6).",
+    "Question-term evidence selection is harmful: it breaks correct answers (M3, carried forward).",
+    "The Reader answers 805/989 and is 85.1% accurate on what it answers (M2).",
+    "The wrong value is a real content error, not a surface-form error: the gold token appears in the raw output in 0/28 (M7).",
+    "The wrong value maps to a different event in 26/28 on the SOURCE (M8), and 23/28 have both the correct event and the rival inside the frozen context the Reader actually saw (M11).",
+    "A competing event is visible to the Reader about as often when it is CORRECT (14/16 = 87.5%) as when it is wrong (23/28 = 82.1%) (M11).",
+    "Same-day competing events do not predict failure across all 989: 69.6% vs 69.1% accuracy, intervals overlap (M10).",
+    "Position, lexical overlap and speaker agreement do not separate chosen-wrong from chosen-right, and the two that show a gap point the wrong way (M12).",
+    "Predicate satisfaction does not separate them either, under a low-power instrument (M13)."
+  ],
+  "not_supported": [
+    "\"Observable features cannot explain the wrong answers\" -- this is universal and NOT established.  What is established: the features, instruments and samples we tried did not separate the groups.",
+    "Any claim about WHY the Reader preferred a candidate -- internal reasoning was never observed in any mission.",
+    "Generalising M6's net-zero on 90 stratified questions to all 1,986 questions.",
+    "Treating M10's 989-question null result as evidence the M9 pattern is impossible; it is evidence it does not replicate under that condition definition."
+  ],
+  "no_apparatus": [
+    "A second independent annotator, hence no inter-annotator agreement is measurable (M4 blocker, still open).",
+    "Any measurement apparatus that observes the Reader's own selection criterion.",
+    "A predicate-satisfaction judge with enough power to distinguish candidates (NO occurred 0 times in 26 measured pairs).",
+    "External intervention probes: remove one candidate, reorder utterances, paraphrase and re-ask.  None of these has been run, so causal predictions remain untested."
+  ],
+  "per_mission": {
+    "M5": {
+      "top20_gold_like": null,
+      "top50_gold_like": null,
+      "saturation": null
+    },
+    "M6": {
+      "rescued": 11,
+      "regressed": 11,
+      "tokens_a": null,
+      "tokens_b": null
+    },
+    "M7": {
+      "n": null,
+      "causes": {},
+      "gold_token_in_output": null
+    },
+    "M8": {
+      "h1": {
+        "CONFIRMED": 16,
+        "NOT_H1": 8,
+        "POSSIBLE": 2,
+        "UNKNOWN": 2
+      },
+      "h2": {
+        "NOT_H2": 21,
+        "POSSIBLE": 7
+      },
+      "h3": {
+        "CONFIRMED": 26,
+        "UNKNOWN": 2
+      },
+      "confusion_kinds": {
+        "event": 28,
+        "time": 11,
+        "person": 1
+      }
+    },
+    "M10": {
+      "n_present": 237,
+      "present_acc": 69.62025316455696,
+      "absent_acc": 69.14893617021276
+    },
+    "M11": {
+      "failure_verdicts": {
+        "GOLD_AND_PRED_EVENT": 23,
+        "PRED_ONLY": 5
+      },
+      "control_verdicts": {
+        "GOLD_ONLY": 1,
+        "GOLD_AND_COMPETITOR_VISIBLE": 14,
+        "GOLD_NOT_IN_CONTEXT": 1
+      },
+      "competitor_gap_pp": -5.357142857142861
+    },
+    "M12": {
+      "gaps": {
+        "position": -29.19254658385093,
+        "overlap": 21.118012422360255,
+        "speaker": -22.04968944099379
+      }
+    },
+    "M13": {
+      "gap_pp": -16.33986928104575,
+      "satisfies_distribution": {
+        "POSSIBLE": 22,
+        "UNKNOWN": 4
+      },
+      "measurable_failures": 17,
+      "measurable_controls": 9
+    }
+  },
+  "unused_holdout": {
+    "conversations": [
+      "26",
+      "30",
+      "41",
+      "42",
+      "44",
+      "48"
+    ],
+    "questions": 553
+  }
+}
