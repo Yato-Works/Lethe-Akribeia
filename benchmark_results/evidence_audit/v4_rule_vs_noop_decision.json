@@ -1,0 +1,56 @@
+{
+  "label": "V4 mission 17 decision, recomputed from the frozen artefact",
+  "rescue_sets": {
+    "H_CHRONO": [
+      "lc_conv-41_128",
+      "lc_conv-43_162",
+      "lc_conv-47_162",
+      "lc_conv-49_173",
+      "lc_conv-49_93",
+      "lc_conv-50_57"
+    ],
+    "H_QUERY_OVERLAP": [
+      "lc_conv-41_128",
+      "lc_conv-43_162",
+      "lc_conv-47_162",
+      "lc_conv-49_173",
+      "lc_conv-49_93",
+      "lc_conv-50_57"
+    ],
+    "H_LEAST_OVERLAP": [
+      "lc_conv-41_128",
+      "lc_conv-43_162",
+      "lc_conv-47_162",
+      "lc_conv-49_173",
+      "lc_conv-49_93",
+      "lc_conv-50_57"
+    ],
+    "H_CONTEXT_POS": [
+      "lc_conv-41_128",
+      "lc_conv-43_162",
+      "lc_conv-47_162",
+      "lc_conv-49_173",
+      "lc_conv-49_93",
+      "lc_conv-50_57"
+    ],
+    "H_REVERSE": [
+      "lc_conv-41_128",
+      "lc_conv-43_162",
+      "lc_conv-47_162",
+      "lc_conv-49_173",
+      "lc_conv-49_93",
+      "lc_conv-50_57"
+    ]
+  },
+  "broken": {
+    "H_CHRONO": [],
+    "H_QUERY_OVERLAP": [],
+    "H_LEAST_OVERLAP": [],
+    "H_CONTEXT_POS": [],
+    "H_REVERSE": []
+  },
+  "all_arms_rescue_identical_set": true,
+  "any_correct_broken": false,
+  "decision": "STOP ordering-rule design: the rescue is the act of swapping, not any rule's semantics. Move to content-based comparison.",
+  "new_finding": "the 6 rescued cases are BORDERLINE -- they flip under any reordering, so the Reader is not resolving the competition, it is sensitive to presentation noise"
+}
