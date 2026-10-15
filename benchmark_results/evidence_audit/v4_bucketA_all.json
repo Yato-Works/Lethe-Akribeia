@@ -1,7 +1,8 @@
 {
   "label": "V4 mission 22 -- ALL Bucket A cases (full population, not sampled)",
   "population_n": 141,
-  "note_on_layout": "conversation turns are stored once in 'conversations' and referenced by conversation id, not duplicated per case",
+  "blinding": "surface only; the matching key is v4_bucketA_reviewer_key.json",
+  "note_on_layout": "conversation turns are stored once in 'conversations' and referenced by source_conversation, not duplicated per case",
   "conversations": {
     "conv-26": [
       {
@@ -29437,3129 +29438,1413 @@
   "cases": [
     {
       "question_id": "lc_conv-26_1",
-      "conversation": "conv-26",
-      "raw_qa_index": 1,
-      "ledger_qa_index": 1,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When did Melanie paint a sunrise?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:12"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 1,
+      "ledger_qa_index": 1,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_26",
-      "conversation": "conv-26",
-      "raw_qa_index": 26,
-      "ledger_qa_index": 26,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When did Melanie read the book \"nothing is impossible\"?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D7:8"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 26,
+      "ledger_qa_index": 26,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_49",
-      "conversation": "conv-26",
-      "raw_qa_index": 49,
-      "ledger_qa_index": 49,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When did Caroline and Melanie go to a pride fesetival together?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D12:15"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 49,
+      "ledger_qa_index": 49,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_50",
-      "conversation": "conv-26",
-      "raw_qa_index": 50,
-      "ledger_qa_index": 50,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 3,
       "question": "What would Caroline's political leaning likely be?",
       "gold_answer": "Liberal",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D12:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 50,
+      "ledger_qa_index": 50,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_63",
-      "conversation": "conv-26",
-      "raw_qa_index": 63,
-      "ledger_qa_index": 63,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When is Caroline's youth center putting on a talent show?",
       "gold_answer": "September 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D15:11"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 63,
+      "ledger_qa_index": 63,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_72",
-      "conversation": "conv-26",
-      "raw_qa_index": 72,
-      "ledger_qa_index": 72,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When did Melanie's friend adopt a child?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 72,
+      "ledger_qa_index": 72,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_73",
-      "conversation": "conv-26",
-      "raw_qa_index": 73,
-      "ledger_qa_index": 73,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When did Melanie get hurt?",
       "gold_answer": "September 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:8"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 73,
+      "ledger_qa_index": 73,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_76",
-      "conversation": "conv-26",
-      "raw_qa_index": 76,
-      "ledger_qa_index": 76,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 1,
       "question": "When did Melanie go on a hike after the roadtrip?",
       "gold_answer": "19 October 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D18:17"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 76,
+      "ledger_qa_index": 76,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-26_80",
-      "conversation": "conv-26",
-      "raw_qa_index": 80,
-      "ledger_qa_index": 80,
-      "index_shifted": false,
+      "source_conversation": "conv-26",
       "category": 2,
       "question": "When did Melanie buy the figurines?",
       "gold_answer": "21 October 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-26",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D19:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 80,
+      "ledger_qa_index": 80,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_1",
-      "conversation": "conv-30",
-      "raw_qa_index": 1,
-      "ledger_qa_index": 1,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When Gina has lost her job at Door Dash?",
       "gold_answer": "January, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 1,
+      "ledger_qa_index": 1,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_10",
-      "conversation": "conv-30",
-      "raw_qa_index": 10,
-      "ledger_qa_index": 10,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Gina team up with a local artist for some cool designs?",
       "gold_answer": "February, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D5:5"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 10,
+      "ledger_qa_index": 10,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_102",
-      "conversation": "conv-30",
-      "raw_qa_index": 77,
-      "ledger_qa_index": 102,
-      "index_shifted": true,
+      "source_conversation": "conv-30",
       "category": 4,
       "question": "What did Gina make a limited edition line of?",
       "gold_answer": "Hoodies",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 77,
+      "ledger_qa_index": 102,
+      "index_shifted": true
     },
     {
       "question_id": "lc_conv-30_14",
-      "conversation": "conv-30",
-      "raw_qa_index": 14,
-      "ledger_qa_index": 14,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Jon start expanding his studio's social media presence?",
       "gold_answer": "April, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:13"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 14,
+      "ledger_qa_index": 14,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_16",
-      "conversation": "conv-30",
-      "raw_qa_index": 16,
-      "ledger_qa_index": 16,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Jon go to a fair to get more exposure for his dance studio?",
       "gold_answer": "24 April, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D10:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 16,
+      "ledger_qa_index": 16,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_22",
-      "conversation": "conv-30",
-      "raw_qa_index": 22,
-      "ledger_qa_index": 22,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Gina develop a video presentation to teach how to style her fashion pieces? ",
       "gold_answer": "June, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D13:4"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 22,
+      "ledger_qa_index": 22,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_26",
-      "conversation": "conv-30",
-      "raw_qa_index": 26,
-      "ledger_qa_index": 26,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Jon receive mentorship to promote his venture?",
       "gold_answer": "15 June, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D14:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 26,
+      "ledger_qa_index": 26,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_28",
-      "conversation": "conv-30",
-      "raw_qa_index": 28,
-      "ledger_qa_index": 28,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When was Jon in Rome?",
       "gold_answer": "June 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D15:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 28,
+      "ledger_qa_index": 28,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_32",
-      "conversation": "conv-30",
-      "raw_qa_index": 32,
-      "ledger_qa_index": 32,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Gina design a limited collection of hoodies?",
       "gold_answer": "June 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 32,
+      "ledger_qa_index": 32,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_33",
-      "conversation": "conv-30",
-      "raw_qa_index": 33,
-      "ledger_qa_index": 33,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Jon visit networking events for his store?",
       "gold_answer": "20 June, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 33,
+      "ledger_qa_index": 33,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_34",
-      "conversation": "conv-30",
-      "raw_qa_index": 34,
-      "ledger_qa_index": 34,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Gina start being recognized by fashion editors?",
       "gold_answer": "July 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 34,
+      "ledger_qa_index": 34,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_35",
-      "conversation": "conv-30",
-      "raw_qa_index": 35,
-      "ledger_qa_index": 35,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Jon start learning marketing and analytics tools?",
       "gold_answer": "July, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:4"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 35,
+      "ledger_qa_index": 35,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_36",
-      "conversation": "conv-30",
-      "raw_qa_index": 36,
-      "ledger_qa_index": 36,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Jon and Gina decide to collaborate to create dance content?",
       "gold_answer": "21 July 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D18:18"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 36,
+      "ledger_qa_index": 36,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_37",
-      "conversation": "conv-30",
-      "raw_qa_index": 37,
-      "ledger_qa_index": 37,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Gina mention Shia Labeouf?",
       "gold_answer": " 23 July, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D19:4"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 37,
+      "ledger_qa_index": 37,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_6",
-      "conversation": "conv-30",
-      "raw_qa_index": 6,
-      "ledger_qa_index": 6,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When is Jon's group performing at a festival?",
       "gold_answer": "February, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:24"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 6,
+      "ledger_qa_index": 6,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_61",
-      "conversation": "conv-30",
-      "raw_qa_index": 61,
-      "ledger_qa_index": 61,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 4,
       "question": "What did Gina receive from a dance contest?",
       "gold_answer": "a trophy",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D9:10"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 61,
+      "ledger_qa_index": 61,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_7",
-      "conversation": "conv-30",
-      "raw_qa_index": 7,
-      "ledger_qa_index": 7,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 2,
       "question": "When did Gina launch an ad campaign for her store?",
       "gold_answer": "29 January, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 7,
+      "ledger_qa_index": 7,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_76",
-      "conversation": "conv-30",
-      "raw_qa_index": 76,
-      "ledger_qa_index": 76,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 4,
       "question": "What is the general sentiment about the upcoming grand opening?",
       "gold_answer": "excitement",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D15:18",
-          "D15:19"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 76,
+      "ledger_qa_index": 76,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_77",
-      "conversation": "conv-30",
-      "raw_qa_index": 77,
-      "ledger_qa_index": 77,
-      "index_shifted": false,
+      "source_conversation": "conv-30",
       "category": 4,
       "question": "What did Gina make a limited edition line of?",
       "gold_answer": "Hoodies",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 77,
+      "ledger_qa_index": 77,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-30_95",
-      "conversation": "conv-30",
-      "raw_qa_index": 61,
-      "ledger_qa_index": 95,
-      "index_shifted": true,
+      "source_conversation": "conv-30",
       "category": 4,
       "question": "What did Gina receive from a dance contest?",
       "gold_answer": "a trophy",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-30",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D9:10"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 61,
+      "ledger_qa_index": 95,
+      "index_shifted": true
     },
     {
       "question_id": "lc_conv-41_10",
-      "conversation": "conv-41",
-      "raw_qa_index": 10,
-      "ledger_qa_index": 10,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did Maria meet Jean?",
       "gold_answer": "February 24, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D7:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 10,
+      "ledger_qa_index": 10,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-41_20",
-      "conversation": "conv-41",
-      "raw_qa_index": 20,
-      "ledger_qa_index": 20,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did John take a road trip to the Pacific Northwest?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D11:3",
-          "D11:5"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 20,
+      "ledger_qa_index": 20,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-41_24",
-      "conversation": "conv-41",
-      "raw_qa_index": 24,
-      "ledger_qa_index": 24,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did John start boot camp with his family?",
       "gold_answer": "April.2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D13:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 24,
+      "ledger_qa_index": 24,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-41_31",
-      "conversation": "conv-41",
-      "raw_qa_index": 31,
-      "ledger_qa_index": 31,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did John get his dog Max?",
       "gold_answer": "In 2013",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 31,
+      "ledger_qa_index": 31,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-41_38",
-      "conversation": "conv-41",
-      "raw_qa_index": 38,
-      "ledger_qa_index": 38,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did Maria get in a car accident?",
       "gold_answer": "July 2, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D21:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 38,
+      "ledger_qa_index": 38,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-41_5",
-      "conversation": "conv-41",
-      "raw_qa_index": 5,
-      "ledger_qa_index": 5,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did Maria go to the beach?",
       "gold_answer": "December 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:15"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 5,
+      "ledger_qa_index": 5,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-41_53",
-      "conversation": "conv-41",
-      "raw_qa_index": 53,
-      "ledger_qa_index": 53,
-      "index_shifted": false,
+      "source_conversation": "conv-41",
       "category": 2,
       "question": "When did John help renovate his hometown community center?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-41",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:11"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 53,
+      "ledger_qa_index": 53,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_19",
-      "conversation": "conv-42",
-      "raw_qa_index": 19,
-      "ledger_qa_index": 19,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 1,
       "question": "How many times has Joanna found new hiking trails?",
       "gold_answer": "twice",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:4",
-          "D11:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 19,
+      "ledger_qa_index": 19,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_199",
-      "conversation": "conv-42",
-      "raw_qa_index": 89,
-      "ledger_qa_index": 199,
-      "index_shifted": true,
+      "source_conversation": "conv-42",
       "category": 4,
       "question": "What color did Nate choose for his hair?",
       "gold_answer": "purple",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D7:1",
-          "D7:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 89,
+      "ledger_qa_index": 199,
+      "index_shifted": true
     },
     {
       "question_id": "lc_conv-42_2",
-      "conversation": "conv-42",
-      "raw_qa_index": 2,
-      "ledger_qa_index": 2,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 2,
       "question": "When did Joanna first watch \"Eternal Sunshine of the Spotless Mind?",
       "gold_answer": "2019",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:18"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 2,
+      "ledger_qa_index": 2,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_201",
-      "conversation": "conv-42",
-      "raw_qa_index": 91,
-      "ledger_qa_index": 201,
-      "index_shifted": true,
+      "source_conversation": "conv-42",
       "category": 4,
       "question": "What is Nate's favorite book series about?",
       "gold_answer": "dragons",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D9:14"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 91,
+      "ledger_qa_index": 201,
+      "index_shifted": true
     },
     {
       "question_id": "lc_conv-42_41",
-      "conversation": "conv-42",
-      "raw_qa_index": 41,
-      "ledger_qa_index": 41,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 2,
       "question": "When did Joanna make a chocolate tart with raspberries?",
       "gold_answer": "5 October, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D22:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 41,
+      "ledger_qa_index": 41,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_49",
-      "conversation": "conv-42",
-      "raw_qa_index": 49,
-      "ledger_qa_index": 49,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 1,
       "question": "How many times has Joanna's scripts been rejected?",
       "gold_answer": "Twice",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D14:1",
-          "D24:12"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 49,
+      "ledger_qa_index": 49,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_53",
-      "conversation": "conv-42",
-      "raw_qa_index": 53,
-      "ledger_qa_index": 53,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 1,
       "question": "How many times has Nate taken his turtles on a walk?",
       "gold_answer": "Twice.",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D5:4",
-          "D25:15"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 53,
+      "ledger_qa_index": 53,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_57",
-      "conversation": "conv-42",
-      "raw_qa_index": 57,
-      "ledger_qa_index": 57,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 2,
       "question": "When did Joanna plan to go over to Nate's and share recipes?",
       "gold_answer": "5 November, 2022.",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D26:19"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 57,
+      "ledger_qa_index": 57,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_61",
-      "conversation": "conv-42",
-      "raw_qa_index": 61,
-      "ledger_qa_index": 61,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 1,
       "question": "What mediums does Nate use to play games?",
       "gold_answer": "Gamecube, PC,Playstation.",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D22:2",
-          "D27:21",
-          "D27:15"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 61,
+      "ledger_qa_index": 61,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_72",
-      "conversation": "conv-42",
-      "raw_qa_index": 72,
-      "ledger_qa_index": 72,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 2,
       "question": "When did Joanna plan on going to Nate's to watch him play with his turtles?",
       "gold_answer": "10 November, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:32"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 72,
+      "ledger_qa_index": 72,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_73",
-      "conversation": "conv-42",
-      "raw_qa_index": 73,
-      "ledger_qa_index": 73,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 3,
       "question": "What state did Joanna visit in summer 2021?",
       "gold_answer": "Indiana",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:22"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 73,
+      "ledger_qa_index": 73,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_8",
-      "conversation": "conv-42",
-      "raw_qa_index": 8,
-      "ledger_qa_index": 8,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 2,
       "question": "When did Nate get his first two turtles?",
       "gold_answer": "2019",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:12"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 8,
+      "ledger_qa_index": 8,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_85",
-      "conversation": "conv-42",
-      "raw_qa_index": 85,
-      "ledger_qa_index": 85,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 3,
       "question": "What kind of job is Joanna beginning to preform the duties of because of her movie scripts?",
       "gold_answer": "filmmaker.",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D29:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 85,
+      "ledger_qa_index": 85,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_87",
-      "conversation": "conv-42",
-      "raw_qa_index": 87,
-      "ledger_qa_index": 87,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 3,
       "question": "What state did Nate visit?",
       "gold_answer": "Florida",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D29:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 87,
+      "ledger_qa_index": 87,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_89",
-      "conversation": "conv-42",
-      "raw_qa_index": 89,
-      "ledger_qa_index": 89,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 4,
       "question": "What color did Nate choose for his hair?",
       "gold_answer": "purple",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D7:1",
-          "D7:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 89,
+      "ledger_qa_index": 89,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-42_91",
-      "conversation": "conv-42",
-      "raw_qa_index": 91,
-      "ledger_qa_index": 91,
-      "index_shifted": false,
+      "source_conversation": "conv-42",
       "category": 4,
       "question": "What is Nate's favorite book series about?",
       "gold_answer": "dragons",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-42",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D9:14"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 91,
+      "ledger_qa_index": 91,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_16",
-      "conversation": "conv-43",
-      "raw_qa_index": 16,
-      "ledger_qa_index": 16,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "After how many weeks did Tim reconnect with the fellow Harry Potter fan from California?",
       "gold_answer": "three weeks",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:2",
-          "D5:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 16,
+      "ledger_qa_index": 16,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_23",
-      "conversation": "conv-43",
-      "raw_qa_index": 23,
-      "ledger_qa_index": 23,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "When is Tim attending a book conference?",
       "gold_answer": "September 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D7:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 23,
+      "ledger_qa_index": 23,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_27",
-      "conversation": "conv-43",
-      "raw_qa_index": 27,
-      "ledger_qa_index": 27,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 3,
       "question": "Which popular time management technique does Tim use to prepare for exams?",
       "gold_answer": "Pomodoro technique",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D18:3",
-          "D18:7"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 27,
+      "ledger_qa_index": 27,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_3",
-      "conversation": "conv-43",
-      "raw_qa_index": 3,
-      "ledger_qa_index": 3,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 3,
       "question": "Would Tim enjoy reading books by C. S. Lewis or John Greene?",
       "gold_answer": "C. S.Lewis",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:14",
-          "D1:16",
-          "D1:18"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 3,
+      "ledger_qa_index": 3,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_33",
-      "conversation": "conv-43",
-      "raw_qa_index": 33,
-      "ledger_qa_index": 33,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "When does John plan on traveling with his team on a team trip?",
       "gold_answer": "October, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D11:7"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 33,
+      "ledger_qa_index": 33,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_44",
-      "conversation": "conv-43",
-      "raw_qa_index": 44,
-      "ledger_qa_index": 44,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "When did John and his wife go on a European vacation?",
       "gold_answer": "November, 2023.",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:14"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 44,
+      "ledger_qa_index": 44,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_54",
-      "conversation": "conv-43",
-      "raw_qa_index": 54,
-      "ledger_qa_index": 54,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "When did John take a trip to the Rocky Mountains?",
       "gold_answer": "2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D20:40"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 54,
+      "ledger_qa_index": 54,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_6",
-      "conversation": "conv-43",
-      "raw_qa_index": 6,
-      "ledger_qa_index": 6,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "In which month's game did John achieve a career-high score in points?",
       "gold_answer": "June 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 6,
+      "ledger_qa_index": 6,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_60",
-      "conversation": "conv-43",
-      "raw_qa_index": 60,
-      "ledger_qa_index": 60,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "When did John achieve a career-high assist performance?",
       "gold_answer": "December 11, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 60,
+      "ledger_qa_index": 60,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_64",
-      "conversation": "conv-43",
-      "raw_qa_index": 64,
-      "ledger_qa_index": 64,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "Which month was John in Italy?",
       "gold_answer": "December, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D27:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 64,
+      "ledger_qa_index": 64,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_68",
-      "conversation": "conv-43",
-      "raw_qa_index": 68,
-      "ledger_qa_index": 68,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "What day did Tim get into his study abroad program?",
       "gold_answer": "Januarty 5, 2024",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 68,
+      "ledger_qa_index": 68,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-43_69",
-      "conversation": "conv-43",
-      "raw_qa_index": 69,
-      "ledger_qa_index": 69,
-      "index_shifted": false,
+      "source_conversation": "conv-43",
       "category": 2,
       "question": "When will Tim leave for Ireland?",
       "gold_answer": "February, 2024",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-43",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 69,
+      "ledger_qa_index": 69,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-44_0",
-      "conversation": "conv-44",
-      "raw_qa_index": 0,
-      "ledger_qa_index": 0,
-      "index_shifted": false,
+      "source_conversation": "conv-44",
       "category": 2,
       "question": "Which year did Audrey adopt the first three of her dogs?",
       "gold_answer": "2020",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:7"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 0,
+      "ledger_qa_index": 0,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-44_10",
-      "conversation": "conv-44",
-      "raw_qa_index": 10,
-      "ledger_qa_index": 10,
-      "index_shifted": false,
+      "source_conversation": "conv-44",
       "category": 2,
       "question": "When did Audrey's positive reinforcement training course for dogs take place?",
       "gold_answer": "June, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D6:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 10,
+      "ledger_qa_index": 10,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-44_124",
-      "conversation": "conv-44",
-      "raw_qa_index": 64,
-      "ledger_qa_index": 124,
-      "index_shifted": true,
+      "source_conversation": "conv-44",
       "category": 4,
       "question": "What kind of flowers does Audrey have a tattoo of?",
       "gold_answer": "sunflowers",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:26"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 64,
+      "ledger_qa_index": 124,
+      "index_shifted": true
     },
     {
       "question_id": "lc_conv-44_13",
-      "conversation": "conv-44",
-      "raw_qa_index": 13,
-      "ledger_qa_index": 13,
-      "index_shifted": false,
+      "source_conversation": "conv-44",
       "category": 2,
       "question": "When did Audrey move to a new place?",
       "gold_answer": "June 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D9:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 13,
+      "ledger_qa_index": 13,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-44_43",
-      "conversation": "conv-44",
-      "raw_qa_index": 43,
-      "ledger_qa_index": 43,
-      "index_shifted": false,
+      "source_conversation": "conv-44",
       "category": 3,
       "question": "Which US state do Audrey and Andrew potentially live in?",
       "gold_answer": "Minnesota",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D11:9"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 43,
+      "ledger_qa_index": 43,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-44_45",
-      "conversation": "conv-44",
-      "raw_qa_index": 45,
-      "ledger_qa_index": 45,
-      "index_shifted": false,
+      "source_conversation": "conv-44",
       "category": 2,
       "question": "How many pets will Andrew have, as of December 2023?",
       "gold_answer": "three",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D12:1",
-          "D24:2",
-          "D28:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 45,
+      "ledger_qa_index": 45,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-44_64",
-      "conversation": "conv-44",
-      "raw_qa_index": 64,
-      "ledger_qa_index": 64,
-      "index_shifted": false,
+      "source_conversation": "conv-44",
       "category": 4,
       "question": "What kind of flowers does Audrey have a tattoo of?",
       "gold_answer": "sunflowers",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-44",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:26"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 64,
+      "ledger_qa_index": 64,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_0",
-      "conversation": "conv-47",
-      "raw_qa_index": 0,
-      "ledger_qa_index": 0,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 3,
       "question": "What are John's suspected health problems?",
       "gold_answer": "Obesity",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:27"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 0,
+      "ledger_qa_index": 0,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_13",
-      "conversation": "conv-47",
-      "raw_qa_index": 13,
-      "ledger_qa_index": 13,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James visit Italy?",
       "gold_answer": "In 2021",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D6:12"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 13,
+      "ledger_qa_index": 13,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_14",
-      "conversation": "conv-47",
-      "raw_qa_index": 14,
-      "ledger_qa_index": 14,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James buy himself a new adventure book?",
       "gold_answer": "April 26, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:11"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 14,
+      "ledger_qa_index": 14,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_15",
-      "conversation": "conv-47",
-      "raw_qa_index": 15,
-      "ledger_qa_index": 15,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James start playing Civilization VI?",
       "gold_answer": "March 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:29"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 15,
+      "ledger_qa_index": 15,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_16",
-      "conversation": "conv-47",
-      "raw_qa_index": 16,
-      "ledger_qa_index": 16,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 3,
       "question": "What is the game with different colored cards that was John talking about with James?",
       "gold_answer": "UNO",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:34"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 16,
+      "ledger_qa_index": 16,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_17",
-      "conversation": "conv-47",
-      "raw_qa_index": 17,
-      "ledger_qa_index": 17,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 3,
       "question": "What is the board game where you have to find the imposter that John mentions to James?",
       "gold_answer": "Mafia",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:36"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 17,
+      "ledger_qa_index": 17,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_30",
-      "conversation": "conv-47",
-      "raw_qa_index": 30,
-      "ledger_qa_index": 30,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 3,
       "question": "Which country did James book tickets for in July 2022?",
       "gold_answer": "Canada",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:9",
-          "D16:11"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 30,
+      "ledger_qa_index": 30,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_34",
-      "conversation": "conv-47",
-      "raw_qa_index": 34,
-      "ledger_qa_index": 34,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 1,
       "question": "Which countries did James visit in July 2022?",
       "gold_answer": "Canada, Greenland",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:9",
-          "D17:22"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 34,
+      "ledger_qa_index": 34,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_35",
-      "conversation": "conv-47",
-      "raw_qa_index": 35,
-      "ledger_qa_index": 35,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 3,
       "question": "What additional country did James visit during his trip to Canada?",
       "gold_answer": "Greenland",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:22"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 35,
+      "ledger_qa_index": 35,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_39",
-      "conversation": "conv-47",
-      "raw_qa_index": 39,
-      "ledger_qa_index": 39,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did John start his job in IT?",
       "gold_answer": "2019",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D18:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 39,
+      "ledger_qa_index": 39,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_4",
-      "conversation": "conv-47",
-      "raw_qa_index": 4,
-      "ledger_qa_index": 4,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did John resume playing drums in his adulthood?",
       "gold_answer": "February 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:5"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 4,
+      "ledger_qa_index": 4,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_41",
-      "conversation": "conv-47",
-      "raw_qa_index": 41,
-      "ledger_qa_index": 41,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James meet Samantha?",
       "gold_answer": "August 9, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D19:12"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 41,
+      "ledger_qa_index": 41,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_43",
-      "conversation": "conv-47",
-      "raw_qa_index": 43,
-      "ledger_qa_index": 43,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did John plan his next meeting with his siblings?",
       "gold_answer": "In September, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D20:17"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 43,
+      "ledger_qa_index": 43,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_46",
-      "conversation": "conv-47",
-      "raw_qa_index": 46,
-      "ledger_qa_index": 46,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did John and James meet at McGee's bar?",
       "gold_answer": "August 27, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D21:18"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 46,
+      "ledger_qa_index": 46,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_47",
-      "conversation": "conv-47",
-      "raw_qa_index": 47,
-      "ledger_qa_index": 47,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James ask Samantha to be his girlfriend?",
       "gold_answer": "September 3, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 47,
+      "ledger_qa_index": 47,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_48",
-      "conversation": "conv-47",
-      "raw_qa_index": 48,
-      "ledger_qa_index": 48,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James, Samantha and John go to the baseball game together?",
       "gold_answer": "September 11, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:5",
-          "D23:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 48,
+      "ledger_qa_index": 48,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_50",
-      "conversation": "conv-47",
-      "raw_qa_index": 50,
-      "ledger_qa_index": 50,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James start taking cooking classes?",
       "gold_answer": "September 2, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:13"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 50,
+      "ledger_qa_index": 50,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_57",
-      "conversation": "conv-47",
-      "raw_qa_index": 57,
-      "ledger_qa_index": 57,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James' mother and her friend visit him?",
       "gold_answer": "October 19, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:19"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 57,
+      "ledger_qa_index": 57,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_58",
-      "conversation": "conv-47",
-      "raw_qa_index": 58,
-      "ledger_qa_index": 58,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James try Cyberpunk 2077 game?",
       "gold_answer": "October 20, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D28:27"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 58,
+      "ledger_qa_index": 58,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_65",
-      "conversation": "conv-47",
-      "raw_qa_index": 65,
-      "ledger_qa_index": 65,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did James and his family visit Mark and Josh?",
       "gold_answer": "November 7, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D31:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 65,
+      "ledger_qa_index": 65,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_66",
-      "conversation": "conv-47",
-      "raw_qa_index": 66,
-      "ledger_qa_index": 66,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 2,
       "question": "When did John work with a game developer on a project?",
       "gold_answer": "November 5-6, 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D31:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 66,
+      "ledger_qa_index": 66,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-47_7",
-      "conversation": "conv-47",
-      "raw_qa_index": 7,
-      "ledger_qa_index": 7,
-      "index_shifted": false,
+      "source_conversation": "conv-47",
       "category": 3,
       "question": "In which state is the shelter from which James adopted the puppy?",
       "gold_answer": "Connecticut.",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-47",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D5:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 7,
+      "ledger_qa_index": 7,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_12",
-      "conversation": "conv-48",
-      "raw_qa_index": 12,
-      "ledger_qa_index": 12,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Deborah receive an appreciation letter from her community?",
       "gold_answer": "January 26, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:7"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 12,
+      "ledger_qa_index": 12,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_17",
-      "conversation": "conv-48",
-      "raw_qa_index": 17,
-      "ledger_qa_index": 17,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Jolene buy her pet Seraphim?",
       "gold_answer": "in 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:24"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 17,
+      "ledger_qa_index": 17,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_18",
-      "conversation": "conv-48",
-      "raw_qa_index": 18,
-      "ledger_qa_index": 18,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 3,
       "question": "In what country did Jolene buy snake Seraphim?",
       "gold_answer": "In France",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:24"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 18,
+      "ledger_qa_index": 18,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_22",
-      "conversation": "conv-48",
-      "raw_qa_index": 22,
-      "ledger_qa_index": 22,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Deborah meet Anna?",
       "gold_answer": "31 January, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:4"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 22,
+      "ledger_qa_index": 22,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_28",
-      "conversation": "conv-48",
-      "raw_qa_index": 28,
-      "ledger_qa_index": 28,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 3,
       "question": "In what country was Jolene during summer 2022?",
       "gold_answer": "Colombia",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D4:33"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 28,
+      "ledger_qa_index": 28,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_3",
-      "conversation": "conv-48",
-      "raw_qa_index": 3,
-      "ledger_qa_index": 3,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Jolene`s mother pass away?",
       "gold_answer": "in 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 3,
+      "ledger_qa_index": 3,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_32",
-      "conversation": "conv-48",
-      "raw_qa_index": 32,
-      "ledger_qa_index": 32,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When was Deborah in Bali?",
       "gold_answer": "in 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D6:10"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 32,
+      "ledger_qa_index": 32,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_34",
-      "conversation": "conv-48",
-      "raw_qa_index": 34,
-      "ledger_qa_index": 34,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "Which year did Jolene and her partner start dating?",
       "gold_answer": "2020",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D7:7"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 34,
+      "ledger_qa_index": 34,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_44",
-      "conversation": "conv-48",
-      "raw_qa_index": 44,
-      "ledger_qa_index": 44,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Deborah go to an art show with Anna?",
       "gold_answer": "on 9 April, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D12:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 44,
+      "ledger_qa_index": 44,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_48",
-      "conversation": "conv-48",
-      "raw_qa_index": 48,
-      "ledger_qa_index": 48,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 3,
       "question": "Which US state did Jolene visit during her internship?",
       "gold_answer": "Alaska",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D13:15"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 48,
+      "ledger_qa_index": 48,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_5",
-      "conversation": "conv-48",
-      "raw_qa_index": 5,
-      "ledger_qa_index": 5,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 3,
       "question": "In what country did Jolene's mother buy her the pendant?",
       "gold_answer": "In France",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:8"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 5,
+      "ledger_qa_index": 5,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_50",
-      "conversation": "conv-48",
-      "raw_qa_index": 50,
-      "ledger_qa_index": 50,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "Which year did Jolene start practicing yoga?",
       "gold_answer": "2020",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D13:17"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 50,
+      "ledger_qa_index": 50,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_51",
-      "conversation": "conv-48",
-      "raw_qa_index": 51,
-      "ledger_qa_index": 51,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Jolene buy a new aquarium for Seraphim?",
       "gold_answer": "24 June, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D14:4"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 51,
+      "ledger_qa_index": 51,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_53",
-      "conversation": "conv-48",
-      "raw_qa_index": 53,
-      "ledger_qa_index": 53,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Jolene adopt her snake Susie?",
       "gold_answer": "in 2021",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:6",
-          "D28:26"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 53,
+      "ledger_qa_index": 53,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_57",
-      "conversation": "conv-48",
-      "raw_qa_index": 57,
-      "ledger_qa_index": 57,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Jolene gift her partner a new console?",
       "gold_answer": "17 August, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D19:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 57,
+      "ledger_qa_index": 57,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_6",
-      "conversation": "conv-48",
-      "raw_qa_index": 6,
-      "ledger_qa_index": 6,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 1,
       "question": "What symbolic gifts do Deborah and Jolene have from their mothers?",
       "gold_answer": "pendants",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:8",
-          "D1:9"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 6,
+      "ledger_qa_index": 6,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_65",
-      "conversation": "conv-48",
-      "raw_qa_index": 65,
-      "ledger_qa_index": 65,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "Which country was Jolene located in during the last week of August 2023?",
       "gold_answer": "Brazil",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 65,
+      "ledger_qa_index": 65,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_66",
-      "conversation": "conv-48",
-      "raw_qa_index": 66,
-      "ledger_qa_index": 66,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Jolene and her partner return home from Rio de Janeiro?",
       "gold_answer": "29 August, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 66,
+      "ledger_qa_index": 66,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_68",
-      "conversation": "conv-48",
-      "raw_qa_index": 68,
-      "ledger_qa_index": 68,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Deborah visit Brazil?",
       "gold_answer": "2020",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:18"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 68,
+      "ledger_qa_index": 68,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_7",
-      "conversation": "conv-48",
-      "raw_qa_index": 7,
-      "ledger_qa_index": 7,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "Which country were Jolene and her mother visiting in 2010?",
       "gold_answer": "France",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D1:8"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 7,
+      "ledger_qa_index": 7,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_75",
-      "conversation": "conv-48",
-      "raw_qa_index": 75,
-      "ledger_qa_index": 75,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 3,
       "question": "What card game is Deborah talking about?",
       "gold_answer": "Exploding Kittens",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D27:12"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 75,
+      "ledger_qa_index": 75,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_81",
-      "conversation": "conv-48",
-      "raw_qa_index": 81,
-      "ledger_qa_index": 81,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did the Deboran and Jolene agree to go surfing?",
       "gold_answer": "in October 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D29:34"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 81,
+      "ledger_qa_index": 81,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-48_9",
-      "conversation": "conv-48",
-      "raw_qa_index": 9,
-      "ledger_qa_index": 9,
-      "index_shifted": false,
+      "source_conversation": "conv-48",
       "category": 2,
       "question": "When did Deborah's father pass away?",
       "gold_answer": "January 25, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-48",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 9,
+      "ledger_qa_index": 9,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_25",
-      "conversation": "conv-49",
-      "raw_qa_index": 25,
-      "ledger_qa_index": 25,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "Which year did Evan start taking care of his health seriously?",
       "gold_answer": "2021",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D5:6",
-          "D5:7"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 25,
+      "ledger_qa_index": 25,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_30",
-      "conversation": "conv-49",
-      "raw_qa_index": 30,
-      "ledger_qa_index": 30,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When Evan get back from a vacation with his SO?",
       "gold_answer": "August 13, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D6:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 30,
+      "ledger_qa_index": 30,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_39",
-      "conversation": "conv-49",
-      "raw_qa_index": 39,
-      "ledger_qa_index": 39,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "How many months lapsed between Sam's first and second doctor's appointment?",
       "gold_answer": "three months",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D2:6",
-          "D7:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 39,
+      "ledger_qa_index": 39,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_47",
-      "conversation": "conv-49",
-      "raw_qa_index": 47,
-      "ledger_qa_index": 47,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When did Evan go skiing in Banff?",
       "gold_answer": "July 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:26",
-          "D8:27",
-          "D8:28"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 47,
+      "ledger_qa_index": 47,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_57",
-      "conversation": "conv-49",
-      "raw_qa_index": 57,
-      "ledger_qa_index": 57,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 3,
       "question": "Which US state was Sam travelling in during October 2023?",
       "gold_answer": "California",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D13:14"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 57,
+      "ledger_qa_index": 57,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_58",
-      "conversation": "conv-49",
-      "raw_qa_index": 58,
-      "ledger_qa_index": 58,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When did Evan start lifting weights?",
       "gold_answer": "October 2022",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D12:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 58,
+      "ledger_qa_index": 58,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_59",
-      "conversation": "conv-49",
-      "raw_qa_index": 59,
-      "ledger_qa_index": 59,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When did Sam and his friend decide to try kayaking?",
       "gold_answer": "October 14, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D13:10"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 59,
+      "ledger_qa_index": 59,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_67",
-      "conversation": "conv-49",
-      "raw_qa_index": 67,
-      "ledger_qa_index": 67,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When did Evan and Sam planned a trip to the beach together?",
       "gold_answer": "December, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D16:24"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 67,
+      "ledger_qa_index": 67,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_70",
-      "conversation": "conv-49",
-      "raw_qa_index": 70,
-      "ledger_qa_index": 70,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "How long did Evan and his partner date before getting married?",
       "gold_answer": "four months",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D5:1",
-          "D21:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 70,
+      "ledger_qa_index": 70,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_71",
-      "conversation": "conv-49",
-      "raw_qa_index": 71,
-      "ledger_qa_index": 71,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 3,
       "question": "Which major holiday season conincides with Evan's wedding?",
       "gold_answer": "Christmas",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D21:2"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 71,
+      "ledger_qa_index": 71,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_75",
-      "conversation": "conv-49",
-      "raw_qa_index": 75,
-      "ledger_qa_index": 75,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When did Evan announce his marriage to his extended family?",
       "gold_answer": "January 5, 2024",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 75,
+      "ledger_qa_index": 75,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_79",
-      "conversation": "conv-49",
-      "raw_qa_index": 79,
-      "ledger_qa_index": 79,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When will Evan and his partner have their honeymoon in Canada?",
       "gold_answer": "February 2024",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D23:23"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 79,
+      "ledger_qa_index": 79,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-49_80",
-      "conversation": "conv-49",
-      "raw_qa_index": 80,
-      "ledger_qa_index": 80,
-      "index_shifted": false,
+      "source_conversation": "conv-49",
       "category": 2,
       "question": "When did Evan have a drunken night with his friends?",
       "gold_answer": "January 9, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-49",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D24:3"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 80,
+      "ledger_qa_index": 80,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_16",
-      "conversation": "conv-50",
-      "raw_qa_index": 16,
-      "ledger_qa_index": 16,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Dave take a trip to mountainous regions?",
       "gold_answer": "July 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D8:10"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 16,
+      "ledger_qa_index": 16,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_34",
-      "conversation": "conv-50",
-      "raw_qa_index": 34,
-      "ledger_qa_index": 34,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Dave return from San Francisco?",
       "gold_answer": "September 1, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D17:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 34,
+      "ledger_qa_index": 34,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_36",
-      "conversation": "conv-50",
-      "raw_qa_index": 36,
-      "ledger_qa_index": 36,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When was Calvin's album released?",
       "gold_answer": "September 11, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D18:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 36,
+      "ledger_qa_index": 36,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_38",
-      "conversation": "conv-50",
-      "raw_qa_index": 38,
-      "ledger_qa_index": 38,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Dave have a great jam session with his band?",
       "gold_answer": "September 14, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D19:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 38,
+      "ledger_qa_index": 38,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_39",
-      "conversation": "conv-50",
-      "raw_qa_index": 39,
-      "ledger_qa_index": 39,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 3,
       "question": "Would Dave prefer working on a Dodge Charger or a Subaru Forester?",
       "gold_answer": "Dodge Charger",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 39,
+      "ledger_qa_index": 39,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_4",
-      "conversation": "conv-50",
-      "raw_qa_index": 4,
-      "ledger_qa_index": 4,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 3,
       "question": "Which country do Calvin and Dave want to meet in?",
       "gold_answer": "United States",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D3:9",
-          "D3:10"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 4,
+      "ledger_qa_index": 4,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_44",
-      "conversation": "conv-50",
-      "raw_qa_index": 44,
-      "ledger_qa_index": 44,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Calvin met with local artists in Boston?",
       "gold_answer": "October 3, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D21:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 44,
+      "ledger_qa_index": 44,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_52",
-      "conversation": "conv-50",
-      "raw_qa_index": 52,
-      "ledger_qa_index": 52,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Calvin plan on travelling to Tokyo the second time?",
       "gold_answer": "November 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D24:17"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 52,
+      "ledger_qa_index": 52,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_55",
-      "conversation": "conv-50",
-      "raw_qa_index": 55,
-      "ledger_qa_index": 55,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Calvin visit some of the sights in Boston with a former high school friend?",
       "gold_answer": "October 24, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D26:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 55,
+      "ledger_qa_index": 55,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_65",
-      "conversation": "conv-50",
-      "raw_qa_index": 65,
-      "ledger_qa_index": 65,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Dave take a photo of a Boston clock tower?",
       "gold_answer": "September 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D27:6"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 65,
+      "ledger_qa_index": 65,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_69",
-      "conversation": "conv-50",
-      "raw_qa_index": 69,
-      "ledger_qa_index": 69,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Dave buy a vintage camera?",
       "gold_answer": "November 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D30:05"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 69,
+      "ledger_qa_index": 69,
+      "index_shifted": false
     },
     {
       "question_id": "lc_conv-50_70",
-      "conversation": "conv-50",
-      "raw_qa_index": 70,
-      "ledger_qa_index": 70,
-      "index_shifted": false,
+      "source_conversation": "conv-50",
       "category": 2,
       "question": "When did Calvin attend a gala in Boston?",
       "gold_answer": "November 16, 2023",
-      "engine_verdict": "abstain",
-      "engine_prediction": "",
-      "source_conversation": "conv-50",
-      "reviewer_only": {
-        "dataset_evidence_ids": [
-          "D30:1"
-        ],
-        "note": "dataset gold evidence pointer -- NOT part of the audit surface; showing it would decide the question being asked",
-        "engine_s1_label": "VERBATIM_ABSENT",
-        "engine_abstain_reason": "ABSTAINED",
-        "note2": "engine labels withheld from the annotator to avoid anchoring"
-      }
+      "raw_qa_index": 70,
+      "ledger_qa_index": 70,
+      "index_shifted": false
     }
   ]
 }

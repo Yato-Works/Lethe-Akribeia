@@ -38,6 +38,7 @@ M21 = ROOT / "benchmark_results/evidence_audit/v4_s1_decomposition.json"
 DATASET = ROOT / "datasets/external/locomo10.json"
 OUT_PACK = ROOT / "benchmark_results/evidence_audit/v4_bucketA_audit_pack.json"
 OUT_FULL = ROOT / "benchmark_results/evidence_audit/v4_bucketA_all.json"
+OUT_KEY = ROOT / "benchmark_results/evidence_audit/v4_bucketA_reviewer_key.json"
 
 SEED = 20261015
 TARGET_SAMPLE = 60
@@ -104,6 +105,7 @@ def main() -> int:
     # guessed -- an off-by-one here would audit the wrong question against the wrong
     # conversation, which is worse than dropping it.
     joined, unjoined, ambiguous = 0, [], []
+    cases, key_rows = [], []
     gold_pool = defaultdict(list)
     for (sid, idx), qa in qa_by.items():
         gold_pool[(sid, str(qa.get("answer", "")).strip())].append((idx, qa))
@@ -130,29 +132,38 @@ def main() -> int:
         else:
             idx, qa = cands[0]
         joined += 1
+        # ---- BLIND SURFACE ONLY -------------------------------------------
+        # DEFECT FIXED (raised in independent review): the first version put
+        # engine_verdict and engine_prediction directly on the case, and kept the
+        # "withheld" material in a reviewer_only dict that was still PRESENT IN THE
+        # FILE.  A file that contains the label is not a blind file, whatever the
+        # field is called -- the annotator can read it, and the contamination claim
+        # cannot be sustained.  The blind pack now carries ONLY what the annotator
+        # needs.  Engine labels and the dataset evidence pointer live in a SEPARATE
+        # key file that is never handed over.
         cases.append({
             "question_id": qid,
-            "conversation": k[0],
+            "source_conversation": k[0],
+            "category": qa.get("category"),
+            # AUDIT SURFACE -- the only fields the annotator sees
+            "question": qa.get("question", ""),
+            "gold_answer": str(qa.get("answer", "")),
+            # bookkeeping that cannot anchor a judgement
             "raw_qa_index": idx,
             "ledger_qa_index": k[1],
             "index_shifted": idx != k[1],
-            "category": qa.get("category"),
-            "question": qa.get("question", ""),
-            "gold_answer": str(qa.get("answer", "")),
+        })
+        # ---- REVIEWER KEY, kept out of the blind pack ---------------------
+        key_rows.append({
+            "question_id": qid,
             "engine_verdict": r.get("verdict"),
             "engine_prediction": r.get("prediction"),
-            # the conversation this case belongs to; its turns live ONCE in the
-            # top-level "conversations" map rather than being copied into every case
-            "source_conversation": k[0],
-            # WITHHELD from the audit surface, kept for the reviewer
-            "reviewer_only": {
-                "dataset_evidence_ids": qa.get("evidence", []),
-                "note": ("dataset gold evidence pointer -- NOT part of the audit surface; "
-                         "showing it would decide the question being asked"),
-                "engine_s1_label": r.get("s1_source_evidence"),
-                "engine_abstain_reason": r.get("s8_commitment"),
-                "note2": "engine labels withheld from the annotator to avoid anchoring",
-            },
+            "dataset_evidence_ids": qa.get("evidence", []),
+            "engine_s1_label": r.get("s1_source_evidence"),
+            "engine_abstain_reason": r.get("s8_commitment"),
+            "note": ("NOT part of the audit surface.  Held for scoring and for checking "
+                     "the annotator's labels against the engine, never handed over "
+                     "before the labels are frozen."),
         })
 
     print("JOIN INTEGRITY (verified, not assumed)")
@@ -188,22 +199,39 @@ def main() -> int:
     print()
 
     rng = random.Random(SEED)
+    # ---- DEFECT FIXED (raised in independent review): this was NOT proportional ----
+    # The first version allocated per category as TARGET // n_categories, giving
+    # {1: 7/7 = 1.00, 2: 27/101 = 0.27, 3: 15/22 = 0.68, 4: 11/11 = 1.00} -- a round
+    # number per stratum, not a proportional allocation.  Any population proportion
+    # computed from that sample is biased unless the sampling rate per stratum is
+    # applied as a weight.  True proportional allocation is used now, and the per-stratum
+    # weights are recorded so the population mix can be estimated from any label
+    # distribution.
     sample = []
     if len(cases) <= TARGET_SAMPLE:
         sample = list(cases)
     else:
-        # proportional stratified allocation, so the sample mirrors the population
-        n_cat = len(by_cat)
-        per = max(1, TARGET_SAMPLE // n_cat)
         for cat, group in sorted(by_cat.items()):
-            take = min(per, len(group))
-            sample.extend(rng.sample(sorted(group, key=lambda c: c["question_id"]),
-                                     take))
-        if len(sample) < TARGET_SAMPLE:
+            take = max(1, round(TARGET_SAMPLE * len(group) / len(cases)))
+            take = min(take, len(group))
+            sample.extend(rng.sample(sorted(group, key=lambda c: c["question_id"]), take))
+        if len(sample) > TARGET_SAMPLE:
+            sample = sample[:TARGET_SAMPLE]
+        elif len(sample) < TARGET_SAMPLE:
             remaining = [c for c in cases if c not in sample]
             rng.shuffle(remaining)
             sample.extend(remaining[:TARGET_SAMPLE - len(sample)])
     sample.sort(key=lambda c: c["question_id"])
+
+    # per-stratum sampling weights: population / sample, so a label distribution over
+    # the sample can be expanded back to the 141-case population
+    weights = {}
+    for cat, group in sorted(by_cat.items()):
+        n_s = sum(1 for c in sample if c["category"] == cat)
+        if n_s:
+            weights[str(cat)] = {"population": len(group), "sampled": n_s,
+                                 "sampling_rate": n_s / len(group),
+                                 "weight": len(group) / n_s}
 
     print(f"  stratified sample    : {len(sample)} of {len(cases)}  (seed {SEED})")
     print(f"    sample category mix: "
@@ -243,40 +271,66 @@ def main() -> int:
     print()
 
     OUT_PACK.write_text(json.dumps({
-        "label": "V4 mission 22 -- Bucket A audit pack (stratified sample)",
-        "baseline": {"head": "45d8257", "production_changed": False},
+        "label": "V4 mission 22 -- Bucket A audit pack (stratified sample), BLIND",
+        "baseline": {"head": "23a9d3f", "production_changed": False},
         "population_n": len(cases),
         "sample_n": len(sample),
         "seed": SEED,
-        "stratification": "proportional by LoCoMo category",
+        "stratification": "PROPORTIONAL by LoCoMo category (see sampling_weights)",
+        "sampling_weights": weights,
+        "sampling_weights_note": ("apply these when expanding a label distribution back "
+                                  "to the 141-case population; the sample is NOT a "
+                                  "uniform random draw"),
         "labels_fixed_before_judgement": LABELS,
-        "withheld_from_annotator": [
-            "engine abstention reason / s1 VERBATIM_ABSENT label",
-            "dataset `evidence` gold pointer (held in reviewer_only)",
-            "any statement of the hypothesis under test",
-        ],
+        "blinding": {
+            "surface_contains": ["question", "gold_answer", "source_conversation"],
+            "withheld_from_this_file": [
+                "engine verdict and prediction",
+                "dataset `evidence` gold pointer",
+                "engine s1 label and abstention reason",
+                "any statement of the hypothesis under test",
+            ],
+            "withheld_where": ("v4_bucketA_reviewer_key.json -- a separate file, never "
+                               "handed over before labels are frozen"),
+            "defect_fixed": ("the earlier pack carried engine_verdict, engine_prediction "
+                             "and a reviewer_only dict IN THE SAME FILE, so it was not "
+                             "blind however the field was named.  The independent review "
+                             "caught this and used question/gold/conversation only."),
+        },
         "judgement_rule": ("does the conversation support the fact the question asks "
                            "for -- not whether the gold wording appears verbatim"),
+        "relative_date_rule": ("a relative expression ('yesterday', 'last month', 'next "
+                               "month') supports the FACT but does not by itself fix an "
+                               "absolute date.  Do not force it into SUPPORT or ABSENT."),
+        "image_dependent_rule": ("hair colour, game consoles, tattoos and similar may be "
+                                 "evidenced by an IMAGE that text does not carry.  Without "
+                                 "the image, prefer REVIEW_REQUIRED over ABSENT."),
         "category_distribution_population": cat_dist,
         "join_verified_by": "gold answer equality across the two key namespaces",
-        "note_on_layout": ("source_turns are NOT duplicated per case.  Each case carries "
-                           "conversation, and the full turn list for that conversation "
-                           "lives once in 'conversations'.  An earlier version embedded "
-                           "the whole conversation in every case, producing 18.9MB / "
-                           "7.9MB files where the same turns were repeated dozens of "
-                           "times -- unusable for hand auditing."),
+        "note_on_layout": ("conversation turns are stored once in 'conversations' and "
+                           "referenced by source_conversation, not duplicated per case"),
         "conversations": {sid: conv_turns.get(sid, []) for sid in
-                          sorted({c["conversation"] for c in sample})},
+                          sorted({c["source_conversation"] for c in sample})},
         "cases": sample,
+    }, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    # ---- REVIEWER KEY: deliberately a separate file -------------------------
+    OUT_KEY.write_text(json.dumps({
+        "label": ("V4 mission 22 reviewer key -- NOT part of the audit surface.  Held "
+                  "for scoring the annotator's labels and for comparing against the "
+                  "engine.  Must not be handed over before the labels are frozen."),
+        "n": len(key_rows),
+        "rows": key_rows,
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 
     OUT_FULL.write_text(json.dumps({
         "label": "V4 mission 22 -- ALL Bucket A cases (full population, not sampled)",
         "population_n": len(cases),
+        "blinding": "surface only; the matching key is v4_bucketA_reviewer_key.json",
         "note_on_layout": ("conversation turns are stored once in 'conversations' and "
-                           "referenced by conversation id, not duplicated per case"),
+                           "referenced by source_conversation, not duplicated per case"),
         "conversations": {sid: conv_turns.get(sid, []) for sid in
-                          sorted({c["conversation"] for c in cases})},
+                          sorted({c["source_conversation"] for c in cases})},
         "cases": sorted(cases, key=lambda c: c["question_id"]),
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 

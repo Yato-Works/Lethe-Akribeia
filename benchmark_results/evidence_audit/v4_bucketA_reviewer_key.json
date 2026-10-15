@@ -1,0 +1,1581 @@
+{
+  "label": "V4 mission 22 reviewer key -- NOT part of the audit surface.  Held for scoring the annotator's labels and for comparing against the engine.  Must not be handed over before the labels are frozen.",
+  "n": 141,
+  "rows": [
+    {
+      "question_id": "lc_conv-26_1",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:12"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D7:8"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_49",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D12:15"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_50",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D12:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_63",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D15:11"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_72",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_73",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:8"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_76",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D18:17"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-26_80",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D19:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_1",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_6",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:24"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_7",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_10",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D5:5"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_14",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:13"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_16",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D10:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_22",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D13:4"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_26",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D14:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_28",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D15:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_32",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_33",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_34",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_35",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:4"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_36",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D18:18"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_37",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D19:4"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_61",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D9:10"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_76",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D15:18",
+        "D15:19"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_77",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_95",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D9:10"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-30_102",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_5",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:15"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_10",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D7:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_20",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D11:3",
+        "D11:5"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_24",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D13:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_31",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_38",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D21:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-41_53",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:11"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_2",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:18"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_8",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:12"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_19",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:4",
+        "D11:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_41",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D22:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_49",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D14:1",
+        "D24:12"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_53",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D5:4",
+        "D25:15"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_57",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D26:19"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_61",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D22:2",
+        "D27:21",
+        "D27:15"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_72",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:32"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_73",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:22"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_85",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D29:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_87",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D29:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_89",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D7:1",
+        "D7:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_91",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D9:14"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_199",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D7:1",
+        "D7:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-42_201",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D9:14"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_3",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:14",
+        "D1:16",
+        "D1:18"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_6",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_16",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:2",
+        "D5:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_23",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D7:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_27",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D18:3",
+        "D18:7"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_33",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D11:7"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_44",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:14"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_54",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D20:40"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_60",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_64",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D27:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_68",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-43_69",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_0",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:7"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_10",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D6:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_13",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D9:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_43",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D11:9"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_45",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D12:1",
+        "D24:2",
+        "D28:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_64",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:26"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-44_124",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:26"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_0",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:27"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_4",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:5"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_7",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D5:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_13",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D6:12"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_14",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:11"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_15",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:29"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_16",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:34"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_17",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:36"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_30",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:9",
+        "D16:11"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_34",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:9",
+        "D17:22"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_35",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:22"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_39",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D18:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_41",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D19:12"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_43",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D20:17"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_46",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D21:18"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_47",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_48",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:5",
+        "D23:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_50",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:13"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_57",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:19"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_58",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D28:27"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_65",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D31:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-47_66",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D31:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_3",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_5",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:8"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_6",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:8",
+        "D1:9"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_7",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D1:8"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_9",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_12",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:7"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_17",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:24"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_18",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:24"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_22",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:4"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_28",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D4:33"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_32",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D6:10"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_34",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D7:7"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_44",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D12:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_48",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D13:15"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_50",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D13:17"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_51",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D14:4"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_53",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:6",
+        "D28:26"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_57",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D19:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_65",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_66",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_68",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:18"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_75",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D27:12"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-48_81",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D29:34"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_25",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D5:6",
+        "D5:7"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_30",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D6:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_39",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D2:6",
+        "D7:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_47",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:26",
+        "D8:27",
+        "D8:28"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_57",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D13:14"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_58",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D12:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_59",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D13:10"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_67",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D16:24"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_70",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D5:1",
+        "D21:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_71",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D21:2"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_75",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_79",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D23:23"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-49_80",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D24:3"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_4",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D3:9",
+        "D3:10"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_16",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D8:10"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_34",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D17:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_36",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D18:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_38",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D19:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_39",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_44",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D21:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_52",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D24:17"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_55",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D26:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_65",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D27:6"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_69",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D30:05"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    },
+    {
+      "question_id": "lc_conv-50_70",
+      "engine_verdict": "abstain",
+      "engine_prediction": "",
+      "dataset_evidence_ids": [
+        "D30:1"
+      ],
+      "engine_s1_label": "VERBATIM_ABSENT",
+      "engine_abstain_reason": "ABSTAINED",
+      "note": "NOT part of the audit surface.  Held for scoring and for checking the annotator's labels against the engine, never handed over before the labels are frozen."
+    }
+  ]
+}
