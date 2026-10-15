@@ -1,0 +1,1887 @@
+{
+  "label": "V4 mission 13 -- semantic predicate audit, phase 1 blind",
+  "baseline": {
+    "head": "ce792ca",
+    "production_changed": false,
+    "evidence_binding": "unwired, preserved"
+  },
+  "cohort_from": "v4_frozen_context_binding.json (M11), frozen, not regenerated",
+  "n_failure": 23,
+  "n_control": 14,
+  "measurable_failures": 17,
+  "measurable_controls": 9,
+  "phase1_blind": true,
+  "predicate_classes": {
+    "EXCLUSION": 1,
+    "PLAIN": 19,
+    "ATTRIBUTE": 8,
+    "TEMPORAL_ORDER": 7,
+    "COUNT": 1,
+    "REASON": 1
+  },
+  "chosen_satisfies_less_failure_pct": 5.88235294117647,
+  "chosen_satisfies_less_control_pct": 22.22222222222222,
+  "gap_pp": -16.33986928104575,
+  "rows": [
+    {
+      "question_id": "lc_conv-26_111",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-26",
+      "predicate_class": "EXCLUSION",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D8:33",
+      "rejected_turn": "D12:6",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 2,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "painting",
+      "prediction": "They enjoy hiking in the mountains and exploring forests together.",
+      "question": "What creative project do Mel and her kids do together besides pottery?"
+    },
+    {
+      "question_id": "lc_conv-30_45",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-30",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D5:2",
+      "rejected_turn": "D2:12",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 2,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "Glad",
+      "prediction": "Jon is excited and fulfilled by the performance at the festival, as it allows him to share his passion and see his students succeed.",
+      "question": "What is Jon's attitude towards being part of the dance festival?"
+    },
+    {
+      "question_id": "lc_conv-30_71",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-30",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D13:6",
+      "rejected_turn": "D5:5",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "UNKNOWN",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 1,
+      "rejected_overlap_n": 0,
+      "chosen_is_earlier": true,
+      "gold": "amazing",
+      "prediction": "Gina describes Jon's studio as a place for dancers to grow and a creative space for self-expression.",
+      "question": "How does Gina describe the studio that Jon has opened?"
+    },
+    {
+      "question_id": "lc_conv-41_128",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-41",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D24:7",
+      "rejected_turn": "D25:2",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 5,
+      "rejected_overlap_n": 4,
+      "chosen_is_earlier": true,
+      "gold": "hiking",
+      "prediction": "They had a picnic.",
+      "question": "In what activity did Maria and her church friends participate in July 2023?"
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-42",
+      "predicate_class": "TEMPORAL_ORDER",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D18:6",
+      "rejected_turn": "D18:5",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 8,
+      "rejected_overlap_n": 6,
+      "chosen_is_earlier": true,
+      "gold": "Touched",
+      "prediction": "Nate felt surreal and thought it was nice work.",
+      "question": "How did Nate feel when someone wrote him a letter after reading his blog post?"
+    },
+    {
+      "question_id": "lc_conv-43_101",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D9:6",
+      "rejected_turn": "D14:17",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 2,
+      "chosen_is_earlier": true,
+      "gold": "Amazing",
+      "prediction": "John enjoyed his trip to New York City, mentioning he loves discovering new cities and that he shared a picture from his visit.",
+      "question": "How was John's experience in New York City?"
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-43_152",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D23:3",
+      "rejected_turn": "D22:8",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 4,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "basketball",
+      "prediction": "A big game against their rival.",
+      "question": "What kind of game did John have a career-high in assists in?"
+    },
+    {
+      "question_id": "lc_conv-43_162",
+      "measurable": false,
+      "why": "chosen/rejected not separable in the frozen ids"
+    },
+    {
+      "question_id": "lc_conv-43_223",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "predicate_class": "TEMPORAL_ORDER",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D21:8",
+      "rejected_turn": "D21:9",
+      "chosen_satisfies": "UNKNOWN",
+      "rejected_satisfies": "UNKNOWN",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 1,
+      "rejected_overlap_n": 6,
+      "chosen_is_earlier": true,
+      "gold": "an instrument",
+      "prediction": "John recently started learning how to market himself and boost his brand.",
+      "question": "What did John recently start learning in addition to being part of a travel club and working on studies?"
+    },
+    {
+      "question_id": "lc_conv-43_234",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-44_50",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-44",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D27:6",
+      "rejected_turn": "D16:3",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "Grooming",
+      "prediction": "Audrey joined a dog owners group to learn how to better take care of her dogs.",
+      "question": "What is a skill that Audrey learned to take care of her dogs?"
+    },
+    {
+      "question_id": "lc_conv-47_162",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-47",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-B",
+      "rejected": "CAND-A",
+      "chosen_turn": "D16:2",
+      "rejected_turn": "D16:8",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": true,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 4,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": false,
+      "gold": "Reading",
+      "prediction": "James mentioned that he likes to read to relax.",
+      "question": "How did James relax in his free time on 9 July, 2022?"
+    },
+    {
+      "question_id": "lc_conv-47_163",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-48_77",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-48",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D29:4",
+      "rejected_turn": "D27:1",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 2,
+      "chosen_is_earlier": true,
+      "gold": "Phuket",
+      "prediction": "They found a cool dive spot during a scuba diving lesson the Friday before 17 September 2023.",
+      "question": "Where did Jolene and her partner find a cool diving spot?"
+    },
+    {
+      "question_id": "lc_conv-49_109",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D4:16",
+      "rejected_turn": "D8:30",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 5,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "skiing",
+      "prediction": "Evan mentioned working on a watercolor painting in July 2023.",
+      "question": "What fun activity did Evan mention doing in July 2023?"
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D11:2",
+      "rejected_turn": "D9:7",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 4,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "Swimming",
+      "prediction": "Sam has been doing painting to stay active while dealing with the knee injury.",
+      "question": "What sports activity has Sam been doing to stay active while dealing with the knee injury?"
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D16:24",
+      "rejected_turn": "D10:12",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 2,
+      "chosen_is_earlier": true,
+      "gold": "painting",
+      "prediction": "They plan to paint together next Saturday.",
+      "question": "Which activity do Evan and Sam plan on doing together during September 2023?"
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "measurable": false,
+      "why": "chosen/rejected not separable in the frozen ids"
+    },
+    {
+      "question_id": "lc_conv-50_160",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-50",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-B",
+      "rejected": "CAND-A",
+      "chosen_turn": "D7:1",
+      "rejected_turn": "D4:2",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "UNKNOWN",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 2,
+      "rejected_overlap_n": 0,
+      "chosen_is_earlier": false,
+      "gold": "Car maintenance shop",
+      "prediction": "Calvin's new business venture as of 1 May, 2023 is touring with Frank Ocean.",
+      "question": "What is Calvin's new business venture as of 1 May, 2023?"
+    },
+    {
+      "question_id": "lc_conv-50_189",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-50_57",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-50",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-B",
+      "rejected": "CAND-A",
+      "chosen_turn": "D22:1",
+      "rejected_turn": "D27:2",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "UNKNOWN",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 2,
+      "rejected_overlap_n": 0,
+      "chosen_is_earlier": false,
+      "gold": "photography",
+      "prediction": "Restoring and modifying cars.",
+      "question": "Which hobby did Dave pick up in October 2023?"
+    },
+    {
+      "question_id": "lc_conv-50_87",
+      "measurable": true,
+      "group": "FAILURE",
+      "conversation": "conv-50",
+      "predicate_class": "TEMPORAL_ORDER",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D10:2",
+      "rejected_turn": "D10:1",
+      "chosen_satisfies": "UNKNOWN",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 2,
+      "rejected_overlap_n": 2,
+      "chosen_is_earlier": true,
+      "gold": "get back on the road",
+      "prediction": "Cruising around.",
+      "question": "What was Calvin excited to do after getting his car fixed on 7 July, 2023?"
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-26",
+      "predicate_class": "COUNT",
+      "chosen": "CAND-B",
+      "rejected": "CAND-A",
+      "chosen_turn": "D3:16",
+      "rejected_turn": "D13:12",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 0,
+      "rejected_overlap_n": 3,
+      "chosen_is_earlier": false,
+      "gold": "7 years",
+      "prediction": "Melanie has been creating art for about seven years.",
+      "question": "How long has Melanie been creating art?"
+    },
+    {
+      "question_id": "lc_conv-26_152",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-41_138",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-41",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D28:8",
+      "rejected_turn": "D30:23",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 4,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "community work",
+      "prediction": "Maria took up community work with her friends from church.",
+      "question": "What activity did Maria take up with her friends from church in August 2023?"
+    },
+    {
+      "question_id": "lc_conv-42_134",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-42",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D29:6",
+      "rejected_turn": "D5:2",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 2,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "turtles",
+      "prediction": "Nate took his turtles to the beach in Tampa.",
+      "question": "What did Nate take to the beach in Tampa?"
+    },
+    {
+      "question_id": "lc_conv-42_221",
+      "measurable": false,
+      "why": "chosen/rejected not separable in the frozen ids"
+    },
+    {
+      "question_id": "lc_conv-43_91",
+      "measurable": false,
+      "why": "chosen/rejected not separable in the frozen ids"
+    },
+    {
+      "question_id": "lc_conv-44_102",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-44",
+      "predicate_class": "REASON",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D22:5",
+      "rejected_turn": "D22:4",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 4,
+      "chosen_is_earlier": true,
+      "gold": "To show love for creativity and sustainability",
+      "prediction": "To show her love of creativity and sustainability, and to give recycled objects new life.",
+      "question": "Why does Audrey make jewelry out of recycled objects?"
+    },
+    {
+      "question_id": "lc_conv-44_121",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-44",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D28:10",
+      "rejected_turn": "D12:1",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": true,
+      "rejected_negated": true,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "Take them to a nearby park",
+      "prediction": "Take them to a nearby park.",
+      "question": "What is Andrew planning to do with Scout, Toby, and Buddy?"
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-47",
+      "predicate_class": "ATTRIBUTE",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D3:3",
+      "rejected_turn": "D3:1",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 1,
+      "rejected_overlap_n": 2,
+      "chosen_is_earlier": true,
+      "gold": "Drums",
+      "prediction": "John is learning to play drums as of 27 March, 2022.",
+      "question": "What instrument is John learning to play as of 27 March, 2022?"
+    },
+    {
+      "question_id": "lc_conv-48_173",
+      "measurable": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    {
+      "question_id": "lc_conv-50_134",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-50",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D25:19",
+      "rejected_turn": "D17:3",
+      "chosen_satisfies": "UNKNOWN",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 0,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": true,
+      "gold": "Paying extra attention to detail",
+      "prediction": "Paying extra attention to detail isn't easy, but it pays off.",
+      "question": "What is the toughest part of car restoration according to Dave?"
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-50",
+      "predicate_class": "TEMPORAL_ORDER",
+      "chosen": "CAND-B",
+      "rejected": "CAND-A",
+      "chosen_turn": "D28:8",
+      "rejected_turn": "D2:9",
+      "chosen_satisfies": "UNKNOWN",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 1,
+      "chosen_is_earlier": false,
+      "gold": "Car mods",
+      "prediction": "Calvin didn't start a blog; Dave recently started a blog on car mods.",
+      "question": "What did Calvin recently start a blog about?"
+    },
+    {
+      "question_id": "lc_conv-50_99",
+      "measurable": true,
+      "group": "CONTROL",
+      "conversation": "conv-50",
+      "predicate_class": "PLAIN",
+      "chosen": "CAND-A",
+      "rejected": "CAND-B",
+      "chosen_turn": "D15:4",
+      "rejected_turn": "D23:10",
+      "chosen_satisfies": "POSSIBLE",
+      "rejected_satisfies": "POSSIBLE",
+      "chosen_negated": false,
+      "rejected_negated": false,
+      "chosen_superseding": false,
+      "rejected_superseding": false,
+      "chosen_overlap_n": 3,
+      "rejected_overlap_n": 2,
+      "chosen_is_earlier": true,
+      "gold": "At a music festival in Tokyo",
+      "prediction": "Calvin met Frank Ocean at a music festival in Tokyo.",
+      "question": "How did Calvin meet Frank Ocean?"
+    }
+  ],
+  "phase1_frozen": {
+    "lc_conv-26_111": {
+      "question_id": "lc_conv-26_111",
+      "predicate_class": "EXCLUSION",
+      "exclusion_terms": [
+        "pottery"
+      ],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D8:33",
+          "pos": 7,
+          "speaker": "Caroline",
+          "reply_to": "Melanie",
+          "utterance": " Awesome, Mel! Family support's huge. What else do you guys like doing together?",
+          "overlap_words": [
+            "mel",
+            "together"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D12:6",
+          "pos": 11,
+          "speaker": "Melanie",
+          "reply_to": "Caroline",
+          "utterance": " Thanks, Caroline! I'm obsessed with those, so I made something to catch the eye and make people smile. Plus, painting helps me express my feelings and be creative. Each stroke car",
+          "overlap_words": [
+            "creative"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-30_45": {
+      "question_id": "lc_conv-30_45",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D5:2",
+          "pos": 1,
+          "speaker": "Jon",
+          "reply_to": "Gina",
+          "utterance": " Hey Gina! Congrats on the new fashion piece! Looks like your store is growing. Remenber the festival I told you about? Had that performance and it was awesome - so many people the",
+          "overlap_words": [
+            "dance",
+            "festival"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D2:12",
+          "pos": 12,
+          "speaker": "Jon",
+          "reply_to": "Gina",
+          "utterance": " Glad I have you in my corner! Gotta make time to dance and vent, that's for sure. We'll make it through this - hang in there!",
+          "overlap_words": [
+            "dance"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-30_71": {
+      "question_id": "lc_conv-30_71",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D13:6",
+          "pos": 0,
+          "speaker": "Gina",
+          "reply_to": "Jon",
+          "utterance": " Shure, I will send it to you later. Starting this studio isn't just a business, it's a place for dancers to grow. What support are you offering them?",
+          "overlap_words": [
+            "studio"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D5:5",
+          "pos": 5,
+          "speaker": "Gina",
+          "reply_to": "Jon",
+          "utterance": " That's awesome! I'm sure you feel great knowing your students are doing so well with dance. It's amazing what it can do for people! Oh, and btw - I've been working hard on my onli",
+          "overlap_words": [],
+          "overlap_n": 0,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        }
+      }
+    },
+    "lc_conv-41_128": {
+      "question_id": "lc_conv-41_128",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D24:7",
+          "pos": 0,
+          "speaker": null,
+          "reply_to": "Maria",
+          "utterance": "(In reply to Maria: \"Yeah, last weekend (the weekend before 17 July 2023) I had a picnic with some friends from church. We chilled under the trees, played games, and ate yummy\") Jo",
+          "overlap_words": [
+            "2023",
+            "church",
+            "friends",
+            "july",
+            "maria"
+          ],
+          "overlap_n": 5,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D25:2",
+          "pos": 3,
+          "speaker": "Maria",
+          "reply_to": "John",
+          "utterance": " Hey John, glad work is going well! Having a good team is so important. I had a great experience last weekend (the weekend before 22 July 2023) hiking with my church  friends - it ",
+          "overlap_words": [
+            "2023",
+            "church",
+            "friends",
+            "july"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-42_226": {
+      "question_id": "lc_conv-42_226",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D18:6",
+          "pos": 0,
+          "speaker": null,
+          "reply_to": "Joanna",
+          "utterance": "(In reply to Joanna: \"Yep. last week (the week before 14 August 2022), someone wrote me a letter after reading an online blog post I made about a hard moment in my life. Their\") Na",
+          "overlap_words": [
+            "blog",
+            "feel",
+            "letter",
+            "nate",
+            "post",
+            "reading",
+            "someone",
+            "wrote"
+          ],
+          "overlap_n": 8,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D18:5",
+          "pos": 1,
+          "speaker": "Joanna",
+          "reply_to": "Nate",
+          "utterance": " Yep. last week (the week before 14 August 2022), someone wrote me a letter after reading an online blog post I made about a hard moment in my life. Their words touched me; they sa",
+          "overlap_words": [
+            "blog",
+            "letter",
+            "post",
+            "reading",
+            "someone",
+            "wrote"
+          ],
+          "overlap_n": 6,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-43_101": {
+      "question_id": "lc_conv-43_101",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D9:6",
+          "pos": 0,
+          "speaker": "John",
+          "reply_to": "Tim",
+          "utterance": " Wow, Tim, that's an awesome book collection! It's cool to escape to different worlds with a hobby. By the way, I love discovering new cities - check out this pic from one of my tr",
+          "overlap_words": [
+            "city",
+            "new",
+            "york"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D14:17",
+          "pos": 4,
+          "speaker": null,
+          "reply_to": "Tim",
+          "utterance": "(In reply to Tim: \"I snapped that pic on my trip to the Smoky Mountains last year (2022). It was incredible seeing it in person. Nature's really s\") John: Yeah, it's amazing how na",
+          "overlap_words": [
+            "city",
+            "john"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-43_146": {
+      "question_id": "lc_conv-43_146",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-43_152": {
+      "question_id": "lc_conv-43_152",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D23:3",
+          "pos": 0,
+          "speaker": "John",
+          "reply_to": "Tim",
+          "utterance": " Thanks! It's a bummer about your English lit class, but you did your best. By the way, I had a career-high in assists last Friday (the Friday before 11 December 2023) in our big g",
+          "overlap_words": [
+            "assists",
+            "career",
+            "game",
+            "high"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D22:8",
+          "pos": 15,
+          "speaker": "John",
+          "reply_to": "Tim",
+          "utterance": " Sounds awesome! What kind of stuff do they do in the series? I'm sure the importance of friendship is emphasized. Same with us - we have team dinners, outings, and basketball game",
+          "overlap_words": [
+            "kind"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-43_162": {
+      "question_id": "lc_conv-43_162",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D26:36",
+          "pos": 0,
+          "speaker": "Tim",
+          "reply_to": "John",
+          "utterance": " I'm really excited to watch this new show that's coming out called \"The Wheel of Time\". It's based on a book series that I love.",
+          "overlap_words": [
+            "excited",
+            "new",
+            "series"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D26:34",
+          "pos": 13,
+          "speaker": "Tim",
+          "reply_to": "John",
+          "utterance": " Woo-hoo! There's a new fantasy TV series coming out next month (January 2024) - can't wait!",
+          "overlap_words": [
+            "fantasy",
+            "new",
+            "series"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-43_223": {
+      "question_id": "lc_conv-43_223",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D21:8",
+          "pos": 0,
+          "speaker": "John",
+          "reply_to": "Tim",
+          "utterance": " Yup, on the court, I'm getting better at my overall game. Money-wise, I've gotten some cool endorsement deals. Plus, I'm learning how to market myself and boost my brand. It's bee",
+          "overlap_words": [
+            "learning"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        },
+        "CAND-B": {
+          "turn": "D21:9",
+          "pos": 3,
+          "speaker": "Tim",
+          "reply_to": "John",
+          "utterance": " Joined a travel club and, like I said, working on studies. Also picked up new skills. Recently started learning an instrument. Challenging but fun, always admired musicians. Final",
+          "overlap_words": [
+            "club",
+            "learning",
+            "recently",
+            "studies",
+            "travel",
+            "working"
+          ],
+          "overlap_n": 6,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        }
+      }
+    },
+    "lc_conv-43_234": {
+      "question_id": "lc_conv-43_234",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-44_50": {
+      "question_id": "lc_conv-44_50",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D27:6",
+          "pos": 6,
+          "speaker": "Audrey",
+          "reply_to": "Andrew",
+          "utterance": " Maybe you want to take care of Toby and Buddy first. Having them happy and healthy would be a good first step before going all in for more dogs.",
+          "overlap_words": [
+            "care",
+            "dogs",
+            "take"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D16:3",
+          "pos": 15,
+          "speaker": "Andrew",
+          "reply_to": "Audrey",
+          "utterance": " Wow that's awesome! You're doing an amazing job taking care of your pups. Can you show me a pic of them after the grooming? I bet they look adorable!",
+          "overlap_words": [
+            "care"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-47_162": {
+      "question_id": "lc_conv-47_162",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D16:8",
+          "pos": 11,
+          "speaker": "John",
+          "reply_to": "James",
+          "utterance": " I like to relax by reading. I love entering the imaginative worlds of authors - it's a fun escape from reality. ",
+          "overlap_words": [
+            "relax"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D16:2",
+          "pos": 14,
+          "speaker": null,
+          "reply_to": "James",
+          "utterance": "(In reply to James: \"Hey John! Long time no talk - hope you're doing well. Guess what? last week (the week before 9 July 2022) I actually won an online gaming tournament! \") John: ",
+          "overlap_words": [
+            "2022",
+            "james",
+            "july",
+            "time"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": true,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-47_163": {
+      "question_id": "lc_conv-47_163",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-48_77": {
+      "question_id": "lc_conv-48_77",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D29:4",
+          "pos": 1,
+          "speaker": "Jolene",
+          "reply_to": "Deborah",
+          "utterance": " We tried a scuba diving lesson last Friday (the Friday before 17 September 2023) and had an awesome time! We found a cool dive spot we can explore together. Trying new things open",
+          "overlap_words": [
+            "cool",
+            "diving",
+            "spot"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D27:1",
+          "pos": 7,
+          "speaker": "Jolene",
+          "reply_to": null,
+          "utterance": " Hey Deb! So sorry for the late reply, been super busy. last weekend (the weekend before 12 September 2023) my partner and I traveled to a meditation retreat for a few weeks in Phu",
+          "overlap_words": [
+            "find",
+            "partner"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-49_109": {
+      "question_id": "lc_conv-49_109",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D4:16",
+          "pos": 0,
+          "speaker": null,
+          "reply_to": "Sam",
+          "utterance": "(In reply to Sam: \"Starting tomorrow (28 July 2023), I will go to the gym and exercise regularly. The sooner I start, the sooner I will see the rewards of\") Evan: That's awesome, S",
+          "overlap_words": [
+            "2023",
+            "activity",
+            "evan",
+            "fun",
+            "july"
+          ],
+          "overlap_n": 5,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D8:30",
+          "pos": 9,
+          "speaker": "Evan",
+          "reply_to": "Sam",
+          "utterance": " Skiing, snowboarding, and ice skating are all fun winter activities I enjoy.",
+          "overlap_words": [
+            "fun"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-49_173": {
+      "question_id": "lc_conv-49_173",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D11:2",
+          "pos": 1,
+          "speaker": "Evan",
+          "reply_to": "Sam",
+          "utterance": " Hey Sam! That's awesome about your healthier eating! For me, I had a setback last week (the week before 6 October 2023) - messed up my knee playing b-ball with the kids. It's been",
+          "overlap_words": [
+            "active",
+            "knee",
+            "sam",
+            "stay"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D9:7",
+          "pos": 12,
+          "speaker": "Sam",
+          "reply_to": "Evan",
+          "utterance": " Swimming is a good choice, Evan. It's low-impact and easy on the joints, plus it's refreshing. Keep up with the active lifestyle!",
+          "overlap_words": [
+            "active"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-49_52": {
+      "question_id": "lc_conv-49_52",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D16:24",
+          "pos": 8,
+          "speaker": "Evan",
+          "reply_to": "Sam",
+          "utterance": " Awesome, let's do it! Let's plan it for next month (December 2023), I'm already excited about exploring it together!",
+          "overlap_words": [
+            "2023",
+            "plan",
+            "together"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D10:12",
+          "pos": 13,
+          "speaker": "Sam",
+          "reply_to": "Evan",
+          "utterance": " Sounds great, Evan! Can you help me pick out the stuff? Let's plan a painting session soon. I'm really excited!",
+          "overlap_words": [
+            "evan",
+            "plan"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-49_93": {
+      "question_id": "lc_conv-49_93",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D4:10",
+          "pos": 0,
+          "speaker": "Evan",
+          "reply_to": "Sam",
+          "utterance": " Definitely, how about some flavored seltzer with some air-popped popcorn or fruit? It's yum and healthy! The novel I'm reading is \"The Great Gatsby\".",
+          "overlap_words": [
+            "novel",
+            "reading"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D4:8",
+          "pos": 2,
+          "speaker": "Evan",
+          "reply_to": "Sam",
+          "utterance": " Go for it, Sam! It's tough at first, but you got this. Try flavored seltzer water instead. It can be a great alternative to soda. Btw I can't stop thinking about that new mystery ",
+          "overlap_words": [
+            "gripping",
+            "novel"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-50_160": {
+      "question_id": "lc_conv-50_160",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D4:2",
+          "pos": 4,
+          "speaker": "Calvin",
+          "reply_to": "Dave",
+          "utterance": " Wow Dave! Congrats on opening your own car maintenance shop! It looks like all your hard work and dedication paid off.",
+          "overlap_words": [],
+          "overlap_n": 0,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        },
+        "CAND-B": {
+          "turn": "D7:1",
+          "pos": 18,
+          "speaker": "Calvin",
+          "reply_to": null,
+          "utterance": " Hey Dave! Been ages since we chatted. So much has gone down. Touring with Frank Ocean last week (the week before 31 May 2023) was wild. Tokyo was unreal -- the crowd was insane. I",
+          "overlap_words": [
+            "2023",
+            "may"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-50_189": {
+      "question_id": "lc_conv-50_189",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-50_57": {
+      "question_id": "lc_conv-50_57",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D27:2",
+          "pos": 6,
+          "speaker": "Dave",
+          "reply_to": "Calvin",
+          "utterance": " Hey Calvin! That's cool that you've been networking with other artists. Nice! I've been getting into photography recently. I've seen some amazing places and taken some great shots",
+          "overlap_words": [],
+          "overlap_n": 0,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        },
+        "CAND-B": {
+          "turn": "D22:1",
+          "pos": 14,
+          "speaker": "Dave",
+          "reply_to": null,
+          "utterance": " Hey Calvin! What’s up? last Friday (the Friday before 8 October 2023) I went to the car show. I saw some awesome cars and got to mess with car mods! There were so many cool machin",
+          "overlap_words": [
+            "2023",
+            "october"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-50_87": {
+      "question_id": "lc_conv-50_87",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D10:2",
+          "pos": 0,
+          "speaker": "Calvin",
+          "reply_to": "Dave",
+          "utterance": " Hey Dave! Thanks for checking in. It's all good now, the car's fixed and going strong. Nothing better than cruising around - it's the best! Look at how my car looks right now. How",
+          "overlap_words": [
+            "car",
+            "fixed"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        },
+        "CAND-B": {
+          "turn": "D10:1",
+          "pos": 14,
+          "speaker": "Dave",
+          "reply_to": null,
+          "utterance": " Hey Calvin, how's the car doing after the crash? You were stoked to get back on the road, right?",
+          "overlap_words": [
+            "calvin",
+            "car"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-26_132": {
+      "question_id": "lc_conv-26_132",
+      "predicate_class": "COUNT",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D13:12",
+          "pos": 3,
+          "speaker": null,
+          "reply_to": "Caroline",
+          "utterance": "(In reply to Caroline: \"Painting's great for expressing myself. I love creating art! Here's a recent self-portrait I made last week (the week before 23 August 2023).\") Melanie: Car",
+          "overlap_words": [
+            "art",
+            "creating",
+            "melanie"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D3:16",
+          "pos": 18,
+          "speaker": "Melanie",
+          "reply_to": "Caroline",
+          "utterance": " 5 years already! Time flies- feels like just yesterday (8 June 2023) I put this dress on! Thanks, Caroline!",
+          "overlap_words": [],
+          "overlap_n": 0,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-26_152": {
+      "question_id": "lc_conv-26_152",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-41_138": {
+      "question_id": "lc_conv-41_138",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D28:8",
+          "pos": 0,
+          "speaker": "Maria",
+          "reply_to": "John",
+          "utterance": " Hey John, I'm here for you! Staying positive makes a big difference, even in tough times. yesterday (4 August 2023), I took up some community work with my friends from church. It ",
+          "overlap_words": [
+            "2023",
+            "august",
+            "church",
+            "friends"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D30:23",
+          "pos": 3,
+          "speaker": "Maria",
+          "reply_to": "John",
+          "utterance": " Thanks, John. Your words mean a lot. I'll definitely keep spreading positivity. Take care!",
+          "overlap_words": [
+            "take"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-42_134": {
+      "question_id": "lc_conv-42_134",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-42_196": {
+      "question_id": "lc_conv-42_196",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D29:6",
+          "pos": 0,
+          "speaker": "Nate",
+          "reply_to": "Joanna",
+          "utterance": " Wow Joanna, that must have been so exciting! It's incredible when you get those moments of joy. Anyway, I took my turtles to the beach in Tampa yesterday (10 November 2022)! They ",
+          "overlap_words": [
+            "beach",
+            "tampa"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D5:2",
+          "pos": 1,
+          "speaker": "Nate",
+          "reply_to": "Joanna",
+          "utterance": " Hey Joanna! Awesome to hear from you! Congrats on wrapping up a second one! All that hard work and dedication will definitely shine through and get noticed, no doubt. Hope you've ",
+          "overlap_words": [
+            "take"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-42_221": {
+      "question_id": "lc_conv-42_221",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D16:9",
+          "pos": 0,
+          "speaker": null,
+          "reply_to": "Nate",
+          "utterance": "(In reply to Nate: \"Thanks! On another note, I made vegan ice cream last Friday (the Friday before 24 June 2022) and shared it with some people in my vegan diet group. It wa\") Joan",
+          "overlap_words": [
+            "diet",
+            "group",
+            "joanna",
+            "vegan"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D19:6",
+          "pos": 2,
+          "speaker": "Joanna",
+          "reply_to": "Nate",
+          "utterance": " I'm good! Was super nervous last week (the week before 22 August 2022) when I shared my book with my writers group but got some great feedback. My hard work is paying off, it's su",
+          "overlap_words": [
+            "group"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-43_91": {
+      "question_id": "lc_conv-43_91",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D7:1",
+          "pos": 0,
+          "speaker": "John",
+          "reply_to": null,
+          "utterance": " Hey Tim! We had a wild few days since we talked. I met back up with my teammates on the 15th after my trip and it was amazing! Everyone missed me. The atmosphere was electric and ",
+          "overlap_words": [
+            "back",
+            "teammates",
+            "trip"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D6:1",
+          "pos": 6,
+          "speaker": "John",
+          "reply_to": null,
+          "utterance": " Hey Tim, sorry I missed you. Been a crazy few days. Took a trip to a new place - it's been amazing. Love the energy there.",
+          "overlap_words": [
+            "trip"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        }
+      }
+    },
+    "lc_conv-44_102": {
+      "question_id": "lc_conv-44_102",
+      "predicate_class": "REASON",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D22:5",
+          "pos": 0,
+          "speaker": "Audrey",
+          "reply_to": "Andrew",
+          "utterance": " Oh yes! I love making jewelry out of recycled stuff. It's a great way to show my love of creativity and sustainability. I hunt down things like bottle caps, buttons, and broken je",
+          "overlap_words": [
+            "jewelry",
+            "out",
+            "recycled"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D22:4",
+          "pos": 1,
+          "speaker": "Andrew",
+          "reply_to": "Audrey",
+          "utterance": " Yeah, dogs sure know how to find the simple joys of life! Appreciating the little things is so important. Well speaking of interesting hobbies, I rememver you mentionoed about tha",
+          "overlap_words": [
+            "jewelry",
+            "make",
+            "objects",
+            "recycled"
+          ],
+          "overlap_n": 4,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-44_121": {
+      "question_id": "lc_conv-44_121",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D28:10",
+          "pos": 0,
+          "speaker": "Andrew",
+          "reply_to": "Audrey",
+          "utterance": " Thanks! We're gonna take Scout, Toby, and Buddy to a nearby park. It's not big, but we can all have fun and get some fresh air!",
+          "overlap_words": [
+            "buddy",
+            "scout",
+            "toby"
+          ],
+          "overlap_n": 3,
+          "negated": true,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D12:1",
+          "pos": 8,
+          "speaker": "Andrew",
+          "reply_to": null,
+          "utterance": " Hey! So much has changed since last time we talked - meet Toby, my puppy. He's a bundle of joy and I couldn't resist taking him home, city living and all. How've you been?",
+          "overlap_words": [
+            "toby"
+          ],
+          "overlap_n": 1,
+          "negated": true,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-47_72": {
+      "question_id": "lc_conv-47_72",
+      "predicate_class": "ATTRIBUTE",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D3:3",
+          "pos": 0,
+          "speaker": "John",
+          "reply_to": "James",
+          "utterance": " Thanks, James! I play drums too! Here's a pic of my set.",
+          "overlap_words": [
+            "play"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D3:1",
+          "pos": 22,
+          "speaker": "John",
+          "reply_to": null,
+          "utterance": " Hey James, long time no see! I had a big win in my game last week (the week before 27 March 2022) - finally advanced to the next level! It was a huge confidence booster and felt l",
+          "overlap_words": [
+            "2022",
+            "march"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-48_173": {
+      "question_id": "lc_conv-48_173",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": false,
+      "why": "fewer than two candidates located in the frozen context"
+    },
+    "lc_conv-50_134": {
+      "question_id": "lc_conv-50_134",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D25:19",
+          "pos": 3,
+          "speaker": "Dave",
+          "reply_to": "Calvin",
+          "utterance": " It takes a lot of patience, but the payoff is worth it. Paying extra attention to detail isn't easy, but it pays off.",
+          "overlap_words": [],
+          "overlap_n": 0,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        },
+        "CAND-B": {
+          "turn": "D17:3",
+          "pos": 10,
+          "speaker": "Dave",
+          "reply_to": "Calvin",
+          "utterance": " Yeah, it's great fixing stuff up and seeing it turn out better. It's really rewarding and gives me a sense of purpose. Plus, it feels like I'm making a difference when I fix someo",
+          "overlap_words": [
+            "car"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    },
+    "lc_conv-50_194": {
+      "question_id": "lc_conv-50_194",
+      "predicate_class": "TEMPORAL_ORDER",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D2:9",
+          "pos": 14,
+          "speaker": null,
+          "reply_to": "Dave",
+          "utterance": "(In reply to Dave: \"Thanks, Calvin! Doing good. last weekend (the weekend before 26 March 2023), I went to a music festival in Boston - it was awesome! So many cool bands play\") Ca",
+          "overlap_words": [
+            "calvin"
+          ],
+          "overlap_n": 1,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D28:8",
+          "pos": 21,
+          "speaker": "Dave",
+          "reply_to": "Calvin",
+          "utterance": " Wow, Calvin, imagining how your music affects others must be incredible! Keep up the great work! By the way, I recently started a blog on car mods. It's my way to share my passion",
+          "overlap_words": [
+            "blog",
+            "calvin",
+            "recently"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "UNKNOWN"
+        }
+      }
+    },
+    "lc_conv-50_99": {
+      "question_id": "lc_conv-50_99",
+      "predicate_class": "PLAIN",
+      "exclusion_terms": [],
+      "ok": true,
+      "candidates": {
+        "CAND-A": {
+          "turn": "D15:4",
+          "pos": 0,
+          "speaker": "Calvin",
+          "reply_to": "Dave",
+          "utterance": " Thanks, Dave! I had the opportunity to meet Frank Ocean at a music festival in Tokyo and we clicked. We've been speaking and sharing ideas we arranged a meeting and recorded a son",
+          "overlap_words": [
+            "frank",
+            "meet",
+            "ocean"
+          ],
+          "overlap_n": 3,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        },
+        "CAND-B": {
+          "turn": "D23:10",
+          "pos": 6,
+          "speaker": "Calvin",
+          "reply_to": "Dave",
+          "utterance": " Wow, I heard great things about The Fireworks! Performing with Frank Ocean recently has been really cool. Seeing them perform live must've been awesome - I bet the energy was elec",
+          "overlap_words": [
+            "frank",
+            "ocean"
+          ],
+          "overlap_n": 2,
+          "negated": false,
+          "superseding_language": false,
+          "satisfies_predicate": "POSSIBLE"
+        }
+      }
+    }
+  }
+}
