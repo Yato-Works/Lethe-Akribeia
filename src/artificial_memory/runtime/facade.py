@@ -176,6 +176,7 @@ class RuntimeConfig:
     default_provider: str = "ollama"
     max_context_tokens: int = 8000
     enable_auth: bool = False
+    enable_deterministic: bool = True
 
     # Phase 7: Multi-Agent & Enterprise
     node_id: str = "local"
@@ -240,6 +241,10 @@ class ChatResult:
     context_used: bool
     topic_id: int | None
     context_ir: ContextIR | None = None
+    deterministic: bool = False
+    deterministic_detail: str | None = None
+    deterministic_source: str | None = None
+    deterministic_confidence: float | None = None
 
 
 @dataclass
@@ -527,7 +532,8 @@ class ArtificialMemoryRuntime:
         )
 
         # LLM Manager
-        self.llm_manager = LLMManager(self.store, self.recall_engine, self.context_builder)
+        self.llm_manager = LLMManager(self.store, self.recall_engine, self.context_builder,
+                                      enable_deterministic=self.config.enable_deterministic)
         self.llm_manager.add_provider("ollama", OllamaProvider(
             base_url=self.config.ollama_base_url,
             model=self.config.ollama_model
@@ -601,6 +607,10 @@ class ArtificialMemoryRuntime:
             context_used=result["context_used"],
             topic_id=result.get("topic_id"),
             context_ir=context_ir,
+            deterministic=result.get("deterministic", False),
+            deterministic_detail=result.get("deterministic_detail"),
+            deterministic_source=result.get("deterministic_source"),
+            deterministic_confidence=result.get("deterministic_confidence"),
         )
 
     async def remember(
