@@ -17,7 +17,7 @@ from artificial_memory.core.models import (
     AssociationType,
     CompressionEvent,
     CompressionMethod,
-    ContextIR,
+    ContextIRRecord,
     Conversation,
     ConversationStatus,
     Decision,
@@ -280,8 +280,8 @@ class PostgresMemoryStore:
             created_at=row["created_at"],
         )
 
-    def _row_to_context_ir(self, row: dict) -> ContextIR:
-        return ContextIR(
+    def _row_to_context_ir(self, row: dict) -> ContextIRRecord:
+        return ContextIRRecord(
             id=row["id"],
             conversation_id=row["conversation_id"],
             ir_type=IRType(row["ir_type"]),
@@ -779,7 +779,7 @@ class PostgresMemoryStore:
         return [self._row_to_compression(r) for r in rows]
 
     # Context IR operations
-    def add_context_ir(self, ir: ContextIR) -> ContextIR:
+    def add_context_ir(self, ir: ContextIRRecord) -> ContextIRRecord:
         with self._transaction() as conn:
             cursor = conn.execute(
                 """INSERT INTO context_ir (conversation_id, ir_type, ir_key, ir_value, sequence_num, created_at)
@@ -797,7 +797,7 @@ class PostgresMemoryStore:
             ir.id = cursor.fetchone()["id"]
         return ir
 
-    def get_context_ir(self, conversation_id: int) -> list[ContextIR]:
+    def get_context_ir(self, conversation_id: int) -> list[ContextIRRecord]:
         rows = self._execute(
             "SELECT * FROM context_ir WHERE conversation_id = %s ORDER BY sequence_num",
             (conversation_id,)

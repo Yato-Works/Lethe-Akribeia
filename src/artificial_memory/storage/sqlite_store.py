@@ -15,7 +15,7 @@ from artificial_memory.core.models import (
     BeliefState,
     CompressionEvent,
     CompressionMethod,
-    ContextIR,
+    ContextIRRecord,
     Conversation,
     ConversationStatus,
     Decision,
@@ -290,8 +290,8 @@ class SQLiteMemoryStore:
             created_at=datetime.fromisoformat(row["created_at"]),
         )
 
-    def _row_to_context_ir(self, row: sqlite3.Row) -> ContextIR:
-        return ContextIR(
+    def _row_to_context_ir(self, row: sqlite3.Row) -> ContextIRRecord:
+        return ContextIRRecord(
             id=row["id"],
             conversation_id=row["conversation_id"],
             ir_type=IRType(row["ir_type"]),
@@ -719,7 +719,7 @@ class SQLiteMemoryStore:
         return [self._row_to_compression(r) for r in rows]
 
     # Context IR operations
-    def add_context_ir(self, ir: ContextIR) -> ContextIR:
+    def add_context_ir(self, ir: ContextIRRecord) -> ContextIRRecord:
         with self._transaction() as conn:
             cursor = conn.execute(
                 """INSERT INTO context_ir (conversation_id, ir_type, ir_key, ir_value, sequence_num, created_at)
@@ -730,7 +730,7 @@ class SQLiteMemoryStore:
             ir.id = cursor.lastrowid
         return ir
 
-    def get_context_ir(self, conversation_id: int) -> list[ContextIR]:
+    def get_context_ir(self, conversation_id: int) -> list[ContextIRRecord]:
         rows = self._conn.execute(
             "SELECT * FROM context_ir WHERE conversation_id = ? ORDER BY sequence_num",
             (conversation_id,)

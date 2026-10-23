@@ -18,18 +18,18 @@ from pathlib import Path
 from typing import Any
 
 from artificial_memory.core.ir.structured import StructuredIR
+from artificial_memory.recall.temporal_resolver import parse_date
 from artificial_memory.research.benchmarks.llm import (
     OFFICIAL_ABSTENTION_MARKERS,
     OFFICIAL_ABSTENTION_TEXT,
     OllamaAnswerer,
 )
+from artificial_memory.research.legacy_skills import get_temporal_skill
 from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory_gen.recall.answer_shape import shape_directive
 from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
 from artificial_memory_gen.recall.domain_associator import DomainAssociator
-from artificial_memory.recall.temporal_resolver import parse_date
-from artificial_memory.skills import get_temporal_skill
 
 # Phase 4 P5a: pet-name introductions -> DomainAssociator species cluster.
 _PET_NAME_PATTERNS = [

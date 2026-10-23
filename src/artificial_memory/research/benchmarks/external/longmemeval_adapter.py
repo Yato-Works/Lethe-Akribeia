@@ -27,10 +27,10 @@ from artificial_memory.research.benchmarks.external.lme_prompts import (
     build_prompt as build_lme_prompt,
 )
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
+from artificial_memory.research.legacy_skills import get_temporal_skill
 from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory_gen.recall.state_timeline import StateTimelineEngine
-from artificial_memory.skills import get_temporal_skill
 
 
 @dataclass

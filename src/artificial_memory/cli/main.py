@@ -477,8 +477,8 @@ def dump_ir(app: ArtificialMemoryCLI, compile: bool, compress: bool, decompile: 
 
         # Store IR units in database
         for unit in ir_sequence.units:
-            from artificial_memory.core.models import ContextIR
-            ir = ContextIR(
+            from artificial_memory.core.models import ContextIRRecord
+            ir = ContextIRRecord(
                 conversation_id=conv.id,
                 ir_type=unit.ir_type,
                 ir_key=unit.ir_key,

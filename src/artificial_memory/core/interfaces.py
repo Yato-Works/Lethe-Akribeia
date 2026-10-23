@@ -8,7 +8,7 @@ from artificial_memory.core.models import (
     Association,
     AssociationType,
     CompressionEvent,
-    ContextIR,
+    ContextIRRecord,
     Conversation,
     ConversationStatus,
     Decision,
@@ -158,10 +158,10 @@ class MemoryStore(Protocol):
 
     # Context IR operations
     @abstractmethod
-    def add_context_ir(self, ir: ContextIR) -> ContextIR: ...
+    def add_context_ir(self, ir: ContextIRRecord) -> ContextIRRecord: ...
 
     @abstractmethod
-    def get_context_ir(self, conversation_id: int) -> list[ContextIR]: ...
+    def get_context_ir(self, conversation_id: int) -> list[ContextIRRecord]: ...
 
     # Token usage operations
     @abstractmethod
@@ -306,13 +306,13 @@ class ContextIRCompiler(Protocol):
     """Compiler from natural language to Context IR."""
 
     @abstractmethod
-    def compile_to_ir(self, conversation: Conversation) -> list[ContextIR]: ...
+    def compile_to_ir(self, conversation: Conversation) -> list[ContextIRRecord]: ...
 
     @abstractmethod
-    def decompile_from_ir(self, ir_units: list[ContextIR]) -> str: ...
+    def decompile_from_ir(self, ir_units: list[ContextIRRecord]) -> str: ...
 
     @abstractmethod
-    def optimize_ir(self, ir_units: list[ContextIR], max_units: int) -> list[ContextIR]: ...
+    def optimize_ir(self, ir_units: list[ContextIRRecord], max_units: int) -> list[ContextIRRecord]: ...
 
 
 class VectorSearchEngine(Protocol):

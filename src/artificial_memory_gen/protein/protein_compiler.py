@@ -85,7 +85,7 @@ class ProteinContextCompiler(MinimumSufficientContextCompiler):
         self.state_compiler = StateCompiler(max_states=2)
         self.state_trigger = StateTrigger()
         self.state_synthesizer = StateSynthesizer(max_states=2)
-        from artificial_memory.temporal.temporal_compiler import TemporalCompiler
+        from artificial_memory.research.legacy_skills.temporal_compiler import TemporalCompiler
         self.temporal_compiler = TemporalCompiler()
         from artificial_memory_gen.protein.session_fuser import SessionFuser
         self.session_fuser = SessionFuser()
