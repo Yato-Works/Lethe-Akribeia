@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import importlib.util  # noqa: E402
 
-from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
 

@@ -37,7 +37,7 @@ from artificial_memory.research.benchmarks.llm import (  # noqa: E402
     OFFICIAL_ABSTENTION_TEXT,
     OllamaAnswerer,
 )
-from artificial_memory_gen.skills.answer_committer import extract_temporal_answer  # noqa: E402
+from artificial_memory.skills.answer_committer import extract_temporal_answer  # noqa: E402
 
 
 class ConciseAnswerer:

@@ -31,8 +31,8 @@ from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder  # n
 from artificial_memory_gen.compiler.budgeted_compiler import (  # noqa: E402
     BudgetedCognitiveCompiler,
 )
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver import (  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (  # noqa: E402
     EntityAttributeResolver,
 )
 

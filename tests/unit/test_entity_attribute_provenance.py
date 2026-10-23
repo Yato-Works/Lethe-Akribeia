@@ -1,4 +1,4 @@
-from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 
 def test_console_attribute_is_bound_to_question_subject_and_turn() -> None:

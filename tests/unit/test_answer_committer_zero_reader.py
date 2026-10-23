@@ -10,7 +10,7 @@ Tests:
 from __future__ import annotations
 
 import pytest
-from artificial_memory_gen.skills.answer_committer import (
+from artificial_memory.skills.answer_committer import (
     commit_answer,
     commit_derivation_scaffold,
     commit_single_hop_fact,

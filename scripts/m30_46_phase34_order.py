@@ -19,7 +19,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 from artificial_memory.compiler.eval.official_grader import OfficialLongMemEvalGrader
-from artificial_memory_gen.skills.answer_committer import commit_answer
+from artificial_memory.skills.answer_committer import commit_answer
 
 LINE_RE = re.compile(r"^\[SPEAKER:([^\]]+)\]\s*\[(D\d+:\d+) on ([^\]]+)\](.*)$")
 

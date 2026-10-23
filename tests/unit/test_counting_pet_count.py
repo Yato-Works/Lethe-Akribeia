@@ -1,4 +1,4 @@
-from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 
 def test_pet_count_accepts_concrete_animal_as_owned_total_across_turns() -> None:

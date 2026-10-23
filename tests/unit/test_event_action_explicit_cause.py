@@ -1,4 +1,4 @@
-from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 
 def test_explicit_cause_is_extracted_from_target_speaker_turn() -> None:

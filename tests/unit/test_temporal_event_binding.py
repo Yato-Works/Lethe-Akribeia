@@ -1,4 +1,4 @@
-from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 
 def test_explicit_event_date_is_committed_from_matching_turn() -> None:

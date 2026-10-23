@@ -33,8 +33,8 @@ if str(sys_path) not in sys.path:
     sys.path.insert(0, str(sys_path))
 
 import importlib.util  # noqa: E402
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
 

@@ -25,14 +25,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine import (  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (  # noqa: E402
     TemporalAlgebraEngine,
 )
-from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
-from artificial_memory_gen.skills.evidence_commit_gate import EvidenceCommitGate  # noqa
+from artificial_memory.skills.evidence_commit_gate import EvidenceCommitGate  # noqa
 
 spec = importlib.util.spec_from_file_location(
     "eval_locomo_full", ROOT / "scripts/benchmarks/eval_locomo_full.py")

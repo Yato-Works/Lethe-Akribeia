@@ -15,7 +15,7 @@ sys.path.insert(0, 'scripts')
 import json
 from pathlib import Path
 from collections import defaultdict
-from artificial_memory_gen.skills.answer_committer import commit_semantic_rule, post_process_answer
+from artificial_memory.skills.answer_committer import commit_semantic_rule, post_process_answer
 from benchmarks.simulate_rules import official
 
 ACTIVE_POOL_PATH = Path('benchmark_results/active_weakness_pool.json')

@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import Self
 
-from artificial_memory_gen.recall.temporal_resolver import to_comparable_datetime
+from artificial_memory.recall.temporal_resolver import to_comparable_datetime
 
 
 class IntervalRelation(StrEnum):

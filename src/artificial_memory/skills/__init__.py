@@ -5,7 +5,7 @@ deterministic Python co-processors to handle specialized reasoning tasks
 that LLMs struggle with (calendar arithmetic, entity deduplication, etc.).
 
 Usage:
-    from artificial_memory_gen.skills import TemporalSkill, get_global_registry
+    from artificial_memory.skills import TemporalSkill, get_global_registry
     
     registry = get_global_registry()
     results = dispatch_skills(question, records, category=2)

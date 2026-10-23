@@ -33,11 +33,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-import artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine as tam  # noqa: E402
-from artificial_memory_gen.skills.autonomous_engines.counting_engine import (  # noqa: E402
+import artificial_memory.skills.autonomous_engines.temporal_algebra_engine as tam  # noqa: E402
+from artificial_memory.skills.autonomous_engines.counting_engine import (  # noqa: E402
     CountingEngine,
 )
-from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
 

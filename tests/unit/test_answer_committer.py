@@ -19,8 +19,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-import artificial_memory_gen.skills.answer_committer as committer
-from artificial_memory_gen.skills.answer_committer import (
+import artificial_memory.skills.answer_committer as committer
+from artificial_memory.skills.answer_committer import (
     extract_certificate_answer,
     extract_temporal_answer,
     parse_turns,
@@ -317,7 +317,7 @@ def test_anchor_position_ignores_the_order_of_the_matched_words() -> None:
 def test_a_tied_question_answers_identically_under_any_hash_seed() -> None:
     """End-to-end: four processes, four hash seeds, one answer."""
     script = (
-        "from artificial_memory_gen.skills.answer_committer import extract_temporal_answer\n"
+        "from artificial_memory.skills.answer_committer import extract_temporal_answer\n"
         f"out = extract_temporal_answer({TIE_QUESTION!r}, {TIE_CTX!r})\n"
         "print(out.used, out.answer, out.confidence)\n"
     )

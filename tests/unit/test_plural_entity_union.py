@@ -1,4 +1,4 @@
-from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 
 def test_pet_names_are_unioned_across_target_speaker_turns() -> None:

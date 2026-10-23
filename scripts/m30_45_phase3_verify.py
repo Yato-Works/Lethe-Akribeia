@@ -57,7 +57,7 @@ def main():
     print("=" * 78)
     print()
 
-    from artificial_memory_gen.skills.answer_committer import commit_answer
+    from artificial_memory.skills.answer_committer import commit_answer
 
     for idx, sid in enumerate(sample_ids):
         if sid not in convs_needed:

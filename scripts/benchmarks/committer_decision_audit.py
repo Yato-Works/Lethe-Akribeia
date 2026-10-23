@@ -57,7 +57,7 @@ def main() -> None:
     from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
     from artificial_memory_gen.recall.fact_index import FactIndex
     from artificial_memory.research.benchmarks.llm import OllamaAnswerer
-    from artificial_memory_gen.skills.answer_committer import (
+    from artificial_memory.skills.answer_committer import (
         commit_answer, post_process_answer,
     )
 

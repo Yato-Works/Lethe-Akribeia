@@ -12,7 +12,7 @@ sys.path.insert(0, 'scripts')
 
 import json
 from collections import defaultdict
-from artificial_memory_gen.skills.answer_committer import commit_semantic_rule, post_process_answer
+from artificial_memory.skills.answer_committer import commit_semantic_rule, post_process_answer
 from benchmarks.simulate_rules import official
 
 

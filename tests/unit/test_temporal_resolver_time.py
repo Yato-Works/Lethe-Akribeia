@@ -5,7 +5,7 @@ from __future__ import annotations
 import datetime
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory_gen.recall.temporal_resolver import (
+from artificial_memory.recall.temporal_resolver import (
     TemporalResolver,
     format_temporal_point,
     parse_datetime_or_date,

@@ -20,12 +20,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-import artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine as tam
-from artificial_memory_gen.skills.answer_committer import parse_turns
-from artificial_memory_gen.skills.deterministic_memory_engine import (
+import artificial_memory.skills.autonomous_engines.temporal_algebra_engine as tam
+from artificial_memory.skills.answer_committer import parse_turns
+from artificial_memory.skills.deterministic_memory_engine import (
     DeterministicMemoryEngine,
 )
-from artificial_memory_gen.skills import evidence_binding as eb
+from artificial_memory.skills import evidence_binding as eb
 
 CACHE = ROOT / "benchmark_results/locomo_context_cache_rules.jsonl"
 Q_SURFING = "How long has John been surfing?"

@@ -12,7 +12,7 @@ speaker's own name.  That regression is pinned here so it cannot return silently
 The measured numbers are asserted too, so a future change that quietly makes the gate
 more aggressive fails the suite instead of eroding correct answers unnoticed.
 """
-from artificial_memory_gen.skills.evidence_commit_gate import (
+from artificial_memory.skills.evidence_commit_gate import (
     EVENT_OVERLAP_MIN,
     EvidenceCommitGate,
 )

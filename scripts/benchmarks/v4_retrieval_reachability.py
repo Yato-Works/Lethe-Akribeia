@@ -32,7 +32,7 @@ from artificial_memory_gen.compiler.closure.planner import (  # noqa: E402
     DeterministicQueryPlanner,
 )
 from artificial_memory_gen.compiler.closure.retriever import MultiViewRetriever  # noqa: E402
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
 
 PILOT = ROOT / "benchmark_results/evidence_audit/v4_pilot_selection.json"
 AUDIT = ROOT / "benchmark_results/evidence_audit/evidence_audit.json"

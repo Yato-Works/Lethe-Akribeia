@@ -22,7 +22,7 @@ branch had neither guard, which is why 320 of its 357 changed answers were wrong
 """
 import pytest
 
-from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 
 @pytest.mark.xfail(

@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from artificial_memory.research.benchmarks import llm as frozen_llm
-from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
 

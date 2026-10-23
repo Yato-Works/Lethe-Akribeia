@@ -11,8 +11,8 @@ Guarantees:
 from __future__ import annotations
 
 import pytest
-from artificial_memory_gen.skills.answer_committer import parse_turns, commit_answer
-from artificial_memory_gen.skills.autonomous_engines.arithmetic_difference_engine import ArithmeticDifferenceEngine
+from artificial_memory.skills.answer_committer import parse_turns, commit_answer
+from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import ArithmeticDifferenceEngine
 
 
 def test_savings_designer_handbag() -> None:

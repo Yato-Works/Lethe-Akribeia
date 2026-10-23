@@ -35,7 +35,7 @@ from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder  # n
 from artificial_memory_gen.compiler.budgeted_compiler import (  # noqa: E402
     BudgetedCognitiveCompiler,
 )
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
 
 
 def norm_words(s: str) -> set:
@@ -58,7 +58,7 @@ def main() -> None:
     cp_ = BudgetedCognitiveCompiler()
 
     import eval_locomo_full as _E
-    from artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver import (
+    from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (
         EntityAttributeResolver,
     )
     PAT = re.compile(r"^(what|which|who)\s+(did|does|is|was|has|have)\b", re.I)

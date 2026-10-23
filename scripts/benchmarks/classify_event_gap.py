@@ -44,8 +44,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine import (  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (  # noqa: E402
     LEMMA_MAP,
     TemporalAlgebraEngine,
     _EVENT_TERM_ALIASES,

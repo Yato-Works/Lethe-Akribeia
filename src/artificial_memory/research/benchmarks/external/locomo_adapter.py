@@ -28,8 +28,8 @@ from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextC
 from artificial_memory_gen.recall.answer_shape import shape_directive
 from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
 from artificial_memory_gen.recall.domain_associator import DomainAssociator
-from artificial_memory_gen.recall.temporal_resolver import parse_date
-from artificial_memory_gen.skills import get_temporal_skill
+from artificial_memory.recall.temporal_resolver import parse_date
+from artificial_memory.skills import get_temporal_skill
 
 # Phase 4 P5a: pet-name introductions -> DomainAssociator species cluster.
 _PET_NAME_PATTERNS = [
@@ -582,7 +582,7 @@ class LoCoMoAdapter:
 
         # 3. Answer Generation & Verification (Overdrive Core Potion 7)
         # Zero-Reader Committer (Phase 8: AM decides deterministically)
-        from artificial_memory_gen.skills.answer_committer import commit_answer
+        from artificial_memory.skills.answer_committer import commit_answer
         committed = commit_answer(question.question, pcc.context_text, category=question.category)
         if committed.used:
             predicted_answer = committed.answer
@@ -1038,7 +1038,7 @@ class LoCoMoAdapter:
             predicted_answer = answerer.answer_adapter(predicted_answer)
 
         # 5b. Deterministic post-processor (Precision & Token-F1 optimizer)
-        from artificial_memory_gen.skills.answer_committer import post_process_answer
+        from artificial_memory.skills.answer_committer import post_process_answer
         predicted_answer = post_process_answer(question.question, predicted_answer, category=question.category)
 
         # 6. Scoring: single frozen binary matcher (see ``score_binary``), shared

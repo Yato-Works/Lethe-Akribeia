@@ -13,8 +13,8 @@ import datetime
 import os
 import re
 
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer, Turn
-from artificial_memory_gen.skills.evidence_binding import (
+from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.evidence_binding import (
     BindingCandidate,
     BindingRequest,
     BindingVerdicts,

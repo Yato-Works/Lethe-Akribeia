@@ -14,7 +14,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
-from artificial_memory_gen.skills.answer_committer import commit_answer
+from artificial_memory.skills.answer_committer import commit_answer
 
 FAILS = json.loads((PROJECT_ROOT / "results/m30_44/production_failures.json").read_text(encoding="utf-8"))
 EVID = json.loads((PROJECT_ROOT / "results/m30_44/evidence_reach.json").read_text(encoding="utf-8"))

@@ -40,7 +40,7 @@ from artificial_memory_gen.recall.query_planner import QueryPlanner
 from artificial_memory_gen.recall.state_reconstructor import StateReconstructor
 from artificial_memory_gen.recall.state_supersession_engine import StateSupersessionEngine
 from artificial_memory_gen.recall.state_timeline import StateTimelineEngine
-from artificial_memory_gen.recall.temporal_resolver import TemporalResolver
+from artificial_memory.recall.temporal_resolver import TemporalResolver
 from artificial_memory_gen.steroid.adaptive_graph_expander import AdaptiveGraphExpander
 from artificial_memory_gen.steroid.wide_slicer import WideSlicer
 

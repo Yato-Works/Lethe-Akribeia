@@ -39,7 +39,7 @@ from artificial_memory_gen.compiler.closure.planner import (  # noqa: E402
 )
 from artificial_memory_gen.compiler.closure.retriever import MultiViewRetriever  # noqa: E402
 from artificial_memory.research.benchmarks import llm as frozen_llm  # noqa: E402
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
 
 _sp = importlib.util.spec_from_file_location(
     "eval_locomo_full", ROOT / "scripts/benchmarks/eval_locomo_full.py")

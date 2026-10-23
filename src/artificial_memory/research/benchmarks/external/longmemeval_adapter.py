@@ -30,7 +30,7 @@ from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory_gen.recall.state_timeline import StateTimelineEngine
-from artificial_memory_gen.skills import get_temporal_skill
+from artificial_memory.skills import get_temporal_skill
 
 
 @dataclass
@@ -301,7 +301,7 @@ class LongMemEvalAdapter:
             predicted_answer = "The information provided is not enough. You did not mention this information."
 
         else:
-            from artificial_memory_gen.skills.answer_committer import commit_longmemeval_answer
+            from artificial_memory.skills.answer_committer import commit_longmemeval_answer
 
             # Attempt deterministic resolution via Autonomous Engines (0 ms, 0 LLM calls)
             committed = commit_longmemeval_answer(item.question, pcc.context_text, question_type=item.question_type)

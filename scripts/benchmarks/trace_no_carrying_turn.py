@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
 
 ATLAS = ROOT / "benchmark_results/failure_atlas/failure_atlas.jsonl"
 CACHE = ROOT / "benchmark_results/locomo_context_cache_rules.jsonl"
@@ -202,7 +202,7 @@ def main() -> int:
                 from artificial_memory_gen.compiler.closure.retriever import (
                     MultiViewRetriever,
                 )
-                from artificial_memory_gen.skills.answer_committer import Turn  # noqa
+                from artificial_memory.skills.answer_committer import Turn  # noqa
 
                 qplan = DeterministicQueryPlanner().plan(r["question"])
                 turns = parse_turns(context)

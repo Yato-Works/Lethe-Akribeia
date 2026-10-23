@@ -16,8 +16,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory_gen.recall.temporal_resolver import TemporalResolver, parse_date
-from artificial_memory_gen.temporal.temporal_compiler import TemporalCompiler
+from artificial_memory.recall.temporal_resolver import TemporalResolver, parse_date
+from artificial_memory.temporal.temporal_compiler import TemporalCompiler
 
 from .base import MemorySkill, SkillResult
 

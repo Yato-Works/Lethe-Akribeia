@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts" / "benchmarks"))
 
 import eval_locomo_full as E  # noqa: E402
-from artificial_memory_gen.skills.answer_committer import commit_answer  # noqa: E402
+from artificial_memory.skills.answer_committer import commit_answer  # noqa: E402
 
 CACHE = ROOT / "benchmark_results/locomo_context_cache_rules.jsonl"
 DATA = ROOT / "datasets/external/locomo10.json"

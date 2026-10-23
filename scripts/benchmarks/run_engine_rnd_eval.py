@@ -23,9 +23,9 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts" / "benchmarks"))
 
 import eval_locomo_full as scorer  # noqa: E402
-from artificial_memory_gen.skills.answer_committer import commit_answer  # noqa: E402
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer  # noqa: E402
-from artificial_memory_gen.skills.autonomous_engines.event_action_resolver import EventActionResolver  # noqa: E402
+from artificial_memory.skills.answer_committer import commit_answer  # noqa: E402
+from artificial_memory.skills.answer_committer import CommittedAnswer  # noqa: E402
+from artificial_memory.skills.autonomous_engines.event_action_resolver import EventActionResolver  # noqa: E402
 
 
 def read_jsonl(path: Path) -> list[dict]:

@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import re
 
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
 
 STOPWORDS = {
     "what", "when", "where", "who", "whom", "which", "why", "how", "did", "does",

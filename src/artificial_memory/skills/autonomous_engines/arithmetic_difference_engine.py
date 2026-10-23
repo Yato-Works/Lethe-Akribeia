@@ -15,7 +15,7 @@ from __future__ import annotations
 import re
 
 from artificial_memory.ontology import ontology as _ontology
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
 
 #: Word to number conversion for duration and counts
 _WORD_TO_NUM = {

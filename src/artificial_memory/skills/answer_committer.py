@@ -1070,7 +1070,7 @@ def commit_answer(question: str, context: str, category: int | None = None) -> C
         return scaffold_ans
 
     # 3. Deterministic Memory Engine (Subsystems A, B, C: Counting, Temporal Algebra, Relational Traverser)
-    from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
+    from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
     det_ans = DeterministicMemoryEngine.resolve(question, context)
     if det_ans.used and not _is_garbage_answer(det_ans.answer):
         return det_ans
@@ -1109,7 +1109,7 @@ def commit_longmemeval_answer(question: str, context: str, question_type: str | 
         return CommittedAnswer(used=False, detail="no parsed turns")
 
     # 1. Arithmetic Difference & Numerical Derivation (Hawaii vs Tokyo, TK Maxx savings, Age, Multi-location days)
-    from artificial_memory_gen.skills.autonomous_engines.arithmetic_difference_engine import (
+    from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import (
         ArithmeticDifferenceEngine,
     )
     if ArithmeticDifferenceEngine.is_arithmetic_question(question):
@@ -1118,14 +1118,14 @@ def commit_longmemeval_answer(question: str, context: str, question_type: str | 
             return ans_arith
 
     # 2. Boolean & Polar verification (Yes/No questions: "Did I finish The Nightingale?")
-    from artificial_memory_gen.skills.autonomous_engines.boolean_verifier import BooleanVerifier
+    from artificial_memory.skills.autonomous_engines.boolean_verifier import BooleanVerifier
     if BooleanVerifier.is_boolean_question(question):
         ans_bool = BooleanVerifier.resolve_boolean(question, turns, context)
         if ans_bool.used and not _is_garbage_answer(ans_bool.answer):
             return ans_bool
 
     # 3. Entity & Attribute verification (Company, Store, Previous Status)
-    from artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver import (
+    from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (
         EntityAttributeResolver,
     )
     ans_attr = EntityAttributeResolver.resolve_entity_attribute(question, turns, context)

@@ -11,7 +11,7 @@ Eli's two stated dangers are tested explicitly:
 """
 import uuid
 
-from artificial_memory_gen.skills.autonomous_engines.entity_identity import (
+from artificial_memory.skills.autonomous_engines.entity_identity import (
     IdentityResolver,
     Mention,
     identity_key,

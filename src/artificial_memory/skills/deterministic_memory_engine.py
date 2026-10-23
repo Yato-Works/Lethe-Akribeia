@@ -16,27 +16,27 @@ Subsystems:
 
 from __future__ import annotations
 
-from artificial_memory_gen.skills.answer_committer import (
+from artificial_memory.skills.answer_committer import (
     CommittedAnswer,
     _is_garbage_answer,
     parse_turns,
 )
-from artificial_memory_gen.skills.autonomous_engines.arithmetic_difference_engine import (
+from artificial_memory.skills.autonomous_engines.arithmetic_difference_engine import (
     ArithmeticDifferenceEngine,
 )
-from artificial_memory_gen.skills.autonomous_engines.boolean_verifier import BooleanVerifier
-from artificial_memory_gen.skills.autonomous_engines.counting_engine import CountingEngine
-from artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver import (
+from artificial_memory.skills.autonomous_engines.boolean_verifier import BooleanVerifier
+from artificial_memory.skills.autonomous_engines.counting_engine import CountingEngine
+from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (
     EntityAttributeResolver,
 )
-from artificial_memory_gen.skills.autonomous_engines.event_action_resolver import (
+from artificial_memory.skills.autonomous_engines.event_action_resolver import (
     EventActionResolver,
 )
-from artificial_memory_gen.skills.autonomous_engines.relational_traverser import RelationalTraverser
-from artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine import (
+from artificial_memory.skills.autonomous_engines.relational_traverser import RelationalTraverser
+from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (
     TemporalAlgebraEngine,
 )
-from artificial_memory_gen.skills.autonomous_engines.temporal_anchor_resolver import (
+from artificial_memory.skills.autonomous_engines.temporal_anchor_resolver import (
     TemporalAnchorResolver,
 )
 

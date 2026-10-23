@@ -18,8 +18,8 @@ from __future__ import annotations
 import datetime
 import re
 
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer, Turn
-from artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine import (
+from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (
     TemporalAlgebraEngine,
     _date_event_matches,
 )

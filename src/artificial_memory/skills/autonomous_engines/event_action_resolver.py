@@ -17,7 +17,7 @@ from __future__ import annotations
 import difflib
 import re
 
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
 
 
 def _fuzzy_contains(text: str, word: str, min_ratio: float = 0.82) -> bool:

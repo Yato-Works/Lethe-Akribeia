@@ -23,7 +23,7 @@ from __future__ import annotations
 import datetime
 import re
 
-from artificial_memory_gen.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
 
 # Common number word mappings
 NUMBER_WORDS: dict[str, int] = {

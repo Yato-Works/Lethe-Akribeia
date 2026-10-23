@@ -26,7 +26,7 @@ from dataclasses import dataclass
 
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.ontology import ontology as _ONTOLOGY
-from artificial_memory_gen.recall.temporal_resolver import parse_date
+from artificial_memory.recall.temporal_resolver import parse_date
 
 
 @dataclass

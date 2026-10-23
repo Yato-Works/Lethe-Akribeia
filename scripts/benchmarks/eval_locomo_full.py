@@ -1105,7 +1105,7 @@ def run(args) -> None:
             committed = None
             if getattr(args, "use_committer", True):
                 try:
-                    from artificial_memory_gen.skills.answer_committer import (
+                    from artificial_memory.skills.answer_committer import (
                         commit_answer, post_process_answer,
                     )
                     _c = commit_answer(q["question"], compiled.context_text,
