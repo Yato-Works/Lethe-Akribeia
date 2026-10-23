@@ -1,0 +1,48 @@
+{
+  "run_stamp": "20261012_002801",
+  "code_revision": "f245e68",
+  "config": {
+    "cond": "R7",
+    "cats": "",
+    "limit": 2,
+    "num_ctx": 8192,
+    "second_pass": false,
+    "enum_contract": "off",
+    "data": "datasets/external/locomo10.json"
+  },
+  "run_salt": "e1eb756c1963a6e6",
+  "accuracy": 1.0,
+  "per_category": {
+    "2": {
+      "correct": 2,
+      "total": 2
+    }
+  },
+  "scorer": "eval_locomo_full.score + is_list_gold (audit_strict_grade)",
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "7 May 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 6.512,
+      "gold_is_list": false,
+      "abstained": false
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "context_tokens": 1393,
+      "latency_seconds": 5.293,
+      "gold_is_list": false,
+      "abstained": false
+    }
+  ]
+}

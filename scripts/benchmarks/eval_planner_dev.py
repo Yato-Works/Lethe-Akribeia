@@ -25,8 +25,8 @@ SPLIT_PATH = REPO / "benchmark_results" / "splits" / "lme_dev_qids.json"
 
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir.structured import StructuredIR
 
 _STOP_WORDS = frozenset({

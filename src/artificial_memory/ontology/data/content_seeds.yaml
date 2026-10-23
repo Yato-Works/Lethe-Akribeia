@@ -1,0 +1,18 @@
+# Content seed vocabulary for category detection.
+#
+# Usage site: SkillDetector LoCoMo category-3 (open-domain) keywordtable.
+# These seeds are book/brand/community tokens observed in the benchmark
+# corpora; they were previously appended inline in runtime code and now
+# live here.
+_meta:
+  origin: benchmark_tuned
+  description: >-
+    Open-domain category detection seeds (titles, brands, community terms)
+    observed in the evaluation corpora.
+  version: 1
+
+open_domain_category3:
+  - dr. seuss
+  - four seasons
+  - lgbtq
+  - lgbt

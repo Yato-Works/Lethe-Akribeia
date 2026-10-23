@@ -1,0 +1,114 @@
+{
+  "label": "attribute-holdout-before",
+  "n": 8,
+  "correct": 0,
+  "wrong": 8,
+  "abstain": 0,
+  "presented": 8,
+  "llm_calls": 0,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-41_99",
+      "conversation": "41",
+      "category": 4,
+      "question": "What did John and the veterans do during the small party?",
+      "gold": "share stories and make connections",
+      "status": "wrong",
+      "answer": "inviting some veterans to share their stories. It",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from John's turn: 'inviting some veterans to share their stories. It'",
+      "evidence_turn": "D15:13"
+    },
+    {
+      "question_id": "lc_conv-48_180",
+      "conversation": "48",
+      "category": 4,
+      "question": "What did Deborah do with their mom's old friends?",
+      "gold": "reminisced and looked through photos",
+      "status": "wrong",
+      "answer": "ing yoga. My mum was my biggest fan",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Deborah's turn: 'ing yoga. My mum was my biggest fan'",
+      "evidence_turn": "D24:5"
+    },
+    {
+      "question_id": "lc_conv-49_50",
+      "conversation": "49",
+      "category": 1,
+      "question": "What kind of hobbies does Evan pursue?",
+      "gold": "painting, hiking, reading books, biking, skiing, snowboarding, ice skating, swimming, camping, kayaking",
+      "status": "wrong",
+      "answer": "recently to take your mind off it?",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Evan's turn: 'recently to take your mind off it?'",
+      "evidence_turn": "D17:4"
+    },
+    {
+      "question_id": "lc_conv-49_88",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Evan find relaxing about his road trip to Jasper?",
+      "gold": "fresh air, peacefulness, cozy cabin surrounded by mountains and forests",
+      "status": "wrong",
+      "answer": "it, just keep trying new things until something",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Evan's turn: 'it, just keep trying new things until something'",
+      "evidence_turn": "D1:18"
+    },
+    {
+      "question_id": "lc_conv-49_114",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Evan recommend Sam acquire to get started with painting?",
+      "gold": "Acrylic paints, brushes, canvas/paper, palette",
+      "status": "wrong",
+      "answer": "some supplies if you're interested. Let me know!",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Evan's turn: 'some supplies if you're interested. Let me know!'",
+      "evidence_turn": "D10:9"
+    },
+    {
+      "question_id": "lc_conv-50_5",
+      "conversation": "50",
+      "category": 1,
+      "question": "What are Dave's dreams?",
+      "gold": "open a car maintenance shop, work on classic cars, build a custom car from scratch",
+      "status": "wrong",
+      "answer": "no matter what others say. Have you seen",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Dave's turn: 'no matter what others say. Have you seen'",
+      "evidence_turn": "D19:5"
+    },
+    {
+      "question_id": "lc_conv-50_28",
+      "conversation": "50",
+      "category": 1,
+      "question": "What does Calvin do to relax?",
+      "gold": "take long drives in his car, embrace nature, fixing cars",
+      "status": "wrong",
+      "answer": "n't forget to relax",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Calvin's turn: 'n't forget to relax'",
+      "evidence_turn": "D5:6"
+    },
+    {
+      "question_id": "lc_conv-50_29",
+      "conversation": "50",
+      "category": 1,
+      "question": "What are Dave's hobbies other than fixing cars?",
+      "gold": "take a walk, go hiking, listen to favorite albums, live concerts, photography",
+      "status": "wrong",
+      "answer": "the way the sunlight hits thi",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Dave's turn: 'the way the sunlight hits thi'",
+      "evidence_turn": "D20:3"
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

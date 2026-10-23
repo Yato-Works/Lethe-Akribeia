@@ -17,19 +17,19 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.recall.answer_shape import shape_directive
-from artificial_memory.recall.answer_verifier import AnswerVerifier
-from artificial_memory.recall.domain_associator import DomainAssociator
-from artificial_memory.recall.temporal_resolver import parse_date
 from artificial_memory.research.benchmarks.llm import (
     OFFICIAL_ABSTENTION_MARKERS,
     OFFICIAL_ABSTENTION_TEXT,
     OllamaAnswerer,
 )
-from artificial_memory.skills import get_temporal_skill
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.recall.answer_shape import shape_directive
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
+from artificial_memory_gen.recall.domain_associator import DomainAssociator
+from artificial_memory_gen.recall.temporal_resolver import parse_date
+from artificial_memory_gen.skills import get_temporal_skill
 
 # Phase 4 P5a: pet-name introductions -> DomainAssociator species cluster.
 _PET_NAME_PATTERNS = [
@@ -384,7 +384,7 @@ class LoCoMoAdapter:
         ans_words = {w for w in re.findall(r"\b[a-zA-Z0-9_]+\b", clean_ans) if len(w) > 2 or w.isdigit()}
         if not (gt_words and ans_words):
             return False
-        from artificial_memory.steroid.wide_slicer import WideSlicer
+        from artificial_memory_gen.steroid.wide_slicer import WideSlicer
 
         gt_stems = {WideSlicer._stem(w) for w in gt_words}
         ans_stems = {WideSlicer._stem(w) for w in ans_words}
@@ -582,7 +582,7 @@ class LoCoMoAdapter:
 
         # 3. Answer Generation & Verification (Overdrive Core Potion 7)
         # Zero-Reader Committer (Phase 8: AM decides deterministically)
-        from artificial_memory.skills.answer_committer import commit_answer
+        from artificial_memory_gen.skills.answer_committer import commit_answer
         committed = commit_answer(question.question, pcc.context_text, category=question.category)
         if committed.used:
             predicted_answer = committed.answer
@@ -900,7 +900,9 @@ class LoCoMoAdapter:
                     f"{pcc.context_text}"
                 )
                 ans = self._call_answerer(answerer, question.question, retry_prompt, category=question.category)
-            from artificial_memory.temporal.interval_algebra import normalize_temporal_for_scoring
+            from artificial_memory_gen.temporal.interval_algebra import (
+                normalize_temporal_for_scoring,
+            )
             predicted_answer = normalize_temporal_for_scoring(ans.text)
             # General preposition normalization ('Since YYYY' -> 'In YYYY' when question asks 'When did / What year')
             if re.match(r"^Since\s+(\d{4})$", predicted_answer.strip(), re.I) and any(w in question.question.lower() for w in ["when did", "what year", "get his", "get her", "get their", "buy"]):
@@ -1036,7 +1038,7 @@ class LoCoMoAdapter:
             predicted_answer = answerer.answer_adapter(predicted_answer)
 
         # 5b. Deterministic post-processor (Precision & Token-F1 optimizer)
-        from artificial_memory.skills.answer_committer import post_process_answer
+        from artificial_memory_gen.skills.answer_committer import post_process_answer
         predicted_answer = post_process_answer(question.question, predicted_answer, category=question.category)
 
         # 6. Scoring: single frozen binary matcher (see ``score_binary``), shared

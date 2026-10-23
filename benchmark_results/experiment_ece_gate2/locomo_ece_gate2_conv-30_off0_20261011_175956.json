@@ -1,0 +1,412 @@
+{
+  "mode": "ece",
+  "accuracy": 0.75,
+  "correct": 15,
+  "total": 20,
+  "elapsed_seconds": 35.88,
+  "per_category": {
+    "2": {
+      "correct": 13,
+      "total": 13
+    },
+    "4": {
+      "correct": 1,
+      "total": 2
+    },
+    "1": {
+      "correct": 1,
+      "total": 5
+    }
+  },
+  "results": [
+    {
+      "question_id": "lc_conv-30_0",
+      "category": 2,
+      "question": "When Jon has lost his job as a banker?",
+      "ground_truth": "19 January, 2023",
+      "predicted_answer": "19 January 2023",
+      "is_correct": true,
+      "context_tokens": 1394,
+      "latency_seconds": 4.38,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 24
+    },
+    {
+      "question_id": "lc_conv-30_1",
+      "category": 2,
+      "question": "When Gina has lost her job at Door Dash?",
+      "ground_truth": "January, 2023",
+      "predicted_answer": "January 2023",
+      "is_correct": true,
+      "context_tokens": 1391,
+      "latency_seconds": 2.766,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 25
+    },
+    {
+      "question_id": "lc_conv-30_2",
+      "category": 4,
+      "question": "How do Jon and Gina both like to destress?",
+      "ground_truth": "by dancing",
+      "predicted_answer": "dancing",
+      "is_correct": true,
+      "context_tokens": 1393,
+      "latency_seconds": 2.515,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 24
+    },
+    {
+      "question_id": "lc_conv-30_3",
+      "category": 1,
+      "question": "What do Jon and Gina both have in common?",
+      "ground_truth": "They lost their jobs and decided to start their own businesses.",
+      "predicted_answer": "supporting each other",
+      "is_correct": false,
+      "context_tokens": 1391,
+      "latency_seconds": 3.034,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 24
+    },
+    {
+      "question_id": "lc_conv-30_4",
+      "category": 4,
+      "question": "Why did Jon decide to start his dance studio?",
+      "ground_truth": "He lost his job and decided to start his own business to share his passion.",
+      "predicted_answer": "Because Jon is passionate about dancing and wants to share it with others.",
+      "is_correct": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.868,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 24
+    },
+    {
+      "question_id": "lc_conv-30_5",
+      "category": 1,
+      "question": "What Jon thinks the ideal dance studio should look like?",
+      "ground_truth": "By the water, with natural light and Marley flooring",
+      "predicted_answer": "by the water",
+      "is_correct": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.531,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 26
+    },
+    {
+      "question_id": "lc_conv-30_6",
+      "category": 2,
+      "question": "When is Jon's group performing at a festival?",
+      "ground_truth": "February, 2023",
+      "predicted_answer": "February 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.128,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 24
+    },
+    {
+      "question_id": "lc_conv-30_7",
+      "category": 2,
+      "question": "When did Gina launch an ad campaign for her store?",
+      "ground_truth": "29 January, 2023",
+      "predicted_answer": "29 January, 2023",
+      "is_correct": true,
+      "context_tokens": 1395,
+      "latency_seconds": 0.576,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_8",
+      "category": 2,
+      "question": "When was Jon in Paris?",
+      "ground_truth": "28 January 2023",
+      "predicted_answer": "28 January 2023",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.757,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 24
+    },
+    {
+      "question_id": "lc_conv-30_9",
+      "category": 1,
+      "question": "Which city have both Jean and John visited?",
+      "ground_truth": "Rome",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.497,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 23
+    },
+    {
+      "question_id": "lc_conv-30_10",
+      "category": 2,
+      "question": "When did Gina team up with a local artist for some cool designs?",
+      "ground_truth": "February, 2023",
+      "predicted_answer": "8 February, 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 0.542,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_11",
+      "category": 2,
+      "question": "When did Gina get her tattoo?",
+      "ground_truth": "A few years ago",
+      "predicted_answer": "a few years ago",
+      "is_correct": true,
+      "context_tokens": 1397,
+      "latency_seconds": 0.422,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_12",
+      "category": 2,
+      "question": "When did Jon start to go to the gym?",
+      "ground_truth": "March, 2023",
+      "predicted_answer": "the week before 16 March 2023",
+      "is_correct": true,
+      "context_tokens": 1391,
+      "latency_seconds": 0.703,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_13",
+      "category": 2,
+      "question": "When did Gina open her online clothing store?",
+      "ground_truth": "16 March, 2023",
+      "predicted_answer": "16 March, 2023",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 0.63,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_14",
+      "category": 2,
+      "question": "When did Jon start expanding his studio's social media presence?",
+      "ground_truth": "April, 2023",
+      "predicted_answer": "3 April, 2023",
+      "is_correct": true,
+      "context_tokens": 1395,
+      "latency_seconds": 0.572,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_15",
+      "category": 2,
+      "question": "When did Jon host a dance competition?",
+      "ground_truth": "May, 2023",
+      "predicted_answer": "May 2023",
+      "is_correct": true,
+      "context_tokens": 1397,
+      "latency_seconds": 0.511,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_16",
+      "category": 2,
+      "question": "When did Jon go to a fair to get more exposure for his dance studio?",
+      "ground_truth": "24 April, 2023",
+      "predicted_answer": "24 April 2023",
+      "is_correct": true,
+      "context_tokens": 1397,
+      "latency_seconds": 0.515,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    },
+    {
+      "question_id": "lc_conv-30_17",
+      "category": 1,
+      "question": "Why did Gina decide to start her own clothing store?",
+      "ground_truth": "She always loved fashion trends and finding unique pieces and she lost her job so decided it was time to start her own business.",
+      "predicted_answer": "To combine her love for fashion and dance",
+      "is_correct": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.746,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 26
+    },
+    {
+      "question_id": "lc_conv-30_18",
+      "category": 1,
+      "question": "Do Jon and Gina start businesses out of what they love?",
+      "ground_truth": "Yes",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "context_tokens": 1398,
+      "latency_seconds": 2.611,
+      "topology": "single_fact",
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "fallback_turns_added": 28
+    },
+    {
+      "question_id": "lc_conv-30_19",
+      "category": 2,
+      "question": "When did Gina interview for a design internship?",
+      "ground_truth": "10 May, 2023",
+      "predicted_answer": "10 May 2023",
+      "is_correct": true,
+      "context_tokens": 1394,
+      "latency_seconds": 0.549,
+      "topology": "temporal_duration",
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "fallback_turns_added": 0
+    }
+  ]
+}

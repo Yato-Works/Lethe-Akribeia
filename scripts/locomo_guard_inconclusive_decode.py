@@ -20,7 +20,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from artificial_memory.recall.answer_verifier import AnswerVerifier
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
 
 sys.stdout.reconfigure(encoding="utf-8")
 

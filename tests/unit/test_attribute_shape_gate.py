@@ -11,7 +11,7 @@ refusal handed the question to a worse branch and turned a correct answer into a
 wrong one.  Measured as 3 BROKE.  A gate that refuses a value containing the right
 answer is not a gate, and these tests exist so that cannot come back quietly.
 """
-from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (
+from artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver import (
     EntityAttributeResolver as R,
 )
 

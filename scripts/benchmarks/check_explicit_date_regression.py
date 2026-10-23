@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -26,7 +27,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import importlib.util  # noqa: E402
 
-from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
 
@@ -53,6 +54,35 @@ def main() -> int:
     run = json.loads(RUN.read_text(encoding="utf-8"))
     results = run["results"]
 
+    # ID WARNING.  The run uses 'lc_conv-26_0'; the context cache uses
+    # 'conv-26-qa-000'.  Joining on the run id alone silently matches NOTHING and
+    # reports a confident '0 regressions' from zero evaluated questions -- the same
+    # class of silent-zero-match defect this session has already corrected twice.
+    # Convert, then ASSERT the join matched.
+    def to_cache_qid(run_id: str) -> str | None:
+        m = re.fullmatch(r"lc_conv-(\d+)_(\d+)", run_id)
+        if not m:
+            return None
+        return f"conv-{m.group(1)}-qa-{int(m.group(2)):03d}"
+
+    unresolved = [r.get("question_id") for r in results
+                  if to_cache_qid(r.get("question_id") or "") is None]
+    if unresolved:
+        raise SystemExit(
+            f"{len(unresolved)} run ids do not match the lc_conv-N_M form, e.g. "
+            f"{unresolved[:5]} -- refusing to report from an incomplete join")
+
+    cache_by_run_id = {}
+    for r in results:
+        cq = to_cache_qid(r["question_id"])
+        if cq in cache:
+            cache_by_run_id[r["question_id"]] = cache[cq]
+    print(f"join: {len(cache_by_run_id)}/{len(results)} run ids resolved to a "
+          f"frozen context")
+    assert len(cache_by_run_id) > len(results) * 0.9, (
+        "fewer than 90% of the run joined to a frozen context -- the join is "
+        "broken, not the engine")
+
     # Every currently-correct question must stay correct.  That is the hard bar.
     correct = [r for r in results if r.get("is_correct")]
     # Plus a random sample of the currently-wrong ones, to see whether the new
@@ -71,7 +101,7 @@ def main() -> int:
         examples: list[tuple] = []
         for row in rows:
             qid = row.get("question_id")
-            ctx = cache.get(qid)
+            ctx = cache_by_run_id.get(qid)
             if not ctx:
                 continue
             context = ctx.get("context") or ""

@@ -1,0 +1,41 @@
+{
+  "ability": "event_bound_temporal_resolution_and_provenance_date_guard",
+  "source": "benchmark_results/temporal_small_eval_20261013.json + failure_atlas/failure_atlas.jsonl + locomo_context_cache_rules.jsonl",
+  "scorer": "scripts/benchmarks/eval_locomo_full.py (unchanged; repaired scorer from c449aa0)",
+  "full_benchmark_run": false,
+  "n": 9,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.0585,
+  "before_source": "fresh in-process execution of TemporalAlgebraEngine and TemporalAnchorResolver from git HEAD",
+  "paired_conditions": "same nine question IDs, question text, frozen contexts, surrounding deterministic pipeline, and scorer; only the two temporal engines changed",
+  "before": {"correct": 2, "wrong": 3, "abstain": 4, "presented": 5},
+  "after": {"correct": 4, "wrong": 1, "abstain": 4, "presented": 5},
+  "categories": {
+    "1": {"n": 2, "before": {"correct": 0, "wrong": 0, "abstain": 2}, "after": {"correct": 1, "wrong": 0, "abstain": 1}},
+    "2": {"n": 7, "before": {"correct": 2, "wrong": 3, "abstain": 2}, "after": {"correct": 3, "wrong": 1, "abstain": 3}}
+  },
+  "newly_correct_qids": ["lc_conv-30_13", "conv-41-qa-059"],
+  "status_improved_qids": ["lc_conv-30_13", "conv-41-qa-038", "conv-41-qa-059"],
+  "broke_qids": [],
+  "cases": [
+    {"qid": "lc_conv-30_13", "question": "When did Gina open her online clothing store?", "gold": "16 March, 2023", "before": "abstain", "after": "correct", "answer": "16 March, 2023", "evidence_turn": "D6:6"},
+    {"qid": "conv-41-qa-038", "question": "When did Maria get in a car accident?", "gold": "July 2, 2023", "before": "wrong", "before_answer": "21 December, 2022", "after": "abstain", "note": "The frozen context contains a dated car donation but no accident event evidence."},
+    {"qid": "conv-41-qa-059", "question": "When did John go on a camping trip with Max?", "gold": "The summer of 2022", "before": "wrong", "before_answer": "The weekend before 12 June 2023", "after": "correct", "answer": "last summer", "evidence_turn": "D30:6"},
+    {"qid": "lc_conv-41_51", "question": "When did Maria start volunteering at the homeless shelter?", "gold": "Around August 2022", "before": "abstain", "after": "abstain"},
+    {"qid": "lc_conv-42_22", "question": "When did Joanna start writing her third screenplay?", "gold": "May 2022", "before": "abstain", "after": "abstain"},
+    {"qid": "lc_conv-44_1", "question": "When did Andrew start his new job as a financial analyst?", "gold": "The week before March 27, 2023", "before": "correct", "after": "correct", "answer": "The week before 27 March 2023"},
+    {"qid": "lc_conv-44_37", "question": "When did Audrey get into an accident in the park?", "gold": "between October 19 and 24, 2023", "before": "wrong", "after": "wrong", "answer": "The week before 24 October 2023"},
+    {"qid": "lc_conv-49_23", "question": "When did Sam start working out at the gym?", "gold": "July 28, 2023", "before": "correct", "after": "correct", "answer": "28 July, 2023"},
+    {"qid": "lc_conv-26_76", "question": "When did Melanie go on a hike after the roadtrip?", "gold": "19 October 2023", "before": "abstain", "after": "abstain"}
+  ],
+  "audit_findings": [
+    "The earlier temporal_small_eval artifact claims the Maria accident answer was supported by D21:3. In the current frozen cache row conv-41-qa-038, D21:3 is absent; the cache includes a 21 December car-donation turn but no accident turn. The prior result is therefore not reproducible from the referenced frozen context and is not used as baseline.",
+    "The generic provenance-header fallback selected session dates for unrelated or retrospective event mentions. It was removed; session headers are used only for an explicit open-state announcement, selecting the earliest matching announcement.",
+    "One wrong answer remains: the engine returns the evidence's broad 'week before 24 October' for an accident whose gold is a bounded date range. The available evidence does not justify a more precise day, so this remains unresolved rather than being guessed."
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true,
+    "newly_correct_and_broke_are_disjoint": true
+  }
+}

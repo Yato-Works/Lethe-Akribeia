@@ -6,7 +6,7 @@ EXPANSION_MAP = {
 }
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
-from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
+from artificial_memory_gen.recall.proposition_graph import UnifiedPropositionGraph
 
 adapter = LoCoMoAdapter()
 adapter.compiler.selection_window_cap = 36

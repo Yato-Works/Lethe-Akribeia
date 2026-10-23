@@ -1,0 +1,1231 @@
+{
+  "timestamp": "20261011_164544",
+  "model": "qwen2.5:7b-instruct",
+  "accuracy": 0.42,
+  "correct": 21,
+  "total": 50,
+  "per_category": {
+    "2": {
+      "correct": 12,
+      "total": 24
+    },
+    "3": {
+      "correct": 5,
+      "total": 7
+    },
+    "1": {
+      "correct": 4,
+      "total": 19
+    }
+  },
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "8 May, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D1:3"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 23,
+      "context_tokens": 1392,
+      "latency_seconds": 2.536
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "predicted_answer": "last year",
+      "is_correct": false,
+      "gold_evidence": [
+        "D1:12"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 24,
+      "context_tokens": 1395,
+      "latency_seconds": 1.545
+    },
+    {
+      "question_id": "lc_conv-26_2",
+      "category": 3,
+      "question": "What fields would Caroline be likely to pursue in her educaton?",
+      "ground_truth": "Psychology, counseling certification",
+      "predicted_answer": "counseling, pottery",
+      "is_correct": false,
+      "gold_evidence": [
+        "D1:9",
+        "D1:11"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1386,
+      "latency_seconds": 1.516
+    },
+    {
+      "question_id": "lc_conv-26_3",
+      "category": 1,
+      "question": "What did Caroline research?",
+      "ground_truth": "Adoption agencies",
+      "predicted_answer": "adoption process",
+      "is_correct": true,
+      "gold_evidence": [
+        "D2:8"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1375,
+      "latency_seconds": 1.397
+    },
+    {
+      "question_id": "lc_conv-26_4",
+      "category": 1,
+      "question": "What is Caroline's identity?",
+      "ground_truth": "Transgender woman",
+      "predicted_answer": "transgender artist",
+      "is_correct": true,
+      "gold_evidence": [
+        "D1:5"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 24,
+      "context_tokens": 1368,
+      "latency_seconds": 1.395
+    },
+    {
+      "question_id": "lc_conv-26_5",
+      "category": 2,
+      "question": "When did Melanie run a charity race?",
+      "ground_truth": "The sunday before 25 May 2023",
+      "predicted_answer": "2023-05-27",
+      "is_correct": true,
+      "gold_evidence": [
+        "D2:1"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 28,
+      "context_tokens": 1390,
+      "latency_seconds": 1.65
+    },
+    {
+      "question_id": "lc_conv-26_6",
+      "category": 2,
+      "question": "When is Melanie planning on going camping?",
+      "ground_truth": "June 2023",
+      "predicted_answer": "two weekends ago",
+      "is_correct": false,
+      "gold_evidence": [
+        "D2:7"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1399,
+      "latency_seconds": 1.567
+    },
+    {
+      "question_id": "lc_conv-26_7",
+      "category": 1,
+      "question": "What is Caroline's relationship status?",
+      "ground_truth": "Single",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "gold_evidence": [
+        "D3:13",
+        "D2:14"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1365,
+      "latency_seconds": 1.443
+    },
+    {
+      "question_id": "lc_conv-26_8",
+      "category": 2,
+      "question": "When did Caroline give a speech at a school?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "22 October, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D3:1"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1378,
+      "latency_seconds": 1.58
+    },
+    {
+      "question_id": "lc_conv-26_9",
+      "category": 2,
+      "question": "When did Caroline meet up with her friends, family, and mentors?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "9 June, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D3:11"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1366,
+      "latency_seconds": 1.622
+    },
+    {
+      "question_id": "lc_conv-26_10",
+      "category": 2,
+      "question": "How long has Caroline had her current group of friends for?",
+      "ground_truth": "4 years",
+      "predicted_answer": "since 25 May, 2023",
+      "is_correct": false,
+      "gold_evidence": [
+        "D3:13"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 24,
+      "context_tokens": 1380,
+      "latency_seconds": 1.688
+    },
+    {
+      "question_id": "lc_conv-26_11",
+      "category": 1,
+      "question": "Where did Caroline move from 4 years ago?",
+      "ground_truth": "Sweden",
+      "predicted_answer": "her home country",
+      "is_correct": false,
+      "gold_evidence": [
+        "D3:13",
+        "D4:3"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 0.0,
+      "satisfied_requirements": [],
+      "unmet_requirements": [
+        "req_direct_fact"
+      ],
+      "conflicting_requirements": [],
+      "termination_reason": "no_further_expansion_possible",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1392,
+      "latency_seconds": 1.475
+    },
+    {
+      "question_id": "lc_conv-26_12",
+      "category": 2,
+      "question": "How long ago was Caroline's 18th birthday?",
+      "ground_truth": "10 years ago",
+      "predicted_answer": "10 years ago",
+      "is_correct": true,
+      "gold_evidence": [
+        "D4:5"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 23,
+      "context_tokens": 1374,
+      "latency_seconds": 1.529
+    },
+    {
+      "question_id": "lc_conv-26_13",
+      "category": 1,
+      "question": "What career path has Caroline decided to persue?",
+      "ground_truth": "counseling or mental health for Transgender people",
+      "predicted_answer": "counseling and mental health services",
+      "is_correct": true,
+      "gold_evidence": [
+        "D4:13",
+        "D1:11"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1368,
+      "latency_seconds": 1.527
+    },
+    {
+      "question_id": "lc_conv-26_14",
+      "category": 3,
+      "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+      "ground_truth": "Likely no",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "gold_evidence": [
+        "D4:15",
+        "D3:5"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 23,
+      "context_tokens": 1398,
+      "latency_seconds": 1.444
+    },
+    {
+      "question_id": "lc_conv-26_15",
+      "category": 1,
+      "question": "What activities does Melanie partake in?",
+      "ground_truth": "pottery, camping, painting, swimming",
+      "predicted_answer": "pottery, running",
+      "is_correct": false,
+      "gold_evidence": [
+        "D5:4",
+        "D9:1",
+        "D1:12",
+        "D1:18"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 30,
+      "context_tokens": 1392,
+      "latency_seconds": 1.52
+    },
+    {
+      "question_id": "lc_conv-26_16",
+      "category": 2,
+      "question": "When did Melanie sign up for a pottery class?",
+      "ground_truth": "2 July 2023",
+      "predicted_answer": "yesterday",
+      "is_correct": false,
+      "gold_evidence": [
+        "D5:4"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1381,
+      "latency_seconds": 1.489
+    },
+    {
+      "question_id": "lc_conv-26_17",
+      "category": 2,
+      "question": "When is Caroline going to the transgender conference?",
+      "ground_truth": "July 2023",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "gold_evidence": [
+        "D5:13"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1382,
+      "latency_seconds": 1.543
+    },
+    {
+      "question_id": "lc_conv-26_18",
+      "category": 1,
+      "question": "Where has Melanie camped?",
+      "ground_truth": "beach, mountains, forest",
+      "predicted_answer": "forest",
+      "is_correct": false,
+      "gold_evidence": [
+        "D6:16",
+        "D4:6",
+        "D8:32"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1365,
+      "latency_seconds": 1.444
+    },
+    {
+      "question_id": "lc_conv-26_19",
+      "category": 1,
+      "question": "What do Melanie's kids like?",
+      "ground_truth": "dinosaurs, nature",
+      "predicted_answer": "nature, pottery, painting, camping",
+      "is_correct": false,
+      "gold_evidence": [
+        "D6:6",
+        "D4:8"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 23,
+      "context_tokens": 1394,
+      "latency_seconds": 1.715
+    },
+    {
+      "question_id": "lc_conv-26_20",
+      "category": 2,
+      "question": "When did Melanie go to the museum?",
+      "ground_truth": "5 July 2023",
+      "predicted_answer": "Yesterday",
+      "is_correct": false,
+      "gold_evidence": [
+        "D6:4"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 29,
+      "context_tokens": 1397,
+      "latency_seconds": 1.446
+    },
+    {
+      "question_id": "lc_conv-26_21",
+      "category": 2,
+      "question": "When did Caroline have a picnic?",
+      "ground_truth": "The week before 6 July 2023",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "gold_evidence": [
+        "D6:11"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1372,
+      "latency_seconds": 1.517
+    },
+    {
+      "question_id": "lc_conv-26_22",
+      "category": 3,
+      "question": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+      "ground_truth": "Yes, since she collects classic children's books",
+      "predicted_answer": "No",
+      "is_correct": false,
+      "gold_evidence": [
+        "D6:9"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1399,
+      "latency_seconds": 1.451
+    },
+    {
+      "question_id": "lc_conv-26_23",
+      "category": 1,
+      "question": "What books has Melanie read?",
+      "ground_truth": "\"Nothing is Impossible\", \"Charlotte's Web\"",
+      "predicted_answer": "\"Charlotte's Web\"",
+      "is_correct": false,
+      "gold_evidence": [
+        "D7:8",
+        "D6:10"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1398,
+      "latency_seconds": 1.565
+    },
+    {
+      "question_id": "lc_conv-26_24",
+      "category": 1,
+      "question": "What does Melanie do to destress?",
+      "ground_truth": "Running, pottery",
+      "predicted_answer": "running",
+      "is_correct": false,
+      "gold_evidence": [
+        "D7:22",
+        "D5:4"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 29,
+      "context_tokens": 1380,
+      "latency_seconds": 1.458
+    },
+    {
+      "question_id": "lc_conv-26_25",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ conference?",
+      "ground_truth": "10 July 2023",
+      "predicted_answer": "two days ago",
+      "is_correct": false,
+      "gold_evidence": [
+        "D7:1"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1386,
+      "latency_seconds": 1.507
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "category": 2,
+      "question": "When did Melanie read the book \"nothing is impossible\"?",
+      "ground_truth": "2022",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "gold_evidence": [
+        "D7:8"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1397,
+      "latency_seconds": 1.558
+    },
+    {
+      "question_id": "lc_conv-26_27",
+      "category": 3,
+      "question": "Would Caroline pursue writing as a career option?",
+      "ground_truth": "LIkely no; though she likes reading, she wants to be a counselor",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "gold_evidence": [
+        "D7:5",
+        "D7:9"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1392,
+      "latency_seconds": 1.372
+    },
+    {
+      "question_id": "lc_conv-26_28",
+      "category": 2,
+      "question": "When did Caroline go to the adoption meeting?",
+      "ground_truth": "The friday before 15 July 2023",
+      "predicted_answer": "22 October, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D8:9"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1364,
+      "latency_seconds": 1.613
+    },
+    {
+      "question_id": "lc_conv-26_29",
+      "category": 2,
+      "question": "When did Melanie go to the pottery workshop?",
+      "ground_truth": "The Friday before 15 July 2023",
+      "predicted_answer": "Last Fri",
+      "is_correct": false,
+      "gold_evidence": [
+        "D8:2"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1400,
+      "latency_seconds": 1.567
+    },
+    {
+      "question_id": "lc_conv-26_30",
+      "category": 3,
+      "question": "Would Melanie be considered a member of the LGBTQ community?",
+      "ground_truth": "Likely no, she does not refer to herself as part of it",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "gold_evidence": [],
+      "evidence_recall": 1.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 28,
+      "context_tokens": 1398,
+      "latency_seconds": 1.455
+    },
+    {
+      "question_id": "lc_conv-26_31",
+      "category": 2,
+      "question": "When did Melanie go camping in June?",
+      "ground_truth": "The week before 27 June 2023",
+      "predicted_answer": "15 June",
+      "is_correct": true,
+      "gold_evidence": [
+        "D4:8"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1394,
+      "latency_seconds": 1.602
+    },
+    {
+      "question_id": "lc_conv-26_32",
+      "category": 1,
+      "question": "What LGBTQ+ events has Caroline participated in?",
+      "ground_truth": "Pride parade, school speech, support group",
+      "predicted_answer": "LGBTQ support group, pride parade, conference",
+      "is_correct": false,
+      "gold_evidence": [
+        "D5:1",
+        "D8:17",
+        "D3:1",
+        "D1:3"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 21,
+      "context_tokens": 1386,
+      "latency_seconds": 1.692
+    },
+    {
+      "question_id": "lc_conv-26_33",
+      "category": 2,
+      "question": "When did Caroline go to a pride parade during the summer?",
+      "ground_truth": "The week before 3 July 2023",
+      "predicted_answer": "Last week",
+      "is_correct": true,
+      "gold_evidence": [
+        "D5:1"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1381,
+      "latency_seconds": 1.483
+    },
+    {
+      "question_id": "lc_conv-26_34",
+      "category": 1,
+      "question": "What events has Caroline participated in to help children?",
+      "ground_truth": "Mentoring program, school speech",
+      "predicted_answer": "council meeting for adoption",
+      "is_correct": false,
+      "gold_evidence": [
+        "D9:2",
+        "D3:3"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 22,
+      "context_tokens": 1382,
+      "latency_seconds": 1.563
+    },
+    {
+      "question_id": "lc_conv-26_35",
+      "category": 2,
+      "question": "When did Melanie go camping in July?",
+      "ground_truth": "two weekends before 17 July 2023",
+      "predicted_answer": "two weekends ago",
+      "is_correct": true,
+      "gold_evidence": [
+        "D9:1"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1394,
+      "latency_seconds": 1.605
+    },
+    {
+      "question_id": "lc_conv-26_36",
+      "category": 2,
+      "question": "When did Caroline join a mentorship program?",
+      "ground_truth": "The weekend before 17 July 2023",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "gold_evidence": [
+        "D9:2"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1394,
+      "latency_seconds": 1.558
+    },
+    {
+      "question_id": "lc_conv-26_37",
+      "category": 1,
+      "question": "What did Melanie paint recently?",
+      "ground_truth": "sunset",
+      "predicted_answer": "nature-inspired paintings",
+      "is_correct": false,
+      "gold_evidence": [
+        "D8:6; D9:17"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 23,
+      "context_tokens": 1392,
+      "latency_seconds": 1.616
+    },
+    {
+      "question_id": "lc_conv-26_38",
+      "category": 1,
+      "question": "What activities has Melanie done with her family?",
+      "ground_truth": "Pottery, painting, camping, museum, swimming, hiking",
+      "predicted_answer": "picnic",
+      "is_correct": false,
+      "gold_evidence": [
+        "D8:4",
+        "D8:6",
+        "D9:1",
+        "D6:4",
+        "D1:18",
+        "D3:14"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1394,
+      "latency_seconds": 1.517
+    },
+    {
+      "question_id": "lc_conv-26_39",
+      "category": 1,
+      "question": "In what ways is Caroline participating in the LGBTQ community?",
+      "ground_truth": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+      "predicted_answer": "joining a new activist group, attending support groups, attending pride parades, attending conferences, mentoring LGBTQ youth, working with trans people, giving talks, attending counseling workshops",
+      "is_correct": false,
+      "gold_evidence": [
+        "D10:3",
+        "D5:1",
+        "D9:12",
+        "D9:2"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 21,
+      "context_tokens": 1399,
+      "latency_seconds": 2.348
+    },
+    {
+      "question_id": "lc_conv-26_40",
+      "category": 1,
+      "question": "How many times has Melanie gone to the beach in 2023?",
+      "ground_truth": "2",
+      "predicted_answer": "2",
+      "is_correct": true,
+      "gold_evidence": [
+        "D10:8",
+        "D6:16"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1372,
+      "latency_seconds": 1.569
+    },
+    {
+      "question_id": "lc_conv-26_41",
+      "category": 2,
+      "question": "When did Caroline join a new activist group?",
+      "ground_truth": "The Tuesday before 20 July 2023",
+      "predicted_answer": "2023-07-18",
+      "is_correct": true,
+      "gold_evidence": [
+        "D10:3"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1380,
+      "latency_seconds": 1.711
+    },
+    {
+      "question_id": "lc_conv-26_42",
+      "category": 3,
+      "question": "Would Melanie be more interested in going to a national park or a theme park?",
+      "ground_truth": "National park; she likes the outdoors",
+      "predicted_answer": "national park",
+      "is_correct": true,
+      "gold_evidence": [
+        "D10:12",
+        "D10:14"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 26,
+      "context_tokens": 1389,
+      "latency_seconds": 1.607
+    },
+    {
+      "question_id": "lc_conv-26_43",
+      "category": 1,
+      "question": "What kind of art does Caroline make?",
+      "ground_truth": "abstract art",
+      "predicted_answer": "self-acceptance and love theme",
+      "is_correct": false,
+      "gold_evidence": [
+        "D11:12",
+        "D11:8",
+        "D9:14"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1375,
+      "latency_seconds": 1.715
+    },
+    {
+      "question_id": "lc_conv-26_44",
+      "category": 2,
+      "question": "When is Melanie's daughter's birthday?",
+      "ground_truth": "13 August",
+      "predicted_answer": "14 August, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D11:1"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1389,
+      "latency_seconds": 1.779
+    },
+    {
+      "question_id": "lc_conv-26_45",
+      "category": 2,
+      "question": "When did Caroline attend a pride parade in August?",
+      "ground_truth": "The Friday before 14 August 2023",
+      "predicted_answer": "August 14, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D11:4"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1395,
+      "latency_seconds": 1.716
+    },
+    {
+      "question_id": "lc_conv-26_46",
+      "category": 3,
+      "question": "Would Melanie be considered an ally to the transgender community?",
+      "ground_truth": "Yes, she is supportive",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "gold_evidence": [],
+      "evidence_recall": 1.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 28,
+      "context_tokens": 1364,
+      "latency_seconds": 1.467
+    },
+    {
+      "question_id": "lc_conv-26_47",
+      "category": 1,
+      "question": "Who supports Caroline when she has a negative experience?",
+      "ground_truth": "Her mentors, family, and friends",
+      "predicted_answer": "Melanie",
+      "is_correct": false,
+      "gold_evidence": [
+        "D12:1",
+        "D3:11"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_direct_fact"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 25,
+      "context_tokens": 1383,
+      "latency_seconds": 1.505
+    },
+    {
+      "question_id": "lc_conv-26_48",
+      "category": 1,
+      "question": "What types of pottery have Melanie and her kids made?",
+      "ground_truth": "bowls, cup",
+      "predicted_answer": "pots",
+      "is_correct": false,
+      "gold_evidence": [
+        "D12:14",
+        "D8:4",
+        "D5:6"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_enum_instances",
+        "req_multi_session_breadth"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 21,
+      "context_tokens": 1400,
+      "latency_seconds": 1.615
+    },
+    {
+      "question_id": "lc_conv-26_49",
+      "category": 2,
+      "question": "When did Caroline and Melanie go to a pride fesetival together?",
+      "ground_truth": "2022",
+      "predicted_answer": "25 May, 2023",
+      "is_correct": false,
+      "gold_evidence": [
+        "D12:15"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 27,
+      "context_tokens": 1382,
+      "latency_seconds": 1.689
+    }
+  ]
+}

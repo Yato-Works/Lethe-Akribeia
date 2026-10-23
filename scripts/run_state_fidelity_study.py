@@ -23,8 +23,8 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-from artificial_memory.protein.state_synthesizer import StateSynthesizer
-from artificial_memory.protein.state_trigger import StateTrigger
+from artificial_memory_gen.protein.state_synthesizer import StateSynthesizer
+from artificial_memory_gen.protein.state_trigger import StateTrigger
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter, LoCoMoQuestion
 
 RESULTS_DIR = Path("benchmark_results/protein")

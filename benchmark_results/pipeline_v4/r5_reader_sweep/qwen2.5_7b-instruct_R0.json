@@ -1,0 +1,2294 @@
+{
+  "model": "qwen2.5:7b-instruct",
+  "cond": "R0",
+  "n": 250,
+  "correct": 185,
+  "accuracy": 0.74,
+  "mean_prompt_tokens": 1324.22,
+  "mean_latency_ms": 1072.8264175988734,
+  "elapsed_seconds": 268.2607914999826,
+  "per_type": {
+    "knowledge-update": {
+      "correct": 36,
+      "total": 39,
+      "accuracy": 0.9230769230769231
+    },
+    "multi-session": {
+      "correct": 27,
+      "total": 67,
+      "accuracy": 0.40298507462686567
+    },
+    "single-session-assistant": {
+      "correct": 24,
+      "total": 28,
+      "accuracy": 0.8571428571428571
+    },
+    "single-session-preference": {
+      "correct": 13,
+      "total": 15,
+      "accuracy": 0.8666666666666667
+    },
+    "single-session-user": {
+      "correct": 34,
+      "total": 35,
+      "accuracy": 0.9714285714285714
+    },
+    "temporal-reasoning": {
+      "correct": 51,
+      "total": 66,
+      "accuracy": 0.7727272727272727
+    }
+  },
+  "results": [
+    {
+      "question_id": "00ca467f",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1228,
+      "latency_ms": 9667.52250000718,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "01493427",
+      "question_type": "knowledge-update",
+      "predicted_answer": "25",
+      "is_correct": true,
+      "prompt_tokens": 1028,
+      "latency_ms": 597.8193999908399,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "031748ae",
+      "question_type": "knowledge-update",
+      "predicted_answer": "5",
+      "is_correct": true,
+      "prompt_tokens": 1646,
+      "latency_ms": 1120.6979000126012,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "031748ae_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "5",
+      "is_correct": true,
+      "prompt_tokens": 1664,
+      "latency_ms": 973.2696999853943,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "06878be2",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Certainly! Given your current setup with the Sony A7R IV and the Godox V1 flash, here are some accessories that would complement your photography:\n\n1. A high-quality camera bag like the Think Tank Photo Street Pro 20 or the Lowepro ProSelect 200 AW, which can keep your gear safe and organized.\n2. An external battery pack such as the Anker PowerCore Fusion 26800, which can charge your camera and other devices on the go.\n3. A lens hood for your Sony lenses to reduce flare and improve image quality.\n4. A remote shutter release to minimize camera shake when taking photos.\n5. A lens cleaning kit to keep your lenses and sensors clean.\n6. A Gitzo GT3543LS tripod for stable and professional-looking shots, especially in low light or when using longer exposures.",
+      "is_correct": true,
+      "prompt_tokens": 1045,
+      "latency_ms": 5364.48940000264,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "06db6396",
+      "question_type": "knowledge-update",
+      "predicted_answer": "5",
+      "is_correct": true,
+      "prompt_tokens": 1612,
+      "latency_ms": 1107.8382999985479,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "06f04340",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Given your recent interest in using fresh basil and mint, and your enjoyment of quinoa salads, how about a **Cherry Tomato and Basil Quinoa Salad**? Use your homegrown cherry tomatoes, fresh basil, and perhaps some mint for a refreshing twist. Toss them with quinoa, a light vinaigrette, and a sprinkle of feta cheese for increased productivity and a delightful meal. Enjoy your dinner!",
+      "is_correct": true,
+      "prompt_tokens": 1085,
+      "latency_ms": 2951.397700002417,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "07741c44",
+      "question_type": "knowledge-update",
+      "predicted_answer": "under my bed",
+      "is_correct": true,
+      "prompt_tokens": 1124,
+      "latency_ms": 677.0560999866575,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "predicted_answer": "under my bed",
+      "is_correct": false,
+      "prompt_tokens": 1344,
+      "latency_ms": 816.6628000035416,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "078150f1",
+      "question_type": "multi-session",
+      "predicted_answer": "$300",
+      "is_correct": false,
+      "prompt_tokens": 1796,
+      "latency_ms": 1367.5260999880265,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "08e075c7",
+      "question_type": "knowledge-update",
+      "predicted_answer": "9 months",
+      "is_correct": true,
+      "prompt_tokens": 1097,
+      "latency_ms": 647.2675999975763,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "09ba9854",
+      "question_type": "multi-session",
+      "predicted_answer": "You will save $50 by taking the train from the airport to your hotel instead of a taxi.",
+      "is_correct": true,
+      "prompt_tokens": 1223,
+      "latency_ms": 1194.8152999975719,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "09ba9854_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1225,
+      "latency_ms": 777.1976999938488,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1669,
+      "latency_ms": 1147.948700003326,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0bc8ad92",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "5",
+      "is_correct": true,
+      "prompt_tokens": 1203,
+      "latency_ms": 697.363499988569,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0bc8ad93",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "No.",
+      "is_correct": false,
+      "prompt_tokens": 1222,
+      "latency_ms": 703.0346999817993,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0ddfec37_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1274,
+      "latency_ms": 864.1216000251006,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0e4e4c46",
+      "question_type": "knowledge-update",
+      "predicted_answer": "132 points",
+      "is_correct": true,
+      "prompt_tokens": 1126,
+      "latency_ms": 712.3482000024524,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0e5e2d1a",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "38",
+      "is_correct": true,
+      "prompt_tokens": 1524,
+      "latency_ms": 927.0787000132259,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0f05491a",
+      "question_type": "knowledge-update",
+      "predicted_answer": "120",
+      "is_correct": true,
+      "prompt_tokens": 1573,
+      "latency_ms": 1180.3950000030454,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "10e09553",
+      "question_type": "knowledge-update",
+      "predicted_answer": "7",
+      "is_correct": true,
+      "prompt_tokens": 1259,
+      "latency_ms": 784.1789999802131,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "15745da0",
+      "question_type": "single-session-user",
+      "predicted_answer": "Three months",
+      "is_correct": true,
+      "prompt_tokens": 1271,
+      "latency_ms": 797.6002999930643,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "157a136e",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1105,
+      "latency_ms": 697.3403000156395,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "18bc8abd",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Kansas City Masterpiece BBQ sauce",
+      "is_correct": true,
+      "prompt_tokens": 1273,
+      "latency_ms": 882.399299996905,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "195a1a1b",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Based on your interest in straight photography and your recent yoga classes, you might enjoy evening photography walks around the botanical gardens or along the beach in Honolulu. The improved flexibility from your yoga can help you navigate the terrain comfortably. Additionally, you could try nighttime photography as Charles Dudley Arnold did, capturing the unique lighting and atmosphere of the Hawaiian night.",
+      "is_correct": false,
+      "prompt_tokens": 1153,
+      "latency_ms": 2550.4938999947626,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1a1907b4",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your past enjoyment of the Pimm's Cup with a Twist and your mixology class experience, how about trying a Hendrick's Gin Fizz? It's a classic yet refreshing choice that would be perfect for your get-together. Muddle cucumber slices with a bit of fresh lemon juice and a simple syrup you've already experimented with, then mix in some lemon-lime soda and top with a splash of sparkling water. Garnish with a cucumber wheel and a lemon twist for a charming touch.",
+      "is_correct": true,
+      "prompt_tokens": 1088,
+      "latency_ms": 3296.940500003984,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1a8a66a6",
+      "question_type": "multi-session",
+      "predicted_answer": "1",
+      "is_correct": false,
+      "prompt_tokens": 1234,
+      "latency_ms": 694.5166000223253,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1b9b7252",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Mindful.org",
+      "is_correct": true,
+      "prompt_tokens": 1269,
+      "latency_ms": 823.0206999869552,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1c0ddc50",
+      "question_type": "single-session-preference",
+      "predicted_answer": "You might enjoy listening to more podcasts during your bike commute, perhaps \"The Tim Ferriss Show\" or \"How I Built This,\" which could offer new insights and inspiration. Additionally, consider bringing a book or an e-reader to help pass the time and keep you engaged.",
+      "is_correct": true,
+      "prompt_tokens": 1034,
+      "latency_ms": 2181.0387000150513,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1c549ce4",
+      "question_type": "multi-session",
+      "predicted_answer": "$140",
+      "is_correct": true,
+      "prompt_tokens": 1370,
+      "latency_ms": 1051.0791999986395,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1d4da289",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "biometric authentication or one-time passwords (OTP)",
+      "is_correct": true,
+      "prompt_tokens": 1315,
+      "latency_ms": 1030.6273000023793,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1de5cff2",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Veja",
+      "is_correct": true,
+      "prompt_tokens": 1415,
+      "latency_ms": 862.9208999918774,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1e043500",
+      "question_type": "single-session-user",
+      "predicted_answer": "Summer Vibes",
+      "is_correct": true,
+      "prompt_tokens": 1124,
+      "latency_ms": 651.0208999970928,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1f2b8d4f",
+      "question_type": "multi-session",
+      "predicted_answer": "$750",
+      "is_correct": true,
+      "prompt_tokens": 1784,
+      "latency_ms": 1140.5582999868784,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2133c1b5_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "3 months",
+      "is_correct": true,
+      "prompt_tokens": 1123,
+      "latency_ms": 676.67960000108,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2311e44b",
+      "question_type": "multi-session",
+      "predicted_answer": "440 - 0 = 440 pages",
+      "is_correct": false,
+      "prompt_tokens": 1756,
+      "latency_ms": 1536.6058999788947,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2318644b",
+      "question_type": "multi-session",
+      "predicted_answer": "$270",
+      "is_correct": true,
+      "prompt_tokens": 1745,
+      "latency_ms": 1122.3558000056073,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2698e78f_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1207,
+      "latency_ms": 810.1240999822039,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "27016adc",
+      "question_type": "multi-session",
+      "predicted_answer": "10%",
+      "is_correct": true,
+      "prompt_tokens": 1291,
+      "latency_ms": 850.6701999867801,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "28bcfaac",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "MusicTheory.net",
+      "is_correct": true,
+      "prompt_tokens": 1423,
+      "latency_ms": 878.4407000057399,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "28dc39ac",
+      "question_type": "multi-session",
+      "predicted_answer": "105",
+      "is_correct": false,
+      "prompt_tokens": 1573,
+      "latency_ms": 1179.4748000102118,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "29f2956b_abs",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1100,
+      "latency_ms": 730.1566999813076,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2b8f3739",
+      "question_type": "multi-session",
+      "predicted_answer": "$445",
+      "is_correct": false,
+      "prompt_tokens": 1628,
+      "latency_ms": 1244.329499982996,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2c63a862",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "17 days",
+      "is_correct": true,
+      "prompt_tokens": 1182,
+      "latency_ms": 777.1282000176143,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2e6d26dc",
+      "question_type": "multi-session",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "prompt_tokens": 1500,
+      "latency_ms": 898.3639999933075,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2ebe6c90",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1121,
+      "latency_ms": 734.5133999770042,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "311778f1",
+      "question_type": "single-session-user",
+      "predicted_answer": "10",
+      "is_correct": true,
+      "prompt_tokens": 1463,
+      "latency_ms": 889.5535999909043,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3249768e",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Triple Sec",
+      "is_correct": false,
+      "prompt_tokens": 1504,
+      "latency_ms": 919.6922999981325,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "35a27287",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Based on your interest in language diversity and cultural exchange, you might enjoy attending the upcoming Multilingual Festival this weekend. It features performances, workshops, and food from various cultures, including Colombian cuisine, which your tutor Juan can introduce you to.",
+      "is_correct": true,
+      "prompt_tokens": 1132,
+      "latency_ms": 2067.075400002068,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "36580ce8",
+      "question_type": "single-session-user",
+      "predicted_answer": "bronchitis",
+      "is_correct": true,
+      "prompt_tokens": 1125,
+      "latency_ms": 712.8348000114784,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "36b9f61e",
+      "question_type": "multi-session",
+      "predicted_answer": "$1,800",
+      "is_correct": false,
+      "prompt_tokens": 1711,
+      "latency_ms": 1345.9753000061028,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3ba21379",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Ford F-150 pickup truck",
+      "is_correct": true,
+      "prompt_tokens": 1264,
+      "latency_ms": 985.4082000092603,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3c1045c8",
+      "question_type": "multi-session",
+      "predicted_answer": "2.5 years",
+      "is_correct": true,
+      "prompt_tokens": 1054,
+      "latency_ms": 691.9257999979891,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3f1e9474",
+      "question_type": "single-session-user",
+      "predicted_answer": "Sarah",
+      "is_correct": true,
+      "prompt_tokens": 1103,
+      "latency_ms": 596.0945999831893,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "41275add",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "\"How to Sit Properly at a Desk to Avoid Back Pain\" by the Mayo Clinic: <https://www.youtube.com/watch?v=UfOvNlX9Hh0>",
+      "is_correct": true,
+      "prompt_tokens": 1434,
+      "latency_ms": 1852.3794999928214,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4388e9dd",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Andy wore an untidy, stained white shirt.",
+      "is_correct": true,
+      "prompt_tokens": 1242,
+      "latency_ms": 956.9346999924164,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "45dc21b6",
+      "question_type": "knowledge-update",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1346,
+      "latency_ms": 785.7316000154242,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "488d3006",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "GR-90",
+      "is_correct": true,
+      "prompt_tokens": 1370,
+      "latency_ms": 897.8332999977283,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4adc0475",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1684,
+      "latency_ms": 1328.792300017085,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4dfccbf7",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "70",
+      "is_correct": false,
+      "prompt_tokens": 970,
+      "latency_ms": 555.2659000095446,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4f54b7c9",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1540,
+      "latency_ms": 1114.0133000153583,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "51a45a95",
+      "question_type": "single-session-user",
+      "predicted_answer": "Target",
+      "is_correct": true,
+      "prompt_tokens": 1157,
+      "latency_ms": 696.2847000104375,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "54026fce",
+      "question_type": "single-session-preference",
+      "predicted_answer": "To stay connected with your colleagues, you could start by organizing virtual coffee breaks using platforms like Zoom or Microsoft Teams. This way, you can mimic the casual conversations you had in the office and ensure everyone is comfortable participating.",
+      "is_correct": true,
+      "prompt_tokens": 1084,
+      "latency_ms": 1931.0495000099763,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "545bd2b5",
+      "question_type": "single-session-user",
+      "predicted_answer": "2 hours",
+      "is_correct": true,
+      "prompt_tokens": 1138,
+      "latency_ms": 683.4487000014633,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "predicted_answer": "The Glass Menagerie",
+      "is_correct": true,
+      "prompt_tokens": 1181,
+      "latency_ms": 789.9813000112772,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "59524333",
+      "question_type": "knowledge-update",
+      "predicted_answer": "7:00 pm on Mondays, Wednesdays, and Fridays",
+      "is_correct": true,
+      "prompt_tokens": 1181,
+      "latency_ms": 1051.0764000064228,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "5a4f22c0",
+      "question_type": "knowledge-update",
+      "predicted_answer": "TechCorp",
+      "is_correct": true,
+      "prompt_tokens": 1165,
+      "latency_ms": 722.1007999905851,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "5a7937c8",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1782,
+      "latency_ms": 1303.2241000037175,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "5d3d2817",
+      "question_type": "single-session-user",
+      "predicted_answer": "marketing specialist at a small startup",
+      "is_correct": true,
+      "prompt_tokens": 1208,
+      "latency_ms": 855.1548000250477,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "603deb26",
+      "question_type": "knowledge-update",
+      "predicted_answer": "10",
+      "is_correct": true,
+      "prompt_tokens": 1481,
+      "latency_ms": 926.1334000038914,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "60472f9c",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1683,
+      "latency_ms": 1030.827800015686,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6071bd76",
+      "question_type": "knowledge-update",
+      "predicted_answer": "less",
+      "is_correct": true,
+      "prompt_tokens": 1298,
+      "latency_ms": 817.1768999891356,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "60bf93ed_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1257,
+      "latency_ms": 903.9947999990545,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "60d45044",
+      "question_type": "single-session-user",
+      "predicted_answer": "Japanese short-grain rice",
+      "is_correct": true,
+      "prompt_tokens": 1180,
+      "latency_ms": 811.939999985043,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "61f8c8f8",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1669,
+      "latency_ms": 1302.774200012209,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6222b6eb",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "SIAC_GEE uses the 6S radiative transfer model.",
+      "is_correct": true,
+      "prompt_tokens": 1343,
+      "latency_ms": 1179.2923999892082,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6456829e",
+      "question_type": "multi-session",
+      "predicted_answer": "8",
+      "is_correct": true,
+      "prompt_tokens": 1420,
+      "latency_ms": 1041.9149000081234,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "65240037",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "1:10",
+      "is_correct": true,
+      "prompt_tokens": 1324,
+      "latency_ms": 901.2395000027027,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "66f24dbb",
+      "question_type": "single-session-user",
+      "predicted_answer": "A yellow dress and a pair of earrings.",
+      "is_correct": true,
+      "prompt_tokens": 1334,
+      "latency_ms": 1021.1374000064097,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "67e0d0f2",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1660,
+      "latency_ms": 1120.4120000184048,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "69fee5aa",
+      "question_type": "knowledge-update",
+      "predicted_answer": "37",
+      "is_correct": false,
+      "prompt_tokens": 1294,
+      "latency_ms": 844.2498999938834,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "predicted_answer": "30",
+      "is_correct": true,
+      "prompt_tokens": 1100,
+      "latency_ms": 645.6710000056773,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6ae235be",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Atmospheric distillation, Fluid catalytic cracking, Alkylation, Hydrotreating.",
+      "is_correct": true,
+      "prompt_tokens": 1339,
+      "latency_ms": 1324.5415999845136,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6aeb4375",
+      "question_type": "knowledge-update",
+      "predicted_answer": "4",
+      "is_correct": true,
+      "prompt_tokens": 1388,
+      "latency_ms": 1029.4056999846362,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6aeb4375_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1769,
+      "latency_ms": 1214.56899997429,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6b168ec8",
+      "question_type": "single-session-user",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1617,
+      "latency_ms": 1005.8054000255652,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6b7dfb22",
+      "question_type": "single-session-preference",
+      "predicted_answer": "You might find new inspiration by exploring the herb garden you started on your balcony. Try painting the flowers and herbs you've been growing, capturing their fresh and vibrant colors. This could bring a new perspective to your artwork and reignite your creativity.",
+      "is_correct": true,
+      "prompt_tokens": 1129,
+      "latency_ms": 2117.1868999954313,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6cb6f249",
+      "question_type": "multi-session",
+      "predicted_answer": "17 days",
+      "is_correct": true,
+      "prompt_tokens": 1770,
+      "latency_ms": 1150.1675999897998,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6d550036",
+      "question_type": "multi-session",
+      "predicted_answer": "You have led one project, as mentioned in your promotion to a senior software engineer position three months ago and leading a team of five engineers.",
+      "is_correct": false,
+      "prompt_tokens": 1479,
+      "latency_ms": 1640.6985000066925,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6e984302",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1288,
+      "latency_ms": 926.6838999756146,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "70b3e69b",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Manolo García",
+      "is_correct": true,
+      "prompt_tokens": 1382,
+      "latency_ms": 901.7317999969237,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "71017276",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4",
+      "is_correct": true,
+      "prompt_tokens": 1779,
+      "latency_ms": 1150.2517999906559,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7161e7e2",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Admon worked the 8 am - 4 pm (Day Shift) on Sunday.",
+      "is_correct": true,
+      "prompt_tokens": 1370,
+      "latency_ms": 1284.5540999842342,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "71a3fd6b",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "+49 (0) 62 32 / 14 23 - 0",
+      "is_correct": true,
+      "prompt_tokens": 1450,
+      "latency_ms": 1442.717600002652,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "720133ac",
+      "question_type": "multi-session",
+      "predicted_answer": "$75",
+      "is_correct": true,
+      "prompt_tokens": 1587,
+      "latency_ms": 1232.3463000066113,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "726462e0",
+      "question_type": "single-session-user",
+      "predicted_answer": "10% discount",
+      "is_correct": true,
+      "prompt_tokens": 1437,
+      "latency_ms": 994.5088000094984,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7401057b",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Two",
+      "is_correct": true,
+      "prompt_tokens": 1128,
+      "latency_ms": 667.0310999907088,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7405e8b1",
+      "question_type": "multi-session",
+      "predicted_answer": "No",
+      "is_correct": false,
+      "prompt_tokens": 1390,
+      "latency_ms": 837.6803999999538,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7527f7e2",
+      "question_type": "single-session-user",
+      "predicted_answer": "$800",
+      "is_correct": true,
+      "prompt_tokens": 1060,
+      "latency_ms": 719.3177999870386,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "75499fd8",
+      "question_type": "single-session-user",
+      "predicted_answer": "Golden Retriever",
+      "is_correct": true,
+      "prompt_tokens": 1205,
+      "latency_ms": 779.2990999878384,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "75832dbd",
+      "question_type": "single-session-preference",
+      "predicted_answer": "You might find the proceedings from the MICCAI 2022 conference interesting, particularly the sessions on explainable AI and multi-modal image fusion in medical imaging. Additionally, the papers \"Interpretable Deep Learning for Medical Image Analysis\" by Zhang et al. and \"Visualizing Deep Learning Models in Medical Imaging\" by Smith et al. could provide valuable insights.",
+      "is_correct": true,
+      "prompt_tokens": 1069,
+      "latency_ms": 2753.8048999849707,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "75f70248",
+      "question_type": "single-session-preference",
+      "predicted_answer": "It's possible, consider cleaning your living room to remove dust and allergens.",
+      "is_correct": true,
+      "prompt_tokens": 1196,
+      "latency_ms": 1123.1801999965683,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7a87bd0c",
+      "question_type": "knowledge-update",
+      "predicted_answer": "4 weeks",
+      "is_correct": true,
+      "prompt_tokens": 1098,
+      "latency_ms": 641.482899984112,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7a8d0b71",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "$2,000",
+      "is_correct": true,
+      "prompt_tokens": 1312,
+      "latency_ms": 936.4385999797378,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7e00a6cb",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "International Budget Hostel",
+      "is_correct": true,
+      "prompt_tokens": 1436,
+      "latency_ms": 949.0020000084769,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7e974930",
+      "question_type": "knowledge-update",
+      "predicted_answer": "$420",
+      "is_correct": true,
+      "prompt_tokens": 1348,
+      "latency_ms": 912.5954000046477,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8077ef71",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "26 days",
+      "is_correct": true,
+      "prompt_tokens": 1580,
+      "latency_ms": 1066.0037000197917,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "80ec1f4f_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1651,
+      "latency_ms": 1366.4993999991566,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8464fc84",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Roscioli",
+      "is_correct": true,
+      "prompt_tokens": 1523,
+      "latency_ms": 1026.4667999872472,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "86f00804",
+      "question_type": "single-session-user",
+      "predicted_answer": "The Seven Husbands of Evelyn Hugo",
+      "is_correct": true,
+      "prompt_tokens": 1099,
+      "latency_ms": 840.4077999875881,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8752c811",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Camera angles",
+      "is_correct": false,
+      "prompt_tokens": 1731,
+      "latency_ms": 1104.825599992182,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "87f22b4a",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1231,
+      "latency_ms": 822.7641999837942,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "88432d0a_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1543,
+      "latency_ms": 1301.909199974034,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8979f9ec",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1735,
+      "latency_ms": 1087.4514000024647,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "89941a94",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "prompt_tokens": 1196,
+      "latency_ms": 715.9741999930702,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8a137a7f",
+      "question_type": "single-session-user",
+      "predicted_answer": "Philips LED bulb",
+      "is_correct": true,
+      "prompt_tokens": 1243,
+      "latency_ms": 799.5380999927875,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8a2466db",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Certainly! For learning advanced video editing techniques in Adobe Premiere Pro, you might find the \"Adobe Premiere Pro CC Classroom in a Book\" by Adobe Press very helpful. Additionally, the official Adobe Support website and YouTube channel offer numerous tutorials and guides.",
+      "is_correct": true,
+      "prompt_tokens": 1212,
+      "latency_ms": 2165.7190999831073,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8e91e7d9",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1623,
+      "latency_ms": 1170.518600003561,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8ebdbe50",
+      "question_type": "single-session-user",
+      "predicted_answer": "Data Science",
+      "is_correct": true,
+      "prompt_tokens": 1246,
+      "latency_ms": 756.9050999882165,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "94f70d80",
+      "question_type": "single-session-user",
+      "predicted_answer": "4 hours",
+      "is_correct": true,
+      "prompt_tokens": 1110,
+      "latency_ms": 651.081099989824,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "95228167",
+      "question_type": "single-session-preference",
+      "predicted_answer": "When visiting the music store, consider trying out different guitars to find the perfect fit. Since you're thinking about upgrading from a Fender Stratocaster to a Gibson Les Paul, pay attention to the differences in body shape, neck width, and sustain. The Les Paul has a thicker, more resonant sound, so you might want to look for one with a mahogany or mahogany/maple combination. Also, check the action and intonation to ensure they are comfortable and play well.",
+      "is_correct": true,
+      "prompt_tokens": 1108,
+      "latency_ms": 3427.82489999081,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "95bcc1c8",
+      "question_type": "single-session-user",
+      "predicted_answer": "10",
+      "is_correct": true,
+      "prompt_tokens": 1717,
+      "latency_ms": 1271.955899981549,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "982b5123",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1661,
+      "latency_ms": 1055.5041000188794,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "9d25d4e0",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1595,
+      "latency_ms": 1001.6760000144131,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "9ee3ecd6",
+      "question_type": "multi-session",
+      "predicted_answer": "300",
+      "is_correct": false,
+      "prompt_tokens": 1649,
+      "latency_ms": 1266.4176999824122,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a08a253f",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1816,
+      "latency_ms": 1163.1923999811988,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a11281a2",
+      "question_type": "multi-session",
+      "predicted_answer": "100",
+      "is_correct": true,
+      "prompt_tokens": 1226,
+      "latency_ms": 950.6090999930166,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a1cc6108",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1110,
+      "latency_ms": 726.9336000026669,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a2f3aa27",
+      "question_type": "knowledge-update",
+      "predicted_answer": "1300",
+      "is_correct": true,
+      "prompt_tokens": 1775,
+      "latency_ms": 1387.0271000196226,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a3045048",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "5",
+      "is_correct": false,
+      "prompt_tokens": 1274,
+      "latency_ms": 961.5555999916978,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a3332713",
+      "question_type": "multi-session",
+      "predicted_answer": "$130",
+      "is_correct": false,
+      "prompt_tokens": 1745,
+      "latency_ms": 1330.0770999921951,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a346bb18",
+      "question_type": "multi-session",
+      "predicted_answer": "22 minutes",
+      "is_correct": false,
+      "prompt_tokens": 1767,
+      "latency_ms": 1154.4166000094265,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a89d7624",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Based on your love for the music scene in Denver, you might enjoy checking out Red Rocks Amphitheater again. It's a fantastic venue with beautiful acoustics. Also, don't miss the Denver Museum of Nature & Science, which offers a great blend of history and science exhibits.",
+      "is_correct": true,
+      "prompt_tokens": 1082,
+      "latency_ms": 2334.4608999905176,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a96c20ee",
+      "question_type": "multi-session",
+      "predicted_answer": "Harvard University",
+      "is_correct": true,
+      "prompt_tokens": 1125,
+      "latency_ms": 708.6177000019234,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a9f6b44c",
+      "question_type": "multi-session",
+      "predicted_answer": "0",
+      "is_correct": false,
+      "prompt_tokens": 1846,
+      "latency_ms": 1354.774700012058,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "aae3761f",
+      "question_type": "multi-session",
+      "predicted_answer": "14",
+      "is_correct": false,
+      "prompt_tokens": 1630,
+      "latency_ms": 1048.193700000411,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ac031881",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "LIV",
+      "is_correct": true,
+      "prompt_tokens": 1631,
+      "latency_ms": 1045.3943999891635,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ad7109d1",
+      "question_type": "single-session-user",
+      "predicted_answer": "500 Mbps",
+      "is_correct": true,
+      "prompt_tokens": 1073,
+      "latency_ms": 722.7199999906588,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "af082822",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "2",
+      "is_correct": true,
+      "prompt_tokens": 1535,
+      "latency_ms": 952.6558000070509,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "affe2881",
+      "question_type": "knowledge-update",
+      "predicted_answer": "32",
+      "is_correct": true,
+      "prompt_tokens": 1558,
+      "latency_ms": 1183.7193999963347,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b01defab",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "prompt_tokens": 1119,
+      "latency_ms": 674.1847999801394,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b29f3365",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "six weeks",
+      "is_correct": true,
+      "prompt_tokens": 1196,
+      "latency_ms": 794.2518999916501,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b3c15d39",
+      "question_type": "multi-session",
+      "predicted_answer": "5 days",
+      "is_correct": true,
+      "prompt_tokens": 1178,
+      "latency_ms": 730.9430000022985,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b46e15ee",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Cancer Research Foundation charity gala",
+      "is_correct": true,
+      "prompt_tokens": 1152,
+      "latency_ms": 872.0075000019278,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b5ef892d",
+      "question_type": "multi-session",
+      "predicted_answer": "7 + 5 = 12 days",
+      "is_correct": true,
+      "prompt_tokens": 1836,
+      "latency_ms": 1567.5577000074554,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b6019101",
+      "question_type": "knowledge-update",
+      "predicted_answer": "5",
+      "is_correct": true,
+      "prompt_tokens": 1640,
+      "latency_ms": 1009.4743999943603,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b759caee",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "@jessica_poole_jewellery",
+      "is_correct": true,
+      "prompt_tokens": 1232,
+      "latency_ms": 1023.074099997757,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b86304ba",
+      "question_type": "single-session-user",
+      "predicted_answer": "The painting is worth triple what you paid for it.",
+      "is_correct": true,
+      "prompt_tokens": 1081,
+      "latency_ms": 925.6907000089996,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b9cfe692",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "5 weeks",
+      "is_correct": true,
+      "prompt_tokens": 1295,
+      "latency_ms": 829.0091000089888,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ba358f49_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1149,
+      "latency_ms": 814.8428999993484,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "bc8a6e93_abs",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1292,
+      "latency_ms": 907.2835999832023,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "bcbe585f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4",
+      "is_correct": true,
+      "prompt_tokens": 1597,
+      "latency_ms": 974.1812000283971,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c14c00dd",
+      "question_type": "single-session-user",
+      "predicted_answer": "Trader Joe's",
+      "is_correct": true,
+      "prompt_tokens": 1035,
+      "latency_ms": 778.1128000060562,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c18a7dc8",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1077,
+      "latency_ms": 718.6600000131875,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c19f7a0b",
+      "question_type": "single-session-user",
+      "predicted_answer": "6:30 pm",
+      "is_correct": true,
+      "prompt_tokens": 1114,
+      "latency_ms": 732.0470999984536,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c2ac3c61",
+      "question_type": "multi-session",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1633,
+      "latency_ms": 1207.6954999938607,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c4ea545c",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Yes.",
+      "is_correct": true,
+      "prompt_tokens": 1236,
+      "latency_ms": 761.4526000106707,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c4f10528",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Miss Bee Providore",
+      "is_correct": true,
+      "prompt_tokens": 1441,
+      "latency_ms": 944.3479999899864,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c5e8278d",
+      "question_type": "single-session-user",
+      "predicted_answer": "Johnson",
+      "is_correct": true,
+      "prompt_tokens": 1236,
+      "latency_ms": 730.0549999927171,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c6853660",
+      "question_type": "knowledge-update",
+      "predicted_answer": "increased",
+      "is_correct": true,
+      "prompt_tokens": 1193,
+      "latency_ms": 740.9321000159252,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c8090214",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "7",
+      "is_correct": true,
+      "prompt_tokens": 1244,
+      "latency_ms": 787.0942000008654,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c8c3f81d",
+      "question_type": "single-session-user",
+      "predicted_answer": "Nike",
+      "is_correct": true,
+      "prompt_tokens": 1232,
+      "latency_ms": 716.0254000045825,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c960da58",
+      "question_type": "single-session-user",
+      "predicted_answer": "20",
+      "is_correct": true,
+      "prompt_tokens": 1226,
+      "latency_ms": 928.059600002598,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "caf9ead2",
+      "question_type": "single-session-user",
+      "predicted_answer": "5 hours",
+      "is_correct": true,
+      "prompt_tokens": 1101,
+      "latency_ms": 679.4763000216335,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ccb36322",
+      "question_type": "single-session-user",
+      "predicted_answer": "Spotify",
+      "is_correct": true,
+      "prompt_tokens": 1238,
+      "latency_ms": 732.0952999871224,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ce6d2d27",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Friday",
+      "is_correct": true,
+      "prompt_tokens": 1110,
+      "latency_ms": 623.4929999918677,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ceb54acb",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The other four options were: 1) sexual fixations, 2) problematic sexual behaviors, 3) sexual impulsivity, and 4) compulsive sexuality.",
+      "is_correct": true,
+      "prompt_tokens": 1307,
+      "latency_ms": 1876.8704000103753,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "cf22b7bf",
+      "question_type": "knowledge-update",
+      "predicted_answer": "10 pounds",
+      "is_correct": true,
+      "prompt_tokens": 1083,
+      "latency_ms": 697.2103000152856,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "d23cf73b",
+      "question_type": "multi-session",
+      "predicted_answer": "5",
+      "is_correct": false,
+      "prompt_tokens": 1773,
+      "latency_ms": 1097.379999991972,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "d24813b1",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your love for baking and your previous success with the lemon poppyseed cake, you might enjoy making a lemon lavender pound cake. The lavender can be incorporated by using dried lavender buds or lavender-infused oil in the batter. This will add a unique and delightful flavor to your gathering.",
+      "is_correct": true,
+      "prompt_tokens": 1146,
+      "latency_ms": 2371.3993999990635,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "d6233ab6",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Yes",
+      "is_correct": false,
+      "prompt_tokens": 1089,
+      "latency_ms": 654.9112999928184,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "dd2973ad",
+      "question_type": "multi-session",
+      "predicted_answer": "2 AM",
+      "is_correct": true,
+      "prompt_tokens": 1102,
+      "latency_ms": 651.8640999856871,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e01b8e2f",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1142,
+      "latency_ms": 758.739200013224,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e3038f8c",
+      "question_type": "multi-session",
+      "predicted_answer": "28",
+      "is_correct": false,
+      "prompt_tokens": 1515,
+      "latency_ms": 1156.4558999962173,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e56a43b9",
+      "question_type": "multi-session",
+      "predicted_answer": "$5",
+      "is_correct": true,
+      "prompt_tokens": 1200,
+      "latency_ms": 776.6750000009779,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e831120c",
+      "question_type": "multi-session",
+      "predicted_answer": "2 weeks",
+      "is_correct": true,
+      "prompt_tokens": 1308,
+      "latency_ms": 828.9698000007775,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e8a79c70",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Three eggs.",
+      "is_correct": true,
+      "prompt_tokens": 1506,
+      "latency_ms": 974.7721000167076,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e982271f",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Red Rocks",
+      "is_correct": false,
+      "prompt_tokens": 1428,
+      "latency_ms": 905.8690000092611,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eac54adc",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "24 days",
+      "is_correct": true,
+      "prompt_tokens": 1548,
+      "latency_ms": 1025.136799988104,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eac54add",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Collaborating with an influencer who promoted my product to her 10,000 followers.",
+      "is_correct": true,
+      "prompt_tokens": 1190,
+      "latency_ms": 1254.541899979813,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eaca4986",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "G G G G A G F",
+      "is_correct": false,
+      "prompt_tokens": 1255,
+      "latency_ms": 970.3809000202455,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1131,
+      "latency_ms": 777.4500999948941,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ed4ddc30",
+      "question_type": "knowledge-update",
+      "predicted_answer": "20 dozen",
+      "is_correct": true,
+      "prompt_tokens": 1198,
+      "latency_ms": 753.1542000069749,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "edced276",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1792,
+      "latency_ms": 1276.0643999790773,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ef66a6e5",
+      "question_type": "multi-session",
+      "predicted_answer": "2",
+      "is_correct": true,
+      "prompt_tokens": 1547,
+      "latency_ms": 947.1336000133306,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f35224e0",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1716,
+      "latency_ms": 1195.2003999904264,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f4f1d8a4_abs",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1095,
+      "latency_ms": 756.7427000030875,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f523d9fe",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Doc Martin",
+      "is_correct": true,
+      "prompt_tokens": 1410,
+      "latency_ms": 894.4920999929309,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f8c5f88b",
+      "question_type": "single-session-user",
+      "predicted_answer": "downtown sports store",
+      "is_correct": true,
+      "prompt_tokens": 1114,
+      "latency_ms": 970.5501999997068,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f9e8c073",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Five",
+      "is_correct": true,
+      "prompt_tokens": 1093,
+      "latency_ms": 632.6652000134345,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "faba32e5",
+      "question_type": "single-session-user",
+      "predicted_answer": "24 hours",
+      "is_correct": true,
+      "prompt_tokens": 1183,
+      "latency_ms": 801.2378000130411,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "fea54f57",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Evolution",
+      "is_correct": true,
+      "prompt_tokens": 1540,
+      "latency_ms": 963.9517999894451,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_15e38248",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1755,
+      "latency_ms": 1291.1986999970395,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_18c2b244",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "'I used a Buy One Get One Free coupon on Luvs diapers at Walmart', 'I redeemed $12 cashback for a $10 Amazon gift card from Ibotta', 'I signed up for the rewards program at ShopRite'",
+      "is_correct": true,
+      "prompt_tokens": 1204,
+      "latency_ms": 1987.353099975735,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_194be4b3",
+      "question_type": "multi-session",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1486,
+      "latency_ms": 896.1405000009108,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_1d4ab0c9",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "54 days",
+      "is_correct": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "deterministic_override": true
+    },
+    {
+      "question_id": "gpt4_1d80365e",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "1",
+      "is_correct": false,
+      "prompt_tokens": 1631,
+      "latency_ms": 1194.528000021819,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_1e4a8aec",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1291,
+      "latency_ms": 920.376900001429,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_213fd887",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the volleyball league",
+      "is_correct": true,
+      "prompt_tokens": 1145,
+      "latency_ms": 750.7272999791894,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_2f56ae70",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "HBO Max",
+      "is_correct": false,
+      "prompt_tokens": 1050,
+      "latency_ms": 667.041100008646,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_2f8be40d",
+      "question_type": "multi-session",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "prompt_tokens": 1661,
+      "latency_ms": 1191.7949999915436,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_2f91af09",
+      "question_type": "multi-session",
+      "predicted_answer": "17 poems + 5 short stories = 22 pieces",
+      "is_correct": false,
+      "prompt_tokens": 1584,
+      "latency_ms": 1346.1401999811642,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_31ff4165",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1021,
+      "latency_ms": 774.5785000151955,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_372c3eed",
+      "question_type": "multi-session",
+      "predicted_answer": "4 years",
+      "is_correct": true,
+      "prompt_tokens": 1681,
+      "latency_ms": 1320.1873000070918,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_385a5000",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the tomatoes",
+      "is_correct": true,
+      "prompt_tokens": 1177,
+      "latency_ms": 765.6783999991603,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_45189cb4",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "College Football National Championship",
+      "is_correct": true,
+      "prompt_tokens": 1045,
+      "latency_ms": 727.6977000001352,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_468eb063",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "39 days ago",
+      "is_correct": true,
+      "prompt_tokens": 1555,
+      "latency_ms": 1103.1866000266746,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_4929293a",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Michael's engagement party",
+      "is_correct": true,
+      "prompt_tokens": 1192,
+      "latency_ms": 813.110199989751,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_4929293b",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "My nephew Jack's eighth grade graduation ceremony",
+      "is_correct": false,
+      "prompt_tokens": 1199,
+      "latency_ms": 907.7769999857992,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_4edbafa2",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "3rd of June",
+      "is_correct": true,
+      "prompt_tokens": 1200,
+      "latency_ms": 795.7533000153489,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_59149c77",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "27 days",
+      "is_correct": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "deterministic_override": true
+    },
+    {
+      "question_id": "gpt4_59149c78",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "City Art Museum",
+      "is_correct": true,
+      "prompt_tokens": 1239,
+      "latency_ms": 766.8658000184223,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1845,
+      "latency_ms": 1354.455799999414,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_5dcc0aab",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1008,
+      "latency_ms": 702.8775000071619,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_65aabe59",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the smart thermostat",
+      "is_correct": true,
+      "prompt_tokens": 1173,
+      "latency_ms": 743.9651000022423,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_68e94287",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "my participation in the #PlankChallenge",
+      "is_correct": false,
+      "prompt_tokens": 1190,
+      "latency_ms": 937.3812999983784,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_68e94288",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "#PlankChallenge",
+      "is_correct": true,
+      "prompt_tokens": 1273,
+      "latency_ms": 903.3309999795165,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_6ed717ea",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the training pads for luna",
+      "is_correct": true,
+      "prompt_tokens": 1326,
+      "latency_ms": 973.9802000112832,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_70e84552",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "fixing the fence",
+      "is_correct": true,
+      "prompt_tokens": 1179,
+      "latency_ms": 799.7076000028756,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_70e84552_abs",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Purchasing three cows from Peter (2023-05-14T14:56:00)",
+      "is_correct": true,
+      "prompt_tokens": 1124,
+      "latency_ms": 1379.5147000055294,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_78cf46a3",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the narrator receiving their new phone case",
+      "is_correct": true,
+      "prompt_tokens": 1154,
+      "latency_ms": 850.7916000089608,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7ca326fa",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Emma graduated first, Rachel second, and Alex third.",
+      "is_correct": true,
+      "prompt_tokens": 1168,
+      "latency_ms": 963.4290999965742,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7ddcf75f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "3 days ago",
+      "is_correct": true,
+      "prompt_tokens": 1598,
+      "latency_ms": 1067.9271999979392,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7de946e7",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the persistent cough",
+      "is_correct": true,
+      "prompt_tokens": 1154,
+      "latency_ms": 746.5174999961164,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7f6b06db",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Yosemite National Park, Sequoia National Park, Eastern Sierra",
+      "is_correct": true,
+      "prompt_tokens": 1241,
+      "latency_ms": 1027.6438999862876,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7fce9456",
+      "question_type": "multi-session",
+      "predicted_answer": "1",
+      "is_correct": true,
+      "prompt_tokens": 1710,
+      "latency_ms": 1245.8678999973927,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_85da3956",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1507,
+      "latency_ms": 1186.8538999988232,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_88806d6e",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Mark and Sarah",
+      "is_correct": false,
+      "prompt_tokens": 1207,
+      "latency_ms": 772.2384999797214,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_93159ced",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4 years and 3 months",
+      "is_correct": true,
+      "prompt_tokens": 1220,
+      "latency_ms": 845.1231000071857,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_93159ced_abs",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1205,
+      "latency_ms": 827.6394999993499,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_93f6379c",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "'Page Turners'",
+      "is_correct": true,
+      "prompt_tokens": 1146,
+      "latency_ms": 819.2175000149291,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the charity bake sale",
+      "is_correct": true,
+      "prompt_tokens": 1308,
+      "latency_ms": 886.4629999734461,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_a56e767c",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1127,
+      "latency_ms": 674.6350000030361,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_af6db32f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "17 days ago",
+      "is_correct": true,
+      "prompt_tokens": 1522,
+      "latency_ms": 1017.4393999914173,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b0863698",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "14 days ago",
+      "is_correct": true,
+      "prompt_tokens": 1671,
+      "latency_ms": 1185.4456000146456,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b4a80587",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the arrival of the new prime lens",
+      "is_correct": true,
+      "prompt_tokens": 1194,
+      "latency_ms": 880.9449999826029,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b5700ca0",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "University Art Museum",
+      "is_correct": false,
+      "prompt_tokens": 1290,
+      "latency_ms": 870.7163000071887,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b5700ca9",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4 days ago",
+      "is_correct": true,
+      "prompt_tokens": 1635,
+      "latency_ms": 1051.1501999862958,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_c27434e8",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the Japanese Zero fighter plane model",
+      "is_correct": true,
+      "prompt_tokens": 1182,
+      "latency_ms": 854.4599000015296,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_cd90e484",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Three weeks.",
+      "is_correct": true,
+      "prompt_tokens": 1079,
+      "latency_ms": 729.4129999936558,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_d31cdae3",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the solo trip to Europe",
+      "is_correct": true,
+      "prompt_tokens": 1147,
+      "latency_ms": 814.735699997982,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_d6585ce8",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Free outdoor concert series, Billie Eilish show in Philly",
+      "is_correct": true,
+      "prompt_tokens": 1187,
+      "latency_ms": 1045.7824000041,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_d9af6064",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "the new router",
+      "is_correct": true,
+      "prompt_tokens": 1206,
+      "latency_ms": 783.9470999897458,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_e061b84g",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The event was the company's annual charity soccer tournament.",
+      "is_correct": true,
+      "prompt_tokens": 1238,
+      "latency_ms": 1028.0831000127364,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_e414231f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Mountain bike",
+      "is_correct": true,
+      "prompt_tokens": 1253,
+      "latency_ms": 853.3793999813497,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_f2262a51",
+      "question_type": "multi-session",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1711,
+      "latency_ms": 1240.265599975828,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_f49edff3",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "First, I helped my friend prepare the nursery, then I helped my cousin pick out stuff for her baby shower, and lastly, I ordered a customized phone case for my friend's birthday.",
+      "is_correct": true,
+      "prompt_tokens": 1196,
+      "latency_ms": 1746.668600011617,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_fa19884c",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "35 days",
+      "is_correct": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "deterministic_override": true
+    },
+    {
+      "question_id": "gpt4_fa19884d",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Jinsang",
+      "is_correct": false,
+      "prompt_tokens": 1478,
+      "latency_ms": 971.2655000039376,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_fe651585",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Alex",
+      "is_correct": true,
+      "prompt_tokens": 1189,
+      "latency_ms": 715.5274999968242,
+      "deterministic_override": false
+    }
+  ]
+}

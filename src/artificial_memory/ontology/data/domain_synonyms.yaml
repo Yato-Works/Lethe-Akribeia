@@ -1,0 +1,36 @@
+# Domain synonym clusters for aggregation topic anchoring.
+#
+# Usage site: StateReconstructor aggregation second-pass (DOMAIN_SYNONYMS).
+# Provenance: LongMemEval aggregation sweep clusters - lexical closes that
+# were repeatedly needed to bind query topics ("fish", "property", "citrus")
+# onto evidence turns holding the concrete vocabulary ("tetra", "condo").
+# These clusters are word-level *synonym neighborhoods*, not answers.
+_meta:
+  origin: benchmark_tuned
+  description: Aggregation topic synonym clusters for social/knowledge/property domains.
+  version: 1
+
+clusters:
+  fish: ["fish", "tetra", "tetras", "gourami", "gouramis", "catfish", "betta", "guppy", "guppies", "aquarium", "aquariums", "tank", "tanks"]
+  aquarium: ["aquarium", "aquariums", "tank", "tanks", "fish"]
+  aquariums: ["aquarium", "aquariums", "tank", "tanks", "fish"]
+  property: ["property", "properties", "house", "townhouse", "condo", "apartment", "bungalow"]
+  properties: ["property", "properties", "house", "townhouse", "condo", "apartment", "bungalow"]
+  doctor: ["doctor", "doctors", "dr", "physician", "physicians", "specialist", "specialists", "dermatologist", "ent", "surgeon"]
+  doctors: ["doctor", "doctors", "dr", "physician", "physicians", "specialist", "specialists", "dermatologist", "ent", "surgeon"]
+  clothing: ["clothing", "clothes", "blazer", "boots", "jacket", "jeans", "shirt", "pants", "dress", "sweater"]
+  clothes: ["clothing", "clothes", "blazer", "boots", "jacket", "jeans", "shirt", "pants", "dress", "sweater"]
+  plant: ["plant", "plants", "lily", "succulent", "fern", "basil", "snake"]
+  plants: ["plant", "plants", "lily", "succulent", "fern", "basil", "snake"]
+  furniture: ["furniture", "bookshelf", "table", "chair", "desk", "couch", "sofa", "bed", "mattress", "cabinet", "dresser"]
+  pieces of furniture: ["furniture", "bookshelf", "table", "chair", "desk", "couch", "sofa", "bed", "mattress", "cabinet", "dresser"]
+  citrus: ["citrus", "lemon", "lime", "orange", "grapefruit", "yuzu", "bergamot"]
+  bike: ["bike", "cycling", "bicycle", "helmet", "light", "lights", "chain", "rack"]
+  wedding: ["wedding", "weddings", "married", "ceremony", "reception"]
+  weddings: ["wedding", "weddings", "married", "ceremony", "reception"]
+  festival: ["festival", "festivals", "film", "sundance", "cannes", "tribeca"]
+  festivals: ["festival", "festivals", "film", "sundance", "cannes", "tribeca"]
+  bake: ["bake", "baked", "baking", "cookies", "cake", "bread", "pastry", "pie", "muffins", "sourdough", "baguette"]
+  baking: ["bake", "baked", "baking", "cookies", "cake", "bread", "pastry", "pie", "muffins", "sourdough", "baguette"]
+  jogging: ["jogging", "jog", "jogged", "jogs", "run", "running", "ran", "exercise", "workout"]
+  yoga: ["yoga", "pose", "poses", "stretch", "stretching", "down dog", "asana"]

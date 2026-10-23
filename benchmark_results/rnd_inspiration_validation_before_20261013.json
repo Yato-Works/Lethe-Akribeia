@@ -1,0 +1,79 @@
+{
+  "label": "inspiration-validation-before",
+  "n": 5,
+  "correct": 0,
+  "wrong": 1,
+  "abstain": 4,
+  "presented": 1,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.014867,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-41_118",
+      "conversation": "41",
+      "category": 4,
+      "question": "What inspired John to join the marching event for veterans' rights?",
+      "gold": "Respect for the military and the desire to show support",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-42_140",
+      "conversation": "42",
+      "category": 4,
+      "question": "What inspired Joanna's new script in July 2022?",
+      "gold": "Woodhaven's interesting past and people",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-42_189",
+      "conversation": "42",
+      "category": 4,
+      "question": "What inspired Nate to start making gaming videos?",
+      "gold": "Love of gaming and connecting with others who enjoy it too",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-47_181",
+      "conversation": "47",
+      "category": 5,
+      "question": "What inspired James to create his painting?",
+      "gold": "Witcher 3",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_106",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Evan start painting years ago due to being inspired by a friend's gift?",
+      "gold": "forest scene",
+      "status": "wrong",
+      "answer": "A painting inspired by sunsets",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'A painting inspired by sunsets'",
+      "evidence_turn": "Thanks, Sam! The sunset painting was inspired by a vacation a few years back. The colors were so stunning. The cactus painting came from a road trip last month (September 2023). Such cool places!"
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

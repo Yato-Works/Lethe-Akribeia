@@ -25,7 +25,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
-from artificial_memory.steroid.steroid_compiler import SteroidContextCompiler
+from artificial_memory_gen.steroid.steroid_compiler import SteroidContextCompiler
 
 RESULTS_DIR = Path("benchmark_results/steroid")
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)

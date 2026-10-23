@@ -1,0 +1,103 @@
+{
+  "label": "attribute-discovery-after-final",
+  "n": 7,
+  "correct": 0,
+  "wrong": 1,
+  "abstain": 6,
+  "presented": 1,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.025672,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-26_24",
+      "conversation": "26",
+      "category": 1,
+      "question": "What does Melanie do to destress?",
+      "gold": "Running, pottery",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-26_66",
+      "conversation": "26",
+      "category": 1,
+      "question": "What does Melanie do with her family on hikes?",
+      "gold": "Roast marshmallows, tell stories",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-26_105",
+      "conversation": "26",
+      "category": 4,
+      "question": "What did Caroline take away from the book \"Becoming Nicole\"?",
+      "gold": "Lessons on self-acceptance and finding support",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-30_48",
+      "conversation": "30",
+      "category": 4,
+      "question": "What did Gina design for her store?",
+      "gold": "the space, furniture, and decor",
+      "status": "wrong",
+      "answer": "Check 'em out!",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Gina's turn: 'Check 'em out!'",
+      "evidence_turn": "D5:5"
+    },
+    {
+      "question_id": "lc_conv-30_49",
+      "conversation": "30",
+      "category": 4,
+      "question": "What did Gina want her customers to feel in her store?",
+      "gold": "cozy and comfortable",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-30_75",
+      "conversation": "30",
+      "category": 4,
+      "question": "What does Gina say to Jon about the grand opening?",
+      "gold": "Let's live it up and make some great memories",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-30_80",
+      "conversation": "30",
+      "category": 4,
+      "question": "What plans does Jon have after receiving advice at the networking event?",
+      "gold": "Sprucing up his business plan, tweaking his pitch to investors, and working on an online platform.",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

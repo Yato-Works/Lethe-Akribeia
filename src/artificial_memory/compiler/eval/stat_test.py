@@ -8,7 +8,6 @@ for rigorous significance testing between model versions.
 from __future__ import annotations
 
 import json
-import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -311,19 +310,19 @@ class StatisticalTester:
             f"\n{'='*70}",
             f"STATISTICAL COMPARISON: {result.model_a_name} vs {result.model_b_name}",
             f"{'='*70}",
-            f"\nOverall Accuracy:",
+            "\nOverall Accuracy:",
             f"  {result.model_a_name}: {result.accuracy_a:.1%}",
             f"  {result.model_b_name}: {result.accuracy_b:.1%}",
             f"  Difference: {result.accuracy_diff:+.1%}",
-            f"\nMcNemar's Test (paired):",
+            "\nMcNemar's Test (paired):",
             f"  Discordant pairs: b={result.mcnemar.b} (A only), c={result.mcnemar.c} (B only)",
             f"  χ² = {result.mcnemar.statistic:.3f}, p = {result.mcnemar.p_value:.4f}",
             f"  Significant at α={result.mcnemar.alpha}: {'YES' if result.mcnemar.significant else 'NO'}",
-            f"\nBootstrap 95% CI (Accuracy):",
+            "\nBootstrap 95% CI (Accuracy):",
             f"  {result.model_a_name}: [{result.bootstrap_ci_a.ci_lower:.1%}, {result.bootstrap_ci_a.ci_upper:.1%}]",
             f"  {result.model_b_name}: [{result.bootstrap_ci_b.ci_lower:.1%}, {result.bootstrap_ci_b.ci_upper:.1%}]",
             f"  Difference: [{result.bootstrap_ci_diff.ci_lower:.1%}, {result.bootstrap_ci_diff.ci_upper:.1%}]",
-            f"\nPer-Type Breakdown:",
+            "\nPer-Type Breakdown:",
         ]
         
         for qtype, stats in sorted(result.per_type.items()):

@@ -45,7 +45,7 @@ OUT = ROOT / "benchmark_results/evidence_audit/v4_verifier_reachability.json"
 def main() -> int:
     import sys
     sys.path.insert(0, str(ROOT / "src"))
-    from artificial_memory.recall.answer_verifier import AnswerVerifier
+    from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
 
     m11 = json.loads(M11.read_text(encoding="utf-8"))
     audit = json.loads(AUDITF.read_text(encoding="utf-8"))

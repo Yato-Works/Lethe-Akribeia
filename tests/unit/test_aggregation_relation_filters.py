@@ -1,6 +1,6 @@
 import pytest
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.compiler.certificates.aggregation_certificate import (
+from artificial_memory_gen.compiler.certificates.aggregation_certificate import (
     AggregationCertificateEngine,
 )
 

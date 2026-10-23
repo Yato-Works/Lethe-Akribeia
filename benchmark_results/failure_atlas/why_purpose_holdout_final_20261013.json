@@ -1,0 +1,55 @@
+{
+  "label": "why-purpose-holdout-final",
+  "n": 3,
+  "correct": 0,
+  "wrong": 0,
+  "abstain": 3,
+  "presented": 0,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.017143,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-43_132",
+      "conversation": "43",
+      "category": 4,
+      "question": "Why do Tim and John find LeBron inspiring?",
+      "gold": "LeBron's determination and the epic block in Game 7 of the '16 Finals",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-44_126",
+      "conversation": "44",
+      "category": 5,
+      "question": "Why did Audrey sign up for a workshop about car maintenance?",
+      "gold": "Strengthen the bond with her pets",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-47_173",
+      "conversation": "47",
+      "category": 5,
+      "question": "Why did James sign up for a ballet class?",
+      "gold": "He wanted to learn something new",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

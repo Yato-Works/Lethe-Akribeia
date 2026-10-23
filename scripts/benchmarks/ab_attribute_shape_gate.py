@@ -66,7 +66,7 @@ def main() -> int:
     # attributed all of it to this change and reported 3 BROKE that were not mine.
     # So the baseline is reconstructed by neutralising exactly the gate call, which
     # is the only thing this change adds.
-    import artificial_memory.skills.autonomous_engines.entity_attribute_resolver as new_mod
+    import artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver as new_mod
 
     class _BaselineResolver(new_mod.EntityAttributeResolver):
         """The working-tree resolver with the new shape gate disabled."""
@@ -75,7 +75,7 @@ def main() -> int:
         def _answer_is_a_noun_phrase(cls, answer, head=None):
             return True
 
-    from artificial_memory.skills.answer_committer import parse_turns
+    from artificial_memory_gen.skills.answer_committer import parse_turns
 
     rows = baseline["rows"]
 

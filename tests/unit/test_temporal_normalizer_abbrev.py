@@ -5,7 +5,7 @@ Rule 10 of TemporalNormalizer must resolve those to a parenthesized absolute
 expression so the answer model can copy calendar facts without arithmetic.
 """
 
-from artificial_memory.context.temporal_normalizer import TemporalNormalizer
+from artificial_memory_gen.context.temporal_normalizer import TemporalNormalizer
 
 
 def test_last_day_abbreviation_gets_absolute_parenthetical() -> None:

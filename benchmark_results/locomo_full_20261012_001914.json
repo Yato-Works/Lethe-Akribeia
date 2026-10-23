@@ -1,0 +1,67 @@
+{
+  "accuracy": 0.75,
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "7 May 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 4.978,
+      "gold_is_list": false,
+      "abstained": false
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "context_tokens": 1393,
+      "latency_seconds": 3.675,
+      "gold_is_list": false,
+      "abstained": false
+    },
+    {
+      "question_id": "lc_conv-26_2",
+      "category": 3,
+      "question": "What fields would Caroline be likely to pursue in her educaton?",
+      "ground_truth": "Psychology, counseling certification",
+      "predicted_answer": "counseling, mental health",
+      "is_correct": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.919,
+      "gold_is_list": true,
+      "abstained": false
+    },
+    {
+      "question_id": "lc_conv-26_3",
+      "category": 1,
+      "question": "What did Caroline research?",
+      "ground_truth": "Adoption agencies",
+      "predicted_answer": "adoption agencies, counseling and mental health careers",
+      "is_correct": true,
+      "context_tokens": 1395,
+      "latency_seconds": 5.668,
+      "gold_is_list": false,
+      "abstained": false
+    }
+  ],
+  "per_category": {
+    "2": {
+      "correct": 2,
+      "total": 2
+    },
+    "3": {
+      "correct": 0,
+      "total": 1
+    },
+    "1": {
+      "correct": 1,
+      "total": 1
+    }
+  }
+}

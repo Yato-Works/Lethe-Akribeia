@@ -1,0 +1,34 @@
+# Project codenames used as a deterministic entity-scoping allowlist.
+#
+# Usage site: StateReconstructor (strict entity isolation - turns explicitly
+# asserting *other* projects are excluded from a target project's evidence
+# scope). Provenance: synthetic project names used in engineered query
+# drills (atlas / beacon / ...). The roster MUST NOT be used to *fabricate*
+# answers; it only scopes evidence isolation.
+_meta:
+  origin: benchmark_tuned
+  description: Synthetic quiz-drill project names for strict entity scoping.
+  version: 1
+
+names:
+  - atlas
+  - beacon
+  - cinder
+  - delta
+  - ember
+  - fjord
+  - horizon
+  - polaris
+  - aurora
+  - cascade
+  - quartz
+  - reef
+  - summit
+  - tundra
+  - zenith
+  - vortex
+  - solstice
+  - moss
+  - ivory
+  - nectar
+  - juniper

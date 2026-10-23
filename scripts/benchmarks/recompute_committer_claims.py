@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
-from artificial_memory.skills.answer_committer import MIN_TURN_SCORE, commit_answer
+from artificial_memory_gen.skills.answer_committer import MIN_TURN_SCORE, commit_answer
 
 sys.stdout.reconfigure(encoding="utf-8")
 

@@ -15,7 +15,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.samplers.per_session_sampler import PerSessionSampler
+from artificial_memory_gen.compiler.samplers.per_session_sampler import PerSessionSampler
 
 print("=== B1: turns_per_session ===")
 src = (REPO / "scripts" / "benchmarks" / "eval_v4_pipeline_dev.py").read_text(encoding="utf-8")

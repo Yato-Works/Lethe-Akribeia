@@ -31,7 +31,7 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter  # noqa: E402
-from artificial_memory.steroid.wide_slicer import WideSlicer  # noqa: E402
+from artificial_memory_gen.steroid.wide_slicer import WideSlicer  # noqa: E402
 
 CHANNELS = ["lexical", "entity", "temporal", "relation", "session"]
 CATEGORY_NAMES = {1: "multi-hop", 2: "temporal", 3: "open-domain", 4: "single-hop", 5: "adversarial"}

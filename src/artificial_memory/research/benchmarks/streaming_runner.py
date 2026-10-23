@@ -10,11 +10,11 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import Any
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir.conflict_state import ConflictStateManager
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.core.models import ResolutionLevel
-from artificial_memory.recall.ir_resolver import UniversalIRResolver
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.recall.ir_resolver import UniversalIRResolver
 
 
 @dataclass

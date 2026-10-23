@@ -20,7 +20,7 @@ SPLIT_PATH = REPO / "benchmark_results" / "splits" / "lme_dev_qids.json"
 
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.query_analyzer import QueryAnalyzer, QueryType
+from artificial_memory_gen.compiler.query_analyzer import QueryAnalyzer, QueryType
 
 
 def main():

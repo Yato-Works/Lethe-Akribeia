@@ -24,9 +24,9 @@ class PropositionStatus(StrEnum):
 class UnifiedProposition:
     """A canonical proposition in the Overdrive Core memory substrate."""
     id: str
-    subject: str                      # Entity / Actor (e.g., "Eli", "Caroline", "workstation")
+    subject: str                      # Entity / Actor (e.g., "Eli", "Ana", "workstation")
     predicate: str                    # Action / Relation (e.g., "uses", "owns", "prefers", "moved_from", "graduated_from")
-    object: str                       # Target / Value / Concept (e.g., "Sony A7R IV", "Sweden", "hotel with rooftop pool")
+    object: str                       # Target / Value / Concept (e.g., "a camera lens", "Sweden", "hotel with rooftop pool")
     time_scope: str | None = None  # Valid timestamp (e.g., "2023-01-08", "2023/05/29")
     session_id: str = ""              # Session identifier (e.g., "session_14", "D4:3")
     source: str = "user"              # Speaker ("user", "assistant", "teammate")

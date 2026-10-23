@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 1344.0,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 11.367568699999993,
+  "per_type_breakdown": {
+    "knowledge-update": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 1344.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "question": "Where do I currently keep my old sneakers?",
+      "ground_truth": "in a shoe rack in my closet",
+      "predicted_answer": "under my bed",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1344,
+      "latency_ms": 10881.750300000022,
+      "r6_features": {
+        "direct_fact_demand": 0.1,
+        "temporal_demand": 0.0,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.95,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.0,
+        "dominant_mode": "state_evolution",
+        "recommended_budget": 600,
+        "requires_chronos_diff": false,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": true,
+        "requires_profile_grounding": false,
+        "total_records": 527,
+        "session_count": 49,
+        "date_count": 49,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 21,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 95,
+        "candidate_sessions": 8,
+        "conflict": true,
+        "cert_present": false,
+        "temporal_complexity": 1,
+        "evidence_coverage": 0.625,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 39.2627,
+        "budget_util": 1.0,
+        "question_type": "knowledge-update",
+        "is_aggregation": false,
+        "correct": false,
+        "reader_model": "",
+        "predicted": "under my bed"
+      }
+    }
+  ]
+}

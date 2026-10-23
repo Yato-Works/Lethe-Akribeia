@@ -12,13 +12,13 @@ sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 data = json.load(open(REPO / "datasets" / "external" / "longmemeval_s_cleaned.json", encoding="utf-8"))
 it = next(item for item in data if item["question_id"] == "0a995998")
 
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.certificates.coprocessor_engine import CoProcessorEngine
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.compiler.samplers.per_session_sampler import PerSessionSampler
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.certificates.coprocessor_engine import CoProcessorEngine
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.samplers.per_session_sampler import PerSessionSampler
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
 from eval_v4_pipeline_dev import V4CandidateRetriever
 
 extractor = UniversalIRExtractor()

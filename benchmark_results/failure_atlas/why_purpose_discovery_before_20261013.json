@@ -1,0 +1,55 @@
+{
+  "label": "why-purpose-discovery-before",
+  "n": 3,
+  "correct": 0,
+  "wrong": 0,
+  "abstain": 3,
+  "presented": 0,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.013861,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-41_76",
+      "conversation": "41",
+      "category": 4,
+      "question": "Why did John decide to run for office again?",
+      "gold": "saw the impact he could make in the community through politics",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-50_15",
+      "conversation": "50",
+      "category": 1,
+      "question": "Why does Dave regularly visit parks?",
+      "gold": "because it relaxes and calms him",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-30_93",
+      "conversation": "30",
+      "category": 5,
+      "question": "Why did Gina shut down her bank account?",
+      "gold": "for her business",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

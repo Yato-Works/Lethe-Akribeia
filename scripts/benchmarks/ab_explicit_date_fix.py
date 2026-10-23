@@ -54,7 +54,7 @@ def main() -> int:
         print(f"loaded pre-fix engine from HEAD ({len(head_src)} chars)")
         (tmp / "temporal_algebra_engine.py").write_text(head_src, encoding="utf-8")
 
-        import artificial_memory.skills.autonomous_engines.temporal_algebra_engine as cur
+        import artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine as cur
         sys.path.insert(0, str(tmp))
         old = importlib.import_module("temporal_algebra_engine")
 
@@ -68,7 +68,7 @@ def main() -> int:
 
         # Every question that is a date question AND has a frozen context.  This is
         # the honest blast radius, not just the failure cluster.
-        from artificial_memory.skills.answer_committer import parse_turns
+        from artificial_memory_gen.skills.answer_committer import parse_turns
         cohort = [
             r for r in atlas
             if cache.get(r.get("cache_qid"))

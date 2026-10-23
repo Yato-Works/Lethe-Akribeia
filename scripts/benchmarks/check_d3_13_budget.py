@@ -7,8 +7,8 @@ sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 
 from eval_locomo_full import load_locomo, conversation_turns
 from eval_v4_pipeline_dev import V4CandidateRetriever
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
 
 data = load_locomo(REPO / "datasets" / "external" / "locomo10.json")
 turns, dia_map = conversation_turns(data[0]["conversation"])

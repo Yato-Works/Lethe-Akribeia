@@ -5,7 +5,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.compiler.operators.query_operator_compiler import QueryOperatorCompiler
+from artificial_memory_gen.compiler.operators.query_operator_compiler import QueryOperatorCompiler
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
 
 REPO = Path(__file__).resolve().parents[2]

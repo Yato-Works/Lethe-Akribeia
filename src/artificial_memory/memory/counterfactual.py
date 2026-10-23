@@ -8,6 +8,7 @@ from typing import Any
 
 from artificial_memory.core.interfaces import MemoryStore, RecallEngine
 from artificial_memory.core.models import Memory
+from artificial_memory.core.tokens import word_tokens
 from artificial_memory.memory.evolution import MemoryEvolutionEngine
 
 
@@ -286,8 +287,8 @@ class CounterfactualEngine:
         counterfactual: str,
     ) -> dict[str, Any]:
         """Compute diff between two contexts."""
-        orig_tokens = len(original.split())
-        cf_tokens = len(counterfactual.split())
+        orig_tokens = word_tokens(original)
+        cf_tokens = word_tokens(counterfactual)
 
         # Simple line-by-line diff
         orig_lines = original.split('\n')

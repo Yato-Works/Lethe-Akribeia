@@ -27,7 +27,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler  # noqa: E402
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler  # noqa: E402
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]

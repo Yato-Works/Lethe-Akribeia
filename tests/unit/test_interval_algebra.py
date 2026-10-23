@@ -5,7 +5,7 @@ from __future__ import annotations
 import datetime
 import pytest
 
-from artificial_memory.temporal.interval_algebra import (
+from artificial_memory_gen.temporal.interval_algebra import (
     IntervalRelation,
     TimeInterval,
 )

@@ -8,8 +8,8 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 
 from eval_v4_pipeline_dev import build_prompt, FROZEN_MODEL, OllamaAnswerer
-from artificial_memory.compiler.samplers.per_session_sampler import PerSessionSampler
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.samplers.per_session_sampler import PerSessionSampler
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
 from eval_v4_pipeline_dev import V4CandidateRetriever
 
 data = json.load(open(REPO / "datasets" / "external" / "longmemeval_s_cleaned.json", encoding="utf-8"))
@@ -39,7 +39,7 @@ for t in sampled:
     lines.append(f"[{t.session_id} on {t.session_date}] {t.speaker.capitalize()}: {t.content}")
 ctx_str = "\n".join(lines)
 
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
 planner = CognitiveExecutionPlanner()
 plan = planner.plan(it["question"], [], reference_date=it.get("question_date", ""))
 

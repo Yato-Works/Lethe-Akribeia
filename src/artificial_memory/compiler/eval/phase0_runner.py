@@ -33,18 +33,17 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 import numpy as np
 
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-from artificial_memory.compiler.certificates.coprocessor_engine import CoProcessorEngine
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.graph.dependency_graph import EvidenceBundle
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.compiler.router.label_free_classifier import LabelFreeTypeClassifierV2
-from artificial_memory.compiler.selectors import CoverageAwareSelector, coverage_compile
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
-from artificial_memory.recall.state_timeline import StateTimelineEngine
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
-
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+from artificial_memory_gen.compiler.certificates.coprocessor_engine import CoProcessorEngine
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.graph.dependency_graph import EvidenceBundle
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.router.label_free_classifier import LabelFreeTypeClassifierV2
+from artificial_memory_gen.compiler.selectors import CoverageAwareSelector, coverage_compile
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.recall.state_timeline import StateTimelineEngine
 
 # ---------- Label-Free V4 Pipeline ----------
 
@@ -184,7 +183,8 @@ class LabelFreeV4Pipeline:
     def _get_anchor_scores(self, edg, question: str) -> dict:
         """Compute relevance scores for evidence nodes using keyword overlap."""
         import re as _re
-        from artificial_memory.recall.evidence_scorer import UniversalEvidenceScorer
+
+        from artificial_memory_gen.recall.evidence_scorer import UniversalEvidenceScorer
         scorer = UniversalEvidenceScorer()
         q_tokens = _re.findall(r'[a-z0-9_]+', question.lower())
         q_words = set(w for w in q_tokens if w not in scorer.STOP_WORDS)
@@ -676,14 +676,14 @@ def main():
     print()
 
     # Load split
-    with open(args.split, "r") as f:
+    with open(args.split) as f:
         dev_qids = json.load(f)
     if isinstance(dev_qids, dict) and "qids" in dev_qids:
         dev_qids = dev_qids["qids"]
 
     # Load dataset
     print("Loading full dataset...")
-    with open(args.dataset, "r", encoding="utf-8") as f:
+    with open(args.dataset, encoding="utf-8") as f:
         dataset = json.load(f)
 
     ds_by_id = {item["question_id"]: item for item in dataset}
@@ -778,7 +778,9 @@ def main():
 
                     # Grade with the official grader. Gold question_type is used
                     # for SCORING ONLY, never for routing.
-                    from artificial_memory.compiler.eval.official_grader import OfficialLongMemEvalGrader
+                    from artificial_memory.compiler.eval.official_grader import (
+                        OfficialLongMemEvalGrader,
+                    )
                     grader = OfficialLongMemEvalGrader()
                     grade_result = grader.grade(
                         question_id=item["question_id"],

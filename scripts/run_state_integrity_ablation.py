@@ -26,9 +26,9 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 from artificial_memory.core.ir.memory_types import CoverageCertificate, ProofCarryingContext, QueryIntent
-from artificial_memory.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
-from artificial_memory.protein.state_synthesizer import StateSynthesizer
-from artificial_memory.protein.state_trigger import StateTrigger
+from artificial_memory_gen.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
+from artificial_memory_gen.protein.state_synthesizer import StateSynthesizer
+from artificial_memory_gen.protein.state_trigger import StateTrigger
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter, LoCoMoQuestion
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 

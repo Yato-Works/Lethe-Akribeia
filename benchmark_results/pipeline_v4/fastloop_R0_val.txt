@@ -1,0 +1,23 @@
+  [Fast-loop] filtered to 3 question(s): ['0a995998', '87f22b4a', 'eace081b']
+================================================================================
+  LETHE-AKRIBEIA V4: E2E BUDGETED COMPILATION PIPELINE (n=3)
+  Reader: qwen2.5:7b-instruct (num_ctx=8192)
+  Condition: R0
+================================================================================
+[001/3] 0a995998 (multi-sessio): FAIL | tok=1669 | pred='2'
+[002/3] 87f22b4a (multi-sessio): FAIL | tok=1231 | pred='I don't know.'
+[003/3] eace081b (knowledge-up): FAIL | tok=1131 | pred='I don't know.'
+
+================================================================================
+  V4 PIPELINE DEV 250 EVALUATION COMPLETE
+  Total Accuracy: 0/3 (0.00%)
+  Mean Tokens: 1343.7 tokens (V3.1 baseline was 3,653 tokens)
+  Deterministic 0-token overrides: 0/3 (0.0%)
+  Elapsed: 12.7s (4224ms/query)
+================================================================================
+Type                         Accuracy     Correct/Total  Mean Tokens 
+--------------------------------------------------------------------
+multi-session                0.0%         0/2            1450.0      
+knowledge-update             0.0%         0/1            1131.0      
+================================================================================
+Saved results to: C:\Users\smily\Lethe-Akribeia\benchmark_results\pipeline_v4\lme_dev_fastloop_0a995998_87f22b4a_eace081b.json

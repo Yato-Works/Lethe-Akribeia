@@ -28,15 +28,15 @@ sys.path.insert(0, str(ROOT / "scripts" / "benchmarks"))
 
 import eval_locomo_full as E  # noqa: E402
 from eval_v4_pipeline_dev import V4CandidateRetriever  # noqa: E402
-from artificial_memory.compiler.execution_planner import (  # noqa: E402
+from artificial_memory_gen.compiler.execution_planner import (  # noqa: E402
     CognitiveExecutionPlanner,
 )
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder  # noqa: E402
-from artificial_memory.compiler.budgeted_compiler import (  # noqa: E402
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder  # noqa: E402
+from artificial_memory_gen.compiler.budgeted_compiler import (  # noqa: E402
     BudgetedCognitiveCompiler,
 )
-from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory.skills.autonomous_engines.entity_attribute_resolver import (  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory_gen.skills.autonomous_engines.entity_attribute_resolver import (  # noqa: E402
     EntityAttributeResolver,
 )
 

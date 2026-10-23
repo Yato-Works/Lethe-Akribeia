@@ -1,0 +1,419 @@
+{
+  "accuracy": 0.78,
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "I don't know.",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_2",
+      "category": 3,
+      "question": "What fields would Caroline be likely to pursue in her educaton?",
+      "ground_truth": "Psychology, counseling certification",
+      "predicted_answer": "counseling, mental health, social work",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_3",
+      "category": 1,
+      "question": "What did Caroline research?",
+      "ground_truth": "Adoption agencies",
+      "predicted_answer": "adoption agencies",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_4",
+      "category": 1,
+      "question": "What is Caroline's identity?",
+      "ground_truth": "Transgender woman",
+      "predicted_answer": "Based on the conversation, Caroline identifies as a member of the LGBTQ+ community, specifically as a transgender individual. Caroline is involved in various activities and advocacy efforts related to LGBTQ+ rights and support, such as attending support groups, participating in pride events, mentoring LGBTQ+ youth, and organizing art shows. Additionally, Caroline is exploring career paths in counseling and mental health to help others, reflecting a strong sense of self-acceptance and a desire to support the LGBTQ+ community.",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_5",
+      "category": 2,
+      "question": "When did Melanie run a charity race?",
+      "ground_truth": "The sunday before 25 May 2023",
+      "predicted_answer": "The Saturday before 25 May 2023",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_6",
+      "category": 2,
+      "question": "When is Melanie planning on going camping?",
+      "ground_truth": "June 2023",
+      "predicted_answer": "June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_7",
+      "category": 1,
+      "question": "What is Caroline's relationship status?",
+      "ground_truth": "Single",
+      "predicted_answer": "Based on the conversation, Caroline is in a relationship with Melanie. Caroline mentions \"marrying melanie's partner\" and refers to Melanie as a friend who is supportive of her journey, indicating they are in a romantic relationship.",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_8",
+      "category": 2,
+      "question": "When did Caroline give a speech at a school?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "The week before 9 June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_9",
+      "category": 2,
+      "question": "When did Caroline meet up with her friends, family, and mentors?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "Caroline met up with her friends, family, and mentors the week before 9 June 2023. This can be seen from the following message in the conversation:\n\n[session_3 on 7:55 pm on 9 June, 2023] Caroline: Yeah, caroline is really lucky to have them. They've been there through everything, caroline has known these friends for 4 years, since caroline moved from caroline's home country. Their love and help have been so important especially after that tough breakup. caroline is super thankful. Who supports you, Mel?\n\n[session_3 on 7:55 pm on 9 June, 2023] Melanie: melanie is lucky to have melanie's husband and kids; they keep melanie motivated. (shared photo: a photo of a man and a little girl standing in front of a waterfall)\n\nThe mention of knowing these friends for 4 years since moving from her home country and the reference to a tough breakup indicate that this meeting took place around the time of the conversation on 9 June 2023.",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_10",
+      "category": 2,
+      "question": "How long has Caroline had her current group of friends for?",
+      "ground_truth": "4 years",
+      "predicted_answer": "4 years",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_11",
+      "category": 1,
+      "question": "Where did Caroline move from 4 years ago?",
+      "ground_truth": "Sweden",
+      "predicted_answer": "Caroline moved from her home country 4 years ago.",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_12",
+      "category": 2,
+      "question": "How long ago was Caroline's 18th birthday?",
+      "ground_truth": "10 years ago",
+      "predicted_answer": "ten years ago",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_13",
+      "category": 1,
+      "question": "What career path has Caroline decided to persue?",
+      "ground_truth": "counseling or mental health for Transgender people",
+      "predicted_answer": "counseling and mental health",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_14",
+      "category": 3,
+      "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+      "ground_truth": "Likely no",
+      "predicted_answer": "Yes",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_15",
+      "category": 1,
+      "question": "What activities does Melanie partake in?",
+      "ground_truth": "pottery, camping, painting, swimming",
+      "predicted_answer": "painting, pottery, swimming, running, playing clarinet, hiking, camping",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_16",
+      "category": 2,
+      "question": "When did Melanie sign up for a pottery class?",
+      "ground_truth": "2 July 2023",
+      "predicted_answer": "2 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_17",
+      "category": 2,
+      "question": "When is Caroline going to the transgender conference?",
+      "ground_truth": "July 2023",
+      "predicted_answer": "Caroline went to an LGBTQ conference two days ago (10 July 2023), as mentioned in their conversation on 12 July 2023.",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_18",
+      "category": 1,
+      "question": "Where has Melanie camped?",
+      "ground_truth": "beach, mountains, forest",
+      "predicted_answer": "Based on the conversation, Melanie has camped in a forest and at the beach. Specifically:\n\n- Melanie mentioned going on a camping trip in the forest with her family: \"We even went on another camping trip in the forest.\" (session_8)\n- Melanie shared a photo of a family camping at the beach: \"Here's a pic of melanie's family camping at the beach. We love it, it brings us closer!\" (session_6)\n- Melanie also mentioned a camping trip at the beach: \"We always look forward to our family camping trip. We roast marshmallows, tell stories around the campfire and just enjoy each other's company. It's the highlight of our summer!\" (session_10)\n\nSo Melanie has camped both in a forest and at the beach with her family.",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_19",
+      "category": 1,
+      "question": "What do Melanie's kids like?",
+      "ground_truth": "dinosaurs, nature",
+      "predicted_answer": "camping, hiking, exploring forests, making clay sculptures, dinosaur exhibits, learning about animals, spending time at the beach, going to the museum, roast marshmallows, telling stories around the campfire",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_20",
+      "category": 2,
+      "question": "When did Melanie go to the museum?",
+      "ground_truth": "5 July 2023",
+      "predicted_answer": "26 June 2023",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_21",
+      "category": 2,
+      "question": "When did Caroline have a picnic?",
+      "ground_truth": "The week before 6 July 2023",
+      "predicted_answer": "The week before 6 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_22",
+      "category": 3,
+      "question": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+      "ground_truth": "Yes, since she collects classic children's books",
+      "predicted_answer": "No",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_23",
+      "category": 1,
+      "question": "What books has Melanie read?",
+      "ground_truth": "\"Nothing is Impossible\", \"Charlotte's Web\"",
+      "predicted_answer": "Charlotte's Web",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_24",
+      "category": 1,
+      "question": "What does Melanie do to destress?",
+      "ground_truth": "Running, pottery",
+      "predicted_answer": "running, painting, playing violin, pottery",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_25",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ conference?",
+      "ground_truth": "10 July 2023",
+      "predicted_answer": "Caroline went to an LGBTQ conference on July 10, 2023.",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "category": 2,
+      "question": "When did Melanie read the book \"nothing is impossible\"?",
+      "ground_truth": "2022",
+      "predicted_answer": "I don't know.",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_27",
+      "category": 3,
+      "question": "Would Caroline pursue writing as a career option?",
+      "ground_truth": "LIkely no; though she likes reading, she wants to be a counselor",
+      "predicted_answer": "No",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_28",
+      "category": 2,
+      "question": "When did Caroline go to the adoption meeting?",
+      "ground_truth": "The friday before 15 July 2023",
+      "predicted_answer": "The Friday before 15 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_29",
+      "category": 2,
+      "question": "When did Melanie go to the pottery workshop?",
+      "ground_truth": "The Friday before 15 July 2023",
+      "predicted_answer": "The Friday before 15 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_30",
+      "category": 3,
+      "question": "Would Melanie be considered a member of the LGBTQ community?",
+      "ground_truth": "Likely no, she does not refer to herself as part of it",
+      "predicted_answer": "Based on the conversation, Melanie is not explicitly identified as a member of the LGBTQ community. The primary focus of the conversations is on Caroline's experiences and journey within the LGBTQ community. However, Melanie does show support and understanding for Caroline's experiences and the community, which suggests she is likely aware of and supportive of LGBTQ issues. If Melanie were part of the LGBTQ community, it would be mentioned or more context would be provided about her own experiences and identity. Given the information provided, Melanie is not a direct member of the LGBTQ community but is supportive of it.",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_31",
+      "category": 2,
+      "question": "When did Melanie go camping in June?",
+      "ground_truth": "The week before 27 June 2023",
+      "predicted_answer": "The week before 27 June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_32",
+      "category": 1,
+      "question": "What LGBTQ+ events has Caroline participated in?",
+      "ground_truth": "Pride parade, school speech, support group",
+      "predicted_answer": "pride parade, transgender conference, poetry reading, art show",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_33",
+      "category": 2,
+      "question": "When did Caroline go to a pride parade during the summer?",
+      "ground_truth": "The week before 3 July 2023",
+      "predicted_answer": "The week before 3 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_34",
+      "category": 1,
+      "question": "What events has Caroline participated in to help children?",
+      "ground_truth": "Mentoring program, school speech",
+      "predicted_answer": "poetry reading, pride parade",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_35",
+      "category": 2,
+      "question": "When did Melanie go camping in July?",
+      "ground_truth": "two weekends before 17 July 2023",
+      "predicted_answer": "The week before 15 July 2023",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_36",
+      "category": 2,
+      "question": "When did Caroline join a mentorship program?",
+      "ground_truth": "The weekend before 17 July 2023",
+      "predicted_answer": "The weekend before 17 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_37",
+      "category": 1,
+      "question": "What did Melanie paint recently?",
+      "ground_truth": "sunset",
+      "predicted_answer": "sunset, horse",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_38",
+      "category": 1,
+      "question": "What activities has Melanie done with her family?",
+      "ground_truth": "Pottery, painting, camping, museum, swimming, hiking",
+      "predicted_answer": "camping, hiking, swimming, exploring forests",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_39",
+      "category": 1,
+      "question": "In what ways is Caroline participating in the LGBTQ community?",
+      "ground_truth": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+      "predicted_answer": "attending support groups, giving talks at school events, organizing an art show, mentoring LGBTQ youth, attending conferences, participating in a pride parade, joining an activist group, creating art to promote acceptance",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_40",
+      "category": 1,
+      "question": "How many times has Melanie gone to the beach in 2023?",
+      "ground_truth": "2",
+      "predicted_answer": "3",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_41",
+      "category": 2,
+      "question": "When did Caroline join a new activist group?",
+      "ground_truth": "The Tuesday before 20 July 2023",
+      "predicted_answer": "The Tuesday before 20 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_42",
+      "category": 3,
+      "question": "Would Melanie be more interested in going to a national park or a theme park?",
+      "ground_truth": "National park; she likes the outdoors",
+      "predicted_answer": "national park",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_43",
+      "category": 1,
+      "question": "What kind of art does Caroline make?",
+      "ground_truth": "abstract art",
+      "predicted_answer": "abstract art, sunset, woman, nature-inspired",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_44",
+      "category": 2,
+      "question": "When is Melanie's daughter's birthday?",
+      "ground_truth": "13 August",
+      "predicted_answer": "13 August 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_45",
+      "category": 2,
+      "question": "When did Caroline attend a pride parade in August?",
+      "ground_truth": "The Friday before 14 August 2023",
+      "predicted_answer": "The Friday before 14 August 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_46",
+      "category": 3,
+      "question": "Would Melanie be considered an ally to the transgender community?",
+      "ground_truth": "Yes, she is supportive",
+      "predicted_answer": "Based on the conversation, Melanie can be considered an ally to the transgender community. Several factors support this conclusion:\n\n1. **Support and Understanding**: Melanie acknowledges and appreciates the importance of support systems, as evidenced by her response to Caroline's journey and her own experiences with family support.\n\n2. **Positive Interactions**: Melanie shares positive interactions and experiences, such as taking her children to events that celebrate diversity and inclusion, which aligns with the values of an ally.\n\n3. **Empathy and Validation**: Melanie validates Caroline's experiences and the importance of her journey, showing empathy and understanding. For example, she mentions being proud of Caroline's efforts to spread awareness and get others involved in the LGBTQ community.\n\n4. **Shared Values**: Melanie and Caroline discuss the importance of mental health, community, and support networks, which are values often shared by allies.\n\n5. **Encouragement and Praise**: Melanie consistently encourages and praises Caroline's efforts, which is a key aspect of being an ally.\n\n6. **Personal Experiences**: Melanie shares her own experiences, such as running to de-stress and spending time with her family, which can foster a sense of community and mutual support.\n\nWhile Melanie may not identify as transgender herself, her actions and words demonstrate that she supports",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_47",
+      "category": 1,
+      "question": "Who supports Caroline when she has a negative experience?",
+      "ground_truth": "Her mentors, family, and friends",
+      "predicted_answer": "friends, family, mentors",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_48",
+      "category": 1,
+      "question": "What types of pottery have Melanie and her kids made?",
+      "ground_truth": "bowls, cup",
+      "predicted_answer": "bowl, cup",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_49",
+      "category": 2,
+      "question": "When did Caroline and Melanie go to a pride fesetival together?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true
+    }
+  ],
+  "per_category": {
+    "2": {
+      "correct": 19,
+      "total": 24
+    },
+    "3": {
+      "correct": 5,
+      "total": 7
+    },
+    "1": {
+      "correct": 15,
+      "total": 19
+    }
+  }
+}

@@ -1,0 +1,19 @@
+# Leak-boundary allowlist — EMPTY (goal state reached).
+#
+# Every watched corpus fingerprint (ontology/data/leak_watch.yaml) has been
+# migrated out of runtime logic into the ontology data plane
+# (ontology/data/*.yaml) or into out-of-scope tooling (tools/, research/).
+#
+# The list must stay empty: any NEW leak (a watched token appearing in
+# runtime logic) fails the boundary test and requires either a data-plane
+# migration or an explicitly justified entry here — entries are expected
+# to be temporary and this file to return to empty.
+#
+# research/**, tests/**, scripts/**, tools/** and ontology/data/** are out
+# of scope by design (benchmark plumbing and developer tooling may name the
+# benchmark contents; the *runtime* may not).
+#
+# NOTE: ``sanctioned`` and ``pending`` keys are both honored by the guard
+# loader; both are empty at the current state.
+sanctioned: {}
+pending: {}

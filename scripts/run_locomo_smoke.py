@@ -24,7 +24,7 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-from artificial_memory.recall.evidence_scorer import EvidenceScoreWeights
+from artificial_memory_gen.recall.evidence_scorer import EvidenceScoreWeights
 from artificial_memory.research.benchmarks.external.locomo_adapter import (
     LoCoMoAdapter,
     LoCoMoEvalResult,

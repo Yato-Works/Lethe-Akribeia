@@ -1,5 +1,5 @@
 import pytest
-from artificial_memory.compiler.samplers.per_session_sampler import PerSessionSampler
+from artificial_memory_gen.compiler.samplers.per_session_sampler import PerSessionSampler
 
 
 def test_per_session_sampler_basic():

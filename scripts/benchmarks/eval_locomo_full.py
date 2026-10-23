@@ -862,8 +862,84 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
 ABSTENTIONS = {"i don't know.", "", "not mentioned", "none"}
 
 
+def reorder_context_by_speaker(context: str, question: str, conv: dict) -> str:
+    """Group evidence lines by speaker, putting the question's target speaker first.
+
+    Only changes PRESENTATION order of already-retrieved evidence.  Does not
+    add, remove, or reorder evidence selection in any way.
+    """
+    spk_a = conv.get("speaker_a", "")
+    spk_b = conv.get("speaker_b", "")
+    # Conversation may be nested under 'conversation' key
+    if not spk_a and not spk_b:
+        inner = conv.get("conversation", {})
+        if isinstance(inner, dict):
+            spk_a = inner.get("speaker_a", "")
+            spk_b = inner.get("speaker_b", "")
+    q_names = {m.group(1).lower() for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", question)}
+    target = None
+    for spk in (spk_a, spk_b):
+        if spk and spk.lower() in q_names:
+            target = spk
+            break
+    if not target:
+        return context
+
+    parts = context.split("\n\n")
+    other_parts = []
+    evidence_block = None
+    for p in parts:
+        if p.startswith("[VERIFIED CONVERSATION EVIDENCE]"):
+            evidence_block = p
+        elif p:
+            other_parts.append(p)
+
+    if evidence_block is None:
+        return context
+
+    header = "[VERIFIED CONVERSATION EVIDENCE]"
+    body_lines = evidence_block[len(header):].strip("\n").split("\n")
+
+    target_lines: list[str] = []
+    other_lines: list[str] = []
+    for line in body_lines:
+        line = line.strip()
+        if not line:
+            continue
+        m = re.match(r"\[.*?\]\s+(\w+):\s+.*", line)
+        if m:
+            if m.group(1).lower() == target.lower():
+                target_lines.append(line)
+            else:
+                other_lines.append(line)
+        else:
+            target_lines.append(line)
+
+    if not other_lines:
+        return context
+
+    reordered_body = (
+        f"[VERIFIED CONVERSATION EVIDENCE -- {target} (target speaker)]\n"
+        + "\n".join(target_lines)
+        + "\n\n"
+        + "[VERIFIED CONVERSATION EVIDENCE -- other speaker]\n"
+        + "\n".join(other_lines)
+    )
+
+    result_parts: list[str] = []
+    for p in other_parts:
+        result_parts.append(p)
+    result_parts.append(reordered_body)
+    return "\n\n".join(result_parts)
+
+
 def run(args) -> None:
     args.use_committer = not getattr(args, "no_committer", False)
+    manifest = []
+    if getattr(args, "manifest", ""):
+        with open(args.manifest, encoding="utf-8") as f:
+            manifest = json.load(f)
+    args.manifest = manifest
     data = load_locomo(Path(args.data))
     wanted = set(int(x) for x in args.cats.split(",")) if args.cats else None
 
@@ -876,6 +952,23 @@ def run(args) -> None:
             jobs.append((conv, q))
     if args.limit:
         jobs = jobs[: args.limit]
+    if args.manifest:
+        # Select by the MANIFEST's (conv_idx, q_idx) pair, not by position.
+        # `--limit N` is a conversation-CONTIGUOUS PREFIX: with conv-26 first
+        # (199 qa), `--limit 100` selects 100 questions from ONE conversation,
+        # which is not a stratified sample and cannot generalise.  A manifest
+        # pins the exact cases so a dev set is actually the dev set.
+        sel: list[tuple[dict, dict]] = []
+        by_idx = {}
+        for ci, conv in enumerate(data):
+            for qi, q in enumerate(load_questions(conv)):
+                by_idx[(ci, qi)] = (conv, q)
+        for e in args.manifest:
+            key = (int(e["conv_idx"]), int(e["q_idx"]))
+            if key not in by_idx:
+                raise SystemExit(f"manifest entry not in dataset: {key}")
+            sel.append(by_idx[key])
+        jobs = sel
 
     print(f"LoCoMo full benchmark: {len(jobs)} questions "
           f"(from {len(data)} conversations)")
@@ -883,11 +976,11 @@ def run(args) -> None:
         print(f"  filtered to categories: {sorted(wanted)}")
 
     from eval_v4_pipeline_dev import V4CandidateRetriever  # reuse frozen retriever
-    from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-    from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-    from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-    from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-    from artificial_memory.recall.fact_index import FactIndex
+    from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+    from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+    from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+    from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+    from artificial_memory_gen.recall.fact_index import FactIndex
     from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 
     retriever = V4CandidateRetriever()
@@ -1012,7 +1105,7 @@ def run(args) -> None:
             committed = None
             if getattr(args, "use_committer", True):
                 try:
-                    from artificial_memory.skills.answer_committer import (
+                    from artificial_memory_gen.skills.answer_committer import (
                         commit_answer, post_process_answer,
                     )
                     _c = commit_answer(q["question"], compiled.context_text,
@@ -1026,8 +1119,12 @@ def run(args) -> None:
             if committed:
                 pred = committed
             else:
+                ctx_text = compiled.context_text
+                if getattr(args, "speaker_first", False):
+                    ctx_text = reorder_context_by_speaker(
+                        ctx_text, q["question"], conv)
                 pred = answerer.answer(q["question"],
-                                       build_reader_prompt(q["question"], compiled.context_text,
+                                       build_reader_prompt(q["question"], ctx_text,
                                                            enum_contract=getattr(args, "enum_contract", "off"),
                                                            no_abstain=getattr(args, "no_abstain", False))).text.strip()
                 if pred.endswith(".") and len(pred.split()) <= 2:
@@ -1036,7 +1133,7 @@ def run(args) -> None:
                 # Deterministic relative-date resolution (LoCoMo weakness).  Only
                 # for 'when' questions, so a substantive answer is never rewritten.
                 if re.search(r"\bwhen\b", q["question"], re.I):
-                    pred = resolve_relative_dates(pred, compiled.context_text, q["question"])
+                    pred = resolve_relative_dates(pred, ctx_text, q["question"])
 
             ok = score(pred, q["answer"])
             ctx_tokens = getattr(compiled, "total_tokens", 0)
@@ -1117,6 +1214,9 @@ def run(args) -> None:
         "cond": args.cond, "cats": args.cats, "limit": args.limit,
         "num_ctx": args.num_ctx, "second_pass": getattr(args, "second_pass", False),
         "enum_contract": getattr(args, "enum_contract", "off"),
+        "speaker_first": getattr(args, "speaker_first", False),
+        "manifest": args.manifest or "",
+        "n_questions": len(jobs),
         "data": args.data,
     }
     _salt = hashlib.sha256(
@@ -1166,6 +1266,13 @@ def main() -> None:
                     help="add the answer-from-the-evidence clause (off by default)")
     ap.add_argument("--no-committer", action="store_true",
                     help="disable the deterministic committer fallback")
+    ap.add_argument("--manifest", default="",
+                    help="JSON file listing {conv_idx,q_idx} pairs to evaluate "
+                         "(a real sample); overrides --limit, which is only a "
+                         "conversation-contiguous prefix")
+    ap.add_argument("--speaker-first", action="store_true",
+                    help="reorder reader context so the question's target speaker's "
+                         "evidence appears first (off by default)")
     run(ap.parse_args())
 
 

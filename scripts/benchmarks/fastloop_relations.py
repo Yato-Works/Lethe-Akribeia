@@ -5,9 +5,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.certificates.coprocessor_engine import CoProcessorEngine
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.certificates.coprocessor_engine import CoProcessorEngine
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 
 dev_path = REPO / "datasets" / "external" / "longmemeval_s_cleaned.json"
 with open(dev_path, "r", encoding="utf-8") as f:

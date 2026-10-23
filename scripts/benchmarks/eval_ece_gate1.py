@@ -41,11 +41,11 @@ from eval_locomo_full import (
     CAT_NAMES,
 )
 from eval_v4_pipeline_dev import V4CandidateRetriever
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-from artificial_memory.recall.fact_index import FactIndex
-from artificial_memory.compiler.closure import (
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+from artificial_memory_gen.recall.fact_index import FactIndex
+from artificial_memory_gen.compiler.closure import (
     DeterministicQueryPlanner,
     EvidenceClosureEngine,
     AnswerTopology,

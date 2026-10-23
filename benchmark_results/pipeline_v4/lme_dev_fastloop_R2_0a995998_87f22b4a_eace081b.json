@@ -1,0 +1,62 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R2",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 3,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 1313.6666666666667,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 12.350455400010105,
+  "per_type_breakdown": {
+    "multi-session": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 2,
+      "mean_tokens": 1405.0
+    },
+    "knowledge-update": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 1131.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "question": "How many items of clothing do I need to pick up or return from a store?",
+      "ground_truth": "3",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1579,
+      "latency_ms": 9022.099999972852
+    },
+    {
+      "question_id": "87f22b4a",
+      "question_type": "multi-session",
+      "question": "How much have I made from selling eggs this month?",
+      "ground_truth": "$120",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1231,
+      "latency_ms": 962.1677999966778
+    },
+    {
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "question": "Where am I planning to stay for my birthday trip to Hawaii?",
+      "ground_truth": "Oahu",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1131,
+      "latency_ms": 718.6521000112407
+    }
+  ]
+}

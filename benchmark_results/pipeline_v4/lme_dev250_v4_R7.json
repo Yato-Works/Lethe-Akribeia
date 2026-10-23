@@ -5,47 +5,47 @@
   "condition": "R7",
   "model": "qwen2.5:7b-instruct",
   "total_questions": 250,
-  "correct_answers": 219,
-  "accuracy": 0.876,
-  "mean_prompt_tokens": 1323.084,
-  "deterministic_overrides": 25,
-  "elapsed_seconds": 448.99636869999813,
+  "correct_answers": 220,
+  "accuracy": 0.88,
+  "mean_prompt_tokens": 1366.184,
+  "deterministic_overrides": 40,
+  "elapsed_seconds": 403.3026310999994,
   "per_type_breakdown": {
     "single-session-user": {
-      "accuracy": 1.0,
-      "correct": 35,
+      "accuracy": 0.9714285714285714,
+      "correct": 34,
       "total": 35,
-      "mean_tokens": 1262.3428571428572
+      "mean_tokens": 1360.0
     },
     "multi-session": {
-      "accuracy": 0.7164179104477612,
-      "correct": 48,
+      "accuracy": 0.7611940298507462,
+      "correct": 51,
       "total": 67,
-      "mean_tokens": 1229.1194029850747
+      "mean_tokens": 1107.8358208955224
     },
     "single-session-preference": {
       "accuracy": 0.8,
       "correct": 12,
       "total": 15,
-      "mean_tokens": 1095.6666666666667
+      "mean_tokens": 1085.1333333333334
     },
     "temporal-reasoning": {
-      "accuracy": 1.0,
-      "correct": 66,
+      "accuracy": 0.9848484848484849,
+      "correct": 65,
       "total": 66,
-      "mean_tokens": 1361.7575757575758
+      "mean_tokens": 1449.7727272727273
     },
     "knowledge-update": {
       "accuracy": 0.8717948717948718,
       "correct": 34,
       "total": 39,
-      "mean_tokens": 1422.5128205128206
+      "mean_tokens": 1545.8461538461538
     },
     "single-session-assistant": {
       "accuracy": 0.8571428571428571,
       "correct": 24,
       "total": 28,
-      "mean_tokens": 1516.0357142857142
+      "mean_tokens": 1695.392857142857
     }
   },
   "results": [
@@ -57,8 +57,9 @@
       "predicted_answer": "Target",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1113,
-      "latency_ms": 2893.3682999995654,
+      "prompt_tokens": 1299,
+      "latency_ms": 8587.261200002104,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -104,8 +105,9 @@
       "predicted_answer": "The Glass Menagerie",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1159,
-      "latency_ms": 763.5465999992448,
+      "prompt_tokens": 1345,
+      "latency_ms": 793.9781000022776,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -151,8 +153,9 @@
       "predicted_answer": "Summer Vibes",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1101,
-      "latency_ms": 640.6349999997474,
+      "prompt_tokens": 1287,
+      "latency_ms": 666.301500001282,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -198,8 +201,9 @@
       "predicted_answer": "Johnson",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1351,
-      "latency_ms": 768.3630999999878,
+      "prompt_tokens": 1537,
+      "latency_ms": 791.4557000040077,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -242,11 +246,12 @@
       "question_type": "single-session-user",
       "question": "Where did I buy my new tennis racket from?",
       "ground_truth": "the sports store downtown",
-      "predicted_answer": "downtown sports store",
+      "predicted_answer": "downtown",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1232,
-      "latency_ms": 749.5807999985118,
+      "prompt_tokens": 1418,
+      "latency_ms": 722.1535999997286,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -281,7 +286,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "downtown sports store"
+        "predicted": "downtown"
       }
     },
     {
@@ -292,8 +297,9 @@
       "predicted_answer": "marketing specialist at a small startup",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1225,
-      "latency_ms": 823.0863999997382,
+      "prompt_tokens": 1411,
+      "latency_ms": 845.9895999985747,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -339,8 +345,9 @@
       "predicted_answer": "$800",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1093,
-      "latency_ms": 695.4144999981509,
+      "prompt_tokens": 1279,
+      "latency_ms": 703.3406000045943,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -386,8 +393,9 @@
       "predicted_answer": "20",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1111,
-      "latency_ms": 779.754099999991,
+      "prompt_tokens": 1223,
+      "latency_ms": 886.8300000031013,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -430,11 +438,12 @@
       "question_type": "single-session-user",
       "question": "What was the discount I got on my first purchase from the new clothing brand?",
       "ground_truth": "10%",
-      "predicted_answer": "10%",
+      "predicted_answer": "1",
       "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1248,
-      "latency_ms": 736.7665999991004,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -459,17 +468,17 @@
         "candidate_count": 158,
         "candidate_sessions": 15,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.9286,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 50.7098,
-        "budget_util": 0.972,
+        "budget_util": 0.0,
         "question_type": "single-session-user",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "10%"
+        "predicted": "1"
       }
     },
     {
@@ -480,8 +489,9 @@
       "predicted_answer": "4 hours",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1625,
-      "latency_ms": 972.9231000019354,
+      "prompt_tokens": 1811,
+      "latency_ms": 1143.4153000009246,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -527,8 +537,9 @@
       "predicted_answer": "A yellow dress and a pair of earrings.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1334,
-      "latency_ms": 989.2548999996507,
+      "prompt_tokens": 1520,
+      "latency_ms": 1020.9965999965789,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -574,8 +585,9 @@
       "predicted_answer": "500 Mbps",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1073,
-      "latency_ms": 680.2702999993926,
+      "prompt_tokens": 1259,
+      "latency_ms": 697.6567000019713,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -621,8 +633,9 @@
       "predicted_answer": "Nike",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1546,
-      "latency_ms": 917.2934999987774,
+      "prompt_tokens": 1732,
+      "latency_ms": 948.606000005384,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -668,8 +681,9 @@
       "predicted_answer": "Data Science",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1351,
-      "latency_ms": 809.0520000005199,
+      "prompt_tokens": 1537,
+      "latency_ms": 848.816199999419,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -715,8 +729,9 @@
       "predicted_answer": "3",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1714,
-      "latency_ms": 1028.869500001747,
+      "prompt_tokens": 1826,
+      "latency_ms": 1045.6145999996806,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -762,8 +777,9 @@
       "predicted_answer": "Golden Retriever",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1072,
-      "latency_ms": 689.5546000014292,
+      "prompt_tokens": 1258,
+      "latency_ms": 705.8225000000675,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -809,8 +825,9 @@
       "predicted_answer": "10",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1635,
-      "latency_ms": 1160.6496999993396,
+      "prompt_tokens": 1747,
+      "latency_ms": 1021.3138000035542,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -853,11 +870,12 @@
       "question_type": "single-session-user",
       "question": "How much is the painting of a sunset worth in terms of the amount I paid for it?",
       "ground_truth": "The painting is worth triple what I paid for it.",
-      "predicted_answer": "Triple the amount you paid for it.",
+      "predicted_answer": "The painting of a sunset is worth triple what you paid for it.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1155,
-      "latency_ms": 859.5499000002746,
+      "prompt_tokens": 1341,
+      "latency_ms": 1050.3900999974576,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -892,7 +910,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Triple the amount you paid for it."
+        "predicted": "The painting of a sunset is worth triple what you paid for it."
       }
     },
     {
@@ -903,8 +921,9 @@
       "predicted_answer": "5 hours",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1196,
-      "latency_ms": 691.1115999973845,
+      "prompt_tokens": 1382,
+      "latency_ms": 725.6200999981957,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -950,8 +969,9 @@
       "predicted_answer": "Japanese short-grain rice.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1173,
-      "latency_ms": 810.6846999980917,
+      "prompt_tokens": 1359,
+      "latency_ms": 838.260899996385,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -997,8 +1017,9 @@
       "predicted_answer": "Sarah",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 824,
-      "latency_ms": 415.4986000030476,
+      "prompt_tokens": 1010,
+      "latency_ms": 438.6787000039476,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1044,8 +1065,9 @@
       "predicted_answer": "Three months",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1539,
-      "latency_ms": 945.7531000007293,
+      "prompt_tokens": 1725,
+      "latency_ms": 920.6276999975671,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1091,8 +1113,9 @@
       "predicted_answer": "Hawaii, USA",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1158,
-      "latency_ms": 751.0290999998688,
+      "prompt_tokens": 1344,
+      "latency_ms": 769.2886000004364,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1135,11 +1158,12 @@
       "question_type": "single-session-user",
       "question": "What is the name of the music streaming service have I been using lately?",
       "ground_truth": "Spotify",
-      "predicted_answer": "Spotify",
-      "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1250,
-      "latency_ms": 722.0054999997956,
+      "predicted_answer": "t's name to find their profiles",
+      "is_correct": false,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1164,17 +1188,17 @@
         "candidate_count": 144,
         "candidate_sessions": 12,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.8462,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 31.7125,
-        "budget_util": 0.975,
+        "budget_util": 0.0,
         "question_type": "single-session-user",
         "is_aggregation": false,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "Spotify"
+        "predicted": "t's name to find their profiles"
       }
     },
     {
@@ -1185,8 +1209,9 @@
       "predicted_answer": "2 hours",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1138,
-      "latency_ms": 649.4042000012996,
+      "prompt_tokens": 1324,
+      "latency_ms": 670.0521999955527,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1232,8 +1257,9 @@
       "predicted_answer": "Philips LED bulb",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1180,
-      "latency_ms": 746.2159999995492,
+      "prompt_tokens": 1366,
+      "latency_ms": 776.69109999988,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1279,8 +1305,9 @@
       "predicted_answer": "The Seven Husbands of Evelyn Hugo",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1161,
-      "latency_ms": 851.1572999996133,
+      "prompt_tokens": 1347,
+      "latency_ms": 874.9809999935678,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1326,8 +1353,9 @@
       "predicted_answer": "10",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2142,
-      "latency_ms": 1342.2501999993983,
+      "prompt_tokens": 2328,
+      "latency_ms": 1377.860699998564,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1373,8 +1401,9 @@
       "predicted_answer": "6:30 pm",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1196,
-      "latency_ms": 801.9107000000076,
+      "prompt_tokens": 1382,
+      "latency_ms": 832.1826000028523,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1420,8 +1449,9 @@
       "predicted_answer": "24 hours",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1260,
-      "latency_ms": 811.2492000000202,
+      "prompt_tokens": 1446,
+      "latency_ms": 836.1836999974912,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1464,11 +1494,12 @@
       "question_type": "single-session-user",
       "question": "What brand of shampoo do I currently use?",
       "ground_truth": "Trader Joe's",
-      "predicted_answer": "Trader Joe's",
+      "predicted_answer": "Lavender scented shampoo from Trader Joe's.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1119,
-      "latency_ms": 667.0052000008582,
+      "prompt_tokens": 1305,
+      "latency_ms": 870.2522000021418,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1503,7 +1534,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Trader Joe's"
+        "predicted": "Lavender scented shampoo from Trader Joe's."
       }
     },
     {
@@ -1514,8 +1545,9 @@
       "predicted_answer": "bronchitis",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1186,
-      "latency_ms": 743.2164999991073,
+      "prompt_tokens": 1372,
+      "latency_ms": 765.2415999982622,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1561,8 +1593,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1257,
-      "latency_ms": 857.3543999991671,
+      "prompt_tokens": 1443,
+      "latency_ms": 912.4486000000616,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1608,8 +1641,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1186,
-      "latency_ms": 792.3221999990346,
+      "prompt_tokens": 1372,
+      "latency_ms": 813.2759000000078,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1655,8 +1689,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1079,
-      "latency_ms": 719.5049000001745,
+      "prompt_tokens": 1265,
+      "latency_ms": 743.1725999995251,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1702,8 +1737,9 @@
       "predicted_answer": "2",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1769,
-      "latency_ms": 1242.2699999988254,
+      "prompt_tokens": 1881,
+      "latency_ms": 1084.0862999975798,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1749,8 +1785,9 @@
       "predicted_answer": "3",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 2027,
-      "latency_ms": 1287.4819999997271,
+      "prompt_tokens": 2213,
+      "latency_ms": 1307.4424999940675,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1796,8 +1833,9 @@
       "predicted_answer": "3",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1832,
-      "latency_ms": 1309.8117000008642,
+      "prompt_tokens": 1944,
+      "latency_ms": 1155.0121000036597,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1840,11 +1878,12 @@
       "question_type": "multi-session",
       "question": "How many days did I spend on camping trips in the United States this year?",
       "ground_truth": "8 days.",
-      "predicted_answer": "7",
-      "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 1598,
-      "latency_ms": 946.6752000007546,
+      "predicted_answer": "8 days.",
+      "is_correct": true,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1869,7 +1908,7 @@
         "candidate_count": 86,
         "candidate_sessions": 8,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
         "evidence_coverage": 0.0,
         "anchor_session_count": 18,
@@ -1877,9 +1916,9 @@
         "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": true,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "7"
+        "predicted": "8 days."
       }
     },
     {
@@ -1887,11 +1926,12 @@
       "question_type": "multi-session",
       "question": "How many weeks did it take me to watch all the Marvel Cinematic Universe movies and the main Star Wars films?",
       "ground_truth": "3.5 weeks",
-      "predicted_answer": "2 weeks",
+      "predicted_answer": "4 weeks",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1308,
-      "latency_ms": 819.8913000014727,
+      "prompt_tokens": 1494,
+      "latency_ms": 841.0683999973116,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -1926,7 +1966,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "2 weeks"
+        "predicted": "4 weeks"
       }
     },
     {
@@ -1937,8 +1977,9 @@
       "predicted_answer": "12",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1685,
-      "latency_ms": 1225.231200001872,
+      "prompt_tokens": 1797,
+      "latency_ms": 1063.3221000025515,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -1984,8 +2025,9 @@
       "predicted_answer": "3",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1747,
-      "latency_ms": 1049.852899999678,
+      "prompt_tokens": 1859,
+      "latency_ms": 1068.7796999991406,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2031,8 +2073,9 @@
       "predicted_answer": "2 AM",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1661,
-      "latency_ms": 1042.3964000001433,
+      "prompt_tokens": 1847,
+      "latency_ms": 1086.505200000829,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -2075,11 +2118,12 @@
       "question_type": "multi-session",
       "question": "How many movie festivals that I attended?",
       "ground_truth": "I attended four movie festivals.",
-      "predicted_answer": "2",
-      "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 1168,
-      "latency_ms": 702.8338999989501,
+      "predicted_answer": "4",
+      "is_correct": true,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -2104,17 +2148,17 @@
         "candidate_count": 124,
         "candidate_sessions": 11,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
-        "evidence_coverage": 1.7143,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 42.5917,
-        "budget_util": 0.9733,
+        "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": false,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "2"
+        "predicted": "4"
       }
     },
     {
@@ -2122,11 +2166,12 @@
       "question_type": "multi-session",
       "question": "How many days did I take social media breaks in total?",
       "ground_truth": "17 days",
-      "predicted_answer": "17 days",
+      "predicted_answer": "1 days",
       "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1929,
-      "latency_ms": 1394.6544999998878,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2151,7 +2196,7 @@
         "candidate_count": 125,
         "candidate_sessions": 10,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
         "evidence_coverage": 0.0,
         "anchor_session_count": 18,
@@ -2161,7 +2206,7 @@
         "is_aggregation": true,
         "correct": true,
         "reader_model": "",
-        "predicted": "17 days"
+        "predicted": "1 days"
       }
     },
     {
@@ -2174,6 +2219,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2219,8 +2265,9 @@
       "predicted_answer": "105",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1633,
-      "latency_ms": 1021.2499999979627,
+      "prompt_tokens": 1745,
+      "latency_ms": 1213.0538999990677,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2263,11 +2310,12 @@
       "question_type": "multi-session",
       "question": "How many weddings have I attended in this year?",
       "ground_truth": "I attended three weddings. The couples were Rachel and Mike, Emily and Sarah, and Jen and Tom.",
-      "predicted_answer": "4",
-      "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 1651,
-      "latency_ms": 976.5707999977167,
+      "predicted_answer": "3",
+      "is_correct": true,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2292,7 +2340,7 @@
         "candidate_count": 98,
         "candidate_sessions": 9,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
         "evidence_coverage": 0.0,
         "anchor_session_count": 18,
@@ -2300,9 +2348,9 @@
         "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": true,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "4"
+        "predicted": "3"
       }
     },
     {
@@ -2310,11 +2358,12 @@
       "question_type": "multi-session",
       "question": "How many babies were born to friends and family members in the last few months?",
       "ground_truth": "5",
-      "predicted_answer": "4",
-      "is_correct": false,
+      "predicted_answer": "5",
+      "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2087,
-      "latency_ms": 1337.6979999993637,
+      "prompt_tokens": 2273,
+      "latency_ms": 1379.1829999972833,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2347,9 +2396,9 @@
         "budget_util": 0.9978,
         "question_type": "multi-session",
         "is_aggregation": false,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "4"
+        "predicted": "5"
       }
     },
     {
@@ -2360,8 +2409,9 @@
       "predicted_answer": "3",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1690,
-      "latency_ms": 1217.5362999987556,
+      "prompt_tokens": 1802,
+      "latency_ms": 1049.386600003345,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2407,8 +2457,9 @@
       "predicted_answer": "4",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1779,
-      "latency_ms": 1067.558900002041,
+      "prompt_tokens": 1891,
+      "latency_ms": 1087.9227000041283,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2454,8 +2505,9 @@
       "predicted_answer": "2",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1687,
-      "latency_ms": 1047.3015999996278,
+      "prompt_tokens": 1799,
+      "latency_ms": 1065.3295000010985,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2501,8 +2553,9 @@
       "predicted_answer": "$270",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1709,
-      "latency_ms": 1172.2234999979264,
+      "prompt_tokens": 1821,
+      "latency_ms": 1166.7146000036155,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2545,11 +2598,12 @@
       "question_type": "multi-session",
       "question": "How many doctor's appointments did I go to in March?",
       "ground_truth": "2",
-      "predicted_answer": "3",
-      "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 1228,
-      "latency_ms": 889.8991999994905,
+      "predicted_answer": "2",
+      "is_correct": true,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -2574,17 +2628,17 @@
         "candidate_count": 60,
         "candidate_sessions": 5,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.8,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 75.3601,
-        "budget_util": 0.9183,
+        "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": false,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "3"
+        "predicted": "2"
       }
     },
     {
@@ -2595,8 +2649,9 @@
       "predicted_answer": "5 days",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1169,
-      "latency_ms": 789.0516000006755,
+      "prompt_tokens": 1355,
+      "latency_ms": 774.0943999961019,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -2642,8 +2697,9 @@
       "predicted_answer": "1",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1182,
-      "latency_ms": 775.7755999991787,
+      "prompt_tokens": 1368,
+      "latency_ms": 719.7073999996064,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -2689,8 +2745,9 @@
       "predicted_answer": "3",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2159,
-      "latency_ms": 1420.356400001765,
+      "prompt_tokens": 2345,
+      "latency_ms": 1404.400599996734,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2733,11 +2790,12 @@
       "question_type": "multi-session",
       "question": "How many projects have I been working on simultaneously, excluding my thesis?",
       "ground_truth": "2",
-      "predicted_answer": "3",
-      "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 1609,
-      "latency_ms": 1267.439999999624,
+      "predicted_answer": "2",
+      "is_correct": true,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2762,7 +2820,7 @@
         "candidate_count": 156,
         "candidate_sessions": 15,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
         "evidence_coverage": 0.0,
         "anchor_session_count": 18,
@@ -2770,9 +2828,9 @@
         "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": true,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "3"
+        "predicted": "2"
       }
     },
     {
@@ -2783,8 +2841,9 @@
       "predicted_answer": "3",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2136,
-      "latency_ms": 1457.033099999535,
+      "prompt_tokens": 2322,
+      "latency_ms": 1419.205400001374,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2827,11 +2886,12 @@
       "question_type": "multi-session",
       "question": "How many bikes did I service or plan to service in March?",
       "ground_truth": "2",
-      "predicted_answer": "2",
-      "is_correct": true,
+      "predicted_answer": "0",
+      "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1778,
-      "latency_ms": 1341.1061000006157,
+      "prompt_tokens": 1890,
+      "latency_ms": 1126.2993999989703,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2864,9 +2924,9 @@
         "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": true,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "2"
+        "predicted": "0"
       }
     },
     {
@@ -2874,11 +2934,12 @@
       "question_type": "multi-session",
       "question": "How many days did I spend participating in faith-related activities in December?",
       "ground_truth": "3 days.",
-      "predicted_answer": "2",
+      "predicted_answer": "1",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1731,
-      "latency_ms": 1152.5643999993918,
+      "prompt_tokens": 1843,
+      "latency_ms": 1075.8063000030234,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2913,7 +2974,7 @@
         "is_aggregation": true,
         "correct": false,
         "reader_model": "",
-        "predicted": "2"
+        "predicted": "1"
       }
     },
     {
@@ -2921,11 +2982,12 @@
       "question_type": "multi-session",
       "question": "How many days did I spend in total traveling in Hawaii and in New York City?",
       "ground_truth": "15 days",
-      "predicted_answer": "15 days",
+      "predicted_answer": "50 days",
       "is_correct": true,
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -2960,7 +3022,7 @@
         "is_aggregation": true,
         "correct": true,
         "reader_model": "",
-        "predicted": "15 days"
+        "predicted": "50 days"
       }
     },
     {
@@ -2971,8 +3033,9 @@
       "predicted_answer": "38",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1588,
-      "latency_ms": 993.126299999858,
+      "prompt_tokens": 1700,
+      "latency_ms": 1030.0626999960514,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3020,6 +3083,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3065,8 +3129,9 @@
       "predicted_answer": "2",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2047,
-      "latency_ms": 1577.020900000207,
+      "prompt_tokens": 2233,
+      "latency_ms": 1372.3670000035781,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3114,6 +3179,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3156,11 +3222,12 @@
       "question_type": "multi-session",
       "question": "How many years in total did I spend in formal education from high school to the completion of my Bachelor's degree?",
       "ground_truth": "10 years",
-      "predicted_answer": "4 years",
+      "predicted_answer": "5004 years",
       "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1687,
-      "latency_ms": 1465.094000002864,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3185,7 +3252,7 @@
         "candidate_count": 168,
         "candidate_sessions": 16,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
         "evidence_coverage": 0.0,
         "anchor_session_count": 18,
@@ -3195,7 +3262,7 @@
         "is_aggregation": true,
         "correct": true,
         "reader_model": "",
-        "predicted": "4 years"
+        "predicted": "5004 years"
       }
     },
     {
@@ -3203,11 +3270,12 @@
       "question_type": "multi-session",
       "question": "How many total pieces of writing have I completed since I started writing again three weeks ago, including short stories, poems, and pieces for the writing challenge?",
       "ground_truth": "23",
-      "predicted_answer": "17",
+      "predicted_answer": "22 poems",
       "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 2190,
-      "latency_ms": 1493.58509999729,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -3232,17 +3300,17 @@
         "candidate_count": 124,
         "candidate_sessions": 11,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 3,
-        "evidence_coverage": 0.6087,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 65.4358,
-        "budget_util": 0.9889,
+        "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": false,
         "correct": false,
         "reader_model": "",
-        "predicted": "17"
+        "predicted": "22 poems"
       }
     },
     {
@@ -3253,8 +3321,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1600,
-      "latency_ms": 1276.4036000007764,
+      "prompt_tokens": 1712,
+      "latency_ms": 1418.337299997802,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3300,8 +3369,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1684,
-      "latency_ms": 1164.2552000012074,
+      "prompt_tokens": 1796,
+      "latency_ms": 1172.8099000029033,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3344,11 +3414,12 @@
       "question_type": "multi-session",
       "question": "How many days did it take for my iPad case to arrive after I bought it?",
       "ground_truth": "The information provided is not enough. You did not mention buying an iPad case.",
-      "predicted_answer": "I don't know.",
+      "predicted_answer": "239 days",
       "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1176,
-      "latency_ms": 828.5265999984404,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -3373,17 +3444,17 @@
         "candidate_count": 164,
         "candidate_sessions": 14,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.5625,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 22.9478,
-        "budget_util": 0.9717,
+        "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "I don't know."
+        "predicted": "239 days"
       }
     },
     {
@@ -3391,11 +3462,12 @@
       "question_type": "single-session-preference",
       "question": "Can you recommend some resources where I can learn more about video editing?",
       "ground_truth": "The user would prefer responses that suggest resources specifically tailored to Adobe Premiere Pro, especially those that delve into its advanced settings. They might not prefer general video editing resources or resources related to other video editing software.",
-      "predicted_answer": "Certainly! For learning advanced video editing techniques in Adobe Premiere Pro, you might find the \"Adobe Premiere Pro CC Classroom in a Book\" by Adobe Press very helpful. Additionally, the official Adobe Support website and YouTube channel offer numerous tutorials and guides.",
+      "predicted_answer": "Certainly! For mastering advanced video editing techniques in Adobe Premiere Pro, you might find these resources helpful: 1. The official Adobe Premiere Pro tutorials on LinkedIn Learning, which cover a wide range of topics from basic to advanced. 2. YouTube channels like Video Copilot and Scott Hirsch offer in-depth video editing tips and tricks. 3. Books such as \"Adobe Premiere Pro CC Classroom in a Book\" by Adobe Creative Team can provide comprehensive guidance. 4. Online forums and communities like the Adobe Forums can also be great for getting specific advice and troubleshooting tips.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1212,
-      "latency_ms": 2171.8237999994017,
+      "prompt_tokens": 988,
+      "latency_ms": 3920.140200003516,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3425,12 +3497,12 @@
         "evidence_coverage": 0.4167,
         "anchor_session_count": 18,
         "top1_anchor_score": 37.6384,
-        "budget_util": 0.9883,
+        "budget_util": 0.97,
         "question_type": "single-session-preference",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Certainly! For learning advanced video editing techniques in Adobe Premiere Pro, you might find the \"Adobe Premiere Pro CC Classroom in a Book\" by Adobe Press very helpful. Additionally, the official Adobe Support website and YouTube channel offer numerous tutorials and guides."
+        "predicted": "Certainly! For mastering advanced video editing techniques in Adobe Premiere Pro, you might find these resources helpful: 1. The official Adobe Premiere Pro tutorials on LinkedIn Learning, which cover a wide range of topics from basic to advanced. 2. YouTube channels like Video Copilot and Scott Hirsch offer in-depth video editing tips and tricks. 3. Books such as \"Adobe Premiere Pro CC Classroom in a Book\" by Adobe Creative Team can provide comprehensive guidance. 4. Online forums and communities like the Adobe Forums can also be great for getting specific advice and troubleshooting tips."
       }
     },
     {
@@ -3442,7 +3514,8 @@
       "is_correct": false,
       "deterministic_override": false,
       "prompt_tokens": 1129,
-      "latency_ms": 3502.0061000032,
+      "latency_ms": 3347.441099998832,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3489,7 +3562,8 @@
       "is_correct": true,
       "deterministic_override": false,
       "prompt_tokens": 1024,
-      "latency_ms": 2723.2565999984217,
+      "latency_ms": 2754.46920000104,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3536,7 +3610,8 @@
       "is_correct": true,
       "deterministic_override": false,
       "prompt_tokens": 1041,
-      "latency_ms": 2685.8057000026747,
+      "latency_ms": 2739.557499997318,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3579,11 +3654,12 @@
       "question_type": "single-session-preference",
       "question": "Can you suggest some activities that I can do in the evening?",
       "ground_truth": "The user would prefer suggestions that involve relaxing activities that can be done in the evening, preferably before 9:30 pm. They would not prefer suggestions that involve using their phone or watching TV, as these activities have been affecting their sleep quality.",
-      "predicted_answer": "Based on your past interest in photography, you might enjoy setting up a nighttime photography session with your pet, inspired by Charles Dudley Arnold's innovative work. You could use your camera to capture the unique lighting and shadows during twilight, creating a beautiful and personal series of photos.",
-      "is_correct": false,
+      "predicted_answer": "Based on your preference for relaxation and winding down, you might enjoy listening to calming music or nature sounds, practicing gentle yoga or stretching, or reading a light book. These activities align with your past experience finding meditation relaxing and can help you prepare for a good night's sleep.",
+      "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1163,
-      "latency_ms": 2140.7349000000977,
+      "prompt_tokens": 1005,
+      "latency_ms": 2099.8834000056377,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3610,15 +3686,15 @@
         "conflict": true,
         "cert_present": false,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.5455,
+        "evidence_coverage": 0.6364,
         "anchor_session_count": 18,
         "top1_anchor_score": 34.6041,
-        "budget_util": 0.9683,
+        "budget_util": 0.9933,
         "question_type": "single-session-preference",
         "is_aggregation": false,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "Based on your past interest in photography, you might enjoy setting up a nighttime photography session with your pet, inspired by Charles Dudley Arnold's innovative work. You could use your camera to capture the unique lighting and shadows during twilight, creating a beautiful and personal series of photos."
+        "predicted": "Based on your preference for relaxation and winding down, you might enjoy listening to calming music or nature sounds, practicing gentle yoga or stretching, or reading a light book. These activities align with your past experience finding meditation relaxing and can help you prepare for a good night's sleep."
       }
     },
     {
@@ -3626,11 +3702,12 @@
       "question_type": "single-session-preference",
       "question": "I've been thinking about ways to stay connected with my colleagues. Any suggestions?",
       "ground_truth": "The user would prefer responses that acknowledge their desire for social interaction and collaboration while working remotely, utilizing their previous experiences with company initiatives and team collaborations. They might prefer suggestions of virtual team-building activities, regular check-ins, or joining interest-based groups within the company. The user may not prefer generic suggestions that do not take into account their specific work situation or previous attempts at staying connected with colleagues.",
-      "predicted_answer": "You might consider organizing virtual coffee breaks, similar to the idea you discussed before. Start by asking your team how they're handling remote work and express your own experiences missing in-person interactions. Introduce the concept of virtual coffee breaks as a way to maintain team connection and culture.",
+      "predicted_answer": "Sure! Since you've mentioned enjoying virtual coffee breaks, why not suggest them again? You could start by asking, \"How do we stay connected and build our team culture while working from home?\" Then share your experience with Max, your pet, by saying, \"I've been missing our in-person coffee breaks and casual chats, especially with Max around. It's made me realize how important those moments are for our team's morale and connection.\" Finally, introduce the idea of virtual coffee breaks as a potential solution: \"What if we could have regular virtual coffee breaks to catch up and share some succulent or herb gardening tips?\"",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1044,
-      "latency_ms": 2147.7202999994915,
+      "prompt_tokens": 930,
+      "latency_ms": 3953.271999998833,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3657,15 +3734,15 @@
         "conflict": true,
         "cert_present": false,
         "temporal_complexity": 1,
-        "evidence_coverage": 1.2308,
+        "evidence_coverage": 1.3077,
         "anchor_session_count": 18,
         "top1_anchor_score": 56.0193,
-        "budget_util": 1.0,
+        "budget_util": 0.965,
         "question_type": "single-session-preference",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "You might consider organizing virtual coffee breaks, similar to the idea you discussed before. Start by asking your team how they're handling remote work and express your own experiences missing in-person interactions. Introduce the concept of virtual coffee breaks as a way to maintain team connection and culture."
+        "predicted": "Sure! Since you've mentioned enjoying virtual coffee breaks, why not suggest them again? You could start by asking, \"How do we stay connected and build our team culture while working from home?\" Then share your experience with Max, your pet, by saying, \"I've been missing our in-person coffee breaks and casual chats, especially with Max around. It's made me realize how important those moments are for our team's morale and connection.\" Finally, introduce the idea of virtual coffee breaks as a potential solution: \"What if we could have regular virtual coffee breaks to catch up and share some succulent or herb gardening tips?\""
       }
     },
     {
@@ -3677,7 +3754,8 @@
       "is_correct": true,
       "deterministic_override": false,
       "prompt_tokens": 1035,
-      "latency_ms": 2400.877500000206,
+      "latency_ms": 2451.8882000047597,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3720,11 +3798,12 @@
       "question_type": "single-session-preference",
       "question": "I've been feeling a bit stuck with my paintings lately. Do you have any ideas on how I can find new inspiration?",
       "ground_truth": "The user would prefer responses that build upon their existing sources of inspiration, such as revisiting Instagram art accounts or exploring new techniques from online tutorials. They might also appreciate suggestions that revisit previous themes they found enjoyable, like painting flowers. The user would not prefer generic or vague suggestions for finding inspiration, and would likely appreciate responses that utilize their recent 30-day painting challenge experience.",
-      "predicted_answer": "You might find new inspiration by revisiting your solo activities, like painting and video games, but this time with a friend. Since you've been focusing on solo activities, perhaps you could invite a friend over for a painting session. You could watch a few romantic comedies together, maybe with a saxophonist, to create a fun and relaxed atmosphere. This way, you can enjoy your hobbies while reconnecting with someone you care about.",
+      "predicted_answer": "You might find new inspiration by watching a saxophonist perform a sequence of their favorite pieces. Since you've been painting flowers and enjoying solo activities like painting and video games, consider incorporating some of the saxophonist's themes or moods into your flower paintings. This could add a new layer of creativity and help you break out of your rut.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1011,
-      "latency_ms": 2917.367699999886,
+      "prompt_tokens": 1039,
+      "latency_ms": 2574.4140000024345,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3754,12 +3833,12 @@
         "evidence_coverage": 0.5455,
         "anchor_session_count": 18,
         "top1_anchor_score": 49.6047,
-        "budget_util": 0.9633,
+        "budget_util": 1.0,
         "question_type": "single-session-preference",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "You might find new inspiration by revisiting your solo activities, like painting and video games, but this time with a friend. Since you've been focusing on solo activities, perhaps you could invite a friend over for a painting session. You could watch a few romantic comedies together, maybe with a saxophonist, to create a fun and relaxed atmosphere. This way, you can enjoy your hobbies while reconnecting with someone you care about."
+        "predicted": "You might find new inspiration by watching a saxophonist perform a sequence of their favorite pieces. Since you've been painting flowers and enjoying solo activities like painting and video games, consider incorporating some of the saxophonist's themes or moods into your flower paintings. This could add a new layer of creativity and help you break out of your rut."
       }
     },
     {
@@ -3767,11 +3846,12 @@
       "question_type": "single-session-preference",
       "question": "I've been thinking about making a cocktail for an upcoming get-together, but I'm not sure which one to choose. Any suggestions?",
       "ground_truth": "Considering their mixology class background, the user would prefer cocktail suggestions that build upon their existing skills and interests, such as creative variations of classic cocktails or innovative twists on familiar flavors. They might appreciate recommendations that incorporate their experience with refreshing summer drinks like Pimm's Cup. The user would not prefer overly simplistic or basic cocktail recipes, and may not be interested in suggestions that don't take into account their mixology class background.",
-      "predicted_answer": "Considering your past enjoyment of the Pimm's Cup with a Twist and your mixology class experience, how about trying a Hendrick's Gin Fizz? It's a classic yet refreshing choice that would be perfect for your get-together. Muddle cucumber slices with a bit of fresh lemon juice and a simple syrup you've already made, then mix in some lemon-lime soda and top with a splash of sparkling water. Garnish with a cucumber slice and a lemon wheel for a charming touch. Enjoy your cocktail-making!",
+      "predicted_answer": "Considering your past experiments with Hendrick's gin and the Pimm's Cup with a Twist, you might enjoy creating a cucumber-infused gin cocktail. Try muddling fresh cucumber slices with a bit of lime juice and a simple syrup you've already made. Add Hendrick's gin and top with sparkling water. Serve in a Collins glass with a cucumber slice and a lime wheel for garnish. This should be a refreshing and flavorful addition to your get-together.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1088,
-      "latency_ms": 3458.96619999985,
+      "prompt_tokens": 1059,
+      "latency_ms": 3177.8267999980017,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3798,15 +3878,15 @@
         "conflict": true,
         "cert_present": false,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.7619,
+        "evidence_coverage": 0.7143,
         "anchor_session_count": 18,
         "top1_anchor_score": 74.4402,
-        "budget_util": 0.99,
+        "budget_util": 0.9883,
         "question_type": "single-session-preference",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Considering your past enjoyment of the Pimm's Cup with a Twist and your mixology class experience, how about trying a Hendrick's Gin Fizz? It's a classic yet refreshing choice that would be perfect for your get-together. Muddle cucumber slices with a bit of fresh lemon juice and a simple syrup you've already made, then mix in some lemon-lime soda and top with a splash of sparkling water. Garnish with a cucumber slice and a lemon wheel for a charming touch. Enjoy your cocktail-making!"
+        "predicted": "Considering your past experiments with Hendrick's gin and the Pimm's Cup with a Twist, you might enjoy creating a cucumber-infused gin cocktail. Try muddling fresh cucumber slices with a bit of lime juice and a simple syrup you've already made. Add Hendrick's gin and top with sparkling water. Serve in a Collins glass with a cucumber slice and a lime wheel for garnish. This should be a refreshing and flavorful addition to your get-together."
       }
     },
     {
@@ -3814,11 +3894,12 @@
       "question_type": "single-session-preference",
       "question": "I'm thinking of inviting my colleagues over for a small gathering. Any tips on what to bake?",
       "ground_truth": "The user would prefer baking suggestions that take into account their previous success with the lemon poppyseed cake, such as variations of that recipe or other desserts that share similar qualities. They might prefer suggestions that balance impressiveness with manageability, considering their previous experience. The user may not prefer overly complex or unfamiliar recipes, or suggestions that do not build upon their existing baking experience.",
-      "predicted_answer": "Considering your love for baking and your previous success with the lemon poppyseed cake, you might enjoy making a lemon lavender pound cake. The lavender can be incorporated by using dried lavender buds or lavender-infused oil in the batter. This will add a unique and delightful flavor to your gathering.",
+      "predicted_answer": "Based on your past experiences, you might enjoy making a lemon poppyseed cake or a batch of chewy chocolate chip cookies for your colleagues. You could also try a vegan ricotta cheese substitute using cashews, as you mentioned before. Enjoy the gathering!",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1146,
-      "latency_ms": 2272.6511000000755,
+      "prompt_tokens": 1125,
+      "latency_ms": 2080.173400005151,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3845,15 +3926,15 @@
         "conflict": true,
         "cert_present": false,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.7059,
+        "evidence_coverage": 0.7647,
         "anchor_session_count": 18,
         "top1_anchor_score": 34.6704,
-        "budget_util": 0.9917,
+        "budget_util": 1.0,
         "question_type": "single-session-preference",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Considering your love for baking and your previous success with the lemon poppyseed cake, you might enjoy making a lemon lavender pound cake. The lavender can be incorporated by using dried lavender buds or lavender-infused oil in the batter. This will add a unique and delightful flavor to your gathering."
+        "predicted": "Based on your past experiences, you might enjoy making a lemon poppyseed cake or a batch of chewy chocolate chip cookies for your colleagues. You could also try a vegan ricotta cheese substitute using cashews, as you mentioned before. Enjoy the gathering!"
       }
     },
     {
@@ -3865,7 +3946,8 @@
       "is_correct": true,
       "deterministic_override": false,
       "prompt_tokens": 1087,
-      "latency_ms": 2726.7647000007855,
+      "latency_ms": 2857.575399997586,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -3908,11 +3990,12 @@
       "question_type": "single-session-preference",
       "question": "I've been sneezing quite a bit lately. Do you think it might be my living room?",
       "ground_truth": "The user would prefer responses that consider the potential impact of their cat, Luna, and her shedding on their sneezing, as well as the recent deep clean of the living room and its possible effect on stirring up dust. They might not prefer responses that fail to take into account these specific details previously mentioned, such as generic suggestions or unrelated factors.",
-      "predicted_answer": "It's possible, consider cleaning your living room to remove dust and allergens.",
-      "is_correct": true,
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1196,
-      "latency_ms": 1109.9944999987201,
+      "prompt_tokens": 1397,
+      "latency_ms": 847.1460000000661,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -3942,12 +4025,12 @@
         "evidence_coverage": 0.4375,
         "anchor_session_count": 18,
         "top1_anchor_score": 28.819,
-        "budget_util": 0.9617,
+        "budget_util": 0.985,
         "question_type": "single-session-preference",
         "is_aggregation": false,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "It's possible, consider cleaning your living room to remove dust and allergens."
+        "predicted": "I don't know."
       }
     },
     {
@@ -3958,8 +4041,9 @@
       "predicted_answer": "Yes",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1089,
-      "latency_ms": 613.7291000013647,
+      "prompt_tokens": 1275,
+      "latency_ms": 640.8435000048485,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -4006,7 +4090,8 @@
       "is_correct": true,
       "deterministic_override": false,
       "prompt_tokens": 1055,
-      "latency_ms": 2502.285499998834,
+      "latency_ms": 2579.064399993513,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4049,11 +4134,12 @@
       "question_type": "single-session-preference",
       "question": "Can you suggest some activities I can do during my commute to work?",
       "ground_truth": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the genre beyond true crime or self-improvement, such as history. They may not be interested in activities that require visual attention, such as reading or watching videos, as they are commuting. The user would not prefer general podcast topics such as true crime or self-improvement, as the user wants to explore other topics.",
-      "predicted_answer": "You might enjoy listening to movie soundtracks during your commute, especially those by Hans Zimmer, which you mentioned enjoying. Niftory could be a great app to discover new playlists. Additionally, you could try a guided meditation or a self-improvement podcast to keep things interesting and aligned with your interests.",
+      "predicted_answer": "You can enjoy listening to Hans Zimmer's movie soundtracks on your hybrid bike ride, perhaps starting with his score from \"Inception\" or \"Interstellar\" to keep you motivated. Also, consider practicing deep breathing exercises or listening to a guided meditation podcast like \"10% Happier\" during your commute to help manage your anxiety.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1115,
-      "latency_ms": 2269.244200000685,
+      "prompt_tokens": 1088,
+      "latency_ms": 2511.8675000048825,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4083,12 +4169,12 @@
         "evidence_coverage": 0.4167,
         "anchor_session_count": 18,
         "top1_anchor_score": 33.9373,
-        "budget_util": 0.99,
+        "budget_util": 0.9717,
         "question_type": "single-session-preference",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "You might enjoy listening to movie soundtracks during your commute, especially those by Hans Zimmer, which you mentioned enjoying. Niftory could be a great app to discover new playlists. Additionally, you could try a guided meditation or a self-improvement podcast to keep things interesting and aligned with your interests."
+        "predicted": "You can enjoy listening to Hans Zimmer's movie soundtracks on your hybrid bike ride, perhaps starting with his score from \"Inception\" or \"Interstellar\" to keep you motivated. Also, consider practicing deep breathing exercises or listening to a guided meditation podcast like \"10% Happier\" during your commute to help manage your anxiety."
       }
     },
     {
@@ -4101,6 +4187,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4146,8 +4233,9 @@
       "predicted_answer": "100",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1226,
-      "latency_ms": 858.3504999987781,
+      "prompt_tokens": 1412,
+      "latency_ms": 794.9617000049329,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -4193,8 +4281,9 @@
       "predicted_answer": "3",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1714,
-      "latency_ms": 1219.7782000002917,
+      "prompt_tokens": 1826,
+      "latency_ms": 1054.9074000009568,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4242,6 +4331,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4284,11 +4374,12 @@
       "question_type": "multi-session",
       "question": "Did I receive a higher percentage discount on my first order from HelloFresh, compared to my first UberEats order?",
       "ground_truth": "Yes.",
-      "predicted_answer": "Yes",
-      "is_correct": true,
+      "predicted_answer": "No",
+      "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1851,
-      "latency_ms": 1386.5160000023025,
+      "prompt_tokens": 2037,
+      "latency_ms": 1211.2028000046848,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4321,9 +4412,9 @@
         "budget_util": 0.9813,
         "question_type": "multi-session",
         "is_aggregation": false,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "Yes"
+        "predicted": "No"
       }
     },
     {
@@ -4336,6 +4427,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4383,6 +4475,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4425,11 +4518,12 @@
       "question_type": "multi-session",
       "question": "How much older am I than the average age of employees in my department?",
       "ground_truth": "2.5 years",
-      "predicted_answer": "5.5 years",
+      "predicted_answer": "4.5 years",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1101,
-      "latency_ms": 914.1672999976436,
+      "prompt_tokens": 1287,
+      "latency_ms": 967.0295999967493,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -4464,7 +4558,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "5.5 years"
+        "predicted": "4.5 years"
       }
     },
     {
@@ -4475,8 +4569,9 @@
       "predicted_answer": "5",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1712,
-      "latency_ms": 1184.013000001869,
+      "prompt_tokens": 1824,
+      "latency_ms": 1102.351200002886,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4522,8 +4617,9 @@
       "predicted_answer": "2",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1761,
-      "latency_ms": 1066.4135000006354,
+      "prompt_tokens": 1873,
+      "latency_ms": 1143.5882000005222,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4571,6 +4667,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -4616,8 +4713,9 @@
       "predicted_answer": "300",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1747,
-      "latency_ms": 1119.1341999983706,
+      "prompt_tokens": 1859,
+      "latency_ms": 1156.390799995279,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4663,8 +4761,9 @@
       "predicted_answer": "4%",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1252,
-      "latency_ms": 739.4814999970549,
+      "prompt_tokens": 1438,
+      "latency_ms": 801.1853999996674,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -4707,11 +4806,12 @@
       "question_type": "multi-session",
       "question": "What is the total cost of Lola's vet visit and flea medication?",
       "ground_truth": "$75",
-      "predicted_answer": "$75",
+      "predicted_answer": "75",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1699,
-      "latency_ms": 1258.0037000006996,
+      "prompt_tokens": 1811,
+      "latency_ms": 1112.3185999967973,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4746,7 +4846,7 @@
         "is_aggregation": true,
         "correct": true,
         "reader_model": "",
-        "predicted": "$75"
+        "predicted": "75"
       }
     },
     {
@@ -4759,6 +4859,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4804,8 +4905,9 @@
       "predicted_answer": "Harvard University",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1052,
-      "latency_ms": 683.309799998824,
+      "prompt_tokens": 1238,
+      "latency_ms": 728.60120000405,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -4851,8 +4953,9 @@
       "predicted_answer": "$140",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1673,
-      "latency_ms": 1281.4256000019668,
+      "prompt_tokens": 1785,
+      "latency_ms": 1151.4976999969804,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4900,6 +5003,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4942,11 +5046,12 @@
       "question_type": "multi-session",
       "question": "How much faster did I finish the 5K run compared to my previous year's time?",
       "ground_truth": "10 minutes",
-      "predicted_answer": "9 minutes",
+      "predicted_answer": "10 minutes",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1789,
-      "latency_ms": 1160.815500003082,
+      "prompt_tokens": 1901,
+      "latency_ms": 1183.0263000010746,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -4981,7 +5086,7 @@
         "is_aggregation": true,
         "correct": true,
         "reader_model": "",
-        "predicted": "9 minutes"
+        "predicted": "10 minutes"
       }
     },
     {
@@ -4992,8 +5097,9 @@
       "predicted_answer": "$50",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1298,
-      "latency_ms": 870.8785999988322,
+      "prompt_tokens": 1484,
+      "latency_ms": 899.9890999984927,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5041,6 +5147,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5088,6 +5195,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5135,6 +5243,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -5177,11 +5286,12 @@
       "question_type": "multi-session",
       "question": "How many days a week do I attend fitness classes?",
       "ground_truth": "4 days.",
-      "predicted_answer": "4",
-      "is_correct": true,
+      "predicted_answer": "3",
+      "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1768,
-      "latency_ms": 1555.226100001164,
+      "prompt_tokens": 1880,
+      "latency_ms": 1347.2208000021055,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -5214,9 +5324,9 @@
         "budget_util": 0.0,
         "question_type": "multi-session",
         "is_aggregation": true,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "4"
+        "predicted": "3"
       }
     },
     {
@@ -5227,8 +5337,9 @@
       "predicted_answer": "$50",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1744,
-      "latency_ms": 1095.9941999972216,
+      "prompt_tokens": 1856,
+      "latency_ms": 1142.7154999983031,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -5276,6 +5387,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -5323,6 +5435,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -5368,8 +5481,9 @@
       "predicted_answer": "$120",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1251,
-      "latency_ms": 996.2411000014981,
+      "prompt_tokens": 1437,
+      "latency_ms": 884.6802999978536,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5415,8 +5529,9 @@
       "predicted_answer": "$5",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1264,
-      "latency_ms": 824.7267000006104,
+      "prompt_tokens": 1450,
+      "latency_ms": 852.2923999989871,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5462,8 +5577,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1212,
-      "latency_ms": 1029.4689000002109,
+      "prompt_tokens": 1398,
+      "latency_ms": 845.5430999965756,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5506,11 +5622,12 @@
       "question_type": "multi-session",
       "question": "How much will I save by taking the bus from the airport to my hotel instead of a taxi?",
       "ground_truth": "The information provided is not enough. You did not mention how much will the bus take.",
-      "predicted_answer": "¥10,000-15,000",
+      "predicted_answer": "¥13,000",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1313,
-      "latency_ms": 1155.8847000014794,
+      "prompt_tokens": 1499,
+      "latency_ms": 966.6883000027156,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -5545,7 +5662,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "¥10,000-15,000"
+        "predicted": "¥13,000"
       }
     },
     {
@@ -5553,11 +5670,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?",
       "ground_truth": "7 days. 8 days (including the last day) is also acceptable.",
-      "predicted_answer": "27 days",
+      "predicted_answer": "7 days",
       "is_correct": true,
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5592,7 +5710,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "27 days"
+        "predicted": "7 days"
       }
     },
     {
@@ -5605,6 +5723,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5650,8 +5769,9 @@
       "predicted_answer": "4",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2295,
-      "latency_ms": 1682.4500000002445,
+      "prompt_tokens": 2481,
+      "latency_ms": 1740.4404999979306,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5694,11 +5814,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days passed between the day I started playing along to my favorite songs on my old keyboard and the day I discovered a bluegrass band?",
       "ground_truth": "6 days. 7 days (including the last day) is also acceptable.",
-      "predicted_answer": "35 days",
+      "predicted_answer": "157 days",
       "is_correct": true,
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5733,7 +5854,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "35 days"
+        "predicted": "157 days"
       }
     },
     {
@@ -5741,11 +5862,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many months have passed since I last visited a museum with a friend?",
       "ground_truth": "5",
-      "predicted_answer": "5",
-      "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1521,
-      "latency_ms": 955.7954000010795,
+      "predicted_answer": "4 months",
+      "is_correct": false,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5770,17 +5892,17 @@
         "candidate_count": 113,
         "candidate_sessions": 10,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 3,
-        "evidence_coverage": 0.6154,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 39.5675,
-        "budget_util": 0.9818,
+        "budget_util": 0.0,
         "question_type": "temporal-reasoning",
         "is_aggregation": false,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "5"
+        "predicted": "4 months"
       }
     },
     {
@@ -5791,8 +5913,9 @@
       "predicted_answer": "2",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2227,
-      "latency_ms": 1644.8651000027894,
+      "prompt_tokens": 2413,
+      "latency_ms": 1717.5322999974014,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5838,8 +5961,9 @@
       "predicted_answer": "Michael's engagement party",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1491,
-      "latency_ms": 1014.2066000007617,
+      "prompt_tokens": 1677,
+      "latency_ms": 1058.51740000071,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5885,8 +6009,9 @@
       "predicted_answer": "4 days ago",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2193,
-      "latency_ms": 1673.9968000001682,
+      "prompt_tokens": 2379,
+      "latency_ms": 1532.2560999993584,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5929,11 +6054,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days passed between the day I started watering my herb garden and the day I harvested my first batch of fresh herbs?",
       "ground_truth": "24 days. 25 days (including the last day) is also acceptable.",
-      "predicted_answer": "54 days",
+      "predicted_answer": "103 days",
       "is_correct": true,
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -5968,7 +6094,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "54 days"
+        "predicted": "103 days"
       }
     },
     {
@@ -5979,8 +6105,9 @@
       "predicted_answer": "2",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1764,
-      "latency_ms": 1442.2918000018399,
+      "prompt_tokens": 1876,
+      "latency_ms": 1147.8159999969648,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -6026,8 +6153,9 @@
       "predicted_answer": "Yosemite National Park, Sequoia National Park, Eastern Sierra",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1241,
-      "latency_ms": 1053.5708999996132,
+      "prompt_tokens": 1427,
+      "latency_ms": 1076.233299994783,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6073,8 +6201,9 @@
       "predicted_answer": "'I used a Buy One Get One Free coupon on Luvs diapers at Walmart', 'I signed up for the rewards program at ShopRite', 'I redeemed $12 cashback for a $10 Amazon gift card from Ibotta'",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1273,
-      "latency_ms": 2096.2698999974236,
+      "prompt_tokens": 1459,
+      "latency_ms": 2108.9331999974092,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6117,11 +6246,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days ago did I meet Emma?",
       "ground_truth": "9 days ago. 10 days (including the last day) is also acceptable.",
-      "predicted_answer": "39 days",
+      "predicted_answer": "39 days ago",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2111,
-      "latency_ms": 1416.6493999982777,
+      "prompt_tokens": 2297,
+      "latency_ms": 1474.4038999997429,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6156,7 +6286,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "39 days"
+        "predicted": "39 days ago"
       }
     },
     {
@@ -6166,9 +6296,10 @@
       "ground_truth": "24 days. 25 days (including the last day) is also acceptable.",
       "predicted_answer": "54 days",
       "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1458,
-      "latency_ms": 961.5198999999848,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6193,12 +6324,12 @@
         "candidate_count": 106,
         "candidate_sessions": 9,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 3,
-        "evidence_coverage": 0.6818,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 100.3878,
-        "budget_util": 0.9794,
+        "budget_util": 0.0,
         "question_type": "temporal-reasoning",
         "is_aggregation": false,
         "correct": true,
@@ -6216,6 +6347,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6261,8 +6393,9 @@
       "predicted_answer": "21 days",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1305,
-      "latency_ms": 1318.8546000019414,
+      "prompt_tokens": 1491,
+      "latency_ms": 904.4993999996223,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6305,11 +6438,12 @@
       "question_type": "temporal-reasoning",
       "question": "What is the order of the concerts and musical events I attended in the past two months, starting from the earliest?",
       "ground_truth": "The order of the concerts I attended is: 1. Billie Eilish concert at the Wells Fargo Center in Philly, 2. Free outdoor concert series in the park, 3. Music festival in Brooklyn, 4. Jazz night at a local bar, 5. Queen + Adam Lambert concert at the Prudential Center in Newark, NJ.",
-      "predicted_answer": "Free outdoor concert series in the park, music festival in Brooklyn",
+      "predicted_answer": "Free outdoor concert series in the park on 2023/04/22.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1158,
-      "latency_ms": 992.0549999987998,
+      "prompt_tokens": 1344,
+      "latency_ms": 1230.9104000014486,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6344,7 +6478,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Free outdoor concert series in the park, music festival in Brooklyn"
+        "predicted": "Free outdoor concert series in the park on 2023/04/22."
       }
     },
     {
@@ -6355,8 +6489,9 @@
       "predicted_answer": "26 days",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2189,
-      "latency_ms": 1452.6670000013837,
+      "prompt_tokens": 2375,
+      "latency_ms": 1497.2883999944315,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6402,8 +6537,9 @@
       "predicted_answer": "4",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2100,
-      "latency_ms": 1393.7604000020656,
+      "prompt_tokens": 2286,
+      "latency_ms": 1413.219999994908,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6449,8 +6585,9 @@
       "predicted_answer": "the charity bake sale",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1492,
-      "latency_ms": 1002.3804999982531,
+      "prompt_tokens": 1678,
+      "latency_ms": 1028.959200004465,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6493,11 +6630,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days ago did I watch the Super Bowl?",
       "ground_truth": "17 days ago. 18 days (including the last day) is also acceptable.",
-      "predicted_answer": "17 days",
+      "predicted_answer": "17 days ago",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2113,
-      "latency_ms": 1417.682600000262,
+      "prompt_tokens": 2299,
+      "latency_ms": 1480.870599996706,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6532,7 +6670,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "17 days"
+        "predicted": "17 days ago"
       }
     },
     {
@@ -6543,8 +6681,9 @@
       "predicted_answer": "24 days",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2436,
-      "latency_ms": 1664.0663999969547,
+      "prompt_tokens": 2622,
+      "latency_ms": 1706.0763999979827,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6590,8 +6729,9 @@
       "predicted_answer": "3 days ago",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2237,
-      "latency_ms": 1568.7006000007386,
+      "prompt_tokens": 2423,
+      "latency_ms": 1583.6590999970213,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6634,11 +6774,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many weeks ago did I attend the 'Summer Nights' festival at Universal Studios Hollywood?",
       "ground_truth": "3 weeks ago",
-      "predicted_answer": "3",
+      "predicted_answer": "3 weeks",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2069,
-      "latency_ms": 1360.9959999994317,
+      "prompt_tokens": 2255,
+      "latency_ms": 1437.0879999987665,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6673,7 +6814,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "3"
+        "predicted": "3 weeks"
       }
     },
     {
@@ -6681,11 +6822,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days ago did I participate in the 5K charity run?",
       "ground_truth": "7 days ago. 8 days (including the last day) is also acceptable.",
-      "predicted_answer": "14 days ago",
+      "predicted_answer": "16 days ago",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2200,
-      "latency_ms": 1588.9974999990955,
+      "prompt_tokens": 2386,
+      "latency_ms": 1580.122500003199,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6720,7 +6862,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "14 days ago"
+        "predicted": "16 days ago"
       }
     },
     {
@@ -6731,8 +6873,9 @@
       "predicted_answer": "my post about vegan chili recipe",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1529,
-      "latency_ms": 1082.816100002674,
+      "prompt_tokens": 1715,
+      "latency_ms": 1114.3230000016047,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6778,8 +6921,9 @@
       "predicted_answer": "Emma, Rachel, Alex",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1600,
-      "latency_ms": 1075.127000000066,
+      "prompt_tokens": 1786,
+      "latency_ms": 1115.1718999972218,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -6825,8 +6969,9 @@
       "predicted_answer": "The event was the company's annual charity soccer tournament.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1239,
-      "latency_ms": 1337.593399999605,
+      "prompt_tokens": 1425,
+      "latency_ms": 1001.5908999994281,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6872,8 +7017,9 @@
       "predicted_answer": "Walk for Hunger",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1247,
-      "latency_ms": 826.086100001703,
+      "prompt_tokens": 1433,
+      "latency_ms": 871.9068999998854,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6921,6 +7067,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -6966,8 +7113,9 @@
       "predicted_answer": "City Art Museum",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1340,
-      "latency_ms": 863.2877000018198,
+      "prompt_tokens": 1526,
+      "latency_ms": 908.0697000026703,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7013,8 +7161,9 @@
       "predicted_answer": "road bike",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1514,
-      "latency_ms": 943.1621000003361,
+      "prompt_tokens": 1700,
+      "latency_ms": 986.9832999975188,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7062,6 +7211,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7107,8 +7257,9 @@
       "predicted_answer": "I recently discovered a bluegrass band that features a banjo player.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1377,
-      "latency_ms": 1194.3375999981072,
+      "prompt_tokens": 1563,
+      "latency_ms": 1249.095999999554,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -7156,6 +7307,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7201,8 +7353,9 @@
       "predicted_answer": "No",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1207,
-      "latency_ms": 723.164099999849,
+      "prompt_tokens": 1393,
+      "latency_ms": 722.4176000017906,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7250,6 +7403,7 @@
       "deterministic_override": true,
       "prompt_tokens": 0,
       "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7295,8 +7449,9 @@
       "predicted_answer": "The Episcopal Church.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1361,
-      "latency_ms": 898.3383999984653,
+      "prompt_tokens": 1547,
+      "latency_ms": 920.6832999989274,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -7342,8 +7497,9 @@
       "predicted_answer": "#PlankChallenge",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1240,
-      "latency_ms": 818.3592000023054,
+      "prompt_tokens": 1426,
+      "latency_ms": 833.2450999951106,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7386,11 +7542,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days did it take for me to find a house I loved after starting to work with Rachel?",
       "ground_truth": "14 days. 15 days (including the last day) is also acceptable.",
-      "predicted_answer": "17 days",
+      "predicted_answer": "15 days",
       "is_correct": true,
-      "deterministic_override": false,
-      "prompt_tokens": 1182,
-      "latency_ms": 768.8175999974192,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7415,17 +7572,17 @@
         "candidate_count": 60,
         "candidate_sessions": 5,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
-        "evidence_coverage": 0.3684,
+        "evidence_coverage": 0.0,
         "anchor_session_count": 18,
         "top1_anchor_score": 50.7666,
-        "budget_util": 0.905,
+        "budget_util": 0.0,
         "question_type": "temporal-reasoning",
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "17 days"
+        "predicted": "15 days"
       }
     },
     {
@@ -7436,8 +7593,9 @@
       "predicted_answer": "the tomatoes",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1660,
-      "latency_ms": 1105.4440000007162,
+      "prompt_tokens": 1846,
+      "latency_ms": 1079.630599997472,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7483,8 +7641,9 @@
       "predicted_answer": "Adidas sneakers",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1507,
-      "latency_ms": 1297.1089999991818,
+      "prompt_tokens": 1693,
+      "latency_ms": 1037.2352999984287,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7530,8 +7689,9 @@
       "predicted_answer": "the training pads for Luna",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1653,
-      "latency_ms": 1145.1605999973253,
+      "prompt_tokens": 1839,
+      "latency_ms": 1157.229999997071,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7577,8 +7737,9 @@
       "predicted_answer": "fixing the fence",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1474,
-      "latency_ms": 986.5529000016977,
+      "prompt_tokens": 1660,
+      "latency_ms": 1052.3405999992974,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7624,8 +7785,9 @@
       "predicted_answer": "4 years and 3 months",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1159,
-      "latency_ms": 850.6353999982821,
+      "prompt_tokens": 1345,
+      "latency_ms": 866.3907999944058,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7671,8 +7833,9 @@
       "predicted_answer": "the smart thermostat",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1569,
-      "latency_ms": 1147.0003999966139,
+      "prompt_tokens": 1755,
+      "latency_ms": 1027.9388999988441,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7715,11 +7878,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many months ago did I book the Airbnb in San Francisco?",
       "ground_truth": "Five months ago",
-      "predicted_answer": "Three months ago",
+      "predicted_answer": "Five months ago.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2122,
-      "latency_ms": 1447.3615999995673,
+      "prompt_tokens": 2308,
+      "latency_ms": 1497.5871999995434,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7754,7 +7918,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Three months ago"
+        "predicted": "Five months ago."
       }
     },
     {
@@ -7765,8 +7929,9 @@
       "predicted_answer": "5 weeks",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1237,
-      "latency_ms": 782.186600001296,
+      "prompt_tokens": 1423,
+      "latency_ms": 798.9735000010114,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7812,8 +7977,9 @@
       "predicted_answer": "3rd of June",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1677,
-      "latency_ms": 1146.3593000007677,
+      "prompt_tokens": 1863,
+      "latency_ms": 1207.930500000657,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7856,11 +8022,12 @@
       "question_type": "temporal-reasoning",
       "question": "How many days before I bought the iPhone 13 Pro did I attend the Holiday Market?",
       "ground_truth": "7 days. 8 days (including the last day) is also acceptable.",
-      "predicted_answer": "7",
+      "predicted_answer": "7 days",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1244,
-      "latency_ms": 891.4424000031431,
+      "prompt_tokens": 1430,
+      "latency_ms": 787.6916999957757,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -7895,7 +8062,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "7"
+        "predicted": "7 days"
       }
     },
     {
@@ -7906,8 +8073,9 @@
       "predicted_answer": "the arrival of the new prime lens",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1537,
-      "latency_ms": 1324.0533999996842,
+      "prompt_tokens": 1723,
+      "latency_ms": 1153.626200000872,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -7953,8 +8121,9 @@
       "predicted_answer": "the new router",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1500,
-      "latency_ms": 1240.8531999972183,
+      "prompt_tokens": 1686,
+      "latency_ms": 999.2426000026171,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8000,8 +8169,9 @@
       "predicted_answer": "the persistent cough",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1496,
-      "latency_ms": 1008.2080000029237,
+      "prompt_tokens": 1682,
+      "latency_ms": 995.2445000017178,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8047,8 +8217,9 @@
       "predicted_answer": "7 days",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1275,
-      "latency_ms": 877.8989999991609,
+      "prompt_tokens": 1461,
+      "latency_ms": 850.4277999963961,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8094,8 +8265,9 @@
       "predicted_answer": "the family road trip across the American Southwest",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1468,
-      "latency_ms": 1290.993400001753,
+      "prompt_tokens": 1654,
+      "latency_ms": 1110.643899999559,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8141,8 +8313,9 @@
       "predicted_answer": "3 weeks",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1133,
-      "latency_ms": 716.9476999988547,
+      "prompt_tokens": 1319,
+      "latency_ms": 705.9332999997423,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8188,8 +8361,9 @@
       "predicted_answer": "Tom",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1485,
-      "latency_ms": 880.4448999981105,
+      "prompt_tokens": 1671,
+      "latency_ms": 900.6367000038153,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8235,8 +8409,9 @@
       "predicted_answer": "Page Turners",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1496,
-      "latency_ms": 974.6586000001116,
+      "prompt_tokens": 1682,
+      "latency_ms": 1008.0587999982527,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8282,8 +8457,9 @@
       "predicted_answer": "six weeks",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1299,
-      "latency_ms": 828.471199998603,
+      "prompt_tokens": 1485,
+      "latency_ms": 839.3425999965984,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8329,8 +8505,9 @@
       "predicted_answer": "Disney+",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1492,
-      "latency_ms": 915.3375999994751,
+      "prompt_tokens": 1678,
+      "latency_ms": 951.2575999979163,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8376,8 +8553,9 @@
       "predicted_answer": "the narrator receiving their new phone case",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1504,
-      "latency_ms": 1024.5402000000468,
+      "prompt_tokens": 1690,
+      "latency_ms": 1105.319000002055,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8423,8 +8601,9 @@
       "predicted_answer": "the volleyball league",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1492,
-      "latency_ms": 963.7207999985549,
+      "prompt_tokens": 1678,
+      "latency_ms": 992.0163999995566,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8470,8 +8649,9 @@
       "predicted_answer": "the Japanese Zero fighter plane model",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1505,
-      "latency_ms": 1075.0288999988697,
+      "prompt_tokens": 1691,
+      "latency_ms": 1098.0697000049986,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8517,8 +8697,9 @@
       "predicted_answer": "Alex",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1539,
-      "latency_ms": 976.0050000004412,
+      "prompt_tokens": 1725,
+      "latency_ms": 998.3537000007345,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8564,8 +8745,9 @@
       "predicted_answer": "Fixing the fence.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1453,
-      "latency_ms": 984.8396000015782,
+      "prompt_tokens": 1639,
+      "latency_ms": 1050.91619999439,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -8611,8 +8793,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1191,
-      "latency_ms": 822.6123000022199,
+      "prompt_tokens": 1377,
+      "latency_ms": 848.3275999969919,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8655,11 +8838,12 @@
       "question_type": "knowledge-update",
       "question": "How many Korean restaurants have I tried in my city?",
       "ground_truth": "four",
-      "predicted_answer": "5",
+      "predicted_answer": "3",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1702,
-      "latency_ms": 1217.093200000818,
+      "prompt_tokens": 1814,
+      "latency_ms": 1089.0939999953844,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -8694,7 +8878,7 @@
         "is_aggregation": true,
         "correct": false,
         "reader_model": "",
-        "predicted": "5"
+        "predicted": "3"
       }
     },
     {
@@ -8705,8 +8889,9 @@
       "predicted_answer": "Friday",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1185,
-      "latency_ms": 789.8392999995849,
+      "prompt_tokens": 1371,
+      "latency_ms": 734.4095000007655,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8752,8 +8937,9 @@
       "predicted_answer": "Under my bed.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1253,
-      "latency_ms": 853.523400000995,
+      "prompt_tokens": 1439,
+      "latency_ms": 905.8641000010539,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8799,8 +8985,9 @@
       "predicted_answer": "5",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1925,
-      "latency_ms": 1439.974599998095,
+      "prompt_tokens": 2037,
+      "latency_ms": 1257.7791000003344,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -8843,11 +9030,12 @@
       "question_type": "knowledge-update",
       "question": "How many stars do I need to reach the gold level on my Starbucks Rewards app?",
       "ground_truth": "120",
-      "predicted_answer": "300",
-      "is_correct": false,
-      "deterministic_override": false,
-      "prompt_tokens": 1666,
-      "latency_ms": 1078.7280000004102,
+      "predicted_answer": "You're correct that reaching Gold level on Starbucks Rewards requires 120 stars",
+      "is_correct": true,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -8872,7 +9060,7 @@
         "candidate_count": 72,
         "candidate_sessions": 6,
         "conflict": true,
-        "cert_present": false,
+        "cert_present": true,
         "temporal_complexity": 1,
         "evidence_coverage": 0.0,
         "anchor_session_count": 18,
@@ -8880,9 +9068,9 @@
         "budget_util": 0.0,
         "question_type": "knowledge-update",
         "is_aggregation": true,
-        "correct": false,
+        "correct": true,
         "reader_model": "",
-        "predicted": "300"
+        "predicted": "You're correct that reaching Gold level on Starbucks Rewards requires 120 stars"
       }
     },
     {
@@ -8893,8 +9081,9 @@
       "predicted_answer": "9 months",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1582,
-      "latency_ms": 1169.4104999987758,
+      "prompt_tokens": 1768,
+      "latency_ms": 1043.3746999988216,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8940,8 +9129,9 @@
       "predicted_answer": "Five",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1093,
-      "latency_ms": 651.3885999993363,
+      "prompt_tokens": 1279,
+      "latency_ms": 654.0999999997439,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -8987,8 +9177,9 @@
       "predicted_answer": "5",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1700,
-      "latency_ms": 1214.9662999981956,
+      "prompt_tokens": 1812,
+      "latency_ms": 1084.2239999983576,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9034,8 +9225,9 @@
       "predicted_answer": "3",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1644,
-      "latency_ms": 1044.1984999997658,
+      "prompt_tokens": 1830,
+      "latency_ms": 1070.13200000074,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9081,8 +9273,9 @@
       "predicted_answer": "TechCorp",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1135,
-      "latency_ms": 718.2322000007844,
+      "prompt_tokens": 1321,
+      "latency_ms": 781.0527999972692,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9128,8 +9321,9 @@
       "predicted_answer": "less",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1261,
-      "latency_ms": 814.0657000003557,
+      "prompt_tokens": 1447,
+      "latency_ms": 812.0285999975749,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9175,8 +9369,9 @@
       "predicted_answer": "Yes",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1559,
-      "latency_ms": 945.1052999975218,
+      "prompt_tokens": 1745,
+      "latency_ms": 978.3581000010599,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9219,11 +9414,12 @@
       "question_type": "knowledge-update",
       "question": "How many new postcards have I added to my collection since I started collecting again?",
       "ground_truth": "25",
-      "predicted_answer": "25",
-      "is_correct": true,
+      "predicted_answer": "33",
+      "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1468,
-      "latency_ms": 987.5591000018176,
+      "prompt_tokens": 1654,
+      "latency_ms": 970.706699998118,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -9256,9 +9452,9 @@
         "budget_util": 0.9758,
         "question_type": "knowledge-update",
         "is_aggregation": false,
-        "correct": true,
+        "correct": false,
         "reader_model": "",
-        "predicted": "25"
+        "predicted": "33"
       }
     },
     {
@@ -9269,8 +9465,9 @@
       "predicted_answer": "30",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1198,
-      "latency_ms": 736.3385999997263,
+      "prompt_tokens": 1384,
+      "latency_ms": 765.0962999978219,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9316,8 +9513,9 @@
       "predicted_answer": "Kansas City Masterpiece BBQ sauce",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1220,
-      "latency_ms": 864.3217999997432,
+      "prompt_tokens": 1406,
+      "latency_ms": 872.6978000049712,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9363,8 +9561,9 @@
       "predicted_answer": "4 weeks",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1142,
-      "latency_ms": 754.0688999979466,
+      "prompt_tokens": 1328,
+      "latency_ms": 739.2846999937319,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9410,8 +9609,9 @@
       "predicted_answer": "20 dozen",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1161,
-      "latency_ms": 766.5124000013748,
+      "prompt_tokens": 1347,
+      "latency_ms": 785.5526999992435,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9457,8 +9657,9 @@
       "predicted_answer": "Yes",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1192,
-      "latency_ms": 701.814000000013,
+      "prompt_tokens": 1378,
+      "latency_ms": 710.1156999997329,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9504,8 +9705,9 @@
       "predicted_answer": "132 points",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1167,
-      "latency_ms": 737.5941999998759,
+      "prompt_tokens": 1353,
+      "latency_ms": 801.0151000053156,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9551,8 +9753,9 @@
       "predicted_answer": "$420",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1219,
-      "latency_ms": 896.9118000022718,
+      "prompt_tokens": 1405,
+      "latency_ms": 823.0461999992258,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9598,8 +9801,9 @@
       "predicted_answer": "10",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2062,
-      "latency_ms": 1399.650200000906,
+      "prompt_tokens": 2248,
+      "latency_ms": 1409.2143000016222,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -9645,8 +9849,9 @@
       "predicted_answer": "7:00 pm",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1607,
-      "latency_ms": 1149.1137999983039,
+      "prompt_tokens": 1793,
+      "latency_ms": 1161.7073000015807,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9692,8 +9897,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1291,
-      "latency_ms": 911.2120999998297,
+      "prompt_tokens": 1477,
+      "latency_ms": 942.4042999962694,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9739,8 +9945,9 @@
       "predicted_answer": "32",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1516,
-      "latency_ms": 1159.4270999994478,
+      "prompt_tokens": 1628,
+      "latency_ms": 1017.2361000004457,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9786,8 +9993,9 @@
       "predicted_answer": "37",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1207,
-      "latency_ms": 779.1271999994933,
+      "prompt_tokens": 1393,
+      "latency_ms": 760.5018000031123,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9830,11 +10038,12 @@
       "question_type": "knowledge-update",
       "question": "How many free night's stays can I redeem at any Hilton property with my accumulated points?",
       "ground_truth": "Two",
-      "predicted_answer": "Two",
+      "predicted_answer": "2",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1291,
-      "latency_ms": 790.9126000013202,
+      "prompt_tokens": 1477,
+      "latency_ms": 813.9477000004263,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -9869,7 +10078,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Two"
+        "predicted": "2"
       }
     },
     {
@@ -9880,8 +10089,9 @@
       "predicted_answer": "10 pounds",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1481,
-      "latency_ms": 936.934299999848,
+      "prompt_tokens": 1667,
+      "latency_ms": 994.0969000017503,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.98,
@@ -9927,8 +10137,9 @@
       "predicted_answer": "1300",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1773,
-      "latency_ms": 1392.8092999994988,
+      "prompt_tokens": 1885,
+      "latency_ms": 1205.6366999968304,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -9974,8 +10185,9 @@
       "predicted_answer": "5",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1789,
-      "latency_ms": 1126.991299999645,
+      "prompt_tokens": 1901,
+      "latency_ms": 1149.388400001044,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10021,8 +10233,9 @@
       "predicted_answer": "Ford F-150 pickup truck",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1199,
-      "latency_ms": 899.0546999993967,
+      "prompt_tokens": 1385,
+      "latency_ms": 981.8499999964843,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10068,8 +10281,9 @@
       "predicted_answer": "7",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1287,
-      "latency_ms": 778.1113999990339,
+      "prompt_tokens": 1473,
+      "latency_ms": 805.2502999998978,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -10115,8 +10329,9 @@
       "predicted_answer": "Increased",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1225,
-      "latency_ms": 737.816600001679,
+      "prompt_tokens": 1411,
+      "latency_ms": 790.2561000009882,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -10162,8 +10377,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1756,
-      "latency_ms": 1384.235900000931,
+      "prompt_tokens": 1868,
+      "latency_ms": 1255.9671999988495,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10209,8 +10425,9 @@
       "predicted_answer": "5",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1895,
-      "latency_ms": 1186.4979000019957,
+      "prompt_tokens": 2007,
+      "latency_ms": 1194.387800002005,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10256,8 +10473,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1167,
-      "latency_ms": 834.9534999979369,
+      "prompt_tokens": 1353,
+      "latency_ms": 868.5695999956806,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -10303,8 +10521,9 @@
       "predicted_answer": "3 months",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1202,
-      "latency_ms": 721.199899999192,
+      "prompt_tokens": 1388,
+      "latency_ms": 749.8005000015837,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -10350,8 +10569,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1359,
-      "latency_ms": 927.9174000002968,
+      "prompt_tokens": 1545,
+      "latency_ms": 989.0300999977626,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10397,8 +10617,9 @@
       "predicted_answer": "Yes",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1555,
-      "latency_ms": 1085.2396000009321,
+      "prompt_tokens": 1741,
+      "latency_ms": 1001.546799998323,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.3,
         "temporal_demand": 0.0,
@@ -10444,8 +10665,9 @@
       "predicted_answer": "under my bed",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1344,
-      "latency_ms": 854.8374999991211,
+      "prompt_tokens": 1530,
+      "latency_ms": 915.6788999971468,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10488,11 +10710,12 @@
       "question_type": "single-session-assistant",
       "question": "I'm checking our previous chat about the shift rotation sheet for GM social media agents. Can you remind me what was the rotation for Admon on a Sunday?",
       "ground_truth": "Admon was assigned to the 8 am - 4 pm (Day Shift) on Sundays.",
-      "predicted_answer": "Admon worked the 8 am till 4 pm shift on Sunday.",
+      "predicted_answer": "Admon worked the 8 am - 4 pm shift on Sunday.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1484,
-      "latency_ms": 1287.8442000001087,
+      "prompt_tokens": 1670,
+      "latency_ms": 1315.9864000044763,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10527,7 +10750,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Admon worked the 8 am till 4 pm shift on Sunday."
+        "predicted": "Admon worked the 8 am - 4 pm shift on Sunday."
       }
     },
     {
@@ -10538,8 +10761,9 @@
       "predicted_answer": "Miss Bee Providore",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1511,
-      "latency_ms": 1005.1611999988381,
+      "prompt_tokens": 1697,
+      "latency_ms": 1041.5183000004617,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10582,11 +10806,12 @@
       "question_type": "single-session-assistant",
       "question": "I remember you told me about the refining processes at CITGO's three refineries earlier. Can you remind me what kind of processes are used at the Lake Charles Refinery?",
       "ground_truth": "Atmospheric distillation, fluid catalytic cracking (FCC), alkylation, and hydrotreating.",
-      "predicted_answer": "Atmospheric distillation, Fluid catalytic cracking, Alkylation, Hydrotreating.",
+      "predicted_answer": "Atmospheric distillation, Fluid catalytic cracking, Alkylation, Hydrotreating",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1342,
-      "latency_ms": 1319.795700001123,
+      "prompt_tokens": 1528,
+      "latency_ms": 1325.3103000024566,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10621,7 +10846,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "Atmospheric distillation, Fluid catalytic cracking, Alkylation, Hydrotreating."
+        "predicted": "Atmospheric distillation, Fluid catalytic cracking, Alkylation, Hydrotreating"
       }
     },
     {
@@ -10632,8 +10857,9 @@
       "predicted_answer": "International Budget Hostel",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1405,
-      "latency_ms": 918.8437000011618,
+      "prompt_tokens": 1591,
+      "latency_ms": 961.1071000035736,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10680,7 +10906,8 @@
       "is_correct": true,
       "deterministic_override": false,
       "prompt_tokens": 1466,
-      "latency_ms": 1635.1429999995162,
+      "latency_ms": 1678.3607999968808,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10726,8 +10953,9 @@
       "predicted_answer": "Doc Martin",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1454,
-      "latency_ms": 1017.2552000003634,
+      "prompt_tokens": 1640,
+      "latency_ms": 941.7382000028738,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10773,8 +11001,9 @@
       "predicted_answer": "38",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 2215,
-      "latency_ms": 1474.6166999975685,
+      "prompt_tokens": 2401,
+      "latency_ms": 1524.3279999995138,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10820,8 +11049,9 @@
       "predicted_answer": "Evolution",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1582,
-      "latency_ms": 1007.8834000014467,
+      "prompt_tokens": 1768,
+      "latency_ms": 1058.5049000001163,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10867,8 +11097,9 @@
       "predicted_answer": "GR-90",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1947,
-      "latency_ms": 1577.6982999996108,
+      "prompt_tokens": 2133,
+      "latency_ms": 1410.412200006249,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10914,8 +11145,9 @@
       "predicted_answer": "biometric authentication or one-time passwords (OTP)",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1272,
-      "latency_ms": 1023.5381000020425,
+      "prompt_tokens": 1458,
+      "latency_ms": 1078.9824000021326,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -10961,8 +11193,9 @@
       "predicted_answer": "Roscioli",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1532,
-      "latency_ms": 984.2547000007471,
+      "prompt_tokens": 1718,
+      "latency_ms": 1034.3785000004573,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11008,8 +11241,9 @@
       "predicted_answer": "+49 (0) 62 32 / 14 23 - 0",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1472,
-      "latency_ms": 1458.2166000000143,
+      "prompt_tokens": 1658,
+      "latency_ms": 1507.1869999956107,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11055,8 +11289,9 @@
       "predicted_answer": "Manolo García",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1852,
-      "latency_ms": 1210.4300999999396,
+      "prompt_tokens": 2038,
+      "latency_ms": 1252.1099000005051,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11102,8 +11337,9 @@
       "predicted_answer": "17. Symbolism",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1611,
-      "latency_ms": 1109.0077999979258,
+      "prompt_tokens": 1797,
+      "latency_ms": 1158.442699997977,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11149,8 +11385,9 @@
       "predicted_answer": "Absinthe",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1440,
-      "latency_ms": 952.1480000003066,
+      "prompt_tokens": 1626,
+      "latency_ms": 967.9816999996547,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11196,8 +11433,9 @@
       "predicted_answer": "Mindful.org",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1350,
-      "latency_ms": 864.7012000001268,
+      "prompt_tokens": 1536,
+      "latency_ms": 856.3241000010748,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11243,8 +11481,9 @@
       "predicted_answer": "SIAC_GEE uses the 6S radiative transfer model.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1365,
-      "latency_ms": 1170.0786000001244,
+      "prompt_tokens": 1551,
+      "latency_ms": 1219.6457000027294,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11290,8 +11529,9 @@
       "predicted_answer": "3",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1487,
-      "latency_ms": 881.3874999977998,
+      "prompt_tokens": 1673,
+      "latency_ms": 921.2331000017002,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11337,8 +11577,9 @@
       "predicted_answer": "Red Rocks",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1415,
-      "latency_ms": 907.9128000012133,
+      "prompt_tokens": 1601,
+      "latency_ms": 936.4440999997896,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11384,8 +11625,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1232,
-      "latency_ms": 820.939700002782,
+      "prompt_tokens": 1418,
+      "latency_ms": 857.0977999988827,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11431,8 +11673,9 @@
       "predicted_answer": "\"How to Sit Properly at a Desk to Avoid Back Pain\" by the Mayo Clinic: <https://www.youtube.com/watch?v=UfOvNlX9Hh0>",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1915,
-      "latency_ms": 2215.0193999987096,
+      "prompt_tokens": 2101,
+      "latency_ms": 2288.0662999959895,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11475,11 +11718,12 @@
       "question_type": "single-session-assistant",
       "question": "I was going through our previous chat and I was wondering, what was Andy wearing in the script you wrote for the comedy movie scene?",
       "ground_truth": "Andy was wearing an untidy, stained white shirt.",
-      "predicted_answer": "An untidy, stained white shirt.",
+      "predicted_answer": "Andy wore an untidy, stained white shirt.",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1371,
-      "latency_ms": 1037.9735000024084,
+      "prompt_tokens": 1557,
+      "latency_ms": 1154.5404999997118,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11514,7 +11758,7 @@
         "is_aggregation": false,
         "correct": true,
         "reader_model": "",
-        "predicted": "An untidy, stained white shirt."
+        "predicted": "Andy wore an untidy, stained white shirt."
       }
     },
     {
@@ -11525,8 +11769,9 @@
       "predicted_answer": "I don't know.",
       "is_correct": false,
       "deterministic_override": false,
-      "prompt_tokens": 1278,
-      "latency_ms": 895.6904999977269,
+      "prompt_tokens": 1464,
+      "latency_ms": 913.7583999981871,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11572,8 +11817,9 @@
       "predicted_answer": "LIV",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1634,
-      "latency_ms": 1011.8648999996367,
+      "prompt_tokens": 1820,
+      "latency_ms": 1062.4863999983063,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11619,8 +11865,9 @@
       "predicted_answer": "MusicTheory.net",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1421,
-      "latency_ms": 917.6898999976402,
+      "prompt_tokens": 1607,
+      "latency_ms": 966.7195000001811,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11666,8 +11913,9 @@
       "predicted_answer": "C D E F G A B A G F E D C",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1208,
-      "latency_ms": 961.3404999981867,
+      "prompt_tokens": 1394,
+      "latency_ms": 1063.533100001223,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11713,8 +11961,9 @@
       "predicted_answer": "Veja",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1870,
-      "latency_ms": 1189.7237000011955,
+      "prompt_tokens": 2056,
+      "latency_ms": 1236.2452000015764,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,
@@ -11760,8 +12009,9 @@
       "predicted_answer": "1:10",
       "is_correct": true,
       "deterministic_override": false,
-      "prompt_tokens": 1318,
-      "latency_ms": 907.6719999975467,
+      "prompt_tokens": 1504,
+      "latency_ms": 924.3470000001253,
+      "two_pass_quote": "",
       "r6_features": {
         "direct_fact_demand": 0.1,
         "temporal_demand": 0.0,

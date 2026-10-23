@@ -8,9 +8,9 @@ import sys
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 
 import importlib.util
 spec = importlib.util.spec_from_file_location("eval_v4", str(REPO / "scripts" / "benchmarks" / "eval_v4_pipeline_dev.py"))

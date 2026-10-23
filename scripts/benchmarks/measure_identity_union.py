@@ -26,8 +26,8 @@ import sys
 if str(sys_path) not in sys.path:
     sys.path.insert(0, str(sys_path))
 
-from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory.skills.autonomous_engines.entity_identity import (  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory_gen.skills.autonomous_engines.entity_identity import (  # noqa: E402
     IdentityResolver,
     Mention,
 )

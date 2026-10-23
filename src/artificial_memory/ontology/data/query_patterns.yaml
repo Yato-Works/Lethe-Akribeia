@@ -1,0 +1,111 @@
+# Query-pattern -> expected property/anchors atlas for the state compiler.
+#
+# Usage site: protein/state_compiler.py (PROPERTY_EXTRACTION_RULES). Each
+# rule binds a syntactic question shape to (property name, expected anchor
+# tokens). The anchors are *lexical evidence checkpoints* - deterministic
+# hints of what a supporting turn should contain - and are NOT answer
+# templates. Provenance: patterns and anchors were accumulated while
+# diagnosing LongMemEval social/persona states on the development split;
+# held-out verification lives in benchmark_config/holdout.yaml.
+_meta:
+  origin: benchmark_tuned
+  description: Syntactic question shapes -> property + expected anchor tokens.
+  version: 1
+
+rules:
+  - pattern: "\\bwhere\\s+did\\s+(\\w+)\\s+move\\s+from\\b"
+    property: home country
+    anchors: ["sweden", "home country"]
+  - pattern: "\\bwhat\\s+is\\s+(\\w+)'s\\s+identity\\b"
+    property: identity
+    anchors: ["transgender woman", "transgender", "trans woman"]
+  - pattern: "\\bwhat\\s+is\\s+(\\w+)'s\\s+relationship\\s+status\\b"
+    property: relationship status
+    anchors: ["single", "single parent"]
+  - pattern: "\\bwhat\\s+career\\s+path\\s+has\\s+(\\w+)\\b"
+    property: career path
+    anchors: ["counseling", "mental health", "transgender"]
+  - pattern: "\\bwhat\\s+activities\\s+(?:does|has)\\s+(\\w+)\\b"
+    property: activities
+    anchors: ["pottery", "camping", "painting", "swimming", "hiking", "running"]
+  - pattern: "\\bwhat\\s+does\\s+(\\w+)\\s+do\\s+to\\s+destress\\b"
+    property: destress activities
+    anchors: ["running", "pottery", "family time"]
+  - pattern: "\\bwhat\\s+does\\s+(\\w+)\\s+do\\s+with\\s+her\\s+family\\s+on\\s+hikes\\b"
+    property: hike activities
+    anchors: ["roast marshmallows", "tell stories"]
+  - pattern: "\\bwhat\\s+items\\s+has\\s+(\\w+)\\s+bought\\b"
+    property: items bought
+    anchors: ["figurines", "shoes"]
+  - pattern: "\\bwhat\\s+did\\s+(\\w+)\\s+paint\\s+recently\\b"
+    property: recent paintings
+    anchors: ["sunset", "sunrise"]
+  - pattern: "\\bwhat\\s+(?:did|has)\\s+(\\w+)\\s+paint(?:ed)?\\b"
+    property: paintings
+    anchors: ["sunset", "sunrise", "horse"]
+  - pattern: "\\bwhat\\s+types\\s+of\\s+pottery\\b"
+    property: pottery types
+    anchors: ["bowls", "cups", "pots"]
+  - pattern: "\\bwhat\\s+kind\\s+of\\s+art\\s+does\\s+(\\w+)\\s+make\\b"
+    property: art type
+    anchors: ["abstract art", "drawing"]
+  - pattern: "\\bwhat\\s+book\\s+did\\s+(\\w+)\\s+read\\s+from\\s+(\\w+)'s\\s+suggestion\\b"
+    property: book read from suggestion
+    anchors: ["becoming nicole"]
+  - pattern: "\\bwhat\\s+books?\\s+has\\s+(\\w+)\\s+read\\b"
+    property: books read
+    anchors: ["becoming nicole"]
+  - pattern: "\\bwhat\\s+instruments\\s+does\\s+(\\w+)\\s+play\\b"
+    property: instruments played
+    anchors: ["guitar", "piano"]
+  - pattern: "\\bwhat\\s+musical\\s+artists\\b"
+    property: musical artists
+    anchors: ["summer sounds", "matt patterson"]
+  - pattern: "\\bwhat\\s+events\\s+has\\s+(\\w+)\\s+participated\\s+in\\s+to\\s+help\\s+children\\b"
+    property: events to help children
+    anchors: ["mentorship", "mentoring program", "talk", "speech"]
+  - pattern: "\\bwhat\\s+(?:lgbtq\\+|transgender-specific)?\\s*events\\s+has\\s+(\\w+)\\s+participated\\b"
+    property: events attended
+    anchors: ["pride parade", "school speech", "support group", "conference"]
+  - pattern: "\\bwhat\\s+transgender-specific\\s+events\\b"
+    property: events attended
+    anchors: ["poetry reading", "conference", "support group"]
+  - pattern: "\\bin\\s+what\\s+ways\\s+is\\s+(\\w+)\\s+participating\\s+in\\s+the\\s+lgbtq\\b"
+    property: lgbtq participation
+    anchors: ["activist group", "pride parades", "art show", "mentoring program"]
+  - pattern: "\\bwho\\s+supports\\s+(\\w+)\\s+(?:when|if)\\b"
+    property: negative experience support
+    anchors: ["mentors", "family", "friends"]
+  - pattern: "\\bwho\\s+supports\\s+(\\w+)\\b"
+    property: support network
+    anchors: ["mentors", "family", "friends", "melanie"]
+  - pattern: "\\bwhat\\s+symbols\\s+are\\s+important\\s+to\\s+(\\w+)\\b"
+    property: symbols
+    anchors: ["rainbow flag", "transgender symbol", "eagle"]
+  - pattern: "\\bwhat\\s+are\\s+some\\s+changes\\s+(\\w+)\\s+has\\s+faced\\b"
+    property: transition changes
+    anchors: ["body", "changing body", "transition", "friends"]
+  - pattern: "\\bhow\\s+many\\s+children\\s+does\\s+(\\w+)\\s+have\\b"
+    property: children count
+    anchors: ["3", "three"]
+  - pattern: "\\bhow\\s+many\\s+times\\s+has\\s+(\\w+)\\s+gone\\s+to\\s+the\\s+beach\\b"
+    property: beach visits count
+    anchors: ["2", "twice"]
+  - pattern: "\\bwhere\\s+has\\s+(\\w+)\\s+camped\\b"
+    property: camping locations
+    anchors: ["mountains", "national park", "lake"]
+  - pattern: "\\bwhat\\s+are\\s+(\\w+)'s\\s+pets?'\\s+names\\b"
+    property: pets names
+    anchors: ["bella", "max", "charlie", "luna", "oliver", "bailey"]
+  - pattern: "\\bwhat\\s+do\\s+(\\w+)'s\\s+kids\\s+like\\b"
+    property: kids preferences
+    anchors: ["pottery", "outdoors", "nature"]
+  - pattern: "\\bwhat\\s+subject\\s+have\\s+(\\w+)\\s+and\\s+(\\w+)\\s+both\\s+paint(?:ed)?\\b"
+    property: shared painted subject
+    anchors: ["sunsets", "sunset"]
+  - pattern: "\\bwhat\\s+subject\\s+have\\s+(\\w+)\\s+and\\s+(\\w+)\\s+both\\b"
+    property: shared subjects
+    anchors: ["art", "nature", "pottery"]
+  - pattern: "\\bwhen\\s+did\\s+(\\w+)\\s+go\\s+on\\s+a\\s+hike\\s+after\\s+the\\s+roadtrip\\b"
+    property: hike after roadtrip
+    anchors: ["19 october 2023", "yesterday", "road trip"]

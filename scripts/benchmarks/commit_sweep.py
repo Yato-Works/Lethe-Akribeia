@@ -5,7 +5,7 @@ The question every AM-side skill has to answer is not "does it look right?" but
 "on the questions it claims, is it more often right than the frozen reader, and
 is the difference worth the code?".  This tool answers that **without calling an
 LLM at all**: it replays a frozen context cache through
-:mod:`artificial_memory.skills.answer_committer`, scores the committed answers
+:mod:`artificial_memory_gen.skills.answer_committer`, scores the committed answers
 with the *official* per-category matchers, and pairs the result against a reader
 run's own per-question correctness for exactly the questions the committer
 claimed.
@@ -60,7 +60,7 @@ sys.path.insert(0, str(REPO / "src"))
 from artificial_memory.research.benchmarks.external.locomo_adapter import (  # noqa: E402
     LoCoMoAdapter,
 )
-from artificial_memory.skills.answer_committer import (  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import (  # noqa: E402
     CommittedAnswer,
     extract_certificate_answer,
     extract_temporal_answer,
@@ -134,7 +134,7 @@ def write_report(args, stats: dict[str, dict[str, int]]) -> Path:
     paired reader accuracy, the commit delta and the fallback rate from them, so
     two artefacts can be added up without re-deriving anything by hand.
     """
-    import artificial_memory.skills.answer_committer as committer
+    import artificial_memory_gen.skills.answer_committer as committer
 
     payload = {
         "label": args.label or default_label(args),
@@ -158,7 +158,7 @@ def dump_claims(args, records: list[dict]) -> Path:
     scorecard needs counts and nothing else, while this file is the join key for
     the model-sensitivity analysis (which questions are answered by code).
     """
-    import artificial_memory.skills.answer_committer as committer
+    import artificial_memory_gen.skills.answer_committer as committer
 
     payload = {
         "label": args.label or default_label(args),
@@ -358,7 +358,7 @@ def main() -> int:
         return stats
 
     if args.sweep:
-        import artificial_memory.skills.answer_committer as committer
+        import artificial_memory_gen.skills.answer_committer as committer
 
         original = committer.MIN_TURN_SCORE
         print(f"{'thresh':>7}{'claimed':>9}{'commit_acc':>12}{'reader_same':>13}{'net_pp':>9}")

@@ -4,6 +4,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from enum import StrEnum
 
+from artificial_memory.core.tokens import estimate_tokens
+
 
 class IRKey(StrEnum):
     """Standardized IR keys as defined in design doc."""
@@ -56,9 +58,8 @@ class IRUnit:
         return cls(ir_type="", ir_key=s, sequence_num=seq)
 
     def estimate_tokens(self) -> int:
-        """Estimate token count for this IR unit."""
-        base = len(self.ir_key) + (len(self.ir_value) if self.ir_value else 0)
-        return max(1, base // 3)
+        """Estimate token count for this IR unit (core.tokens: estimate_tokens)."""
+        return estimate_tokens(self.ir_key + (self.ir_value or ""))
 
 
 @dataclass

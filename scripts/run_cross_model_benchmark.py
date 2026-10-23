@@ -13,8 +13,8 @@ from pathlib import Path
 import time
 from typing import Any
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.context.compiler import CognitiveContextCompiler
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.context.compiler import CognitiveContextCompiler
 from artificial_memory.research.benchmarks.adversarial_builder import AdversarialBuilder
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 

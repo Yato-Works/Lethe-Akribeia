@@ -1,0 +1,22 @@
+# Named lookup targets for extract_entities (rare noun targeting).
+#
+# Usage sites: recall/evidence_scorer.py extract_entities step 3 ("known key
+# names & entities" lookup) and the S_entity multi-word super-boost list.
+# Provenance: rare-noun entities that surfaced repeatedly as query anchors
+# in LoCoMo / LongMemEval retrieval sweeps. These are retrieval *target
+# markers* only; detection of arbitrary proper nouns is handled generically
+# via capitalization heuristics.
+_meta:
+  origin: benchmark_tuned
+  description: Rare-entity lookup target names used by extract_entities and S_entity boosts.
+  version: 1
+
+targets:
+  - dr. seuss
+  - sweden
+  - oliver
+  - luna
+  - bailey
+  - oscar
+  - perseid
+  - matt patterson

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.recall.ppr_graph import PPREvidenceGraph
+from artificial_memory_gen.recall.ppr_graph import PPREvidenceGraph
 
 
 def test_ppr_graph_construction_and_extraction() -> None:
@@ -76,7 +76,7 @@ def test_ppr_graph_build_from_records() -> None:
 
 def test_msc_compiler_with_ppr_retrieval() -> None:
     """Verify that MinimumSufficientContextCompiler integrates PPR widening properly."""
-    from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+    from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 
     compiler = MinimumSufficientContextCompiler(ppr_retrieval=True)
     records = [

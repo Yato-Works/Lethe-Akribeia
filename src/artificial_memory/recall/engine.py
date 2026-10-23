@@ -11,6 +11,7 @@ from artificial_memory.core.models import (
     RecallLevel,
     ResolutionLevel,
 )
+from artificial_memory.core.tokens import estimate_tokens
 
 
 class BasicRecallEngine:
@@ -186,9 +187,7 @@ class BasicRecallEngine:
         max_tokens: int
     ) -> tuple[list[Memory], int]:
         """Select memories within token budget."""
-        # Estimate tokens (rough: 1 token ≈ 4 chars for Japanese, 3-4 for English)
-        def estimate_tokens(text: str) -> int:
-            return max(1, len(text) // 3)
+        # Estimation is canonical (core.tokens: estimate_tokens).
 
         selected = []
         total_tokens = 0

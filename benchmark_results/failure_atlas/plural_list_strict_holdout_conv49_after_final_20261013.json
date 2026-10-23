@@ -1,0 +1,136 @@
+{
+  "label": "strict-plural-list-holdout-conv49-after-final-20261013",
+  "cohort": "plural-list-gold",
+  "question_ids": [
+    "lc_conv-49_1",
+    "lc_conv-49_28",
+    "lc_conv-49_89",
+    "lc_conv-49_96",
+    "lc_conv-49_132",
+    "lc_conv-49_149",
+    "lc_conv-49_160",
+    "lc_conv-49_192"
+  ],
+  "n": 8,
+  "correct": 0,
+  "wrong": 0,
+  "abstain": 8,
+  "presented": 0,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.021911,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-49_1",
+      "conversation": "49",
+      "category": 1,
+      "question": "What kinds of things did Evan have broken?",
+      "gold": "His old Prius and his new Prius.",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_28",
+      "conversation": "49",
+      "category": 1,
+      "question": "What kind of writing does Sam do to relax and cope with his health issues?",
+      "gold": "journalling, creative writing",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_89",
+      "conversation": "49",
+      "category": 4,
+      "question": "What habit is Sam trying to change in terms of diet?",
+      "gold": "consuming soda and candy",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_96",
+      "conversation": "49",
+      "category": 4,
+      "question": "What does the bonsai tree symbolize for Evan?",
+      "gold": "strength and resilience",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_132",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Sam offer Evan regarding yoga?",
+      "gold": "Support and tips",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_149",
+      "conversation": "49",
+      "category": 4,
+      "question": "What advice did Evan suggest Sam seek from a doctor?",
+      "gold": "diet plan and low-impact exercises",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "inference-shaped open-domain question",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_160",
+      "conversation": "49",
+      "category": 5,
+      "question": "What did Sam find relaxing about his road trip to Jasper?",
+      "gold": "fresh air, peacefulness, cozy cabin surrounded by mountains and forests",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_192",
+      "conversation": "49",
+      "category": 5,
+      "question": "What suggestions did Evan give for high-impact exercises?",
+      "gold": "swimming, yoga, walking",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  },
+  "paired_comparison": {
+    "before_artifact": "benchmark_results/failure_atlas/plural_list_before_20261013.json",
+    "same_question_ids": true,
+    "fixed_qids": [],
+    "broke_qids": [],
+    "new_wrong_qids": [],
+    "fixed": 0,
+    "broke": 0,
+    "new_wrong": 0
+  }
+}

@@ -61,7 +61,7 @@ def main() -> int:
     if not ARCHIVED.exists():
         raise SystemExit(f"archived experiment missing: {ARCHIVED}")
 
-    from artificial_memory.skills.answer_committer import parse_turns
+    from artificial_memory_gen.skills.answer_committer import parse_turns
 
     # OLD = production (git HEAD).  NEW = the rejected branch, loaded from archive.
     head_src = subprocess.run(
@@ -75,7 +75,7 @@ def main() -> int:
     sys.path.insert(0, str(ARCHIVED.parent))
     new_mod = importlib.import_module("temporal_rejected")
 
-    import artificial_memory.skills.autonomous_engines.temporal_algebra_engine as prod
+    import artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine as prod
 
     atlas = [json.loads(l) for l in ATLAS.read_text(encoding="utf-8").splitlines()
              if l.strip()]

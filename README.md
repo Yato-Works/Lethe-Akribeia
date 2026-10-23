@@ -182,6 +182,20 @@ Rather than dumping raw text into a prompt, Lethe compiles memories into a struc
 
 ---
 
+## Vocabulary Governance: The Ontology & CI Leak Guard
+
+Deterministic memory engines are only as trustworthy as the vocabulary they run on. Lethe keeps that vocabulary under a two-part governance contract:
+
+**1. The ontology data plane (`src/artificial_memory/ontology/`).**
+Every knowledge table — person rosters, nickname maps, concept synonym expansions, domain groups, geographic subsumptions, query patterns, duration anchors, value canonicalizations — lives as a strict, versioned YAML table. Runtime code *declares usage*; the data files *declare content*. Loading is deterministic (sorted mappings, order-preserving lists) and strict (a malformed or origin-less table raises an error — no trust-me fallbacks). Each table carries a `_meta.origin` field distinguishing world-knowledge (`generic`) from corpus-derived tuning (`benchmark_tuned`), so benchmark coupling is auditable at a glance.
+
+**2. The CI leak guard (`tests/unit/hygiene/`).**
+A boundary test scans all runtime logic for benchmark fingerprints (corpus speaker names, gold turn IDs, benchmark-unique titles) — comments and docstrings are exempt, executable code is not. Any unlisted occurrence fails CI, which makes "zero benchmark leakage" a *verified property* rather than a claim. The remaining sanctioned exceptions live in a documented, shrinking allowlist whose invariant is also tested: entries must point at real files, so the list can only shrink over time.
+
+Together this means: rename a corpus, port to a new dataset, or audit provable independence from the evaluation set — all without touching a single line of engine logic.
+
+---
+
 ## What Lethe Can Do Today
 
 ### AI Agent Integration (MCP Native)

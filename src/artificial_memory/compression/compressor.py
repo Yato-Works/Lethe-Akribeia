@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import tiktoken
 
 from artificial_memory.core.interfaces import Compressor
+from artificial_memory.core.tokens import bpe_tokens
 from artificial_memory.metrics.collector import (
     CompressionMetrics,
     get_metrics_collector,
@@ -48,7 +49,8 @@ class RuleBasedCompressor:
         ]
 
     def count_tokens(self, text: str) -> int:
-        return len(self.encoding.encode(text))
+        # Token counts are canonical (core.tokens: bpe_tokens).
+        return bpe_tokens(text)
 
     def get_compression_ratio(self, original: str, compressed: str) -> float:
         orig = self.count_tokens(original)

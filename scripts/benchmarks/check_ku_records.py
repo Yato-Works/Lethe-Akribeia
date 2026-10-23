@@ -7,7 +7,7 @@ REPO = Path(__file__).resolve().parents[2]
 dev_path = REPO / "datasets" / "external" / "longmemeval_s_cleaned.json"
 
 sys.path.insert(0, str(REPO / "src"))
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 
 with open(dev_path, "r", encoding="utf-8") as f:
     dev_data = json.load(f)

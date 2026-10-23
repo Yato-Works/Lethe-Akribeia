@@ -18,8 +18,8 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
-from artificial_memory.steroid.evidence_evaluator import EvidenceEvaluator
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.steroid.evidence_evaluator import EvidenceEvaluator
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 
 RESULTS_DIR = Path("benchmark_results/steroid")
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)

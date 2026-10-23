@@ -9,6 +9,7 @@ from typing import Any
 import httpx
 
 from artificial_memory.core.interfaces import MemoryStore, RecallEngine
+from artificial_memory.core.tokens import estimate_tokens_en
 from artificial_memory.metrics.collector import get_metrics_collector
 
 
@@ -119,8 +120,8 @@ class OllamaProvider(LLMProvider):
             yield chunk
 
     async def count_tokens(self, text: str) -> int:
-        # Approximate: 1 token ≈ 4 characters for English
-        return len(text) // 4
+        # Approximation: 1 token ≈ 4 characters (canonical: core.tokens.estimate_tokens_en)
+        return estimate_tokens_en(text)
 
 
 class OpenAIProvider(LLMProvider):

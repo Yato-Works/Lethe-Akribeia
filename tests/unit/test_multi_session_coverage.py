@@ -1,8 +1,8 @@
 import pytest
-from artificial_memory.compiler.coverage.concept_expander import AbstractConceptExpander
-from artificial_memory.compiler.coverage.self_anchor_expander import SelfAnchorExpander
-from artificial_memory.compiler.coverage.coverage_planner import EvidenceCoveragePlanner
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.coverage.concept_expander import AbstractConceptExpander
+from artificial_memory_gen.compiler.coverage.self_anchor_expander import SelfAnchorExpander
+from artificial_memory_gen.compiler.coverage.coverage_planner import EvidenceCoveragePlanner
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
 
 
 def test_concept_expander_clothing():

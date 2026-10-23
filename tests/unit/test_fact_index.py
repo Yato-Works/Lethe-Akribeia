@@ -1,7 +1,7 @@
 """Unit tests for generic FactIndex (Recall & Fact Coverage Layer)."""
 
 import pytest
-from artificial_memory.recall.fact_index import FactIndex
+from artificial_memory_gen.recall.fact_index import FactIndex
 
 
 def test_fact_index_action_extraction():

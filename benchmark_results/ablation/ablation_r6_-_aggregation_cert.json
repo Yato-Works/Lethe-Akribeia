@@ -1,0 +1,480 @@
+{
+  "condition": "R6 - Aggregation Cert",
+  "correct": 30,
+  "total": 67,
+  "accuracy": 0.44776119402985076,
+  "overrides": 0,
+  "mean_tokens": 1632.7164179104477,
+  "elapsed_seconds": 79.70365300000049,
+  "results": [
+    {
+      "question_id": "0a995998",
+      "ground_truth": 3,
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1769
+    },
+    {
+      "question_id": "6d550036",
+      "ground_truth": 2,
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 2027
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "ground_truth": "I have worked on or bought five model kits. The scales of the models are: Revell F-15 Eagle (scale not mentioned), Tamiya 1/48 scale Spitfire Mk.V, 1/16 scale German Tiger I tank, 1/72 scale B-29 bomber, and 1/24 scale '69 Camaro.",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1832
+    },
+    {
+      "question_id": "b5ef892d",
+      "ground_truth": "8 days.",
+      "predicted_answer": "7",
+      "is_correct": false,
+      "prompt_tokens": 1598
+    },
+    {
+      "question_id": "e831120c",
+      "ground_truth": "3.5 weeks",
+      "predicted_answer": "2 weeks",
+      "is_correct": true,
+      "prompt_tokens": 1308
+    },
+    {
+      "question_id": "aae3761f",
+      "ground_truth": "15 hours for getting to the three destinations (or 30 hours for the round trip)",
+      "predicted_answer": "12",
+      "is_correct": false,
+      "prompt_tokens": 1685
+    },
+    {
+      "question_id": "gpt4_f2262a51",
+      "ground_truth": "I visited three different doctors: a primary care physician, an ENT specialist, and a dermatologist.",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 1747
+    },
+    {
+      "question_id": "dd2973ad",
+      "ground_truth": "2 AM",
+      "predicted_answer": "2 AM",
+      "is_correct": true,
+      "prompt_tokens": 1661
+    },
+    {
+      "question_id": "gpt4_a56e767c",
+      "ground_truth": "I attended four movie festivals.",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1168
+    },
+    {
+      "question_id": "6cb6f249",
+      "ground_truth": "17 days",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1776
+    },
+    {
+      "question_id": "36b9f61e",
+      "ground_truth": "$2,500",
+      "predicted_answer": "$1,800",
+      "is_correct": false,
+      "prompt_tokens": 1689
+    },
+    {
+      "question_id": "28dc39ac",
+      "ground_truth": "140 hours",
+      "predicted_answer": "105",
+      "is_correct": false,
+      "prompt_tokens": 1633
+    },
+    {
+      "question_id": "gpt4_2f8be40d",
+      "ground_truth": "I attended three weddings. The couples were Rachel and Mike, Emily and Sarah, and Jen and Tom.",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "prompt_tokens": 1651
+    },
+    {
+      "question_id": "2e6d26dc",
+      "ground_truth": 5,
+      "predicted_answer": "4",
+      "is_correct": false,
+      "prompt_tokens": 2087
+    },
+    {
+      "question_id": "gpt4_15e38248",
+      "ground_truth": "4",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1690
+    },
+    {
+      "question_id": "d23cf73b",
+      "ground_truth": 4,
+      "predicted_answer": "4",
+      "is_correct": true,
+      "prompt_tokens": 1779
+    },
+    {
+      "question_id": "gpt4_7fce9456",
+      "ground_truth": "I viewed four properties before making an offer on the townhouse in the Brookside neighborhood. The reasons I didn't make an offer on them were: the kitchen of the bungalow needed serious renovation, the property in Cedar Creek was out of my budget, the noise from the highway was a deal-breaker for the 1-bedroom condo, and my offer on the 2-bedroom condo was rejected due to a higher bid.",
+      "predicted_answer": "2",
+      "is_correct": true,
+      "prompt_tokens": 1687
+    },
+    {
+      "question_id": "2318644b",
+      "ground_truth": "$270",
+      "predicted_answer": "$270",
+      "is_correct": true,
+      "prompt_tokens": 1709
+    },
+    {
+      "question_id": "00ca467f",
+      "ground_truth": 2,
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1228
+    },
+    {
+      "question_id": "b3c15d39",
+      "ground_truth": "5 days. 6 days (including the last day) is also acceptable.",
+      "predicted_answer": "5 days",
+      "is_correct": true,
+      "prompt_tokens": 1169
+    },
+    {
+      "question_id": "gpt4_31ff4165",
+      "ground_truth": "4",
+      "predicted_answer": "1",
+      "is_correct": false,
+      "prompt_tokens": 1182
+    },
+    {
+      "question_id": "9d25d4e0",
+      "ground_truth": 3,
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 2159
+    },
+    {
+      "question_id": "60472f9c",
+      "ground_truth": 2,
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1609
+    },
+    {
+      "question_id": "gpt4_194be4b3",
+      "ground_truth": "I currently own 4 musical instruments. I've had the Fender Stratocaster electric guitar for 5 years, the Yamaha FG800 acoustic guitar for 8 years, the 5-piece Pearl Export drum set for an unspecified amount of time, and the Korg B1 piano for 3 years.",
+      "predicted_answer": "3",
+      "is_correct": true,
+      "prompt_tokens": 2136
+    },
+    {
+      "question_id": "a9f6b44c",
+      "ground_truth": 2,
+      "predicted_answer": "2",
+      "is_correct": true,
+      "prompt_tokens": 1778
+    },
+    {
+      "question_id": "5a7937c8",
+      "ground_truth": "3 days.",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1731
+    },
+    {
+      "question_id": "edced276",
+      "ground_truth": "15 days",
+      "predicted_answer": "8",
+      "is_correct": false,
+      "prompt_tokens": 1762
+    },
+    {
+      "question_id": "e3038f8c",
+      "ground_truth": 99,
+      "predicted_answer": "38",
+      "is_correct": false,
+      "prompt_tokens": 1588
+    },
+    {
+      "question_id": "2b8f3739",
+      "ground_truth": "$495",
+      "predicted_answer": "$345",
+      "is_correct": false,
+      "prompt_tokens": 1619
+    },
+    {
+      "question_id": "1a8a66a6",
+      "ground_truth": 2,
+      "predicted_answer": "2",
+      "is_correct": true,
+      "prompt_tokens": 2047
+    },
+    {
+      "question_id": "c2ac3c61",
+      "ground_truth": 5,
+      "predicted_answer": "2",
+      "is_correct": false,
+      "prompt_tokens": 1652
+    },
+    {
+      "question_id": "gpt4_372c3eed",
+      "ground_truth": "10 years",
+      "predicted_answer": "4 years",
+      "is_correct": true,
+      "prompt_tokens": 1687
+    },
+    {
+      "question_id": "gpt4_2f91af09",
+      "ground_truth": "23",
+      "predicted_answer": "17",
+      "is_correct": false,
+      "prompt_tokens": 2190
+    },
+    {
+      "question_id": "88432d0a_abs",
+      "ground_truth": "The information provided is not enough. You did not mention baking egg tarts.",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1600
+    },
+    {
+      "question_id": "80ec1f4f_abs",
+      "ground_truth": "0. You did not mention visitng any museum in December",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1684
+    },
+    {
+      "question_id": "60bf93ed_abs",
+      "ground_truth": "The information provided is not enough. You did not mention buying an iPad case.",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1176
+    },
+    {
+      "question_id": "2311e44b",
+      "ground_truth": "190",
+      "predicted_answer": "440 - 0 = 440 pages",
+      "is_correct": false,
+      "prompt_tokens": 1705
+    },
+    {
+      "question_id": "a11281a2",
+      "ground_truth": "100",
+      "predicted_answer": "100",
+      "is_correct": true,
+      "prompt_tokens": 1226
+    },
+    {
+      "question_id": "4f54b7c9",
+      "ground_truth": "5",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1714
+    },
+    {
+      "question_id": "1f2b8d4f",
+      "ground_truth": "$750",
+      "predicted_answer": "$300",
+      "is_correct": false,
+      "prompt_tokens": 1840
+    },
+    {
+      "question_id": "7405e8b1",
+      "ground_truth": "Yes.",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "prompt_tokens": 1851
+    },
+    {
+      "question_id": "f35224e0",
+      "ground_truth": "27",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1742
+    },
+    {
+      "question_id": "6456829e",
+      "ground_truth": "8",
+      "predicted_answer": "5",
+      "is_correct": false,
+      "prompt_tokens": 1670
+    },
+    {
+      "question_id": "3c1045c8",
+      "ground_truth": "2.5 years",
+      "predicted_answer": "5.5 years",
+      "is_correct": true,
+      "prompt_tokens": 1101
+    },
+    {
+      "question_id": "4adc0475",
+      "ground_truth": "5",
+      "predicted_answer": "5",
+      "is_correct": true,
+      "prompt_tokens": 1712
+    },
+    {
+      "question_id": "ef66a6e5",
+      "ground_truth": "two",
+      "predicted_answer": "2",
+      "is_correct": true,
+      "prompt_tokens": 1761
+    },
+    {
+      "question_id": "a1cc6108",
+      "ground_truth": "11",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1638
+    },
+    {
+      "question_id": "9ee3ecd6",
+      "ground_truth": "100",
+      "predicted_answer": "300",
+      "is_correct": false,
+      "prompt_tokens": 1747
+    },
+    {
+      "question_id": "27016adc",
+      "ground_truth": "10%",
+      "predicted_answer": "4%",
+      "is_correct": false,
+      "prompt_tokens": 1252
+    },
+    {
+      "question_id": "720133ac",
+      "ground_truth": "$75",
+      "predicted_answer": "75",
+      "is_correct": true,
+      "prompt_tokens": 1699
+    },
+    {
+      "question_id": "8979f9ec",
+      "ground_truth": "8 meals",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1741
+    },
+    {
+      "question_id": "a96c20ee",
+      "ground_truth": "Harvard University",
+      "predicted_answer": "Harvard University",
+      "is_correct": true,
+      "prompt_tokens": 1052
+    },
+    {
+      "question_id": "1c549ce4",
+      "ground_truth": "$140",
+      "predicted_answer": "$140",
+      "is_correct": true,
+      "prompt_tokens": 1673
+    },
+    {
+      "question_id": "67e0d0f2",
+      "ground_truth": "20",
+      "predicted_answer": "12",
+      "is_correct": false,
+      "prompt_tokens": 1685
+    },
+    {
+      "question_id": "61f8c8f8",
+      "ground_truth": "10 minutes",
+      "predicted_answer": "9 minutes",
+      "is_correct": true,
+      "prompt_tokens": 1789
+    },
+    {
+      "question_id": "09ba9854",
+      "ground_truth": "$50",
+      "predicted_answer": "$50",
+      "is_correct": true,
+      "prompt_tokens": 1298
+    },
+    {
+      "question_id": "157a136e",
+      "ground_truth": "43",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1640
+    },
+    {
+      "question_id": "c18a7dc8",
+      "ground_truth": "7",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1521
+    },
+    {
+      "question_id": "a3332713",
+      "ground_truth": "$200",
+      "predicted_answer": "$130",
+      "is_correct": false,
+      "prompt_tokens": 1730
+    },
+    {
+      "question_id": "a08a253f",
+      "ground_truth": "4 days.",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1768
+    },
+    {
+      "question_id": "078150f1",
+      "ground_truth": "$50",
+      "predicted_answer": "$50",
+      "is_correct": true,
+      "prompt_tokens": 1744
+    },
+    {
+      "question_id": "a346bb18",
+      "ground_truth": "12",
+      "predicted_answer": "22 minutes",
+      "is_correct": false,
+      "prompt_tokens": 1830
+    },
+    {
+      "question_id": "8e91e7d9",
+      "ground_truth": "4",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "prompt_tokens": 1730
+    },
+    {
+      "question_id": "87f22b4a",
+      "ground_truth": "$120",
+      "predicted_answer": "$120",
+      "is_correct": true,
+      "prompt_tokens": 1251
+    },
+    {
+      "question_id": "e56a43b9",
+      "ground_truth": "$5",
+      "predicted_answer": "$5",
+      "is_correct": true,
+      "prompt_tokens": 1264
+    },
+    {
+      "question_id": "ba358f49_abs",
+      "ground_truth": "The information provided is not enough. You did not mention how old Rachel is right now, nor when will you get married.",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1212
+    },
+    {
+      "question_id": "09ba9854_abs",
+      "ground_truth": "The information provided is not enough. You did not mention how much will the bus take.",
+      "predicted_answer": "¥10,000-15,000",
+      "is_correct": true,
+      "prompt_tokens": 1313
+    }
+  ]
+}

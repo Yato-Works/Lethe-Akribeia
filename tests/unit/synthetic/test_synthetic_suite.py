@@ -308,7 +308,7 @@ def op(question, records):
 def _load_production_engine():
     """Import the real QueryOperatorEngine, or skip if src is not on path."""
     try:
-        from artificial_memory.compiler.operators.engine import QueryOperatorEngine
+        from artificial_memory_gen.compiler.operators.engine import QueryOperatorEngine
     except Exception:
         return None
     return QueryOperatorEngine()

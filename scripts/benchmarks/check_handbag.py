@@ -1,6 +1,6 @@
 import json
-from artificial_memory.steroid.wide_slicer import WideSlicer
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.steroid.wide_slicer import WideSlicer
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 
 with open("datasets/external/longmemeval_s_cleaned.json", encoding="utf-8") as f:
     items = json.load(f)

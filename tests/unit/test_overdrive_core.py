@@ -13,11 +13,11 @@ Tests:
 import sys
 
 from artificial_memory.core.ir.proposition import StateHistory, UnifiedProposition
-from artificial_memory.recall.answer_verifier import AnswerVerifier
-from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
-from artificial_memory.recall.proposition_integrity_gate import PropositionIntegrityGate
-from artificial_memory.recall.query_planner import PlannerIntent, QueryPlanner
-from artificial_memory.recall.state_supersession_engine import StateSupersessionEngine
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
+from artificial_memory_gen.recall.proposition_graph import UnifiedPropositionGraph
+from artificial_memory_gen.recall.proposition_integrity_gate import PropositionIntegrityGate
+from artificial_memory_gen.recall.query_planner import PlannerIntent, QueryPlanner
+from artificial_memory_gen.recall.state_supersession_engine import StateSupersessionEngine
 
 # Kept below the imports so the module keeps the UTF-8 stdout it was written
 # against without tripping E402 on every import line.

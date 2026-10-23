@@ -11,7 +11,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.samplers.per_session_sampler import PerSessionSampler
+from artificial_memory_gen.compiler.samplers.per_session_sampler import PerSessionSampler
 
 
 def load_eval():

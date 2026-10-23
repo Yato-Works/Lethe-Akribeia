@@ -1,0 +1,91 @@
+{
+  "label": "counting-discovery-after",
+  "n": 6,
+  "correct": 1,
+  "wrong": 0,
+  "abstain": 5,
+  "presented": 1,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.024557,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-41_62",
+      "conversation": "41",
+      "category": 1,
+      "question": "How many dogs has Maria adopted from the dog shelter she volunteers at?",
+      "gold": "two",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-43_49",
+      "conversation": "43",
+      "category": 1,
+      "question": "How many times has John injured his ankle?",
+      "gold": "two times",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-44_17",
+      "conversation": "44",
+      "category": 1,
+      "question": "How many times did Audrey and Andew plan to hike together?",
+      "gold": "three times",
+      "status": "correct",
+      "answer": "four times, 4",
+      "engine": "autonomous_counting_engine",
+      "detail": "counted 4 distinct activity sessions: ['D14:6', 'D16:1', 'D18:16', 'D6:1']",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-47_20",
+      "conversation": "47",
+      "category": 1,
+      "question": "How many charity tournaments has John organized till date?",
+      "gold": "two",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_3",
+      "conversation": "49",
+      "category": 1,
+      "question": "How many Prius has Evan owned?",
+      "gold": "two",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_6",
+      "conversation": "49",
+      "category": 1,
+      "question": "How many roadtrips did Evan take in May 2023?",
+      "gold": "two",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "inference-shaped open-domain question",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

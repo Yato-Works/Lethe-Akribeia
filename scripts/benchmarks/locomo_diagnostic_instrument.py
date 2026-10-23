@@ -33,11 +33,11 @@ from eval_locomo_full import (
 )
 from collections import Counter, defaultdict
 from eval_v4_pipeline_dev import V4CandidateRetriever
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.recall.fact_index import FactIndex
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.recall.fact_index import FactIndex
 
 
 def run_diagnostic(limit: int = 50, run_json_path: Path | None = None) -> dict:

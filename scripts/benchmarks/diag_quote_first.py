@@ -58,9 +58,9 @@ def main() -> int:
 
     answerer = OllamaAnswerer(num_ctx=8192)
     from eval_v4_pipeline_dev import V4CandidateRetriever
-    from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-    from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-    from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+    from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+    from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+    from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
 
     retriever = V4CandidateRetriever()
     planner = CognitiveExecutionPlanner()

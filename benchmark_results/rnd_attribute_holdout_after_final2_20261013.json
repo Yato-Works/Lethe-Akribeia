@@ -1,0 +1,115 @@
+{
+  "label": "attribute-holdout-after-final2",
+  "n": 8,
+  "correct": 0,
+  "wrong": 0,
+  "abstain": 8,
+  "presented": 0,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.034742,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-41_99",
+      "conversation": "41",
+      "category": 4,
+      "question": "What did John and the veterans do during the small party?",
+      "gold": "share stories and make connections",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-48_180",
+      "conversation": "48",
+      "category": 4,
+      "question": "What did Deborah do with their mom's old friends?",
+      "gold": "reminisced and looked through photos",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_50",
+      "conversation": "49",
+      "category": 1,
+      "question": "What kind of hobbies does Evan pursue?",
+      "gold": "painting, hiking, reading books, biking, skiing, snowboarding, ice skating, swimming, camping, kayaking",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_88",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Evan find relaxing about his road trip to Jasper?",
+      "gold": "fresh air, peacefulness, cozy cabin surrounded by mountains and forests",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_114",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Evan recommend Sam acquire to get started with painting?",
+      "gold": "Acrylic paints, brushes, canvas/paper, palette",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-50_5",
+      "conversation": "50",
+      "category": 1,
+      "question": "What are Dave's dreams?",
+      "gold": "open a car maintenance shop, work on classic cars, build a custom car from scratch",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-50_28",
+      "conversation": "50",
+      "category": 1,
+      "question": "What does Calvin do to relax?",
+      "gold": "take long drives in his car, embrace nature, fixing cars",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-50_29",
+      "conversation": "50",
+      "category": 1,
+      "question": "What are Dave's hobbies other than fixing cars?",
+      "gold": "take a walk, go hiking, listen to favorite albums, live concerts, photography",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

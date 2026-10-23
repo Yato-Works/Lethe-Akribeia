@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 1611.0,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 9.731155299999955,
+  "per_type_breakdown": {
+    "single-session-assistant": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 1611.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "8752c811",
+      "question_type": "single-session-assistant",
+      "question": "I remember you provided a list of 100 prompt parameters that I can specify to influence your output. Can you remind me what was the 27th parameter on that list?",
+      "ground_truth": "The 27th parameter was 'Sound effects (e.g., ambient, diegetic, non-diegetic, etc.)'.",
+      "predicted_answer": "17. Symbolism",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1611,
+      "latency_ms": 9203.963199997816,
+      "r6_features": {
+        "direct_fact_demand": 0.1,
+        "temporal_demand": 0.0,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.7,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.95,
+        "dominant_mode": "assistant_recall",
+        "recommended_budget": 750,
+        "requires_chronos_diff": false,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": true,
+        "requires_profile_grounding": false,
+        "total_records": 493,
+        "session_count": 56,
+        "date_count": 56,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 20,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 201,
+        "candidate_sessions": 21,
+        "conflict": true,
+        "cert_present": false,
+        "temporal_complexity": 1,
+        "evidence_coverage": 0.4231,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 92.4862,
+        "budget_util": 0.9853,
+        "question_type": "single-session-assistant",
+        "is_aggregation": false,
+        "correct": false,
+        "reader_model": "",
+        "predicted": "17. Symbolism"
+      }
+    }
+  ]
+}

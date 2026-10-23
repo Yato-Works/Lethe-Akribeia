@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 # The src/ path insert above has to precede these imports, so they carry the
 # project's usual E402 waiver (same convention as scripts/benchmarks/*.py).
-from artificial_memory.recall.answer_shape import shape_directive  # noqa: E402
+from artificial_memory_gen.recall.answer_shape import shape_directive  # noqa: E402
 from artificial_memory.research.benchmarks.external.locomo_adapter import (  # noqa: E402
     LoCoMoAdapter,
     LoCoMoQuestion,
@@ -37,7 +37,7 @@ from artificial_memory.research.benchmarks.llm import (  # noqa: E402
     OFFICIAL_ABSTENTION_TEXT,
     OllamaAnswerer,
 )
-from artificial_memory.skills.answer_committer import extract_temporal_answer  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import extract_temporal_answer  # noqa: E402
 
 
 class ConciseAnswerer:

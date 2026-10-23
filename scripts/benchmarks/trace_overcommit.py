@@ -32,8 +32,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
-from artificial_memory.skills.deterministic_memory_engine import (  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory_gen.skills.deterministic_memory_engine import (  # noqa: E402
     DeterministicMemoryEngine,
 )
 
@@ -110,7 +110,7 @@ def main() -> int:
         # Does the chosen evidence turn even mention the asked person?
         # 'When' is the first capitalised token in a When-question, which is not a
         # person.  Use the engine's own person extractor instead of a regex.
-        from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (
+        from artificial_memory_gen.skills.autonomous_engines.temporal_algebra_engine import (
             TemporalAlgebraEngine,
         )
         person = TemporalAlgebraEngine._extract_person(r["question"], turns)

@@ -17,6 +17,7 @@ except ImportError:
     PostgresMemoryStore = None  # type: ignore
     _HAS_POSTGRES = False
 from artificial_memory.context.ir_compiler import IRCompressor
+from artificial_memory.core.tokens import estimate_tokens_raw
 from artificial_memory.memory.compiler import CompilerPipelineWrapper
 from artificial_memory.memory.file_writer import ConversationFileWriter, MemoryFileWriter
 
@@ -506,7 +507,7 @@ def dump_ir(app: ArtificialMemoryCLI, compile: bool, compress: bool, decompile: 
         return
 
     # Summary stats
-    total_tokens = sum(len(u.ir_key) + len(u.ir_value or "") for u in ir_units) // 3
+    total_tokens = sum(estimate_tokens_raw(u.ir_key + (u.ir_value or "")) for u in ir_units)
     by_type = {}
     for ir in ir_units:
         by_type[ir.ir_type] = by_type.get(ir.ir_type, 0) + 1

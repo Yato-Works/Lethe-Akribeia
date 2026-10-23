@@ -1,5 +1,5 @@
 import json
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
 
 with open("datasets/external/longmemeval_s_cleaned.json", encoding="utf-8") as f:

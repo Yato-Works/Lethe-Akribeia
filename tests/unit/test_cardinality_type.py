@@ -19,8 +19,8 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from artificial_memory.skills.answer_committer import Turn  # noqa: E402
-from artificial_memory.skills.autonomous_engines.counting_engine import (  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import Turn  # noqa: E402
+from artificial_memory_gen.skills.autonomous_engines.counting_engine import (  # noqa: E402
     CountingEngine,
 )
 

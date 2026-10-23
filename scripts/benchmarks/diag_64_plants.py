@@ -7,8 +7,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.certificates.aggregation_certificate import AggregationCertificateEngine
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.certificates.aggregation_certificate import AggregationCertificateEngine
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 
 data = json.load(open(REPO / "datasets" / "external" / "longmemeval_s_cleaned.json", encoding="utf-8"))
 extractor = UniversalIRExtractor()

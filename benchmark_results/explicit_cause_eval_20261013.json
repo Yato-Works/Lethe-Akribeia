@@ -1,0 +1,38 @@
+{
+  "ability": "target_speaker_explicit_cause_extraction",
+  "source": "benchmark_results/failure_atlas/failure_atlas.jsonl + benchmark_results/locomo_context_cache_rules.jsonl",
+  "scorer": "scripts/benchmarks/eval_locomo_full.py (unchanged; repaired scorer from c449aa0)",
+  "full_benchmark_run": false,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.0065,
+  "before_source": "fresh in-process execution of parent EventActionResolver loaded from git HEAD",
+  "paired_conditions": "same questions, frozen contexts, surrounding deterministic pipeline, and scorer; only EventActionResolver changed",
+  "discovery": {
+    "conversation_split": ["26", "30"],
+    "n": 3,
+    "before": {"correct": 0, "wrong": 0, "abstain": 3, "presented": 0},
+    "after": {"correct": 2, "wrong": 0, "abstain": 1, "presented": 2},
+    "fixed_qids": ["lc_conv-26_87", "lc_conv-30_4"],
+    "broke_qids": [],
+    "cases": [
+      {"qid": "lc_conv-26_87", "before": "abstain", "after": "correct", "answer": "they help LGBTQ+ folks with adoption", "evidence_turn": "D2:12"},
+      {"qid": "lc_conv-26_155", "before": "abstain", "after": "abstain", "note": "the explicit causal statement belonged to Caroline, not Melanie"},
+      {"qid": "lc_conv-30_4", "before": "abstain", "after": "correct", "answer": "I'm passionate about dancing and it'd be great to share it with others", "evidence_turn": "D1:4"}
+    ]
+  },
+  "conversation_heldout": {
+    "conversation_split": ["43", "48", "49", "50"],
+    "n": 8,
+    "before": {"correct": 0, "wrong": 0, "abstain": 8, "presented": 0},
+    "after": {"correct": 0, "wrong": 0, "abstain": 8, "presented": 0},
+    "fixed_qids": [],
+    "broke_qids": [],
+    "note": "The held-out questions remained abstentions; several have only partial context evidence. The rule was not tuned on these results."
+  },
+  "invariants": {
+    "discovery_n_eq_correct_plus_wrong_plus_abstain": true,
+    "heldout_n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true,
+    "fixed_and_broke_are_disjoint": true
+  }
+}

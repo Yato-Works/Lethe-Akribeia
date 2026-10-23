@@ -14,7 +14,7 @@ Verifies:
 """
 
 import pytest
-from artificial_memory.compiler.closure.types import (
+from artificial_memory_gen.compiler.closure.types import (
     AnswerTopology,
     RequirementStatus,
     EntityTarget,
@@ -24,10 +24,10 @@ from artificial_memory.compiler.closure.types import (
     ClosureCandidate,
     ClosureState,
 )
-from artificial_memory.compiler.closure.planner import DeterministicQueryPlanner
-from artificial_memory.compiler.closure.retriever import MultiViewRetriever
-from artificial_memory.compiler.closure.closure_engine import EvidenceClosureEngine
-from artificial_memory.compiler.closure.compiler_v2 import EvidenceCompilerV2, CompiledContextV2
+from artificial_memory_gen.compiler.closure.planner import DeterministicQueryPlanner
+from artificial_memory_gen.compiler.closure.retriever import MultiViewRetriever
+from artificial_memory_gen.compiler.closure.closure_engine import EvidenceClosureEngine
+from artificial_memory_gen.compiler.closure.compiler_v2 import EvidenceCompilerV2, CompiledContextV2
 
 
 def test_query_plan_types():
@@ -269,7 +269,7 @@ def test_evidence_compiler_v2_dynamic_gain():
         recommended_budget=500,
     )
 
-    from artificial_memory.compiler.closure.types import EvidenceClosureResult, ClosureState
+    from artificial_memory_gen.compiler.closure.types import EvidenceClosureResult, ClosureState
     closure_res = EvidenceClosureResult(
         query_plan=plan,
         closure_state=ClosureState(iteration=1, is_converged=True),

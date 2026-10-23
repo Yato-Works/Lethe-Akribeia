@@ -12,16 +12,20 @@ from artificial_memory.core.ir import (
     PriorityTier,
 )
 from artificial_memory.core.models import Memory, RecallLevel
+from artificial_memory.core.tokens import bpe_tokens
 from artificial_memory.recall.engine import BasicRecallEngine
 
 
 class TokenCounter:
-    """Token counter using tiktoken."""
+    """Token counter (core.tokens: bpe_tokens for cl100k_base)."""
 
     def __init__(self, encoding_name: str = "cl100k_base"):
+        self.encoding_name = encoding_name
         self.encoding = tiktoken.get_encoding(encoding_name)
 
     def count(self, text: str) -> int:
+        if self.encoding_name == "cl100k_base":
+            return bpe_tokens(text)
         return len(self.encoding.encode(text))
 
     def count_messages(self, messages: list[dict]) -> int:

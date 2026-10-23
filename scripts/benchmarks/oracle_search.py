@@ -130,9 +130,9 @@ def main() -> int:
             ctx_norm = None
         if ctx_norm is None:
             # replicate the harness compile path
-            from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-            from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-            from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+            from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+            from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+            from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
             plan = CognitiveExecutionPlanner().plan(q["question"], [])
             t_map = {(t[0], t[3]): f"{t[0]}:t{k}" for k, t in enumerate(cand)}
             anchors = [t_map[(t[0], t[3])] for t in cand[:12]

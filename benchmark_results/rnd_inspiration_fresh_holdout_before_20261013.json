@@ -1,0 +1,43 @@
+{
+  "label": "inspiration-fresh-holdout-before",
+  "n": 2,
+  "correct": 0,
+  "wrong": 0,
+  "abstain": 2,
+  "presented": 0,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.009705,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-43_117",
+      "conversation": "43",
+      "category": 4,
+      "question": "What motivates John's team to get better, according to John?",
+      "gold": "facing tough opponents",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-43_165",
+      "conversation": "43",
+      "category": 4,
+      "question": "What book did Tim get in Italy that inspired him to cook?",
+      "gold": "a cooking book",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

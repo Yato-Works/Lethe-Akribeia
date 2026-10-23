@@ -28,7 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from artificial_memory.skills.answer_committer import (  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import (  # noqa: E402
     commit_answer,
     parse_turns,
 )

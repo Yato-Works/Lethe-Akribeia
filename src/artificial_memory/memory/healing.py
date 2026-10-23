@@ -14,6 +14,7 @@ from artificial_memory.core.models import (
     MemoryVersion,
     ResolutionLevel,
 )
+from artificial_memory.core.tokens import estimate_tokens_raw
 from artificial_memory.memory.integrity import (
     IntegrityIssue,
     IntegrityMetrics,
@@ -303,8 +304,8 @@ class MemoryHealer:
                     target_memory_id=None,
                     from_resolution=memory.resolution,
                     to_resolution=res,
-                    original_tokens=meta.get('original_tokens', len(original_content)//3),
-                    compressed_tokens=meta.get('compressed_tokens', len(compressed)//3),
+                    original_tokens=meta.get('original_tokens', estimate_tokens_raw(original_content)),
+                    compressed_tokens=meta.get('compressed_tokens', estimate_tokens_raw(compressed)),
                     compression_ratio=meta.get('compression_ratio', 1.0),
                     method=method_map.get(res, CompressionMethod.LIGHT),
                     created_at=datetime.now(),

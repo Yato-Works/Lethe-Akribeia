@@ -17,11 +17,11 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
 
-from artificial_memory.compiler.certificates.coprocessor_engine import CoProcessorEngine
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.recall.evidence_scorer import UniversalEvidenceScorer
+from artificial_memory_gen.compiler.certificates.coprocessor_engine import CoProcessorEngine
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.recall.evidence_scorer import UniversalEvidenceScorer
 
 spec = importlib.util.spec_from_file_location(
     "ev", str(REPO / "scripts" / "benchmarks" / "eval_v4_pipeline_dev.py"))

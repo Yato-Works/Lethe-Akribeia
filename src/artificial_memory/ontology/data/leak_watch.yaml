@@ -1,0 +1,40 @@
+# Leak-watch token registry.
+#
+# Tokens below are fingerprints of evaluation-corpus content (character
+# personas, gold turn identifiers, corpus-unique proper nouns). Runtime
+# source (src/artificial_memory, excluding research/ benchmark harnesses and
+# the ontology data plane itself) must not embed them; the CI guard
+# tests/unit/hygiene/test_ontology_leak_boundary.py enforces this with a
+# maintained, justified allowlist.
+#
+# NOTE: generic English words (camping, dog, swimming, ...) and real-world
+# country/brand names are deliberately NOT watched - they are legitimate
+# world vocabulary. Only corpus-identifying fingerprints are.
+_meta:
+  origin: benchmark_tuned
+  description: Corpus fingerprints watched by the runtime leak-boundary CI guard.
+  version: 1
+
+watched_tokens:
+  # LongMemEval / LoCoMo / engineered-drill character personas
+  personas:
+    - caroline
+    - melanie
+    - joanna
+    - nate
+    - audrey
+    - jolene
+    - deborah
+    - kadence
+    - liam
+  # Corpus-unique proper nouns / branded fixture vocabulary
+  corpus_unique:
+    - matt patterson
+    - summer sounds
+    - becoming nicole
+    - charlotte's web
+    - dr. seuss
+  # Gold turn / answer identifiers (per-item artifacts)
+  turn_ids:
+    - answer_661b711f_2
+    - out auntie

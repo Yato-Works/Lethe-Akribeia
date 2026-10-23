@@ -1,0 +1,114 @@
+{
+  "label": "activity-holdout-before",
+  "n": 8,
+  "correct": 0,
+  "wrong": 3,
+  "abstain": 5,
+  "presented": 3,
+  "llm_calls": 0,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-30_5",
+      "conversation": "30",
+      "category": 1,
+      "question": "What Jon thinks the ideal dance studio should look like?",
+      "gold": "By the water, with natural light and Marley flooring",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-30_56",
+      "conversation": "30",
+      "category": 4,
+      "question": "What did Jon and Gina compare their entrepreneurial journeys to?",
+      "gold": "dancing together and supporting each other",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-44_18",
+      "conversation": "44",
+      "category": 1,
+      "question": "Where did Audrey get Pixie from?",
+      "gold": "breeder",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-44_2",
+      "conversation": "44",
+      "category": 1,
+      "question": "What kind of indoor activities has Andrew pursued with his girlfriend?",
+      "gold": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
+      "status": "wrong",
+      "answer": "camping, hiking",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'hiking', 'camping'}",
+      "evidence_turn": "[D9:8 on 1:51 pm on 26 June, 2023] (In reply to Audrey: \"That looks fun! Where are you at? I would l"
+    },
+    {
+      "question_id": "lc_conv-44_12",
+      "conversation": "44",
+      "category": 1,
+      "question": "What outdoor activities has Andrew done other than hiking in nature?",
+      "gold": "rock climbing, fishing, camping",
+      "status": "wrong",
+      "answer": "camping, hiking",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'hiking', 'camping'}",
+      "evidence_turn": "[D14:11 on 11:05 am on 4 August, 2023] (In reply to Audrey: \"Nature really refreshes you, right? It'"
+    },
+    {
+      "question_id": "lc_conv-48_145",
+      "conversation": "48",
+      "category": 4,
+      "question": "What activities have been helping Jolene stay distracted during tough times?",
+      "gold": "Video games and spending time with her pet, Susie",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_81",
+      "conversation": "49",
+      "category": 1,
+      "question": "What is a stress reliever for Evan?",
+      "gold": "Drawing, traveling, places with a beautiful view, yoga, sunsets or something comfortable for Evan",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-50_28",
+      "conversation": "50",
+      "category": 1,
+      "question": "What does Calvin do to relax?",
+      "gold": "take long drives in his car, embrace nature, fixing cars",
+      "status": "wrong",
+      "answer": "n't forget to relax",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Calvin's turn: 'n't forget to relax'",
+      "evidence_turn": "D5:6"
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

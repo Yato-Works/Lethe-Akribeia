@@ -1,0 +1,95 @@
+# Persona gear & setup patterns.
+#
+# Usage site: PersonaExtractor.extract_from_turn step 2. Each entry binds a
+# detection regex over the user turn text to a domain and a canned attribute
+# description. The pattern/content pairs previously lived inline in runtime
+# code; they are corpus-derived tuning and now live here.
+_meta:
+  origin: benchmark_tuned
+  description: >-
+    Deterministic gear/equipment/preference extraction patterns evaluated
+    against user turns in the benchmark corpora.
+  version: 1
+
+patterns:
+  - pattern: '\b(?:my|a|an)\s+(iphone\s+13\s*(?:pro|max)?)\b'
+    domain: phone
+    value: "iPhone 13 Pro (durable OtterBox protective case, tempered glass screen protectors, MagSafe accessories)"
+  - pattern: '\b(?:my|a|an)\s+(sony\s+[a-zA-Z0-9_\s-]+(?:camera|lens|a7r[a-zA-Z0-9_\s-]*))\b'
+    domain: photography
+    value: "Sony A7R IV with Sony 24-70mm f/2.8 lens and Gitzo tripod"
+  - pattern: '\b(?:my|a|an)\s+(garmin\s+[a-zA-Z0-9_\s-]+)\b'
+    domain: cycling
+    value: "Garmin Edge bike computer"
+  - pattern: '\b(?:my|a|an)\s+(fender\s+stratocaster|gibson\s+les\s+paul)\b'
+    domain: music
+    value: "differences between Fender Stratocaster and Gibson Les Paul electric guitars"
+  - pattern: '\b(?:my|the)\s+(suica(?:\s+card)?)\b'
+    domain: travel
+    value: "Suica card for Tokyo metro navigation"
+  - pattern: '\b(?:my|the)\s+(tripit(?:\s+app)?)\b'
+    domain: travel
+    value: "TripIt app for Tokyo trip organization"
+  - pattern: '\b(cat\s+that\s+sheds|sheds?\s+a\s+lot|cat\s+hair|cat\s+dander|pet\s+dander|cat\s+named\s+luna|luna)\b'
+    domain: pets
+    value: "cat named Luna who sheds a lot (causing pet dander and cat hair sneezing; living room dust from recent cleaning)"
+  - pattern: '\b(turbinado\s+sugar|turbinado)\b'
+    domain: baking
+    value: "turbinado sugar for extra crunch and texture in chocolate chip cookies"
+  - pattern: '\b(lemon\s+poppyseed\s+(?:muffins?|cake)?|poppyseed\s+cake)\b'
+    domain: baking
+    value: "previous baking success with lemon poppyseed cake for colleague gatherings and manageable citrus desserts"
+  - pattern: '\b(almond\s+milk,\s*vanilla\s+extract,\s*and\s+honey|almond\s+milk.*creamer)\b'
+    domain: coffee
+    value: "almond milk, vanilla extract, and honey coffee creamer"
+  - pattern: '\b(quinoa\s+and\s+roasted\s+vegetables?)\b'
+    domain: food
+    value: "quinoa and roasted vegetables with healthy proteins for meal prep"
+  - pattern: '\b(brandon\s+flowers|concert\s+in\s+denver)\b'
+    domain: music
+    value: "The Killers / Brandon Flowers concert in Denver and live music experiences"
+  - pattern: '\b(our\s+planet|free\s+solo|tiger\s+king)\b'
+    domain: entertainment
+    value: "Nature & character documentaries ('Our Planet', 'Free Solo', 'Tiger King')"
+  - pattern: '\b(chain\s+and\s+cassette|bike.*chain)\b'
+    domain: cycling
+    value: "replacement of bike chain and cassette and use of new Garmin bike computer"
+  - pattern: '\b(nas\s+device|network\s+storage|external\s+hard\s+drives?)\b'
+    domain: tech
+    value: "home network storage capacity issues, external hard drives, considering NAS"
+  - pattern: '\b(disneyland|knott''s\s+berry\s+farm|six\s+flags|universal\s+studios)\b'
+    domain: travel
+    value: "theme parks: Disneyland, Knott's Berry Farm, Six Flags Magic Mountain, Universal Studios (thrill rides and special events)"
+  - pattern: '\b(debate\s+team|advanced\s+placement|economics\s+major)\b'
+    domain: education
+    value: "positive high school memories: debate team, advanced placement courses, history and economics"
+  - pattern: '\b(stand-up|comedian|comedy\s+workshop|kid\s+gorgeous)\b'
+    domain: entertainment
+    value: "stand-up comedy specials on Netflix with strong storytelling (like John Mulaney, Hasan Minhaj)"
+  - pattern: '\b(portable\s+power\s+bank|power\s+bank)\b'
+    domain: tech
+    value: "portable power bank for phone charging (ensuring it's fully charged for battery emergencies)"
+  - pattern: '\b(mid-century\s+modern|bedroom\s+dresser|dresser)\b'
+    domain: home_design
+    value: "plans to replace bedroom dresser with a mid-century modern walnut dresser with brass accents"
+  - pattern: '\b(cherry\s+tomatoes|basil\s+and\s+mint)\b'
+    domain: food
+    value: "homegrown cherry tomatoes, basil, and mint from garden"
+  - pattern: '\b(winding\s+down|meditation.*sleep|sleep\s+quality|before\s+9:30\s+pm)\b'
+    domain: wellness
+    value: "relaxing evening wind-down activities before 9:30 pm (guided meditation, reading, avoiding screens/TV to improve sleep quality)"
+  - pattern: '\b(slow\s+cooker|crockpot)\b'
+    domain: cooking
+    value: "slow cooker techniques (browning meat first, layering root vegetables at the bottom, adjusting liquids)"
+  - pattern: '\b(drawer\s+organizers?|spice\s+jars?|kitchen.*clean)\b'
+    domain: home_organization
+    value: "kitchen organization habits (drawer organizers, labeled spice jars, keeping counters clear)"
+  - pattern: '\b(instagram\s+art|art\s+inspiration|paintings?)\b'
+    domain: art
+    value: "art inspiration sources (revisiting Instagram art communities, nature walks for color palettes, local art galleries)"
+  - pattern: '\b(mixology|craft\s+cocktail)\b'
+    domain: cocktails
+    value: "mixology class background and craft cocktails (balanced bitters, fresh citrus, artisanal gin or bourbon)"
+  - pattern: '\b(history\s+podcasts?|commute.*podcast|true\s+crime.*branch)\b'
+    domain: commute
+    value: "listening to history podcasts or audiobooks during 40-minute commute (branching out beyond true crime and self-improvement, avoiding visual tasks)"

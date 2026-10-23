@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from artificial_memory.context.derivation_scaffold import DerivationScaffolder
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.context.derivation_scaffold import DerivationScaffolder
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.memory_types import ApexMemoryUnit, MemoryRole, QueryIntent
 from artificial_memory.core.ir.structured import StructuredIR
 

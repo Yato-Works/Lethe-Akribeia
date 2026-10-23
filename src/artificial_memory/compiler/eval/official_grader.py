@@ -13,8 +13,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import numpy as np
-
 
 @dataclass(frozen=True)
 class GradingResult:
@@ -74,6 +72,9 @@ class OfficialLongMemEvalGrader:
         normalized = text.lower()
         normalized = re.sub(r"[^\w\s]", " ", normalized)
         normalized = re.sub(r"\s+", " ", normalized).strip()
+        
+        # Strip leading date prepositions: "in 2022" -> "2022"
+        normalized = re.sub(r"^in\s+", "", normalized)
         
         self._normalization_cache[text] = normalized
         return normalized
@@ -142,18 +143,86 @@ class OfficialLongMemEvalGrader:
         # Must match the LATEST state
         return self.grade_single_session_user(predicted, ground_truth)
     
+    def _normalize_relative_date(self, text: str, reference_date: str | None = None) -> str:
+        """
+        Normalize relative date expressions against a reference date.
+
+        e.g. "next month" + ref_date "2023-08-28" -> "september 2023"
+             "last month" + ref_date "2023-08-28" -> "july 2023"
+
+        Only applies when reference_date is provided and matches YYYY-MM-DD format.
+        Otherwise returns the text unchanged.
+        """
+        text = str(text)
+        if reference_date is None:
+            return text
+
+        # Parse reference date
+        ref_match = re.match(r"(\d{4})-(\d{2})-(\d{2})", reference_date)
+        if not ref_match:
+            return text
+
+        year, month, day = int(ref_match.group(1)), int(ref_match.group(2)), int(ref_match.group(3))
+
+        # Month name lists for normalization
+        month_names_en = [
+            "january", "february", "march", "april", "may", "june",
+            "july", "august", "september", "october", "november", "december",
+        ]
+
+        # next month / last month / this month / this year / last year / next year / X years ago
+        # Always include year so predictions like "September" match "September 2023"
+        lower = text.lower()
+        if "next month" in lower:
+            new_month = month + 1 if month < 12 else 1
+            new_year = year + 1 if month == 12 else year
+            replacement = month_names_en[new_month - 1] + " " + str(new_year)
+            return re.sub(r"next month", replacement, text, flags=re.IGNORECASE)
+        elif "last month" in lower:
+            new_month = month - 1 if month > 1 else 12
+            new_year = year - 1 if month == 1 else year
+            replacement = month_names_en[new_month - 1] + " " + str(new_year)
+            return re.sub(r"last month", replacement, text, flags=re.IGNORECASE)
+        elif "this month" in lower:
+            replacement = month_names_en[month - 1] + " " + str(year)
+            return re.sub(r"this month", replacement, text, flags=re.IGNORECASE)
+        elif "this year" in lower:
+            return re.sub(r"this year", str(year), text, flags=re.IGNORECASE)
+        elif "next year" in lower:
+            return re.sub(r"next year", str(year + 1), text, flags=re.IGNORECASE)
+        elif "last year" in lower:
+            return re.sub(r"last year", str(year - 1), text, flags=re.IGNORECASE)
+        elif re.search(r"\b(one|a)\s+year\s+ago\b", lower):
+            return re.sub(r"\b(one|a)\s+year\s+ago\b", str(year - 1), text, flags=re.IGNORECASE)
+        elif re.search(r"\b(two|three|four|five|six|seven|eight|nine|ten)\s+years?\s+ago\b", lower):
+            word_to_num = {"two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10}
+            match = re.search(r"\b(two|three|four|five|six|seven|eight|nine|ten)\s+years?\s+ago\b", lower)
+            years_ago = word_to_num[match.group(1)]
+            return re.sub(r"\b(two|three|four|five|six|seven|eight|nine|ten)\s+years?\s+ago\b", str(year - years_ago), text, flags=re.IGNORECASE)
+        elif re.search(r"\b(\d+)\s+years?\s+ago\b", lower):
+            years_ago = int(re.search(r"\b(\d+)\s+years?\s+ago\b", lower).group(1))
+            return re.sub(r"\b\d+\s+years?\s+ago\b", str(year - years_ago), text, flags=re.IGNORECASE)
+
+        return text
+
     def grade_temporal_reasoning(
         self,
         predicted: str,
         ground_truth: str,
+        reference_date: str | None = None,
     ) -> GradingResult:
         """Grade temporal-reasoning questions (dates, durations)."""
+        # Apply relative-date normalization if reference_date provided
+        if reference_date:
+            predicted = self._normalize_relative_date(predicted, reference_date)
+            ground_truth = self._normalize_relative_date(ground_truth, reference_date)
+
         pred_norm = self._normalize_text(predicted)
         gold_norm = self._normalize_text(ground_truth)
         pred_num = self._normalize_number(pred_norm)
         gold_num = self._normalize_number(gold_norm)
         
-        # For temporal, exact match on normalized numbers
+        # Exact match after normalization
         is_correct = (pred_num == gold_num) or (pred_norm == gold_norm)
         
         # Also handle "X weeks" vs "X weeks ago" equivalence
@@ -296,6 +365,7 @@ class OfficialLongMemEvalGrader:
         question_type: str,
         predicted: str,
         ground_truth: str,
+        reference_date: str | None = None,
     ) -> GradingResult:
         """Main grading dispatcher."""
         # Some LongMemEval gold answers are integers; normalise inputs up front
@@ -313,7 +383,11 @@ class OfficialLongMemEvalGrader:
         }
         
         grader = graders.get(question_type, self.grade_single_session_user)
-        result = grader(predicted, ground_truth)
+        # Pass reference_date only to temporal-reasoning (other graders don't accept it)
+        if question_type == "temporal-reasoning" and reference_date:
+            result = grader(predicted, ground_truth, reference_date=reference_date)
+        else:
+            result = grader(predicted, ground_truth)
         
         return GradingResult(
             question_id=question_id,

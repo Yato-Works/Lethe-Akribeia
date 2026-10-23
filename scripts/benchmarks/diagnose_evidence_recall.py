@@ -28,10 +28,10 @@ from eval_locomo_full import (
     _scaled_budget,
 )
 from eval_v4_pipeline_dev import V4CandidateRetriever
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
 
 
 def main():

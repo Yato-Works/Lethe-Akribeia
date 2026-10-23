@@ -11,8 +11,8 @@ Tests:
 from __future__ import annotations
 
 import datetime
-from artificial_memory.context.temporal_normalizer import TemporalNormalizer
-from artificial_memory.temporal.interval_algebra import (
+from artificial_memory_gen.context.temporal_normalizer import TemporalNormalizer
+from artificial_memory_gen.temporal.interval_algebra import (
     DatePointNode,
     IntervalSpanNode,
     OffsetNode,
@@ -101,7 +101,7 @@ def test_temporal_normalizer_compound_integration() -> None:
 
 
 def test_temporal_certificate_compound_resolution() -> None:
-    from artificial_memory.compiler.certificates.temporal_certificate import TemporalCertificateEngine
+    from artificial_memory_gen.compiler.certificates.temporal_certificate import TemporalCertificateEngine
     from artificial_memory.core.ir.structured import StructuredIR
 
     engine = TemporalCertificateEngine()
@@ -139,7 +139,7 @@ def test_temporal_certificate_compound_resolution() -> None:
 
 
 def test_temporal_certificate_allen_pairwise_ordering() -> None:
-    from artificial_memory.compiler.certificates.temporal_certificate import TemporalCertificateEngine
+    from artificial_memory_gen.compiler.certificates.temporal_certificate import TemporalCertificateEngine
     from artificial_memory.core.ir.structured import StructuredIR
 
     engine = TemporalCertificateEngine()

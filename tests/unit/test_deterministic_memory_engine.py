@@ -9,7 +9,7 @@ Guarantees:
 from __future__ import annotations
 
 import pytest
-from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
+from artificial_memory_gen.skills.deterministic_memory_engine import DeterministicMemoryEngine
 
 CTX_SAMPLE = """
 [D1:1 on 10:00 am on 13 June, 2023] Andrew: I went rock climbing last Sunday (the Sunday before 13 June 2023)! It was awesome.

@@ -1,0 +1,77 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 5,
+  "correct_answers": 2,
+  "accuracy": 0.4,
+  "mean_prompt_tokens": 1799.2,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 15.84300510000321,
+  "per_type_breakdown": {
+    "multi-session": {
+      "accuracy": 0.4,
+      "correct": 2,
+      "total": 5,
+      "mean_tokens": 1799.2
+    }
+  },
+  "results": [
+    {
+      "question_id": "b5ef892d",
+      "question_type": "multi-session",
+      "question": "How many days did I spend on camping trips in the United States this year?",
+      "ground_truth": "8 days.",
+      "predicted_answer": "7 + 5 = 12 days",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1836,
+      "latency_ms": 9216.45290000015
+    },
+    {
+      "question_id": "6cb6f249",
+      "question_type": "multi-session",
+      "question": "How many days did I take social media breaks in total?",
+      "ground_truth": "17 days",
+      "predicted_answer": "17 days",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1770,
+      "latency_ms": 999.6009999886155
+    },
+    {
+      "question_id": "5a7937c8",
+      "question_type": "multi-session",
+      "question": "How many days did I spend participating in faith-related activities in December?",
+      "ground_truth": "3 days.",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1782,
+      "latency_ms": 991.8350000225473
+    },
+    {
+      "question_id": "edced276",
+      "question_type": "multi-session",
+      "question": "How many days did I spend in total traveling in Hawaii and in New York City?",
+      "ground_truth": "15 days",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1792,
+      "latency_ms": 1092.9367000062484
+    },
+    {
+      "question_id": "a08a253f",
+      "question_type": "multi-session",
+      "question": "How many days a week do I attend fitness classes?",
+      "ground_truth": "4 days.",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1816,
+      "latency_ms": 993.2558999862522
+    }
+  ]
+}

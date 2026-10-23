@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir import IRRelation
 
 

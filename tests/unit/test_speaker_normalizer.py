@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from artificial_memory.compiler.speaker_normalizer import SpeakerAttributionNormalizer
+from artificial_memory_gen.compiler.speaker_normalizer import SpeakerAttributionNormalizer
 
 
 def test_normalize_turn_pronoun_disambiguation() -> None:

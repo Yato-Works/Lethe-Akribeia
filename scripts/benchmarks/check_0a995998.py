@@ -6,8 +6,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.coverage.concept_expander import AbstractConceptExpander
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.coverage.concept_expander import AbstractConceptExpander
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
 import importlib.util
 spec = importlib.util.spec_from_file_location("eval_v4", str(REPO / "scripts" / "benchmarks" / "eval_v4_pipeline_dev.py"))
 eval_v4 = importlib.util.module_from_spec(spec)

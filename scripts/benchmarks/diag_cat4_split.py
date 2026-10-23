@@ -29,9 +29,9 @@ sys.path.insert(0, str(ROOT / "scripts" / "benchmarks"))
 
 import eval_locomo_full as E  # noqa: E402
 from eval_v4_pipeline_dev import V4CandidateRetriever  # noqa: E402
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner  # noqa: E402
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder  # noqa: E402
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler  # noqa: E402
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner  # noqa: E402
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder  # noqa: E402
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler  # noqa: E402
 
 DATA = ROOT / "datasets" / "external" / "locomo10.json"
 RUN = ROOT / "benchmark_results" / "locomo_full_20261012_211601.json"

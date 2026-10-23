@@ -1,0 +1,42 @@
+{
+  "run_stamp": "20261023_010055",
+  "code_revision": "4ed8d4e",
+  "config": {
+    "cond": "R7",
+    "cats": "",
+    "limit": 0,
+    "num_ctx": 8192,
+    "second_pass": false,
+    "enum_contract": "off",
+    "speaker_first": false,
+    "manifest": "",
+    "n_questions": 1986,
+    "data": "datasets/external/locomo10.json"
+  },
+  "run_salt": "e5868ddd21d85949",
+  "accuracy": 0.486908358509567,
+  "per_category": {
+    "2": {
+      "correct": 195,
+      "total": 321
+    },
+    "3": {
+      "correct": 34,
+      "total": 96
+    },
+    "1": {
+      "correct": 86,
+      "total": 282
+    },
+    "4": {
+      "correct": 526,
+      "total": 841
+    },
+    "5": {
+      "correct": 126,
+      "total": 446
+    }
+  },
+  "scorer": "eval_locomo_full.score + is_list_gold (audit_strict_grade)",
+  "source": "locomo_full_20261023_010055.json"
+}

@@ -26,8 +26,8 @@ from collections import defaultdict
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from artificial_memory.compiler.closure.retriever import MultiViewRetriever  # noqa: E402
-from artificial_memory.skills.answer_committer import parse_turns  # noqa: E402
+from artificial_memory_gen.compiler.closure.retriever import MultiViewRetriever  # noqa: E402
+from artificial_memory_gen.skills.answer_committer import parse_turns  # noqa: E402
 
 ATLAS = ROOT / "benchmark_results/failure_atlas/failure_atlas.jsonl"
 CACHE = ROOT / "benchmark_results/locomo_context_cache_rules.jsonl"
@@ -169,7 +169,7 @@ def main() -> int:
         # So the comparison is POSITIONAL: turns are passed in a known order, and
         # 'D7:t8' is decoded back to index 8 of that same order.  The assertion
         # guards the decode rather than trusting it.
-        from artificial_memory.compiler.closure.planner import DeterministicQueryPlanner
+        from artificial_memory_gen.compiler.closure.planner import DeterministicQueryPlanner
 
         qplan = DeterministicQueryPlanner().plan(row["question"])
         raw_turns = [

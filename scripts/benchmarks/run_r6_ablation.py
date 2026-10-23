@@ -24,14 +24,14 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.budgeted_compiler import BudgetedCognitiveCompiler
-from artificial_memory.compiler.certificates.coprocessor_engine import CoProcessorEngine
-from artificial_memory.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.graph.dependency_graph import EvidenceBundle, EvidenceNode
-from artificial_memory.compiler.graph.graph_builder import GraphBuilder
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.compiler.samplers.per_session_sampler import PerSessionSampler
+from artificial_memory_gen.compiler.budgeted_compiler import BudgetedCognitiveCompiler
+from artificial_memory_gen.compiler.certificates.coprocessor_engine import CoProcessorEngine
+from artificial_memory_gen.compiler.coverage.coverage_engine import MultiSessionCoverageEngine
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.graph.dependency_graph import EvidenceBundle, EvidenceNode
+from artificial_memory_gen.compiler.graph.graph_builder import GraphBuilder
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.samplers.per_session_sampler import PerSessionSampler
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
 from artificial_memory.research.benchmarks.llm import FROZEN_MODEL, OllamaAnswerer
@@ -152,10 +152,10 @@ def run_condition(
         else:
             # Temporary override aggregation engine
             orig_engine = coprocessor.aggregation_engine
-            from artificial_memory.compiler.certificates.aggregation_certificate import AggregationCertificateEngine
+            from artificial_memory_gen.compiler.certificates.aggregation_certificate import AggregationCertificateEngine
             class DisabledAggEngine(AggregationCertificateEngine):
                 def generate(self, *args, **kwargs):
-                    from artificial_memory.compiler.certificates.aggregation_certificate import AggregationCertificate
+                    from artificial_memory_gen.compiler.certificates.aggregation_certificate import AggregationCertificate
                     return AggregationCertificate(has_certificate=False, query_type="none", matched_events=[], total_count=None, difference_value=None, formatted_certificate="", direct_answer_candidate=None)
             coprocessor.aggregation_engine = DisabledAggEngine()
             bundle = coprocessor.process(q, all_records, plan, reference_date=q_date)

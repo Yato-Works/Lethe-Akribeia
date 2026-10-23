@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from artificial_memory.compiler.budgeted_compiler import (
+from artificial_memory_gen.compiler.budgeted_compiler import (
     BudgetedCognitiveCompiler,
     CompiledContext,
 )
-from artificial_memory.compiler.graph.dependency_graph import (
+from artificial_memory_gen.compiler.graph.dependency_graph import (
     EvidenceBundle,
     EvidenceNode,
 )
-from artificial_memory.compiler.sufficiency_judge import (
+from artificial_memory_gen.compiler.sufficiency_judge import (
     EvidenceSufficiencyJudge,
     SufficiencyAssessment,
 )

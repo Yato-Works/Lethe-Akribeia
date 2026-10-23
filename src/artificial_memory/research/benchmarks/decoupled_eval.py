@@ -8,9 +8,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from artificial_memory.recall.ir_resolver import ResolvedContext
 from artificial_memory.research.benchmarks.arena import ArenaQuestion
 from artificial_memory.research.benchmarks.scorer import term_present
+from artificial_memory_gen.recall.ir_resolver import ResolvedContext
 
 
 @dataclass(frozen=True)

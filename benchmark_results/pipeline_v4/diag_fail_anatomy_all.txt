@@ -1,0 +1,97 @@
+
+=== LLM-free failure anatomy: 67/67 failed multi-session + knowledge-update questions analyzed ===
+
+qid        type          path   bucket                  gt?  gold   gturns    gtbear(in)     ctx  GT                                       PRED                                    
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+e01b8e2f   single-sessi  graph  reader_miss             Y    1/1    1/12      1/7           3085  Hawaii                                   I don't know.                           
+0a995998   multi-sessio  agg    reader_miss_unverified  Y    3/3    7/34      0/14          4653  3                                        2                                       
+6d550036   multi-sessio  graph  reader_miss             Y    3/4    2/44      1/19          4551  2                                        You have led one project, as mentioned i
+gpt4_59c863d7 multi-sessio  agg    reader_miss             Y    3/4    5/46      5/36          5320  I have worked on or bought five model ki 3                                       
+b5ef892d   multi-sessio  agg    reader_miss             Y    3/3    3/36      0/5           5327  8 days.                                  5                                       
+aae3761f   multi-sessio  agg    reader_miss             Y    3/3    6/36      0/6           5189  15 hours for getting to the three destin 11                                      
+gpt4_a56e767c multi-sessio  graph  computed_gt_unverifiable N    3/3    4/36      0/0           2909  I attended four movie festivals.         3                                       
+6cb6f249   multi-sessio  agg    reader_miss             Y    2/2    3/24      0/1           5608  17 days                                  2                                       
+36b9f61e   multi-sessio  agg    selection_miss          N    3/3    3/36      0/1           5403  $2,500                                   $1,800                                  
+2e6d26dc   multi-sessio  graph  reader_miss_unverified  Y    3/4    7/48      0/8           4128  5                                        4                                       
+gpt4_15e38248 multi-sessio  agg    reader_miss             Y    4/4    7/42      1/14          5287  4                                        3                                       
+gpt4_7fce9456 multi-sessio  agg    reader_miss             Y    5/5    5/60      2/37          5247  I viewed four properties before making a I don't know.                           
+00ca467f   multi-sessio  graph  reader_miss             Y    3/3    8/36      2/18          2800  2                                        3                                       
+gpt4_31ff4165 multi-sessio  graph  reader_miss             Y    4/5    2/60      1/26          2934  4                                        I don't know.                           
+60472f9c   multi-sessio  agg    reader_miss_unverified  Y    3/3    3/36      0/17          5383  2                                        3                                       
+gpt4_194be4b3 multi-sessio  graph  reader_miss             Y    4/5    3/53      3/33          4242  I currently own 4 musical instruments. I 2                                       
+a9f6b44c   multi-sessio  agg    reader_miss             Y    2/3    2/36      1/14          5196  2                                        1                                       
+5a7937c8   multi-sessio  agg    reader_miss             Y    3/3    4/32      0/14          5329  3 days.                                  2                                       
+edced276   multi-sessio  agg    reader_miss             Y    2/2    2/18      0/2           5400  15 days                                  I don't know.                           
+e3038f8c   multi-sessio  agg    computed_gt_unverifiable N    4/4    11/48     0/0           4659  99                                       28                                      
+2b8f3739   multi-sessio  agg    computed_gt_unverifiable N    3/3    7/36      0/0           5223  $495                                     $225 + $120 = $345                      
+1a8a66a6   multi-sessio  graph  reader_miss             Y    3/4    3/44      1/19          3598  2                                        1                                       
+c2ac3c61   multi-sessio  agg    reader_miss_unverified  Y    2/2    4/24      0/7           5161  5                                        2                                       
+gpt4_2f91af09 multi-sessio  graph  reader_miss             Y    3/3    10/34     0/0           4388  23                                       17 poems + 5 short stories = 22 pieces  
+195a1a1b   single-sessi  graph  reader_miss             Y    1/1    1/16      0/4           2894  The user would prefer suggestions that i Given your interest in straight photogra
+d6233ab6   single-sessi  graph  computed_gt_unverifiable N    1/1    1/12      0/0           2744  The user would prefer responses that dra Yes                                     
+2311e44b   multi-sessio  agg    computed_gt_unverifiable N    2/2    3/18      0/0           5351  190                                      440 - 0 = 440 pages                     
+4f54b7c9   multi-sessio  agg    reader_miss_unverified  Y    2/2    4/24      0/5           4797  5                                        3                                       
+7405e8b1   multi-sessio  graph  computed_gt_unverifiable N    2/2    9/24      0/0           3693  Yes.                                     No                                      
+4adc0475   multi-sessio  agg    reader_miss             Y    2/2    2/24      1/12          5399  5                                        I don't know.                           
+a1cc6108   multi-sessio  graph  computed_gt_unverifiable N    1/2    3/20      0/0           2769  11                                       I don't know.                           
+9ee3ecd6   multi-sessio  agg    selection_miss          N    2/2    4/22      0/1           5194  100                                      300 points                              
+8979f9ec   multi-sessio  agg    reader_miss             Y    2/2    3/22      0/3           5297  8 meals                                  3                                       
+67e0d0f2   multi-sessio  agg    reader_miss             Y    2/2    2/24      0/0           5298  20                                       I don't know.                           
+61f8c8f8   multi-sessio  agg    reader_miss             Y    2/2    1/24      0/5           5428  10 minutes                               I don't know.                           
+157a136e   multi-sessio  graph  computed_gt_unverifiable N    1/2    3/22      0/0           3016  43                                       I don't know.                           
+c18a7dc8   multi-sessio  graph  reader_miss_unverified  Y    1/2    0/22      0/2           2714  7                                        I don't know.                           
+a3332713   multi-sessio  agg    reader_miss             Y    2/2    3/24      1/3           5318  $200                                     $130                                    
+a08a253f   multi-sessio  agg    reader_miss             Y    2/2    4/24      0/9           5079  4 days.                                  3                                       
+a346bb18   multi-sessio  agg    reader_miss_unverified  Y    2/2    2/24      0/4           5395  12                                       22 minutes                              
+8e91e7d9   multi-sessio  agg    reader_miss             Y    2/2    3/22      1/7           4722  4                                        3                                       
+87f22b4a   multi-sessio  graph  reader_miss             Y    2/2    3/24      1/1           2992  $120                                     I don't know.                           
+gpt4_1d80365e temporal-rea  agg    reader_miss             Y    2/2    3/24      0/11          5181  2 days. 3 days (including the last day)  1                                       
+4dfccbf7   temporal-rea  graph  reader_miss             Y    2/2    3/24      0/4           2270  24 days. 25 days (including the last day 70                                      
+2ebe6c90   temporal-rea  graph  computed_gt_unverifiable N    2/2    4/22      0/0           2877  21 days. 22 days (including the last day I don't know.                           
+gpt4_68e94287 temporal-rea  graph  computed_gt_unverifiable N    2/2    2/20      0/0           2968  You posted a recipe for vegan chili on I my participation in the #PlankChallenge 
+gpt4_1e4a8aec temporal-rea  graph  retrieval_miss          Y    0/2    0/24      0/1           3009  planting 12 new tomato saplings          I don't know.                           
+gpt4_4929293b temporal-rea  graph  reader_miss             Y    1/2    2/24      1/2           2879  my cousin's wedding                      My nephew Jack's eighth grade graduation
+gpt4_fa19884d temporal-rea  graph  reader_miss             Y    2/2    5/24      1/1           3782  a bluegrass band that features a banjo p Jinsang                                 
+0bc8ad93   temporal-rea  graph  computed_gt_unverifiable N    2/3    4/34      0/0           2858  No, you did not visit with a friend.     No.                                     
+6e984302   temporal-rea  graph  computed_gt_unverifiable N    2/2    2/24      0/0           3165  I got my own set of sculpting tools.     I don't know.                           
+gpt4_b5700ca0 temporal-rea  graph  selection_miss          N    1/1    0/12      0/2           3537  the Episcopal Church                     University Art Museum                   
+gpt4_5dcc0aab temporal-rea  graph  selection_miss          N    4/5    0/58      0/3           2681  white Adidas sneakers                    I don't know.                           
+982b5123   temporal-rea  graph  computed_gt_unverifiable N    2/2    9/24      0/0           4396  Five months ago                          3                                       
+a3045048   temporal-rea  graph  reader_miss             Y    2/2    6/22      1/9           2980  7 days. 8 days (including the last day)  5                                       
+gpt4_88806d6e temporal-rea  graph  reader_miss             Y    2/2    8/24      1/3           2782  Tom                                      Mark and Sarah                          
+gpt4_2f56ae70 temporal-rea  graph  selection_miss          N    2/3    1/36      0/6           2687  Disney+                                  HBO Max                                 
+6aeb4375   knowledge-up  agg    reader_miss             Y    2/2    5/24      1/1           3753  four                                     7                                       
+0f05491a   knowledge-up  agg    reader_miss             Y    2/2    4/24      1/2           4285  120                                      25 stars                                
+eace081b   knowledge-up  graph  selection_miss          N    2/2    3/24      0/7           2914  Oahu                                     I don't know.                           
+affe2881   knowledge-up  agg    reader_miss             Y    2/2    4/24      1/3           5068  32                                       27                                      
+69fee5aa   knowledge-up  graph  computed_gt_unverifiable N    2/2    9/22      0/0           2992  38                                       37                                      
+07741c45   knowledge-up  graph  computed_gt_unverifiable N    2/2    7/24      0/0           3197  in a shoe rack in my closet              under my bed                            
+8752c811   single-sessi  graph  reader_miss             Y    1/1    3/6       1/1           4244  The 27th parameter was 'Sound effects (e Camera angles                           
+3249768e   single-sessi  graph  selection_miss          N    1/1    3/4       0/1           3853  Absinthe                                 Triple Sec                              
+e982271f   single-sessi  graph  reader_miss             Y    1/1    4/6       1/1           3631  Revolution Hall                          Red Rocks                               
+eaca4986   single-sessi  graph  selection_miss          N    1/1    2/4       0/1           2558  C D E F G A B A G F E D C                G G G G A G F                           
+
+=== bucket counts (all analyzed fails) ===
+  reader_miss                 36  (54%)
+  computed_gt_unverifiable    15  (22%)
+  selection_miss               8  (12%)
+  reader_miss_unverified       7  (10%)
+  retrieval_miss               1  (1%)
+
+=== path x bucket ===
+bucket                         agg   graph
+computed_gt_unverifiable         3      12
+reader_miss                     20      16
+reader_miss_unverified           5       2
+retrieval_miss                   0       1
+selection_miss                   2       6
+
+=== question_type x bucket ===
+type            computed_gt  reader_miss  reader_miss  retrieval_m  selection_m
+knowledge-up              2            3            0            0            1
+multi-sessio              7           23            7            0            2
+single-sessi              1            4            0            0            2
+temporal-rea              5            6            0            1            3
+
+=== GT present in compiled context (answerable iff reader fails) ===
+  gt_in_ctx = 44/67 (66%)  -> reader_miss ceiling; missing = retrieval/selection bottleneck

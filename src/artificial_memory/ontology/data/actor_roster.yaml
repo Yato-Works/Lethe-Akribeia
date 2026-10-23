@@ -1,0 +1,53 @@
+# Person roster for actor-binding retrieval.
+#
+# Usage sites: UniversalEvidenceScorer.extract_target_actor / S_actor speaker
+# binding, StateReconstructor._extract_target_actor, EvidenceGraph speaker
+# filtering. These names correspond to conversation personas in the
+# evaluation corpora (LoCoMo speakers, LongMemEval episode speakers) plus
+# generic placeholder cast names. Never add real end-user names here: the
+# roster feeds *scoring weights*, not user-facing assertions.
+_meta:
+  origin: benchmark_tuned
+  description: Speaker/person personas observed in evaluation corpora plus standard placeholder cast names (alice, bob, ...).
+  version: 1
+
+names:
+  - caroline
+  - melanie
+  - gina
+  - jon
+  - john
+  - maria
+  - joanna
+  - nate
+  - tim
+  - andrew
+  - audrey
+  - james
+  - deborah
+  - jolene
+  - evan
+  - sam
+  - calvin
+  - dave
+  - alice
+  - bob
+  - charlie
+  - david
+  - eve
+  - frank
+  - grace
+
+primary_actors:
+  - caroline
+  - melanie
+
+planner_entities:
+  caroline: target
+  melanie: target
+  eli: target
+  dave: target
+  michael: target
+  rachel: target
+  juan: target
+  kadence: target

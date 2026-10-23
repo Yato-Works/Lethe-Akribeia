@@ -24,9 +24,9 @@ OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.compiler.certificates.coprocessor_engine import CoProcessorEngine
-from artificial_memory.compiler.execution_planner import CognitiveExecutionPlanner
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.certificates.coprocessor_engine import CoProcessorEngine
+from artificial_memory_gen.compiler.execution_planner import CognitiveExecutionPlanner
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
 from artificial_memory.research.benchmarks.llm import FROZEN_MODEL, OllamaAnswerer

@@ -11,6 +11,7 @@ from artificial_memory.core.models import (
     RecallLevel,
     ResolutionLevel,
 )
+from artificial_memory.core.tokens import estimate_tokens_raw
 from artificial_memory.metrics.collector import get_metrics_collector
 
 
@@ -167,7 +168,7 @@ class HumanRecallEngine:
 
         # Select within token budget
         for mem, target_res, relevance, mode in scored:
-            mem_tokens = len(mem.content) // 3  # Rough estimate
+            mem_tokens = estimate_tokens_raw(mem.content)  # canonical (core.tokens)
             if total_tokens + mem_tokens <= max_tokens:
                 adapted_memories.append(mem)
                 adaptations.append({

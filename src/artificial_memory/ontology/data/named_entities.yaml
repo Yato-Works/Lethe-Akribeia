@@ -1,0 +1,21 @@
+# Rare proper nouns receiving a super-boost in entity scoring.
+#
+# These tokens are treated as multi-token-grade entity anchors (retrieval
+# target names) during query parsing and evidence scoring. Provenance: names
+# that surfaced as high-discriminators in LoCoMo / LongMemEval retrieval
+# sweeps. Multi-word and single-word entries alike get boosted; none of them
+# has any *answer* semantics, they only mark "rare noun" candidates.
+_meta:
+  origin: benchmark_tuned
+  description: Proper-noun boost / targeting list for extract_entities and S_entity super-boosts.
+  version: 1
+
+boost_entities:
+  - dr. seuss
+  - sweden
+  - oliver
+  - luna
+  - bailey
+  - oscar
+  - perseid
+  - matt patterson

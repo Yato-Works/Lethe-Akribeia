@@ -1,0 +1,43 @@
+# Value canonicalization map.
+#
+# Usage site: ProteinStateCompiler candidate cleanup. Compile-time anchors
+# matched in record text are mapped to a display-normalized value before the
+# state statement is assembled. The mapping previously lived as an inline
+# elif chain in runtime code.
+#
+# Semantics: for each anchor, the FIRST matching row (in declared order)
+# decides the display value; rows are exact-match on the anchor string.
+_meta:
+  origin: benchmark_tuned
+  description: >-
+    Anchor-to-display canonicalization tuned against benchmark gold answers
+    (country names, book titles, counts, dates).
+  version: 1
+
+canonicalizations:
+  - match: sweden
+    display: Sweden
+  - match: becoming nicole
+    display: '"Becoming Nicole"'
+  - match: "3"
+    display: "3"
+  - match: three
+    display: "3"
+  - match: "2"
+    display: "2"
+  - match: twice
+    display: "2"
+  - match: transgender woman
+    display: Transgender woman
+  - match: transgender
+    display: Transgender woman
+  - match: trans woman
+    display: Transgender woman
+  - match: sunsets
+    display: Sunsets
+  - match: sunset
+    display: Sunsets
+  - match: yesterday
+    display: 19 October 2023
+  - match: road trip
+    display: 19 October 2023

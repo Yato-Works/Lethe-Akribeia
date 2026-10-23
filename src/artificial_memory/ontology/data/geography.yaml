@@ -1,0 +1,20 @@
+# Geographic region -> member subdivisions / aliases.
+#
+# Usage site: skills/autonomous_engines/arithmetic_difference_engine
+# (_expand_entity_tokens, _GEOGRAPHIC_SUBSUMPTIONS). Purpose: when summing
+# itinerary days by location, "Japan" must subsume "Tokyo" stays, "Hawaii"
+# must subsume island-level stays, etc. This is world-knowledge used for
+# scope resolution; entries are generic geography (not corpus-specific).
+_meta:
+  origin: generic
+  description: Region subsumption map for location-based span aggregation.
+  version: 1
+
+subsumptions:
+  hawaii: ["maui", "honolulu", "oahu", "kauai", "kona", "hilo", "waikiki"]
+  japan: ["tokyo", "kyoto", "osaka", "hokkaido", "okinawa", "shibuya", "shinjuku"]
+  california: ["los angeles", "san francisco", "san diego", "san jose"]
+  "united states": ["us", "usa", "america", "chicago", "new york", "seattle", "boston"]
+  uk: ["united kingdom", "london", "england", "scotland", "wales"]
+  france: ["paris", "nice", "lyon", "marseille"]
+  italy: ["rome", "milan", "florence", "venice"]
