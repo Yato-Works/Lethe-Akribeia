@@ -452,6 +452,39 @@ the runtime does not have. Blending lexical and dense scores in the runtime's
 recall is the next engine change, and it can be measured at 0 LLM calls before any
 arena rerun.
 
+### 4.13 The fix: an IDF-weighted lexical channel in the runtime (+44pt, paired)
+
+Root cause, read from the code after the diagnosis: `BasicRecallEngine` built its
+candidate pool from resolution buckets (40 episodes + 20 semantic, `limit=40`),
+**independently of the query**, and ranked what it got with unweighted word-set
+overlap. On a topic with 440 facts the asked fact was usually not a candidate at
+all, and common words ("the user") outvoted the rare one ("atlas").
+
+The change, behind `RuntimeConfig.lexical_recall` (default `False`, so the frozen
+baseline is byte-identical):
+
+- the candidate pool also includes the topic's active memories (capped);
+- ranking adds an IDF-weighted overlap over stemmed terms, normalised to 0..1 and
+  scaled by 2.0, so a shared rare term outweighs many shared common ones.
+
+Measured, paired on the identical 50-question arena subset (`--limit 5`, same
+questions, same LLM, same budget):
+
+| configuration | accuracy | retrieval ms | read tokens |
+|---|---:|---:|---:|
+| lexical off (shipped default) | **10.0%** | 16.3 | 106k |
+| lexical on | **54.0%** | 70.2 | 366k |
+
+And at 0 LLM calls, gold-in-context over all 200 questions rose from **11% to
+75%** (§4.12 table).
+
+The cost is honest: 4x retrieval latency and 3.4x read tokens, because the context
+now contains relevant evidence instead of 20 short irrelevant memories. That is
+the mechanism working, not a regression.
+
+Tests: `tests/unit/test_lexical_recall.py` (5 cases, including one that asserts the
+off path is unchanged). Flag: `--am-lexical` in the arena runner.
+
 **Consequence for the program:** the distance to "world-class" is not a
 benchmark-recipe problem, it is a *product wiring* problem. The next engine
 measurement must be "R7 retrieval + compile behind the arena player", so the

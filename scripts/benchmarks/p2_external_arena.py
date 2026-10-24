@@ -60,6 +60,8 @@ def main() -> None:
                         help="ask only the first N (per-category E2E subset) questions; 0 = full 200")
     parser.add_argument("--repeats", type=int, default=1, help="answer repeats per question")
     parser.add_argument("--output-dir", default="benchmark/results/p2_external")
+    parser.add_argument("--am-lexical", action="store_true",
+                        help="AM player only: enable the lexical recall channel")
     parser.add_argument("--dry-run", action="store_true",
                         help="unit mode: no LLM (deterministic abstention answers)")
     args = parser.parse_args()
@@ -93,6 +95,10 @@ def main() -> None:
     for name in names:
         factory = PLAYER_FACTORIES[name]
         config = {"context_budget": 2000}
+        # Measurement knob for the AM player only: enable the IDF-weighted
+        # lexical recall channel (off by default so the baseline is unchanged).
+        if args.am_lexical and name == "AM v0.2.0":
+            config["lexical_recall"] = True
         players.append(factory(config, answerer=answerer))
 
     runner = ArenaRunner(RunConfig(

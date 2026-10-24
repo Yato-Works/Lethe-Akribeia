@@ -1164,6 +1164,9 @@ class AMv020Player(ControlledPlayer, _SharedAnswerGeneration):
             retrieval_strategy=str(
                 (self.config or {}).get("retrieval_strategy", "classic")
             ),
+            # Benchmark-only knob: the IDF-weighted lexical recall channel.
+            # Off unless the run asks for it, so the frozen baseline is unchanged.
+            lexical_recall=bool((self.config or {}).get("lexical_recall", False)),
         ))
 
         start = time.perf_counter()

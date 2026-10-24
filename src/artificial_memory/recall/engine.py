@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import math
+import re
 import time
+from collections import Counter
 from datetime import datetime
 
 from artificial_memory.core.interfaces import MemoryStore, RecallEngine
@@ -17,8 +20,50 @@ from artificial_memory.core.tokens import estimate_tokens
 class BasicRecallEngine:
     """Basic recall engine for MVP - levels 0-2."""
 
-    def __init__(self, store: MemoryStore):
+    def __init__(
+        self,
+        store: MemoryStore,
+        lexical: bool = False,
+        lexical_candidate_limit: int = 1000,
+    ):
         self.store = store
+        # LEXICAL CHANNEL (off by default; byte-identical when off).
+        #
+        # Measured on the controlled arena: the runtime answered 13.5% of 200
+        # planted-fact questions because the candidate pool was query-independent
+        # (40 episodes + 20 semantic of 440 facts) and the ranking was unweighted
+        # word overlap.  An IDF-weighted lexical ranker reaches the gold in the
+        # top 20 for 80-100% of the retrieval-shaped categories.  See
+        # design_docs/v4_world_class/V4_PROGRAM.md 4.12.
+        self.lexical = lexical
+        self.lexical_candidate_limit = lexical_candidate_limit
+
+    @staticmethod
+    def _stem(word: str) -> str:
+        for suffix in ("ing", "ed", "es", "s", "e"):
+            if len(word) > len(suffix) + 3 and word.endswith(suffix):
+                return word[: -len(suffix)]
+        return word
+
+    @classmethod
+    def _terms(cls, text: str) -> set[str]:
+        return {cls._stem(w) for w in re.findall(r"[a-z0-9]{3,}", text.lower())}
+
+    def _lexical_scores(self, query: str, memories: list[Memory]) -> dict[int, float]:
+        """IDF-weighted overlap: a rare shared term counts, 'the user' does not."""
+        docs = [self._terms(m.content) for m in memories]
+        df: Counter = Counter()
+        for doc in docs:
+            df.update(doc)
+        n = max(1, len(docs))
+        query_terms = self._terms(query)
+        scores: dict[int, float] = {}
+        max_idf = sum(math.log((n + 1) / (df[t] + 1)) for t in query_terms) or 1.0
+        for memory, doc in zip(memories, docs):
+            shared = query_terms & doc
+            raw = sum(math.log((n + 1) / (df[t] + 1)) for t in shared)
+            scores[memory.id] = raw / max_idf
+        return scores
 
     def recall(
         self,
@@ -32,6 +77,20 @@ class BasicRecallEngine:
 
         # Get candidate memories based on level
         candidates = self._get_candidates(query, topic_id, level)
+
+        # Lexical channel: the level-based pool is query-independent and capped,
+        # so on a large topic the answer may never be a candidate at all.  Pull
+        # the topic's active memories in and let the IDF ranking decide.
+        if self.lexical:
+            seen = {m.id for m in candidates}
+            for memory in self.store.get_memories(
+                topic_id=topic_id,
+                status=MemoryStatus.ACTIVE,
+                limit=self.lexical_candidate_limit,
+            ):
+                if memory.id not in seen:
+                    seen.add(memory.id)
+                    candidates.append(memory)
 
         # Rank by relevance (simple scoring for MVP)
         ranked = self._rank_memories(query, candidates)
@@ -150,6 +209,7 @@ class BasicRecallEngine:
     def _rank_memories(self, query: str, memories: list[Memory]) -> list[Memory]:
         """Simple relevance ranking for MVP."""
         query_words = set(query.lower().split())
+        lexical = self._lexical_scores(query, memories) if self.lexical else {}
 
         scored = []
         for memory in memories:
@@ -159,6 +219,11 @@ class BasicRecallEngine:
             content_words = set(memory.content.lower().split())
             overlap = len(query_words & content_words)
             score += overlap * 0.5
+
+            # Lexical channel: IDF-weighted, so a shared rare term ("atlas")
+            # outweighs a shared common one ("the user").  Normalised to 0..1.
+            if lexical:
+                score += lexical.get(memory.id, 0.0) * 2.0
 
             # Importance boost
             score += memory.importance * 0.3

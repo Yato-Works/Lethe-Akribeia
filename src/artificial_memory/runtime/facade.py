@@ -201,6 +201,15 @@ class RuntimeConfig:
     #                      (Phase 8.7: session-granular gate, 85% evidence
     #                      retention @ K=100 with no embedding pass)
     retrieval_strategy: str = "classic"
+    # Lexical channel for the classic recall engine (off by default).
+    #
+    # Measured on the controlled arena: the runtime answered 13.5% of 200
+    # planted-fact questions because the candidate pool was query-independent
+    # (40 episodes + 20 semantic out of 440 facts) and ranking was unweighted
+    # word overlap.  An IDF-weighted lexical channel reaches the gold in the top
+    # 20 for 80-100% of the retrieval-shaped categories.  See V4_PROGRAM.md 4.12.
+    lexical_recall: bool = False
+    lexical_candidate_limit: int = 1000
     # deepseek_session tuning (only used when retrieval_strategy="deepseek_session")
     session_gate_pool: int = 100     # post-gate candidate pool size (K=100 winner)
     candidate_window: int = 450      # pre-gate fetch window (450 >= S4 store size)
@@ -378,7 +387,11 @@ class ArtificialMemoryRuntime:
                 candidate_window=self.config.candidate_window,
             )
         else:
-            self.recall_engine = BasicRecallEngine(self.store)
+            self.recall_engine = BasicRecallEngine(
+                self.store,
+                lexical=self.config.lexical_recall,
+                lexical_candidate_limit=self.config.lexical_candidate_limit,
+            )
         self.context_builder = EnhancedContextBuilder(
             self.store, self.recall_engine,
             budget_ratios={
