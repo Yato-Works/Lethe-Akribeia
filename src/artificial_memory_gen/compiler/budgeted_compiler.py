@@ -87,15 +87,20 @@ class BudgetedCognitiveCompiler:
         return (bool(subjects), {s.lower() for s in subjects})
 
     def _bundle_names_subject(self, bundle, subjects: set[str]) -> bool:
-        """True if any member of the bundle names one of the queried subjects.
+        """True if any member of the bundle belongs to one of the queried subjects.
 
-        Used only for the enumeration escape hatch: for a "list everything X
-        does" question, X's own turns are admissible evidence even when they
-        share no vocabulary with the question.
+        Checks the SPEAKER first.  A first-person turn ("I ran a charity race")
+        does not contain its own speaker's name in its text -- only the speaker
+        label identifies it -- so a text-only check made this escape hatch dead
+        for exactly the turns it was written for.  Measured: adding the speaker
+        check moves multi-hop list item recall, which the text-only version did
+        not move at all.
         """
         if not subjects:
             return False
         for n in bundle.member_nodes:
+            if (getattr(n, "speaker", "") or "").lower() in subjects:
+                return True
             text = n.raw_text.lower()
             if any(s in text for s in subjects):
                 return True
@@ -111,6 +116,8 @@ class BudgetedCognitiveCompiler:
         is_multi_session: bool = False,
         anchor_prefill: bool = True,
         adaptive_escalation: bool = False,
+        admit_subject_names: set[str] | None = None,
+        admit_enumeration: bool = False,
     ) -> CompiledContext:
         """Select optimal subset of bundles under token_budget and format context."""
         # Expand question words with roots and synonyms
@@ -158,6 +165,12 @@ class BudgetedCognitiveCompiler:
         # that share no vocabulary with the question, which the gate below used
         # to reject outright.  Keyed on FORM only.
         enumeration, enum_subjects = self._detect_enumeration(question)
+        # Subject admission is OPT-IN and supplied by the caller, so that the
+        # default path is byte-identical while the policy is measured.  Passing
+        # admit_enumeration=True keeps the historical enumeration semantics.
+        admit_subjects: set[str] = {s.lower() for s in (admit_subject_names or ())}
+        if admit_enumeration and enumeration:
+            admit_subjects |= enum_subjects
 
         # H1 anchor-priority pre-fill (opt-in): admit the bundles of the
         # TOP-ranked anchors BEFORE density fill.  Without this, the
@@ -216,27 +229,26 @@ class BudgetedCognitiveCompiler:
                     anc_score = max([anchor_scores.get(n.node_id, 0.0) for n in b.member_nodes] + [0.0])
 
                 # Gate: bundle must either have anchor score, cover query terms, or continue an already-selected evidence session
-                if not overlap and not in_sel_sid and anc_score <= 0.0:
-                    # ENUMERATION ESCAPE HATCH.
-                    # An enumeration question ("what activities does X do?",
-                    # "which events...", "what kinds of...") is answered by
-                    # collecting EVERY distinct instance the subject mentions,
-                    # and those instances are by definition scattered across
-                    # turns that share no vocabulary with the question.  This
-                    # gate was the measured reason 42pt of retrieved evidence
-                    # never reached the reader (77.2% retrieved -> 35.0% in
-                    # context).
-                    #
-                    # For an enumeration question, a bundle whose members name
-                    # the queried subject is admitted even with zero query
-                    # overlap.  Keyed on the question's FORM (the enumerated
-                    # head noun), never on its content -- see
-                    # tests/unit/audit_contamination.py.
-                    if not (enumeration and self._bundle_names_subject(b, enum_subjects)):
-                        continue
+                #
+                # ENUMERATION / SUBJECT ADMISSION.  An enumeration question
+                # ("what activities does X do?") is answered by collecting every
+                # instance the subject mentions, and those instances are by
+                # definition scattered across turns that share no vocabulary with
+                # the question.  A bundle belonging to the queried subject is
+                # therefore admissible with zero overlap.
+                #
+                # BUG (measured): admission was checked only by the first gate.
+                # The second gate below ("no new query words and no anchor score
+                # -> skip") then dropped the same bundle, so the escape hatch was
+                # dead code and multi-hop list item recall did not move when it
+                # was enabled.  Both gates now honour `admitted`.
+                admitted = bool(admit_subjects) and self._bundle_names_subject(
+                    b, admit_subjects)
+                if not overlap and not in_sel_sid and anc_score <= 0.0 and not admitted:
+                    continue
                 new_words = overlap - covered_words
                 # If it contributes NO new query words and has no anchor score and is not continuing an existing session, skip it
-                if not in_sel_sid and not new_words and anc_score <= 0.0:
+                if not in_sel_sid and not new_words and anc_score <= 0.0 and not admitted:
                     continue
 
                 # Adaptive marginal utility:

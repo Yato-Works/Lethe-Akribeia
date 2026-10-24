@@ -229,10 +229,47 @@ measurement knob; 1.0 is unchanged):
 
 So the token budget is a real but partial lever (+48 items, +7 answerable
 questions, for 2x tokens), and the existing second pass is not a lever at any
-budget. The remaining ~15pt gap to the 64.6% conversation ceiling lives inside
-the candidate pool / selection stage, which this run does not record. Recording
-the pool and the selected turn ids is the next instrument — the same unmeasured
-stage V4 mission 20 flagged.
+budget. §4.7 records the candidate pool to attribute what is left.
+
+### 4.7 The loss is attributed, and two compiler defects are now fixed
+
+With the pool recorded (`--freeze-pool`), cat1's 707 gold items classify as:
+
+| bucket | items | share | stage that could fix it |
+|---|---:|---:|---|
+| IN_CONTEXT | 234 | 33.1% | already available |
+| **POOL_ONLY** | **127** | **18.0%** | compilation selection |
+| CONVERSATION_ONLY | 32 | 4.5% | retrieval |
+| ABSENT | 314 | 44.4% | paraphrase / genuinely absent (exact-match upper bound) |
+
+So selection, not retrieval, is the addressable stage. The budget–recall curve on
+the 160 list questions:
+
+| budget | items in context | fully answerable | mean tokens |
+|---|---:|---:|---:|
+| x1 | 205/511 (40.1%) | 25 | 1,442 |
+| x2 | 253/511 (49.5%) | 32 | 2,887 |
+| x3 | 263/511 (51.5%) | 36 | 4,331 |
+| x5 | 290/511 (56.8%) | 42 | 7,203 |
+
+The ceiling from the conversation is 64.6%, so the budget explains nearly all of
+the remaining gap, at a cost that climbs steeply after x2.
+
+Two real defects were found on the way, both in the selection path, and both are
+now fixed behind an opt-in switch so that the default path stays byte-identical:
+
+1. **`_bundle_names_subject` ignored the speaker label.** A first-person turn
+   ("I hiked to the forest") contains no name, so the enumeration escape hatch
+   was blind to exactly the turns it was written for. The speaker now counts.
+2. **Admission was re-dropped by the second gate.** The escape hatch let a
+   bundle past the first gate, and the next gate ("no new query words, no anchor
+   score -> skip") removed it. Enabling admission therefore moved recall by
+   exactly zero. Both gates now honour it.
+
+With those fixed, admitting the queried person's turns still changes nothing at
+x1 or x2 — because the budget, not admissibility, is binding: of the dropped
+items, 65 sit only in the subject's turns, 31 in both, 9 only in the other's, and
+they do not fit. Tests: `tests/unit/test_subject_admission.py` (7 cases).
 
 
 ---

@@ -706,6 +706,17 @@ def _scaled_budget(base_budget: int, pool_tokens: int,
     return int(max(base_budget, min(cap, max(floor, scaled))))
 
 
+def _question_subject(question: str, turns) -> str | None:
+    """The single speaker the question is about, or None when ambiguous."""
+    speakers: list[str] = []
+    for t in turns:
+        if len(t) > 2 and t[2] and t[2] not in speakers:
+            speakers.append(t[2])
+    low = question.lower()
+    hits = [s for s in speakers if re.search(rf"\b{re.escape(s.lower())}\b", low)]
+    return hits[0] if len(hits) == 1 else None
+
+
 def _enumeration_probe_turns(question: str, all_turns, retriever,
                              already: set, max_extra: int = 6) -> list:
     """Extra candidate turns for ENUMERATION questions.
@@ -1152,6 +1163,40 @@ def run(args) -> None:
                 already={(t[0], t[3]) for t in cand})
             if _probe:
                 cand = cand + _probe
+                # The probe turns were pooled but never became anchors, so the
+                # compiler could only reach them through bundle adjacency.  This
+                # flag promotes them to anchors so the selection stage can
+                # actually choose them (measurement first; see B0 in
+                # design_docs/v4_world_class/V4_PROGRAM.md).
+                if getattr(args, "probe_anchors", False):
+                    for t in _probe:
+                        turn_scores[(t[0], t[3])] = max(
+                            turn_scores.get((t[0], t[3]), 0.0), 20.0)
+                        if t not in top_turns:
+                            top_turns.append(t)
+
+            # SUBJECT-SCOPED ENUMERATION (measurement).  A list answer is the
+            # union of what the asked person said about the category, and those
+            # turns are pooled but rank too low to be selected.  Promoting the
+            # subject's own turns to anchors is the direct test of that claim.
+            if getattr(args, "subject_anchors", False):
+                try:
+                    from artificial_memory.skills.autonomous_engines.counting_engine import (
+                        CountingEngine,
+                    )
+                    _is_list_q = CountingEngine.is_aggregation_question(q["question"])
+                except Exception:
+                    _is_list_q = False
+                if _is_list_q:
+                    _person = _question_subject(q["question"], all_turns)
+                    if _person:
+                        _own = [t for t in cand if t[2].lower() == _person.lower()]
+                        _quota = int(getattr(args, "subject_anchor_quota", 12))
+                        for t in _own[:_quota]:
+                            turn_scores[(t[0], t[3])] = max(
+                                turn_scores.get((t[0], t[3]), 0.0), 30.0)
+                            if t not in top_turns:
+                                top_turns.append(t)
 
             # BUDGET CALIBRATION.  The per-mode budget is calibrated for SHORT
             # conversations; LoCoMo candidate pools run ~290 turns / ~9,000
@@ -1177,10 +1222,18 @@ def run(args) -> None:
 
             edg = graph_builder.build(cand, [])
             bundles = edg.form_bundles(anchor_ids, max_bundle_tokens=150)
+            # MEASUREMENT: admit the queried person's turns even when the
+            # question's form is not enumeration-shaped (B0 probe).
+            _admit_names = None
+            if getattr(args, "subject_admit", False):
+                _admit_names = {
+                    m.group(1) for m in re.finditer(r"\b([A-Z][a-z]{2,})\b", q["question"])
+                } or None
             compiled = compiler.compile(
                 question=q["question"], bundles=bundles,
                 token_budget=token_budget, anchor_scores=anchor_scores,
-                is_multi_session=len(top_sids) > 1, adaptive_escalation=True)
+                is_multi_session=len(top_sids) > 1, adaptive_escalation=True,
+                admit_subject_names=_admit_names)
 
             # DETERMINISTIC COMMITTER (fallback, not override).
             #
@@ -1229,6 +1282,12 @@ def run(args) -> None:
                     "plan_mode": getattr(plan, "dominant_mode", ""),
                     "token_budget": token_budget,
                     "anchor_ids": anchor_ids[:8],
+                    # Optional: the candidate pool, so an offline analysis can tell
+                    # a turn that never entered the pool (retrieval loss) from one
+                    # that was pooled but not compiled (selection loss).
+                    "pool": ([{"s": str(t[0]), "k": t[2], "t": str(t[3])[:400]}
+                              for t in cand]
+                             if getattr(args, "freeze_pool", False) else None),
                 })
                 continue
 
@@ -1417,6 +1476,20 @@ def main() -> None:
     ap.add_argument("--budget-scale", type=float, default=1.0,
                     help="measurement knob: multiply the compiled token budget "
                          "(1.0 = unchanged; used to test whether the budget binds)")
+    ap.add_argument("--freeze-pool", action="store_true",
+                    help="with --freeze-contexts: also record the candidate pool, "
+                         "to separate retrieval loss from selection loss")
+    ap.add_argument("--probe-anchors", action="store_true",
+                    help="promote enumeration-probe turns to anchors so the "
+                         "compiler can select them (off by default)")
+    ap.add_argument("--subject-anchors", action="store_true",
+                    help="promote the asked person's own turns to anchors for "
+                         "list-shaped questions (off by default)")
+    ap.add_argument("--subject-anchor-quota", type=int, default=12,
+                    help="how many of the subject's turns to promote (default 12)")
+    ap.add_argument("--subject-admit", action="store_true",
+                    help="admit the queried person's turns even without lexical "
+                         "overlap (off by default; measured for B0)")
     run(ap.parse_args())
 
 
