@@ -89,10 +89,18 @@ def _dialogue_lines(context: str) -> list[tuple[str, str]]:
         line = raw.strip()
         if not line or line.startswith("[SPEAKER") or line.startswith("[/"):
             continue
-        m = re.match(r"^\[[^\]]+\]\s*([A-Z][A-Za-z]+):\s*(.*)$", line)
+        # Speaker token may be a NAME (Caroline) or a ROLE (user / assistant).
+        # LongMemEval renders roles; requiring an initial capital made the gate
+        # structurally unable to read 128/128 of its contexts.
+        m = re.match(r"^\[[^\]]+\]\s*([A-Za-z][A-Za-z0-9_ -]{0,24}?):\s*(.*)$", line)
         if m:
-            out.append((m.group(1), m.group(2)))
+            out.append((m.group(1).strip(), m.group(2)))
     return out
+
+
+#: Role labels used by agent-memory corpora instead of names.
+_ROLES = frozenset({"user", "assistant", "system", "human", "ai", "agent", "bot"})
+_FIRST_PERSON = re.compile(r"\b(i|me|my|mine|myself)\b", re.I)
 
 
 def _speakers(lines: list[tuple[str, str]]) -> list[str]:
@@ -120,6 +128,15 @@ class AnswerProvenanceGate:
     #: Share of the answer's content stems that a line must contain.
     THRESHOLD = 0.7
 
+    def __init__(self, allow_roles: bool = False) -> None:
+        #: When True, a first-person question in a role-labelled corpus
+        #: (user/assistant) is attributed to the user.  OFF by default because it
+        #: was measured as harmful: on LongMemEval it refuses 2 correct answers and
+        #: costs -1.56pt (82.03% -> 80.47%), since the assistant legitimately
+        #: restates the user's facts.  The provenance rule is valid where distinct
+        #: persons exist; agent memory does not give it that separation.
+        self.allow_roles = allow_roles
+
     def decide(self, question: str, context: str, answer: str) -> RefusalDecision:
         answer = (answer or "").strip()
         if not answer or answer.lower() in _REFUSALS:
@@ -134,9 +151,19 @@ class AnswerProvenanceGate:
 
         low_q = question.lower()
         named = [s for s in speakers if re.search(rf"\b{re.escape(s.lower())}\b", low_q)]
-        if len(named) != 1:
+        if len(named) == 1:
+            subject = named[0]
+        elif (self.allow_roles and not named and _FIRST_PERSON.search(question)):
+            # Agent-memory corpora ask in the first person ("Where did I redeem
+            # the coupon?"), so "I" denotes the user.  Only accepted when the
+            # context actually has a single user-like speaker.
+            users = [s for s in speakers if s.lower() in {"user", "human"}]
+            if len(users) != 1:
+                return RefusalDecision(
+                    False, "first-person question without a single user speaker")
+            subject = users[0]
+        else:
             return RefusalDecision(False, "question names no single speaker")
-        subject = named[0]
 
         names = {s.lower() for s in speakers}
         terms = {_stem(w) for w in re.findall(r"[a-z]{4,}", answer.lower())

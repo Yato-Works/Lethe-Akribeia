@@ -1,34 +1,34 @@
 """Cross-benchmark guard: does the answer-provenance gate touch LongMemEval?
 
-The gate ships on LoCoMo (+4.33pt dev).  Before it can be a default, the program
-requires that it does not regress the other benchmark.  This script prices it on
-LongMemEval dev, using the frozen context cache and the same deterministic scorer
-that produced the published LME number, so the comparison is like for like.
+The gate ships on LoCoMo (+4.33pt dev).  The program requires that it does not
+regress the other benchmark.  This script prices BOTH modes on LongMemEval dev,
+with the frozen context cache and the same deterministic scorer that produced the
+published LME number:
 
-It reports THREE things, and the third is the one that matters:
+  name-only (default)  the question must name a speaker
+  roles                a first-person question is attributed to the user, which
+                       makes the gate applicable to user/assistant corpora
 
-  1. how many LME contexts the gate's dialogue parser can read,
-  2. how often the gate fires,
-  3. the accuracy before/after.
+Measured answer, which is why `allow_roles` defaults to False:
 
-If (1) is zero the guard is vacuous, not passed: LME renders dialogue with role
-labels (`user` / `assistant`) rather than names, so a gate keyed on "the answer's
-wording belongs to another NAMED speaker" has nothing to match.  That is a
-limitation of the mechanism, not evidence that it is safe.
+  name-only   parses 128/128 contexts, fires 0, accuracy 82.03% -> 82.03%
+  roles       fires 2, accuracy 82.03% -> 80.47%  (-1.56pt)
+
+The assistant legitimately restates the user's facts, so "the answer's wording
+comes from the other role" is not evidence of misattribution there.  The guard is
+therefore a REAL negative, not a vacuous pass.
 
 Usage
     python scripts/lme_context_cache.py --limit 250 \
         --out benchmark_results/lme_context_cache.jsonl
-    python scripts/benchmarks/measure_refusal_gate_lme.py \
-        --cache benchmark_results/lme_context_cache.jsonl \
-        --run benchmark_results/pipeline_v4/lme_dev250_v4_R7.json
+    python scripts/benchmarks/measure_refusal_gate_lme.py
 """
 from __future__ import annotations
 
 import argparse
 import json
 import sys
-from collections import Counter
+from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -45,28 +45,11 @@ from artificial_memory.skills.refusal_gate import (  # noqa: E402
 REFUSAL = "not mentioned"
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--cache", default="benchmark_results/lme_context_cache.jsonl")
-    ap.add_argument("--run", default="benchmark_results/pipeline_v4/lme_dev250_v4_R7.json")
-    args = ap.parse_args()
-
-    # Split on "\n" only: str.splitlines() also breaks on U+2028 / U+0085, which
-    # appear inside LongMemEval messages and would cut a JSON row in half.
-    rows = [json.loads(line) for line in
-            (ROOT / args.cache).read_text(encoding="utf-8").split("\n") if line.strip()]
-    run = {r["question_id"]: r
-           for r in json.loads((ROOT / args.run).read_text(encoding="utf-8"))["results"]}
-
-    gate = AnswerProvenanceGate()
-    matched = parsed = fired = 0
-    before = after = 0
-    by_type: dict[str, list[int]] = {}
-    verdicts: Counter = Counter()
-
+def run_mode(gate, rows, run) -> dict:
+    matched = parsed = fired = before = after = 0
+    by_type: dict[str, list[int]] = defaultdict(lambda: [0, 0])
     for row in rows:
-        qid = row["qid"]
-        record = run.get(qid)
+        record = run.get(row["qid"])
         if record is None:
             continue
         matched += 1
@@ -75,8 +58,7 @@ def main() -> int:
 
         refused = gate.decide(record["question"], row["context_text"],
                               record["predicted_answer"]).refuse
-        if refused:
-            fired += 1
+        fired += int(refused)
         prediction = REFUSAL if refused else record["predicted_answer"]
         ok_before = bool(LongMemEvalAdapter.score_answer(
             question_type=row["qtype"], gt=row["gt"],
@@ -92,31 +74,59 @@ def main() -> int:
         ))
         before += int(ok_before)
         after += int(ok_after)
-        verdicts[(refused, ok_before, ok_after)] += 1
-        by_type.setdefault(row["qtype"], [0, 0])
         by_type[row["qtype"]][0] += int(ok_before)
         by_type[row["qtype"]][1] += int(ok_after)
+    return {"matched": matched, "parsed": parsed, "fired": fired,
+            "before": before, "after": after, "by_type": dict(by_type)}
 
-    if not matched:
-        raise SystemExit("no LME question matched between cache and run")
 
-    print(f"LME questions joined : {matched}")
-    print(f"  contexts parsed by the gate : {parsed}")
-    print(f"  gate fired                  : {fired}")
-    print(f"  accuracy before             : {before / matched * 100:.2f}%")
-    print(f"  accuracy after              : {after / matched * 100:.2f}%")
-    print(f"  delta                       : {(after - before) / matched * 100:+.2f}pt")
-    for qtype in sorted(by_type):
-        b, a = by_type[qtype]
-        print(f"    {qtype:<24} {b} -> {a}")
-    if parsed == 0:
-        print("\nVERDICT: vacuous guard. The parser reads no LME context, so the gate "
-              "cannot fire and this run says nothing about safety. LME labels dialogue "
-              "with roles (user/assistant), not names.")
-    elif fired == 0:
-        print("\nVERDICT: no regression, and the gate is live but never fires here.")
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--cache", default="benchmark_results/lme_context_cache.jsonl")
+    ap.add_argument("--run", default="benchmark_results/pipeline_v4/lme_dev250_v4_R7.json")
+    ap.add_argument("--out", default="benchmark_results/refusal_gate/lme_guard.json")
+    args = ap.parse_args()
+
+    # Split on "\n" only: str.splitlines() also breaks on U+2028 / U+0085, which
+    # appear inside LongMemEval messages and would cut a JSON row in half.
+    rows = [json.loads(line) for line in
+            (ROOT / args.cache).read_text(encoding="utf-8").split("\n") if line.strip()]
+    run = {r["question_id"]: r
+           for r in json.loads((ROOT / args.run).read_text(encoding="utf-8"))["results"]}
+
+    modes = {
+        "name-only": AnswerProvenanceGate(),
+        "roles": AnswerProvenanceGate(allow_roles=True),
+    }
+    results = {}
+    for name, gate in modes.items():
+        stats = run_mode(gate, rows, run)
+        results[name] = stats
+        n = max(1, stats["matched"])
+        print(f"{name:<10} parsed {stats['parsed']:3d}/{stats['matched']:<3d} "
+              f"fired {stats['fired']:3d}  "
+              f"accuracy {stats['before'] / n * 100:6.2f}% -> "
+              f"{stats['after'] / n * 100:6.2f}%  "
+              f"({(stats['after'] - stats['before']) / n * 100:+.2f}pt)")
+
+    gate_default = results["name-only"]
+    if gate_default["parsed"] == 0:
+        verdict = "VACUOUS: the parser cannot read LME contexts at all."
+    elif gate_default["fired"] == 0 and results["roles"]["fired"] == 0:
+        verdict = "No regression, but the gate never fires on LME either way."
+    elif gate_default["fired"] == 0:
+        verdict = ("PASS in the shipped configuration (name-only: 0 fires). "
+                   "Enabling role mode costs the delta shown above, which is why "
+                   "allow_roles defaults to False.")
     else:
-        print("\nVERDICT: the gate fires on LME; the delta above is the measured effect.")
+        verdict = "The shipped gate fires on LME; the delta above is its measured effect."
+    print(f"\nVERDICT: {verdict}")
+
+    out = ROOT / args.out
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"verdict": verdict, "modes": results},
+                              ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"saved -> {args.out}")
     return 0
 
 

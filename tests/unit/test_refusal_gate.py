@@ -92,3 +92,39 @@ class TestSafeByDefault:
 
     def test_empty_context_is_kept(self):
         assert GATE.decide("What did Alice realize?", "", "self care is really important").refuse is False
+
+
+ROLE_CONTEXT = "\n".join([
+    "[s1 on 2023/05/30] user: I keep a bag of coffee beans in the second drawer.",
+    "[s1 on 2023/05/30] assistant: You keep a bag of coffee beans in the second drawer.",
+])
+
+
+class TestRoleModeIsOptIn:
+    """Agent-memory corpora label speakers by role, not name.
+
+    Role mode exists and is measured, but it is NOT the default: on LongMemEval it
+    refuses 2 correct answers (-1.56pt) because the assistant legitimately restates
+    the user's facts, so "the wording comes from the other role" is not evidence of
+    misattribution there.
+    """
+
+    def test_default_ignores_role_labelled_contexts(self):
+        assert GATE.decide("Where do I keep the coffee beans?", ROLE_CONTEXT,
+                           "the second drawer").refuse is False
+
+    def test_role_mode_attributes_a_first_person_question_to_the_user(self):
+        gate = AnswerProvenanceGate(allow_roles=True)
+        decision = gate.decide("Where do I keep the coffee beans?", ROLE_CONTEXT,
+                               "coffee beans in the second drawer")
+        # The wording exists in the user's own turn, so it is kept.
+        assert decision.refuse is False
+
+    def test_role_mode_refuses_an_answer_only_the_assistant_states(self):
+        context = "\n".join([
+            "[s1 on 2023/05/30] user: Hello again.",
+            "[s1 on 2023/05/30] assistant: Your favourite colour is turquoise.",
+        ])
+        gate = AnswerProvenanceGate(allow_roles=True)
+        assert gate.decide("What is my favourite colour?", context,
+                           "favourite colour is turquoise").refuse is True

@@ -386,35 +386,40 @@ the holdout is no longer clean, so it can neither be tuned on nor cited as
 validation. The design number is the dev figure (+4.33pt). The 553-question
 M5-M13 holdout remains unspent and is a different slice.
 
-### 4.10 Cross-benchmark guard: LongMemEval cannot exercise this gate
+### 4.10 Cross-benchmark guard: LongMemEval, measured in both modes
 
 The program requires that anything helping LoCoMo does not regress LongMemEval.
 The LME dev contexts were compiled for the purpose (250 questions, 0.81 s each,
 100% oracle recall, mean 6,932 tokens), then joined with the stored R7 dev run.
 
-| measurement | value |
-|---|---:|
-| LME questions joined | 128 |
-| contexts the gate's parser can read | **0 / 128** |
-| gate fires | 0 |
-| LME accuracy before -> after | 82.03% -> 82.03% (+0.00) |
+The first version of this guard was **vacuous**: the gate's parser required a
+capitalised name, and LME renders `[session date] user: ...`, so it read 0 of 128
+contexts. A guard that cannot run is not a pass. The parser now accepts role
+labels, and first-person questions can be attributed to the user under an
+explicit switch (`allow_roles`), which makes the gate applicable to agent memory:
 
-**Verdict: vacuous guard, not a pass.** LME renders dialogue as
-`[session date] user: ...` — roles, not names — so a rule keyed on "the answer's
-wording belongs to another *named* speaker" has nothing to match. The mechanism is
-applicable to two-person named dialogue; making it transfer to agent memory needs
-a first-person adaptation (subject = the user when the question says I/my), which
-is **untested** and therefore not a default-promotion argument.
+| mode | contexts parsed | fires | LME accuracy | delta |
+|---|---:|---:|---:|---:|
+| **name-only (shipped default)** | 128/128 | 0 | 82.03% -> 82.03% | +0.00 |
+| roles | 128/128 | 2 | 82.03% -> 80.47% | **-1.56** |
 
-Two defects surfaced while building this guard, both fixed:
+**Verdict: the shipped configuration passes; role mode is rejected as a default.**
+The assistant legitimately restates the user's facts, so "the answer's wording
+comes from the other role" is not evidence of misattribution in agent memory —
+and the two questions it refused were correct. The guard is now a real measured
+negative rather than a vacuous pass, and the shipped gate stays name-only, where
+its provenance premise actually holds: two people with distinct identities.
+
+Two defects were found while building this guard, both fixed and tested:
 
 - `DateArithmeticEngine.calculate_recency` subtracted a `datetime` from a `date`
   and raised TypeError, aborting the entire 250-question cache build on one
-  question. Normalised at the arithmetic boundary (`_as_date`), 3 tests.
+  question. Normalised at the arithmetic boundary; 3 regression tests.
 - `str.splitlines()` splits on U+2028 / U+0085, which occur inside LongMemEval
   messages, cutting JSONL rows in half. The LME reader splits on `"\n"` only.
 
-Guard artifact: `scripts/benchmarks/measure_refusal_gate_lme.py`.
+Guard artifact: `scripts/benchmarks/measure_refusal_gate_lme.py`
+(`benchmark_results/refusal_gate/lme_guard.json`).
 
 
 ---
