@@ -91,15 +91,19 @@ def load_questions(conv: dict) -> list[dict]:
     out = []
     sample_id = conv.get("sample_id", "x")
     for i, qa in enumerate(conv.get("qa", [])):
-        # cat5 (adversarial) stores its gold under 'adversarial_answer' instead
-        # of 'answer'.  Without this fallback all 446 adversarial questions
-        # would read as empty gold and be scored 0 unfairly.
-        gold = qa.get("answer", qa.get("adversarial_answer", ""))
+        # cat5 (adversarial) has NO 'answer'.  It stores only
+        # 'adversarial_answer', which is the DISTRACTOR the pinned official
+        # harness scores 0 for emitting (evaluation.py:217-221).  Using it as
+        # gold inverted the category: 126 questions were credited for producing
+        # the wrong option while the correct behaviour (refusing) scored 0.
+        # See design_docs/v4_world_class/V4_PROGRAM.md section 3.
+        gold = qa.get("answer")
         out.append({
             "question_id": f"lc_{sample_id}_{i}",
             "sample_id": sample_id,
             "question": qa["question"],
-            "answer": str(gold),
+            "answer": "" if gold is None else str(gold),
+            "adversarial_answer": str(qa.get("adversarial_answer", "")),
             "category": int(qa.get("category", 0)),
             "evidence": qa.get("evidence", []),
         })
@@ -861,6 +865,52 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
 
 ABSTENTIONS = {"i don't know.", "", "not mentioned", "none"}
 
+#: The pinned official harness accepts a refusal only in these forms for the
+#: adversarial category (third_party/.../evaluation.py:217-221).  This is a FORMAT
+#: contract, not a capability claim: the decision to refuse is made elsewhere and
+#: is measured separately.  Aligning the lexical form is worth +12.50pt of
+#: official F1 on the frozen 2026-10-23 run (V4_PROGRAM.md section 3.2).
+REFUSAL_FORMS = ("no information available", "not mentioned")
+
+
+def is_refusal(text: str) -> bool:
+    """True when the output declines to answer (any accepted or legacy form).
+
+    Used to decide what must be NORMALISED.  It is deliberately wider than the
+    official contract so that a refusal phrased in the model's own words is
+    still put into the accepted form before scoring.
+    """
+    low = str(text).strip().lower()
+    return low in ABSTENTIONS or _has_official_refusal(low)
+
+
+def _has_official_refusal(text: str) -> bool:
+    """Strictly the forms the pinned harness recognises (evaluation.py:217-221)."""
+    low = str(text).strip().lower()
+    return any(form in low for form in REFUSAL_FORMS)
+
+
+def canonical_refusal() -> str:
+    """The refusal string the official protocol recognises."""
+    return "not mentioned"
+
+
+def score_question(pred: str, question: dict) -> bool:
+    """Score one prediction under the official LoCoMo protocol.
+
+    Category 5 (adversarial) is correct iff the output refuses in a form the
+    upstream harness accepts; its ``adversarial_answer`` is a distractor and is
+    never compared as gold.  Categories 1-4 keep the in-house matcher unchanged.
+
+    The category-5 check is STRICTER than :func:`is_refusal` on purpose: it mirrors
+    upstream exactly, so this scorer cannot be more lenient than the official one.
+    The credit for a legacy-worded refusal comes from normalising it in the
+    harness, not from a forgiving matcher.
+    """
+    if int(question.get("category", 0)) == 5:
+        return _has_official_refusal(pred)
+    return score(pred, question.get("answer", ""))
+
 
 def reorder_context_by_speaker(context: str, question: str, conv: dict) -> str:
     """Group evidence lines by speaker, putting the question's target speaker first.
@@ -1135,25 +1185,39 @@ def run(args) -> None:
                 if re.search(r"\bwhen\b", q["question"], re.I):
                     pred = resolve_relative_dates(pred, ctx_text, q["question"])
 
-            ok = score(pred, q["answer"])
+            # PROTOCOL: emit a refusal in the form the official harness accepts.
+            # The raw output is retained so the lexical change stays auditable
+            # and is never confused with a capability gain (V4_PROGRAM.md 3.2).
+            raw_pred = pred
+            if is_refusal(pred):
+                pred = canonical_refusal()
+            ok = score_question(pred, q)
             ctx_tokens = getattr(compiled, "total_tokens", 0)
         except Exception as e:  # a single failure must not kill a 1986-q run
             pred = f"<ERROR: {type(e).__name__}: {e}>"
             ok = False
             ctx_tokens = 0
             committed = None
+            raw_pred = None
 
         results.append({
             "question_id": q["question_id"], "category": q["category"],
             "question": q["question"], "ground_truth": q["answer"],
+            # cat5 carries the distractor here for audit; it is never gold.
+            "adversarial_answer": q.get("adversarial_answer", ""),
             "predicted_answer": pred, "is_correct": ok,
+            # The model's own output before the refusal was put into the form the
+            # official protocol accepts.  Kept so a format fix can never be
+            # reported as a capability gain.
+            "predicted_answer_raw": raw_pred,
+            "refusal_normalized": raw_pred is not None and pred != raw_pred,
             # Recorded so evidence retention and cost can be measured from the
             # artifact alone.  Without these, every retention or latency question
             # needed a separate no-LLM script re-running the whole pipeline.
             "context_tokens": ctx_tokens,
             "latency_seconds": round(time.perf_counter() - t_q, 3),
             "gold_is_list": is_list_gold(str(q["answer"])),
-            "abstained": str(pred).strip().lower() in ABSTENTIONS,
+            "abstained": bool(raw_pred is not None and is_refusal(raw_pred)),
             # True when the deterministic committer answered instead of the 7B
             # reader.  Recorded because the date-boost lesson is that "wired in"
             # is not evidence -- only a non-zero count plus a changed prediction
@@ -1228,10 +1292,14 @@ def run(args) -> None:
         "code_revision": _rev,
         "config": _config,
         "run_salt": _salt,
+        # Which scoring contract produced `is_correct`.  v1 (legacy) compared
+        # cat5 against `adversarial_answer`; v1-official uses the refusal contract
+        # of the pinned harness.  A number is unreadable without this label.
+        "scorer_protocol": "locomo_official_v1",
         "accuracy": correct / total,
         "per_category": {str(k): {"correct": sum(v), "total": len(v)}
                          for k, v in by_cat.items()},
-        "scorer": "eval_locomo_full.score + is_list_gold (audit_strict_grade)",
+        "scorer": "eval_locomo_full.score_question + is_list_gold (audit_strict_grade)",
     }
 
     out = out.with_name(f"locomo_full_{_stamp}.json")
