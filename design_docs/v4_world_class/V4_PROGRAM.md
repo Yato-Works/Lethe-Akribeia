@@ -217,6 +217,23 @@ Consequence: B1's order is inverted. Build the **enumeration recall** step first
 B0 is measurable at 0 LLM calls (item recall), which makes it the cheapest
 high-volume lever in the program.
 
+Three variants were then frozen on the same 160 questions (`--budget-scale` is a
+measurement knob; 1.0 is unchanged):
+
+| variant | items in context | fully answerable | mean tokens |
+|---|---:|---:|---:|
+| baseline | 205/511 (40.1%) | 25/160 | 1,442 |
+| budget x2 | **253/511 (49.5%)** | **32/160** | 2,887 |
+| `--second-pass` | 206/511 (40.3%) | 26/160 | 1,442 |
+| `--second-pass` + budget x2 | 251/511 (49.1%) | 30/160 | 2,888 |
+
+So the token budget is a real but partial lever (+48 items, +7 answerable
+questions, for 2x tokens), and the existing second pass is not a lever at any
+budget. The remaining ~15pt gap to the 64.6% conversation ceiling lives inside
+the candidate pool / selection stage, which this run does not record. Recording
+the pool and the selected turn ids is the next instrument — the same unmeasured
+stage V4 mission 20 flagged.
+
 
 ---
 

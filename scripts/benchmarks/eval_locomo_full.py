@@ -1155,6 +1155,11 @@ def run(args) -> None:
             _pool_tokens = sum(len(t[3].split()) * 4 // 3 for t in cand)
             if _pool_tokens:
                 token_budget = _scaled_budget(token_budget, _pool_tokens)
+            # MEASUREMENT KNOB (default 1.0 = unchanged).  Used to test whether
+            # the budget or the candidate pool binds enumeration recall.
+            _bscale = float(getattr(args, "budget_scale", 1.0) or 1.0)
+            if _bscale != 1.0:
+                token_budget = int(token_budget * _bscale)
 
             t_map = {(t[0], t[3]): f"{t[0]}:t{i}" for i, t in enumerate(cand)}
             anchor_ids, anchor_scores = [], {}
@@ -1403,6 +1408,9 @@ def main() -> None:
     ap.add_argument("--freeze-contexts", default="",
                     help="write the compiled context of every question to DIR and "
                          "make no reader call (the shared bench for engine work)")
+    ap.add_argument("--budget-scale", type=float, default=1.0,
+                    help="measurement knob: multiply the compiled token budget "
+                         "(1.0 = unchanged; used to test whether the budget binds)")
     run(ap.parse_args())
 
 
