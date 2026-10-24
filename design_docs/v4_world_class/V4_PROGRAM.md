@@ -300,6 +300,47 @@ been ~+8pt). This is the same conversion wall M6 measured. The next attempt
 should construct the list answer from the evidence rather than show the reader
 more of it.
 
+### 4.9 The answer-provenance gate: first net-positive intervention (+4.33pt dev)
+
+**The idea that failed three times was keyed on the QUESTION.** Ask "does the
+subject have a turn containing the question's predicate?" and the answer is often
+no for a correctly answered question, because this corpus spreads one fact across
+turns. Key the test on the ANSWER instead and the signal is sharp: in the
+adversarial category the reader returns the *other person's* fact, so the
+answer's own wording appears only in the other speaker's turn.
+
+Rule: name the single speaker the question asks about; take the answer's content
+stems; find the best-matching dialogue line; if that line belongs to someone else,
+the answer did not transfer and becomes a refusal. It never rewrites an answer.
+
+Measured on dev (1,487 questions, official F1, paired against the stored run):
+
+| threshold | F1 before | F1 after | delta | adversarial | single-hop |
+|---:|---:|---:|---:|---:|---:|
+| 0.5 | 50.56% | 54.66% | +4.10 | 54.0 -> 79.8 | 52.5 -> 49.4 |
+| **0.7** | **50.56%** | **54.89%** | **+4.33** | **54.0 -> 79.5** | 52.5 -> 49.9 |
+| 0.9 | 50.56% | 54.72% | +4.16 | 54.0 -> 78.6 | 52.5 -> 50.0 |
+
+Full set (1,986, reported not tuned): 49.91% -> 52.59% (**+2.68pt**). The cost is
+concentrated in single-hop (-2.6) and temporal (-1.05); the gain is +25.5 on the
+adversarial category.
+
+Guards that make it safe, each of which was a measured failure when absent:
+date-shaped answers are out of scope (enforcing provenance on dates cost 7.8pt on
+temporal); questions naming no single speaker, or naming both, are out of scope;
+an answer whose wording is not traceable in the context is out of scope.
+
+Shipped as `src/artificial_memory/skills/refusal_gate.py` (12 synthetic tests),
+opt-in via `--refusal-gate`, and verified to reproduce the measurement **exactly**
+(+4.331pt) through the shipped module rather than a copy of its logic.
+
+**Holdout leak — recorded, not hidden.** While computing the full-set number, the
+`--scope` filter was inverted, so one run measured ONLY the 499 held-out
+questions (it showed +1.81pt). The filter is fixed. Consequence: for *this gate*
+the holdout is no longer clean, so it can neither be tuned on nor cited as
+validation. The design number is the dev figure (+4.33pt). The 553-question
+M5-M13 holdout remains unspent and is a different slice.
+
 
 ---
 

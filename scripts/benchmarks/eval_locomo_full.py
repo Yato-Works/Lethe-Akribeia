@@ -1311,6 +1311,20 @@ def run(args) -> None:
                 if re.search(r"\bwhen\b", q["question"], re.I):
                     pred = resolve_relative_dates(pred, ctx_text, q["question"])
 
+                # ANSWER-PROVENANCE GATE (opt-in).  A reader that is not tracking
+                # attribution returns the other person's fact, fluently.  If the
+                # answer's own wording only ever appears in another speaker's
+                # turn, it did not transfer to the asked subject, so the answer
+                # becomes a refusal.  Measured on dev: +4.33pt official F1
+                # (V4_PROGRAM.md 4.9).
+                if getattr(args, "refusal_gate", False):
+                    from artificial_memory.skills.refusal_gate import (
+                        AnswerProvenanceGate,
+                    )
+                    if AnswerProvenanceGate().decide(
+                            q["question"], ctx_text, pred).refuse:
+                        pred = canonical_refusal()
+
             # PROTOCOL: emit a refusal in the form the official harness accepts.
             # The raw output is retained so the lexical change stays auditable
             # and is never confused with a capability gain (V4_PROGRAM.md 3.2).
@@ -1414,6 +1428,7 @@ def run(args) -> None:
         "budget_scale": getattr(args, "budget_scale", 1.0),
         "subject_admit": getattr(args, "subject_admit", False),
         "subject_admit_gain": getattr(args, "subject_admit_gain", 0.0),
+        "refusal_gate": getattr(args, "refusal_gate", False),
         "manifest": args.manifest or "",
         "n_questions": len(jobs),
         "data": args.data,
@@ -1499,6 +1514,10 @@ def main() -> None:
     ap.add_argument("--subject-admit-gain", type=float, default=0.0,
                     help="gain bonus for an admitted subject bundle (0 = it only "
                          "competes, which measured as no change)")
+    ap.add_argument("--refusal-gate", action="store_true",
+                    help="apply the deterministic answer-provenance gate: an answer "
+                         "whose wording only comes from another speaker's turn "
+                         "becomes a refusal (off by default)")
     run(ap.parse_args())
 
 

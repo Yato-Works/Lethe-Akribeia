@@ -1,0 +1,22 @@
+[
+ {
+  "threshold": 0.7,
+  "n": 1487,
+  "f1_before": 50.558,
+  "f1_after": 54.889,
+  "delta": 4.331,
+  "fired": {
+   "multi-hop": 9,
+   "temporal": 4,
+   "open-domain": 1,
+   "single-hop": 32,
+   "adversarial": 87
+  },
+  "cat2_before": 63.69,
+  "cat2_after": 62.64,
+  "cat4_before": 52.47,
+  "cat4_after": 49.73,
+  "cat5_before": 54.01,
+  "cat5_after": 79.82
+ }
+]

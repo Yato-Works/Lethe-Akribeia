@@ -1,0 +1,62 @@
+[
+ {
+  "threshold": 0.5,
+  "n": 1487,
+  "f1_before": 50.558,
+  "f1_after": 53.85,
+  "delta": 3.292,
+  "fired": {
+   "multi-hop": 13,
+   "temporal": 29,
+   "open-domain": 3,
+   "single-hop": 47,
+   "adversarial": 106
+  },
+  "cat2_before": 63.69,
+  "cat2_after": 55.85,
+  "cat4_before": 52.47,
+  "cat4_after": 49.3,
+  "cat5_before": 54.01,
+  "cat5_after": 81.31
+ },
+ {
+  "threshold": 0.7,
+  "n": 1487,
+  "f1_before": 50.558,
+  "f1_after": 54.08,
+  "delta": 3.522,
+  "fired": {
+   "multi-hop": 11,
+   "temporal": 29,
+   "open-domain": 2,
+   "single-hop": 41,
+   "adversarial": 105
+  },
+  "cat2_before": 63.69,
+  "cat2_after": 55.85,
+  "cat4_before": 52.47,
+  "cat4_after": 49.76,
+  "cat5_before": 54.01,
+  "cat5_after": 81.01
+ },
+ {
+  "threshold": 0.9,
+  "n": 1487,
+  "f1_before": 50.558,
+  "f1_after": 53.912,
+  "delta": 3.353,
+  "fired": {
+   "multi-hop": 11,
+   "temporal": 29,
+   "open-domain": 2,
+   "single-hop": 39,
+   "adversarial": 102
+  },
+  "cat2_before": 63.69,
+  "cat2_after": 55.85,
+  "cat4_before": 52.47,
+  "cat4_after": 49.84,
+  "cat5_before": 54.01,
+  "cat5_after": 80.12
+ }
+]

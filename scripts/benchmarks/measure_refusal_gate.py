@@ -128,7 +128,8 @@ def content_stems(question: str, speakers: list[str]) -> set[str]:
 
 
 # ----------------------------------------------------------------------- gates
-def gate_subject_absent(question: str, context: str, threshold: float) -> bool:
+def gate_subject_absent(question: str, context: str, prediction: str,
+                        threshold: float) -> bool:
     """Refuse when the best-matching evidence line never mentions the subject.
 
     Rationale: for an attribution-swap question ("What did X do after Y's Z?")
@@ -158,7 +159,8 @@ def gate_subject_absent(question: str, context: str, threshold: float) -> bool:
     return subject.lower() not in text.lower()
 
 
-def gate_predicate_absent(question: str, context: str, threshold: float) -> bool:
+def gate_predicate_absent(question: str, context: str, prediction: str,
+                          threshold: float) -> bool:
     """Stricter: the subject is named in the line, but not as the actor of it.
 
     Approximated on the name-normalised text (first person is rewritten to the
@@ -210,7 +212,8 @@ def predicate_stem(question: str, speakers: list[str]) -> str:
     return ""
 
 
-def gate_predicate_object(question: str, context: str, threshold: float) -> bool:
+def gate_predicate_object(question: str, context: str, prediction: str,
+                          threshold: float) -> bool:
     """Refuse when no line of the SUBJECT binds the asked predicate to its object.
 
     This is the attribution-swap detector.  For "What did Caroline realize after
@@ -247,10 +250,123 @@ def gate_predicate_object(question: str, context: str, threshold: float) -> bool
     return True
 
 
+_MONTHS = frozenset("""
+january february march april may june july august september october november december
+jan feb mar apr jun jul aug sep sept oct nov dec
+""".split())
+_WEEKDAYS = frozenset("""
+monday tuesday wednesday thursday friday saturday sunday
+""".split())
+
+
+def looks_temporal(text: str) -> bool:
+    """A date-shaped answer.  Temporal questions are scored as dates, and a date
+    legitimately appears in turns of BOTH speakers, so provenance attribution is
+    the wrong test for them (measured: it cost 7.8pt on the temporal category)."""
+    low = text.lower()
+    if re.search(r"\b(19|20)\d{2}\b", low):
+        return True
+    if any(m in low for m in _MONTHS):
+        return True
+    if any(d in low for d in _WEEKDAYS):
+        return True
+    if re.fullmatch(r"[\d\s,./-]+", low.strip()):
+        return True
+    return False
+
+
+def subject_is_actor(question: str, subject: str) -> bool:
+    """True when the question's grammatical actor is `subject`.
+
+    "What did Caroline realize ...?" -> yes.
+    "What was grandma's gift to Caroline?" -> no: the actor is grandma, and the
+    answer legitimately comes from grandma's turn.  Attributing the ANSWER to the
+    named person is only a valid test when that person is the actor
+    (measured: this precondition removes most of the single-hop false positives).
+    """
+    pat = rf"\b(?:did|does|do|has|have|had)\s+{re.escape(subject)}\b"
+    return re.search(pat, question, re.I) is not None
+
+
+def gate_answer_attribution(question: str, context: str, prediction: str,
+                            threshold: float) -> bool:
+    """Refuse when the ANSWER's content comes from someone else's turn.
+
+    This is the attribution-swap signature, but anchored on the answer instead of
+    on the question.  For "What did Caroline realize after her charity race?" the
+    reader answers "self-care is important" -- a string that exists verbatim in
+    MELANIE's turn.  Wrong-person provenance is direct evidence that the answer
+    does not transfer to the asked subject.
+
+    Questions that name no single speaker, answers whose content is not found in
+    the context (paraphrase), and best-matches below the threshold are all left
+    alone: the gate only fires when it can point at another person's line.
+    """
+    lines = dialogue_lines(context)
+    if not lines or not prediction:
+        return False
+    if looks_temporal(prediction):
+        return False
+    speakers = speakers_in(lines)
+    subject = asked_subject(question, speakers)
+    if subject is None:
+        return False
+    if not subject_is_actor(question, subject):
+        return False
+    terms = {stem(w) for w in re.findall(r"[a-z]{4,}", prediction.lower())
+             if w not in STOP and w not in {s.lower() for s in speakers}}
+    if not terms:
+        return False
+    best = (0.0, "")
+    for speaker, text in lines:
+        low = text.lower()
+        overlap = sum(1 for t in terms if t in low) / len(terms)
+        if overlap > best[0]:
+            best = (overlap, speaker)
+    overlap, speaker = best
+    if overlap < threshold:
+        return False
+    return speaker.lower() != subject.lower()
+
+
+def gate_answer_attributed_dominant(question: str, context: str, prediction: str,
+                                    threshold: float) -> bool:
+    """As above, but also requires that NO subject turn carries the answer terms.
+
+    Stricter: refuses only when the answer's wording exists in other people's
+    turns and never in the subject's own.
+    """
+    lines = dialogue_lines(context)
+    if not lines or not prediction:
+        return False
+    if looks_temporal(prediction):
+        return False
+    speakers = speakers_in(lines)
+    subject = asked_subject(question, speakers)
+    if subject is None:
+        return False
+    terms = {stem(w) for w in re.findall(r"[a-z]{4,}", prediction.lower())
+             if w not in STOP and w not in {s.lower() for s in speakers}}
+    if len(terms) < 2:
+        return False
+    other_best = 0.0
+    own_best = 0.0
+    for speaker, text in lines:
+        low = text.lower()
+        overlap = sum(1 for t in terms if t in low) / len(terms)
+        if speaker.lower() == subject.lower():
+            own_best = max(own_best, overlap)
+        else:
+            other_best = max(other_best, overlap)
+    return other_best >= threshold and own_best < threshold
+
+
 GATES = {
     "subject_absent": gate_subject_absent,
     "predicate_absent": gate_predicate_absent,
     "predicate_object": gate_predicate_object,
+    "answer_attribution": gate_answer_attribution,
+    "answer_attribution_dominant": gate_answer_attributed_dominant,
 }
 
 
@@ -292,6 +408,8 @@ def main() -> int:
     ap.add_argument("--gate", default="subject_absent", choices=sorted(GATES))
     ap.add_argument("--thresholds", default="0.3,0.4,0.5,0.6,0.7")
     ap.add_argument("--out", default="")
+    ap.add_argument("--runtime-gate", action="store_true",
+                    help="use the shipped AnswerProvenanceGate instead of a local gate")
     args = ap.parse_args()
 
     official = load_official()
@@ -310,7 +428,11 @@ def main() -> int:
         fired = defaultdict(int)
         for sample in dataset:
             sid = sample["sample_id"]
-            if (args.scope == "dev") == (sid in HOLDOUT):
+            # scope=dev keeps the eight development conversations; scope=full
+            # keeps everything.  The earlier form of this test was inverted and a
+            # "--scope full" run silently measured ONLY the holdout (499 rows).
+            # That leak is recorded in V4_PROGRAM.md 4.9; do not tune on it.
+            if args.scope == "dev" and sid in HOLDOUT:
                 continue
             qas_b, qas_a = [], []
             for i, qa in enumerate(sample["qa"]):
@@ -325,7 +447,16 @@ def main() -> int:
                 qas_b.append(item)
 
                 ctx = contexts.get(qid, {}).get("context", "")
-                refuse = gate(qa["question"], ctx, threshold) if ctx else False
+                if args.runtime_gate:
+                    # Exercise the SHIPPED module, not a copy of its logic: the
+                    # numbers must be reproducible from the runtime code.
+                    from artificial_memory.skills.refusal_gate import (
+                        AnswerProvenanceGate,
+                    )
+                    refuse = (bool(ctx) and AnswerProvenanceGate()
+                              .decide(qa["question"], ctx, pred).refuse)
+                else:
+                    refuse = gate(qa["question"], ctx, pred, threshold) if ctx else False
                 if refuse:
                     fired[_cat(qa)] += 1
                     item_after = dict(item)
