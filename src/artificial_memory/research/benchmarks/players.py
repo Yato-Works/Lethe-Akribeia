@@ -88,6 +88,20 @@ def _isolated_index_dir(player_name: str) -> Path:
         path.mkdir(parents=True, exist_ok=False)
     else:
         path = Path(tempfile.mkdtemp(prefix=f"am-arena-{slug}-"))
+        # A confined process can be handed a temp directory it cannot write into
+        # (observed: mkdtemp returns, then every player fails with
+        # 'faiss.index.tmp: Permission denied').  Probe once and fall back to a
+        # repo-local scratch dir rather than failing the whole arena.
+        try:
+            probe = path / ".write_probe"
+            probe.write_text("x", encoding="utf-8")
+            probe.unlink()
+        except OSError:
+            shutil.rmtree(path, ignore_errors=True)
+            fallback = Path(__file__).resolve().parents[4] / ".arena_tmp"
+            fallback.mkdir(parents=True, exist_ok=True)
+            path = fallback / f"{slug}-{uuid.uuid4().hex[:8]}"
+            path.mkdir(parents=True, exist_ok=False)
     _ISOLATED_INDEX_DIRS.append(path)
     return path
 
