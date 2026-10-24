@@ -71,6 +71,7 @@ OPTIMIZATION_PROGRESS.md
 
 # Local experiment scratch (TEMP redirection target, debug scripts, pickles)
 .tmp/
+.arena_tmp/
 .tmp_*
 _tmp_*
 *.pkl
