@@ -379,6 +379,63 @@ mechanism: equal or better, at zero LLM cost.
 Artifacts: `benchmark_results/refusal_gate/policies_dev.json`,
 `scripts/benchmarks/price_refusal_policies.py`.
 
+### 4.12 P2 arena: the shipped runtime is last, and Simple RAG wins
+
+The controlled arena compares five players on 200 planted-fact questions over a
+520-turn history, with one frozen answer LLM, one frozen extraction LLM, one
+2,000-token budget and one scorer. This is the fair comparison objective (3)
+asked for, and it is the first time it has been run with a real LLM.
+
+| player | accuracy | write tokens | read tokens | abstention rate |
+|---|---:|---:|---:|---:|
+| **Simple RAG** | **51.0%** | 0 | 485k | 27.0% |
+| Mem0-style | 42.5% | 61.6k | 387k | 26.5% |
+| Zep-style | 35.0% | 61.6k | 591k | 42.5% |
+| HippoRAG-style | 26.0% | 61.6k | 628k | 61.5% |
+| **AM v0.2.0** | **11.5%** | 0 | 431k | **86.5%** |
+
+Per category, AM v0.2.0 scores 0% on factual recall, multi-session recall,
+knowledge updates, temporal reasoning, distractor resistance, contradiction
+handling and compression recovery; 15% on reflection; and 100% on abstention —
+the one category that rewards refusing. **Its 11.5% is almost entirely the
+abstention category.**
+
+Two findings matter more than the ranking:
+
+1. **The shipped runtime answers only 13.5% of questions.** This is not a subtle
+   retrieval gap; the runtime almost always declines. Whatever the R7 research
+   pipeline does (53.77% official F1 on LoCoMo), it is not what ships.
+2. **The LLM-extraction baselines spend 61.6k write tokens and lose to a player
+   that spends zero.** Write-side cleverness did not pay for itself here.
+
+Caveats, stated because they bound the claim: the arena is synthetic and plants
+sentences like "For project atlas the user said their preferred editor toolchain
+is ripgrep", which lexical retrieval can match; `AM v0.2.0` is the runtime facade,
+not the R7 pipeline; and one run is one run.
+
+**Why the runtime abstains — diagnosed at 0 LLM calls.** Replaying the full
+440-turn user history through the runtime facade and recalling the first three
+factual questions:
+
+| question | retrieved | what the context actually contains |
+|---|---|---|
+| project atlas, editor toolchain | 20 memories | the right project, the **wrong attribute** ("keeps an untouched backup") |
+| project beacon, editor toolchain | 20 memories | beacon does not appear at all |
+| project cinder, editor toolchain | 20 memories | the right project, the **wrong attribute** |
+
+The planted facts are template-identical ("For project X, the user ..."), so
+dense similarity barely separates them: the query ranks same-project siblings
+above the asked relation. Simple RAG uses the same k=20 and scores 51%, so the
+loss is not the retrieval budget — it is how the runtime stores and ranks
+memories. That is a product defect, and it is the concrete next target.
+
+**Consequence for the program:** the distance to "world-class" is not a
+benchmark-recipe problem, it is a *product wiring* problem. The next engine
+measurement must be "R7 retrieval + compile behind the arena player", so the
+comparison prices the engine that actually wins on LoCoMo.
+
+Artifacts: `benchmark/results/p2_external/controlled/controlled_20261024_234709/`.
+
 **Holdout leak — recorded, not hidden.** While computing the full-set number, the
 `--scope` filter was inverted, so one run measured ONLY the 499 held-out
 questions (it showed +1.81pt). The filter is fixed. Consequence: for *this gate*
