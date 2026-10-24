@@ -40,11 +40,17 @@ sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 # agreement instead of letting them drift apart.
 from artificial_memory.compiler.eval.audit_strict_grade import is_list_gold  # noqa: E402
 
+#: LoCoMo's own category numbering.  This mapping was previously rotated by one
+#: position (1=single-hop, 2=multi-hop, 3=temporal, 4=open-domain), which
+#: mislabelled every printed report: the 282-question category is multi-hop, not
+#: single-hop.  Verified against the pinned harness, which splits sub-answers for
+#: category 1 only (evaluation.py:212-214) and treats 2/3/4 uniformly, and against
+#: the dataset counts (282/321/96/841/446).
 CAT_NAMES = {
-    1: "single-hop",
-    2: "multi-hop",
-    3: "temporal",
-    4: "open-domain",
+    1: "multi-hop",
+    2: "temporal",
+    3: "open-domain",
+    4: "single-hop",
     5: "adversarial",
 }
 
