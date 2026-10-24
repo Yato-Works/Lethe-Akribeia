@@ -429,6 +429,29 @@ above the asked relation. Simple RAG uses the same k=20 and scores 51%, so the
 loss is not the retrieval budget — it is how the runtime stores and ranks
 memories. That is a product defect, and it is the concrete next target.
 
+**A lexical channel would recover most of it (0 LLM calls).** IDF-weighted lexical
+recall@20 over the same 440 user turns, asking only whether the gold value
+appears in the top 20:
+
+| category | lexical recall@20 | AM accuracy today |
+|---|---:|---:|
+| knowledge updates | 100% | 0% |
+| compression recovery | 100% | 0% |
+| temporal reasoning | 100% | 0% |
+| abstention (must refuse) | 100% | 100% |
+| factual recall | 85% | 0% |
+| distractor resistance | 85% | 0% |
+| multi-session recall | 80% | 0% |
+| contradiction handling | 0% | 0% |
+| indirect recall | 0% | 0% |
+| reflection / reinterpretation | 0% | 15% |
+
+The three categories at 0% need reasoning rather than retrieval, so they are a
+separate problem. For the rest, the evidence is reachable by a lexical ranker that
+the runtime does not have. Blending lexical and dense scores in the runtime's
+recall is the next engine change, and it can be measured at 0 LLM calls before any
+arena rerun.
+
 **Consequence for the program:** the distance to "world-class" is not a
 benchmark-recipe problem, it is a *product wiring* problem. The next engine
 measurement must be "R7 retrieval + compile behind the arena player", so the
