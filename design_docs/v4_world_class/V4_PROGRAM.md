@@ -482,6 +482,31 @@ The cost is honest: 4x retrieval latency and 3.4x read tokens, because the conte
 now contains relevant evidence instead of 20 short irrelevant memories. That is
 the mechanism working, not a regression.
 
+**Full 200-question confirmation** (same arena, same LLM, one run each):
+
+| player | accuracy | read tokens | retrieval ms |
+|---|---:|---:|---:|
+| **AM v0.2.0 with the lexical channel** | **53.0%** | 1,463k | 73.2 |
+| Simple RAG | 51.0% | 485k | 9.7 |
+| Mem0-style | 42.5% | 387k | 20.9 |
+| Zep-style | 35.0% | 591k | 2.7 |
+| HippoRAG-style | 26.0% | 628k | 25.4 |
+| AM v0.2.0 as shipped | 11.5% | 431k | 17.7 |
+
+Per category, the same change turns 0% into: factual recall 100%, multi-session
+recall 100%, knowledge updates 85%, indirect recall 85%, distractor resistance
+80%, compression recovery 70%. **Abstention falls from 100% to 10%** — the system
+now answers instead of declining, which is the whole point and also the new
+problem: it now answers questions that should be refused. That is the same
+sufficiency question this program met on LoCoMo's adversarial category, and it is
+the next target.
+
+**Do not overclaim this.** The failure was diagnosed *on this arena* and the fix
+was validated *on this arena*; one run each. The mechanism is generic (IDF
+weighting, query-dependent candidates), but an out-of-sample corpus has not been
+used. The honest statement is "the diagnosed mechanism is real and worth 41.5pt
+here", not "the product is now world-class".
+
 Tests: `tests/unit/test_lexical_recall.py` (5 cases, including one that asserts the
 off path is unchanged). Flag: `--am-lexical` in the arena runner.
 

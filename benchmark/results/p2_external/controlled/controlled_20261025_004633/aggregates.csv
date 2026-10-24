@@ -1,0 +1,2 @@
+player,question_count,pass_count,partial_count,fail_count,false_positive_count,answer_accuracy,partial_rate,false_positive_rate,forbidden_violation_rate,mean_ground_truth_coverage,mean_score,abstention_accuracy,abstention_question_count,mean_score_consistency
+AM v0.2.0,200,106,1,75,18,0.53,0.005,0.09,0.07,0.6275,0.5325,0.1,20,1.0
