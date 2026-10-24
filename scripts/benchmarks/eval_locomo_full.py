@@ -424,7 +424,7 @@ def score(pred: str, gold: str) -> bool:
     #
     # Reuse the strict rubric's definition so the production scorer and the
     # audit can never disagree about what counts as an enumeration answer.
-    _is_list = is_list_gold(gold) and not (p in _YESNO)
+    _is_list = is_list_gold(gold) and p not in _YESNO
 
     if _is_list:
         # Permutation match: every gold item must appear in the prediction.
@@ -983,8 +983,43 @@ def reorder_context_by_speaker(context: str, question: str, conv: dict) -> str:
     return "\n\n".join(result_parts)
 
 
+def _write_frozen_contexts(out_dir: Path, rows: list[dict], args) -> None:
+    """Write the compiled context of every question, with no reader call.
+
+    This is the shared bench for engine work: retrieval + compilation are
+    deterministic, so freezing them once gives every subsequent engine change the
+    SAME context to answer from.  A paired before/after on this file isolates the
+    engine, which is what `integration_gate.py` requires.
+    """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "contexts.jsonl"
+    with open(path, "w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+    stats = Counter((r["category"], bool(r["committer_claimed"])) for r in rows)
+    manifest = {
+        "kind": "frozen_contexts",
+        "n": len(rows),
+        "config": {
+            "cond": args.cond, "cats": args.cats, "second_pass": getattr(args, "second_pass", False),
+            "data": args.data, "llm_calls": 0,
+        },
+        "committer_claimed": sum(1 for r in rows if r["committer_claimed"]),
+        "per_category": {str(k): sum(v for (c, _), v in stats.items() if c == k)
+                         for k in sorted({r["category"] for r in rows})},
+        "context_tokens_mean": round(
+            sum(r["context_tokens"] for r in rows) / max(1, len(rows)), 1),
+    }
+    (out_dir / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"\nfrozen contexts -> {path}  ({len(rows)} questions, 0 LLM calls)")
+    print(f"manifest        -> {out_dir / 'manifest.json'}")
+
+
 def run(args) -> None:
     args.use_committer = not getattr(args, "no_committer", False)
+    freeze_dir = Path(args.freeze_contexts) if getattr(args, "freeze_contexts", "") else None
+    freeze_rows: list[dict] = []
     manifest = []
     if getattr(args, "manifest", ""):
         with open(args.manifest, encoding="utf-8") as f:
@@ -1166,6 +1201,26 @@ def run(args) -> None:
                 except Exception:
                     committed = None
 
+            # FREEZE MODE: record the exact context the reader would have seen,
+            # then move on without a reader call.  Used to build the shared bench
+            # for engine work (0 LLM calls, deterministic).
+            if freeze_dir is not None:
+                freeze_rows.append({
+                    "question_id": q["question_id"],
+                    "category": q["category"],
+                    "question": q["question"],
+                    "gold": q["answer"],
+                    "adversarial_answer": q.get("adversarial_answer", ""),
+                    "context": compiled.context_text,
+                    "context_tokens": getattr(compiled, "total_tokens", 0),
+                    "committer_claimed": committed is not None,
+                    "committer_answer": committed or "",
+                    "plan_mode": getattr(plan, "dominant_mode", ""),
+                    "token_budget": token_budget,
+                    "anchor_ids": anchor_ids[:8],
+                })
+                continue
+
             if committed:
                 pred = committed
             else:
@@ -1232,6 +1287,10 @@ def run(args) -> None:
             eta = rate * (len(jobs) - idx - 1)
             print(f"[{idx+1}/{len(jobs)}] {elapsed:.0f}s elapsed, "
                   f"ETA {eta/60:.1f}min")
+
+    if freeze_dir is not None:
+        _write_frozen_contexts(freeze_dir, freeze_rows, args)
+        return
 
     elapsed = time.perf_counter() - t_start
     total = len(results)
@@ -1341,6 +1400,9 @@ def main() -> None:
     ap.add_argument("--speaker-first", action="store_true",
                     help="reorder reader context so the question's target speaker's "
                          "evidence appears first (off by default)")
+    ap.add_argument("--freeze-contexts", default="",
+                    help="write the compiled context of every question to DIR and "
+                         "make no reader call (the shared bench for engine work)")
     run(ap.parse_args())
 
 

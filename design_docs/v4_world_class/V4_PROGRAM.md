@@ -163,6 +163,61 @@ In-house decomposition of the same run: committer claims 312 (59.3% precise),
 reader answers 1,674 (46.7%), 436 refusals (0.2%). List-gold questions: 521 at
 36.9% binary.
 
+### 4.5 M1 result — deterministic refusal gates are a measured NO-GO
+
+Three gates were built and priced on the frozen contexts, paired against the
+stored run, dev scope (1,487 questions), official F1. Delta = (category-5 newly
+refused) - (category-1-4 credit lost).
+
+| gate | rule | best delta | cat5 F1 | single-hop F1 |
+|---|---|---:|---:|---:|
+| `subject_absent` | best-matching line never names the subject | **-1.11 pt** | 54.0 -> 63.2 | 52.5 -> 46.8 |
+| `predicate_object` | no subject-turn binds the asked predicate + objects | **-5.34 pt** | 54.0 -> 71.8 | 52.5 -> 39.5 |
+| `predicate_absent` | subject missing from the line's opening clause | worse (superset) | — | — |
+
+Every variant buys category-5 recall with single-hop precision. The cause is
+structural, not a tuning failure: this corpus distributes one fact across several
+turns ("charity race" in one, "realize" in another), so a single-turn binding test
+refuses questions the Reader answers correctly by joining turns. **Surface-string
+attribution gating cannot be the refusal mechanism.** The remaining options are a
+Reader-side sufficiency verifier (one extra call) or a proposition-level IR path;
+both are new measurements, not a retry of this one.
+
+Artifacts: `benchmark_results/refusal_gate/*.json`,
+`scripts/benchmarks/measure_refusal_gate.py`.
+
+### 4.6 B1 measurement — the list cluster is compiler-bound before it is engine-bound
+
+Measured on the current pipeline (frozen contexts, 0 LLM), list-gold cats 1-4
+(n=445):
+
+| group | n | correct |
+|---|---:|---:|
+| committer claims | 97 | 59 (60.8% precision) |
+| reader answers the rest | 348 | 114 (32.8%) |
+| multi-hop lists (cat1) | 160 | 21 (13.1%) |
+
+Gold-item availability, matched exactly against the text:
+
+| category | items in compiled context | items in full conversation |
+|---|---:|---:|
+| cat1 (multi-hop lists) | 40.1% | **64.6%** |
+| cat4 (single-hop lists) | 64.7% | 79.5% |
+| cat2 (temporal lists) | 55.7% | 2.6% (derived dates; the compiler adds them) |
+
+For cat1: 76 of 160 questions lose at least one item that exists in the
+conversation; **129 available items are dropped by retrieval/compilation**; the
+"all items present" ceiling is 25 questions in the compiled context versus **62**
+in the conversation. `--second-pass` moves this by **+1 item / +1 question** at an
+unchanged token budget, so the existing enumeration pass is not the lever — the
+budget/selection is.
+
+Consequence: B1's order is inverted. Build the **enumeration recall** step first
+(B0), keeping the union engine for after the items are actually in the context.
+B0 is measurable at 0 LLM calls (item recall), which makes it the cheapest
+high-volume lever in the program.
+
+
 ---
 
 ## 5. What is already measured as not working (do not re-spend)
@@ -203,6 +258,7 @@ One shape at a time, each measured with `integration_gate.py` on frozen contexts
 
 | order | engine | target cluster | entry condition |
 |---|---|---|---|
+| B0 | enumeration recall in the compiler (0 LLM) | 129 dropped cat1 items (4.6) | item recall up, token budget flat |
 | B1 | plural/list union with speaker scope + completeness gate | 311 | precision on the cluster >= 55% |
 | B2 | date binding verifier (anchor + event match, else abstain) | 104 | zero regression on already-correct dates |
 | B3 | constrained single-value relation extraction | 288 | self-verification gate present |
@@ -240,11 +296,13 @@ engine rather than `AMv020Player`.
 | # | milestone | gate | target |
 |---|---|---|---|
 | M0 | protocol v2 + canonical refusal + re-baseline | refusal form only | **49.9%** — DONE (binary 54.83%, official 49.91%) |
-| M1 | sufficiency gate (cat5 55.6% -> 75%+) | cats 1-4 -0.5 pt max | 52-54% |
-| M2 | plural/list union (multi-hop 32% -> 40%+) | gate on 311 | 55-57% |
-| M3 | date binding (temporal 59.9% -> 66%+) | zero date regressions | 57-59% |
-| M4 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | 60-63% |
-| M5 | holdout validation, once | frozen method | report honestly |
+| M1 | deterministic attribution gate | dev delta >= 0 | **REJECTED** (-1.11 to -5.34pt; see 4.5) |
+| M2 | enumeration recall for list questions (0 LLM) | item recall up, cats2-4 non-regression | all-items ceiling 25 -> 50+ of 160 |
+| M3 | Reader-side sufficiency verifier (one extra call) | cats1-4 loss < 0.5 pt | cat5 75%+, overall 52-54% |
+| M4 | plural/list union on the improved context | precision >= 55% on the cohort | multi-hop 32% -> 40%+ |
+| M5 | date binding (temporal 59.9% -> 66%+) | zero date regressions | 57-59% |
+| M6 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | 60-63% |
+| M7 | holdout validation, once | frozen method | report honestly |
 
 "World-class" is only claimed after Track C produces a same-LLM, same-scorer
 comparison and after M5. Until then the honest statement is: *the engine is 3.65 pt
@@ -257,6 +315,8 @@ pure protocol defect.*
 
 - The sufficiency gate cannot separate cat5 from answerable questions at better
   than 60% precision (then refusal stays a format fix and nothing more).
+  **Partially observed:** all three surface-string gates are net-negative (§4.5),
+  so the remaining test is the Reader-side verifier, not another string rule.
 - Plural/list union lands below 55% precision on its cluster (the 14%-precision
   generic branch is the precedent).
 - Dev gains do not survive the 553-question holdout (then the engines were fitted).
