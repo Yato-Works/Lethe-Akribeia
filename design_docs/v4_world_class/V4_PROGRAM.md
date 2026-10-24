@@ -321,9 +321,9 @@ Measured on dev (1,487 questions, official F1, paired against the stored run):
 | **0.7** | **50.56%** | **54.89%** | **+4.33** | **54.0 -> 79.5** | 52.5 -> 49.9 |
 | 0.9 | 50.56% | 54.72% | +4.16 | 54.0 -> 78.6 | 52.5 -> 50.0 |
 
-Full set (1,986, reported not tuned): 49.91% -> 52.59% (**+2.68pt**). The cost is
-concentrated in single-hop (-2.6) and temporal (-1.05); the gain is +25.5 on the
-adversarial category.
+Full set (1,986, reported not tuned), through the shipped module: 49.91% ->
+**53.77% (+3.87pt)**. The cost is concentrated in single-hop (-2.9) and temporal
+(-1.4); the gain is +24.9 on the adversarial category.
 
 Guards that make it safe, each of which was a measured failure when absent:
 date-shaped answers are out of scope (enforcing provenance on dates cost 7.8pt on
@@ -422,11 +422,12 @@ engine rather than `AMv020Player`.
 | M0 | protocol v2 + canonical refusal + re-baseline | refusal form only | **49.9%** — DONE (binary 54.83%, official 49.91%) |
 | M1 | deterministic attribution gate | dev delta >= 0 | **REJECTED** (-1.11 to -5.34pt; see 4.5) |
 | M2 | enumeration recall for list questions (0 LLM) | item recall up, cats2-4 non-regression | measured: +1.68pt dev for 2x tokens — **not promoted** (4.8) |
-| M3 | construct the list answer from evidence (union engine) | precision >= 55% on fully-available items | +25-42 cat1 questions answerable in-context |
-| M4 | Reader-side sufficiency verifier (one extra call) | cats1-4 loss < 0.5 pt | cat5 75%+, overall 52-54% |
-| M5 | date binding (temporal 59.9% -> 66%+) | zero date regressions | 57-59% |
-| M6 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | 60-63% |
-| M7 | holdout validation, once | frozen method | report honestly |
+| M3 | answer-provenance refusal gate (0 LLM) | net dev delta > 0 | **DONE: +4.33pt dev / +3.87pt full** — shipped, opt-in (4.9) |
+| M4 | construct the list answer from evidence (union engine) | precision >= 55% on fully-available items | +25-42 cat1 questions answerable in-context |
+| M5 | Reader-side support verifier (one extra call) | cats1-4 loss < 0.5 pt | pilot: cat5 5/8 NOT SUPPORTED, +4.8pt projected on n=40 |
+| M6 | date binding (temporal 59.9% -> 66%+) | zero date regressions | 57-59% |
+| M7 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | 60-63% |
+| M8 | holdout validation, once | frozen method | report honestly |
 
 "World-class" is only claimed after Track C produces a same-LLM, same-scorer
 comparison and after M5. Until then the honest statement is: *the engine is 3.65 pt
