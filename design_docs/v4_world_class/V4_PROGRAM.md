@@ -334,6 +334,51 @@ Shipped as `src/artificial_memory/skills/refusal_gate.py` (12 synthetic tests),
 opt-in via `--refusal-gate`, and verified to reproduce the measurement **exactly**
 (+4.331pt) through the shipped module rather than a copy of its logic.
 
+**Further variants were tried and all were worse** — the gate is at a dev-local
+optimum, and the search stops here rather than becoming threshold fitting:
+
+| variant | rule added | dev delta |
+|---|---|---:|
+| **plain (shipped)** | — | **+4.33** |
+| margin | the subject's own overlap must be < 0.7 x threshold | +3.68 |
+| solo | the question must name exactly one person | +3.46 |
+| actor | the subject must be the grammatical actor | +2.97 |
+| any | provenance OR "answer not in the evidence at all" | +2.39 |
+| untraceable | answer's wording appears nowhere in the evidence | -0.44 |
+
+The trade-off is genuine rather than a tuning miss: every guard that protects
+single-hop (-2.6pt of cost) removes more adversarial recall (+25.5pt of gain)
+than it saves. `untraceable` is not even a hallucination detector in practice —
+it mostly fires on answers that were already refusals.
+
+### 4.11 The Reader-side support verifier: a pilot's +4.8 is +0.45 at scale
+
+The one refusal mechanism left untested was a second model call that audits the
+answer against the same evidence. The pilot (n=40) projected +4.8pt. The full dev
+run is decisive: 1,173 answered questions, one extra 7B call each (~2 s), and the
+pinned official evaluator on the same frozen predictions.
+
+| policy | refused | official F1 | delta | won (cat5) / lost (cat1-4) |
+|---|---:|---:|---:|---:|
+| **gate (0 LLM calls)** | 133 | **54.89%** | **+4.33** | 87 / 31 |
+| verifier | 290 | 51.00% | +0.45 | 77 / 113 |
+| gate OR verifier | 377 | 53.42% | +2.86 | 132 / 138 |
+| gate AND verifier | 46 | 52.47% | +1.91 | 32 / 6 |
+| verifier beyond the gate | 244 | 49.09% | -1.47 | 45 / 107 |
+
+**REJECTED.** The verifier buys 77 adversarial refusals and pays 113 correct
+answers across categories 1-4 — it refuses inference and derived-date questions
+that the benchmark rewards. Combining it never beats the gate alone: the union is
+worse (+2.86), and the intersection is not additive (+1.91).
+
+The pilot's +4.8 was small-sample noise on 8 questions per category. This is the
+clearest demonstration in the program of why a pilot is not a promotion, and it is
+recorded for that reason. The deterministic gate remains the only refusal
+mechanism: equal or better, at zero LLM cost.
+
+Artifacts: `benchmark_results/refusal_gate/policies_dev.json`,
+`scripts/benchmarks/price_refusal_policies.py`.
+
 **Holdout leak — recorded, not hidden.** While computing the full-set number, the
 `--scope` filter was inverted, so one run measured ONLY the 499 held-out
 questions (it showed +1.81pt). The filter is fixed. Consequence: for *this gate*

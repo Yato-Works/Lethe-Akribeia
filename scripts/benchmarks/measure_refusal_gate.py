@@ -447,11 +447,42 @@ def gate_answer_attribution_actor(question: str, context: str, prediction: str,
     return gate_answer_attribution(question, context, prediction, threshold)
 
 
+def gate_answer_attribution_solo(question: str, context: str, prediction: str,
+                                 threshold: float) -> bool:
+    """Provenance, only when the question names exactly ONE person.
+
+    Measured false positives of the plain gate on single-hop are questions with a
+    second named person ("What was grandma's gift to Caroline?"), where the answer
+    legitimately comes from the other person's turn.  If the question names a
+    person other than the subject, the attribution target is ambiguous, so the gate
+    stays out.
+    """
+    # Only mid-sentence capitalised tokens count: the sentence-initial word is
+    # "What"/"Where"/... and would make every question look like it names two
+    # people (measured: that bug reduced this gate's fires to 1).
+    names = {
+        m.group(1).lower()
+        for m in re.finditer(r"(?<=\s)([A-Z][a-z]{2,})\b", question)
+    }
+    lines = dialogue_lines(context)
+    if not lines:
+        return False
+    speakers = speakers_in(lines)
+    subject = asked_subject(question, speakers)
+    if subject is None:
+        return False
+    others = {n for n in names if n != subject.lower()}
+    if others:
+        return False
+    return gate_answer_attribution(question, context, prediction, threshold)
+
+
 GATES = {
     "subject_absent": gate_subject_absent,
     "predicate_absent": gate_predicate_absent,
     "predicate_object": gate_predicate_object,
     "answer_attribution": gate_answer_attribution,
+    "answer_attribution_solo": gate_answer_attribution_solo,
     "answer_attribution_actor": gate_answer_attribution_actor,
     "answer_attribution_dominant": gate_answer_attributed_dominant,
     "answer_attribution_margin": gate_answer_attribution_margin,
