@@ -122,6 +122,23 @@ To eliminate ambiguity between binary extraction accuracy (`is_correct`) and off
 | **LongMemEval (All 6 Capabilities)** | 500 Qs | Long-context multi-session memory retention | **83.40% (417/500)** (Final)<br>*(Baseline: 81.60%, 408/500)* | **98.20%** Oracle Recall<br>*(491/500 Evidence Retrieved)* | Full suite; baseline 81.60% + 9 rescued by Subsystem H. Backed by [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json). |
 | **BEAM Horizon** | 20 Qs (500K) / 48 Qs (Suite) | Extreme needle retrieval at 500K token scale | **100.0% (20/20 at 500K)** | **100.0%** Needle Retrieval | 500,000 token horizon needle test; zero needle drop across evaluated scales. |
 
+> [!WARNING]
+> **Measurement status (2026-10-25) — read this before quoting any number above.**
+> The table records the **v0.3.0 release artifacts**. Re-scored with the pinned
+> upstream LoCoMo scorer, the current pipeline measures **37.41% official F1** on
+> all 1,986 questions (**48.24%** on categories 1-4), and **53.77%** with the
+> answer-provenance refusal gate enabled. The v0.3.0 artifact itself scores
+> **51.89%** on the same protocol, so the current pipeline is **3.65pt below it**
+> — driven by a 7.1pt single-hop regression, not by a change of metric.
+>
+> Two further facts, both measured and recorded in
+> [`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md):
+> The binary "accuracy" column here is an in-house matcher, **not** official token
+> F1, and the two are not interchangeable. And under a controlled five-way arena
+> (same LLM, same budget, same scorer) the *shipped runtime* scored **11.5%**
+> before a recall fix and **53.0%** after it, against Simple RAG 51.0%,
+> Mem0-style 42.5%, Zep-style 35.0% and HippoRAG-style 26.0%.
+
 ---
 
 ## Model Sensitivity: The Reader Floor (7B vs. 1.5B)
