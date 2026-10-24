@@ -118,6 +118,7 @@ class BudgetedCognitiveCompiler:
         adaptive_escalation: bool = False,
         admit_subject_names: set[str] | None = None,
         admit_enumeration: bool = False,
+        admit_gain: float = 0.0,
     ) -> CompiledContext:
         """Select optimal subset of bundles under token_budget and format context."""
         # Expand question words with roots and synonyms
@@ -270,6 +271,13 @@ class BudgetedCognitiveCompiler:
 
                 novel_entities = min(3.0, len(set().union(*[n.entities for n in b.member_nodes])) * 0.1) if b.member_nodes else 0.0
                 gain += novel_entities
+                # An admitted bundle competes on its own merits: without this it
+                # carries gain ~2.0 and loses the density race to every bundle
+                # that shares a word with the question, so admission alone cannot
+                # recover an item.  Measured: admit with gain 0 moved recall by
+                # exactly zero at x1 and x2 budget.
+                if admitted:
+                    gain += admit_gain
 
                 # Soft token scaling: prevent tiny empty fragments from beating substantive evidence turns
                 density = gain / (max(80, b.total_tokens) ** 0.15)

@@ -271,6 +271,35 @@ x1 or x2 — because the budget, not admissibility, is binding: of the dropped
 items, 65 sit only in the subject's turns, 31 in both, 9 only in the other's, and
 they do not fit. Tests: `tests/unit/test_subject_admission.py` (7 cases).
 
+### 4.8 B0 reader-level outcome: the costed gain is real but small, and the cheap fix is rejected
+
+Item recall is a proxy. The only number that counts is the reader's score, so the
+2x-budget variant was run end to end on cat1 (282 questions, 7B reader, 20 min),
+then compared per question with the stored baseline under official F1:
+
+| scope | questions | official F1 | delta | improved / worsened |
+|---|---:|---:|---:|---:|
+| all cat1 | 282 | 32.03% -> 34.39% | **+2.36pt** | 62 / 42 |
+| **dev only** | **224** | **34.99% -> 36.66%** | **+1.68pt** | 47 / 35 |
+
+The full-set figure is flattered by the held-out conversations; the dev figure is
+what may be claimed, and it is +1.68pt on 14% of the benchmark for **2x the
+tokens and 2x the latency**. Binary accuracy did not move at all (86/282 in both
+runs) — the gain exists only in partial credit. Not promoted.
+
+The cheap version was also tested and rejected: admitting the subject's turns
+*with* a gain bonus (8 and 16) moved item recall by +1 item, lost one
+fully-answerable question, and in the traced case ("Where has Melanie camped?")
+it dropped `mountains` from a context that previously contained it. A boost that
+displaces real evidence is not a fix.
+
+**B0 conclusion.** Enumeration recall is budget-bound, the budget is expensive,
+and the reader converts only about a fifth of the incremental item recall into
+score (+9.4pt item recall -> +1.68pt dev F1; a proportional conversion would have
+been ~+8pt). This is the same conversion wall M6 measured. The next attempt
+should construct the list answer from the evidence rather than show the reader
+more of it.
+
 
 ---
 
@@ -351,9 +380,9 @@ engine rather than `AMv020Player`.
 |---|---|---|---|
 | M0 | protocol v2 + canonical refusal + re-baseline | refusal form only | **49.9%** — DONE (binary 54.83%, official 49.91%) |
 | M1 | deterministic attribution gate | dev delta >= 0 | **REJECTED** (-1.11 to -5.34pt; see 4.5) |
-| M2 | enumeration recall for list questions (0 LLM) | item recall up, cats2-4 non-regression | all-items ceiling 25 -> 50+ of 160 |
-| M3 | Reader-side sufficiency verifier (one extra call) | cats1-4 loss < 0.5 pt | cat5 75%+, overall 52-54% |
-| M4 | plural/list union on the improved context | precision >= 55% on the cohort | multi-hop 32% -> 40%+ |
+| M2 | enumeration recall for list questions (0 LLM) | item recall up, cats2-4 non-regression | measured: +1.68pt dev for 2x tokens — **not promoted** (4.8) |
+| M3 | construct the list answer from evidence (union engine) | precision >= 55% on fully-available items | +25-42 cat1 questions answerable in-context |
+| M4 | Reader-side sufficiency verifier (one extra call) | cats1-4 loss < 0.5 pt | cat5 75%+, overall 52-54% |
 | M5 | date binding (temporal 59.9% -> 66%+) | zero date regressions | 57-59% |
 | M6 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | 60-63% |
 | M7 | holdout validation, once | frozen method | report honestly |

@@ -1233,7 +1233,8 @@ def run(args) -> None:
                 question=q["question"], bundles=bundles,
                 token_budget=token_budget, anchor_scores=anchor_scores,
                 is_multi_session=len(top_sids) > 1, adaptive_escalation=True,
-                admit_subject_names=_admit_names)
+                admit_subject_names=_admit_names,
+                admit_gain=float(getattr(args, "subject_admit_gain", 0.0) or 0.0))
 
             # DETERMINISTIC COMMITTER (fallback, not override).
             #
@@ -1408,6 +1409,11 @@ def run(args) -> None:
         "num_ctx": args.num_ctx, "second_pass": getattr(args, "second_pass", False),
         "enum_contract": getattr(args, "enum_contract", "off"),
         "speaker_first": getattr(args, "speaker_first", False),
+        # Measurement knobs are recorded so no artifact can claim a default it
+        # did not run with.
+        "budget_scale": getattr(args, "budget_scale", 1.0),
+        "subject_admit": getattr(args, "subject_admit", False),
+        "subject_admit_gain": getattr(args, "subject_admit_gain", 0.0),
         "manifest": args.manifest or "",
         "n_questions": len(jobs),
         "data": args.data,
@@ -1490,6 +1496,9 @@ def main() -> None:
     ap.add_argument("--subject-admit", action="store_true",
                     help="admit the queried person's turns even without lexical "
                          "overlap (off by default; measured for B0)")
+    ap.add_argument("--subject-admit-gain", type=float, default=0.0,
+                    help="gain bonus for an admitted subject bundle (0 = it only "
+                         "competes, which measured as no change)")
     run(ap.parse_args())
 
 
