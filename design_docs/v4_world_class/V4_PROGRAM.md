@@ -341,6 +341,36 @@ the holdout is no longer clean, so it can neither be tuned on nor cited as
 validation. The design number is the dev figure (+4.33pt). The 553-question
 M5-M13 holdout remains unspent and is a different slice.
 
+### 4.10 Cross-benchmark guard: LongMemEval cannot exercise this gate
+
+The program requires that anything helping LoCoMo does not regress LongMemEval.
+The LME dev contexts were compiled for the purpose (250 questions, 0.81 s each,
+100% oracle recall, mean 6,932 tokens), then joined with the stored R7 dev run.
+
+| measurement | value |
+|---|---:|
+| LME questions joined | 128 |
+| contexts the gate's parser can read | **0 / 128** |
+| gate fires | 0 |
+| LME accuracy before -> after | 82.03% -> 82.03% (+0.00) |
+
+**Verdict: vacuous guard, not a pass.** LME renders dialogue as
+`[session date] user: ...` — roles, not names — so a rule keyed on "the answer's
+wording belongs to another *named* speaker" has nothing to match. The mechanism is
+applicable to two-person named dialogue; making it transfer to agent memory needs
+a first-person adaptation (subject = the user when the question says I/my), which
+is **untested** and therefore not a default-promotion argument.
+
+Two defects surfaced while building this guard, both fixed:
+
+- `DateArithmeticEngine.calculate_recency` subtracted a `datetime` from a `date`
+  and raised TypeError, aborting the entire 250-question cache build on one
+  question. Normalised at the arithmetic boundary (`_as_date`), 3 tests.
+- `str.splitlines()` splits on U+2028 / U+0085, which occur inside LongMemEval
+  messages, cutting JSONL rows in half. The LME reader splits on `"\n"` only.
+
+Guard artifact: `scripts/benchmarks/measure_refusal_gate_lme.py`.
+
 
 ---
 

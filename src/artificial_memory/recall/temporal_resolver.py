@@ -140,8 +140,23 @@ class DateArithmeticEngine:
     """Performs deterministic calendar arithmetic on dates."""
 
     @staticmethod
+    def _as_date(value: datetime.date | datetime.datetime) -> datetime.date:
+        """Normalise a date-like value to a plain date.
+
+        The resolver is fed both ``date`` (from parsed calendar text) and
+        ``datetime`` (from upstream callers that carry a time), and a bare
+        subtraction between the two raises TypeError.  Measured on the
+        LongMemEval dev cache: one question aborted the whole 250-question build.
+        """
+        if isinstance(value, datetime.datetime):
+            return value.date()
+        return value
+
+    @staticmethod
     def calculate_difference(d1: datetime.date, d2: datetime.date, unit: str = "days") -> int:
         """Calculate absolute difference between two dates."""
+        d1 = DateArithmeticEngine._as_date(d1)
+        d2 = DateArithmeticEngine._as_date(d2)
         delta_days = abs((d2 - d1).days)
         if "week" in unit:
             return round(delta_days / 7.0)
@@ -154,6 +169,8 @@ class DateArithmeticEngine:
     @staticmethod
     def calculate_recency(ref_date: datetime.date, event_date: datetime.date, unit: str = "days") -> int:
         """Calculate time elapsed between event date and reference date."""
+        ref_date = DateArithmeticEngine._as_date(ref_date)
+        event_date = DateArithmeticEngine._as_date(event_date)
         delta_days = (ref_date - event_date).days
         if "week" in unit:
             return round(delta_days / 7.0)

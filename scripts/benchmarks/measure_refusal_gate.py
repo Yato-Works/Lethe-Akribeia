@@ -311,8 +311,6 @@ def gate_answer_attribution(question: str, context: str, prediction: str,
     subject = asked_subject(question, speakers)
     if subject is None:
         return False
-    if not subject_is_actor(question, subject):
-        return False
     terms = {stem(w) for w in re.findall(r"[a-z]{4,}", prediction.lower())
              if w not in STOP and w not in {s.lower() for s in speakers}}
     if not terms:
@@ -361,12 +359,104 @@ def gate_answer_attributed_dominant(question: str, context: str, prediction: str
     return other_best >= threshold and own_best < threshold
 
 
+def gate_answer_untraceable(question: str, context: str, prediction: str,
+                            threshold: float) -> bool:
+    """Refuse when NO dialogue line carries any of the answer's content.
+
+    A complementary signal to provenance: an answer whose wording appears nowhere
+    in the evidence was not read from the evidence.  It can be a legitimate
+    open-domain inference (category 3), which is the measured cost, or a
+    hallucination on an unanswerable question, which is the gain.
+    """
+    lines = dialogue_lines(context)
+    if not lines or not prediction:
+        return False
+    if looks_temporal(prediction):
+        return False
+    speakers = speakers_in(lines)
+    if asked_subject(question, speakers) is None:
+        return False
+    terms = {stem(w) for w in re.findall(r"[a-z]{4,}", prediction.lower())
+             if w not in STOP and w not in {s.lower() for s in speakers}}
+    if not terms:
+        return False
+    best = 0.0
+    for _speaker, text in lines:
+        low = text.lower()
+        best = max(best, sum(1 for t in terms if t in low) / len(terms))
+    return best < threshold
+
+
+def gate_answer_any(question: str, context: str, prediction: str,
+                    threshold: float) -> bool:
+    """Union of provenance and untraceability: refuse if either fires."""
+    return (gate_answer_attribution(question, context, prediction, threshold)
+            or gate_answer_untraceable(question, context, prediction, 0.01))
+
+
+def gate_answer_attribution_margin(question: str, context: str, prediction: str,
+                                   threshold: float) -> bool:
+    """Provenance, plus a margin: the subject's own overlap must be clearly lower.
+
+    The plain gate is ~99% precise on the adversarial category but only ~50% on
+    single-hop, where an answer legitimately quotes a line from the other speaker.
+    Requiring the subject's best line to fall below `threshold * MARGIN` keeps the
+    clear attribution swaps and drops the ambiguous ones.
+    """
+    margin_ratio = 0.7
+    lines = dialogue_lines(context)
+    if not lines or not prediction:
+        return False
+    if looks_temporal(prediction):
+        return False
+    speakers = speakers_in(lines)
+    subject = asked_subject(question, speakers)
+    if subject is None:
+        return False
+    terms = {stem(w) for w in re.findall(r"[a-z]{4,}", prediction.lower())
+             if w not in STOP and w not in {s.lower() for s in speakers}}
+    if not terms:
+        return False
+    other_best = 0.0
+    own_best = 0.0
+    for speaker, text in lines:
+        low = text.lower()
+        overlap = sum(1 for t in terms if t in low) / len(terms)
+        if speaker.lower() == subject.lower():
+            own_best = max(own_best, overlap)
+        else:
+            other_best = max(other_best, overlap)
+    return other_best >= threshold and own_best < threshold * margin_ratio
+
+
+def gate_answer_attribution_actor(question: str, context: str, prediction: str,
+                                 threshold: float) -> bool:
+    """Provenance, restricted to questions whose grammatical actor is the subject.
+
+    Kept as a separate gate because it is a measured trade: it removes most of the
+    single-hop false positives, but also a third of the adversarial hits, and the
+    net was worse (dev +2.97 vs +4.33).
+    """
+    lines = dialogue_lines(context)
+    if not lines:
+        return False
+    speakers = speakers_in(lines)
+    subject = asked_subject(question, speakers)
+    if subject is None or not subject_is_actor(question, subject):
+        return False
+    return gate_answer_attribution(question, context, prediction, threshold)
+
+
 GATES = {
     "subject_absent": gate_subject_absent,
     "predicate_absent": gate_predicate_absent,
     "predicate_object": gate_predicate_object,
     "answer_attribution": gate_answer_attribution,
+    "answer_attribution_actor": gate_answer_attribution_actor,
     "answer_attribution_dominant": gate_answer_attributed_dominant,
+    "answer_attribution_margin": gate_answer_attribution_margin,
+    "answer_untraceable": gate_answer_untraceable,
+    "answer_any": gate_answer_any,
 }
 
 
