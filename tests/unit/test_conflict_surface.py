@@ -176,3 +176,27 @@ def test_runtime_config_flag_defaults_to_frozen_semantics():
     from artificial_memory.runtime import RuntimeConfig
 
     assert RuntimeConfig().conflict_surfacing is False
+
+
+def test_tagged_note_survives_a_large_current_memory_pool(store):
+    """M14 pricing finding: with 400+ candidates the note lost the budget
+    race and fired on 0/320 product contexts.  Reservation happens FIRST,
+    so the note must survive a crowded pool and a tight budget."""
+    topic_id = _topic(store)
+    m1 = _memory(store, topic_id, V1, days_ago=10)
+    m2 = _memory(store, topic_id, V2, days_ago=7)
+    pool = [m1, m2]
+    for i in range(80):
+        content = (
+            f"For project bath{i % 3}, the notebook entry {i} was settled"
+            " on the draft plan.")
+        pool.append(_memory(store, topic_id, content, days_ago=6))
+
+    builder = _builder(store, on=True)
+    context = builder.build_context(
+        QUERY, topic_id, 4000, current_memories=pool)
+    assert "NOTE: conflicting reports for project atlas (cache layer)" in context
+
+    tight = builder.build_context(QUERY, topic_id, 1200, current_memories=pool)
+    assert "NOTE: conflicting reports" in tight, (
+        "the reserved note must not be starved by the memory pool")

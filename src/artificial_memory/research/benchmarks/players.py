@@ -1167,6 +1167,10 @@ class AMv020Player(ControlledPlayer, _SharedAnswerGeneration):
             # Benchmark-only knob: the IDF-weighted lexical recall channel.
             # Off unless the run asks for it, so the frozen baseline is unchanged.
             lexical_recall=bool((self.config or {}).get("lexical_recall", False)),
+            # Benchmark-only knob (M14): the product conflict-surfacing flag,
+            # passed straight through to RuntimeConfig.  Off by default, so
+            # every pre-M14 reproduction stays byte-identical.
+            conflict_surfacing=bool((self.config or {}).get("conflict_surfacing", False)),
         ))
 
         start = time.perf_counter()

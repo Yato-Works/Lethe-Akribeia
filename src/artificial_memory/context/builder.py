@@ -132,15 +132,24 @@ class EnhancedContextBuilder:
         self._stats = ContextStats()
         self._stats.budget_allocation = budget.allocation
 
-        # Candidate memories for conflict detection (deduped by id).
-        candidates: dict[int, Memory] = {}
+        # 0. Conflict surfacing (opt-in, V4 4.24, measured on the product
+        # path): the NOTE is detected over the current-state memories and
+        # its tokens are reserved BEFORE the current-state and recall
+        # parts compete for the tier budget.  The first product-path
+        # pricing run measured the opposite order: with a 400+-memory
+        # candidate pool the annotation lost the budget race and fired on
+        # 0/320 contexts -- invisible to the reader even though the flag
+        # was on.  Reserving first is what makes the annotation reachable.
+        if self.conflict_surfacing and current_memories:
+            self._append_conflict_parts(budget, query, parts, [
+                mem for mem in current_memories
+                if mem.is_current and mem.status.value == "active"
+            ])
 
         # 1. Current state memories (HIGH priority)
         if current_memories:
             for mem in current_memories:
                 if mem.is_current and mem.status.value == "active":
-                    if mem.id is not None:
-                        candidates[mem.id] = mem
                     tokens = self.token_counter.count(mem.content)
                     priority = 1.0
                     tier = PriorityTier.HIGH
@@ -171,8 +180,6 @@ class EnhancedContextBuilder:
         for level, base_priority, default_tier in recall_configs:
             memories, _ = self.recall_engine.recall(query, topic_id, level, max_tokens=max_tokens // 2)
             for mem in memories:
-                if mem.id is not None:
-                    candidates[mem.id] = mem
                 if current_memories and any(m.id == mem.id for m in current_memories):
                     continue
 
@@ -195,13 +202,6 @@ class EnhancedContextBuilder:
                 else:
                     self._try_lower_tiers(budget, mem, tokens, priority)
 
-        # 2b. Conflict surfacing (opt-in, V4 4.24): one NOTE part per
-        # query-gated conflicting (entity, property) key, both values and
-        # their provenance kept.  HIGH priority so the annotation survives
-        # budget selection like the compile-side measurement did.
-        if self.conflict_surfacing and candidates:
-            self._append_conflict_parts(budget, query, parts, candidates)
-
         # 3. Sort by priority
         parts.sort(key=lambda p: (-p.priority, p.tier.value))
 
@@ -212,7 +212,7 @@ class EnhancedContextBuilder:
         budget: BudgetManager,
         query: str,
         parts: list,
-        candidates: dict[int, Memory],
+        candidates: list[Memory],
     ) -> None:
         """Append conflict-surfacing NOTE parts for query-named keys."""
         from artificial_memory.recall.conflict_surface import (
@@ -225,7 +225,7 @@ class EnhancedContextBuilder:
             stamp = mem.valid_from or mem.created_at
             return stamp.strftime("%Y-%m-%d") if stamp else "undated"
 
-        documents = [(mem.content, _label(mem)) for mem in candidates.values()]
+        documents = [(mem.content, _label(mem)) for mem in candidates]
         conflicts = detect_conflicts(documents)
         for proj, prop in query_gated_keys(query, conflicts):
             note = note_line(

@@ -1,0 +1,94 @@
+{
+  "off": {
+    "per_cat": {
+      "factual_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "multi_session_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "temporal_reasoning": {
+        "n": 20,
+        "note": 0
+      },
+      "knowledge_updates": {
+        "n": 20,
+        "note": 0
+      },
+      "contradiction_handling": {
+        "n": 20,
+        "note": 0
+      },
+      "indirect_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "distractor_resistance": {
+        "n": 20,
+        "note": 0
+      },
+      "abstention": {
+        "n": 20,
+        "note": 0
+      },
+      "compression_recovery": {
+        "n": 20,
+        "note": 0
+      },
+      "reflection_reinterpretation": {
+        "n": 20,
+        "note": 0
+      }
+    },
+    "max_ctx_tokens_est": 1360,
+    "mean_ctx_tokens_est": 1264
+  },
+  "on": {
+    "per_cat": {
+      "factual_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "multi_session_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "temporal_reasoning": {
+        "n": 20,
+        "note": 0
+      },
+      "knowledge_updates": {
+        "n": 20,
+        "note": 0
+      },
+      "contradiction_handling": {
+        "n": 20,
+        "note": 20
+      },
+      "indirect_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "distractor_resistance": {
+        "n": 20,
+        "note": 0
+      },
+      "abstention": {
+        "n": 20,
+        "note": 0
+      },
+      "compression_recovery": {
+        "n": 20,
+        "note": 0
+      },
+      "reflection_reinterpretation": {
+        "n": 20,
+        "note": 0
+      }
+    },
+    "max_ctx_tokens_est": 1360,
+    "mean_ctx_tokens_est": 1262
+  }
+}

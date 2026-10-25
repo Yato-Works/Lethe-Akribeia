@@ -26,6 +26,7 @@ shipped package, and the arena runner schema is unchanged.
 
 from __future__ import annotations
 
+import asyncio
 import importlib.util
 import math
 import re
@@ -52,6 +53,7 @@ from artificial_memory.research.benchmarks.player import (  # noqa: E402
     ControlledPlayer,
 )
 from artificial_memory.research.benchmarks.players import (  # noqa: E402
+    AMv020Player,
     _SharedAnswerGeneration,
 )
 
@@ -451,6 +453,126 @@ class AMHybridPlayer(AMCurrentPlayer):
                 if turn.speaker == "user":
                     asyncio.run(runtime.remember(turn.content, topic="Arena"))
         self._lex_runtime = runtime
+
+
+class AMRuntimeConflictPlayer(AMv020Player):
+    """S9 (M14): the PRODUCT read path with conflict surfacing priced E2E.
+
+    Same facade ingest as AM v0.2.0 (user-turn ``remember``, lexical
+    channel from the shared config knob), but the answer context is
+    assembled by the runtime's own ``EnhancedContextBuilder`` -- the exact
+    path ``LLMManager.chat`` takes in the product -- instead of the
+    research ``recall(level=2)`` blob.  ``conflict_surfacing`` passes
+    straight through to ``RuntimeConfig``.
+
+    The paired comparable is the identical path with the flag off
+    ("AM runtime"), so this measures the FLAG on the product path, never
+    the R7 compile the benchmark player runs.
+    """
+
+    PLAYER_NAME = "AM runtime conflict"
+
+    def __init__(self, config: dict[str, Any] | None = None, answerer=None):
+        config = dict(config or {})
+        config.setdefault("lexical_recall", True)
+        config.setdefault("conflict_surfacing", True)
+        super().__init__(config, answerer)
+        # AMv020Player hard-codes its own name; the arena needs the flag
+        # arms distinguishable, and ControlledPlayer takes the name
+        # through the constructor string.  Name follows the flag: the
+        # flag-off arm is the paired baseline ("AM runtime"), the
+        # flag-on arm carries the surfacing name.
+        if self.config.get("conflict_surfacing", False):
+            self.name = self.PLAYER_NAME
+        else:
+            self.name = "AM runtime"
+
+    def _ingest_scenario(self, scenario) -> None:
+        """Remember BOTH speakers for the conflict player.
+
+        The AM v0.2.0 ingest protocol stores user turns only; that froze
+        the product store behind a one-sided assertion corpus.  The first
+        product-path 0-LLM pricing run measured the consequence: the
+        second report of every planted conflict is an *assistant* turn
+        ("a teammate reported..."), so no contradictory key ever existed
+        in the store and the annotation fired 0/320 contexts even flag-on.
+        The product itself stores both sides of a conversation (see
+        CompilerPipelineWrapper.compile_conversation), so this player
+        ingests the same way the product does.
+        """
+        if not self._runtime:
+            return
+        for turn in scenario.turns:
+            asyncio.run(self._runtime.remember(turn.content, topic="Arena"))
+
+    def _all_active_current(self, topic_id: int) -> list:
+        """Page through the store: the full active current-memory corpus.
+
+        The product chat path fetches ``get_memories(limit=100)`` -- the
+        most-recently-updated 100 only.  The first product-path pricing
+        runs measured what that does to conflict detection: with ~880
+        stored memories the planted pairs sit outside the 100-window and
+        the annotation fired 0/320 contexts.  Detection needs the whole
+        active corpus, so this player pages it in.  The behavior change
+        is scoped to this flag player; the paired baseline ("AM runtime")
+        pages identically, so the delta isolates the flag.
+        """
+        assert self._runtime is not None
+        page = 500
+        out = []
+        offset = 0
+        while True:
+            batch = self._runtime.store.get_memories(
+                topic_id=topic_id, is_current=True, status="active",
+                limit=page, offset=offset)
+            if not batch:
+                break
+            out.extend(batch)
+            if len(batch) < page:
+                break
+            offset += page
+        return out
+
+    def _answer_with_budget(self, question, budget: int) -> Answer:
+        if not self._runtime:
+            return self._empty_answer(question)
+        runtime = self._runtime
+        t_retr = time.perf_counter()
+        topic = runtime.conversation_manager.get_or_create_topic("Arena")
+        current = self._all_active_current(topic.id)
+        ctx = runtime.context_builder.build_context(
+            question.question, topic.id, max_tokens=budget,
+            current_memories=current)
+        meta = {
+            "path": "product_builder",
+            "conflict_surfacing": runtime.config.conflict_surfacing,
+            "ctx_chars": len(ctx),
+            "conflict_notes": ctx.count("NOTE: conflicting reports"),
+        }
+        t_ans = time.perf_counter()
+        retrieval_ms = (t_ans - t_retr) * 1000
+        ctx_tokens = len(ctx) // 4
+        llm = self._generate_answer(question.question, ctx)
+        answer_ms = (time.perf_counter() - t_ans) * 1000
+        self._update_costs(self.costs.add_read_cost(
+            retrieval_calls=1,
+            retrieval_latency_ms=retrieval_ms,
+            context_calls=1,
+            context_latency_ms=0.0,
+            answer_calls=1,
+            answer_prompt_tokens=llm.prompt_tokens,
+            answer_completion_tokens=llm.completion_tokens,
+            answer_latency_ms=answer_ms,
+            context_tokens_used=ctx_tokens,
+        ))
+        return Answer(
+            text=llm.text,
+            question_id=question.question_id,
+            player_name=self.name,
+            run_index=0,
+            context_tokens_used=ctx_tokens,
+            metadata=meta,
+        )
 
 
 class AMConflictPlayer(AMHybridPlayer):

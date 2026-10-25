@@ -60,6 +60,7 @@ try:
         AMConflictPlayer,
         AMCurrentPlayer,
         AMHybridPlayer,
+        AMRuntimeConflictPlayer,
     )
     PLAYER_FACTORIES["AM current"] = AMCurrentPlayer
     PLAYER_FACTORIES["AM conflict"] = AMConflictPlayer
@@ -70,6 +71,14 @@ try:
         return AMHybridPlayer(config, answerer=answerer)
 
     PLAYER_FACTORIES["AM hybrid v2"] = _hybrid_runtime
+
+    def _runtime_base(config, answerer=None):
+        config = dict(config or {})
+        config["conflict_surfacing"] = False
+        return AMRuntimeConflictPlayer(config, answerer=answerer)
+
+    PLAYER_FACTORIES["AM runtime"] = _runtime_base
+    PLAYER_FACTORIES["AM runtime conflict"] = AMRuntimeConflictPlayer
 except ImportError as _e:  # pragma: no cover - keeps the 5-player default intact
     if os.environ.get("AM_DEBUG"):
         print(f"AM current player unavailable: {_e}")
