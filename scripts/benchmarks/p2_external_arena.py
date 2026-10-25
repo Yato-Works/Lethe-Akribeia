@@ -58,7 +58,13 @@ DEFAULT_PLAYERS = "Simple RAG,Mem0-style,Zep-style,HippoRAG-style,AM v0.2.0"
 try:
     from am_current_player import AMCurrentPlayer, AMHybridPlayer
     PLAYER_FACTORIES["AM current"] = AMCurrentPlayer
-    PLAYER_FACTORIES["AM hybrid"] = AMHybridPlayer
+
+    def _hybrid_runtime(config, answerer=None):
+        config = dict(config or {})
+        config["hybrid_fill"] = "runtime"
+        return AMHybridPlayer(config, answerer=answerer)
+
+    PLAYER_FACTORIES["AM hybrid v2"] = _hybrid_runtime
 except ImportError as _e:  # pragma: no cover - keeps the 5-player default intact
     if os.environ.get("AM_DEBUG"):
         print(f"AM current player unavailable: {_e}")

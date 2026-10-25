@@ -34,7 +34,12 @@ sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from artificial_memory.research.benchmarks.arena import ARENA_VERSION, build_dataset  # noqa: E402
-from am_current_player import compile_r7_context, build_pipeline  # noqa: E402
+from am_current_player import (  # noqa: E402
+    build_pipeline,
+    compile_r7_context,
+    fill_context_from_lines,
+    hybrid_context,
+)
 
 
 def _stem(word: str) -> str:
@@ -91,6 +96,18 @@ def main() -> int:
     fact_index = pipeline[5]
     fact_index.build(all_turns)
 
+    # The lexical runtime stack, exactly as the AM v0.2.0 player drives it
+    # (user turns only, facade.remember synchronously).
+    import asyncio
+    from artificial_memory.runtime import ArtificialMemoryRuntime, RuntimeConfig
+    lex_runtime = ArtificialMemoryRuntime(RuntimeConfig(
+        database_path=":memory:", memory_files_path=None, vector_index_path=None,
+        retrieval_strategy="classic", lexical_recall=True))
+    for scenario in dataset.scenarios:
+        for turn in scenario.turns:
+            if turn.speaker == "user":
+                asyncio.run(lex_runtime.remember(turn.content, topic="Arena"))
+
     per_cat: dict = {}
     rows = []
     t0 = time.perf_counter()
@@ -114,6 +131,13 @@ def main() -> int:
         ctx_a, _ = compile_r7_context(
             pipeline, all_turns, question.question, arena_budget=args.budget_a,
             fact_index=fact_index)
+
+        # runtime-fill: the lexical runtime's OWN recall stack fills the rest
+        remaining = 2000 - est_tokens(ctx_a)
+        rt_result = asyncio.run(lex_runtime.recall(
+            question.question, topic="Arena", level=2, max_tokens=remaining))
+        fill_lines = [m.semantic_content.content for m in rt_result.memories]
+        ctx_rt, rt_meta = fill_context_from_lines(ctx_a, fill_lines, arena_budget=2000)
 
         # hybrid: R7@A first, lexical turns appended until the arena budget
         used = est_tokens(ctx_a)
@@ -154,6 +178,7 @@ def main() -> int:
             "r7_only": reach(ctx_full, question),
             "r7_a": reach(ctx_a, question),
             "hybrid": reach(ctx_hybrid, question),
+            "hybrid_rt": reach(ctx_rt, question),
             "lex_only": reach(ctx_lex, question),
         }
         rows.append({
@@ -161,7 +186,7 @@ def main() -> int:
             "category": cat,
             "expected_abstention": question.expected_abstention,
             "ctx_tokens": {"r7_a": est_tokens(ctx_a), "hybrid": est_tokens(ctx_hybrid),
-                           "lex_only": est_tokens(ctx_lex)},
+                           "lex_only": est_tokens(ctx_lex), "hybrid_rt": est_tokens(ctx_rt)},
             **recs,
         })
         if not question.expected_abstention:
@@ -173,7 +198,7 @@ def main() -> int:
     elapsed = time.perf_counter() - t1
     print(f"compiled {len(rows)} contexts in {elapsed:.1f}s")
 
-    variants = ["r7_only", "lex_only", "r7_a", "hybrid"]
+    variants = ["r7_only", "lex_only", "r7_a", "hybrid", "hybrid_rt"]
     header = f"{'category':<28}" + "".join(f"{v:>12}" for v in variants)
     print("\n" + header)
     print("-" * len(header))

@@ -131,3 +131,29 @@ def test_hybrid_budget_a_respected(dataset):
     full_answer = hybrid._answer_with_budget(question, hybrid.context_budget)
     assert full_answer.context_tokens_used > hybrid.hybrid_budget_a, (
         "the lexical fill must add to the reduced compile budget")
+
+
+def test_hybrid_runtime_fill_uses_the_lexical_stack(dataset):
+    from am_current_player import AMHybridPlayer
+
+    hybrid = AMHybridPlayer({"context_budget": 2000, "hybrid_fill": "runtime"},
+                            answerer=None)
+    hybrid.ingest(list(dataset.scenarios))
+    assert hybrid._lex_runtime is not None, "ingest must build the lexical runtime"
+    question = dataset.questions[0]
+    answer = hybrid._answer_with_budget(question, hybrid.context_budget)
+    assert answer.metadata["fill_source"] == "runtime"
+    assert answer.metadata["lexical_lines"] > 0
+    assert answer.context_tokens_used <= 2000
+    assert answer.metadata["hybrid_tokens"] == answer.context_tokens_used
+
+
+def test_hybrid_raw_fill_still_default_name(dataset):
+    from am_current_player import AMHybridPlayer
+
+    raw = AMHybridPlayer({"context_budget": 2000}, answerer=None)
+    raw.ingest(list(dataset.scenarios))
+    assert raw._lex_runtime is None, "raw fill must not build the runtime"
+    answer = raw._answer_with_budget(dataset.questions[2], raw.context_budget)
+    assert answer.metadata["fill_source"] == "raw"
+    assert answer.context_tokens_used <= 2000

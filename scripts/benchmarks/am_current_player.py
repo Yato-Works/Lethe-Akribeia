@@ -137,6 +137,38 @@ def hybrid_context(r7_ctx: str, query: str, all_turns: list,
                  "hybrid_tokens": est_tokens(ctx)}
 
 
+def fill_context_from_lines(r7_ctx: str, fill_lines: list,
+                            arena_budget: int) -> tuple[str, dict]:
+    """Append candidate lines after the compiled context, honouring the budget.
+
+    Generic: the fill source is chosen by the caller (raw top-k, or the
+    lexical runtime's own recall output as semantic-content lines).
+    """
+    used = est_tokens(r7_ctx)
+    parts = [r7_ctx] if r7_ctx else []
+    added = dropped = 0
+    seen: set[str] = set()
+    r7_low = r7_ctx.lower()
+    for line in fill_lines:
+        text = str(line).strip()
+        if not text:
+            continue
+        key = text.lower()
+        if key in seen or key in r7_low:
+            continue
+        seen.add(key)
+        cost = est_tokens(text) + 1
+        if used + cost > arena_budget:
+            dropped += 1
+            continue
+        parts.append(text)
+        used += cost
+        added += 1
+    ctx = "\n".join(parts)
+    return ctx, {"lexical_lines": added, "lexical_dropped": dropped,
+                 "hybrid_tokens": est_tokens(ctx)}
+
+
 def build_pipeline():
     """One instance of every R7 stage, constructed once per process."""
     from artificial_memory_gen.compiler.budgeted_compiler import (
@@ -291,9 +323,22 @@ class AMCurrentPlayer(_SharedAnswerGeneration, ControlledPlayer):
             self._pipeline, self._all_turns, q, arena_budget=compile_budget,
             fact_index=self._fact_index)
         if self.hybrid:
-            ctx, hmeta = hybrid_context(
-                ctx, q, self._all_turns,
-                arena_budget=self.context_budget, top_k=self.hybrid_top_k)
+            if (self.config.get("hybrid_fill", "raw") == "runtime"
+                    and getattr(self, "_lex_runtime", None) is not None):
+                import asyncio
+                remaining = self.context_budget - est_tokens(ctx)
+                result = asyncio.run(self._lex_runtime.recall(
+                    q, topic="Arena", level=2, max_tokens=remaining))
+                fill = [m.semantic_content.content for m in result.memories]
+                ctx, hmeta = fill_context_from_lines(
+                    ctx, fill, arena_budget=self.context_budget)
+                hmeta["fill_source"] = "runtime"
+                hmeta["fill_candidates"] = len(fill)
+            else:
+                ctx, hmeta = hybrid_context(
+                    ctx, q, self._all_turns,
+                    arena_budget=self.context_budget, top_k=self.hybrid_top_k)
+                hmeta["fill_source"] = "raw"
             meta.update(hmeta)
         t_ans = time.perf_counter()
         ctx_tokens = len(ctx) // 4
@@ -322,9 +367,19 @@ class AMCurrentPlayer(_SharedAnswerGeneration, ControlledPlayer):
 
 
 class AMHybridPlayer(AMCurrentPlayer):
-    """S7: R7 compile (budget A) + lexical top-k fill, within one 2000-token
-    context.  The union of the two measured-complementary channels
-    (V4_PROGRAM.md 4.13 lexical vs the AM current probe)."""
+    """S7: R7 compile (budget A) + lexical fill, within one 2000-token context.
+
+    The union of the two measured-complementary channels
+    (V4_PROGRAM.md 4.13 lexical vs the AM current probe).
+
+    ``hybrid_fill`` controls the fill source:
+      - "raw": a re-implemented IDF top-k over raw turns (measured first;
+        it does NOT reproduce the lexical runtime's retrieval wins);
+      - "runtime": the lexical runtime's OWN recall stack -- the facade the
+        AM v0.2.0 player answers from (4.13), driven synchronously; its
+        semantic-content lines fill the remainder.  Measured diagnosis (4.21):
+        the real lexical wins on indirect/distractor come from this stack.
+    """
 
     PLAYER_NAME = "AM hybrid"
 
@@ -333,4 +388,26 @@ class AMHybridPlayer(AMCurrentPlayer):
         config.setdefault("hybrid", True)
         config.setdefault("hybrid_budget_a", 1200)
         config.setdefault("hybrid_top_k", 30)
+        config.setdefault("hybrid_fill", "raw")
         super().__init__(config, answerer)
+        self._lex_runtime = None
+
+    def ingest(self, scenarios) -> None:
+        super().ingest(scenarios)
+        if self.config.get("hybrid_fill", "raw") != "runtime":
+            return
+        import asyncio
+        from artificial_memory.runtime import ArtificialMemoryRuntime, RuntimeConfig
+
+        runtime = ArtificialMemoryRuntime(RuntimeConfig(
+            database_path=":memory:",
+            memory_files_path=None,
+            vector_index_path=None,
+            retrieval_strategy="classic",
+            lexical_recall=True,
+        ))
+        for scenario in scenarios:
+            for turn in scenario.turns:
+                if turn.speaker == "user":
+                    asyncio.run(runtime.remember(turn.content, topic="Arena"))
+        self._lex_runtime = runtime
