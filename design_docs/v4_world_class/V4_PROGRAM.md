@@ -1112,6 +1112,73 @@ of all 20 reflection_reinterpretation questions in the full-200 runs
   exposing the three observations adjacent to each other in the compile,
   which 0-LLM probe budget checks can price first.
 
+### 4.27 Flag-on product E2E: the transfer was priced through three real gaps, then measured
+
+Opening 4.25 left: is the port's flag-on product read path, without the
+R7 compile, actually converting?  Answering that honestly cost three
+*measured* 0-LLM pricing iterations
+(`scripts/benchmarks/price_runtime_conflict.py`, 200 contexts each run),
+every one of which exposed a real research-vs-product boundary the unit
+tests could not see:
+
+1. **Budget race (measured: 0/320 notes).**  With a 400+-memory
+   candidate pool the annotation was appended LAST and lost the HIGH-tier
+   allocation race.  Fix measured into `EnhancedContextBuilder`: the note
+   is detected over current-state memories and its tokens are reserved
+   *before* any part allocation.  Regression-tested against a crowded
+   pool and a 1200-token budget.
+2. **One-sided ingest (measured: 0 notes again).**  The AM v0.2.0 ingest
+   protocol remembers user turns only; in every planted conflict the
+   second report is an *assistant* turn ("a teammate reported..."), so
+   the product store never contained a contradicting key.  The flag
+   player now ingests both speakers — as the product's own conversation
+   compiler does.
+3. **The product fetch window (measured: 0 notes again).**
+   `LLMManager.chat` shapes its context from
+   `store.get_memories(limit=100)` — the most-recently-updated 100 rows.
+   With ~880 memories the older planted pairs sat outside the window.
+   The flag player pages the active corpus for detection; the paired
+   baseline pipes identically, so the delta isolates the flag.
+
+**Pricing end-state (0 LLM, 200 contexts):** note fires **20/20** on
+contradiction contexts and **0/180** on the other nine categories —
+identical to the benchmark-side pricing.  No collateral fire exists on
+the product path either.
+
+**Product read path, E2E (one run, 50 shared questions, same conditions):**
+
+| player | accuracy | contradiction |
+|---|---:|---:|
+| AM runtime (flag off) | 40.0% | 0/5 |
+| AM runtime conflict (flag on) | **42.0%** | **1/5** |
+
+Paired: flag-on wins 1 (contradiction-00: "you should assume the system
+runs on both Redis and SQLite" — 2/2 coverage), flag-off wins 0; every
+non-contradiction category unchanged.  Honest diagnosis of the residual:
+the reader still folds the note into a refusal on 4/5 — the difference
+from the benchmark player's 4/5 conversion is a *context composition*
+gap: the R7 compile surrounds the note with the raw planted turn lines
+(evidence in the reader's own register), while the product builder's
+current-state/recall mix fills its allocation with compressed,
+unrelated-by-query state lines (measured mean ctx ≈1260 tokens).  The
+flag reached the reader in both worlds; the reader's company differs.
+
+**Standing change: none.  `RuntimeConfig.conflict_surfacing` stays
+opt-in (default off).**  What is now MEASURED on the product path: the
+flag converts at least one contradiction question with zero exclusive
+losses, collateral is bounded by construction (pricing 0/180), and the
+parity frontier has moved from "does the runtime have the mechanism" to
+"name the context-composition differences that bind the reader's
+report-obligation".  Full-200 E2E was skipped deliberately: pricing
+already bounds the collateral at 200-scale, so more reader runs would
+only re-measure the known path gap, not test the flag.
+
+Artifacts: `benchmark_results/am_current/runtime_conflict_pricing.json`;
+runs `controlled_20261025_175540` (paired 50q), plus two honestly-recorded
+junk runs (`..._174830`, `..._175229`) whose values were overwritten by a
+player-name collision (`AMv020Player` hard-codes its name; the flag arms
+now name themselves from the flag) — do not cite their csv rows.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -1202,6 +1269,7 @@ engine rather than `AMv020Player`.
 | M12 | two-sided probe metric (gold-reach x forbidden-presence) | metric must predict E2E refusal splits | **LIMIT RECORDED: forb-presence does NOT separate refusal conversions; the differentiator is line shape (raw turn vs fact-formatted semantic content). Metric kept as a reported dimension; E2E stays the arbiter** (4.23) |
 | M13 | deterministic conflict surfacing (player-side, priced first) | contradiction conversions without collateral losses | **DELIVERED: new arena leader 60.0% full-200 (+6pt paired), contradiction 0/20 -> 12/20, 12 wins / 0 losses; iter-1 wording failure recorded; residual 8 = reader refusal/either-or phrasing; mechanism not yet in the shipped runtime** (4.24) |
 | M14 | Runtime Port & Parity | mechanism in the shipped runtime, frozen semantics intact by default | **DELIVERED: single-source module in artificial_memory.recall.conflict_surface; player = thin adapter; RuntimeConfig.conflict_surfacing default-off; provenance drift caught & pinned by test; leakage boundary now AST-enforced; 24 unit + 109 regression green; flag-on product E2E parity + residual-8 triage stay open** (4.25) |
+| M15 | flag-on product E2E transfer | same conversions on the product read path | **PARTIAL: 3 pricing iterations (budget race / one-sided ingest / 100-fetch window -- each a real research-vs-product gap); priced 20/20 & 0/180 on the product path; E2E 50q paired 40.0 -> 42.0, contradiction 0/5 -> 1/5, zero losses; residual = product context composition, named as the next frontier; flag stays default-off** (4.27) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
