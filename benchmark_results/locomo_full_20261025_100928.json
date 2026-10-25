@@ -1,0 +1,6289 @@
+{
+  "run_stamp": "20261025_100928",
+  "code_revision": "af74cdd",
+  "config": {
+    "cond": "R7",
+    "cats": "",
+    "limit": 0,
+    "num_ctx": 8192,
+    "second_pass": false,
+    "enum_contract": "off",
+    "speaker_first": false,
+    "budget_scale": 1.0,
+    "subject_admit": false,
+    "subject_admit_gain": 0.0,
+    "refusal_gate": false,
+    "manifest": [
+      {
+        "conv_idx": 0,
+        "q_idx": 0
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 1
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 5
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 6
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 8
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 10
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 12
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 15
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 16
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 17
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 19
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 20
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 21
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 25
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 26
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 28
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 29
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 31
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 35
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 36
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 37
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 38
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 41
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 44
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 45
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 48
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 51
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 52
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 53
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 54
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 55
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 58
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 62
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 67
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 68
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 73
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 79
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 80
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 87
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 93
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 94
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 95
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 109
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 116
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 119
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 137
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 138
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 145
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 147
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 148
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 159
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 160
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 162
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 172
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 193
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 195
+      },
+      {
+        "conv_idx": 0,
+        "q_idx": 198
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 0
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 1
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 4
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 6
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 8
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 11
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 12
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 13
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 14
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 15
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 17
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 19
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 26
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 27
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 28
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 32
+      },
+      {
+        "conv_idx": 1,
+        "q_idx": 38
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 1
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 4
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 5
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 10
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 13
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 22
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 24
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 26
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 34
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 38
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 41
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 43
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 44
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 46
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 48
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 51
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 54
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 55
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 58
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 59
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 60
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 61
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 63
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 69
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 73
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 96
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 104
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 124
+      },
+      {
+        "conv_idx": 2,
+        "q_idx": 170
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 3
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 5
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 7
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 11
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 13
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 15
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 32
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 33
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 36
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 37
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 40
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 43
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 44
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 45
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 48
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 54
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 64
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 65
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 69
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 77
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 80
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 86
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 90
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 91
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 95
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 97
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 110
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 136
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 137
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 139
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 149
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 152
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 155
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 161
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 170
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 176
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 184
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 186
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 188
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 190
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 208
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 223
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 225
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 237
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 250
+      },
+      {
+        "conv_idx": 3,
+        "q_idx": 253
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 10
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 11
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 12
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 16
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 23
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 29
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 35
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 39
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 54
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 60
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 63
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 64
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 81
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 83
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 93
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 96
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 100
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 148
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 168
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 199
+      },
+      {
+        "conv_idx": 4,
+        "q_idx": 225
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 1
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 2
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 5
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 7
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 11
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 12
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 24
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 25
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 27
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 29
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 30
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 34
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 37
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 38
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 47
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 58
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 72
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 75
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 76
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 79
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 87
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 90
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 106
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 131
+      },
+      {
+        "conv_idx": 5,
+        "q_idx": 150
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 8
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 9
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 10
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 13
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 37
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 41
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 42
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 47
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 53
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 57
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 58
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 60
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 62
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 63
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 73
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 78
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 91
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 100
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 108
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 118
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 125
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 131
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 134
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 145
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 157
+      },
+      {
+        "conv_idx": 6,
+        "q_idx": 181
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 2
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 3
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 9
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 10
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 14
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 27
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 30
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 31
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 32
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 33
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 35
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 37
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 40
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 44
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 45
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 47
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 49
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 51
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 56
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 60
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 64
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 68
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 69
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 71
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 72
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 73
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 85
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 97
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 98
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 106
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 118
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 134
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 147
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 157
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 171
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 172
+      },
+      {
+        "conv_idx": 7,
+        "q_idx": 211
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 7
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 9
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 13
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 23
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 30
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 35
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 44
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 58
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 63
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 66
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 67
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 73
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 74
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 75
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 79
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 102
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 105
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 107
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 108
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 114
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 116
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 126
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 127
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 154
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 168
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 171
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 172
+      },
+      {
+        "conv_idx": 8,
+        "q_idx": 181
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 10
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 14
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 15
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 16
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 17
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 22
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 26
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 35
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 36
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 37
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 38
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 50
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 55
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 66
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 69
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 70
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 76
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 104
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 108
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 131
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 136
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 137
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 143
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 176
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 190
+      },
+      {
+        "conv_idx": 9,
+        "q_idx": 191
+      }
+    ],
+    "n_questions": 312,
+    "data": "datasets/external/locomo10.json"
+  },
+  "run_salt": "ea3a24c66781deb7",
+  "scorer_protocol": "locomo_official_v1",
+  "accuracy": 0.6474358974358975,
+  "per_category": {
+    "2": {
+      "correct": 114,
+      "total": 155
+    },
+    "1": {
+      "correct": 9,
+      "total": 36
+    },
+    "4": {
+      "correct": 59,
+      "total": 90
+    },
+    "5": {
+      "correct": 18,
+      "total": 28
+    },
+    "3": {
+      "correct": 2,
+      "total": 3
+    }
+  },
+  "scorer": "eval_locomo_full.score_question + is_list_gold (audit_strict_grade)",
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "7 May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "7 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 11.154,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.552,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_5",
+      "category": 2,
+      "question": "When did Melanie run a charity race?",
+      "ground_truth": "The sunday before 25 May 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "25 May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "25 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.647,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_6",
+      "category": 2,
+      "question": "When is Melanie planning on going camping?",
+      "ground_truth": "June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.607,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_8",
+      "category": 2,
+      "question": "When did Caroline give a speech at a school?",
+      "ground_truth": "The week before 9 June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "9 June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "9 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.62,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_10",
+      "category": 2,
+      "question": "How long has Caroline had her current group of friends for?",
+      "ground_truth": "4 years",
+      "adversarial_answer": "",
+      "predicted_answer": "4 years",
+      "is_correct": true,
+      "predicted_answer_raw": "4 years",
+      "refusal_normalized": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.373,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_12",
+      "category": 2,
+      "question": "How long ago was Caroline's 18th birthday?",
+      "ground_truth": "10 years ago",
+      "adversarial_answer": "",
+      "predicted_answer": "10 years ago",
+      "is_correct": true,
+      "predicted_answer_raw": "10 years ago",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.47,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_15",
+      "category": 1,
+      "question": "What activities does Melanie partake in?",
+      "ground_truth": "pottery, camping, painting, swimming",
+      "adversarial_answer": "",
+      "predicted_answer": "painting, hiking, exploring forests, swimming, camping, playing violin, taking pottery class",
+      "is_correct": true,
+      "predicted_answer_raw": "painting, hiking, exploring forests, swimming, camping, playing violin, taking pottery class",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.912,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_16",
+      "category": 2,
+      "question": "When did Melanie sign up for a pottery class?",
+      "ground_truth": "2 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "2 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "2 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.691,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_17",
+      "category": 2,
+      "question": "When is Caroline going to the transgender conference?",
+      "ground_truth": "July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1405,
+      "latency_seconds": 2.611,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_19",
+      "category": 1,
+      "question": "What do Melanie's kids like?",
+      "ground_truth": "dinosaurs, nature",
+      "adversarial_answer": "",
+      "predicted_answer": "camping, hiking",
+      "is_correct": false,
+      "predicted_answer_raw": "camping, hiking",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.412,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_20",
+      "category": 2,
+      "question": "When did Melanie go to the museum?",
+      "ground_truth": "5 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "5 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "5 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.617,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_21",
+      "category": 2,
+      "question": "When did Caroline have a picnic?",
+      "ground_truth": "The week before 6 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 6 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 6 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.847,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_25",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ conference?",
+      "ground_truth": "10 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "10 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "10 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1405,
+      "latency_seconds": 2.775,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "category": 2,
+      "question": "When did Melanie read the book \"nothing is impossible\"?",
+      "ground_truth": "2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.569,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_28",
+      "category": 2,
+      "question": "When did Caroline go to the adoption meeting?",
+      "ground_truth": "The friday before 15 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "last Friday (the Friday before 15 July 2023)",
+      "is_correct": true,
+      "predicted_answer_raw": "last Friday (the Friday before 15 July 2023)",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.835,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_29",
+      "category": 2,
+      "question": "When did Melanie go to the pottery workshop?",
+      "ground_truth": "The Friday before 15 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "last Friday (the Friday before 15 July 2023)",
+      "is_correct": true,
+      "predicted_answer_raw": "last Friday (the Friday before 15 July 2023)",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.877,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_31",
+      "category": 2,
+      "question": "When did Melanie go camping in June?",
+      "ground_truth": "The week before 27 June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "June 22, 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "June 22, 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.748,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_35",
+      "category": 2,
+      "question": "When did Melanie go camping in July?",
+      "ground_truth": "two weekends before 17 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "15 July 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "15 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.706,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_36",
+      "category": 2,
+      "question": "When did Caroline join a mentorship program?",
+      "ground_truth": "The weekend before 17 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "17 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "17 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.648,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_37",
+      "category": 1,
+      "question": "What did Melanie paint recently?",
+      "ground_truth": "sunset",
+      "adversarial_answer": "",
+      "predicted_answer": "horse painting",
+      "is_correct": false,
+      "predicted_answer_raw": "horse painting",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.474,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_38",
+      "category": 1,
+      "question": "What activities has Melanie done with her family?",
+      "ground_truth": "Pottery, painting, camping, museum, swimming, hiking",
+      "adversarial_answer": "",
+      "predicted_answer": "painting, hiking, exploring forests, camping, going to the beach",
+      "is_correct": false,
+      "predicted_answer_raw": "painting, hiking, exploring forests, camping, going to the beach",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.873,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_41",
+      "category": 2,
+      "question": "When did Caroline join a new activist group?",
+      "ground_truth": "The Tuesday before 20 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the Tuesday before 20 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the Tuesday before 20 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.726,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_44",
+      "category": 2,
+      "question": "When is Melanie's daughter's birthday?",
+      "ground_truth": "13 August",
+      "adversarial_answer": "",
+      "predicted_answer": "14 August 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "14 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.735,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_45",
+      "category": 2,
+      "question": "When did Caroline attend a pride parade in August?",
+      "ground_truth": "The Friday before 14 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "14 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "14 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.697,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_48",
+      "category": 1,
+      "question": "What types of pottery have Melanie and her kids made?",
+      "ground_truth": "bowls, cup",
+      "adversarial_answer": "",
+      "predicted_answer": "bowls, cups",
+      "is_correct": true,
+      "predicted_answer_raw": "bowls, cups",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.629,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_51",
+      "category": 1,
+      "question": "What has Melanie painted?",
+      "ground_truth": "Horse, sunset, sunrise",
+      "adversarial_answer": "",
+      "predicted_answer": "landscapes, still life, nature-inspired paintings, horse paintings",
+      "is_correct": false,
+      "predicted_answer_raw": "landscapes, still life, nature-inspired paintings, horse paintings",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.849,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_52",
+      "category": 1,
+      "question": "What are Melanie's pets' names?",
+      "ground_truth": "Oliver, Luna, Bailey",
+      "adversarial_answer": "",
+      "predicted_answer": "Luna, Oliver",
+      "is_correct": false,
+      "predicted_answer_raw": "Luna, Oliver",
+      "refusal_normalized": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.726,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_53",
+      "category": 2,
+      "question": "When did Caroline apply to adoption agencies?",
+      "ground_truth": "The week of 23 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "23 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "23 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.718,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_54",
+      "category": 2,
+      "question": "When did Caroline draw a self-portrait?",
+      "ground_truth": "The week before 23 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "last week (the week before 23 August 2023)",
+      "is_correct": true,
+      "predicted_answer_raw": "last week (the week before 23 August 2023)",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 3.027,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_55",
+      "category": 1,
+      "question": "What subject have Caroline and Melanie both painted?",
+      "ground_truth": "Sunsets",
+      "adversarial_answer": "",
+      "predicted_answer": "lake sunrise, beach sunset",
+      "is_correct": true,
+      "predicted_answer_raw": "lake sunrise, beach sunset",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.594,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_58",
+      "category": 2,
+      "question": "When did Melanie make a plate in pottery class?",
+      "ground_truth": "24 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "24 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "24 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.766,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_62",
+      "category": 2,
+      "question": "When did Melanie go to the park?",
+      "ground_truth": "27 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "27 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "27 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.678,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_67",
+      "category": 2,
+      "question": "When did Caroline go biking with friends?",
+      "ground_truth": "The weekend before 13 September 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "The weekend before 13 September 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "The weekend before 13 September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.784,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_68",
+      "category": 2,
+      "question": "How long has Melanie been practicing art?",
+      "ground_truth": "Since 2016",
+      "adversarial_answer": "",
+      "predicted_answer": "seven years",
+      "is_correct": false,
+      "predicted_answer_raw": "seven years",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.548,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_73",
+      "category": 2,
+      "question": "When did Melanie get hurt?",
+      "ground_truth": "September 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "September 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.725,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_79",
+      "category": 2,
+      "question": "When did Caroline pass the adoption interview?",
+      "ground_truth": "The Friday before 22 October 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the Friday before 22 October 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the Friday before 22 October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.812,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_80",
+      "category": 2,
+      "question": "When did Melanie buy the figurines?",
+      "ground_truth": "21 October 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "21 October 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "21 October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.774,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_87",
+      "category": 4,
+      "question": "Why did Caroline choose the adoption agency?",
+      "ground_truth": "because of their inclusivity and support for LGBTQ+ individuals",
+      "adversarial_answer": "",
+      "predicted_answer": "Because they help LGBTQ+ folks with adoption.",
+      "is_correct": true,
+      "predicted_answer_raw": "Because they help LGBTQ+ folks with adoption.",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.667,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_93",
+      "category": 4,
+      "question": "What was grandma's gift to Caroline?",
+      "ground_truth": "necklace",
+      "adversarial_answer": "",
+      "predicted_answer": "necklace",
+      "is_correct": true,
+      "predicted_answer_raw": "necklace",
+      "refusal_normalized": false,
+      "context_tokens": 1403,
+      "latency_seconds": 2.84,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_94",
+      "category": 4,
+      "question": "What is Melanie's hand-painted bowl a reminder of?",
+      "ground_truth": "art and self-expression",
+      "adversarial_answer": "",
+      "predicted_answer": "creativity and family",
+      "is_correct": false,
+      "predicted_answer_raw": "creativity and family",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.698,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_95",
+      "category": 4,
+      "question": "What did Melanie and her family do while camping?",
+      "ground_truth": "explored nature, roasted marshmallows, and went on a hike",
+      "adversarial_answer": "",
+      "predicted_answer": "roast marshmallows, tell stories around the campfire",
+      "is_correct": false,
+      "predicted_answer_raw": "roast marshmallows, tell stories around the campfire",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.889,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_109",
+      "category": 4,
+      "question": "What did Mel and her kids make during the pottery workshop?",
+      "ground_truth": "pots",
+      "adversarial_answer": "",
+      "predicted_answer": "pots",
+      "is_correct": true,
+      "predicted_answer_raw": "pots",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.405,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_116",
+      "category": 4,
+      "question": "What inspired Caroline's painting for the art show?",
+      "ground_truth": "visiting an LGBTQ center and wanting to capture unity and strength",
+      "adversarial_answer": "",
+      "predicted_answer": "a LGBTQ center",
+      "is_correct": true,
+      "predicted_answer_raw": "a LGBTQ center",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.618,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_119",
+      "category": 4,
+      "question": "How did Melanie feel while watching the meteor shower?",
+      "ground_truth": "in awe of the universe",
+      "adversarial_answer": "",
+      "predicted_answer": "amazed, peaceful",
+      "is_correct": false,
+      "predicted_answer_raw": "amazed, peaceful",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.782,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_137",
+      "category": 4,
+      "question": "What painting did Melanie show to Caroline on October 13, 2023?",
+      "ground_truth": "A painting inspired by sunsets with a pink sky.",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.707,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_138",
+      "category": 4,
+      "question": "What kind of painting did Caroline share with Melanie on October 13, 2023?",
+      "ground_truth": "An abstract painting with blue streaks on a wall.",
+      "adversarial_answer": "",
+      "predicted_answer": "abstract",
+      "is_correct": true,
+      "predicted_answer_raw": "abstract",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.638,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_145",
+      "category": 4,
+      "question": "How did Melanie feel about her family after the accident?",
+      "ground_truth": "They are important and mean the world to her",
+      "adversarial_answer": "",
+      "predicted_answer": "grateful",
+      "is_correct": false,
+      "predicted_answer_raw": "grateful",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.691,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_147",
+      "category": 4,
+      "question": "How did Melanie feel after the accident?",
+      "ground_truth": "Grateful and thankful for her family",
+      "adversarial_answer": "",
+      "predicted_answer": "scared",
+      "is_correct": false,
+      "predicted_answer_raw": "scared",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.693,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_148",
+      "category": 4,
+      "question": "What was Melanie's reaction to her children enjoying the Grand Canyon?",
+      "ground_truth": "She was happy and thankful",
+      "adversarial_answer": "",
+      "predicted_answer": "They enjoyed it a lot!",
+      "is_correct": false,
+      "predicted_answer_raw": "They enjoyed it a lot!",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.648,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_159",
+      "category": 5,
+      "question": "What was grandma's gift to Melanie?",
+      "ground_truth": "",
+      "adversarial_answer": "necklace",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1396,
+      "latency_seconds": 2.775,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_160",
+      "category": 5,
+      "question": "What was grandpa's gift to Caroline?",
+      "ground_truth": "",
+      "adversarial_answer": "necklace",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1403,
+      "latency_seconds": 2.95,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_162",
+      "category": 5,
+      "question": "What did Caroline and her family do while camping?",
+      "ground_truth": "",
+      "adversarial_answer": "explored nature, roasted marshmallows, and went on a hike",
+      "predicted_answer": "roast marshmallows, tell stories around the campfire",
+      "is_correct": false,
+      "predicted_answer_raw": "roast marshmallows, tell stories around the campfire",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.95,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_172",
+      "category": 5,
+      "question": "What inspired Melanie's painting for the art show?",
+      "ground_truth": "",
+      "adversarial_answer": "visiting an LGBTQ center and wanting to capture unity and strength",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1397,
+      "latency_seconds": 2.652,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_193",
+      "category": 5,
+      "question": "How did Caroline feel about her family after the accident?",
+      "ground_truth": "",
+      "adversarial_answer": "They are important and mean the world to her",
+      "predicted_answer": "grateful",
+      "is_correct": false,
+      "predicted_answer_raw": "grateful",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.609,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_195",
+      "category": 5,
+      "question": "How did Caroline feel after the accident?",
+      "ground_truth": "",
+      "adversarial_answer": "Grateful and thankful for her family",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1393,
+      "latency_seconds": 2.725,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-26_198",
+      "category": 5,
+      "question": "What does Caroline love most about camping with her family?",
+      "ground_truth": "",
+      "adversarial_answer": "Being present and bonding with her family",
+      "predicted_answer": "being present and together",
+      "is_correct": false,
+      "predicted_answer_raw": "being present and together",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.473,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_0",
+      "category": 2,
+      "question": "When Jon has lost his job as a banker?",
+      "ground_truth": "19 January, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "19 January 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "19 January 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.748,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_1",
+      "category": 2,
+      "question": "When Gina has lost her job at Door Dash?",
+      "ground_truth": "January, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "January 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "January 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.724,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_4",
+      "category": 4,
+      "question": "Why did Jon decide to start his dance studio?",
+      "ground_truth": "He lost his job and decided to start his own business to share his passion.",
+      "adversarial_answer": "",
+      "predicted_answer": "Because Jon is passionate about dancing and wants to share it with others.",
+      "is_correct": true,
+      "predicted_answer_raw": "Because Jon is passionate about dancing and wants to share it with others.",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.89,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_6",
+      "category": 2,
+      "question": "When is Jon's group performing at a festival?",
+      "ground_truth": "February, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "February 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "February 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.526,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_8",
+      "category": 2,
+      "question": "When was Jon in Paris?",
+      "ground_truth": "28 January 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "28 January 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "28 January 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.675,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_11",
+      "category": 2,
+      "question": "When did Gina get her tattoo?",
+      "ground_truth": "A few years ago",
+      "adversarial_answer": "",
+      "predicted_answer": "a few years ago",
+      "is_correct": true,
+      "predicted_answer_raw": "a few years ago",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.707,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_12",
+      "category": 2,
+      "question": "When did Jon start to go to the gym?",
+      "ground_truth": "March, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 16 March 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 16 March 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.857,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_13",
+      "category": 2,
+      "question": "When did Gina open her online clothing store?",
+      "ground_truth": "16 March, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "16 March, 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "16 March, 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.741,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_14",
+      "category": 2,
+      "question": "When did Jon start expanding his studio's social media presence?",
+      "ground_truth": "April, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "3 April, 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "3 April, 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.608,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_15",
+      "category": 2,
+      "question": "When did Jon host a dance competition?",
+      "ground_truth": "May, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.508,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_17",
+      "category": 1,
+      "question": "Why did Gina decide to start her own clothing store?",
+      "ground_truth": "She always loved fashion trends and finding unique pieces and she lost her job so decided it was time to start her own business.",
+      "adversarial_answer": "",
+      "predicted_answer": "Being her own boss and doing something she loves",
+      "is_correct": false,
+      "predicted_answer_raw": "Being her own boss and doing something she loves",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.716,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_19",
+      "category": 2,
+      "question": "When did Gina interview for a design internship?",
+      "ground_truth": "10 May, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "10 May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "10 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.841,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_26",
+      "category": 2,
+      "question": "When did Jon receive mentorship to promote his venture?",
+      "ground_truth": "15 June, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "4 February, 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "4 February, 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.788,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_27",
+      "category": 1,
+      "question": "Did Jon and Gina both participate in dance competitions?",
+      "ground_truth": "Yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Gina, Jon",
+      "is_correct": false,
+      "predicted_answer_raw": "Gina, Jon",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.565,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_28",
+      "category": 2,
+      "question": "When was Jon in Rome?",
+      "ground_truth": "June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 19 June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 19 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.704,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_32",
+      "category": 2,
+      "question": "When did Gina design a limited collection of hoodies?",
+      "ground_truth": "June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 21 June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 21 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.95,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-30_38",
+      "category": 2,
+      "question": "When did Gina go to a dance class with a group of friends?",
+      "ground_truth": "21 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the Friday before 23 July 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "the Friday before 23 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.781,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_1",
+      "category": 2,
+      "question": "When did Maria donate her car?",
+      "ground_truth": "21 December 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "21 December 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "21 December 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1470,
+      "latency_seconds": 2.915,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_4",
+      "category": 2,
+      "question": "When did John join the online support group?",
+      "ground_truth": "The week before 1 January 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 1 January 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 1 January 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.745,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_5",
+      "category": 2,
+      "question": "When did Maria go to the beach?",
+      "ground_truth": "December 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "December 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "December 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1495,
+      "latency_seconds": 2.84,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_10",
+      "category": 2,
+      "question": "When did Maria meet Jean?",
+      "ground_truth": "February 24, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "24 February 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "24 February 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1450,
+      "latency_seconds": 2.823,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_13",
+      "category": 2,
+      "question": "When did Maria's grandmother pass away?",
+      "ground_truth": "The week before 6 March 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 6 March 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 6 March 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1522,
+      "latency_seconds": 3.032,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_22",
+      "category": 2,
+      "question": "When did John go to a convention with colleagues?",
+      "ground_truth": "March 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "March 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "March 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1610,
+      "latency_seconds": 2.943,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_24",
+      "category": 2,
+      "question": "When did John start boot camp with his family?",
+      "ground_truth": "April.2023",
+      "adversarial_answer": "",
+      "predicted_answer": "April 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "April 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.781,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_26",
+      "category": 1,
+      "question": "What has Maria done to feel closer to her faith?",
+      "ground_truth": "Join a local church, buy a cross necklace",
+      "adversarial_answer": "",
+      "predicted_answer": "bought a cross necklace",
+      "is_correct": false,
+      "predicted_answer_raw": "bought a cross necklace",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.692,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_34",
+      "category": 2,
+      "question": "When did Maria join a gym?",
+      "ground_truth": "The week before 16 June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 16 June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 16 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.932,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_38",
+      "category": 2,
+      "question": "When did Maria get in a car accident?",
+      "ground_truth": "July 2, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "3 July 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "3 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1646,
+      "latency_seconds": 3.16,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_41",
+      "category": 3,
+      "question": "Does John live close to a beach or the mountains?",
+      "ground_truth": "beach",
+      "adversarial_answer": "",
+      "predicted_answer": "beach",
+      "is_correct": true,
+      "predicted_answer_raw": "beach",
+      "refusal_normalized": false,
+      "context_tokens": 1414,
+      "latency_seconds": 2.825,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_43",
+      "category": 2,
+      "question": "When was John's old area hit with a flood?",
+      "ground_truth": "The week before 7 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 7 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 7 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1546,
+      "latency_seconds": 2.933,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_44",
+      "category": 1,
+      "question": "What activities has Maria done with her church friends?",
+      "ground_truth": "Hiking, picnic, volunteer work",
+      "adversarial_answer": "",
+      "predicted_answer": "volunteering at a homeless shelter, camping",
+      "is_correct": false,
+      "predicted_answer_raw": "volunteering at a homeless shelter, camping",
+      "refusal_normalized": false,
+      "context_tokens": 1410,
+      "latency_seconds": 2.779,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_46",
+      "category": 2,
+      "question": "When did Maria go hiking with her church friends?",
+      "ground_truth": "The weekend before 22 July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the weekend before 22 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the weekend before 22 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1509,
+      "latency_seconds": 3.026,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_48",
+      "category": 2,
+      "question": "When did John have his first firefighter call-out?",
+      "ground_truth": "The sunday before 3` July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "last Sunday (the Sunday before 31 July 2023)",
+      "is_correct": false,
+      "predicted_answer_raw": "last Sunday (the Sunday before 31 July 2023)",
+      "refusal_normalized": false,
+      "context_tokens": 1441,
+      "latency_seconds": 3.003,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_51",
+      "category": 2,
+      "question": "When did Maria start volunteering at the homeless shelter?",
+      "ground_truth": "Around August 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "about a year ago",
+      "is_correct": false,
+      "predicted_answer_raw": "about a year ago",
+      "refusal_normalized": false,
+      "context_tokens": 1755,
+      "latency_seconds": 3.098,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_54",
+      "category": 2,
+      "question": "When did Maria take up community work with her church friends?",
+      "ground_truth": "August 4, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "5 August 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "5 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1591,
+      "latency_seconds": 2.977,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_55",
+      "category": 2,
+      "question": "When did Maria receive a medal from the homeless shelter?",
+      "ground_truth": "The week before 9 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "9 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "9 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1646,
+      "latency_seconds": 2.963,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_58",
+      "category": 2,
+      "question": "When did Maria get Coco?",
+      "ground_truth": "Two weeks before 11 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "two weeks ago",
+      "is_correct": true,
+      "predicted_answer_raw": "two weeks ago",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.594,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_59",
+      "category": 2,
+      "question": "When did John go on a camping trip with Max?",
+      "ground_truth": "The summer of 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "last summer (the summer of 2022)",
+      "is_correct": true,
+      "predicted_answer_raw": "last summer (the summer of 2022)",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.819,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_60",
+      "category": 1,
+      "question": "What are Maria's dogs' names?",
+      "ground_truth": "Coco, Shadow",
+      "adversarial_answer": "",
+      "predicted_answer": "Coco, Shadow",
+      "is_correct": true,
+      "predicted_answer_raw": "Coco, Shadow",
+      "refusal_normalized": false,
+      "context_tokens": 1468,
+      "latency_seconds": 2.783,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_61",
+      "category": 2,
+      "question": "When did Maria adopt Shadow?",
+      "ground_truth": "The week before 13 August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 13 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 13 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1513,
+      "latency_seconds": 3.049,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_63",
+      "category": 2,
+      "question": "How many weeks passed between Maria adopting Coco and Shadow?",
+      "ground_truth": "two weeks",
+      "adversarial_answer": "",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "predicted_answer_raw": "2",
+      "refusal_normalized": false,
+      "context_tokens": 1467,
+      "latency_seconds": 3.128,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_69",
+      "category": 4,
+      "question": "What did Maria donate to a homeless shelter in December 2023?",
+      "ground_truth": "old car",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1609,
+      "latency_seconds": 2.862,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_73",
+      "category": 4,
+      "question": "Who inspired Maria to start volunteering?",
+      "ground_truth": "Her aunt",
+      "adversarial_answer": "",
+      "predicted_answer": "Maria's aunt",
+      "is_correct": true,
+      "predicted_answer_raw": "Maria's aunt",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.54,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_96",
+      "category": 4,
+      "question": "What did Maria do to feel closer to a community and her faith?",
+      "ground_truth": "joined a nearby church",
+      "adversarial_answer": "",
+      "predicted_answer": "joined a nearby church, bought a cross necklace",
+      "is_correct": true,
+      "predicted_answer_raw": "joined a nearby church, bought a cross necklace",
+      "refusal_normalized": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.783,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_104",
+      "category": 4,
+      "question": "How long was Max a part of John's family?",
+      "ground_truth": "10 years",
+      "adversarial_answer": "",
+      "predicted_answer": "10 years",
+      "is_correct": true,
+      "predicted_answer_raw": "10 years",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.569,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_124",
+      "category": 4,
+      "question": "What kind of activities did Maria do at the picnic with her church friends?",
+      "ground_truth": "played games like charades and a scavenger hunt",
+      "adversarial_answer": "",
+      "predicted_answer": "watching games, eating",
+      "is_correct": true,
+      "predicted_answer_raw": "watching games, eating",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.634,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-41_170",
+      "category": 5,
+      "question": "How long was Max a part of Maria's family?",
+      "ground_truth": "",
+      "adversarial_answer": "10 years",
+      "predicted_answer": "10 years",
+      "is_correct": false,
+      "predicted_answer_raw": "10 years",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.428,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_3",
+      "category": 2,
+      "question": "When did Nate win his first video game tournament?",
+      "ground_truth": "the week before 21Janury, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 21 January 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 21 January 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.937,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_5",
+      "category": 1,
+      "question": "What are Joanna's hobbies?",
+      "ground_truth": "Writing, watchingmovies, exploringnature, hanging withfriends.",
+      "adversarial_answer": "",
+      "predicted_answer": "reading, watching movies, exploring nature, writing, baking",
+      "is_correct": false,
+      "predicted_answer_raw": "reading, watching movies, exploring nature, writing, baking",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.855,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_7",
+      "category": 2,
+      "question": "When did Joanna finish her first screenplay?",
+      "ground_truth": "The Friday before 23January, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "23 January 2022",
+      "is_correct": false,
+      "predicted_answer_raw": "23 January 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1472,
+      "latency_seconds": 2.986,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_11",
+      "category": 1,
+      "question": "What is Joanna allergic to?",
+      "ground_truth": "Most reptiles,animals with fur,cockroaches, dairy",
+      "adversarial_answer": "",
+      "predicted_answer": "reptiles, animals with fur, cockroaches",
+      "is_correct": false,
+      "predicted_answer_raw": "reptiles, animals with fur, cockroaches",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 3.088,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_13",
+      "category": 2,
+      "question": "When did Joanna have an audition for a writing gig?",
+      "ground_truth": "23 March, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "23 March 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "23 March 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.777,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_15",
+      "category": 2,
+      "question": "When did Nate get purple hair?",
+      "ground_truth": "The week before 15April, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 15 April 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 15 April 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.971,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_32",
+      "category": 2,
+      "question": "Where did Joanna travel to in July 2022?",
+      "ground_truth": "Woodhaven",
+      "adversarial_answer": "",
+      "predicted_answer": "Woodhaven",
+      "is_correct": true,
+      "predicted_answer_raw": "Woodhaven",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.816,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_33",
+      "category": 2,
+      "question": "When did someone write Joanna a touching letter?",
+      "ground_truth": "The week before 14August, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 14 August 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 14 August 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.887,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_36",
+      "category": 2,
+      "question": "When did Joanna share her book with her writers group?",
+      "ground_truth": "The week before 22August, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "The Sunday before 22 August 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "The Sunday before 22 August 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.798,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_37",
+      "category": 2,
+      "question": "When did Nate win an international tournament?",
+      "ground_truth": "21 August, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "21 August 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "21 August 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.8,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_40",
+      "category": 2,
+      "question": "When did Joanna's laptop crash?",
+      "ground_truth": "The week before 14September, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 14 September 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 14 September 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.792,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_43",
+      "category": 2,
+      "question": "How long did it take for Joanna to finish writing her book?",
+      "ground_truth": "four months",
+      "adversarial_answer": "",
+      "predicted_answer": "one week",
+      "is_correct": false,
+      "predicted_answer_raw": "one week",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.583,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_44",
+      "category": 2,
+      "question": "When did Nate win a lot of money in a video game tournament?",
+      "ground_truth": "September 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "21 August 2022",
+      "is_correct": false,
+      "predicted_answer_raw": "21 August 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.802,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_45",
+      "category": 2,
+      "question": "When did Joanna finish up the writing for her book?",
+      "ground_truth": "The week before 6October, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 6 October 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 6 October 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.903,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_48",
+      "category": 2,
+      "question": "When did Nate go to a convention and meet new people?",
+      "ground_truth": "The Friday before 9October, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "9 October 2022",
+      "is_correct": false,
+      "predicted_answer_raw": "9 October 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.546,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_54",
+      "category": 2,
+      "question": "When was Joanna's second movie script shown on the big screens?",
+      "ground_truth": "The Sunday before 25October, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "the Sunday before 25 October 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the Sunday before 25 October 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.836,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_64",
+      "category": 2,
+      "question": "When did Nate win a big Valorant tourney?",
+      "ground_truth": "The Saturday before 7November, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "the Saturday before 7 November 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the Saturday before 7 November 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.685,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_65",
+      "category": 2,
+      "question": "Which torunament did Nate win in the beginning of November 2022?",
+      "ground_truth": "Valorant",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1392,
+      "latency_seconds": 2.614,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_69",
+      "category": 1,
+      "question": "How many turtles does Nate have?",
+      "ground_truth": "Three",
+      "adversarial_answer": "",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "predicted_answer_raw": "3",
+      "refusal_normalized": false,
+      "context_tokens": 1454,
+      "latency_seconds": 2.816,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_77",
+      "category": 2,
+      "question": "When did Nate win his second tournament?",
+      "ground_truth": "The week before 2 May, 2022.",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 2 May 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 2 May 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.901,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_80",
+      "category": 1,
+      "question": "How many tournaments has Nate won?",
+      "ground_truth": "seven",
+      "adversarial_answer": "",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "predicted_answer_raw": "4",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.664,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_86",
+      "category": 2,
+      "question": "When did Nate take his turtles to the beach?",
+      "ground_truth": "10 November, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "10 November 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "10 November 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.884,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_90",
+      "category": 4,
+      "question": "What is Nate's favorite movie trilogy?",
+      "ground_truth": "Lord of the Rings",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1393,
+      "latency_seconds": 2.689,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_91",
+      "category": 4,
+      "question": "What is Nate's favorite book series about?",
+      "ground_truth": "dragons",
+      "adversarial_answer": "",
+      "predicted_answer": "adventures, magic, great characters",
+      "is_correct": false,
+      "predicted_answer_raw": "adventures, magic, great characters",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.674,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_95",
+      "category": 4,
+      "question": "What is Nate's favorite video game?",
+      "ground_truth": "Xenoblade Chronicles",
+      "adversarial_answer": "",
+      "predicted_answer": "Catan",
+      "is_correct": false,
+      "predicted_answer_raw": "Catan",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.536,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_97",
+      "category": 4,
+      "question": "What did Joanna just finish last Friday on 23 January, 2022?",
+      "ground_truth": "screenplay",
+      "adversarial_answer": "",
+      "predicted_answer": "finished her first full screenplay",
+      "is_correct": true,
+      "predicted_answer_raw": "finished her first full screenplay",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.792,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_110",
+      "category": 4,
+      "question": "Why did Nate choose the hair color he did?",
+      "ground_truth": "Bright and bold - like him",
+      "adversarial_answer": "",
+      "predicted_answer": "Because it's bright and bold - like Nate!",
+      "is_correct": true,
+      "predicted_answer_raw": "Because it's bright and bold - like Nate!",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 3.015,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_136",
+      "category": 4,
+      "question": "How many video game tournaments has Nate won by July 10, 2022?",
+      "ground_truth": "Four",
+      "adversarial_answer": "",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "predicted_answer_raw": "4",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.705,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_137",
+      "category": 4,
+      "question": "Where did Joanna go for a road trip for research?",
+      "ground_truth": "Woodhaven",
+      "adversarial_answer": "",
+      "predicted_answer": "Woodhaven",
+      "is_correct": true,
+      "predicted_answer_raw": "Woodhaven",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.582,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_139",
+      "category": 4,
+      "question": "What specific themes are explored in Joanna's new book?",
+      "ground_truth": "loss, redemption, and forgiveness",
+      "adversarial_answer": "",
+      "predicted_answer": "loss, redemption, forgiveness",
+      "is_correct": true,
+      "predicted_answer_raw": "loss, redemption, forgiveness",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.659,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_149",
+      "category": 4,
+      "question": "What did Joanna share with her writers group in August 2022?",
+      "ground_truth": "her book",
+      "adversarial_answer": "",
+      "predicted_answer": "Joanna shared her book with her writers group.",
+      "is_correct": true,
+      "predicted_answer_raw": "Joanna shared her book with her writers group.",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.798,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_152",
+      "category": 4,
+      "question": "Why is Joanna experimenting with dairy-free options in her dessert recipes?",
+      "ground_truth": "lactose intolerance",
+      "adversarial_answer": "",
+      "predicted_answer": "Joanna is lactose intolerant.",
+      "is_correct": true,
+      "predicted_answer_raw": "Joanna is lactose intolerant.",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.757,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_155",
+      "category": 4,
+      "question": "What is Nate's favorite dish from the cooking show he hosted?",
+      "ground_truth": "Coconut milk ice cream",
+      "adversarial_answer": "",
+      "predicted_answer": "Coconut milk ice cream",
+      "is_correct": true,
+      "predicted_answer_raw": "Coconut milk ice cream",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.649,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_161",
+      "category": 4,
+      "question": "What did Joanna make for one of the ladies at her writing club?",
+      "ground_truth": "a bookmark",
+      "adversarial_answer": "",
+      "predicted_answer": "a cute little bookmark",
+      "is_correct": true,
+      "predicted_answer_raw": "a cute little bookmark",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.659,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_170",
+      "category": 4,
+      "question": "Why did Joanna name the stuffed animal dog Tilly?",
+      "ground_truth": "after a dog she had in Michigan",
+      "adversarial_answer": "",
+      "predicted_answer": "To remember her back when she used to be able to hold and squeeze animal without an allergic reaction!",
+      "is_correct": false,
+      "predicted_answer_raw": "To remember her back when she used to be able to hold and squeeze animal without an allergic reaction!",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 3.282,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_176",
+      "category": 4,
+      "question": "What did Joanna contribute to that was shown on the big screen on the Sunday before October 25, 2022?",
+      "ground_truth": "movie script",
+      "adversarial_answer": "",
+      "predicted_answer": "Another movie script",
+      "is_correct": true,
+      "predicted_answer_raw": "Another movie script",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.569,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_184",
+      "category": 4,
+      "question": "What did Joanna receive from her brother that brought back childhood memories?",
+      "ground_truth": "a handwritten letter",
+      "adversarial_answer": "",
+      "predicted_answer": "cute notes",
+      "is_correct": false,
+      "predicted_answer_raw": "cute notes",
+      "refusal_normalized": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.831,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_186",
+      "category": 4,
+      "question": "What dish did Nate make on 9 November, 2022?",
+      "ground_truth": "Homemade coconut ice cream",
+      "adversarial_answer": "",
+      "predicted_answer": "homemade coconut ice cream",
+      "is_correct": true,
+      "predicted_answer_raw": "homemade coconut ice cream",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.863,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_188",
+      "category": 4,
+      "question": "What is Nate creating for YouTube on 9 November, 2022?",
+      "ground_truth": "gaming content",
+      "adversarial_answer": "",
+      "predicted_answer": "creating gaming content",
+      "is_correct": true,
+      "predicted_answer_raw": "creating gaming content",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.528,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_190",
+      "category": 4,
+      "question": "What new content is Nate creating for YouTube?",
+      "ground_truth": "Gaming videos",
+      "adversarial_answer": "",
+      "predicted_answer": "gaming content",
+      "is_correct": true,
+      "predicted_answer_raw": "gaming content",
+      "refusal_normalized": false,
+      "context_tokens": 1402,
+      "latency_seconds": 2.643,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_208",
+      "category": 5,
+      "question": "For how long has Nate had his snakes?",
+      "ground_truth": "",
+      "adversarial_answer": "3 years",
+      "predicted_answer": "3 years",
+      "is_correct": false,
+      "predicted_answer_raw": "3 years",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.609,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_223",
+      "category": 5,
+      "question": "Where did Nate go for a road trip for research?",
+      "ground_truth": "",
+      "adversarial_answer": "Woodhaven",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.683,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_225",
+      "category": 5,
+      "question": "What specific themes are explored in Nate's new book?",
+      "ground_truth": "",
+      "adversarial_answer": "loss, redemption, and forgiveness",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.707,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_237",
+      "category": 5,
+      "question": "What did Nate make for one of the ladies at his writing club?",
+      "ground_truth": "",
+      "adversarial_answer": "a bookmark",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.873,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_250",
+      "category": 5,
+      "question": "What did Nate receive from his brother that brought back childhood memories?",
+      "ground_truth": "",
+      "adversarial_answer": "a handwritten letter",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1391,
+      "latency_seconds": 2.959,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-42_253",
+      "category": 5,
+      "question": "What is Joanna creating for YouTube on 9 November, 2022?",
+      "ground_truth": "",
+      "adversarial_answer": "gaming content",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.623,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_10",
+      "category": 2,
+      "question": "When was John in Seattle for a game?",
+      "ground_truth": "early August, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1434,
+      "latency_seconds": 2.922,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_11",
+      "category": 1,
+      "question": "What sports does John like besides basketball?",
+      "ground_truth": "surfing",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1393,
+      "latency_seconds": 2.443,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_12",
+      "category": 2,
+      "question": "What year did John start surfing?",
+      "ground_truth": "2018",
+      "adversarial_answer": "",
+      "predicted_answer": "2018",
+      "is_correct": true,
+      "predicted_answer_raw": "2018",
+      "refusal_normalized": false,
+      "context_tokens": 1629,
+      "latency_seconds": 3.099,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_16",
+      "category": 2,
+      "question": "After how many weeks did Tim reconnect with the fellow Harry Potter fan from California?",
+      "ground_truth": "three weeks",
+      "adversarial_answer": "",
+      "predicted_answer": "4 weeks",
+      "is_correct": false,
+      "predicted_answer_raw": "4 weeks",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.572,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_23",
+      "category": 2,
+      "question": "When is Tim attending a book conference?",
+      "ground_truth": "September 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "September 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1429,
+      "latency_seconds": 2.621,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_29",
+      "category": 1,
+      "question": "What schools did John play basketball in and how many years was he with his team during high school?",
+      "ground_truth": "Middle school, high school, and college and he was with his high school team for 4 years.",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1405,
+      "latency_seconds": 2.608,
+      "gold_is_list": true,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_35",
+      "category": 1,
+      "question": "What outdoor activities does John enjoy?",
+      "ground_truth": "Hiking, surfing",
+      "adversarial_answer": "",
+      "predicted_answer": "hiking",
+      "is_correct": false,
+      "predicted_answer_raw": "hiking",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.57,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_39",
+      "category": 2,
+      "question": "What year did Tim go to the Smoky Mountains?",
+      "ground_truth": "2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1656,
+      "latency_seconds": 3.084,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_54",
+      "category": 2,
+      "question": "When did John take a trip to the Rocky Mountains?",
+      "ground_truth": "2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.481,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_60",
+      "category": 2,
+      "question": "When did John achieve a career-high assist performance?",
+      "ground_truth": "December 11, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the Friday before 11 December 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the Friday before 11 December 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.766,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_63",
+      "category": 2,
+      "question": "When did John organize a basketball camp for kids?",
+      "ground_truth": "summer 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the summer of 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the summer of 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1408,
+      "latency_seconds": 2.563,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_64",
+      "category": 2,
+      "question": "Which month was John in Italy?",
+      "ground_truth": "December, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "December",
+      "is_correct": false,
+      "predicted_answer_raw": "December",
+      "refusal_normalized": false,
+      "context_tokens": 1635,
+      "latency_seconds": 3.072,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_81",
+      "category": 4,
+      "question": "How long has John been surfing?",
+      "ground_truth": "five years",
+      "adversarial_answer": "",
+      "predicted_answer": "five years",
+      "is_correct": true,
+      "predicted_answer_raw": "five years",
+      "refusal_normalized": false,
+      "context_tokens": 1562,
+      "latency_seconds": 2.829,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_83",
+      "category": 4,
+      "question": "What kind of articles has Tim been writing about for the online magazine?",
+      "ground_truth": "different fantasy novels, characters, themes, and book recommendations",
+      "adversarial_answer": "",
+      "predicted_answer": "different fantasy novels",
+      "is_correct": false,
+      "predicted_answer_raw": "different fantasy novels",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.624,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_93",
+      "category": 4,
+      "question": "Why did John's teammates sign the basketball they gave him?",
+      "ground_truth": "to show their friendship and appreciation",
+      "adversarial_answer": "",
+      "predicted_answer": "To remind John of the bond and support from his teammates",
+      "is_correct": false,
+      "predicted_answer_raw": "To remind John of the bond and support from his teammates",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.595,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_96",
+      "category": 4,
+      "question": "Which movie's theme is Tim's favorite to play on the piano?",
+      "ground_truth": "\"Harry Potter and the Philosopher's Stone\"",
+      "adversarial_answer": "",
+      "predicted_answer": "Harry Potter",
+      "is_correct": false,
+      "predicted_answer_raw": "Harry Potter",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.22,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_100",
+      "category": 4,
+      "question": "How long did John and his high school basketball teammates play together?",
+      "ground_truth": "Four years",
+      "adversarial_answer": "",
+      "predicted_answer": "four years",
+      "is_correct": true,
+      "predicted_answer_raw": "four years",
+      "refusal_normalized": false,
+      "context_tokens": 1415,
+      "latency_seconds": 2.408,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_148",
+      "category": 4,
+      "question": "How long has Tim been playing the piano for, as of December 2023?",
+      "ground_truth": "about four months",
+      "adversarial_answer": "",
+      "predicted_answer": "four months",
+      "is_correct": true,
+      "predicted_answer_raw": "four months",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.384,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_168",
+      "category": 4,
+      "question": "Why does John like Aragorn from Lord of the Rings?",
+      "ground_truth": "brave, selfless, down-to-earth attitude",
+      "adversarial_answer": "",
+      "predicted_answer": "Aragorn's brave, selfless, down-to-earth attitude and never giving up",
+      "is_correct": true,
+      "predicted_answer_raw": "Aragorn's brave, selfless, down-to-earth attitude and never giving up",
+      "refusal_normalized": false,
+      "context_tokens": 1465,
+      "latency_seconds": 2.942,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_199",
+      "category": 5,
+      "question": "How long did Tim and his high school basketball teammates play together?",
+      "ground_truth": "",
+      "adversarial_answer": "Four years",
+      "predicted_answer": "four years",
+      "is_correct": false,
+      "predicted_answer_raw": "four years",
+      "refusal_normalized": false,
+      "context_tokens": 1545,
+      "latency_seconds": 2.555,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-43_225",
+      "category": 5,
+      "question": "How long has John been playing the piano for, as of December 2023?",
+      "ground_truth": "",
+      "adversarial_answer": "about four months",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.626,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_1",
+      "category": 2,
+      "question": "When did Andrew start his new job as a financial analyst?",
+      "ground_truth": "The week before March 27, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "20 March 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "20 March 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1501,
+      "latency_seconds": 2.727,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_2",
+      "category": 1,
+      "question": "What kind of indoor activities has Andrew pursued with his girlfriend?",
+      "ground_truth": "boardgames, volunteering at pet shelter, wine tasting, growing flowers",
+      "adversarial_answer": "",
+      "predicted_answer": "board games",
+      "is_correct": false,
+      "predicted_answer_raw": "board games",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.423,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_5",
+      "category": 2,
+      "question": "When did Audrey see a hummingbird?",
+      "ground_truth": "first week of May 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "3 May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "3 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1583,
+      "latency_seconds": 2.737,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_7",
+      "category": 2,
+      "question": "How many years passed between Audrey adopting Pixie and her other three dogs?",
+      "ground_truth": "three years",
+      "adversarial_answer": "",
+      "predicted_answer": "1",
+      "is_correct": false,
+      "predicted_answer_raw": "1",
+      "refusal_normalized": false,
+      "context_tokens": 2078,
+      "latency_seconds": 3.51,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_11",
+      "category": 2,
+      "question": "When did Andrew go rock climbing?",
+      "ground_truth": "June 11, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "The Sunday before 13 June 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "The Sunday before 13 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1570,
+      "latency_seconds": 2.836,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_12",
+      "category": 1,
+      "question": "What outdoor activities has Andrew done other than hiking in nature?",
+      "ground_truth": "rock climbing, fishing, camping",
+      "adversarial_answer": "",
+      "predicted_answer": "rock climbing, kayaking",
+      "is_correct": false,
+      "predicted_answer_raw": "rock climbing, kayaking",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.497,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_24",
+      "category": 1,
+      "question": "Did Audrey and Andrew grow up with a pet dog?",
+      "ground_truth": "Yes",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1609,
+      "latency_seconds": 2.82,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_25",
+      "category": 2,
+      "question": "When did Andrew and his girlfriend go fishing?",
+      "ground_truth": "weekend before August 24, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "The weekend before 24 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "The weekend before 24 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1408,
+      "latency_seconds": 2.608,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_27",
+      "category": 1,
+      "question": "How does Andrew feel about his current work?",
+      "ground_truth": "Stressful",
+      "adversarial_answer": "",
+      "predicted_answer": "tough and stressful",
+      "is_correct": true,
+      "predicted_answer_raw": "tough and stressful",
+      "refusal_normalized": false,
+      "context_tokens": 1427,
+      "latency_seconds": 2.587,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_29",
+      "category": 1,
+      "question": "What are the names of Audrey's dogs?",
+      "ground_truth": "Pepper, Precious, Panda, and Pixie",
+      "adversarial_answer": "",
+      "predicted_answer": "Pepper, Precious, Panda, Pixie",
+      "is_correct": true,
+      "predicted_answer_raw": "Pepper, Precious, Panda, Pixie",
+      "refusal_normalized": false,
+      "context_tokens": 1458,
+      "latency_seconds": 2.841,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_30",
+      "category": 2,
+      "question": "When is Andrew planning to go to the beach with his girlfriend?",
+      "ground_truth": "November 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "November 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "November 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.42,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_34",
+      "category": 2,
+      "question": "How many months passed between Andrew adopting Toby and Buddy?",
+      "ground_truth": "three months",
+      "adversarial_answer": "",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "predicted_answer_raw": "4",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.66,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_37",
+      "category": 2,
+      "question": "When did Audrey get into an accident in the park?",
+      "ground_truth": "between October 19 and 24, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 24 October 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "the week before 24 October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1457,
+      "latency_seconds": 2.709,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_38",
+      "category": 2,
+      "question": "When did Andrew and his girlfriend go on a wine tasting trip?",
+      "ground_truth": "the weekend before October 24, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the weekend before 24 October 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the weekend before 24 October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1534,
+      "latency_seconds": 2.847,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_47",
+      "category": 2,
+      "question": "How many months passed between Andrew adopting Buddy and Scout",
+      "ground_truth": "one month",
+      "adversarial_answer": "",
+      "predicted_answer": "4",
+      "is_correct": false,
+      "predicted_answer_raw": "4",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.683,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_58",
+      "category": 2,
+      "question": "What did Audrey eat for dinner on October 24, 2023?",
+      "ground_truth": "sushi",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.533,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_72",
+      "category": 4,
+      "question": "Why did Audrey think positive reinforcement training is important for pets?",
+      "ground_truth": "To have pets learn how to behave in a positive way",
+      "adversarial_answer": "",
+      "predicted_answer": "It's a more humane and effective way to teach pets.",
+      "is_correct": true,
+      "predicted_answer_raw": "It's a more humane and effective way to teach pets.",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.763,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_75",
+      "category": 4,
+      "question": "What outdoor activities does Andrew plan on trying after the rock climbing class?",
+      "ground_truth": "kayaking and bungee jumping",
+      "adversarial_answer": "",
+      "predicted_answer": "kayaking, bungee jumping",
+      "is_correct": true,
+      "predicted_answer_raw": "kayaking, bungee jumping",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.597,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_76",
+      "category": 4,
+      "question": "How long does Audrey typically walk her dogs for?",
+      "ground_truth": "about an hour",
+      "adversarial_answer": "",
+      "predicted_answer": "about an hour",
+      "is_correct": true,
+      "predicted_answer_raw": "about an hour",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.534,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_79",
+      "category": 4,
+      "question": "What is Audrey's favorite recipe that she shares with Andrew on 3 July, 2023?",
+      "ground_truth": "Chicken Pot Pie",
+      "adversarial_answer": "",
+      "predicted_answer": "Chicken Pot Pie",
+      "is_correct": true,
+      "predicted_answer_raw": "Chicken Pot Pie",
+      "refusal_normalized": false,
+      "context_tokens": 1435,
+      "latency_seconds": 2.581,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_87",
+      "category": 4,
+      "question": "How long did the trail hike that Audrey went on with her pups take?",
+      "ground_truth": "Two hours",
+      "adversarial_answer": "",
+      "predicted_answer": "two hours",
+      "is_correct": true,
+      "predicted_answer_raw": "two hours",
+      "refusal_normalized": false,
+      "context_tokens": 1468,
+      "latency_seconds": 2.57,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_90",
+      "category": 4,
+      "question": "What did Audrey organize with the neighbors' dogs?",
+      "ground_truth": "a doggy playdate",
+      "adversarial_answer": "",
+      "predicted_answer": "a doggy playdate",
+      "is_correct": true,
+      "predicted_answer_raw": "a doggy playdate",
+      "refusal_normalized": false,
+      "context_tokens": 1555,
+      "latency_seconds": 2.695,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_106",
+      "category": 4,
+      "question": "What did Audrey make to thank her neighbors?",
+      "ground_truth": "Goodies",
+      "adversarial_answer": "",
+      "predicted_answer": "goodies",
+      "is_correct": true,
+      "predicted_answer_raw": "goodies",
+      "refusal_normalized": false,
+      "context_tokens": 1519,
+      "latency_seconds": 2.688,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_131",
+      "category": 5,
+      "question": "What indoor activities does Andrew plan on trying after the rock climbing class?",
+      "ground_truth": "",
+      "adversarial_answer": "kayaking and bungee jumping",
+      "predicted_answer": "bungee jumping",
+      "is_correct": false,
+      "predicted_answer_raw": "bungee jumping",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.484,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-44_150",
+      "category": 5,
+      "question": "What did Andrew make to thank his neighbors?",
+      "ground_truth": "",
+      "adversarial_answer": "Goodies",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1503,
+      "latency_seconds": 2.781,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_8",
+      "category": 1,
+      "question": "How many pets does James have?",
+      "ground_truth": "Three dogs.",
+      "adversarial_answer": "",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "predicted_answer_raw": "3",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.851,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_9",
+      "category": 1,
+      "question": "What are the names of James's dogs?",
+      "ground_truth": "Ned, Daisy, Max",
+      "adversarial_answer": "",
+      "predicted_answer": "Max, Daisy",
+      "is_correct": false,
+      "predicted_answer_raw": "Max, Daisy",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.613,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_10",
+      "category": 2,
+      "question": "When did James adopt Ned?",
+      "ground_truth": "first week of April 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 12 April 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 12 April 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1760,
+      "latency_seconds": 3.317,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_13",
+      "category": 2,
+      "question": "When did James visit Italy?",
+      "ground_truth": "In 2021",
+      "adversarial_answer": "",
+      "predicted_answer": "13 October 2021",
+      "is_correct": true,
+      "predicted_answer_raw": "13 October 2021",
+      "refusal_normalized": false,
+      "context_tokens": 1428,
+      "latency_seconds": 2.738,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_37",
+      "category": 2,
+      "question": "When did John spend time with his sister and dogs?",
+      "ground_truth": "July 21, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "21 July 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "21 July 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.722,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_41",
+      "category": 2,
+      "question": "When did James meet Samantha?",
+      "ground_truth": "August 9, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "10 August 2022",
+      "is_correct": false,
+      "predicted_answer_raw": "10 August 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1718,
+      "latency_seconds": 3.202,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_42",
+      "category": 2,
+      "question": "When did James take his 3 dogs to the beach?",
+      "ground_truth": "August 9, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "9 August 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "9 August 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.723,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_47",
+      "category": 2,
+      "question": "When did James ask Samantha to be his girlfriend?",
+      "ground_truth": "September 3, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "3 September 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "3 September 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1442,
+      "latency_seconds": 2.7,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_53",
+      "category": 2,
+      "question": "How long did it take for James to complete his Witcher-inspired game?",
+      "ground_truth": "six months",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1394,
+      "latency_seconds": 2.685,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_57",
+      "category": 2,
+      "question": "When did James' mother and her friend visit him?",
+      "ground_truth": "October 19, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "19 October 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "19 October 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1464,
+      "latency_seconds": 2.715,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_58",
+      "category": 2,
+      "question": "When did James try Cyberpunk 2077 game?",
+      "ground_truth": "October 20, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "20 October 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "20 October 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.663,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_60",
+      "category": 1,
+      "question": "What games has John played with his friends at charity tournaments?",
+      "ground_truth": "CS:GO, Fortnite, Overwatch and Apex Legends",
+      "adversarial_answer": "",
+      "predicted_answer": "Overwatch, Apex Legends",
+      "is_correct": false,
+      "predicted_answer_raw": "Overwatch, Apex Legends",
+      "refusal_normalized": false,
+      "context_tokens": 1501,
+      "latency_seconds": 2.743,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_62",
+      "category": 2,
+      "question": "How long did James and Samantha date for before deciding to move in together?",
+      "ground_truth": "nearly three months",
+      "adversarial_answer": "",
+      "predicted_answer": "two days",
+      "is_correct": false,
+      "predicted_answer_raw": "two days",
+      "refusal_normalized": false,
+      "context_tokens": 1505,
+      "latency_seconds": 2.821,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_63",
+      "category": 2,
+      "question": "When did James, his family and his dogs start on a road trip together?",
+      "ground_truth": "November 4, 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "4 November 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "4 November 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.738,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_73",
+      "category": 4,
+      "question": "How long has John been playing the drums as of 27 March, 2022?",
+      "ground_truth": "One month",
+      "adversarial_answer": "",
+      "predicted_answer": "not specified",
+      "is_correct": false,
+      "predicted_answer_raw": "not specified",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.501,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_78",
+      "category": 4,
+      "question": "What did James adopt in April 2022?",
+      "ground_truth": "a pup",
+      "adversarial_answer": "",
+      "predicted_answer": "a pup",
+      "is_correct": true,
+      "predicted_answer_raw": "a pup",
+      "refusal_normalized": false,
+      "context_tokens": 1525,
+      "latency_seconds": 2.962,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_91",
+      "category": 4,
+      "question": "What did the system John created help the charitable foundation with?",
+      "ground_truth": "tracking inventory, resources, and donations",
+      "adversarial_answer": "",
+      "predicted_answer": "streamlining their operations and making them run more smoothly",
+      "is_correct": false,
+      "predicted_answer_raw": "streamlining their operations and making them run more smoothly",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.52,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_100",
+      "category": 4,
+      "question": "Will there be an interview required to volunteer with the organization James volunteered for?",
+      "ground_truth": "No",
+      "adversarial_answer": "",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "predicted_answer_raw": "No",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.579,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_108",
+      "category": 4,
+      "question": "Which game tournaments does John plan to organize besides CS:GO?",
+      "ground_truth": "Fortnite competitions",
+      "adversarial_answer": "",
+      "predicted_answer": "Fortnite",
+      "is_correct": true,
+      "predicted_answer_raw": "Fortnite",
+      "refusal_normalized": false,
+      "context_tokens": 1537,
+      "latency_seconds": 2.791,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_118",
+      "category": 4,
+      "question": "What has John been teaching his siblings?",
+      "ground_truth": "coding",
+      "adversarial_answer": "",
+      "predicted_answer": "coding",
+      "is_correct": true,
+      "predicted_answer_raw": "coding",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.73,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_125",
+      "category": 4,
+      "question": "What did James prepare for the first time in the cooking class?",
+      "ground_truth": "Omelette",
+      "adversarial_answer": "",
+      "predicted_answer": "a great omelette",
+      "is_correct": true,
+      "predicted_answer_raw": "a great omelette",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.699,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_131",
+      "category": 4,
+      "question": "What did John use to play when he was younger to let off steam?",
+      "ground_truth": "drums",
+      "adversarial_answer": "",
+      "predicted_answer": "drums",
+      "is_correct": true,
+      "predicted_answer_raw": "drums",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.485,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_134",
+      "category": 4,
+      "question": "What does John do to stay informed and constantly learn about game design?",
+      "ground_truth": "watch tutorials and keep up with developer forums",
+      "adversarial_answer": "",
+      "predicted_answer": "watch tutorials, keep up with developer forums",
+      "is_correct": true,
+      "predicted_answer_raw": "watch tutorials, keep up with developer forums",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.677,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_145",
+      "category": 4,
+      "question": "Why did James and Samantha choose an apartment near McGee's bar?",
+      "ground_truth": "They love spending time together at the bar",
+      "adversarial_answer": "",
+      "predicted_answer": "They love spending time together at McGee's bar.",
+      "is_correct": true,
+      "predicted_answer_raw": "They love spending time together at McGee's bar.",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.921,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_157",
+      "category": 5,
+      "question": "What did the system John created help the illegal organization with?",
+      "ground_truth": "",
+      "adversarial_answer": "tracking inventory, resources, and donations",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.375,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-47_181",
+      "category": 5,
+      "question": "What inspired James to create his painting?",
+      "ground_truth": "",
+      "adversarial_answer": "Witcher 3",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1395,
+      "latency_seconds": 2.569,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_2",
+      "category": 2,
+      "question": "When did Deborah`s mother pass away?",
+      "ground_truth": "a few years before 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "25 January 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "25 January 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1501,
+      "latency_seconds": 3.22,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_3",
+      "category": 2,
+      "question": "When did Jolene`s mother pass away?",
+      "ground_truth": "in 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.772,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_9",
+      "category": 2,
+      "question": "When did Deborah's father pass away?",
+      "ground_truth": "January 25, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "25 January 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "25 January 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1556,
+      "latency_seconds": 3.245,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_10",
+      "category": 2,
+      "question": "When was Deborah's parents' wedding?",
+      "ground_truth": "in 1993",
+      "adversarial_answer": "",
+      "predicted_answer": "1993",
+      "is_correct": true,
+      "predicted_answer_raw": "1993",
+      "refusal_normalized": false,
+      "context_tokens": 1452,
+      "latency_seconds": 3.042,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_14",
+      "category": 1,
+      "question": "What were Deborah's mother's hobbies?",
+      "ground_truth": "reading, traveling, art, cooking",
+      "adversarial_answer": "",
+      "predicted_answer": "reading, travel",
+      "is_correct": false,
+      "predicted_answer_raw": "reading, travel",
+      "refusal_normalized": false,
+      "context_tokens": 1421,
+      "latency_seconds": 2.743,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_27",
+      "category": 2,
+      "question": "When was Jolene in Bogota?",
+      "ground_truth": "in summer 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "the summer of 2022",
+      "is_correct": true,
+      "predicted_answer_raw": "the summer of 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.88,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_30",
+      "category": 2,
+      "question": "When did Jolene have a dinner and drinks with her friends?",
+      "ground_truth": "21 February, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "22 February 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "22 February 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.825,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_31",
+      "category": 2,
+      "question": "When was the last photo of Deborah and Karlie taken?",
+      "ground_truth": "in summer 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "last summer (the summer of 2022)",
+      "is_correct": true,
+      "predicted_answer_raw": "last summer (the summer of 2022)",
+      "refusal_normalized": false,
+      "context_tokens": 1404,
+      "latency_seconds": 3.068,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_32",
+      "category": 2,
+      "question": "When was Deborah in Bali?",
+      "ground_truth": "in 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1523,
+      "latency_seconds": 3.061,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_33",
+      "category": 4,
+      "question": "How long have Jolene and her partner been together?",
+      "ground_truth": "for three years",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.678,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_35",
+      "category": 2,
+      "question": "When did Deborah go for her first morning jog in a nearby park?",
+      "ground_truth": "24 February, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "24 February 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "24 February 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1456,
+      "latency_seconds": 2.927,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_37",
+      "category": 2,
+      "question": "When did Jolene take Seraphim to the park?",
+      "ground_truth": "Sunday before 2 March, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the Sunday before 2 March 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the Sunday before 2 March 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1520,
+      "latency_seconds": 3.284,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_40",
+      "category": 3,
+      "question": "Does Deborah live close to the beach or the mountains?",
+      "ground_truth": "beach",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1394,
+      "latency_seconds": 2.791,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_44",
+      "category": 2,
+      "question": "When did Deborah go to an art show with Anna?",
+      "ground_truth": "on 9 April, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "9 April 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "9 April 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.736,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_45",
+      "category": 2,
+      "question": "When did Jolene finish her robotics project?",
+      "ground_truth": "May 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "February 1, 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "February 1, 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 3.075,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_47",
+      "category": 2,
+      "question": "When did Jolene do yoga at Talkeetna?",
+      "ground_truth": "on 5 June, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "6 June 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "6 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1442,
+      "latency_seconds": 3.185,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_49",
+      "category": 4,
+      "question": "How long has Jolene been doing yoga and meditation?",
+      "ground_truth": "about 3 years",
+      "adversarial_answer": "",
+      "predicted_answer": "3 years",
+      "is_correct": true,
+      "predicted_answer_raw": "3 years",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.849,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_51",
+      "category": 2,
+      "question": "When did Jolene buy a new aquarium for Seraphim?",
+      "ground_truth": "24 June, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "25 June 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "25 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 3.04,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_56",
+      "category": 2,
+      "question": "When did Deborah lead a meditation session during the sunset?",
+      "ground_truth": "week before 16 August, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "26 August 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "26 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1481,
+      "latency_seconds": 3.096,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_60",
+      "category": 2,
+      "question": "When did Deborah go to a yoga retreat near her mom's place?",
+      "ground_truth": "a week before 24 August,2023",
+      "adversarial_answer": "",
+      "predicted_answer": "16 September 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "16 September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1501,
+      "latency_seconds": 3.607,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_64",
+      "category": 4,
+      "question": "Does Deborah like cats?",
+      "ground_truth": "Yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Yes, Deborah likes cats.",
+      "is_correct": true,
+      "predicted_answer_raw": "Yes, Deborah likes cats.",
+      "refusal_normalized": false,
+      "context_tokens": 1543,
+      "latency_seconds": 3.006,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_68",
+      "category": 2,
+      "question": "When did Deborah visit Brazil?",
+      "ground_truth": "2020",
+      "adversarial_answer": "",
+      "predicted_answer": "Three years ago (2020)",
+      "is_correct": true,
+      "predicted_answer_raw": "Three years ago (2020)",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.868,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_69",
+      "category": 4,
+      "question": "Have Deborah and Jolene been to Rio de Janeiro?",
+      "ground_truth": "yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Deborah, Jolene",
+      "is_correct": false,
+      "predicted_answer_raw": "Deborah, Jolene",
+      "refusal_normalized": false,
+      "context_tokens": 1423,
+      "latency_seconds": 2.891,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_71",
+      "category": 2,
+      "question": "When did Deborah go to a community meetup?",
+      "ground_truth": "last week of August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the Friday before 3 September 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "the Friday before 3 September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.848,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_72",
+      "category": 4,
+      "question": "When did Jolene's parents give her first console?",
+      "ground_truth": "when she was 10",
+      "adversarial_answer": "",
+      "predicted_answer": "When Jolene was 10",
+      "is_correct": true,
+      "predicted_answer_raw": "When Jolene was 10",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.775,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_73",
+      "category": 1,
+      "question": "Did Jolene teach herself how to play the console?",
+      "ground_truth": "yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Yes, Jolene learned to play on her own.",
+      "is_correct": true,
+      "predicted_answer_raw": "Yes, Jolene learned to play on her own.",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.893,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_85",
+      "category": 1,
+      "question": "Which community activities have Deborah and Anna participated in?",
+      "ground_truth": "yoga, running",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1396,
+      "latency_seconds": 2.564,
+      "gold_is_list": true,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_97",
+      "category": 4,
+      "question": "Have Deborah and Jolene been to Rio de Janeiro?",
+      "ground_truth": "yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Deborah, Jolene",
+      "is_correct": false,
+      "predicted_answer_raw": "Deborah, Jolene",
+      "refusal_normalized": false,
+      "context_tokens": 1423,
+      "latency_seconds": 0.474,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_98",
+      "category": 4,
+      "question": "When did Jolene's parents give her first console?",
+      "ground_truth": "when she was 10",
+      "adversarial_answer": "",
+      "predicted_answer": "When jolene was 10",
+      "is_correct": true,
+      "predicted_answer_raw": "When jolene was 10",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 0.493,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_106",
+      "category": 4,
+      "question": "What is Jolene's favorite book which she mentioned on 4 February, 2023?",
+      "ground_truth": "\"Sapiens\"",
+      "adversarial_answer": "",
+      "predicted_answer": "\"Sapiens\"",
+      "is_correct": true,
+      "predicted_answer_raw": "\"Sapiens\"",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.522,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_118",
+      "category": 4,
+      "question": "What is one of Jolene's favorite dishes?",
+      "ground_truth": "lasagna",
+      "adversarial_answer": "",
+      "predicted_answer": "lasagna",
+      "is_correct": true,
+      "predicted_answer_raw": "lasagna",
+      "refusal_normalized": false,
+      "context_tokens": 1418,
+      "latency_seconds": 2.639,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_134",
+      "category": 4,
+      "question": "For how long has Jolene had Seraphim as a pet?",
+      "ground_truth": "one year",
+      "adversarial_answer": "",
+      "predicted_answer": "one year",
+      "is_correct": true,
+      "predicted_answer_raw": "one year",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.892,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_147",
+      "category": 4,
+      "question": "What did Jolene design inspired by their love for space and engines?",
+      "ground_truth": "Notebooks",
+      "adversarial_answer": "",
+      "predicted_answer": "notebooks with elements like galaxies and circuitry",
+      "is_correct": true,
+      "predicted_answer_raw": "notebooks with elements like galaxies and circuitry",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.679,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_157",
+      "category": 4,
+      "question": "How long has Jolene been doing yoga?",
+      "ground_truth": "3 years",
+      "adversarial_answer": "",
+      "predicted_answer": "3 years",
+      "is_correct": true,
+      "predicted_answer_raw": "3 years",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.776,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_171",
+      "category": 4,
+      "question": "What was the video game console that Jolene's parents got her at age 10?",
+      "ground_truth": "nintendo game console",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1397,
+      "latency_seconds": 2.649,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_172",
+      "category": 4,
+      "question": "What was one of Jolene's favorite games to play with her mom on the nintendo wii game system?",
+      "ground_truth": "Monster Hunter: World",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1395,
+      "latency_seconds": 2.537,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-48_211",
+      "category": 5,
+      "question": "For how long has Jolene had Lucifer as a pet?",
+      "ground_truth": "",
+      "adversarial_answer": "one year",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1394,
+      "latency_seconds": 2.868,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_7",
+      "category": 1,
+      "question": "What new hobbies did Sam consider trying?",
+      "ground_truth": "Painting, kayaking, hiking, cooking, running",
+      "adversarial_answer": "",
+      "predicted_answer": "Weight Watchers, yoga",
+      "is_correct": false,
+      "predicted_answer_raw": "Weight Watchers, yoga",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.534,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_9",
+      "category": 2,
+      "question": "When did Evan go to Jasper with his family?",
+      "ground_truth": "weekend before May 24, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the weekend before 24 May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the weekend before 24 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.701,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_13",
+      "category": 2,
+      "question": "When did Evan have his sudden heart palpitation incident that really shocked him up?",
+      "ground_truth": "first week of June 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 6 June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 6 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.673,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_23",
+      "category": 2,
+      "question": "When did Sam start working out at the gym?",
+      "ground_truth": "July 28, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "28 July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "28 July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.659,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_30",
+      "category": 2,
+      "question": "When Evan get back from a vacation with his SO?",
+      "ground_truth": "August 13, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "July 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.535,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_35",
+      "category": 2,
+      "question": "When was Evan's son injured at soccer?",
+      "ground_truth": "Saturday before August 15, 2023.",
+      "adversarial_answer": "",
+      "predicted_answer": "the Saturday before 15 August 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the Saturday before 15 August 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.709,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_44",
+      "category": 1,
+      "question": "What kind of subjects does Evan enjoy painting?",
+      "ground_truth": "nature landscapes, portraits, abstract minimalism",
+      "adversarial_answer": "",
+      "predicted_answer": "good memories, places",
+      "is_correct": false,
+      "predicted_answer_raw": "good memories, places",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.267,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_58",
+      "category": 2,
+      "question": "When did Evan start lifting weights?",
+      "ground_truth": "October 2022",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.54,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_63",
+      "category": 2,
+      "question": "When was Sam in the ER?",
+      "ground_truth": "weekend before 17 October, 2023.",
+      "adversarial_answer": "",
+      "predicted_answer": "the weekend before 17 October 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the weekend before 17 October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.736,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_66",
+      "category": 2,
+      "question": "When did Evan lose his job?",
+      "ground_truth": "end of October 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "October 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.587,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_67",
+      "category": 2,
+      "question": "When did Evan and Sam planned a trip to the beach together?",
+      "ground_truth": "December, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "last Friday (the Friday before 31 December 2023)",
+      "is_correct": true,
+      "predicted_answer_raw": "last Friday (the Friday before 31 December 2023)",
+      "refusal_normalized": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.826,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_73",
+      "category": 2,
+      "question": "When is Evan planning a big family reunion?",
+      "ground_truth": "Summer 2024",
+      "adversarial_answer": "",
+      "predicted_answer": "next summer",
+      "is_correct": true,
+      "predicted_answer_raw": "next summer",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.489,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_74",
+      "category": 2,
+      "question": "When did Evan's son fall off his bike?",
+      "ground_truth": "Thursday before December 17, 2023.",
+      "adversarial_answer": "",
+      "predicted_answer": "the Tuesday before 17 December 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the Tuesday before 17 December 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.696,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_75",
+      "category": 2,
+      "question": "When did Evan announce his marriage to his extended family?",
+      "ground_truth": "January 5, 2024",
+      "adversarial_answer": "",
+      "predicted_answer": "5 January 2024",
+      "is_correct": true,
+      "predicted_answer_raw": "5 January 2024",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.627,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_79",
+      "category": 2,
+      "question": "When will Evan and his partner have their honeymoon in Canada?",
+      "ground_truth": "February 2024",
+      "adversarial_answer": "",
+      "predicted_answer": "February 2024",
+      "is_correct": true,
+      "predicted_answer_raw": "February 2024",
+      "refusal_normalized": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.44,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_102",
+      "category": 4,
+      "question": "What dish did Sam make on 18 August, 2023 that turned out flavorful?",
+      "ground_truth": "grilled dish with salmon and vegetables",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1394,
+      "latency_seconds": 2.466,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_105",
+      "category": 4,
+      "question": "What type of painting classes did Evan start taking in 2023?",
+      "ground_truth": "watercolor painting classes",
+      "adversarial_answer": "",
+      "predicted_answer": "watercolors",
+      "is_correct": true,
+      "predicted_answer_raw": "watercolors",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.572,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_107",
+      "category": 4,
+      "question": "What nature concept do watercolor painting classes emphasize according to Evan?",
+      "ground_truth": "observing nature and painting what is seen",
+      "adversarial_answer": "",
+      "predicted_answer": "observing nature",
+      "is_correct": true,
+      "predicted_answer_raw": "observing nature",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.608,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_108",
+      "category": 4,
+      "question": "What type of landscapes does Evan love painting the most?",
+      "ground_truth": "sunsets over the ocean",
+      "adversarial_answer": "",
+      "predicted_answer": "landscapes",
+      "is_correct": false,
+      "predicted_answer_raw": "landscapes",
+      "refusal_normalized": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.414,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_114",
+      "category": 4,
+      "question": "What did Evan recommend Sam acquire to get started with painting?",
+      "ground_truth": "Acrylic paints, brushes, canvas/paper, palette",
+      "adversarial_answer": "",
+      "predicted_answer": "acrylic paints, brushes, a canvas/paper, and a palette",
+      "is_correct": true,
+      "predicted_answer_raw": "acrylic paints, brushes, a canvas/paper, and a palette",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.699,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_116",
+      "category": 4,
+      "question": "What painting did Evan share with Sam in October?",
+      "ground_truth": "a cactus in the desert",
+      "adversarial_answer": "",
+      "predicted_answer": "sunset painting",
+      "is_correct": false,
+      "predicted_answer_raw": "sunset painting",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.395,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_126",
+      "category": 4,
+      "question": "What gift did Evan receive from a close friend?",
+      "ground_truth": "1968 Kustom K-200A vintage guitar",
+      "adversarial_answer": "",
+      "predicted_answer": "1968 Kustom K-200A vintage guitar",
+      "is_correct": true,
+      "predicted_answer_raw": "1968 Kustom K-200A vintage guitar",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 3.357,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_127",
+      "category": 4,
+      "question": "Why had Evan been going through a tough time lately?",
+      "ground_truth": "Lost their job due to downsizing",
+      "adversarial_answer": "",
+      "predicted_answer": "his son had an accident",
+      "is_correct": false,
+      "predicted_answer_raw": "his son had an accident",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.486,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_154",
+      "category": 4,
+      "question": "Why did Evan apologize to his partner?",
+      "ground_truth": "for a drunken night",
+      "adversarial_answer": "",
+      "predicted_answer": "for that drunken night",
+      "is_correct": true,
+      "predicted_answer_raw": "for that drunken night",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.665,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_168",
+      "category": 5,
+      "question": "What dish did Sam make on 18 August, 2023 that turned out bland?",
+      "ground_truth": "",
+      "adversarial_answer": "grilled dish with salmon and vegetables",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.531,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_171",
+      "category": 5,
+      "question": "What nature concept do watercolor painting classes emphasize according to Sam?",
+      "ground_truth": "",
+      "adversarial_answer": "observing nature and painting what is seen",
+      "predicted_answer": "observing nature",
+      "is_correct": false,
+      "predicted_answer_raw": "observing nature",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.525,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_172",
+      "category": 5,
+      "question": "What type of landscapes does Sam love painting the most?",
+      "ground_truth": "",
+      "adversarial_answer": "sunsets over the ocean",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.462,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-49_181",
+      "category": 5,
+      "question": "What gift did Sam receive from a close friend?",
+      "ground_truth": "",
+      "adversarial_answer": "1968 Kustom K-200A vintage guitar",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1397,
+      "latency_seconds": 3.091,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_10",
+      "category": 2,
+      "question": "When did Calvin's place get flooded in Tokyo?",
+      "ground_truth": "On a week before 16 May, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 16 May 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "the week before 16 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1393,
+      "latency_seconds": 2.753,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_14",
+      "category": 2,
+      "question": "When did Calvin meet with the creative team for his new album?",
+      "ground_truth": "8 June, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "8 June 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "8 June 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.554,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_15",
+      "category": 1,
+      "question": "Why does Dave regularly visit parks?",
+      "ground_truth": "because it relaxes and calms him",
+      "adversarial_answer": "",
+      "predicted_answer": "To recharge for the upcoming week",
+      "is_correct": false,
+      "predicted_answer_raw": "To recharge for the upcoming week",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.519,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_16",
+      "category": 2,
+      "question": "When did Dave take a trip to mountainous regions?",
+      "ground_truth": "July 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "July 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "July 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.521,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_17",
+      "category": 2,
+      "question": "When did Calvin have a car incident?",
+      "ground_truth": "on the Friday before 21 June, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "The week before 16 May 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "The week before 16 May 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.837,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_22",
+      "category": 1,
+      "question": "Does Calvin want to expand his brand?",
+      "ground_truth": "yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "predicted_answer_raw": "Yes",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.411,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_26",
+      "category": 2,
+      "question": "When did Calvin record a podcast with his friends?",
+      "ground_truth": "21 August, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "last week (the week before 23 October 2023)",
+      "is_correct": false,
+      "predicted_answer_raw": "last week (the week before 23 October 2023)",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.855,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_35",
+      "category": 2,
+      "question": "When did Calvin book flight tickets to Boston?",
+      "ground_truth": "last week of August 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "the week before 2 September 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "the week before 2 September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.535,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_36",
+      "category": 2,
+      "question": "When was Calvin's album released?",
+      "ground_truth": "September 11, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "11 September 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "11 September 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.481,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_37",
+      "category": 3,
+      "question": "Does Calvin love music tours?",
+      "ground_truth": "yes",
+      "adversarial_answer": "",
+      "predicted_answer": "Yes",
+      "is_correct": true,
+      "predicted_answer_raw": "Yes",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.296,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_38",
+      "category": 2,
+      "question": "When did Dave have a great jam session with his band?",
+      "ground_truth": "September 14, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "22 September, 2023",
+      "is_correct": false,
+      "predicted_answer_raw": "22 September, 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.728,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_50",
+      "category": 2,
+      "question": "When did Calvin buy his second Ferrari?",
+      "ground_truth": "first week of October 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1392,
+      "latency_seconds": 2.408,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_55",
+      "category": 2,
+      "question": "When did Calvin visit some of the sights in Boston with a former high school friend?",
+      "ground_truth": "October 24, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "24 October 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "24 October 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1396,
+      "latency_seconds": 2.552,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_66",
+      "category": 1,
+      "question": "Do all of Dave's car restoration projects go smoothly?",
+      "ground_truth": "No",
+      "adversarial_answer": "",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "predicted_answer_raw": "No",
+      "refusal_normalized": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.443,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_69",
+      "category": 2,
+      "question": "When did Dave buy a vintage camera?",
+      "ground_truth": "November 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "November 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "November 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.585,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_70",
+      "category": 2,
+      "question": "When did Calvin attend a gala in Boston?",
+      "ground_truth": "November 16, 2023",
+      "adversarial_answer": "",
+      "predicted_answer": "16 November 2023",
+      "is_correct": true,
+      "predicted_answer_raw": "16 November 2023",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.447,
+      "gold_is_list": true,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_76",
+      "category": 4,
+      "question": "What type of cars does Dave work on at his shop?",
+      "ground_truth": "all kinds of cars, from regular maintenance to full restorations of classic cars",
+      "adversarial_answer": "",
+      "predicted_answer": "all kinds of cars, from regular maintenance to full restorations of classic cars",
+      "is_correct": true,
+      "predicted_answer_raw": "all kinds of cars, from regular maintenance to full restorations of classic cars",
+      "refusal_normalized": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.767,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_104",
+      "category": 4,
+      "question": "Why did Calvin get his guitar customized with a shiny finish?",
+      "ground_truth": "unique look",
+      "adversarial_answer": "",
+      "predicted_answer": "to give it a unique look, plus it goes with calvin's style",
+      "is_correct": true,
+      "predicted_answer_raw": "to give it a unique look, plus it goes with calvin's style",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.75,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_108",
+      "category": 4,
+      "question": "What did Calvin book a flight ticket for on 1st September 2023?",
+      "ground_truth": "Boston",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1398,
+      "latency_seconds": 2.555,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_131",
+      "category": 4,
+      "question": "What inspired Calvin's recent music?",
+      "ground_truth": "Struggles that people go through",
+      "adversarial_answer": "",
+      "predicted_answer": "struggles that people go through",
+      "is_correct": true,
+      "predicted_answer_raw": "struggles that people go through",
+      "refusal_normalized": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.464,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_136",
+      "category": 4,
+      "question": "When did Dave sell the car he restored last year?",
+      "ground_truth": "Last year",
+      "adversarial_answer": "",
+      "predicted_answer": "2022",
+      "is_correct": false,
+      "predicted_answer_raw": "2022",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.633,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_137",
+      "category": 4,
+      "question": "When did Calvin first get interested in cars?",
+      "ground_truth": "at an early age",
+      "adversarial_answer": "",
+      "predicted_answer": "not mentioned",
+      "is_correct": false,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1397,
+      "latency_seconds": 2.356,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_143",
+      "category": 4,
+      "question": "What did Dave recently start a blog about?",
+      "ground_truth": "Car mods",
+      "adversarial_answer": "",
+      "predicted_answer": "car mods",
+      "is_correct": true,
+      "predicted_answer_raw": "car mods",
+      "refusal_normalized": false,
+      "context_tokens": 1531,
+      "latency_seconds": 2.549,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_176",
+      "category": 5,
+      "question": "What color glow did Dave customize his guitar with?",
+      "ground_truth": "",
+      "adversarial_answer": "purple",
+      "predicted_answer": "purple",
+      "is_correct": false,
+      "predicted_answer_raw": "purple",
+      "refusal_normalized": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.555,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_190",
+      "category": 5,
+      "question": "When did Calvin sell the car he restored last year?",
+      "ground_truth": "",
+      "adversarial_answer": "Last year",
+      "predicted_answer": "September 2022",
+      "is_correct": false,
+      "predicted_answer_raw": "September 2022",
+      "refusal_normalized": false,
+      "context_tokens": 1397,
+      "latency_seconds": 2.738,
+      "gold_is_list": false,
+      "abstained": false,
+      "committer_claimed": false
+    },
+    {
+      "question_id": "lc_conv-50_191",
+      "category": 5,
+      "question": "When did Calvin first get interested in motorcycles?",
+      "ground_truth": "",
+      "adversarial_answer": "at an early age",
+      "predicted_answer": "not mentioned",
+      "is_correct": true,
+      "predicted_answer_raw": "I don't know.",
+      "refusal_normalized": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.381,
+      "gold_is_list": false,
+      "abstained": true,
+      "committer_claimed": false
+    }
+  ]
+}

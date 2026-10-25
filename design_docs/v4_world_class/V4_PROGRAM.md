@@ -502,13 +502,92 @@ sufficiency question this program met on LoCoMo's adversarial category, and it i
 the next target.
 
 **Do not overclaim this.** The failure was diagnosed *on this arena* and the fix
-was validated *on this arena*; one run each. The mechanism is generic (IDF
-weighting, query-dependent candidates), but an out-of-sample corpus has not been
-used. The honest statement is "the diagnosed mechanism is real and worth 41.5pt
+was validated *on this arena*; one run each. §4.14 measures the same mechanism
+out-of-sample on real dialogue, where the direction holds and the magnitude does
+not. The honest statement is "the diagnosed mechanism is real and worth 41.5pt
 here", not "the product is now world-class".
 
 Tests: `tests/unit/test_lexical_recall.py` (5 cases, including one that asserts the
 off path is unchanged). Flag: `--am-lexical` in the arena runner.
+
+### 4.14 Out-of-sample: the lexical channel helps on real dialogue too (+16.7pt)
+
+The arena result was in-sample for the mechanism. To test it on a corpus it was
+not designed against, the SHIPPED runtime was run over a LoCoMo conversation
+(conv-26: 419 turns, 60 questions), asking one question at 0 LLM calls: does the
+recalled context contain the gold answer?
+
+| channel | gold reached | mean tokens | retrieval ms |
+|---|---:|---:|---:|
+| dense-only | 0/60 (0.0%) | 1,072 | 14 |
+| **lexical** | **10/60 (16.7%)** | 1,964 | 80 |
+
+Direction generalises: dense-only reaches nothing on real dialogue, the lexical
+channel reaches some. Magnitude does not: 16.7% here versus 75% on the synthetic
+arena, because real dialogue paraphrases and spreads a fact across turns. The
+runtime also remains far below the R7 pipeline's retrieval — that is the honest
+gap between "the product" and "the research harness".
+
+Artifact: `scripts/benchmarks/probe_runtime_recall_locomo.py`.
+
+### 4.15 Date binding as a deterministic engine: rejected by its own ceiling
+
+B2 was "bind the date anchor to the turn whose content matches the event". Its
+ceiling was measured first, on the 318 temporal questions:
+
+| measure | count |
+|---|---:|
+| gold anywhere in the compiled context | 199 / 318 (62.6%) |
+| **gold in the single best event-matching turn** | **74 / 318 (23.3%)** |
+| answered correctly by the current pipeline | 194 / 318 (61.0%) |
+
+A deterministic single-turn binding would be **worse than doing nothing** (23%
+ceiling against a 61% pipeline). The temporal failures are not "the anchor was
+attached to the wrong turn"; they are multi-turn synthesis that the pipeline
+already does better than any lexical rule. B2 is closed before any code was
+written.
+
+### 4.16 The runtime's "answers too much" is not a lexical-threshold problem
+
+After the lexical fix the runtime answers instead of refusing, and the arena's
+abstention category fell 100% -> 10%. A cheap gate was tested: use the best
+lexical match between question and recalled memory as a sufficiency score. It
+does **not** separate the populations — abstention questions sit at 0.67 (mean,
+median, p10 and p90 all 0.67), answerable at 0.63 mean / 0.70 median. The
+unanswerable questions are lexically just as close as the answerable ones; what
+differs is whether the specific fact is stated, which is the same sufficiency
+question LoCoMo raised and the same one a score threshold cannot answer.
+
+### 4.17 The committer was costing points: it is now opt-in (+1.16pt)
+
+The deterministic committer answers a question only when an engine claims it, and
+the reader answers the rest. Its own claims were never A/B'd against the reader on
+the current pipeline. They are now: the same 312 questions, the same frozen
+contexts, the reader answering instead (312 model calls, one run), paired official
+F1.
+
+| | committer answers | reader answers | delta |
+|---|---:|---:|---:|
+| all 312 claimed | 51.30% | **61.61%** | **+10.31pt** |
+| multi-hop (36) | | | -5.20 |
+| temporal (155) | | | -2.91 |
+| open-domain (3) | | | -33.33 (n=3, noise) |
+| single-hop (90) | | | **+23.95** |
+| adversarial (28) | | | **+64.29** |
+
+The committer is better on multi-hop and temporal and much worse on single-hop,
+which dominates. On the full 1,986 the swap is **+1.62pt before the gate** (49.91
+-> 51.53) and **+1.16pt with it** (53.77 -> **54.94%**).
+
+The previous default rested on a 321-question cat2 probe where the committer agreed
+with the reader on 75, uniquely solved 7 and lost 7 — a tie *on temporal only*.
+Over all 312 claims, including single-hop, the reader wins by more than it loses.
+
+Changed: `--committer` is opt-in (default off), `--no-committer` is a no-op kept
+for compatibility, and every run manifest records `committer`. The committer's
+provenance value is unchanged — it can still be enabled where a deterministic
+answer trail is worth more than the points.
+
 
 **Consequence for the program:** the distance to "world-class" is not a
 benchmark-recipe problem, it is a *product wiring* problem. The next engine
@@ -642,15 +721,22 @@ engine rather than `AMv020Player`.
 | M2 | enumeration recall for list questions (0 LLM) | item recall up, cats2-4 non-regression | measured: +1.68pt dev for 2x tokens — **not promoted** (4.8) |
 | M3 | answer-provenance refusal gate (0 LLM) | net dev delta > 0 | **DONE: +4.33pt dev / +3.87pt full** — shipped, opt-in (4.9) |
 | M4 | construct the list answer from evidence (union engine) | precision >= 55% on fully-available items | +25-42 cat1 questions answerable in-context |
-| M5 | Reader-side support verifier (one extra call) | cats1-4 loss < 0.5 pt | pilot: cat5 5/8 NOT SUPPORTED, +4.8pt projected on n=40 |
-| M6 | date binding (temporal 59.9% -> 66%+) | zero date regressions | 57-59% |
-| M7 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | 60-63% |
-| M8 | holdout validation, once | frozen method | report honestly |
+| M5 | Reader-side support verifier (one extra call) | cats1-4 loss < 0.5 pt | **REJECTED at scale: +0.45pt, 77 won / 113 lost** (4.11) |
+| M6 | date binding (temporal 59.9% -> 66%+) | zero date regressions | **REJECTED by its ceiling: 23% vs a 61% pipeline** (4.15) |
+| M7 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | open |
+| M8 | committer A/B (is the deterministic fallback worth it?) | paired official F1 | **DONE: reader +10.31pt on the 312 claims; committer now opt-in** (4.17) |
+| M9 | holdout validation, once | frozen method | report honestly |
 
-"World-class" is only claimed after Track C produces a same-LLM, same-scorer
-comparison and after M5. Until then the honest statement is: *the engine is 3.65 pt
-below its own v0.3.0 artifact on official F1, and 12.50 pt of that gap class is a
-pure protocol defect.*
+**Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
+the answer-provenance gate and the committer off, against 49.91% for the
+protocol-fixed baseline and 37.41% as originally measured; the v0.3.0 artifact
+scores 51.89% on the same protocol. On the controlled arena the shipped runtime
+went 11.5% -> 53.0% with the lexical channel, against Simple RAG 51.0%.
+
+"World-class" is still **not** claimed. The honest summary is: two measured engine
+changes (+4.33 dev / +3.87 full for the gate, +1.16 full for removing the
+committer), one product-side recall fix (+41.5pt on the arena, +16.7pt
+out-of-sample), and five directions closed with negative evidence.
 
 ---
 

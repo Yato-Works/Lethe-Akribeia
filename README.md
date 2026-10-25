@@ -126,10 +126,11 @@ To eliminate ambiguity between binary extraction accuracy (`is_correct`) and off
 > **Measurement status (2026-10-25) — read this before quoting any number above.**
 > The table records the **v0.3.0 release artifacts**. Re-scored with the pinned
 > upstream LoCoMo scorer, the current pipeline measures **37.41% official F1** on
-> all 1,986 questions (**48.24%** on categories 1-4), and **53.77%** with the
-> answer-provenance refusal gate enabled. The v0.3.0 artifact itself scores
-> **51.89%** on the same protocol, so the current pipeline is **3.65pt below it**
-> — driven by a 7.1pt single-hop regression, not by a change of metric.
+> all 1,986 questions (**48.24%** on categories 1-4). With the two measured engine
+> changes it reaches **54.94%**: an answer-provenance refusal gate (+3.87pt) and
+> making the deterministic committer opt-in, because the reader answers the
+> committer's own 312 claims better (+10.31pt on that cohort). The v0.3.0 artifact
+> itself scores **51.89%** on the same protocol.
 >
 > Two further facts, both measured and recorded in
 > [`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md):

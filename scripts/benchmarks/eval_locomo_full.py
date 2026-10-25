@@ -1034,7 +1034,18 @@ def _write_frozen_contexts(out_dir: Path, rows: list[dict], args) -> None:
 
 
 def run(args) -> None:
-    args.use_committer = not getattr(args, "no_committer", False)
+    # THE COMMITTER IS OPT-IN.  Measured on the 312 questions it claims (the other
+    # 1,674 are reader-answered either way), paired official F1 with the reader
+    # answering those same contexts instead:
+    #
+    #   committer answers 51.30%   reader answers 61.61%   delta +10.31pt
+    #   (cat1 -5.20, cat2 -2.91, cat3 -33.33 on n=3, cat4 +23.95, cat5 +64.29)
+    #
+    # On the full 1,986 that is +1.62pt before the refusal gate and +1.16pt with
+    # it: 53.77% -> 54.94%.  The old default preserved the reader's "7 unique wins"
+    # on a 321-question cat2 probe; on the current pipeline, over all 312 claims,
+    # the reader wins by more than it loses.  See V4_PROGRAM.md 4.17.
+    args.use_committer = bool(getattr(args, "committer", False))
     freeze_dir = Path(args.freeze_contexts) if getattr(args, "freeze_contexts", "") else None
     freeze_rows: list[dict] = []
     manifest = []
@@ -1429,6 +1440,7 @@ def run(args) -> None:
         "subject_admit": getattr(args, "subject_admit", False),
         "subject_admit_gain": getattr(args, "subject_admit_gain", 0.0),
         "refusal_gate": getattr(args, "refusal_gate", False),
+        "committer": bool(getattr(args, "use_committer", False)),
         "manifest": args.manifest or "",
         "n_questions": len(jobs),
         "data": args.data,
@@ -1482,8 +1494,11 @@ def main() -> None:
                          "each is measured separately (off by default)")
     ap.add_argument("--no-abstain", action="store_true",
                     help="add the answer-from-the-evidence clause (off by default)")
+    ap.add_argument("--committer", action="store_true",
+                    help="enable the deterministic committer (OFF by default: the "
+                         "reader answers those questions better; see the note in run())")
     ap.add_argument("--no-committer", action="store_true",
-                    help="disable the deterministic committer fallback")
+                    help="deprecated no-op; the committer is off unless --committer")
     ap.add_argument("--manifest", default="",
                     help="JSON file listing {conv_idx,q_idx} pairs to evaluate "
                          "(a real sample); overrides --limit, which is only a "
