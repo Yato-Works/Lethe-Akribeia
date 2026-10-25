@@ -948,6 +948,70 @@ dimension, and nothing was tuned against the failed prediction.
 Artifacts: `benchmark_results/am_current/probe_hybrid_metric.json`,
 `probe_hybrid_ctx.py` (forb dimension added).
 
+### 4.24 Conflict surfacing: a priced, two-iteration measurement, and a new arena leader
+
+**Diagnosis correction.**  The §4.22 statement that contradiction_handling
+is a *conversion* wall is wrong: the probe metric shows the category is a
+**reach wall of a new kind** — gold group 0 (the two planted values) is in
+every compiled context, but gold group 1 (a conflict marker word) NEVER
+reaches any context of any player, because nothing in anyone's pipeline
+surfaces that the two reports conflict.  The reader never states a conflict
+it was never shown; with a single-value or refusal answer it scores
+partial/fail (§10 covers group 1 in the answer text, and it never appears).
+
+**Priced before being built (0 LLM,
+`scripts/benchmarks/price_conflict_detector.py`,
+`benchmark_results/am_current/conflict_pricing.json`).**  Hypothesis: a
+generic deterministic detector — two turns asserting different values for
+the same (entity, property) pair, extracted with a fixed relational
+lexicon — can surface the conflict from the turns alone.  Measured: the
+detector captures the planted pair under one key **20/20**; the resulting
+annotation would fire on **0/180** questions of the other nine categories,
+so the added context text can reach only questions whose correct answer is
+"both, and they conflict".  The scorer's `CONFLICT_MARKERS` vocabulary is
+read nowhere in player code (Leakage Boundary); the annotation is built
+only from the detected turns.
+
+**Iteration 1 (measured, one 50-question run): wording failed.**  The
+annotation `...: SQLite vs Redis; which is correct is unverified.` reached
+the reader, but its phrasing steered the frozen reader into a refusal:
+contradiction stayed **0/5** (answers: "I don't know"), overall 54.0%
+(paired delta 0 vs the leader).  Recorded as a negative: an annotation
+whose content says "unresolved" converts to abstention, not to the
+dual report the category semantics call for.
+
+**Iteration 2 (measured): the phrasing states the semantics.**
+`NOTE: conflicting reports for project P (prop): V1 (day d) vs V2 (day
+d). Both are on record and neither is confirmed; report both values
+rather than choosing one.`
+
+End-to-end, one run each:
+
+| run | AM hybrid (raw fill) | AM conflict | paired |
+|---|---:|---:|---|
+| 50 questions | 54.0% | **62.0%** | contradiction 0/5 → 4/5, zero exclusive losses |
+| 200 questions | 54.0% | **60.0%** | **12 wins / 0 losses**, contradiction 0/20 → 12/20 |
+
+No other category moved (abstention stays 19/20 — the annotation never
+fires there).  Residual 8/20 diagnosed from answers: the reader still
+turns the note into a refusal on 6 and emits "could be either X or Y"
+without a conflict marker on 2 (group 1 miss → partial).  Reflection
+remains the only untouched wall (0/20 for every player).
+
+**Standing change: AM conflict is the new arena leader at 60.0%**
+(full-200, +6pt paired over the hybrid raw leader; honest caveats: one
+run each on the frozen qwen2.5:7b reader; the mechanism lives in the
+benchmark player, not the shipped runtime — porting the conflict
+surfacing (and the compile-style refusal) into
+`artificial_memory` runtime is the next product-side opening; the
+remaining 8 contradiction conversions and reflection are the next
+measured targets).
+
+Artifacts: `benchmark_results/am_current/conflict_pricing.json`;
+run dirs `controlled_20261025_164953` (full-200),
+`controlled_20261025_164727`/`164412` (50q iter-2/iter-1), priced with
+`price_am_current.py` against `controlled_20261025_140731`/`140439`.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -1036,6 +1100,7 @@ engine rather than `AMv020Player`.
 | M10 | R7 chain behind the arena player + hybrid union | arena rows comparable | **DIAGNOSTIC: R7 46.5%, hybrid 54.0% vs lexical 53.0%; abstention fixed by compile (2 -> 19/20); union ceiling 65.5%, realized 54.0%; contradiction + reflection walls remain** (4.21) |
 | M11 | hybrid fill from the runtime's own recall stack | paired E2E >= raw fill | **REJECTED: 44.0% vs 54.0%, raw 5 exclusive wins / runtime 0 -- reachability is not conversion; decoy pollution** (4.22) |
 | M12 | two-sided probe metric (gold-reach x forbidden-presence) | metric must predict E2E refusal splits | **LIMIT RECORDED: forb-presence does NOT separate refusal conversions; the differentiator is line shape (raw turn vs fact-formatted semantic content). Metric kept as a reported dimension; E2E stays the arbiter** (4.23) |
+| M13 | deterministic conflict surfacing (player-side, priced first) | contradiction conversions without collateral losses | **DELIVERED: new arena leader 60.0% full-200 (+6pt paired), contradiction 0/20 -> 12/20, 12 wins / 0 losses; iter-1 wording failure recorded; residual 8 = reader refusal/either-or phrasing; mechanism not yet in the shipped runtime** (4.24) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
