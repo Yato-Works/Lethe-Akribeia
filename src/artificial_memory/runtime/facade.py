@@ -645,8 +645,17 @@ class ArtificialMemoryRuntime:
         resolution: ResolutionLevel = ResolutionLevel.SEMANTIC,
         importance: float = 0.7,
         confidence: float = 0.8,
+        occurred_at: datetime | None = None,
     ) -> MemoryIR:
-        """Explicitly store a memory."""
+        """Explicitly store a memory.
+
+        ``occurred_at`` (M15.2): when the caller knows when the content
+        actually happened, it can state it, and ``valid_from`` carries it
+        through -- the builder's provenance label then reflects the real
+        time point instead of collapsing everything to the ingest date.
+        Default ``None`` keeps every pre-existing call byte-identical
+        (wall-clock ``now()``).
+        """
         topic_obj = self.conversation_manager.get_or_create_topic(topic)
 
         memory = Memory(
@@ -657,7 +666,8 @@ class ArtificialMemoryRuntime:
             importance=importance,
             confidence=confidence,
             status=MemoryStatus.ACTIVE,
-            valid_from=__import__('datetime').datetime.now(),
+            valid_from=occurred_at
+            or __import__('datetime').datetime.now(),
             is_current=True,
         )
         memory = self.store.create_memory(memory)

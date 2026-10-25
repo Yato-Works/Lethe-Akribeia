@@ -486,6 +486,11 @@ class AMRuntimeConflictPlayer(AMv020Player):
             self.name = self.PLAYER_NAME
         else:
             self.name = "AM runtime"
+        # M15.2: the provenance-distinguishability arm gets its own name
+        # so runs remain citable per identity.
+        if self.config.get("provenance_days", False) \
+                and self.config.get("conflict_surfacing", False):
+            self.name = "AM runtime conflict dt"
 
     def _ingest_scenario(self, scenario) -> None:
         """Remember BOTH speakers for the conflict player.
@@ -499,11 +504,23 @@ class AMRuntimeConflictPlayer(AMv020Player):
         The product itself stores both sides of a conversation (see
         CompilerPipelineWrapper.compile_conversation), so this player
         ingests the same way the product does.
+
+        M15.2 ``provenance_days``: with the knob on, each turn's real
+        scenario timestamp (the dataset's own day index, ``turn.timestamp``)
+        is passed as ``occurred_at``, so ``valid_from`` -- and therefore
+        every provenance label the builder prints -- reflects distinct,
+        data-backed time points instead of one ingest-date collapse.
+        Nothing else changes: same turns, same builder, same budget.
         """
         if not self._runtime:
             return
         for turn in scenario.turns:
-            asyncio.run(self._runtime.remember(turn.content, topic="Arena"))
+            stamp = turn.timestamp if self.config.get(
+                "provenance_days", False) else None
+            stamp = turn.timestamp if self.config.get(
+                "provenance_days", False) else None
+            asyncio.run(self._runtime.remember(
+                turn.content, topic="Arena", occurred_at=stamp))
 
     def _all_active_current(self, topic_id: int) -> list:
         """Page through the store: the full active current-memory corpus.

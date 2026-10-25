@@ -145,6 +145,57 @@ def test_note_part_carries_source_assertion_lines(store):
     assert f"- {V2}" in context
 
 
+def test_runtime_remember_honors_occurred_at():
+    """M15.2: facade.remember stores the caller's occurrence time so the
+    builder's provenance label is a real, distinct time point."""
+    import asyncio
+
+    from artificial_memory.runtime import ArtificialMemoryRuntime, RuntimeConfig
+
+    runtime = ArtificialMemoryRuntime(RuntimeConfig(
+        database_path=":memory:", memory_files_path=None,
+        vector_index_path=None))
+    stamp = datetime.now() - timedelta(days=45)
+    asyncio.run(runtime.remember(V1, topic="M15", occurred_at=stamp))
+    topic = runtime.conversation_manager.get_or_create_topic("M15")
+    mems = runtime.store.get_memories(topic_id=topic.id)
+    assert any(m.valid_from and m.valid_from.date() == stamp.date()
+               for m in mems)
+
+
+def test_ingest_knob_passes_scenario_timestamps():
+    """M15.2: with provenance_days, the player feeds each turn's real
+    scenario timestamp into facade.remember; without it, labels stay
+    wall-clock."""
+    import asyncio
+    from types import SimpleNamespace
+
+    from am_current_player import AMRuntimeConflictPlayer
+
+    calls = []
+
+    class _StubRuntime:
+        async def remember(self, content, topic, occurred_at=None):
+            calls.append(occurred_at)
+
+    player = AMRuntimeConflictPlayer(
+        {"provenance_days": True}, answerer=None)
+    player._runtime = _StubRuntime()
+    stamp = datetime(2026, 1, 5, 9, 0, 0) + timedelta(days=3)
+    player._ingest_scenario(SimpleNamespace(
+        turns=[SimpleNamespace(content="a", timestamp=stamp),
+               SimpleNamespace(content="b", timestamp=stamp)]))
+    assert calls == [stamp, stamp]
+    assert player.name == "AM runtime conflict dt"
+
+    calls.clear()
+    plain = AMRuntimeConflictPlayer(None, answerer=None)
+    plain._runtime = _StubRuntime()
+    plain._ingest_scenario(SimpleNamespace(
+        turns=[SimpleNamespace(content="a", timestamp=stamp)]))
+    assert calls == [None]
+
+
 def test_query_gate_does_not_fire_without_entity_and_property():
     conflicts = detect_conflicts([(V1, "day 45"), (V2, "day 48")])
     assert query_gated_keys("what about beacons?", conflicts) == []

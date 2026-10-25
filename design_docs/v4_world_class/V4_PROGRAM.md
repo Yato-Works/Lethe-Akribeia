@@ -1179,6 +1179,138 @@ junk runs (`..._174830`, `..._175229`) whose values were overwritten by a
 player-name collision (`AMv020Player` hard-codes its name; the flag arms
 now name themselves from the flag) — do not cite their csv rows.
 
+### 4.28 M15.1 composition audit: pair-reach was measured, fixed, and proven NOT the binding constraint
+
+Phase 1+2 (read-only, 0 LLM, `scripts/benchmarks/
+audit_context_composition.py`).  Baseline artifact
+`context_composition_audit.json` saved *before* any change (copy:
+`..._baseline_noteonly.json`).  Stages per contradiction question:
+store → per-recall-level → allocation → final selection.
+
+- The planted pair is in the store 20/20, and the recall engine finds
+  evidence at every level 20/20 — but the *allocated parts contain zero
+  recall:* parts.  Cause, measured: the builder dedupes recall results
+  that are already current-pool members, and every planted line is a
+  current member, so recall can never resurface them.
+- Allocation is a recency window: ~57 of ~520 current lines win an
+  `ORDER BY updated_at DESC` race.  Which planted lines make it is a
+  question-ordering artifact, not relevance: for the E2E slice
+  (contradiction-00..04 = earliest-scenario pairs) 0–1 lines survived;
+  for 05..19 (recently ingested scenarios) both did — that is where the
+  baseline's 15/20 "co-presence" came from.  The window has no unique
+  tie-break, so pair appearance is a run-to-run lottery at the boundary.
+- The NOTE itself fired 20/20 and carried both values inside its chain
+  in every context.  Mean final ctx ≈1308 tokens.
+
+Phase 3 — the ONE change chosen on this evidence: **the conflict part
+carries its source assertion lines** (one immutable reserved HIGH part
+per key: NOTE + raw planted lines with provenance labels).  Support:
+`conflict_entries()` added to the canonical module (first document per
+distinct value, with indices); `EnhancedContextBuilder._append_conflict_parts`
+composes note + lines.  A query-relevance re-sort of the current pool
+was considered and REJECTED: it reaches non-flag behavior and re-risks
+the frozen semantics.
+
+Measured at 0 LLM, same metric basis (both values on non-note lines +
+NOTE present):
+
+| | baseline (note-only) | note carries lines |
+|---|---:|---:|
+| co-presence | 15/20 | **20/20** |
+| both values at allocation | 19/20 | **20/20** |
+| note firing (contradiction / other) | 20/20, 0/180 | unchanged |
+| mean final ctx tokens | 1307.7 | 1283.1 |
+
+Phase 4 — minimal paired product E2E (one run, 50q, same conditions):
+AM runtime 40.0% → AM runtime conflict 42.0%, identical to 4.27 — the
+same single conversion (contradiction-00), zero exclusive losses
+(`controlled_20261025_180855`).  0-LLM verification at the player's real
+budget shows the reader SAW the note plus both raw assertion lines with
+labels on 01..04 — and still answered "I don't know".
+
+**Conclusion, stated without hedging:** the composition gap named in
+4.27 ("the pair lines are missing from the product context") was real,
+was fixed, and was NOT the binding constraint on the product reader.
+M15.1 achieved its structural goal and honestly delivers no reader gain
+beyond the known +2pt.  The remaining explain-candidates, each a future
+1-change-1-measurement: (a) provenance distinctness — the product labels
+both values "2026-10-25" (single-day ingest), while the benchmark's
+"day 45" vs "day 48" reads as two separate reports; (b) ≈1100 tokens of
+unrelated recency noise surrounding the annotation; (c) reader register.
+Bench 4/5 and product 1/5 stay different-path results, never equated.
+`RuntimeConfig.conflict_surfacing` remains default-off.
+
+Tests: 2 new (`conflict_entries` mapping; composed part test), 27 unit
+green.  Full-suite run 1093 passed / 11 skipped; 2 failures triaged —
+`test_create_all_players` pinned an exact factory count and was updated
+to the real contract (baseline five present + unique names), and
+`test_temporal_algebra_duration_years_now` fails on committed code
+untouched by this work (wall-clock-dependent; recorded OPEN).
+
+Artifacts: `context_composition_audit.json` (post-change) and
+`..._baseline_noteonly.json` (frozen baseline);
+`runtime_conflict_pricing.json` (re-run, unchanged firing profile).
+
+### 4.29 M15.2 provenance distinguishability: measured, and the result is NULL
+
+Phase 1 (0-LLM investigation).  The benchmark's "day 45" style labels
+come from the dataset's OWN data (`ArenaTurn.day` → a fixed epoch, fully
+deterministic — nothing fabricated).  The product write path threw that
+away: `facade.remember` hard-stamped `valid_from=now()`, so every label
+the builder prints — NOTE chain and source lines — collapsed to the
+single ingest date "2026-10-25", identical for both reports.  Storage is
+a pass-through (`create_memory` saves `valid_from` as provided), and the
+builder label derives from `valid_from`, so a write-side change makes
+the provenance distinct with NO builder change.  Recall's time decay
+reads `updated_at`, which stays the ingest time — measured, not assumed.
+
+Phase 2 (the ONE change).  `facade.remember(..., occurred_at=None)`
+(caller-given occurrence time; default None keeps every existing call
+byte-identical), plus a `provenance_days` ingest knob on the flag player
+passing the scenario's own timestamps; the arm is named
+"AM runtime conflict dt" (flag-off guard verified: dt alone never leaks
+into the baseline arm).  0-LLM pricing compared conflict vs dt over 200
+real product contexts (`price_provenance_dt.py`):
+NOTE firing 20/20 & 0/180 — unchanged; co-presence 20/20 — unchanged;
+mean ctx 1299/max 1303 tokens — byte-equal; labels distinct **20/20**
+(control 0/20, e.g. "Redis (2026-02-22) vs SQLite (2026-02-19)" — two
+data-backed time points).  A probe-side metric bug (entity regex
+expecting one word) initially reported 0/20 twice; fixed and re-run —
+the first two probe outputs are diagnostic trash, the artifact is the
+priced end-state.
+
+Phase 3 (minimal paired reader run, one run, 50q, three arms):
+`controlled_20261025_182640` —
+
+| arm | acc% | contradiction |
+|---|---:|---:|
+| AM runtime (off) | 40.0 | 0/5 |
+| AM runtime conflict | 42.0 | 1/5 |
+| AM runtime conflict dt | 42.0 | 1/5 (the SAME question) |
+
+Paired conflict vs dt: +0.0pt, 21 both-pass, 0 exclusive either way.
+Provenance distinguishability is measured complete and the honest
+result is **NULL**: real, distinct, deterministic dates did not move the
+product reader.  Adopted without further changes (standing rule).
+
+Cumulative M15.1+M15.2 conclusion: the reader converts exactly ONE
+contradiction question (contradiction-00, straight off the NOTE) and
+nothing about pair reach, co-presence, or provenance distinctness
+changes that.  The remaining explain-candidate is now the only one left
+from the audit's list: **the ≈1100 tokens of query-unrelated recency
+fill surrounding the annotation** (the benchmark compile presents the
+note inside a compact raw-turn register).  Next 1-change-1-measurement
+(M15.3 candidate): shrink/condition the unrelated fill when a conflict
+part is reserved, flag-gated, priced at 0 LLM first.  Bench 4/5 and
+product 1/5 stay different-path results.  `conflict_surfacing` and
+`provenance_days` stay default-off.
+
+Tests: 2 new unit tests (occurred_at passthrough; provenance knob +
+naming guard), 29 unit green.  Artifacts:
+`provenance_dt_pricing.json`; run `controlled_20261025_182640`
+(citable), plus the two diagnostic probe prints (non-citable, metric
+bug before fix).
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -1270,6 +1402,8 @@ engine rather than `AMv020Player`.
 | M13 | deterministic conflict surfacing (player-side, priced first) | contradiction conversions without collateral losses | **DELIVERED: new arena leader 60.0% full-200 (+6pt paired), contradiction 0/20 -> 12/20, 12 wins / 0 losses; iter-1 wording failure recorded; residual 8 = reader refusal/either-or phrasing; mechanism not yet in the shipped runtime** (4.24) |
 | M14 | Runtime Port & Parity | mechanism in the shipped runtime, frozen semantics intact by default | **DELIVERED: single-source module in artificial_memory.recall.conflict_surface; player = thin adapter; RuntimeConfig.conflict_surfacing default-off; provenance drift caught & pinned by test; leakage boundary now AST-enforced; 24 unit + 109 regression green; flag-on product E2E parity + residual-8 triage stay open** (4.25) |
 | M15 | flag-on product E2E transfer | same conversions on the product read path | **PARTIAL: 3 pricing iterations (budget race / one-sided ingest / 100-fetch window -- each a real research-vs-product gap); priced 20/20 & 0/180 on the product path; E2E 50q paired 40.0 -> 42.0, contradiction 0/5 -> 1/5, zero losses; residual = product context composition, named as the next frontier; flag stays default-off** (4.27) |
+| M15.1 | product composition audit | measure where pair evidence drops; fix the bottleneck with one change | **DELIVERED (structural): baseline reproduced; bottleneck = recency window + recall dedupe (recall parts = 0; pair appearance a run lottery); ONE change (note carries source assertion lines) lifted co-presence 15/20 -> 20/20, 0 collateral, ctx tokens not increased; minimal paired E2E unchanged (40.0 -> 42.0, same 1/5) => pair-reach proven NOT the binding constraint; reader-side explain-candidates named (provenance distinctness, noise mass, register); 2 pre-existing test failures triaged (one fixed, one recorded OPEN)** (4.28) |
+| M15.2 | provenance distinguishability | real distinct time points on the product read path | **NULL (measured complete): occurred_at passthrough + provenance_days knob priced 0-LLM (labels 20/20 distinct, firing/co-presence/tokens unchanged); 3-arm reader run conflict vs dt +0.0pt, same single conversion => distinct data-backed dates do NOT move the reader; remaining explain-candidate = unrelated recency fill mass around the note (M15.3 candidate); knobs default-off** (4.29) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
