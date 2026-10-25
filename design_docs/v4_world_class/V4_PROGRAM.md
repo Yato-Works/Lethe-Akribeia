@@ -1012,6 +1012,75 @@ run dirs `controlled_20261025_164953` (full-200),
 `controlled_20261025_164727`/`164412` (50q iter-2/iter-1), priced with
 `price_am_current.py` against `controlled_20261025_140731`/`140439`.
 
+### 4.25 M14 — Runtime Port & Parity: the shipped runtime can now surface conflicts
+
+Opening 4.24 left: the M13 mechanism lived in the benchmark player only.
+Before touching anything, a full read-path survey of
+`src/artificial_memory` established three facts: the actual reader context
+is assembled by `EnhancedContextBuilder` (`context/builder.py:116-247`)
+from current-state + per-level recall memories; the shipped runtime has
+**zero conflict logic anywhere in the read path** (`ConflictStateManager`
+exists at `core/ir/conflict_state.py` but is only exercised by research
+benchmarks, and its latest-wins `active_candidate` pick would have to be
+replaced, not reused, to keep both values); insertions inside the recall
+engine or `LLMManager` carry the highest blast radius (frozen-semantics
+suites pin the engine; the deterministic gate consumes the context
+blob).
+
+**Design: parity by construction, single source of truth.**  The canonical
+implementation now lives in the product,
+`src/artificial_memory/recall/conflict_surface.py`
+(`index_assertions` / `detect_conflicts` / `note_line` /
+`query_gated_keys` — generic relational extractor over
+`(content, provenance)` documents), and the benchmark player
+(`am_current_player.py`) is a *thin adapter* over it.  Any future edit to
+the mechanism lands in both worlds with one commit.
+
+**Product wiring (opt-in, default off).**  `RuntimeConfig` gained
+`conflict_surfacing: bool = False`; `EnhancedContextBuilder` (constructor
+flag) collects candidate memories during `_build_context_parts`, detects
+conflicting `(entity, property)` keys, and appends one provenance-bearing
+NOTE `ContextPart` (HIGH tier, priority 0.9 — the measured behaviour
+influenced this choice: the annotation must survive budget selection to
+convert anything) **only when the query names both key tokens** — the
+same 0/180 false-fire gate the arena pricing measured.  No value is ever
+merged or deduplicated on the write path; supersession and temporal
+validity stay untouched (the gate operates on the already-validity-filtered
+candidate pool).
+
+**Provenance parity note (bootstrap honesty).**  one measurement trap was
+caught during the port: the refactor initially drifted the note surface
+from `SQLite (day 45)` to `SQLite (45)` — the M13-measured string.  The
+provenance label is now caller-owned (`"day 45"` in the benchmark, an
+ISO date in the runtime) and the M13-measured surface is pinned by test,
+so unit-green never silently means text-drifted again.
+
+**Tests (24 new/updated, 109 regression passed).**
+`tests/unit/test_conflict_surface.py`: both values keyed with provenance;
+plan-21 note semantics; query gate inert without entity+property; runtime
+builder fires only when flagged and stays frozen otherwise; annotation
+inert on unrelated queries; write path keeps both memories; config default
+off.  `tests/unit/test_am_current_player.py`: AST enforcement that the
+player can never import the scorer's marker vocabulary (the Leakage
+Boundary is now mechanical, not just a comment) + the M13 surface pin.
+Regression: `test_core`, `test_phase2`, `test_deepseek_raid`,
+`test_llm_deterministic_gate`, `test_refusal_gate` — all green.
+
+**Standing change: none to any measured number.  New standing: the shipped
+runtime can express conflict surfacing behind an explicit config flag with
+zero behavioural change by default.**  What is deliberately NOT claimed:
+a product-side E2E arena run of the flag-on runtime as a *player* (the
+torchlit question of whether the product's own read path converts like
+the player's compile does — the facade path differs from the R7 compile,
+and that parity gap is the next measured opening), and the residual-8
+diagnosis of 4.24.  Both stay honestly open.
+
+Next measured steps (unchanged from the session plan): (a) residual-8
+triage (6 reader-refusals vs 2 either-or-phrasings) — price any wording
+change at 0 LLM before a reader run; (b) flag-on product player E2E
+(parity measurement, not a standing change until paired); (c) reflection
+0/20 remains untouched as its own investigation.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -1101,6 +1170,7 @@ engine rather than `AMv020Player`.
 | M11 | hybrid fill from the runtime's own recall stack | paired E2E >= raw fill | **REJECTED: 44.0% vs 54.0%, raw 5 exclusive wins / runtime 0 -- reachability is not conversion; decoy pollution** (4.22) |
 | M12 | two-sided probe metric (gold-reach x forbidden-presence) | metric must predict E2E refusal splits | **LIMIT RECORDED: forb-presence does NOT separate refusal conversions; the differentiator is line shape (raw turn vs fact-formatted semantic content). Metric kept as a reported dimension; E2E stays the arbiter** (4.23) |
 | M13 | deterministic conflict surfacing (player-side, priced first) | contradiction conversions without collateral losses | **DELIVERED: new arena leader 60.0% full-200 (+6pt paired), contradiction 0/20 -> 12/20, 12 wins / 0 losses; iter-1 wording failure recorded; residual 8 = reader refusal/either-or phrasing; mechanism not yet in the shipped runtime** (4.24) |
+| M14 | Runtime Port & Parity | mechanism in the shipped runtime, frozen semantics intact by default | **DELIVERED: single-source module in artificial_memory.recall.conflict_surface; player = thin adapter; RuntimeConfig.conflict_surfacing default-off; provenance drift caught & pinned by test; leakage boundary now AST-enforced; 24 unit + 109 regression green; flag-on product E2E parity + residual-8 triage stay open** (4.25) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
