@@ -733,6 +733,97 @@ deterministic memory engines can **veto** an answer (the provenance gate, +3.87p
 or answer a **narrow declared shape**, but they cannot **extract** answers better
 than a 7B reader that is already reading the same evidence.
 
+### 4.21 The R7 chain priced in the arena: complementary with the lexical channel, and the union is quantified
+
+§4.17 named the next measurement: "R7 retrieval + compile behind the arena
+player".  `scripts/benchmarks/am_current_player.py` is that player: at ingest
+it keeps the shared history as raw pipeline turns (0 write-LLM); at answer it
+runs the R7 chain (planner -> convergent coverage -> candidate pool ->
+fact-index recall -> graph bundles -> budgeted compiler) and answers from the
+compiled context with the frozen shared answerer.
+
+**One wiring defect was found and fixed on the way.**  The compiler's token
+unit is `word_tokens_floored` (words x 4/3); the arena's shared contract is
+the estimator `len(text) // 4`.  Measured on this dataset a 1400-unit budget
+compiles to ~2,367 arena tokens -- every context violated the 2,000-token
+contract without any check complaining.  `compile_r7_context` now
+re-compiles with a measured correction (up to twice) and drops whole lines
+as the last resort: **200/200 contexts at or under 2,000 arena tokens**
+(mean 1,965), at a reachability cost of only -0.5pt.
+
+**0-LLM gold-reachability, all 200 compiled contexts**
+(`scripts/benchmarks/probe_am_current_ctx.py`, artifact
+`benchmark_results/am_current/probe_ctx.json`):
+
+| channel | answerable reach | indirect | reflection | temporal |
+|---|---:|---:|---:|---:|
+| R7 chain full budget | 124/180 (69%) | 20% | 30% | 70% |
+| lexical top-k (re-implementation) | 120/180 (67%) | 0% | 0% | 100% |
+| hybrid (R7@1200 + lexical top-30 fill) | 128/180 (71%) | 10% | 30% | 100% |
+
+The two channels hold **opposite category profiles**.  The hybrid restores
+temporal completely, but indirect stays near zero and the union gains only
++2pt at this level.
+
+**End-to-end, one run each, shared frozen LLM**
+(`benchmark/results/p2_external/controlled/controlled_20261025_135405` and
+`..._140731`; the comparison table in 4.12/4.13 was re-used as stored):
+
+| player (full 200) | accuracy |
+|---|---:|
+| Simple RAG | 51.0% |
+| **AM hybrid** (R7@1200 + lexical top-30 fill) | **54.0%** |
+| AM v0.2.0 with the lexical channel | 53.0% |
+| **AM current** (R7 chain) | 46.5% |
+| Mem0-style | 42.5% |
+| Zep-style | 35.0% |
+| HippoRAG-style | 26.0% |
+
+Paired per question (200 common official questions,
+`scripts/benchmarks/price_am_current.py`):
+
+- hybrid vs lexical: 54.0 vs 53.0 (+1.0pt) -- both pass 77, lexical-only 29,
+  hybrid-only 31, both fail 63;
+- hybrid vs R7 chain: 54.0 vs 46.5 (+7.5pt).
+
+**Where the wins live.**  The R7 chain solves the arena's abstention
+collision: 18/20 (subset) and **19/20 with the hybrid** correct refusals,
+against **2/20 for the lexical runtime** -- the category the runtime broke
+when the lexical channel taught it to answer (4.13: abstention 100 -> 10%).
+Compact deterministic-but-auditable context is itself an abstention engine.
+The lexical side still owns indirect recall (16-17 of 20, R7 chain 0)
+and distractor resistance.
+
+**Why the union does not realise its ceiling.**  Oracle union of the two
+stored runs is 131/200 = **65.5%**; the hybrid realizes 54.0%.  The mismatch
+is concentrated where the lexical-only wins lived: indirect (16 lost) and
+distractor (11 lost).  Diagnosis from the answers: the hybrid's context
+contains decoy lines (e.g. `ctags`, `difftastic`, `Aarhus`) that the raw
+top-30 fill admitted, and the reader picks them.  The runtime's own lexical
+wins come from *its* recall stack (store + episodes + topic actives), not
+from a raw top-k over raw turns -- so the honest next lever is to fill the
+remainder with the runtime's actual recall rather than this
+re-implementation.
+
+**Two structural walls, shared by every player**: contradiction handling
+0/20 and reflection 0/20 across all seven players, and temporal 0-2/20 in
+every E2E despite ~70-100% reachability.  These are conversion failures
+(the evidence is present, the reader does not synthesise), not retrieval
+failures -- the arena's analogue of the M6 conversion wall on LoCoMo.
+
+Artifacts: `benchmark_results/am_current/probe_ctx.json`,
+`benchmark_results/am_current/probe_hybrid*.json`,
+`scripts/benchmarks/am_current_player.py` (9 unit tests,
+`tests/unit/test_am_current_player.py`),
+`scripts/benchmarks/probe_hybrid_ctx.py`,
+`scripts/benchmarks/price_am_current.py`.
+
+**Standing after this session**: LoCoMo official F1 54.94% unchanged; the
+arena now has two new measured rows -- the R7 chain (46.5%) and the hybrid
+(54.0%, tied with the lexical runtime at +1.0pt paired) -- and the union
+ceiling (65.5%) plus the two conversion walls are recorded as the next
+targets.  "World-class" is still not claimed.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -818,6 +909,7 @@ engine rather than `AMv020Player`.
 | M7 | single-value extraction (single-hop 52% -> 58%+) | precision >= 55% | open |
 | M8 | committer A/B (is the deterministic fallback worth it?) | paired official F1 | **DONE: reader +10.31pt on the 312 claims; committer now opt-in** (4.17) |
 | M9 | holdout validation, once | frozen method | report honestly |
+| M10 | R7 chain behind the arena player + hybrid union | arena rows comparable | **DIAGNOSTIC: R7 46.5%, hybrid 54.0% vs lexical 53.0%; abstention fixed by compile (2 -> 19/20); union ceiling 65.5%, realized 54.0%; contradiction + reflection walls remain** (4.21) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
