@@ -491,6 +491,9 @@ class AMRuntimeConflictPlayer(AMv020Player):
         if self.config.get("provenance_days", False) \
                 and self.config.get("conflict_surfacing", False):
             self.name = "AM runtime conflict dt"
+        elif self.config.get("conflict_fill_ablation", False) \
+                and self.config.get("conflict_surfacing", False):
+            self.name = "AM runtime conflict bare"
 
     def _ingest_scenario(self, scenario) -> None:
         """Remember BOTH speakers for the conflict player.

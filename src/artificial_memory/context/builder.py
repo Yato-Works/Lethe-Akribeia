@@ -97,6 +97,7 @@ class EnhancedContextBuilder:
         encoding_name: str = "cl100k_base",
         budget_ratios: dict[PriorityTier, float] | None = None,
         conflict_surfacing: bool = False,
+        conflict_fill_ablation: bool = False,
     ):
         self.store = store
         self.recall_engine = recall_engine
@@ -106,6 +107,13 @@ class EnhancedContextBuilder:
         # conflicting values with provenance, added only when the query names
         # the (entity, property) key.  Purely additive; no value is merged.
         self.conflict_surfacing = conflict_surfacing
+        # Opt-in fill ablation (M15.3): when the annotation fires, the
+        # query-unrelated recency fill (measured 92% / ~1168 tokens of a
+        # ~1270-token context, with the note at ~93% position) is REMOVED
+        # -- the conflict part already carries the planted pair.  Fires
+        # only where the annotation fires, so non-contradiction contexts
+        # are structurally untouched.
+        self.conflict_fill_ablation = conflict_fill_ablation
         self._stats = ContextStats()
 
     def _determine_tier(self, priority: float) -> PriorityTier:
@@ -140,14 +148,18 @@ class EnhancedContextBuilder:
         # candidate pool the annotation lost the budget race and fired on
         # 0/320 contexts -- invisible to the reader even though the flag
         # was on.  Reserving first is what makes the annotation reachable.
+        conflict_reserved = False
         if self.conflict_surfacing and current_memories:
-            self._append_conflict_parts(budget, query, parts, [
+            conflict_reserved = self._append_conflict_parts(budget, query, parts, [
                 mem for mem in current_memories
                 if mem.is_current and mem.status.value == "active"
             ])
 
-        # 1. Current state memories (HIGH priority)
-        if current_memories:
+        # 1. Current state memories (HIGH priority).  With the M15.3 fill
+        # ablation, a fired conflict part removes the unrelated fill:
+        # the context then carries the annotation and its evidence only.
+        fill_ablated = self.conflict_fill_ablation and conflict_reserved
+        if current_memories and not fill_ablated:
             for mem in current_memories:
                 if mem.is_current and mem.status.value == "active":
                     tokens = self.token_counter.count(mem.content)
@@ -213,8 +225,8 @@ class EnhancedContextBuilder:
         query: str,
         parts: list,
         candidates: list[Memory],
-    ) -> None:
-        """Append conflict-surfacing NOTE parts for query-named keys.
+    ) -> bool:
+        """Append conflict-surfacing NOTE parts; True if any were reserved.
 
         M15.1: the note part CARRIES its source assertion lines.  The
         audit measured why note-only composition failed: the product
@@ -240,6 +252,7 @@ class EnhancedContextBuilder:
         documents = [(mem.content, _label(mem)) for mem in candidates]
         conflicts = detect_conflicts(documents)
         entries = conflict_entries(documents)
+        fired = False
         for proj, prop in query_gated_keys(query, conflicts):
             note = note_line(
                 f"project {proj}", prop,
@@ -262,9 +275,11 @@ class EnhancedContextBuilder:
                 memory_id=None,
             ))
             self._stats.parts_count += 1
+            fired = True
             self._stats.tier_distribution[PriorityTier.HIGH.value] = (
                 self._stats.tier_distribution.get(PriorityTier.HIGH.value, 0) + 1
             )
+        return fired
 
     def _try_lower_tiers(self, budget: BudgetManager, mem: Memory, tokens: int, priority: float):
         for tier in [PriorityTier.MEDIUM, PriorityTier.LOW]:

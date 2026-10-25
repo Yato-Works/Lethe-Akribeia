@@ -220,6 +220,12 @@ class RuntimeConfig:
     # losses; priced at 0 LLM before being built).  Purely additive: no
     # merge, no overwrite, no change to ranking or supersession.
     conflict_surfacing: bool = False
+    # M15.3 (V4_PROGRAM.md 4.30): when a conflict annotation fires, the
+    # query-unrelated recency fill -- measured 92% of a contradiction
+    # context -- is removed outside the reserved conflict part.  Fires
+    # only where the note fires (0/180 elsewhere), so other categories
+    # are structurally untouched.  Default off: frozen semantics.
+    conflict_fill_ablation: bool = False
     # deepseek_session tuning (only used when retrieval_strategy="deepseek_session")
     session_gate_pool: int = 100     # post-gate candidate pool size (K=100 winner)
     candidate_window: int = 450      # pre-gate fetch window (450 >= S4 store size)
@@ -410,6 +416,7 @@ class ArtificialMemoryRuntime:
                 PriorityTier.LOW: 0.15,
             },
             conflict_surfacing=self.config.conflict_surfacing,
+            conflict_fill_ablation=self.config.conflict_fill_ablation,
         )
         self.memory_compiler = IncrementalMemoryCompiler(
             self.store, self.compressor, self.topic_classifier

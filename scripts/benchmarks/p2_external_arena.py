@@ -86,6 +86,13 @@ try:
         return AMRuntimeConflictPlayer(config, answerer=answerer)
 
     PLAYER_FACTORIES["AM runtime conflict dt"] = _runtime_conflict_dt
+
+    def _runtime_conflict_bare(config, answerer=None):
+        config = dict(config or {})
+        config["conflict_fill_ablation"] = True
+        return AMRuntimeConflictPlayer(config, answerer=answerer)
+
+    PLAYER_FACTORIES["AM runtime conflict bare"] = _runtime_conflict_bare
 except ImportError as _e:  # pragma: no cover - keeps the 5-player default intact
     if os.environ.get("AM_DEBUG"):
         print(f"AM current player unavailable: {_e}")

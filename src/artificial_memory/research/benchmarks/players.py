@@ -1171,6 +1171,9 @@ class AMv020Player(ControlledPlayer, _SharedAnswerGeneration):
             # passed straight through to RuntimeConfig.  Off by default, so
             # every pre-M14 reproduction stays byte-identical.
             conflict_surfacing=bool((self.config or {}).get("conflict_surfacing", False)),
+            # Benchmark-only knob (M15.3): fill ablation arm, off by default.
+            conflict_fill_ablation=bool(
+                (self.config or {}).get("conflict_fill_ablation", False)),
         ))
 
         start = time.perf_counter()

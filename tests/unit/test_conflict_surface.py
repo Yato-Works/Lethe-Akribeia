@@ -262,6 +262,44 @@ def test_runtime_config_flag_defaults_to_frozen_semantics():
     assert RuntimeConfig().conflict_surfacing is False
 
 
+def test_fill_ablation_removes_unrelated_fill_only_on_fired_queries(store):
+    """M15.3: with ablation on, a fired conflict context carries the
+    annotation and its evidence and loses the ~92% recency fill; a
+    non-conflict context is byte-identical whether ablation is on or
+    off, and flag-off stays frozen."""
+    topic_id = _topic(store)
+    m1 = _memory(store, topic_id, V1, days_ago=10)
+    m2 = _memory(store, topic_id, V2, days_ago=30)
+    pool = [m1, m2] + [
+        _memory(store, topic_id,
+                f"For project rush{i}, the sprint plan was settled on.",
+                days_ago=1)
+        for i in range(40)
+    ]
+    plain = _builder(store, on=True)
+    ablate = EnhancedContextBuilder(
+        store, BasicRecallEngine(store), conflict_surfacing=True,
+        conflict_fill_ablation=True)
+
+    fired = ablate.build_context(
+        QUERY, topic_id, 4000, current_memories=pool)
+    assert "NOTE: conflicting reports for project atlas (cache layer)" in fired
+    assert f"- {V1}" in fired and f"- {V2}" in fired
+    unrelated = [line for line in fired.splitlines()
+                 if "project rush" in line]
+    assert not unrelated, ("the recency fill must be removed when the "
+                           "annotation fires")
+    plain_ctx = plain.build_context(
+        QUERY, topic_id, 4000, current_memories=pool)
+    assert len(plain_ctx) > len(fired) * 2, (
+        "control keeps the fill the ablation removes")
+
+    inert_q = "Which debugger did the user configure for project beacon?"
+    assert ablate.build_context(
+        inert_q, topic_id, 4000, current_memories=pool) == \
+        plain.build_context(inert_q, topic_id, 4000, current_memories=pool)
+
+
 def test_tagged_note_survives_a_large_current_memory_pool(store):
     """M14 pricing finding: with 400+ candidates the note lost the budget
     race and fired on 0/320 product contexts.  Reservation happens FIRST,

@@ -1311,6 +1311,64 @@ naming guard), 29 unit green.  Artifacts:
 (citable), plus the two diagnostic probe prints (non-citable, metric
 bug before fix).
 
+### 4.30 M15.3 fill-mass ablation: measured, and the result is INVERTED
+
+Phase 1 (0-LLM, `probe_fill_mass.py`, baseline artifact
+`fill_mass_baseline.json`).  The unrelated recency fill is **92%** of a
+~1270-token contradiction context (~1168 tokens, ~57 lines, newest
+first); the reserved conflict part is ~48 tokens and lands at ~93%
+position, at the tail of the wall — not "near the start", which is what
+one would design for attention.
+
+Phase 2 (the ONE change).  `conflict_fill_ablation` (default off,
+frozen-guarded): when the annotation fires, the current-state fill is
+skipped entirely — the context is the conflict part only.  0-LLM
+comparability `price_fill_ablation.py`
+(`fill_ablation_pricing.json`): the reserved part (NOTE + both source
+lines + provenance) is **byte-identical** to the control arm 20/20;
+co-presence 20/20; and all **180 non-fired contexts are byte-identical**
+— the ablation cannot touch anything beyond contradiction questions,
+by construction and by measurement.  Fired contexts drop
+~1270 → 92–95 tokens.
+
+Phase 3 (minimal paired reader run, 50q, three arms,
+`controlled_20261025_190445`):
+
+| arm | acc% | contradiction |
+|---|---:|---:|
+| AM runtime (off) | 40.0 | 0/5 |
+| AM runtime conflict (fill present) | 42.0 | 1/5 |
+| AM runtime conflict bare (fill removed) | **40.0** | **0/5** |
+
+Paired conflict vs bare: the fill removal **LOST the one conversion**
+(contradiction-00 answered "I don't know" with the note+evidence alone)
+and regressed nothing else honestly measured.  Stated plainly: the fill
+was not burying the annotation — it was a **necessary condition** for
+the single conversion the product reader makes.
+
+**Cumulative M15.1–M15.3 measurement story:** three independent,
+0-LLM-priced, builder-chained changes (pair evidence co-present 20/20;
+provenance distinct 20/20; noise fill removed entirely) leave the
+product reader converting exactly the same single question — and the
+removal experiment shows the conversion depends on the surrounding
+fill's PRESENCE, not on the annotation's information content.  The
+hypothesis axis "the reader is information-starved or buried" is now
+measured against; what remains is a reader-behavior axis: with the same
+literal note text, the reader converts when ~1150 tokens of unrelated
+memory lines accompany it, and refuses when the annotation stands
+almost alone.  The next experiments are therefore OUTSIDE the builder
+composition: (a) reader-facing instruction/register (one prompt-word
+change at a time), or (b) pivot to the bench side (residual-8 triage,
+reflection abstraction experiment), where the reader demonstrably
+converts 4/5 under a different composition.  The `bare` knob is
+measured NEGATIVE and stays default-off (recorded in §5: do not
+enable).
+
+Tests: 1 new unit test (ablation: fired-context structure, non-fired
+byte-identity, frozen off-arm), 30 unit green.  Artifacts:
+`fill_mass_baseline.json`, `fill_ablation_pricing.json`; run
+`controlled_20261025_190445` (citable).
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -1404,6 +1462,7 @@ engine rather than `AMv020Player`.
 | M15 | flag-on product E2E transfer | same conversions on the product read path | **PARTIAL: 3 pricing iterations (budget race / one-sided ingest / 100-fetch window -- each a real research-vs-product gap); priced 20/20 & 0/180 on the product path; E2E 50q paired 40.0 -> 42.0, contradiction 0/5 -> 1/5, zero losses; residual = product context composition, named as the next frontier; flag stays default-off** (4.27) |
 | M15.1 | product composition audit | measure where pair evidence drops; fix the bottleneck with one change | **DELIVERED (structural): baseline reproduced; bottleneck = recency window + recall dedupe (recall parts = 0; pair appearance a run lottery); ONE change (note carries source assertion lines) lifted co-presence 15/20 -> 20/20, 0 collateral, ctx tokens not increased; minimal paired E2E unchanged (40.0 -> 42.0, same 1/5) => pair-reach proven NOT the binding constraint; reader-side explain-candidates named (provenance distinctness, noise mass, register); 2 pre-existing test failures triaged (one fixed, one recorded OPEN)** (4.28) |
 | M15.2 | provenance distinguishability | real distinct time points on the product read path | **NULL (measured complete): occurred_at passthrough + provenance_days knob priced 0-LLM (labels 20/20 distinct, firing/co-presence/tokens unchanged); 3-arm reader run conflict vs dt +0.0pt, same single conversion => distinct data-backed dates do NOT move the reader; remaining explain-candidate = unrelated recency fill mass around the note (M15.3 candidate); knobs default-off** (4.29) |
+| M15.3 | fill-mass ablation | query-unrelated recency fill measured, then removed | **INVERTED (measured complete): fill = 92% of a ~1270-token contradiction context, note at 93% position; ablation priced 0-LLM (reserved part byte-identical 20/20, 180/180 non-fired byte-identical, fired ctx 1270 -> 95 tokens); reader run 50q: conflict 42.0 (1/5) -> bare 40.0 (0/5) -- fill removal LOST the single conversion; fill presence is a necessary condition, not a burying mass； hypothesis axis measured against; next: reader register axis or bench pivot； bare knob stays OFF (do-not-enable)** (4.30) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
