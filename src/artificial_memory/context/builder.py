@@ -96,11 +96,16 @@ class EnhancedContextBuilder:
         recall_engine: BasicRecallEngine,
         encoding_name: str = "cl100k_base",
         budget_ratios: dict[PriorityTier, float] | None = None,
+        conflict_surfacing: bool = False,
     ):
         self.store = store
         self.recall_engine = recall_engine
         self.token_counter = TokenCounter(encoding_name)
         self.budget_ratios = budget_ratios
+        # Opt-in conflict surfacing (V4 4.24): one NOTE line naming both
+        # conflicting values with provenance, added only when the query names
+        # the (entity, property) key.  Purely additive; no value is merged.
+        self.conflict_surfacing = conflict_surfacing
         self._stats = ContextStats()
 
     def _determine_tier(self, priority: float) -> PriorityTier:
@@ -127,10 +132,15 @@ class EnhancedContextBuilder:
         self._stats = ContextStats()
         self._stats.budget_allocation = budget.allocation
 
+        # Candidate memories for conflict detection (deduped by id).
+        candidates: dict[int, Memory] = {}
+
         # 1. Current state memories (HIGH priority)
         if current_memories:
             for mem in current_memories:
                 if mem.is_current and mem.status.value == "active":
+                    if mem.id is not None:
+                        candidates[mem.id] = mem
                     tokens = self.token_counter.count(mem.content)
                     priority = 1.0
                     tier = PriorityTier.HIGH
@@ -161,6 +171,8 @@ class EnhancedContextBuilder:
         for level, base_priority, default_tier in recall_configs:
             memories, _ = self.recall_engine.recall(query, topic_id, level, max_tokens=max_tokens // 2)
             for mem in memories:
+                if mem.id is not None:
+                    candidates[mem.id] = mem
                 if current_memories and any(m.id == mem.id for m in current_memories):
                     continue
 
@@ -183,10 +195,58 @@ class EnhancedContextBuilder:
                 else:
                     self._try_lower_tiers(budget, mem, tokens, priority)
 
+        # 2b. Conflict surfacing (opt-in, V4 4.24): one NOTE part per
+        # query-gated conflicting (entity, property) key, both values and
+        # their provenance kept.  HIGH priority so the annotation survives
+        # budget selection like the compile-side measurement did.
+        if self.conflict_surfacing and candidates:
+            self._append_conflict_parts(budget, query, parts, candidates)
+
         # 3. Sort by priority
         parts.sort(key=lambda p: (-p.priority, p.tier.value))
 
         return parts, budget, self._stats
+
+    def _append_conflict_parts(
+        self,
+        budget: BudgetManager,
+        query: str,
+        parts: list,
+        candidates: dict[int, Memory],
+    ) -> None:
+        """Append conflict-surfacing NOTE parts for query-named keys."""
+        from artificial_memory.recall.conflict_surface import (
+            detect_conflicts,
+            note_line,
+            query_gated_keys,
+        )
+
+        def _label(mem: Memory) -> str:
+            stamp = mem.valid_from or mem.created_at
+            return stamp.strftime("%Y-%m-%d") if stamp else "undated"
+
+        documents = [(mem.content, _label(mem)) for mem in candidates.values()]
+        conflicts = detect_conflicts(documents)
+        for proj, prop in query_gated_keys(query, conflicts):
+            note = note_line(
+                f"project {proj}", prop,
+                conflicts[(proj, prop)],
+            )
+            tokens = self.token_counter.count(note)
+            if not budget.allocate(PriorityTier.HIGH, tokens):
+                continue
+            parts.append(ContextPart(
+                content=note,
+                tokens=tokens,
+                priority=0.9,
+                source="conflict:note",
+                tier=PriorityTier.HIGH,
+                memory_id=None,
+            ))
+            self._stats.parts_count += 1
+            self._stats.tier_distribution[PriorityTier.HIGH.value] = (
+                self._stats.tier_distribution.get(PriorityTier.HIGH.value, 0) + 1
+            )
 
     def _try_lower_tiers(self, budget: BudgetManager, mem: Memory, tokens: int, priority: float):
         for tier in [PriorityTier.MEDIUM, PriorityTier.LOW]:

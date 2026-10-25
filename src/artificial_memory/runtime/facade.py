@@ -210,6 +210,16 @@ class RuntimeConfig:
     # 20 for 80-100% of the retrieval-shaped categories.  See V4_PROGRAM.md 4.12.
     lexical_recall: bool = False
     lexical_candidate_limit: int = 1000
+    # Conflict surfacing for the classic/lexical read path (off by default).
+    #
+    # Opt-in annotation in the assembled context: when the candidate
+    # memories contain two DIFFERENT values asserted for the same
+    # (entity, property) and the query names that key, a single NOTE line
+    # surfaces both values with their provenance (V4_PROGRAM.md 4.24:
+    # contradiction conversions 0/20 -> 12/20 in the arena, zero exclusive
+    # losses; priced at 0 LLM before being built).  Purely additive: no
+    # merge, no overwrite, no change to ranking or supersession.
+    conflict_surfacing: bool = False
     # deepseek_session tuning (only used when retrieval_strategy="deepseek_session")
     session_gate_pool: int = 100     # post-gate candidate pool size (K=100 winner)
     candidate_window: int = 450      # pre-gate fetch window (450 >= S4 store size)
@@ -398,7 +408,8 @@ class ArtificialMemoryRuntime:
                 PriorityTier.HIGH: 0.50,
                 PriorityTier.MEDIUM: 0.35,
                 PriorityTier.LOW: 0.15,
-            }
+            },
+            conflict_surfacing=self.config.conflict_surfacing,
         )
         self.memory_compiler = IncrementalMemoryCompiler(
             self.store, self.compressor, self.topic_classifier

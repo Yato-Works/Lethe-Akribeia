@@ -217,3 +217,52 @@ def test_conflict_player_annotates_within_budget(dataset):
     hyb.ingest(list(dataset.scenarios))
     bare = hyb._answer_with_budget(q, hyb.context_budget)
     assert "conflict_lines" not in bare.metadata
+
+
+# ---- M14 Phase 1: freeze the M13 result -----------------------------------
+# The M13 mechanism is scored against ground_truth group 2, whose vocabulary
+# (CONFLICT_MARKERS in the scorer-side arena module) must never enter player
+# code.  These tests make that boundary mechanical, so a later edit that
+# imports the scorer's marker list makes the suite fail loudly.
+
+
+def test_conflict_player_module_never_imports_scorer_vocabulary():
+    import ast as _ast
+    from pathlib import Path as _Path
+
+    module = _Path(__file__).resolve().parents[2] / "scripts" / "benchmarks" \
+        / "am_current_player.py"
+    tree = _ast.parse(module.read_text(encoding="utf-8"))
+    root = _ast.parse(
+        (_Path(__file__).resolve().parents[2] / "src"
+         / "artificial_memory" / "research" / "benchmarks" / "arena.py")
+        .read_text(encoding="utf-8"))
+    scorer_names = {
+        node.targets[0].id for node in root.body
+        if isinstance(node, _ast.Assign)
+        and isinstance(node.targets[0], _ast.Name)
+    }
+    imported = set()
+    for node in _ast.walk(tree):
+        if isinstance(node, _ast.ImportFrom) and node.module and \
+                "arena" in node.module:
+            imported |= {a.name for a in node.names}
+        elif isinstance(node, _ast.Import):
+            imported |= {a.name.split(".")[0] for a in node.names}
+    leaked = imported & scorer_names
+    assert not leaked, (
+        f"player must not import the scorer's vocabulary: {leaked}")
+
+
+def test_annotation_text_conveys_both_on_record_and_neither_confirmed(dataset):
+    from am_current_player import AMConflictPlayer, conflict_annotations, detect_conflicts
+
+    conflicts = detect_conflicts(_player(dataset)._all_turns)
+    q = next(q for q in dataset.questions
+             if q.category.value == "contradiction_handling")
+    (note,) = conflict_annotations(q.question, conflicts)
+    assert "conflicting reports" in note          # surfaced, not hidden
+    assert "report both values" in note           # plan-21 semantics
+    assert "(day " in note, "the M13-measured provenance surface must hold"
+    # the reader must not be steered into the iter-1 refusal phrasing
+    assert "which is correct is unverified" not in note

@@ -42,6 +42,11 @@ if str(REPO / "src") not in sys.path:
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 
+from artificial_memory.recall.conflict_surface import (  # noqa: E402
+    detect_conflicts as _canonical_detect,
+    note_line as _note_line,
+    query_gated_keys as _query_gated_keys,
+)
 from artificial_memory.research.benchmarks.player import (  # noqa: E402
     Answer,
     ControlledPlayer,
@@ -283,88 +288,30 @@ def compile_r7_context(pipeline, all_turns: list, q: str,
     return ctx, meta
 
 
-# --- conflict surfacing (V4 4.24) -------------------------------------------
-# Generic deterministic detector: two turns asserting DIFFERENT values for the
-# same (entity, property) pair.  Reads ONLY the conversation turns; the scorer's
-# ground_truth and CONFLICT_MARKERS vocabularies are used NOWHERE here.
+# --- conflict surfacing (V4 4.24, M14 runtime port) --------------------------
+# Thin adapters over the canonical runtime module
+# (src/artificial_memory/recall/conflict_surface.py).  Single source of
+# truth: the player and the shipped runtime class share one implementation,
+# so benchmark and product stay in parity by construction.
 #
-# Priced before being built (scripts/benchmarks/price_conflict_detector.py):
-# the planted contradiction pairs are detected 20/20 and the annotation fires
-# on 0/180 questions of the other nine categories, so the added ctx text can
-# reach only the questions whose correct answer is "both, and they conflict".
+# Boundary: the detected annotation uses ONLY the conversation turns; the
+# scorer's ground_truth and CONFLICT_MARKERS vocabularies are used NOWHERE
+# here (enforced by test_conflict_player_module_never_imports_scorer_vocabulary).
 
-_PRED = r"(runs|was|is|uses|pinned|set)"
-_PREP = r"(?:on|with|to|for)"
-_RE_ASSERT = re.compile(
-    r"\b([A-Za-z][A-Za-z -]{2,30}?)\s+"
-    + _PRED
-    + r"\s+(?:actually\s+|really\s+|currently\s+)?"
-    + _PREP
-    + r"\s+([A-Za-z0-9][A-Za-z0-9_-]*)\b",
-    re.I,
-)
-_RE_PROJECT = re.compile(r"\bfor project ([A-Za-z0-9_-]+)\b", re.I)
-
-# Generic noise trim so "the user reported the cache layer" and "the cache
-# layer actually" land on one key.  Fixed English stop-sets only; nothing
-# arena-specific.
-_LEAD_NOISE = {
-    "the", "a", "an", "my", "our", "their", "user", "teammate", "coworker",
-    "colleague", "they", "i", "we", "he", "she", "reported", "mentions",
-    "mention", "mentioned", "said", "says", "noted", "let", "us",
-    "know", "knows", "that", "but", "and", "actual", "who", "which",
-}
-_TRAIL_NOISE = {
-    "actually", "really", "currently", "still", "now", "allegedly",
-    "reportedly", "regrettably", "seemingly",
-}
-
-
-def _norm_prop(prop: str) -> str:
-    tokens = prop.lower().split()
-    while tokens and tokens[0] in _LEAD_NOISE:
-        tokens.pop(0)
-    while tokens and tokens[-1] in _TRAIL_NOISE:
-        tokens.pop()
-    return " ".join(tokens)
-
-
-def detect_conflicts(all_turns) -> dict[tuple[str, str], list]:
-    """Index assertions; keep keys asserted with more than one distinct value.
-
-    Returns {(entity, property): [(value, turn), ...]} in turn order.
-    """
-    asserts: dict[tuple[str, str], list] = defaultdict(list)
-    for turn in all_turns:
-        _, _, _, content = turn
-        projects = {m.group(1).lower() for m in _RE_PROJECT.finditer(content)}
-        for m in _RE_ASSERT.finditer(content):
-            prop = _norm_prop(m.group(1))
-            if not prop:
-                continue
-            value = m.group(3)
-            for proj in projects or ("(none)",):
-                asserts[(proj, prop)].append((value, turn))
-    return {key: vals for key, vals in asserts.items()
-            if len({v for v, _ in vals}) > 1}
+def detect_conflicts(all_turns) -> dict:
+    """{(entity, property): [(value, day), ...]} for duplicated assertions."""
+    documents = [(turn[3], str(turn[1])) for turn in all_turns]
+    return _canonical_detect(documents)
 
 
 def conflict_annotations(question_text: str, conflicts) -> list[str]:
     """Lines surfacing query-relevant conflicts, built only from the turns."""
-    qlow = question_text.lower()
     lines = []
-    for (proj, prop), vals in sorted(conflicts.items()):
-        if proj == "(none)" or proj not in qlow or prop not in qlow:
-            continue
-        distinct: list[tuple[str, str]] = []
-        for value, turn in vals:
-            if value not in {v for v, _ in distinct}:
-                distinct.append((value, str(turn[1])))
-        chain = " vs ".join(f"{v} (day {d})" for v, d in distinct)
-        lines.append(
-            f"NOTE: conflicting reports for project {proj} ({prop}): {chain}."
-            " Both are on record and neither is confirmed; report both values"
-            " rather than choosing one.")
+    for proj, prop in _query_gated_keys(question_text, conflicts):
+        # the player's provenance unit is the arena day index: pre-format it
+        # so the note keeps the exact M13-measured surface ("day 45").
+        entries = [(v, f"day {d}") for v, d in conflicts[(proj, prop)]]
+        lines.append(_note_line(f"project {proj}", prop, entries))
     return lines
 
 
