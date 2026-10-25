@@ -529,6 +529,8 @@ def main() -> int:
     ap.add_argument("--gate", default="subject_absent", choices=sorted(GATES))
     ap.add_argument("--thresholds", default="0.3,0.4,0.5,0.6,0.7")
     ap.add_argument("--out", default="")
+    ap.add_argument("--min-terms", type=int, default=1,
+                    help="with --runtime-gate: content terms an answer needs")
     ap.add_argument("--runtime-gate", action="store_true",
                     help="use the shipped AnswerProvenanceGate instead of a local gate")
     args = ap.parse_args()
@@ -574,8 +576,9 @@ def main() -> int:
                     from artificial_memory.skills.refusal_gate import (
                         AnswerProvenanceGate,
                     )
-                    refuse = (bool(ctx) and AnswerProvenanceGate()
-                              .decide(qa["question"], ctx, pred).refuse)
+                    refuse = (bool(ctx) and AnswerProvenanceGate(
+                        min_terms=args.min_terms)
+                        .decide(qa["question"], ctx, pred).refuse)
                 else:
                     refuse = gate(qa["question"], ctx, pred, threshold) if ctx else False
                 if refuse:

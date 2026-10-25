@@ -128,7 +128,7 @@ class AnswerProvenanceGate:
     #: Share of the answer's content stems that a line must contain.
     THRESHOLD = 0.7
 
-    def __init__(self, allow_roles: bool = False) -> None:
+    def __init__(self, allow_roles: bool = False, min_terms: int = 1) -> None:
         #: When True, a first-person question in a role-labelled corpus
         #: (user/assistant) is attributed to the user.  OFF by default because it
         #: was measured as harmful: on LongMemEval it refuses 2 correct answers and
@@ -136,6 +136,9 @@ class AnswerProvenanceGate:
         #: restates the user's facts.  The provenance rule is valid where distinct
         #: persons exist; agent memory does not give it that separation.
         self.allow_roles = allow_roles
+        #: How many content stems the answer must carry before the gate may fire.
+        #: Measured on the merged full run: 1 -> 165 fires, 2 -> 102, 3 -> 46.
+        self.min_terms = max(1, int(min_terms))
 
     def decide(self, question: str, context: str, answer: str) -> RefusalDecision:
         answer = (answer or "").strip()
@@ -168,8 +171,10 @@ class AnswerProvenanceGate:
         names = {s.lower() for s in speakers}
         terms = {_stem(w) for w in re.findall(r"[a-z]{4,}", answer.lower())
                  if w not in _STOP and w not in names}
-        if not terms:
-            return RefusalDecision(False, "answer carries no content terms", subject)
+        if len(terms) < self.min_terms:
+            return RefusalDecision(
+                False, f"answer carries {len(terms)} content terms "
+                       f"(< {self.min_terms})", subject)
 
         best_overlap = 0.0
         best_speaker = ""

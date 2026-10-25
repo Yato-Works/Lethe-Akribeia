@@ -351,6 +351,12 @@ single-hop (-2.6pt of cost) removes more adversarial recall (+25.5pt of gain)
 than it saves. `untraceable` is not even a hallucination detector in practice —
 it mostly fires on answers that were already refusals.
 
+A final parameter was swept on the merged full run (committer off): requiring the
+answer to carry more content terms before the gate may fire. Minimum terms 1 / 2 /
+3 give 54.94% / 54.54% / 53.02%, because the single-hop false refusals are
+disproportionately one-term answers but so are the adversarial catches. The
+shipped default stays at 1.
+
 ### 4.11 The Reader-side support verifier: a pilot's +4.8 is +0.45 at scale
 
 The one refusal mechanism left untested was a second model call that audits the
