@@ -1081,6 +1081,37 @@ change at 0 LLM before a reader run; (b) flag-on product player E2E
 (parity measurement, not a standing change until paired); (c) reflection
 0/20 remains untouched as its own investigation.
 
+### 4.26 Phase-4 triage (0 LLM): the reflection wall is an abstraction step, not evidence loss
+
+Per the M14 plan, reflection was investigated independently of the
+contradiction fix — never assumed to be the same problem.  Answer autopsy
+of all 20 reflection_reinterpretation questions in the full-200 runs
+(both `controlled_20261025_140731` and `controlled_20261025_164953`):
+
+- **Every one of the 20 answers asserts a concrete value** ("The user
+  consistently shows a preference for the ClickHouse database for project
+  atlas"), with coverage 0/1 in all 20.  Zero refusals — this wall is NOT
+  the abstention-style refusal wall seen elsewhere.
+- The plot asks to reinterpret three concrete observations ("reverts the
+  build configuration", "copies files by hand", "keeps a backup") into
+  the *abstract trait* they jointly evidence — the frozen gold marker is
+  exactly such a trait word (`stability` / `minimal` / `measurement`,
+  arena.py `THEME_MARKERS`).  The reader reports the most salient
+  concrete fact instead of the conclusion the observations support.
+- Verdict: **evidence is reached, the evaluation condition is standard
+  coverage, and the missing capability is interpretive generalisation**
+  (concrete observations -> named trait).  It is therefore NOT the same
+  problem as the contradiction surfacing fix (which supplied *absent
+  information*; here the *conclusion* must be derived, not carried in).
+- Overfitting guard: a deterministic observation->trait lexicon would be
+  hard-coding the scorer's own vocabulary (the literal trait words live
+  in the gold markers) — rejected without measurement, per program
+  guards.  The honest priced lever is reader-side: a system-prompt
+  instruction to name the recurring pattern at the abstraction level
+  ("one change one measurement" on the frozen prompt surface), and/or
+  exposing the three observations adjacent to each other in the compile,
+  which 0-LLM probe budget checks can price first.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
