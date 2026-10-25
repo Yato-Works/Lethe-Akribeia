@@ -897,6 +897,57 @@ run dirs `controlled_20261025_161439` (hybrid v2, 50q),
 `controlled_20261025_140439`/`140731` (raw fill 50q/200q), priced with
 `scripts/benchmarks/price_am_current.py`.
 
+### 4.23 The negative-evidence metric: implemented, and its first result is a limit, not a win
+
+Opening 4.22 left: the reachability metric could rank two fills in the
+opposite order of their E2E accuracy.  The fix attempted here is the
+cheapest possible two-sided metric: every arena question already carries a
+`forbidden` list (the decoy vocabulary the official scorer itself uses), so
+the negative-evidence dimension is "does a forbidden term appear in the
+context" (`forb_hit` state in `probe_hybrid_ctx.py`) -- no new vocabulary,
+no leakage, measurement only.
+
+Validated expectation: `forb_hit` on the planted abstention temptation
+should be high exactly where the E2E refusals break, separating the fills
+the probe previously ranked by gold-reach alone.
+
+**Measured (200 compiled contexts, artifacts
+`benchmark_results/am_current/probe_hybrid_metric.json` and `probe_ctx.json`):**
+
+| variant | abstention temptation (forb-hit) | E2E abstention correct |
+|---|---:|---:|
+| R7 chain (compile) | 20/20 | 20/20 |
+| hybrid, raw fill | 20/20 | 19/20 |
+| hybrid, runtime fill | 15/20 | ~1/5 (subset) |
+| lexical runtime | 20/20 | 2/20 |
+
+**The hypothesis is falsified: forbidden-term presence does NOT separate
+the fills' refusal behaviour.**  R7 and the raw-fill hybrid carry the
+temptation in every abstention context and still refuse almost always,
+while the runtime fill carries it *less* and breaks.  The measured
+differentiator is the **line shape**, not the term presence: raw turns keep
+the near-miss assertion embedded inside a conversational utterance ("for
+project aurora, ... in session-x"), whereas the runtime's semantic-content
+lines are already fact-shaped sentences that read *directly* as an answer
+to the question's form -- a decoy that arrives pre-formatted for the reader
+to adopt.
+
+Recorded honestly, this is the metric's limit: `gold-reach x forb-hit`
+explains necessary conditions (evidence present / decoy present) but not
+conversion.  Conversion of BOTH directions (answering and refusing) runs
+through phrasing fidelity, consistent with every conversion-wall result in
+this program (M6, 4.11, 4.20, 4.21).  For future measurement the report
+must carry both sides, but the E2E stays the arbiter of any player change.
+
+**Standing change: none.**  AM hybrid with the raw top-30 fill stays the
+arena leader (54.0%).  No player change is justified by this measurement --
+which is itself the disciplined outcome the program requires: a metric was
+extended, its prediction failed, the extension is kept as a reported
+dimension, and nothing was tuned against the failed prediction.
+
+Artifacts: `benchmark_results/am_current/probe_hybrid_metric.json`,
+`probe_hybrid_ctx.py` (forb dimension added).
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -984,6 +1035,7 @@ engine rather than `AMv020Player`.
 | M9 | holdout validation, once | frozen method | report honestly |
 | M10 | R7 chain behind the arena player + hybrid union | arena rows comparable | **DIAGNOSTIC: R7 46.5%, hybrid 54.0% vs lexical 53.0%; abstention fixed by compile (2 -> 19/20); union ceiling 65.5%, realized 54.0%; contradiction + reflection walls remain** (4.21) |
 | M11 | hybrid fill from the runtime's own recall stack | paired E2E >= raw fill | **REJECTED: 44.0% vs 54.0%, raw 5 exclusive wins / runtime 0 -- reachability is not conversion; decoy pollution** (4.22) |
+| M12 | two-sided probe metric (gold-reach x forbidden-presence) | metric must predict E2E refusal splits | **LIMIT RECORDED: forb-presence does NOT separate refusal conversions; the differentiator is line shape (raw turn vs fact-formatted semantic content). Metric kept as a reported dimension; E2E stays the arbiter** (4.23) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the

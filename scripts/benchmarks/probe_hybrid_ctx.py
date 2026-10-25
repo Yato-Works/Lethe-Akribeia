@@ -122,6 +122,17 @@ def main() -> int:
                   for group in question.ground_truth]
         return bool(groups) and all(groups)
 
+    def forb_hit(ctx: str, question) -> int:
+        """Negative-evidence dimension: forbidden (decoy) terms in context.
+
+        On abstention questions this is precisely the planted temptation
+        that flips a correct refusal into a fluent wrong answer; on
+        distractor questions it marks a decoy line riding along with the
+        gold.  Uses ONLY the official scorer's own term vocabulary.
+        """
+        low = ctx.lower()
+        return sum(1 for term in question.forbidden if term.lower() in low)
+
     t1 = time.perf_counter()
     for question in dataset.questions:
         cat = question.category.value
@@ -181,6 +192,13 @@ def main() -> int:
             "hybrid_rt": reach(ctx_rt, question),
             "lex_only": reach(ctx_lex, question),
         }
+        forb = {
+            "r7_only": forb_hit(ctx_full, question),
+            "r7_a": forb_hit(ctx_a, question),
+            "hybrid": forb_hit(ctx_hybrid, question),
+            "hybrid_rt": forb_hit(ctx_rt, question),
+            "lex_only": forb_hit(ctx_lex, question),
+        }
         rows.append({
             "question_id": question.question_id,
             "category": cat,
@@ -188,6 +206,8 @@ def main() -> int:
             "ctx_tokens": {"r7_a": est_tokens(ctx_a), "hybrid": est_tokens(ctx_hybrid),
                            "lex_only": est_tokens(ctx_lex), "hybrid_rt": est_tokens(ctx_rt)},
             **recs,
+            **{f"forb_{k}": v for k, v in forb.items()},
+            "forbidden_terms": list(question.forbidden),
         })
         if not question.expected_abstention:
             for name, v in recs.items():
@@ -218,6 +238,25 @@ def main() -> int:
     print(line)
     print(f"mean hybrid ctx tokens: "
           f"{sum(r['ctx_tokens']['hybrid'] for r in rows) / len(rows):.0f}")
+
+    # Negative-evidence dimension: forbidden-hit rate per variant per category.
+    print("\n  forbidden (decoy) term presence per context")
+    header2 = f"{'category':<28}" + "".join(f"{v:>15}" for v in variants)
+    print(header2)
+    print("-" * len(header2))
+    for cat in cats:
+        rows_cat = [r for r in rows if r["category"] == cat]
+        line = f"{cat:<28}"
+        for v in variants:
+            hit = sum(1 for r in rows_cat if r[f"forb_{v}"] > 0)
+            line += f"{hit}/{len(rows_cat)}".rjust(15)
+        print(line)
+    n_abs = sum(1 for r in rows if r["expected_abstention"])
+    line = f"{'abstention (temptation)':<28}"
+    for v in variants:
+        hit = sum(1 for r in rows if r["expected_abstention"] and r[f"forb_{v}"] > 0)
+        line += f"{hit}/{n_abs}".rjust(15)
+    print(line)
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
