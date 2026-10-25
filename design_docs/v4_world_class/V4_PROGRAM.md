@@ -697,6 +697,42 @@ scores 34.2% F1 on its own claims (§4.18).
 the gap needs a materially better item extractor, not a union wrapper around the
 current one.
 
+### 4.20 Single-value extraction: a +9.15pt prize that no deterministic rule reaches
+
+M7 was the last engine in the plan: extract a single value for open-domain and
+single-hop questions. Its ceiling was measured first, on dev cats 3-4 (687
+questions): if every question whose gold tokens are present in the compiled
+context were answered exactly, how much would official F1 gain?
+
+| measure | value |
+|---|---:|
+| dev cat3+4 questions | 687 |
+| questions where the gold is present in context but the pipeline is wrong | 446 |
+| current official F1 | 52.10% |
+| oracle single-value extraction | **71.91%** |
+| **ceiling** | **+19.81pt on the cohort = +9.15pt on dev overall** |
+
+So the prize is real and large — the evidence is already in the context and the
+reader fails to convert it. But the ceiling says nothing about whether a rule can
+reach it, and the evidence that it cannot is already in this repository:
+
+| extractor | F1 on its own claims | reader on the same questions |
+|---|---:|---:|
+| entity attribute resolver (16 claims) | 15.1% | 59.6% |
+| single-hop fact resolver (7 claims) | 14.3% | 57.1% |
+| set aggregator (21 claims) | 34.2% | 45.2% |
+| event action resolver (75 claims) | 23.8% | 51.3% |
+
+Every deterministic extractor is one third to one quarter of the reader on the
+same questions. **M7 is closed**: the bottleneck is extraction capability, not a
+missing rule, and a new deterministic extractor would have to beat a 52-60%
+baseline that the existing ones miss by 40 points.
+
+This is the program's central negative result, stated plainly: on this corpus,
+deterministic memory engines can **veto** an answer (the provenance gate, +3.87pt)
+or answer a **narrow declared shape**, but they cannot **extract** answers better
+than a 7B reader that is already reading the same evidence.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |

@@ -7,5 +7,11 @@
  "oracle_delta_pt": 10.171,
  "sibling_f1": 44.595,
  "sibling_delta_pt": -4.599,
- "overall_ceiling_pt": 2.161
+ "overall_ceiling_pt": 2.161,
+ "single_value_questions": 687,
+ "single_value_oracle_fixable": 446,
+ "single_value_current_f1": 52.101,
+ "single_value_oracle_f1": 71.91,
+ "single_value_ceiling_pt": 19.808,
+ "single_value_overall_pt": 9.152
 }

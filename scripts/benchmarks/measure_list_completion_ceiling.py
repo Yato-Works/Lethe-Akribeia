@@ -104,7 +104,8 @@ def sibling_completion(question: str, context: str, prediction: str) -> str | No
     return prediction.rstrip(". ") + ", " + ", ".join(dict.fromkeys(extra))
 
 
-def score(official, dataset, preds: dict[str, str], run: dict[str, dict]) -> dict[str, float]:
+def score(official, dataset, preds: dict[str, str], run: dict[str, dict],
+          categories: set[int] | None = None, list_only: bool = False) -> dict[str, float]:
     out: dict[str, float] = {}
     for sample in dataset:
         sid = sample["sample_id"]
@@ -116,9 +117,13 @@ def score(official, dataset, preds: dict[str, str], run: dict[str, dict]) -> dic
             if qid not in preds or qid not in run:
                 continue
             row = run[qid]
-            if not row.get("gold_is_list") or row["category"] == 5:
+            if list_only and (not row.get("gold_is_list") or row["category"] == 5):
+                continue
+            if categories and int(qa.get("category", 0)) not in categories:
                 continue
             item = dict(qa)
+            if "answer" not in item:
+                item["answer"] = item.get("adversarial_answer", "")
             item["am_prediction"] = preds[qid]
             qas.append(item)
             ids.append(qid)
@@ -174,12 +179,33 @@ def main() -> int:
                 sibling[qid] = out
                 proposed += 1
 
-    a = score(official, dataset, base, run)
-    b = score(official, dataset, oracle, run)
-    c = score(official, dataset, sibling, run)
+    a = score(official, dataset, base, run, list_only=True)
+    b = score(official, dataset, oracle, run, list_only=True)
+    c = score(official, dataset, sibling, run, list_only=True)
     keys = sorted(set(a) & set(b) & set(c))
     n = len(keys)
     mean = lambda d: sum(d[q] for q in keys) / max(1, n) * 100  # noqa: E731
+
+    # Single-value ceiling on the same run (cats 3-4): how much would an extractor
+    # that returns the exact gold gain, restricted to questions whose gold tokens
+    # are already in the compiled context?
+    sv_oracle = dict(base)
+    sv_fixable = 0
+    for qid, row in run.items():
+        sid = qid[3:].rsplit("_", 1)[0]
+        if sid in HOLDOUT or row["category"] not in (3, 4):
+            continue
+        context = contexts[qid]["context"]
+        tokens = [w for w in re.findall(r"[a-z0-9]{3,}", str(row["ground_truth"]).lower())]
+        if tokens and all(t in context.lower() for t in tokens):
+            sv_oracle[qid] = row["ground_truth"]
+            sv_fixable += 1
+    sv_a = score(official, dataset, base, run, categories={3, 4})
+    sv_b = score(official, dataset, sv_oracle, run, categories={3, 4})
+    sv_keys = sorted(set(sv_a) & set(sv_b))
+    sv_n = len(sv_keys)
+    sv_mean = lambda d: sum(d[q] for q in sv_keys) / max(1, sv_n) * 100  # noqa: E731
+
     result = {
         "dev_list_questions": n,
         "oracle_items_appended": appended,
@@ -190,6 +216,12 @@ def main() -> int:
         "sibling_f1": round(mean(c), 3),
         "sibling_delta_pt": round(mean(c) - mean(a), 3),
         "overall_ceiling_pt": round((mean(b) - mean(a)) * n / 1487, 3),
+        "single_value_questions": sv_n,
+        "single_value_oracle_fixable": sv_fixable,
+        "single_value_current_f1": round(sv_mean(sv_a), 3),
+        "single_value_oracle_f1": round(sv_mean(sv_b), 3),
+        "single_value_ceiling_pt": round(sv_mean(sv_b) - sv_mean(sv_a), 3),
+        "single_value_overall_pt": round((sv_mean(sv_b) - sv_mean(sv_a)) * sv_n / 1487, 3),
     }
     for k, v in result.items():
         print(f"{k}: {v}")
