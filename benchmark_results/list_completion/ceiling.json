@@ -1,0 +1,11 @@
+{
+ "dev_list_questions": 316,
+ "oracle_items_appended": 115,
+ "sibling_completions_proposed": 99,
+ "current_f1": 49.194,
+ "oracle_f1": 59.365,
+ "oracle_delta_pt": 10.171,
+ "sibling_f1": 44.595,
+ "sibling_delta_pt": -4.599,
+ "overall_ceiling_pt": 2.161
+}

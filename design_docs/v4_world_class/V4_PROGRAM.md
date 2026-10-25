@@ -357,6 +357,44 @@ answer to carry more content terms before the gate may fire. Minimum terms 1 / 2
 disproportionately one-term answers but so are the adversarial catches. The
 shipped default stays at 1.
 
+### 4.10 Cross-benchmark guard: LongMemEval, measured in both modes
+
+The program requires that anything helping LoCoMo does not regress LongMemEval.
+The LME dev contexts were compiled for the purpose (250 questions, 0.81 s each,
+100% oracle recall, mean 6,932 tokens), then joined with the stored R7 dev run.
+
+The first version of this guard was **vacuous**: the gate's parser required a
+capitalised name, and LME renders `[session date] user: ...`, so it read 0 of 128
+contexts. A guard that cannot run is not a pass. The parser now accepts role
+labels, and first-person questions can be attributed to the user under an
+explicit switch (`allow_roles`), which makes the gate applicable to agent memory:
+
+| mode | contexts parsed | fires | LME accuracy | delta |
+|---|---:|---:|---:|---:|
+| **name-only (shipped default)** | 128/128 | 0 | 82.03% -> 82.03% | +0.00 |
+| roles | 128/128 | 2 | 82.03% -> 80.47% | **-1.56** |
+
+**Verdict: the shipped configuration passes; role mode is rejected as a default.**
+The assistant legitimately restates the user's facts, so "the answer's wording
+comes from the other role" is not evidence of misattribution in agent memory —
+and the two questions it refused were correct. The guard is now a real measured
+negative rather than a vacuous pass, and the shipped gate stays name-only, where
+its provenance premise actually holds: two people with distinct identities.
+
+Two defects were found while building this guard, both fixed and tested:
+
+- `DateArithmeticEngine.calculate_recency` subtracted a `datetime` from a `date`
+  and raised TypeError, aborting the entire 250-question cache build on one
+  question. Normalised at the arithmetic boundary; 3 regression tests.
+- `str.splitlines()` splits on U+2028 / U+0085, which occur inside LongMemEval
+  messages, cutting JSONL rows in half. The LME reader splits on `"\n"` only.
+
+Guard artifact: `scripts/benchmarks/measure_refusal_gate_lme.py`
+(`benchmark_results/refusal_gate/lme_guard.json`).
+
+
+---
+
 ### 4.11 The Reader-side support verifier: a pilot's +4.8 is +0.45 at scale
 
 The one refusal mechanism left untested was a second model call that audits the
@@ -615,43 +653,49 @@ the holdout is no longer clean, so it can neither be tuned on nor cited as
 validation. The design number is the dev figure (+4.33pt). The 553-question
 M5-M13 holdout remains unspent and is a different slice.
 
-### 4.10 Cross-benchmark guard: LongMemEval, measured in both modes
+### 4.18 A selective committer by engine source: observed, not promoted
 
-The program requires that anything helping LoCoMo does not regress LongMemEval.
-The LME dev contexts were compiled for the purpose (250 questions, 0.81 s each,
-100% oracle recall, mean 6,932 tokens), then joined with the stored R7 dev run.
+If the committer only wins on some engines, maybe it should be enabled per source.
+The 312 claims split by the engine that produced them, priced with official F1
+against the reader on the same questions:
 
-The first version of this guard was **vacuous**: the gate's parser required a
-capitalised name, and LME renders `[session date] user: ...`, so it read 0 of 128
-contexts. A guard that cannot run is not a pass. The parser now accepts role
-labels, and first-person questions can be attributed to the user under an
-explicit switch (`allow_roles`), which makes the gate applicable to agent memory:
-
-| mode | contexts parsed | fires | LME accuracy | delta |
+| source | n | committer | reader | reader - committer |
 |---|---:|---:|---:|---:|
-| **name-only (shipped default)** | 128/128 | 0 | 82.03% -> 82.03% | +0.00 |
-| roles | 128/128 | 2 | 82.03% -> 80.47% | **-1.56** |
+| temporal algebra | 94 | 69.6% | 69.4% | -0.2 |
+| date span | 81 | 67.0% | 72.2% | +5.2 |
+| event action resolver | 75 | 23.8% | 51.3% | +27.5 |
+| set aggregator | 21 | 34.2% | 45.2% | +11.0 |
+| entity attribute resolver | 16 | 15.1% | 59.6% | +44.5 |
+| boolean verifier | 9 | **66.7%** | 48.9% | **-17.8** |
+| single-hop fact | 7 | 14.3% | 57.1% | +42.9 |
+| counting engine | 4 | **58.3%** | 0.0% | **-58.3** |
+| relational traverser | 3 | 54.2% | 55.6% | +1.4 |
+| disjunctive resolver | 2 | **100.0%** | 50.0% | **-50.0** |
 
-**Verdict: the shipped configuration passes; role mode is rejected as a default.**
-The assistant legitimately restates the user's facts, so "the answer's wording
-comes from the other role" is not evidence of misattribution in agent memory —
-and the two questions it refused were correct. The guard is now a real measured
-negative rather than a vacuous pass, and the shipped gate stays name-only, where
-its provenance premise actually holds: two people with distinct identities.
+The committer wins on three engines totalling **15 questions** (n = 9 / 4 / 2). A
+selective policy would be worth about **+0.25pt** overall — inside the noise of a
+15-question sample. Recorded, **not implemented**: promoting it would be fitting to
+five correct answers.
 
-Two defects were found while building this guard, both fixed and tested:
+### 4.19 List completion: the ceiling is +2.16pt and the cheap rule loses
 
-- `DateArithmeticEngine.calculate_recency` subtracted a `datetime` from a `date`
-  and raised TypeError, aborting the entire 250-question cache build on one
-  question. Normalised at the arithmetic boundary; 3 regression tests.
-- `str.splitlines()` splits on U+2028 / U+0085, which occur inside LongMemEval
-  messages, cutting JSONL rows in half. The LME reader splits on `"\n"` only.
+The union engine was priced before being built, on dev only (316 list-gold
+questions):
 
-Guard artifact: `scripts/benchmarks/measure_refusal_gate_lme.py`
-(`benchmark_results/refusal_gate/lme_guard.json`).
+| variant | dev cohort F1 | delta | overall equivalent |
+|---|---:|---:|---:|
+| current | 49.19% | — | — |
+| **oracle completion** (append every gold item present in the context) | **59.37%** | **+10.17** | **+2.16** |
+| sibling completion (append other members of the same comma list, subject-only) | 44.59% | **-4.60** | -0.98 |
 
+So a *perfect* item extractor is worth +2.16pt overall, and the cheap heuristic
+loses 4.6pt because it adds wrong items faster than it adds right ones — the same
+over-union failure the failure atlas warned about. The existing aggregation engine
+scores 34.2% F1 on its own claims (§4.18).
 
----
+**M4 stays closed**: the prize is +2.16pt, the naive rule is negative, and closing
+the gap needs a materially better item extractor, not a union wrapper around the
+current one.
 
 ## 5. What is already measured as not working (do not re-spend)
 
