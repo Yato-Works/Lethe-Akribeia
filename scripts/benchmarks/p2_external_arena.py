@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -50,6 +51,18 @@ PLAYER_FACTORIES = {
     "AM v0.2.0": AMv020Player,
 }
 DEFAULT_PLAYERS = "Simple RAG,Mem0-style,Zep-style,HippoRAG-style,AM v0.2.0"
+
+# S6: the R7 research pipeline (retrieval + compile) behind the arena
+# interface -- V4_PROGRAM.md 4.17's named next measurement.  Defined in
+# scripts (measurement machinery, not shipped code) and registered here.
+try:
+    from am_current_player import AMCurrentPlayer, AMHybridPlayer
+    PLAYER_FACTORIES["AM current"] = AMCurrentPlayer
+    PLAYER_FACTORIES["AM hybrid"] = AMHybridPlayer
+except ImportError as _e:  # pragma: no cover - keeps the 5-player default intact
+    if os.environ.get("AM_DEBUG"):
+        print(f"AM current player unavailable: {_e}")
+
 
 
 def main() -> None:
