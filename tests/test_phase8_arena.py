@@ -204,13 +204,14 @@ class TestControlledPlayers:
 
     def test_create_all_players(self, base_config):
         players = create_controlled_players(base_config)
-        assert len(players) == 5
         names = [p.name for p in players]
-        assert "Simple RAG" in names
-        assert "MemoryBank-style" in names
-        assert "MemGPT-style" in names
-        assert "Mem0-style" in names
-        assert "AM v0.2.0" in names
+        # The factory keeps the controlled baseline five and grows with
+        # the opt-in AM research players (AM current/conflict/runtime
+        # arms, V4 4.27/4.28); the contract is the baseline membership
+        # plus unique names, not an exact count.
+        assert set(("Simple RAG", "MemoryBank-style", "MemGPT-style",
+                    "Mem0-style", "AM v0.2.0")).issubset(set(names))
+        assert len(names) == len(set(names)), "player names must be unique"
 
     def test_simple_rag_ingest(self, base_config):
         player = SimpleRAGPlayer(base_config)

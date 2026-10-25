@@ -1,0 +1,555 @@
+{
+  "n_questions": 20,
+  "audit_tokens": 2000,
+  "stages": {
+    "stage_alloc_evidence": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_alloc_note": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_final_evidence_both": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_final_note": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_recall_CURRENT_ONLY_evidence": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_recall_EPISODE_evidence": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_recall_LIGHT_COMPRESSION_evidence": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_recall_LONG_TERM_SUMMARY_evidence": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    },
+    "stage_store_both": {
+      "survived": 20,
+      "of": 20,
+      "rate": 1.0
+    }
+  },
+  "co_presence_rate": 1.0,
+  "mean_ctx_tokens_est": 1283.1,
+  "rows": [
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "SQLite",
+        "Redis"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1283,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 1000,
+        "medium": 700,
+        "low": 298
+      },
+      "question_id": "contradiction_handling-00"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "DuckDB",
+        "Cassandra"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1316,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 995,
+        "medium": 697,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-01"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "Postgres",
+        "MongoDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1314,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 998,
+        "medium": 694,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-02"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "RocksDB",
+        "Neo4j"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1310,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 693,
+        "low": 297
+      },
+      "question_id": "contradiction_handling-03"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "LMDB",
+        "QuestDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1306,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 699,
+        "low": 299
+      },
+      "question_id": "contradiction_handling-04"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "ClickHouse",
+        "TimescaleDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1287,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 992,
+        "medium": 699,
+        "low": 299
+      },
+      "question_id": "contradiction_handling-05"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "TiDB",
+        "ArangoDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1297,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 699,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-06"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "CockroachDB",
+        "RethinkDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1283,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 993,
+        "medium": 700,
+        "low": 293
+      },
+      "question_id": "contradiction_handling-07"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "SurrealDB",
+        "CouchDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1294,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 700,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-08"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "Redis",
+        "RavenDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1291,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 696,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-09"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "Cassandra",
+        "ScyllaDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1275,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 993,
+        "medium": 697,
+        "low": 299
+      },
+      "question_id": "contradiction_handling-10"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "MongoDB",
+        "SQLite"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1292,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 699,
+        "low": 299
+      },
+      "question_id": "contradiction_handling-11"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "Neo4j",
+        "DuckDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1281,
+      "parts_allocated": 57,
+      "parts_selected": 57,
+      "tier_used": {
+        "high": 1000,
+        "medium": 697,
+        "low": 294
+      },
+      "question_id": "contradiction_handling-12"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "QuestDB",
+        "Postgres"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1267,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 993,
+        "medium": 697,
+        "low": 294
+      },
+      "question_id": "contradiction_handling-13"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "TimescaleDB",
+        "RocksDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1265,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 996,
+        "medium": 694,
+        "low": 292
+      },
+      "question_id": "contradiction_handling-14"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "ArangoDB",
+        "LMDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1260,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 993,
+        "medium": 696,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-15"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "RethinkDB",
+        "ClickHouse"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1265,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 997,
+        "medium": 694,
+        "low": 291
+      },
+      "question_id": "contradiction_handling-16"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "CouchDB",
+        "TiDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1258,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 995,
+        "medium": 693,
+        "low": 300
+      },
+      "question_id": "contradiction_handling-17"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "RavenDB",
+        "CockroachDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1263,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 997,
+        "medium": 693,
+        "low": 299
+      },
+      "question_id": "contradiction_handling-18"
+    },
+    {
+      "stage_store_both": true,
+      "stage_recall_CURRENT_ONLY_evidence": true,
+      "stage_recall_LONG_TERM_SUMMARY_evidence": true,
+      "stage_recall_EPISODE_evidence": true,
+      "stage_recall_LIGHT_COMPRESSION_evidence": true,
+      "stage_alloc_evidence": true,
+      "stage_alloc_note": true,
+      "final_evidence_values": [
+        "ScyllaDB",
+        "SurrealDB"
+      ],
+      "stage_final_evidence_both": true,
+      "stage_final_note": true,
+      "final_source_lines": 2,
+      "ctx_tokens_est": 1255,
+      "parts_allocated": 56,
+      "parts_selected": 56,
+      "tier_used": {
+        "high": 1000,
+        "medium": 691,
+        "low": 294
+      },
+      "question_id": "contradiction_handling-19"
+    }
+  ]
+}

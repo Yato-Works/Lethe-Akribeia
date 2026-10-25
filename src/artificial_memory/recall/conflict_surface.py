@@ -72,14 +72,58 @@ def index_assertions(documents) -> dict[tuple[str, str], list[tuple[str, str]]]:
     asserts: dict[tuple[str, str], list[tuple[str, str]]] = defaultdict(list)
     for content, provenance in documents:
         projects = {m.group(1).lower() for m in _RE_PROJECT.finditer(content)}
-        for m in _RE_ASSERT.finditer(content):
-            prop = _norm_prop(m.group(1))
-            if not prop:
-                continue
-            value = m.group(3)
+        for prop, value in iter_assertions(content):
+            provenance = str(provenance)
             for proj in projects or ("(none)",):
-                asserts[(proj, prop)].append((value, str(provenance)))
+                asserts[(proj, prop)].append((value, provenance))
     return asserts
+
+
+def iter_assertions(content: str) -> list[tuple[str, str]]:
+    """Extract normalized ``(property, value)`` pairs from one document."""
+    pairs: list[tuple[str, str]] = []
+    for m in _RE_ASSERT.finditer(content):
+        prop = _norm_prop(m.group(1))
+        if not prop:
+            continue
+        pairs.append((prop, m.group(3)))
+    return pairs
+
+
+def conflict_entries(
+    documents,
+) -> dict[tuple[str, str], list[tuple[str, str, int]]]:
+    """Conflicting keys with the document that first asserted each value.
+
+    Same keys as ``detect_conflicts``; each entry is
+    ``first (value, provenance, doc_index)`` for a distinct value, so a
+    caller can reserve the raw assertion lines next to the NOTE (M15.1:
+    the product allocation window is recency-ordered, so the pair's own
+    lines do not win it -- they must travel WITH the annotation).
+    """
+    asserts = index_assertions(documents)
+    conflicts = {
+        key: vals for key, vals in asserts.items()
+        if len({v for v, _ in vals}) > 1
+    }
+    entries: dict[tuple[str, str], list[tuple[str, str, int]]] = {}
+    for key in conflicts:
+        entries[key] = []
+    first_seen: dict[tuple[str, str], dict[str, int]] = {}
+    for idx, (content, provenance) in enumerate(documents):
+        projects = {m.group(1).lower() for m in _RE_PROJECT.finditer(content)}
+        for prop, value in iter_assertions(content):
+            provenance = str(provenance)
+            for proj in projects or ("(none)",):
+                key = (proj, prop)
+                if key not in conflicts:
+                    continue
+                seen = first_seen.setdefault(key, {})
+                if value in seen:
+                    continue
+                seen[value] = idx
+                entries[key].append((value, provenance, idx))
+    return entries
 
 
 def detect_conflicts(documents) -> dict[tuple[str, str], list[tuple[str, str]]]:

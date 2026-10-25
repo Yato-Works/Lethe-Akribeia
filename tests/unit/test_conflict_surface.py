@@ -28,6 +28,7 @@ from artificial_memory.core.models import (  # noqa: E402
     ResolutionLevel,
 )
 from artificial_memory.recall.conflict_surface import (  # noqa: E402
+    conflict_entries,
     detect_conflicts,
     note_line,
     query_gated_keys,
@@ -110,6 +111,38 @@ def test_note_line_carries_provenance_and_plan21_semantics():
     assert "SQLite (day 45) vs Redis (day 48)" in note
     assert "report both values" in note
     assert "which is correct is unverified" not in note
+
+
+def test_conflict_entries_maps_each_distinct_value_to_its_first_document():
+    docs = [(V1, "day 45"), (UNRELATED, "day 50"), (V2, "day 48"),
+            (V2, "day 48")]  # a duplicate must not add an entry
+    entries = conflict_entries(docs)
+    rows = entries[("atlas", "cache layer")]
+    assert rows[0] == ("SQLite", "day 45", 0)
+    assert rows[1] == ("Redis", "day 48", 2)
+    assert len(rows) == 2
+
+
+def test_note_part_carries_source_assertion_lines(store):
+    """M15.1: the reserved note part is note + the pair's raw lines with
+    provenance, so co-presence never depends on the recency race."""
+    topic_id = _topic(store)
+    m1 = _memory(store, topic_id, V1, days_ago=10)
+    m2 = _memory(store, topic_id, V2, days_ago=30)  # older than any pool line
+
+    builder = _builder(store, on=True)
+    pool = [m1, m2]
+    for i in range(40):  # newer lines win the recency ordering
+        pool.append(_memory(
+            store, topic_id,
+            f"For project rush{i}, the sprint plan was settled on the demo.",
+            days_ago=1))
+    context = builder.build_context(
+        QUERY, topic_id, 4000, current_memories=pool)
+    # note AND both source lines with their labels, inside one part
+    assert "NOTE: conflicting reports for project atlas (cache layer)" in context
+    assert f"- {V1}" in context
+    assert f"- {V2}" in context
 
 
 def test_query_gate_does_not_fire_without_entity_and_property():

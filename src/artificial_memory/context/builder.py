@@ -214,8 +214,20 @@ class EnhancedContextBuilder:
         parts: list,
         candidates: list[Memory],
     ) -> None:
-        """Append conflict-surfacing NOTE parts for query-named keys."""
+        """Append conflict-surfacing NOTE parts for query-named keys.
+
+        M15.1: the note part CARRIES its source assertion lines.  The
+        audit measured why note-only composition failed: the product
+        window is recency-ordered (``ORDER BY updated_at DESC``), so the
+        pair's own lines lose the tier race for every conflict planted
+        in an earlier scenario, and the builder's recall dedupe cannot
+        resurface them (they are already current-pool members).  Bounding
+        the pair lines to the annotation travels, one immutable HIGH
+        part per key -- the same composition the benchmark compile
+        surrounds its NOTE with.
+        """
         from artificial_memory.recall.conflict_surface import (
+            conflict_entries,
             detect_conflicts,
             note_line,
             query_gated_keys,
@@ -227,16 +239,22 @@ class EnhancedContextBuilder:
 
         documents = [(mem.content, _label(mem)) for mem in candidates]
         conflicts = detect_conflicts(documents)
+        entries = conflict_entries(documents)
         for proj, prop in query_gated_keys(query, conflicts):
             note = note_line(
                 f"project {proj}", prop,
                 conflicts[(proj, prop)],
             )
-            tokens = self.token_counter.count(note)
+            lines = [note]
+            for value, label, idx in entries.get((proj, prop), []):
+                content = documents[idx][0]
+                lines.append(f"- {content} ({label})")
+            combined = "\n".join(lines)
+            tokens = self.token_counter.count(combined)
             if not budget.allocate(PriorityTier.HIGH, tokens):
                 continue
             parts.append(ContextPart(
-                content=note,
+                content=combined,
                 tokens=tokens,
                 priority=0.9,
                 source="conflict:note",

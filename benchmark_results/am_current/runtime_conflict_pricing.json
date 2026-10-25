@@ -89,6 +89,6 @@
       }
     },
     "max_ctx_tokens_est": 1360,
-    "mean_ctx_tokens_est": 1262
+    "mean_ctx_tokens_est": 1261
   }
 }
