@@ -56,8 +56,13 @@ DEFAULT_PLAYERS = "Simple RAG,Mem0-style,Zep-style,HippoRAG-style,AM v0.2.0"
 # interface -- V4_PROGRAM.md 4.17's named next measurement.  Defined in
 # scripts (measurement machinery, not shipped code) and registered here.
 try:
-    from am_current_player import AMCurrentPlayer, AMHybridPlayer
+    from am_current_player import (
+        AMConflictPlayer,
+        AMCurrentPlayer,
+        AMHybridPlayer,
+    )
     PLAYER_FACTORIES["AM current"] = AMCurrentPlayer
+    PLAYER_FACTORIES["AM conflict"] = AMConflictPlayer
 
     def _hybrid_runtime(config, answerer=None):
         config = dict(config or {})

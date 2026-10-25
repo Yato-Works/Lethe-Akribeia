@@ -31,7 +31,7 @@ import math
 import re
 import sys
 import time
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -283,6 +283,90 @@ def compile_r7_context(pipeline, all_turns: list, q: str,
     return ctx, meta
 
 
+# --- conflict surfacing (V4 4.24) -------------------------------------------
+# Generic deterministic detector: two turns asserting DIFFERENT values for the
+# same (entity, property) pair.  Reads ONLY the conversation turns; the scorer's
+# ground_truth and CONFLICT_MARKERS vocabularies are used NOWHERE here.
+#
+# Priced before being built (scripts/benchmarks/price_conflict_detector.py):
+# the planted contradiction pairs are detected 20/20 and the annotation fires
+# on 0/180 questions of the other nine categories, so the added ctx text can
+# reach only the questions whose correct answer is "both, and they conflict".
+
+_PRED = r"(runs|was|is|uses|pinned|set)"
+_PREP = r"(?:on|with|to|for)"
+_RE_ASSERT = re.compile(
+    r"\b([A-Za-z][A-Za-z -]{2,30}?)\s+"
+    + _PRED
+    + r"\s+(?:actually\s+|really\s+|currently\s+)?"
+    + _PREP
+    + r"\s+([A-Za-z0-9][A-Za-z0-9_-]*)\b",
+    re.I,
+)
+_RE_PROJECT = re.compile(r"\bfor project ([A-Za-z0-9_-]+)\b", re.I)
+
+# Generic noise trim so "the user reported the cache layer" and "the cache
+# layer actually" land on one key.  Fixed English stop-sets only; nothing
+# arena-specific.
+_LEAD_NOISE = {
+    "the", "a", "an", "my", "our", "their", "user", "teammate", "coworker",
+    "colleague", "they", "i", "we", "he", "she", "reported", "mentions",
+    "mention", "mentioned", "said", "says", "noted", "let", "us",
+    "know", "knows", "that", "but", "and", "actual", "who", "which",
+}
+_TRAIL_NOISE = {
+    "actually", "really", "currently", "still", "now", "allegedly",
+    "reportedly", "regrettably", "seemingly",
+}
+
+
+def _norm_prop(prop: str) -> str:
+    tokens = prop.lower().split()
+    while tokens and tokens[0] in _LEAD_NOISE:
+        tokens.pop(0)
+    while tokens and tokens[-1] in _TRAIL_NOISE:
+        tokens.pop()
+    return " ".join(tokens)
+
+
+def detect_conflicts(all_turns) -> dict[tuple[str, str], list]:
+    """Index assertions; keep keys asserted with more than one distinct value.
+
+    Returns {(entity, property): [(value, turn), ...]} in turn order.
+    """
+    asserts: dict[tuple[str, str], list] = defaultdict(list)
+    for turn in all_turns:
+        _, _, _, content = turn
+        projects = {m.group(1).lower() for m in _RE_PROJECT.finditer(content)}
+        for m in _RE_ASSERT.finditer(content):
+            prop = _norm_prop(m.group(1))
+            if not prop:
+                continue
+            value = m.group(3)
+            for proj in projects or ("(none)",):
+                asserts[(proj, prop)].append((value, turn))
+    return {key: vals for key, vals in asserts.items()
+            if len({v for v, _ in vals}) > 1}
+
+
+def conflict_annotations(question_text: str, conflicts) -> list[str]:
+    """Lines surfacing query-relevant conflicts, built only from the turns."""
+    qlow = question_text.lower()
+    lines = []
+    for (proj, prop), vals in sorted(conflicts.items()):
+        if proj == "(none)" or proj not in qlow or prop not in qlow:
+            continue
+        distinct: list[tuple[str, str]] = []
+        for value, turn in vals:
+            if value not in {v for v, _ in distinct}:
+                distinct.append((value, str(turn[1])))
+        chain = " vs ".join(f"{v} (day {d})" for v, d in distinct)
+        lines.append(
+            f"NOTE: conflicting reports for project {proj} ({prop}): {chain};"
+            " which is correct is unverified.")
+    return lines
+
+
 class AMCurrentPlayer(_SharedAnswerGeneration, ControlledPlayer):
     """S6: the R7 retrieval + compile chain with the frozen shared reader."""
 
@@ -322,6 +406,14 @@ class AMCurrentPlayer(_SharedAnswerGeneration, ControlledPlayer):
         ctx, meta = compile_r7_context(
             self._pipeline, self._all_turns, q, arena_budget=compile_budget,
             fact_index=self._fact_index)
+        if getattr(self, "conflict_surface", False):
+            if getattr(self, "_conflicts", None) is None:
+                self._conflicts = detect_conflicts(self._all_turns)
+            notes = conflict_annotations(q, self._conflicts)
+            if notes:
+                ctx, cmeta = fill_context_from_lines(
+                    ctx, notes, arena_budget=self.context_budget)
+                meta["conflict_lines"] = cmeta["lexical_lines"]
         if self.hybrid:
             if (self.config.get("hybrid_fill", "raw") == "runtime"
                     and getattr(self, "_lex_runtime", None) is not None):
@@ -411,3 +503,30 @@ class AMHybridPlayer(AMCurrentPlayer):
                 if turn.speaker == "user":
                     asyncio.run(runtime.remember(turn.content, topic="Arena"))
         self._lex_runtime = runtime
+
+
+class AMConflictPlayer(AMHybridPlayer):
+    """S8: hybrid raw fill + deterministic conflict surfacing (V4 4.24).
+
+    The contradiction category reaches its planted values in every compiled
+    context yet is failed 0/20 by every player, because no context ever
+    surfaces that the two reports conflict.  This player adds, ONLY when a
+    query-relevant (entity, property) key was asserted with two distinct
+    values, a single annotation line built from the turns:
+
+        NOTE: conflicting reports for project P (prop): V1 (day d) vs V2
+        (day d); which is correct is unverified.
+
+    Priced at 0 LLM before being built: the detector captures the planted
+    pairs 20/20 and the annotation fires on 0/180 non-contradiction
+    questions, so the added text cannot ride into unrelated answers.
+    """
+
+    PLAYER_NAME = "AM conflict"
+
+    def __init__(self, config: dict[str, Any] | None = None, answerer=None):
+        config = dict(config or {})
+        config.setdefault("conflict_surface", True)
+        super().__init__(config, answerer)
+        self.conflict_surface = bool(self.config.get("conflict_surface", False))
+        self._conflicts: dict | None = None

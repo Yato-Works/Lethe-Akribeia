@@ -157,3 +157,63 @@ def test_hybrid_raw_fill_still_default_name(dataset):
     answer = raw._answer_with_budget(dataset.questions[2], raw.context_budget)
     assert answer.metadata["fill_source"] == "raw"
     assert answer.context_tokens_used <= 2000
+
+
+def test_conflict_detector_captures_the_planted_pairs(dataset):
+    from am_current_player import detect_conflicts
+
+    conflicts = detect_conflicts(_player(dataset)._all_turns)
+    keys = [k for k in conflicts if k[0] != "(none)"]
+    assert len(keys) == 20, "exactly the twenty planted contradiction keys"
+    planted = 0
+    for q in dataset.questions:
+        if q.category.value != "contradiction_handling":
+            continue
+        qlow = q.question.lower()
+        vals = {str(g) for g in q.ground_truth[0]}
+        have = {v for k in keys if k[0] in qlow
+                for v, _ in conflicts[k]}
+        if vals and vals.issubset(have):
+            planted += 1
+    assert planted == 20, "both planted values must sit under one key"
+
+
+def _player(dataset):
+    from am_current_player import AMCurrentPlayer
+
+    p = AMCurrentPlayer({"context_budget": 2000}, answerer=None)
+    p.ingest(list(dataset.scenarios))
+    return p
+
+
+def test_conflict_annotation_fires_only_on_contradiction(dataset):
+    from am_current_player import AMConflictPlayer, conflict_annotations, detect_conflicts
+
+    conflicts = detect_conflicts(_player(dataset)._all_turns)
+    by_cat: dict[str, int] = {}
+    for q in dataset.questions:
+        fired = len(conflict_annotations(q.question, conflicts))
+        by_cat[q.category.value] = by_cat.get(q.category.value, 0) + fired
+    assert by_cat.get("contradiction_handling") == 20
+    other = {c: n for c, n in by_cat.items() if c != "contradiction_handling"}
+    assert not any(n for n in other.values()), f"no cross-category fire: {other}"
+
+
+def test_conflict_player_annotates_within_budget(dataset):
+    from am_current_player import AMConflictPlayer
+
+    cp = AMConflictPlayer({"context_budget": 2000}, answerer=None)
+    assert cp.name == "AM conflict"
+    cp.ingest(list(dataset.scenarios))
+    q = next(q for q in dataset.questions
+             if q.category.value == "contradiction_handling")
+    answer = cp._answer_with_budget(q, cp.context_budget)
+    assert answer.metadata.get("conflict_lines") == 1
+    assert answer.context_tokens_used <= 2000
+    # the bare hybrid must stay inert: no conflict key was read for it
+    from am_current_player import AMHybridPlayer
+
+    hyb = AMHybridPlayer({"context_budget": 2000}, answerer=None)
+    hyb.ingest(list(dataset.scenarios))
+    bare = hyb._answer_with_budget(q, hyb.context_budget)
+    assert "conflict_lines" not in bare.metadata
