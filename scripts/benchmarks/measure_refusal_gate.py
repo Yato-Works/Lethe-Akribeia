@@ -577,7 +577,7 @@ def main() -> int:
                         AnswerProvenanceGate,
                     )
                     refuse = (bool(ctx) and AnswerProvenanceGate(
-                        min_terms=args.min_terms)
+                        min_terms=args.min_terms, threshold=threshold)
                         .decide(qa["question"], ctx, pred).refuse)
                 else:
                     refuse = gate(qa["question"], ctx, pred, threshold) if ctx else False

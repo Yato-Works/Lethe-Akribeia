@@ -128,3 +128,29 @@ class TestRoleModeIsOptIn:
         gate = AnswerProvenanceGate(allow_roles=True)
         assert gate.decide("What is my favourite colour?", context,
                            "favourite colour is turquoise").refuse is True
+
+
+class TestThresholdIsHonoured:
+    """The threshold must be a real parameter.
+
+    Measured defect: a sweep of `--thresholds` produced five identical rows because
+    the gate read the class constant and ignored the instance setting.
+    """
+
+    #: The best-matching line carries 3 of the 4 answer terms (0.75).
+    CONTEXT = "\n".join([
+        "[s1 on 1 May 2023] Alice: I said hello.",
+        "[s1 on 1 May 2023] Bob: painting pottery evenings.",
+    ])
+    ANSWER = "painting pottery evenings together"
+
+    def test_low_threshold_fires_high_threshold_does_not(self):
+        low = AnswerProvenanceGate(threshold=0.5).decide(
+            "What did Alice do?", self.CONTEXT, self.ANSWER)
+        high = AnswerProvenanceGate(threshold=0.9).decide(
+            "What did Alice do?", self.CONTEXT, self.ANSWER)
+        assert low.refuse is True
+        assert high.refuse is False
+
+    def test_default_threshold_is_the_documented_value(self):
+        assert AnswerProvenanceGate().threshold == AnswerProvenanceGate.THRESHOLD

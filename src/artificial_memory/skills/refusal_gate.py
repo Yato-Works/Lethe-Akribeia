@@ -128,7 +128,8 @@ class AnswerProvenanceGate:
     #: Share of the answer's content stems that a line must contain.
     THRESHOLD = 0.7
 
-    def __init__(self, allow_roles: bool = False, min_terms: int = 1) -> None:
+    def __init__(self, allow_roles: bool = False, min_terms: int = 1,
+                 threshold: float | None = None) -> None:
         #: When True, a first-person question in a role-labelled corpus
         #: (user/assistant) is attributed to the user.  OFF by default because it
         #: was measured as harmful: on LongMemEval it refuses 2 correct answers and
@@ -139,6 +140,10 @@ class AnswerProvenanceGate:
         #: How many content stems the answer must carry before the gate may fire.
         #: Measured on the merged full run: 1 -> 165 fires, 2 -> 102, 3 -> 46.
         self.min_terms = max(1, int(min_terms))
+        #: Share of the answer's content stems the best-matching line must carry.
+        #: Exposed so a threshold sweep actually sweeps it (it previously read the
+        #: class constant, so every sweep row was identical).
+        self.threshold = self.THRESHOLD if threshold is None else float(threshold)
 
     def decide(self, question: str, context: str, answer: str) -> RefusalDecision:
         answer = (answer or "").strip()
@@ -184,7 +189,7 @@ class AnswerProvenanceGate:
             if overlap > best_overlap:
                 best_overlap, best_speaker = overlap, speaker
 
-        if best_overlap < self.THRESHOLD:
+        if best_overlap < self.threshold:
             return RefusalDecision(
                 False, "answer wording not traceable in the context", subject,
                 best_speaker, best_overlap)
