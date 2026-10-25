@@ -362,8 +362,9 @@ def conflict_annotations(question_text: str, conflicts) -> list[str]:
                 distinct.append((value, str(turn[1])))
         chain = " vs ".join(f"{v} (day {d})" for v, d in distinct)
         lines.append(
-            f"NOTE: conflicting reports for project {proj} ({prop}): {chain};"
-            " which is correct is unverified.")
+            f"NOTE: conflicting reports for project {proj} ({prop}): {chain}."
+            " Both are on record and neither is confirmed; report both values"
+            " rather than choosing one.")
     return lines
 
 
