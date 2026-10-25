@@ -824,6 +824,79 @@ arena now has two new measured rows -- the R7 chain (46.5%) and the hybrid
 ceiling (65.5%) plus the two conversion walls are recorded as the next
 targets.  "World-class" is still not claimed.
 
+### 4.22 Hybrid v2 (the runtime's own recall stack as fill): A/B'd and rejected
+
+Hypothesis from 4.21's diagnosis: the lexical runtime's unique wins (indirect,
+distractor) come from *its* recall stack, not from a raw top-k, so a hybrid
+whose fill forgoes the re-implementation and drives the same facade the
+AM v0.2.0 player answers from should realise more of the 65.5% union ceiling.
+
+`AMHybridPlayer` gained `hybrid_fill: "runtime"` (registered as "AM hybrid
+v2"): at ingest the same deterministic facade (`RuntimeConfig.lexical_recall`)
+remembers the user turns; at answer, after the R7 compile at budget A, the
+runtime's level-2 recall output fills the remainder
+(`fill_context_from_lines`).
+
+**0-LLM reachability (200 contexts, `probe_hybrid_ctx.py`):**
+
+| variant | answerable reach | reflection |
+|---|---:|---:|
+| R7 chain | 124/180 (69%) | 6/20 |
+| lexical top-k re-implementation | 120-127/180 (67-71%) | 0-6/20 |
+| hybrid, raw fill | 128/180 (71%) | 6/20 |
+| **hybrid, runtime fill** | **142/180 (79%)** | **20/20** |
+
+The highest reachability measured in this program -- and the wall shared by
+all seven players (reflection) looked solved in reach terms.
+
+**End-to-end, one run each (50-question paired subset):**
+
+| player | accuracy |
+|---|---:|
+| hybrid, raw fill | **54.0%** |
+| AM v0.2.0 lexical | 54.0% |
+| **hybrid, runtime fill** | **44.0%** |
+
+Paired: raw-fill wins 5 questions, runtime-fill wins **0**, same questions.
+The conversion regression is diagnosed from the answers: the fill carries in
+planted **near-miss distractor lines**, which the reader then answers with
+(`abstention-00/01/02`: fluent wrong answers where the raw fill refuses; a
+decoy tool where `delta` was asked).  The 0-LLM reachability metric could
+not see this: it only checks gold-term presence, never *negative* evidence
+(what the extra lines invite the reader to answer wrongly).
+
+**A routing policy was priced before being built (0 LLM).**  "Refuse when
+the R7 compile found no evidence, else take the hybrid's answer": of the 6
+questions where R7 abstained and the hybrid answered, the hybrid was CORRECT
+on 3 and the veto would fix 1.  Net negative -- **not implemented**.  The
+hybrid already inherits the compile's refusal through its own context
+(abstention 19/20 vs lexical 2/20), so the veto is redundant where it helps
+and destructive where it fires.
+
+**Recorded negatives:**
+- `hybrid_fill: "runtime"` -- rejected as a default (44.0 vs 54.0 paired on
+  the same questions).  Reachability is not conversion; a fill that raises
+  reachability by carrying more lines can lower accuracy by moving decoys in.
+- R7-abstention veto of a non-abstaining player -- priced at 0 LLM, net
+  negative (3/6 correct answers broken, 1/20 abstentions fixed).
+
+**Standing change: none.  AM hybrid with the raw top-30 fill remains the
+arena leader at 54.0% (paired +1.0pt over the lexical runtime; oracle union
+65.5%).**  The honest openings this measurement leaves:
+
+1. The reachability metric must grow a *negative-evidence* dimension: does
+   added context invite a wrong answer where the correct move is refusal.
+   Reachability alone has now been shown to rank two fills in the opposite
+   order of their E2E accuracy.
+2. The two conversion walls (contradiction, reflection) are the only
+   categories no player ever solves -- on the arena as on LoCoMo, the reader
+   has the evidence and does not synthesise.
+
+Artifacts: `benchmark_results/am_current/probe_hybrid_rt.json`,
+run dirs `controlled_20261025_161439` (hybrid v2, 50q),
+`controlled_20261025_140439`/`140731` (raw fill 50q/200q), priced with
+`scripts/benchmarks/price_am_current.py`.
+
 ## 5. What is already measured as not working (do not re-spend)
 
 | direction | result | mission |
@@ -910,6 +983,7 @@ engine rather than `AMv020Player`.
 | M8 | committer A/B (is the deterministic fallback worth it?) | paired official F1 | **DONE: reader +10.31pt on the 312 claims; committer now opt-in** (4.17) |
 | M9 | holdout validation, once | frozen method | report honestly |
 | M10 | R7 chain behind the arena player + hybrid union | arena rows comparable | **DIAGNOSTIC: R7 46.5%, hybrid 54.0% vs lexical 53.0%; abstention fixed by compile (2 -> 19/20); union ceiling 65.5%, realized 54.0%; contradiction + reflection walls remain** (4.21) |
+| M11 | hybrid fill from the runtime's own recall stack | paired E2E >= raw fill | **REJECTED: 44.0% vs 54.0%, raw 5 exclusive wins / runtime 0 -- reachability is not conversion; decoy pollution** (4.22) |
 
 **Current standing** (pinned official LoCoMo F1, 1,986 questions): **54.94%** with
 the answer-provenance gate and the committer off, against 49.91% for the
