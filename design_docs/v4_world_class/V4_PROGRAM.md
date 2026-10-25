@@ -588,6 +588,12 @@ for compatibility, and every run manifest records `committer`. The committer's
 provenance value is unchanged — it can still be enabled where a deterministic
 answer trail is worth more than the points.
 
+A middle policy was also priced: reader first, and the committer only where the
+reader refused (36 questions were rescued that way). It measures **54.62%**, i.e.
+worse than switching the committer off entirely (54.94%). The rescued answers cost
+more than they earn, so the committer is off, not "off except when the reader
+gives up".
+
 
 **Consequence for the program:** the distance to "world-class" is not a
 benchmark-recipe problem, it is a *product wiring* problem. The next engine
