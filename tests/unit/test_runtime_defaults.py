@@ -10,7 +10,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from artificial_memory.memory.vector_search import VectorSearchEngine
+import pytest
+
+from artificial_memory.memory.vector_search import FAISS_AVAILABLE, VectorSearchEngine
 from artificial_memory.runtime.facade import RuntimeConfig
 
 
@@ -44,6 +46,7 @@ def test_env_accepts_overrides_and_ignores_empty_values(monkeypatch) -> None:
     assert config.database_path == "somewhere.db"
 
 
+@pytest.mark.skipif(not FAISS_AVAILABLE, reason="faiss not installed")
 def test_vector_search_does_not_load_the_model_at_construction(tmp_path: Path) -> None:
     class _Store:
         pass

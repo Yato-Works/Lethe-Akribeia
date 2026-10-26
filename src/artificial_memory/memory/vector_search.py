@@ -8,7 +8,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-import faiss
+try:
+    import faiss
+    FAISS_AVAILABLE = True
+except ImportError:
+    faiss = None  # type: ignore[assignment]
+    FAISS_AVAILABLE = False
 import numpy as np
 
 from artificial_memory.core.interfaces import MemoryStore
@@ -36,6 +41,11 @@ class VectorSearchEngine:
         index_path: Path | None = None,
         dimension: int = 384,
     ):
+        if not FAISS_AVAILABLE or faiss is None:
+            raise ImportError(
+                "faiss is required for VectorSearchEngine. "
+                "Install with pip install 'lethe-akribeia[vector]'"
+            )
         self.store = store
         self._model_name = model_name
         self._model: Any = None
@@ -325,3 +335,11 @@ def create_vector_search_engine(
 ) -> VectorSearchEngine:
     """Factory function to create vector search engine."""
     return VectorSearchEngine(store, model_name, index_path)
+
+
+__all__ = [
+    "FAISS_AVAILABLE",
+    "VectorSearchEngine",
+    "VectorSearchResult",
+    "create_vector_search_engine",
+]

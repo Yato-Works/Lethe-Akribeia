@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev,web,llm,vector,mcp]"
+          pip install -e ".[dev,web,llm,vector,mcp,benchmarks]"
 
       - name: Lint with ruff (blocking)
         run: ruff check src/ tests/
@@ -78,7 +78,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev,llm,mcp]"
+          pip install -e ".[dev,web,llm,vector,mcp,benchmarks]"
 
       - name: Lint with ruff
         run: ruff check src/ tests/

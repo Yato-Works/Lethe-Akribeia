@@ -107,6 +107,7 @@ from artificial_memory.memory.temporal_validity import (
 # Heavy modules (faiss / sentence-transformers / torch) are exported lazily
 # so that importing `artificial_memory.memory.<light_module>` stays fast.
 _LAZY_EXPORTS: dict[str, tuple[str, str]] = {
+    "FAISS_AVAILABLE": ("artificial_memory.memory.vector_search", "FAISS_AVAILABLE"),
     "VectorSearchEngine": ("artificial_memory.memory.vector_search", "VectorSearchEngine"),
     "VectorSearchResult": ("artificial_memory.memory.vector_search", "VectorSearchResult"),
     "create_vector_search_engine": (
