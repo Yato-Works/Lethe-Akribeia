@@ -223,7 +223,12 @@ class Executor:
             # CONFIDENCE GATE: an indexed value must be a clean list item, not a
             # labeled field ('Customs Broker: responsible ...') or a header.
             # A colon/bracket marks a label, never an item.
-            _idx_bad = lambda s: bool(s) and any(c in s for c in (":", "[", "{", "<", "\n")) and len(s.split()) > 8
+            def _idx_bad(s: str) -> bool:
+                return (
+                    bool(s)
+                    and any(c in s for c in (":", "[", "{", "<", "\n"))
+                    and len(s.split()) > 8
+                )
             if node.selector == "last" or node.ordinal == -1:
                 chosen = items[-1]
                 if _idx_bad(chosen):

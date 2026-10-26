@@ -26,6 +26,7 @@ from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.core.tokens import word_tokens
 from artificial_memory.ontology import ontology as _ontology
 from artificial_memory.recall.hierarchical_evidence_index import HierarchicalEvidenceIndex
+from artificial_memory.recall.temporal_resolver import TemporalResolver
 from artificial_memory_gen.context.content_condenser import OFF as CONDENSE_OFF
 from artificial_memory_gen.context.content_condenser import CondenseOptions
 from artificial_memory_gen.context.derivation_scaffold import DerivationScaffolder
@@ -40,7 +41,6 @@ from artificial_memory_gen.recall.query_planner import QueryPlanner
 from artificial_memory_gen.recall.state_reconstructor import StateReconstructor
 from artificial_memory_gen.recall.state_supersession_engine import StateSupersessionEngine
 from artificial_memory_gen.recall.state_timeline import StateTimelineEngine
-from artificial_memory.recall.temporal_resolver import TemporalResolver
 from artificial_memory_gen.steroid.adaptive_graph_expander import AdaptiveGraphExpander
 from artificial_memory_gen.steroid.wide_slicer import WideSlicer
 

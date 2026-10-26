@@ -15,8 +15,8 @@ LoCoMo coverage (1540 Qs, 5 categories):
 from __future__ import annotations
 
 import random
+from collections.abc import Sequence
 from datetime import date, timedelta
-from typing import Sequence
 
 from .corpus import (
     CITIES,

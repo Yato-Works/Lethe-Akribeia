@@ -143,6 +143,25 @@ Re-scoring the frozen 2026-10-23 run with the new protocol reproduces the
 projection exactly: binary **1,089/1,986 = 54.83%** (cat5 248/446 = 55.6%),
 official F1 **49.91%**.
 
+### 3.5 Artifacts outside this log: the R8.1 dev-250 run
+
+`benchmark_results/pipeline_v4/lme_dev250_v4_R8.1.json` reports 250/250 (100%) on
+LongMemEval **dev-250** and is the artifact behind the tag
+`v4-r8.1-perfect-score`. It is not part of the measured program above and must
+not be cited as a benchmark result:
+
+- it is scored on **dev**, the split used for development, not on holdout;
+- **56 of 250 answers (22.4%)** are deterministic overrides, so the run measures
+  the override table as much as the reader;
+- the program's own dev-250 reference is `lme_dev250_v4_R7.json` (88.0%), which is
+  the number the cross-benchmark guard in §7 uses;
+- 100% on all six question types of a 250-question dev slice is a saturation
+  signal, not a capability signal. A score at the ceiling on tuned data carries
+  no information about transfer.
+
+Standing rule: dev saturation is a reason to stop tuning on that split, not a
+result to publish. The tag stays for provenance; the claim does not.
+
 ---
 
 ## 4. Where the loss is

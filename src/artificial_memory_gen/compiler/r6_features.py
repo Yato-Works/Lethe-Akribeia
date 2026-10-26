@@ -75,15 +75,6 @@ def _coverage(compiled, q: str) -> float:
     return float(compiled.utility_score) / len(words)
 
 
-def _session_ids(records) -> set[str]:
-    sids: set[str] = set()
-    for r in records:
-        m = UniversalIRExtractor._SESSION_EXTRACT.search(r.raw_content or "")
-        if m:
-            sids.add(m.group(1))
-    return sids
-
-
 def _top_anchor_info(check_scores: dict, max_sessions: int = 18) -> tuple[int, float]:
     ids = list(dict.fromkeys(check_scores.keys()))[:max_sessions]
     return len(ids), max(check_scores.values(), default=0.0)

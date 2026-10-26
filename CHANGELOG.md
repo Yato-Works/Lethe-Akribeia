@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- **README honesty pass (P0).** `README.md` / `README.ja.md` rewritten so the
+  measured limits come first:
+  - the official LoCoMo figures (37.41% as measured, 49.91% protocol-fixed,
+    54.94% with the provenance gate on and the committer off) are now the
+    headline, with the in-house binary matcher explicitly marked as not official
+    F1;
+  - the v0.3.0 artifact table is labelled as such, the arena rows state n=200 and
+    single-run, and the default-config 11.5% result is disclosed;
+  - LongMemEval / BEAM numbers are labelled as in-house-scored and not comparable
+    to LLM-judged publications;
+  - the recorded holdout leak (`--scope` inversion) and the dev-saturated
+    `v4-r8.1-perfect-score` tag are both disclosed;
+  - test claims now match the tree: 652 unit tests collected (648 pass, 2 xfail,
+    2 xpass), 1,113 total, 53% coverage; "Apex Generation" and the 100% badges
+    are gone.
+- `design_docs/v4_world_class/V4_PROGRAM.md`: added §3.5 documenting why the
+  R8.1 dev-250 artifact is not citable.
+- `benchmark_results/RESULTS_REGISTRY.md`: scope note (v0.3.0 artifacts only;
+  binary ≠ official F1; R8.1 deliberately excluded).
+- `report.md`: header warning that the 99.54% smoke score is a diagnostic subset,
+  not a benchmark result.
+
+### Fixed
+- `fix/honest-product` lint pass: `ruff check src/ tests/` is clean (enum
+  modernization, dead code, undefined names, import order).
+- The failing duration test now asserts the supported path and records the two
+  binding limits (clause locality, no paraphrase) as a strict `xfail`.
+
+### CI
+- Workflows now run on every branch, and a Windows job runs the unit suite
+  (Windows is the development platform).
+- Coverage is actually produced before upload; mypy stays report-only with an
+  honest comment instead of a misleading `continue-on-error`.
+
 ## [0.3.1] - 2026-10-04
 
 ### Added
@@ -16,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Completely purged all dataset-specific keyword enumerations (`HIGH_SPECIFICITY`, `liberal`, `national park`, phrase lists, etc.) and dead code (`evaluate_refined_gate`).
 - **Two-Tier Holdout Isolation Protocol** (`benchmark_config/holdout.yaml`):
   - Formal division into Tier 1 (Strict Clean Holdout: `conv-48`, 191 Qs) with zero diagnostic history, and Tier 2 (Validation Split: `conv-42`, 199 Qs).
-- **Expanded Unit Test Suite**: Reached 328 unit tests (740+ total tests, 100% passing).
+- **Expanded Unit Test Suite**: Reached 328 unit tests (740+ total tests, 100% passing). *(Superseded: the tree now collects 652 unit tests / 1,113 total; see Unreleased.)*
 
 ### Changed
 - Clarified evaluation protocol taxonomy across READMEs: distinguishing official benchmark datasets and official LoCoMo Token F1 harness from deterministic in-house binary extraction matchers.

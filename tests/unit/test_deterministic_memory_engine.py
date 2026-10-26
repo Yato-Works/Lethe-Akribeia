@@ -131,6 +131,25 @@ def test_temporal_algebra_explicit_date_with_bonus() -> None:
 
 
 def test_temporal_algebra_duration_years_now() -> None:
+    # Positive path: the value's own clause names the asked event, so binding
+    # commits the duration without any LLM.
+    ctx = '[D16:8 on 12:09 am on 13 September, 2023] Melanie: I have been painting for seven years now.'
+    ans = DeterministicMemoryEngine.resolve("How long has Melanie been painting?", ctx)
+    assert ans.used
+    assert "7 years" in ans.answer
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason=(
+        "Two documented limits: (1) binding is clause-local by design, so a "
+        "duration that sits in its own comma-clause ('Seven years now, and ... "
+        "painting') cannot be tied to the event after the comma; (2) 'creating "
+        "art' is not resolved to the evidence's 'painting'.  Each would need a "
+        "measured change to the binding contract, not a silent relaxation."
+    ),
+)
+def test_temporal_algebra_duration_years_now_anaphoric_clause_is_not_bound() -> None:
     ctx = '[D16:8 on 12:09 am on 13 September, 2023] Melanie: Seven years now, and I have finally found my real muses: painting and pottery.'
     ans = DeterministicMemoryEngine.resolve("How long has Melanie been creating art?", ctx)
     assert ans.used

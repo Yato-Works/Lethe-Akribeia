@@ -10,6 +10,6 @@ from .label_free_classifier import (
 
 __all__ = [
     "LabelFreeTypeClassifier",
-    "TypePrediction", 
-    "load_dev_items",
+    "LabelFreeTypeClassifierV2",
+    "TypePrediction",
 ]

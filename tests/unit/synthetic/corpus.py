@@ -14,8 +14,8 @@ import hashlib
 import json
 import random
 import re
+from collections.abc import Iterable, Iterator, Sequence
 from dataclasses import dataclass, field, replace
-from typing import Iterable, Iterator, Sequence
 
 
 # --------------------------------------------------------------------------- #

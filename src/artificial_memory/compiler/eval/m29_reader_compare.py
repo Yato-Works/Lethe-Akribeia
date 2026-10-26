@@ -26,8 +26,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[4]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from artificial_memory.compiler.eval.official_grader import OfficialLongMemEvalGrader
-from artificial_memory.research.benchmarks.llm import OllamaAnswerer
+from artificial_memory.compiler.eval.official_grader import OfficialLongMemEvalGrader  # noqa: E402
+from artificial_memory.research.benchmarks.llm import OllamaAnswerer  # noqa: E402
 
 
 @dataclass

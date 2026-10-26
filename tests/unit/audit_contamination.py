@@ -96,8 +96,8 @@ def audit_file(path, golds):
             continue
         ds = docstring_of(fn)
         ds_lines = set()
-        for i, l in enumerate(lines, 1):
-            if l.strip().startswith(("#", '"""', "'''")) or '"""' in l or "'''" in l:
+        for i, line in enumerate(lines, 1):
+            if line.strip().startswith(("#", '"""', "'''")) or '"""' in line or "'''" in line:
                 ds_lines.add(i)
 
         # 1. gold-literal leak (exclude lines inside comments/docstrings)

@@ -10,10 +10,10 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class QueryType(str, Enum):
+class QueryType(StrEnum):
     FACTUAL_USER = "single-session-user"
     FACTUAL_ASSISTANT = "single-session-assistant"
     TEMPORAL = "temporal-reasoning"

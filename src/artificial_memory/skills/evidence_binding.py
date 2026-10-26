@@ -33,7 +33,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 
 #: Words that carry no event content, so they cannot support a binding either way.
 #: Kept small and closed: this list decides when evidence is INSUFFICIENT, so every
@@ -53,7 +53,7 @@ _NON_EVENT_WORDS = frozenset({
 _SUFFIXES = ("ings", "ing", "edly", "ed", "es", "s", "ly", "er", "est")
 
 
-class BindingVerdicts(str, Enum):
+class BindingVerdicts(StrEnum):
     """Whether the value belongs to what was asked."""
     MATCH = "MATCH"          # the event terms of the ask appear on the value
     NO_MATCH = "NO_MATCH"    # the ask's event terms are absent from the value's clause

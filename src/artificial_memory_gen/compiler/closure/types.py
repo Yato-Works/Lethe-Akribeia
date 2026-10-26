@@ -9,11 +9,11 @@ Strict contract:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class AnswerTopology(str, Enum):
+class AnswerTopology(StrEnum):
     """Structural expectation of the target answer."""
     SINGLE_FACT = "single_fact"
     SET_ENUMERATION = "set_enumeration"
@@ -24,7 +24,7 @@ class AnswerTopology(str, Enum):
     COMPARISON = "comparison"
 
 
-class RequirementStatus(str, Enum):
+class RequirementStatus(StrEnum):
     """Verification state of an evidence requirement."""
     UNRESOLVED = "unresolved"
     PARTIALLY_SUPPORTED = "partially_supported"

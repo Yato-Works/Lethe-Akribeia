@@ -11,7 +11,7 @@ not memory.
 from __future__ import annotations
 
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 from .corpus import (
     FIRST_NAMES,

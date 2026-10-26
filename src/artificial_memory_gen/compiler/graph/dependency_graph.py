@@ -10,12 +10,12 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 
 from artificial_memory.core.tokens import word_tokens_43
 
 
-class EdgeType(str, Enum):
+class EdgeType(StrEnum):
     TEMPORAL = "temporal"       # Sequential or calendar relation (A happened before B)
     CAUSAL = "causal"           # Direct consequence or migration (A caused/replaced B)
     ENTITY = "entity"           # Same entity / property reference across sessions

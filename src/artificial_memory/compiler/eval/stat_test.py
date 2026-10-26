@@ -325,11 +325,11 @@ class StatisticalTester:
             "\nPer-Type Breakdown:",
         ]
         
-        for qtype, stats in sorted(result.per_type.items()):
-            sig = " *" if stats['mcnemar_significant'] else ""
+        for qtype, type_stats in sorted(result.per_type.items()):
+            sig = " *" if type_stats['mcnemar_significant'] else ""
             lines.append(
-                f"  {qtype:30s} A: {stats['accuracy_a']:.1%}  B: {stats['accuracy_b']:.1%}  "
-                f"Δ: {stats['diff']:+.1%}  p={stats['mcnemar_p']:.4f}{sig}  (n={stats['n']})"
+                f"  {qtype:30s} A: {type_stats['accuracy_a']:.1%}  B: {type_stats['accuracy_b']:.1%}  "
+                f"Δ: {type_stats['diff']:+.1%}  p={type_stats['mcnemar_p']:.4f}{sig}  (n={type_stats['n']})"
             )
         
         lines.append(f"\n{'='*70}")

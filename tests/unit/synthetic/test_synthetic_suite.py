@@ -7,7 +7,7 @@ base items (we let it) but FAIL every counterfactual rewrite.
 
 from __future__ import annotations
 
-from typing import Callable, Iterable
+from collections.abc import Callable, Iterable
 
 import pytest
 

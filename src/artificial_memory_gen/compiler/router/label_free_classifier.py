@@ -372,15 +372,7 @@ class LabelFreeTypeClassifierV2:
                 )
         
         return scores
-        
-        return TypePrediction(
-            predicted_type=predicted,
-            confidence=confidence,
-            all_scores=ensemble,
-            features=features,
-            method=method,
-        )
-    
+
     def evaluate_on_dev(self, dev_items: list[dict]) -> dict[str, Any]:
         """Evaluate classifier on Dev set."""
         predictions = []
