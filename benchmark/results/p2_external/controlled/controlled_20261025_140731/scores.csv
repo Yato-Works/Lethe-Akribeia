@@ -1,0 +1,401 @@
+player,question_id,category,repeat_index,is_official,outcome,score,correct,ground_truth_coverage,covered_groups,must_total,forbidden_violation,forbidden_hits,abstention_detected,answer_empty,score_consistency,answer_text
+AM hybrid,factual_recall-00,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ripgrep.
+AM hybrid,factual_recall-00,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ripgrep.
+AM hybrid,factual_recall-01,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bat.
+AM hybrid,factual_recall-01,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bat.
+AM hybrid,factual_recall-02,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,fd.
+AM hybrid,factual_recall-02,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,fd.
+AM hybrid,factual_recall-03,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,delta.
+AM hybrid,factual_recall-03,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,delta.
+AM hybrid,factual_recall-04,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,zoxide.
+AM hybrid,factual_recall-04,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,zoxide.
+AM hybrid,factual_recall-05,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,starship.
+AM hybrid,factual_recall-05,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,starship.
+AM hybrid,factual_recall-06,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,just.
+AM hybrid,factual_recall-06,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,just.
+AM hybrid,factual_recall-07,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project harbor, the user said their preferred editor toolchain is watchexec."
+AM hybrid,factual_recall-07,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project harbor, the user said their preferred editor toolchain is watchexec."
+AM hybrid,factual_recall-08,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,helix.
+AM hybrid,factual_recall-08,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,helix.
+AM hybrid,factual_recall-09,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,hyperfine
+AM hybrid,factual_recall-09,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,hyperfine
+AM hybrid,factual_recall-10,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,dust.
+AM hybrid,factual_recall-10,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,dust.
+AM hybrid,factual_recall-11,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,procs.
+AM hybrid,factual_recall-11,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,procs.
+AM hybrid,factual_recall-12,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd.
+AM hybrid,factual_recall-12,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd.
+AM hybrid,factual_recall-13,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei
+AM hybrid,factual_recall-13,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei
+AM hybrid,factual_recall-14,factual_recall,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,xonfig
+AM hybrid,factual_recall-14,factual_recall,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,xonfig
+AM hybrid,factual_recall-15,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM hybrid,factual_recall-15,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM hybrid,factual_recall-16,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,typos.
+AM hybrid,factual_recall-16,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,typos.
+AM hybrid,factual_recall-17,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bacon.
+AM hybrid,factual_recall-17,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bacon.
+AM hybrid,factual_recall-18,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,cargo-nextest.
+AM hybrid,factual_recall-18,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,cargo-nextest.
+AM hybrid,factual_recall-19,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sccache
+AM hybrid,factual_recall-19,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sccache
+AM hybrid,multi_session_recall-00,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Rust
+AM hybrid,multi_session_recall-00,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Rust
+AM hybrid,multi_session_recall-01,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Go
+AM hybrid,multi_session_recall-01,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Go
+AM hybrid,multi_session_recall-02,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"The user began studying Elixir, practised it, and later recommended Elixir to colleagues."
+AM hybrid,multi_session_recall-02,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"The user began studying Elixir, practised it, and later recommended Elixir to colleagues."
+AM hybrid,multi_session_recall-03,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Zig
+AM hybrid,multi_session_recall-03,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Zig
+AM hybrid,multi_session_recall-04,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Kotlin
+AM hybrid,multi_session_recall-04,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Kotlin
+AM hybrid,multi_session_recall-05,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Swift
+AM hybrid,multi_session_recall-05,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Swift
+AM hybrid,multi_session_recall-06,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Julia
+AM hybrid,multi_session_recall-06,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Julia
+AM hybrid,multi_session_recall-07,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Nim
+AM hybrid,multi_session_recall-07,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Nim
+AM hybrid,multi_session_recall-08,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Crystal
+AM hybrid,multi_session_recall-08,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Crystal
+AM hybrid,multi_session_recall-09,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,OCaml
+AM hybrid,multi_session_recall-09,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,OCaml
+AM hybrid,multi_session_recall-10,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"The user began studying Haskell, practised it, and later recommended it to colleagues."
+AM hybrid,multi_session_recall-10,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"The user began studying Haskell, practised it, and later recommended it to colleagues."
+AM hybrid,multi_session_recall-11,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"The user began studying, practised, and later recommended Clojure to colleagues for project lumen."
+AM hybrid,multi_session_recall-11,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"The user began studying, practised, and later recommended Clojure to colleagues for project lumen."
+AM hybrid,multi_session_recall-12,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,F#
+AM hybrid,multi_session_recall-12,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,F#
+AM hybrid,multi_session_recall-13,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,D
+AM hybrid,multi_session_recall-13,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,D
+AM hybrid,multi_session_recall-14,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,V
+AM hybrid,multi_session_recall-14,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,V
+AM hybrid,multi_session_recall-15,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Pony
+AM hybrid,multi_session_recall-15,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Pony
+AM hybrid,multi_session_recall-16,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Gleam
+AM hybrid,multi_session_recall-16,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Gleam
+AM hybrid,multi_session_recall-17,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Roc
+AM hybrid,multi_session_recall-17,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Roc
+AM hybrid,multi_session_recall-18,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Haxe
+AM hybrid,multi_session_recall-18,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Haxe
+AM hybrid,multi_session_recall-19,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Red
+AM hybrid,multi_session_recall-19,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Red
+AM hybrid,temporal_reasoning-00,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-00,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-01,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-01,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-02,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-02,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-03,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-03,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-04,temporal_reasoning,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Ljubljana
+AM hybrid,temporal_reasoning-04,temporal_reasoning,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Ljubljana
+AM hybrid,temporal_reasoning-05,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-05,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-06,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-06,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-07,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-07,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-08,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-08,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-09,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-09,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-10,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-10,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-11,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-11,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-12,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-12,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-13,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-13,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-14,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-14,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-15,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-15,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-16,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-16,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-17,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-17,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-18,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-18,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-19,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,temporal_reasoning-19,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,knowledge_updates-00,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ClickHouse.
+AM hybrid,knowledge_updates-00,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ClickHouse.
+AM hybrid,knowledge_updates-01,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,TiDB.
+AM hybrid,knowledge_updates-01,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,TiDB.
+AM hybrid,knowledge_updates-02,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CockroachDB
+AM hybrid,knowledge_updates-02,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CockroachDB
+AM hybrid,knowledge_updates-03,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SurrealDB.
+AM hybrid,knowledge_updates-03,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SurrealDB.
+AM hybrid,knowledge_updates-04,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Redis.
+AM hybrid,knowledge_updates-04,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Redis.
+AM hybrid,knowledge_updates-05,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Cassandra.
+AM hybrid,knowledge_updates-05,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Cassandra.
+AM hybrid,knowledge_updates-06,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,MongoDB.
+AM hybrid,knowledge_updates-06,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,MongoDB.
+AM hybrid,knowledge_updates-07,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project harbor is now Neo4j.
+AM hybrid,knowledge_updates-07,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project harbor is now Neo4j.
+AM hybrid,knowledge_updates-08,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project ivory now is QuestDB.
+AM hybrid,knowledge_updates-08,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project ivory now is QuestDB.
+AM hybrid,knowledge_updates-09,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project juniper now is TimescaleDB.
+AM hybrid,knowledge_updates-09,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project juniper now is TimescaleDB.
+AM hybrid,knowledge_updates-10,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ArangoDB.
+AM hybrid,knowledge_updates-10,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ArangoDB.
+AM hybrid,knowledge_updates-11,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RethinkDB.
+AM hybrid,knowledge_updates-11,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RethinkDB.
+AM hybrid,knowledge_updates-12,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CouchDB.
+AM hybrid,knowledge_updates-12,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CouchDB.
+AM hybrid,knowledge_updates-13,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RavenDB.
+AM hybrid,knowledge_updates-13,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RavenDB.
+AM hybrid,knowledge_updates-14,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project onyx now is ScyllaDB.
+AM hybrid,knowledge_updates-14,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The user's primary database for project onyx now is ScyllaDB.
+AM hybrid,knowledge_updates-15,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SQLite.
+AM hybrid,knowledge_updates-15,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SQLite.
+AM hybrid,knowledge_updates-16,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,DuckDB
+AM hybrid,knowledge_updates-16,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,DuckDB
+AM hybrid,knowledge_updates-17,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Postgres.
+AM hybrid,knowledge_updates-17,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Postgres.
+AM hybrid,knowledge_updates-18,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RocksDB.
+AM hybrid,knowledge_updates-18,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RocksDB.
+AM hybrid,knowledge_updates-19,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,LMDB.
+AM hybrid,knowledge_updates-19,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,LMDB.
+AM hybrid,contradiction_handling-00,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-00,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-01,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-01,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-02,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-02,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-03,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-03,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-04,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-04,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-05,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-05,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-06,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-06,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-07,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-07,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-08,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-08,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-09,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-09,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-10,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-10,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-11,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-11,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-12,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,"For project moss, the user has not verified which cache layer report is correct, so I don't know."
+AM hybrid,contradiction_handling-12,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,"For project moss, the user has not verified which cache layer report is correct, so I don't know."
+AM hybrid,contradiction_handling-13,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-13,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-14,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,"For project onyx, the user has not verified which cache layer report is correct, so I don't know."
+AM hybrid,contradiction_handling-14,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,"For project onyx, the user has not verified which cache layer report is correct, so I don't know."
+AM hybrid,contradiction_handling-15,contradiction_handling,majority,1,partial,0.5,0,0.5,1,2,0,,0,0,1.0,"For project prism, the user has not verified which cache layer report is correct, but a teammate reported the cache layer actually runs on ArangoDB."
+AM hybrid,contradiction_handling-15,contradiction_handling,0,0,partial,0.5,0,0.5,1,2,0,,0,0,1.0,"For project prism, the user has not verified which cache layer report is correct, but a teammate reported the cache layer actually runs on ArangoDB."
+AM hybrid,contradiction_handling-16,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,"For project quartz, the user has not verified which cache layer report is correct, so I don't know."
+AM hybrid,contradiction_handling-16,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,"For project quartz, the user has not verified which cache layer report is correct, so I don't know."
+AM hybrid,contradiction_handling-17,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,0,0,1.0,"For project reef, the user has not verified which cache layer report is correct."
+AM hybrid,contradiction_handling-17,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,0,0,1.0,"For project reef, the user has not verified which cache layer report is correct."
+AM hybrid,contradiction_handling-18,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-18,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM hybrid,contradiction_handling-19,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,0,0,1.0,"For project tundra, the user has not verified which cache layer report is correct."
+AM hybrid,contradiction_handling-19,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,0,0,1.0,"For project tundra, the user has not verified which cache layer report is correct."
+AM hybrid,indirect_recall-00,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Aarhus
+AM hybrid,indirect_recall-00,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Aarhus
+AM hybrid,indirect_recall-01,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Aarhus
+AM hybrid,indirect_recall-01,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Aarhus
+AM hybrid,indirect_recall-02,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-02,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-03,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Ghent
+AM hybrid,indirect_recall-03,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Ghent
+AM hybrid,indirect_recall-04,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-04,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-05,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-05,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-06,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-06,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-07,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-07,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-08,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-08,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-09,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-09,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-10,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-10,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-11,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-11,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-12,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-12,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-13,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-13,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-14,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-14,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-15,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-15,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-16,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-16,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-17,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-17,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-18,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-18,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-19,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,indirect_recall-19,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM hybrid,distractor_resistance-00,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,batcat.
+AM hybrid,distractor_resistance-00,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,batcat.
+AM hybrid,distractor_resistance-01,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,ctags.
+AM hybrid,distractor_resistance-01,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,ctags.
+AM hybrid,distractor_resistance-02,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,asciinema
+AM hybrid,distractor_resistance-02,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,asciinema
+AM hybrid,distractor_resistance-03,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project delta, the user pinned the file search tool to gitui."
+AM hybrid,distractor_resistance-03,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project delta, the user pinned the file search tool to gitui."
+AM hybrid,distractor_resistance-04,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,difftastic.
+AM hybrid,distractor_resistance-04,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,difftastic.
+AM hybrid,distractor_resistance-05,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,ranger
+AM hybrid,distractor_resistance-05,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,ranger
+AM hybrid,distractor_resistance-06,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,skim.
+AM hybrid,distractor_resistance-06,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,skim.
+AM hybrid,distractor_resistance-07,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,nu
+AM hybrid,distractor_resistance-07,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,nu
+AM hybrid,distractor_resistance-08,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The file search tool pinned for project ivory is fossil.
+AM hybrid,distractor_resistance-08,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The file search tool pinned for project ivory is fossil.
+AM hybrid,distractor_resistance-09,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,hg.
+AM hybrid,distractor_resistance-09,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,hg.
+AM hybrid,distractor_resistance-10,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,dust.
+AM hybrid,distractor_resistance-10,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,dust.
+AM hybrid,distractor_resistance-11,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,procs
+AM hybrid,distractor_resistance-11,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,procs
+AM hybrid,distractor_resistance-12,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd
+AM hybrid,distractor_resistance-12,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd
+AM hybrid,distractor_resistance-13,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei
+AM hybrid,distractor_resistance-13,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei
+AM hybrid,distractor_resistance-14,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,xh
+AM hybrid,distractor_resistance-14,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,xh
+AM hybrid,distractor_resistance-15,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM hybrid,distractor_resistance-15,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM hybrid,distractor_resistance-16,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,nushell
+AM hybrid,distractor_resistance-16,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,nushell
+AM hybrid,distractor_resistance-17,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bacon
+AM hybrid,distractor_resistance-17,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bacon
+AM hybrid,distractor_resistance-18,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,amber
+AM hybrid,distractor_resistance-18,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,amber
+AM hybrid,distractor_resistance-19,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sccache
+AM hybrid,distractor_resistance-19,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sccache
+AM hybrid,abstention-00,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-00,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-01,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-01,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-02,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-02,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-03,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,delta,0,0,1.0,"The user configured the debugger for project driftwood, not delta."
+AM hybrid,abstention-03,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,delta,0,0,1.0,"The user configured the debugger for project driftwood, not delta."
+AM hybrid,abstention-04,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-04,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-05,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-05,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-06,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-06,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-07,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-07,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-08,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-08,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-09,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-09,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-10,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-10,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-11,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-11,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-12,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-12,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-13,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-13,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-14,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-14,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-15,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-15,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-16,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-16,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-17,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-17,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-18,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-18,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-19,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,abstention-19,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM hybrid,compression_recovery-00,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1160
+AM hybrid,compression_recovery-00,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1160
+AM hybrid,compression_recovery-01,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1161
+AM hybrid,compression_recovery-01,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1161
+AM hybrid,compression_recovery-02,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"12.5 ms, serial AM-1162."
+AM hybrid,compression_recovery-02,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"12.5 ms, serial AM-1162."
+AM hybrid,compression_recovery-03,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1163
+AM hybrid,compression_recovery-03,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1163
+AM hybrid,compression_recovery-04,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1164
+AM hybrid,compression_recovery-04,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1164
+AM hybrid,compression_recovery-05,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1165
+AM hybrid,compression_recovery-05,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1165
+AM hybrid,compression_recovery-06,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1166
+AM hybrid,compression_recovery-06,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1166
+AM hybrid,compression_recovery-07,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"12.5 ms, serial AM-1167."
+AM hybrid,compression_recovery-07,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"12.5 ms, serial AM-1167."
+AM hybrid,compression_recovery-08,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1168.
+AM hybrid,compression_recovery-08,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1168.
+AM hybrid,compression_recovery-09,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1169
+AM hybrid,compression_recovery-09,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1169
+AM hybrid,compression_recovery-10,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1170
+AM hybrid,compression_recovery-10,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1170
+AM hybrid,compression_recovery-11,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1171
+AM hybrid,compression_recovery-11,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1171
+AM hybrid,compression_recovery-12,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1172
+AM hybrid,compression_recovery-12,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1172
+AM hybrid,compression_recovery-13,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1173
+AM hybrid,compression_recovery-13,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1173
+AM hybrid,compression_recovery-14,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1174
+AM hybrid,compression_recovery-14,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1174
+AM hybrid,compression_recovery-15,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1175
+AM hybrid,compression_recovery-15,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1175
+AM hybrid,compression_recovery-16,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1176
+AM hybrid,compression_recovery-16,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1176
+AM hybrid,compression_recovery-17,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1177
+AM hybrid,compression_recovery-17,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1177
+AM hybrid,compression_recovery-18,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1178
+AM hybrid,compression_recovery-18,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,serial AM-1178
+AM hybrid,compression_recovery-19,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,105
+AM hybrid,compression_recovery-19,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,105
+AM hybrid,reflection_reinterpretation-00,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the ClickHouse database for project atlas.
+AM hybrid,reflection_reinterpretation-00,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the ClickHouse database for project atlas.
+AM hybrid,reflection_reinterpretation-01,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers working from Lisbon.
+AM hybrid,reflection_reinterpretation-01,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers working from Lisbon.
+AM hybrid,reflection_reinterpretation-02,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers working on project cinder from Bologna.
+AM hybrid,reflection_reinterpretation-02,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers working on project cinder from Bologna.
+AM hybrid,reflection_reinterpretation-03,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the database RocksDB and later SurrealDB for project delta.
+AM hybrid,reflection_reinterpretation-03,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the database RocksDB and later SurrealDB for project delta.
+AM hybrid,reflection_reinterpretation-04,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain sd for project moss and uses it for project ember.
+AM hybrid,reflection_reinterpretation-04,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain sd for project moss and uses it for project ember.
+AM hybrid,reflection_reinterpretation-05,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers to work on Swift in the evenings for project fjord.
+AM hybrid,reflection_reinterpretation-05,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers to work on Swift in the evenings for project fjord.
+AM hybrid,reflection_reinterpretation-06,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database MongoDB for project glacier.
+AM hybrid,reflection_reinterpretation-06,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database MongoDB for project glacier.
+AM hybrid,reflection_reinterpretation-07,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers working from Utrecht.
+AM hybrid,reflection_reinterpretation-07,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers working from Utrecht.
+AM hybrid,reflection_reinterpretation-08,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain sd for project moss and ivory.
+AM hybrid,reflection_reinterpretation-08,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain sd for project moss and ivory.
+AM hybrid,reflection_reinterpretation-09,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain hyperfine for project juniper.
+AM hybrid,reflection_reinterpretation-09,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain hyperfine for project juniper.
+AM hybrid,reflection_reinterpretation-10,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers ArangoDB as the primary database for project kelp.
+AM hybrid,reflection_reinterpretation-10,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers ArangoDB as the primary database for project kelp.
+AM hybrid,reflection_reinterpretation-11,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database RethinkDB for project lumen.
+AM hybrid,reflection_reinterpretation-11,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database RethinkDB for project lumen.
+AM hybrid,reflection_reinterpretation-12,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain sd for project moss.
+AM hybrid,reflection_reinterpretation-12,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain sd for project moss.
+AM hybrid,reflection_reinterpretation-13,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database RavenDB for project nectar.
+AM hybrid,reflection_reinterpretation-13,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database RavenDB for project nectar.
+AM hybrid,reflection_reinterpretation-14,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database ScyllaDB for project onyx.
+AM hybrid,reflection_reinterpretation-14,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database ScyllaDB for project onyx.
+AM hybrid,reflection_reinterpretation-15,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database SQLite for project prism.
+AM hybrid,reflection_reinterpretation-15,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database SQLite for project prism.
+AM hybrid,reflection_reinterpretation-16,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database DuckDB for project quartz.
+AM hybrid,reflection_reinterpretation-16,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database DuckDB for project quartz.
+AM hybrid,reflection_reinterpretation-17,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database Postgres for project reef.
+AM hybrid,reflection_reinterpretation-17,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the database Postgres for project reef.
+AM hybrid,reflection_reinterpretation-18,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain cargo-nextest for project summit.
+AM hybrid,reflection_reinterpretation-18,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently prefers the editor toolchain cargo-nextest for project summit.
+AM hybrid,reflection_reinterpretation-19,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,"The user consistently shows a preference for working from different locations, as they worked from Nantes until 2026-02-18 and then relocated to Ghent on 2026-02-18."
+AM hybrid,reflection_reinterpretation-19,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,"The user consistently shows a preference for working from different locations, as they worked from Nantes until 2026-02-18 and then relocated to Ghent on 2026-02-18."

@@ -140,6 +140,25 @@ class EnhancedContextBuilder:
         self._stats = ContextStats()
         self._stats.budget_allocation = budget.allocation
 
+        # Deduplicate across the resolution ladder. The same memory record can
+        # be returned by several recall levels, and different resolutions can
+        # carry byte-identical text; both used to be appended twice and paid
+        # for twice out of the same token budget. Only exact-id and
+        # whitespace-normalized-exact-content matches are dropped, so no
+        # information is lost.
+        seen_ids: set[int] = set()
+        seen_content: set[str] = set()
+
+        def already_present(mem: Memory) -> bool:
+            if mem.id is not None and mem.id in seen_ids:
+                return True
+            return " ".join(mem.content.split()) in seen_content
+
+        def remember(mem: Memory) -> None:
+            if mem.id is not None:
+                seen_ids.add(mem.id)
+            seen_content.add(" ".join(mem.content.split()))
+
         # 0. Conflict surfacing (opt-in, V4 4.24, measured on the product
         # path): the NOTE is detected over the current-state memories and
         # its tokens are reserved BEFORE the current-state and recall
@@ -161,7 +180,7 @@ class EnhancedContextBuilder:
         fill_ablated = self.conflict_fill_ablation and conflict_reserved
         if current_memories and not fill_ablated:
             for mem in current_memories:
-                if mem.is_current and mem.status.value == "active":
+                if mem.is_current and mem.status.value == "active" and not already_present(mem):
                     tokens = self.token_counter.count(mem.content)
                     priority = 1.0
                     tier = PriorityTier.HIGH
@@ -175,6 +194,7 @@ class EnhancedContextBuilder:
                             tier=tier,
                             memory_id=mem.id,
                         ))
+                        remember(mem)
                         self._stats.parts_count += 1
                         self._stats.tier_distribution[tier.value] = \
                             self._stats.tier_distribution.get(tier.value, 0) + 1
@@ -192,7 +212,11 @@ class EnhancedContextBuilder:
         for level, base_priority, default_tier in recall_configs:
             memories, _ = self.recall_engine.recall(query, topic_id, level, max_tokens=max_tokens // 2)
             for mem in memories:
+                # Current-state memories are owned by step 1 (including the
+                # fill-ablation case, where they must not reappear via recall).
                 if current_memories and any(m.id == mem.id for m in current_memories):
+                    continue
+                if already_present(mem):
                     continue
 
                 tokens = self.token_counter.count(mem.content)
@@ -208,6 +232,7 @@ class EnhancedContextBuilder:
                         tier=tier,
                         memory_id=mem.id,
                     ))
+                    remember(mem)
                     self._stats.parts_count += 1
                     self._stats.tier_distribution[tier.value] = \
                         self._stats.tier_distribution.get(tier.value, 0) + 1

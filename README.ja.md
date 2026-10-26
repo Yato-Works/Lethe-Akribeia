@@ -11,8 +11,8 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: experimental](https://img.shields.io/badge/status-experimental-orange.svg)](#ステータスとロードマップ)
-[![Unit tests: 664 passing](https://img.shields.io/badge/unit%20tests-664%20passing-brightgreen.svg)](#再現手順)
-[![Coverage: 53%](https://img.shields.io/badge/coverage-53%25-yellow.svg)](#再現手順)
+[![Unit tests: 676 passing](https://img.shields.io/badge/unit%20tests-676%20passing-brightgreen.svg)](#再現手順)
+[![Coverage: 54%](https://img.shields.io/badge/coverage-54%25-yellow.svg)](#再現手順)
 
 > *“忘却とは削除ではない。解像度の低下である。”*
 
@@ -97,7 +97,7 @@ Python パッケージ2つ、CLI、MCP サーバー、そして上記の数値�
 | `src/artificial_memory/` | 製品ランタイム: SQLite/Postgres ストア、解像度階層、MSC コンテキストコンパイラ、決定論的コプロセッサ、CLI（`lethe`）、MCP サーバー、FastAPI サービス | 動作する。既定設定は保守的（制限事項を参照） |
 | `src/artificial_memory_gen/` | 研究用コンパイラ（R6/R7/V4）: クエリアナライザ、closure エンジン、オペレータ、P2 アリーナのプレイヤー | 研究コード。**製品パッケージとは未統合** |
 | `scripts/benchmarks/` | 採点器、アリーナ、レジストリ検証、再現用エントリポイント | 多くのランはローカル Ollama + Reader モデルが必要 |
-| `tests/unit/` | 668件。CI のゲート | 664 pass、2 xfail（文書化された非能力）、2 xpass（既に通る却下済み実験） |
+| `tests/unit/` | 680件。CI のゲート | 676 pass、2 xfail（文書化された非能力）、2 xpass（既に通る却下済み実験） |
 
 学習コードもモデル重みもありません。取り込みはすべて決定論的で、モデルは回答時
 （および一部の研究用検索経路）にのみ使います。
@@ -298,17 +298,22 @@ lethe timeline
 - **否定をモデル化しない。** "Nothing has been chosen yet" も、日本語と同じく
   決定の手がかりとして扱われます。マーカーは決定論的な語彙一致であり、
   パーサではありません。
-- **テストカバレッジは 53%。** `artificial_memory_gen` や `compiler/eval` の多くの
+- **テストカバレッジは 54%。** `artificial_memory_gen` や `compiler/eval` の多くの
   研究モジュールは、CI ではなくベンチマークスクリプトでしか実行されません。
 - **型検査はクリーンではない。** `mypy` は約1.4千件の指摘を出します（大半は
   型注釈のないサードパーティデコレータと stub 不足）。Ruff はクリーンで、
   CI でブロックします。
 - **2つのスタックが1つのリポジトリに併存。** `artificial_memory` と
-  `artificial_memory_gen` は未統合で、`RuntimeFacade` は約96メソッドを抱え、
-  `compiler/stages` には参照されないコードがあります。統合は計画であり、完了では
-  ありません。
-- **API サービスの既定値は開発用**: `allow_origins=["*"]`、`enable_auth=False`。
-  そのまま公開しないでください。
+  `artificial_memory_gen` は未統合で、`RuntimeFacade` は95メソッド（公開89）を
+  抱えています。`compiler/stages` の10クラスはすべて既定パイプラインに配線済み
+  であることを計測で確認しました（死んだ stage は見つかっていません）。統合は
+  計画であり、完了ではありません。
+- **API の既定値はループバック限定ですが、本番配備用ではありません。** CORS は
+  既定で localhost のみです（`LETHE_ALLOW_ORIGINS="*"` はクレデンシャル無効時のみ）。
+  `python -m artificial_memory.api.server` は `127.0.0.1` にバインドし、
+  `LETHE_ENABLE_AUTH=1` は公開ルート以外でセッションまたは API キーを実際に
+  検証します（この変更以前はフラグを立てても何も保護していませんでした）。
+  ただし TLS、レート制限、ユーザー分離、WebSocket 認証はまだありません。
 - **ベンチマークスクリプトはローカルモデルを必要とします**（Ollama、Reader モデル、
   必要に応じて埋め込み）。CI はユニットテストのみで、上の表は再現しません。
 
@@ -317,10 +322,10 @@ lethe timeline
 ## 再現手順
 
 ```bash
-# 1. ユニットテスト（668件収集; 664 pass, 2 xfail, 2 xpass）
+# 1. ユニットテスト（680件収集; 676 pass, 2 xfail, 2 xpass）
 pytest tests/unit/
 
-# 2. カバレッジ（2026-10-26 計測で 53%）
+# 2. カバレッジ（2026-10-26 計測で 54%）
 pytest tests/unit/ --cov=artificial_memory --cov=artificial_memory_gen
 
 # 3. Lint
@@ -336,6 +341,12 @@ python scripts/benchmarks/score_locomo_run_json.py \
 # 6. 三層分解
 python scripts/benchmarks/three_layer_report.py
 ```
+
+凍結コンテキストのキャッシュ（`benchmark_results/frozen_ctx/`）と検証 verdict
+（`benchmark_results/support_verifier/`）は生成物の入力であり、gitignore 対象です。
+帰属分析スクリプトを実行する前に、V4_PROGRAM に記載された `--freeze-contexts` /
+`--out` コマンドで再生成してください。V4_PROGRAM §4.21 が引用する2つのアリーナ
+ランはコミット済みで、それ以外の13のタイムスタンプ付きローカルランは含まれません。
 
 否定的結果を含む正式な計測ログは
 [`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md) に、
@@ -355,14 +366,21 @@ python scripts/benchmarks/three_layer_report.py
   会話を必要としなくなりました。
 - 決定・理由・タイムラインの手がかりを日英両対応にしました。
 - 埋め込みモデルを毎回の CLI 起動時ではなく、初回利用時に読み込むようにしました。
+- 解像度をまたぐ厳密な重複（同一 memory id、または空白正規化後に完全一致する
+  本文）をコンテキストから除去しました。実測では2ターンのトピックで4段階の
+  検索結果20行のうち、同一 id 15行・同一本文1行が重複していました。コンテキストは
+  4パーツに収まります。
+- API をループバック既定にし、`LETHE_ENABLE_AUTH=1` が実際に認証を強制するように
+  しました（それまではフラグを立てても保護されませんでした）。
 
 引き続き対応予定:
 
-1. 研究パッケージと製品パッケージの統合、約96メソッドの facade の縮小、
-   参照されていない `compiler/stages` の削除。
-2. 解像度をまたぐ重複記憶の排除（同じ事実が RAW・EPISODE・SEMANTIC に
-   同時に現れます）。
-3. 公開前の API 既定値の強化（`allow_origins=["*"]`、認証オフ）。
+1. 研究パッケージと製品パッケージの統合、95メソッドの facade の縮小。
+   （計測注記: `compiler/stages` の10クラスはすべて既定パイプラインに配線済みで、
+   死んだ stage モジュールは見つかりませんでした。）
+2. 言い換えレベルの近重複の統合。上記の重複除去は完全一致のみで、
+   RAW/EPISODE/SEMANTIC の再表現まではマージしません。
+3. 配備向け API 強化（TLS、レート制限、ユーザー分離、WebSocket 認証）。
 
 これらに精度の約束は付けません。受け入れるか却下するかは、デモではなく
 V4_PROGRAM に書かれた対応比較の計測で決めます。

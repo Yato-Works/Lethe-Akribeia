@@ -11,8 +11,8 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: experimental](https://img.shields.io/badge/status-experimental-orange.svg)](#status-and-roadmap)
-[![Unit tests: 664 passing](https://img.shields.io/badge/unit%20tests-664%20passing-brightgreen.svg)](#reproduction)
-[![Coverage: 53%](https://img.shields.io/badge/coverage-53%25-yellow.svg)](#reproduction)
+[![Unit tests: 676 passing](https://img.shields.io/badge/unit%20tests-676%20passing-brightgreen.svg)](#reproduction)
+[![Coverage: 54%](https://img.shields.io/badge/coverage-54%25-yellow.svg)](#reproduction)
 
 > *“Forgetting is not deletion. It is loss of resolution.”*
 
@@ -99,7 +99,7 @@ the numbers above.
 | `src/artificial_memory/` | The product runtime: SQLite/Postgres store, resolution tiers, MSC context compiler, deterministic co-processors, CLI (`lethe`), MCP server, FastAPI service. | Works; default configuration is conservative (see limitations) |
 | `src/artificial_memory_gen/` | The research compiler (R6/R7/V4): query analyzer, closure engine, operators, P2 arena players. | Research code; **not merged** with the product package |
 | `scripts/benchmarks/` | Scorers, arena, registry verifier, reproduction entry points. | Required a local Ollama + reader model for most runs |
-| `tests/unit/` | 668 tests; the CI gate. | 664 pass, 2 xfail (documented non-capabilities), 2 xpass (rejected experiments that already pass) |
+| `tests/unit/` | 680 tests; the CI gate. | 676 pass, 2 xfail (documented non-capabilities), 2 xpass (rejected experiments that already pass) |
 
 There is no training code and no model weights in this repository. All ingestion is
 deterministic; models are used at answer time and, in some research paths, for
@@ -306,15 +306,22 @@ These are current, measured, and mostly queued for the next milestones.
 - **Cue detection does not model negation.** "Nothing has been chosen yet" still
   registers as a decision cue, in Japanese and English alike. The markers are
   deterministic word matches, not a parser.
-- **Test coverage is 53%.** Many research modules (`artificial_memory_gen`,
+- **Test coverage is 54%.** Many research modules (`artificial_memory_gen`,
   `compiler/eval`) are exercised only by benchmark scripts, not by CI.
 - **Type checking is not clean.** `mypy` reports ~1.4k findings, dominated by
   untyped third-party decorators and missing stubs. Ruff is clean and blocking.
 - **Two stacks, one repo.** `artificial_memory` and `artificial_memory_gen` are not
-  merged; `RuntimeFacade` carries ~96 methods; some `compiler/stages` code has no
-  importer. Merging is planned work, not done work.
-- **API service defaults are development defaults**: `allow_origins=["*"]` and
-  `enable_auth=False`. Do not expose it as-is.
+  merged; `RuntimeFacade` carries 95 methods (89 public). All 10 `compiler/stages`
+  classes are wired into the default pipeline — measured, not dead — so the
+  remaining work is the merge itself, not deleting stage modules. Merging is
+  planned work, not done work.
+- **API defaults are loopback-only, but the service is not a production deployment
+  target.** CORS defaults to localhost origins; `LETHE_ALLOW_ORIGINS="*"` is
+  accepted only with credentials disabled. `python -m artificial_memory.api.server`
+  binds `127.0.0.1`, and `LETHE_ENABLE_AUTH=1` now actually enforces a session or
+  API key on every non-public route (before this change the flag protected
+  nothing). There is still no TLS, rate limiting, per-user isolation, or WebSocket
+  authentication.
 - **Benchmark scripts need local models** (Ollama, a reader model, optionally
   embeddings). CI runs unit tests only; it does not reproduce the tables.
 
@@ -323,10 +330,10 @@ These are current, measured, and mostly queued for the next milestones.
 ## Reproduction
 
 ```bash
-# 1. Unit tests (668 collected; 664 pass, 2 xfail, 2 xpass)
+# 1. Unit tests (680 collected; 676 pass, 2 xfail, 2 xpass)
 pytest tests/unit/
 
-# 2. Coverage (measured 53% on 2026-10-26)
+# 2. Coverage (measured 54% on 2026-10-26)
 pytest tests/unit/ --cov=artificial_memory --cov=artificial_memory_gen
 
 # 3. Lint
@@ -342,6 +349,12 @@ python scripts/benchmarks/score_locomo_run_json.py \
 # 6. Three-layer decomposition
 python scripts/benchmarks/three_layer_report.py
 ```
+
+Frozen context caches (`benchmark_results/frozen_ctx/`) and verifier verdicts
+(`benchmark_results/support_verifier/`) are generated inputs and are gitignored;
+regenerate them with the `--freeze-contexts` / `--out` commands named in
+V4_PROGRAM before running the attribution scripts. The two arena runs cited in
+V4_PROGRAM §4.21 are committed; 13 other timestamped local runs are not.
 
 The authoritative measurement log, including the negative results, is
 [`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md).
@@ -361,15 +374,24 @@ that the arena exposed:
 - `lethe ask` and `lethe resume` exist, and `recall`/`timeline` no longer require an
   active conversation;
 - decision/reason/timeline cues are bilingual (Japanese and English);
-- the embedding model loads lazily instead of on every CLI invocation.
+- the embedding model loads lazily instead of on every CLI invocation;
+- exact cross-resolution duplicates (same memory id, or the same body after
+  whitespace normalization) are removed from the context. Measured on a two-turn
+  topic: 20 recall rows across four levels contained 15 repeated ids and 1 repeated
+  body; the compiled context is now 4 parts;
+- the API is loopback-only by default and `LETHE_ENABLE_AUTH=1` now actually
+  enforces a session/API key (before this change the flag protected nothing).
 
 Still queued:
 
-1. Merge the research and product packages; shrink the ~96-method facade; delete
-   `compiler/stages` code that has no importer.
-2. Deduplicate near-identical memories across resolutions — the same fact currently
-   appears at RAW, EPISODE and SEMANTIC in one context.
-3. Harden the API defaults (`allow_origins=["*"]`, auth off) before any deployment.
+1. Merge the research and product packages; shrink the 95-method facade. (Measured
+   note: all 10 `compiler/stages` classes are wired into the default pipeline; no
+   dead stage module was found.)
+2. Merge paraphrase-level near-duplicates. The dedupe above only removes exact ids
+   and exact normalized text; it does not merge a fact re-expressed at
+   RAW/EPISODE/SEMANTIC.
+3. Deployment hardening for the API (TLS, rate limits, per-user isolation,
+   WebSocket authentication).
 
 No accuracy promise is attached to any of these. Each will be accepted or rejected
 on the paired measurement described in V4_PROGRAM, not on a demo.

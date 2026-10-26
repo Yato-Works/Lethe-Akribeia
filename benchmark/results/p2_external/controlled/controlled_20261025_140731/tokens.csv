@@ -1,0 +1,2 @@
+player,write_llm_calls,write_prompt_tokens,write_completion_tokens,retrieval_calls,context_calls,answer_llm_calls,answer_prompt_tokens,answer_completion_tokens,total_tokens,context_budget,context_used,budget_violations
+AM hybrid,0,0,0,1000,1000,1000,1856910,7424,1864334,2000,1574645,0

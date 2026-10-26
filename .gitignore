@@ -137,6 +137,38 @@ scripts/benchmarks/evaluate_committer_*.py
 scripts/benchmarks/failure_taxonomy.py
 scripts/benchmarks/test_linguistic_precision_engine.py
 
+# Ad-hoc scratch and tool caches created at the repository root.
+# They are outputs of local probes, not sources.
+/fc-*/
+/ofn-*/
+/goldctx-*/
+/cache/
+/results/
+/data-gym-cache/
+/test_import.py
+/test_import2.py
+/tools.inspect.py
+
+# Local reproduction caches. These are generated (frozen contexts / verdicts)
+# and are inputs, not results; regenerate them with the scripts named in
+# design_docs/v4_world_class/V4_PROGRAM.md.
+/benchmark_results/frozen_ctx/
+/benchmark_results/support_verifier/
+
+# Timestamped arena runs. The runs cited in V4_PROGRAM are whitelisted below;
+# everything else is a local re-run and is not part of the repository.
+/benchmark/results/p2_external/controlled/*
+!/benchmark/results/p2_external/controlled/controlled_20261024_013252/
+!/benchmark/results/p2_external/controlled/controlled_20261024_013546/
+!/benchmark/results/p2_external/controlled/controlled_20261024_234350/
+!/benchmark/results/p2_external/controlled/controlled_20261024_234542/
+!/benchmark/results/p2_external/controlled/controlled_20261024_234709/
+!/benchmark/results/p2_external/controlled/controlled_20261025_004058/
+!/benchmark/results/p2_external/controlled/controlled_20261025_004438/
+!/benchmark/results/p2_external/controlled/controlled_20261025_004633/
+!/benchmark/results/p2_external/controlled/controlled_20261025_135405/
+!/benchmark/results/p2_external/controlled/controlled_20261025_140731/
+
 
 
 
