@@ -201,14 +201,17 @@ class RuntimeConfig:
     #                      (Phase 8.7: session-granular gate, 85% evidence
     #                      retention @ K=100 with no embedding pass)
     retrieval_strategy: str = "classic"
-    # Lexical channel for the classic recall engine (off by default).
+    # Lexical channel for the classic recall engine (ON by default).
     #
-    # Measured on the controlled arena: the runtime answered 13.5% of 200
-    # planted-fact questions because the candidate pool was query-independent
-    # (40 episodes + 20 semantic out of 440 facts) and ranking was unweighted
-    # word overlap.  An IDF-weighted lexical channel reaches the gold in the top
-    # 20 for 80-100% of the retrieval-shaped categories.  See V4_PROGRAM.md 4.12.
-    lexical_recall: bool = False
+    # Measured on the controlled arena: with this channel off, the runtime answers
+    # 11.5% of 200 planted-fact questions, because the candidate pool is
+    # query-independent (40 episodes + 20 semantic out of 440 facts) and ranking is
+    # unweighted word overlap.  An IDF-weighted lexical channel lifts the same
+    # runtime to 53.0% (Simple RAG 51.0%) at ~3x read tokens.  Leaving the weaker
+    # behaviour as the default was a product wiring error, not a measured choice;
+    # see V4_PROGRAM.md 4.12-4.14.  Disable with LETHE_LEXICAL_RECALL=0 or
+    # `--no-lexical` when the token budget matters more than recall.
+    lexical_recall: bool = True
     lexical_candidate_limit: int = 1000
     # Conflict surfacing for the classic/lexical read path (off by default).
     #
@@ -218,7 +221,9 @@ class RuntimeConfig:
     # surfaces both values with their provenance (V4_PROGRAM.md 4.24:
     # contradiction conversions 0/20 -> 12/20 in the arena, zero exclusive
     # losses; priced at 0 LLM before being built).  Purely additive: no
-    # merge, no overwrite, no change to ranking or supersession.
+    # merge, no overwrite, no change to ranking or supersession.  It stays off
+    # because the product-path transfer is still partial (4.27: 40.0 -> 42.0 on
+    # a paired 50-question run, one contradiction converted out of five).
     conflict_surfacing: bool = False
     # M15.3 (V4_PROGRAM.md 4.30): when a conflict annotation fires, the
     # query-unrelated recency fill -- measured 92% of a contradiction
@@ -254,6 +259,25 @@ class RuntimeConfig:
                 )
             self.private_key = self.private_key or _secrets.token_urlsafe(32)
             self.public_key = self.public_key or _secrets.token_urlsafe(32)
+
+    @classmethod
+    def from_env(cls, **overrides: object) -> RuntimeConfig:
+        """Build a config from environment variables.
+
+        ``LETHE_LEXICAL_RECALL`` and ``LETHE_CONFLICT_SURFACING`` accept
+        ``0/1``, ``true/false``, ``on/off``. Unset (or empty) values keep the
+        dataclass defaults, so the flags stay auditable in one place.
+        """
+        config = cls(**overrides)  # type: ignore[arg-type]
+        for env_name, field_name in (
+            ("LETHE_LEXICAL_RECALL", "lexical_recall"),
+            ("LETHE_CONFLICT_SURFACING", "conflict_surfacing"),
+        ):
+            raw = os.environ.get(env_name)
+            if raw is None or not raw.strip():
+                continue
+            setattr(config, field_name, raw.strip().lower() not in {"0", "false", "no", "off"})
+        return config
 
 
 @dataclass

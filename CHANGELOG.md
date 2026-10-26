@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+### Documentation
 - **README honesty pass (P0).** `README.md` / `README.ja.md` rewritten so the
   measured limits come first:
   - the official LoCoMo figures (37.41% as measured, 49.91% protocol-fixed,
@@ -20,9 +20,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     to LLM-judged publications;
   - the recorded holdout leak (`--scope` inversion) and the dev-saturated
     `v4-r8.1-perfect-score` tag are both disclosed;
-  - test claims now match the tree: 652 unit tests collected (648 pass, 2 xfail,
-    2 xpass), 1,113 total, 53% coverage; "Apex Generation" and the 100% badges
+  - test claims now match the tree: 668 unit tests collected (664 pass, 2 xfail,
+    2 xpass), 1,129 total, 53% coverage; "Apex Generation" and the 100% badges
     are gone.
+
+### Added
+- **`lethe ask`** — the read path without an LLM: matching memories, their
+  provenance, and the compiled MSC context that an agent would send to its model.
+- **`lethe resume TOPIC`** — continues an existing topic in a new conversation and
+  refuses to create one, printing the topic's recent conversations first.
+- `RuntimeConfig.from_env()`; `LETHE_LEXICAL_RECALL` and
+  `LETHE_CONFLICT_SURFACING` override the defaults for the CLI and MCP server.
+- `artificial_memory.compression.markers`: one bilingual cue table shared by the
+  compressor and the memory compiler (decisions, reasons, risks, labels).
+
+### Changed
+- **`RuntimeConfig.lexical_recall` is now `True` by default.** The arena measured
+  11.5% with it off and 53.0% with it on (Simple RAG 51.0%) at ~3x read tokens.
+  Leaving the worse configuration as the default was a wiring error. Override with
+  `--no-lexical` or `LETHE_LEXICAL_RECALL=0`. Conflict surfacing stays opt-in
+  because its product-path transfer is still partial.
+- **`recall` / `timeline` no longer require an active conversation.** They take
+  `--topic`, fall back to the active conversation, then to the most recent topic.
+  `end` used to make stored memories unreachable in a fresh process.
+- **English cue parity.** `compress_semantic` and the timeline/decision extractor
+  used Japanese-only markers (and Japanese output labels), so English
+  conversations produced an empty `decisions.md`. Both now use the language of the
+  input, and Japanese output is byte-identical to before.
+- **Lazy embedding load.** `VectorSearchEngine` used to construct SentenceTransformer
+  in `__init__`, so `start`/`user` loaded torch and MiniLM for no reason.
 - `design_docs/v4_world_class/V4_PROGRAM.md`: added §3.5 documenting why the
   R8.1 dev-250 artifact is not citable.
 - `benchmark_results/RESULTS_REGISTRY.md`: scope note (v0.3.0 artifacts only;

@@ -6,6 +6,12 @@ from dataclasses import dataclass
 
 import tiktoken
 
+from artificial_memory.compression.markers import (
+    has_decision,
+    has_important,
+    has_reason,
+    labels_for,
+)
 from artificial_memory.core.interfaces import Compressor
 from artificial_memory.core.tokens import bpe_tokens
 from artificial_memory.metrics.collector import (
@@ -35,6 +41,9 @@ class RuleBasedCompressor:
             r'\b(だと思う|気がする|と思う|でしょうか|ですよね|じゃないですか)\b',
             r'\b(普通に|結構|まあ|結構|わりと|そこそこ|そこそこ)\b',
             r'(w{2,}|笑|草|www)',
+            # English disfluencies only; content-bearing words are left alone.
+            r'\b(um+|uh+|erm+|hmm+)\b[,\s]*',
+            r'\byou know,\s*',
         ]
 
         # Patterns for important markers (keep these)
@@ -75,11 +84,17 @@ class RuleBasedCompressor:
     def _score_sentence_importance(self, sentence: str) -> float:
         """Score sentence importance based on markers."""
         score = 0.5  # Base score
-        sentence.lower()
 
+        matched_japanese = False
         for pattern in self.important_markers:
             if re.search(pattern, sentence, re.IGNORECASE):
                 score += 0.2
+                matched_japanese = True
+
+        # English signals are only added when no Japanese marker matched, so a
+        # Japanese sentence keeps its previous score exactly.
+        if not matched_japanese and has_important(sentence):
+            score += 0.2
 
         # Longer sentences tend to have more content
         length_bonus = min(len(sentence) / 200, 0.3)
@@ -88,7 +103,7 @@ class RuleBasedCompressor:
         # Questions and decisions are important
         if '？' in sentence or '?' in sentence:
             score += 0.15
-        if any(w in sentence for w in ['決めた', '決定', '採用', '選択']):
+        if has_decision(sentence):
             score += 0.25
 
         return min(score, 1.0)
@@ -185,30 +200,31 @@ class RuleBasedCompressor:
         original_tokens = self.count_tokens(content)
         sentences = self._split_sentences(content)
 
-        # Find decision/outcome sentences
+        # Find decision/outcome sentences (bilingual markers; see markers.py).
         decision_sentences = []
         reason_sentences = []
         other_important = []
 
         for s in sentences:
-            s_lower = s.lower()
-            if any(w in s_lower for w in ['決めた', '決定', '採用', '却下', '選択', '選んだ']):
+            if has_decision(s):
                 decision_sentences.append(s)
-            elif any(w in s_lower for w in ['理由', 'なぜなら', 'なぜ', 'ため', 'から']):
+            elif has_reason(s):
                 reason_sentences.append(s)
             elif self._score_sentence_importance(s) > 0.7:
                 other_important.append(s)
 
+        labels = labels_for(content)
+
         # Build semantic summary
         parts = []
         if decision_sentences:
-            parts.append("**決定事項:**")
+            parts.append(labels["decisions"])
             parts.extend(decision_sentences[:3])
         if reason_sentences:
-            parts.append("\n**理由:**")
+            parts.append(labels["reasons"])
             parts.extend(reason_sentences[:3])
         if other_important:
-            parts.append("\n**重要ポイント:**")
+            parts.append(labels["points"])
             parts.extend(other_important[:2])
 
         compressed = '\n'.join(parts)

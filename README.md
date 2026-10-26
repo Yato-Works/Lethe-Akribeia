@@ -11,7 +11,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: experimental](https://img.shields.io/badge/status-experimental-orange.svg)](#status-and-roadmap)
-[![Unit tests: 648 passing](https://img.shields.io/badge/unit%20tests-648%20passing-brightgreen.svg)](#reproduction)
+[![Unit tests: 664 passing](https://img.shields.io/badge/unit%20tests-664%20passing-brightgreen.svg)](#reproduction)
 [![Coverage: 53%](https://img.shields.io/badge/coverage-53%25-yellow.svg)](#reproduction)
 
 > *“Forgetting is not deletion. It is loss of resolution.”*
@@ -68,9 +68,10 @@ matcher over 20 questions at 500K tokens.
 
 **5. The shipped runtime's default configuration scored 11.5% on the controlled
 200-question arena.** An IDF-weighted lexical recall channel lifts it to **53.0%**
-(Simple RAG 51.0%, Mem0-style 42.5%, Zep-style 35.0%, HippoRAG-style 26.0%), but that
-channel is opt-in, costs roughly 3× the read tokens, and was not reachable from the
-CLI/MCP path at the time of measurement. Source: V4_PROGRAM §4.12–§4.14.
+(Simple RAG 51.0%, Mem0-style 42.5%, Zep-style 35.0%, HippoRAG-style 26.0%) at roughly
+3× the read tokens. That channel is now **on by default** (`--no-lexical` or
+`LETHE_LEXICAL_RECALL=0` disables it); it was not reachable from the CLI/MCP path when
+the arena was measured. Source: V4_PROGRAM §4.12–§4.14.
 
 **6. A holdout leak is recorded, not hidden.** An inverted `--scope` filter caused
 one run of the provenance gate to measure only the 499 held-out questions. That
@@ -98,7 +99,7 @@ the numbers above.
 | `src/artificial_memory/` | The product runtime: SQLite/Postgres store, resolution tiers, MSC context compiler, deterministic co-processors, CLI (`lethe`), MCP server, FastAPI service. | Works; default configuration is conservative (see limitations) |
 | `src/artificial_memory_gen/` | The research compiler (R6/R7/V4): query analyzer, closure engine, operators, P2 arena players. | Research code; **not merged** with the product package |
 | `scripts/benchmarks/` | Scorers, arena, registry verifier, reproduction entry points. | Required a local Ollama + reader model for most runs |
-| `tests/unit/` | 652 tests; the CI gate. | 648 pass, 2 xfail (documented non-capabilities), 2 xpass (rejected experiments that already pass) |
+| `tests/unit/` | 668 tests; the CI gate. | 664 pass, 2 xfail (documented non-capabilities), 2 xpass (rejected experiments that already pass) |
 
 There is no training code and no model weights in this repository. All ingestion is
 deterministic; models are used at answer time and, in some research paths, for
@@ -273,14 +274,17 @@ pip install -e ".[vector,llm]"
 lethe start "Project/Akribeia"
 lethe user "We decided to target 9/30 for the initial release."
 lethe assistant "Understood. The release deadline is set to September 30."
-lethe recall "When is the release scheduled?"
+lethe end
+lethe recall "When is the release scheduled?"     # works in a new process
+lethe ask "When is the release scheduled?"        # evidence + compiled context
+lethe resume "Project/Akribeia"                   # continue the same topic
 lethe timeline
 ```
 
-Tested flow: `start → user → assistant → end` compiles memories; `recall` and
-`timeline` require an active conversation in the current build (`end` clears it).
-There is no `ask`/`resume` command yet, and the model-backed answer path is not
-part of the CLI.
+`ask` returns what the agent would send to its model: the matching memories, their
+provenance, and the compiled MSC context. It does not call an LLM, so it is not a
+generated answer. `recall`/`timeline` no longer require an active conversation; they
+fall back to the most recent topic unless `--topic` is given.
 
 ---
 
@@ -290,16 +294,18 @@ These are current, measured, and mostly queued for the next milestones.
 
 - **Memory quality on real dialogue is modest.** 54.94% official F1, with the
   single-hop and adversarial categories carrying most of the loss.
-- **Default recall configuration is weak.** `RuntimeConfig.lexical_recall` and
-  `conflict_surfacing` are `False` by default; the arena measured 11.5% in that
-  state. Enabling the lexical channel is a 3× token cost.
+- **Recall is tuned on a synthetic arena, not on your token bill.** The lexical
+  channel is on by default because it is the measured-better configuration
+  (11.5% → 53.0%), but it reads roughly 3× the tokens. Disable it with
+  `--no-lexical` or `LETHE_LEXICAL_RECALL=0` when budget matters more.
+  Conflict surfacing remains off; its product-path transfer is still partial.
 - **No paraphrase resolution.** Evidence binding is clause-local: if the duration
   and the event sit in different comma-clauses, or the question paraphrases the
   event ("creating art" vs "painting"), the engine declines rather than guesses.
   This is covered by two explicit tests (one pass, one strict xfail).
-- **Decision extraction is Japanese-keyed in the compressor.** English
-  conversations can yield an empty `decisions.md`; the semantic compression path
-  then saves fewer tokens than advertised.
+- **Cue detection does not model negation.** "Nothing has been chosen yet" still
+  registers as a decision cue, in Japanese and English alike. The markers are
+  deterministic word matches, not a parser.
 - **Test coverage is 53%.** Many research modules (`artificial_memory_gen`,
   `compiler/eval`) are exercised only by benchmark scripts, not by CI.
 - **Type checking is not clean.** `mypy` reports ~1.4k findings, dominated by
@@ -317,7 +323,7 @@ These are current, measured, and mostly queued for the next milestones.
 ## Reproduction
 
 ```bash
-# 1. Unit tests (652 collected; 648 pass, 2 xfail, 2 xpass)
+# 1. Unit tests (668 collected; 664 pass, 2 xfail, 2 xpass)
 pytest tests/unit/
 
 # 2. Coverage (measured 53% on 2026-10-26)
@@ -347,16 +353,23 @@ The 21 frozen v0.3.0 metrics are in
 ## Status and roadmap
 
 **Current: v0.3.1, experimental.** The V3 three-layer diagnostic standard and the V4
-measurement correction are both done; what remains is product wiring and engine
-coverage. The V4 program document records targets as targets, milestones as
-milestones, and rejections as rejections.
+measurement correction are both done. This branch also closes the product-wiring gap
+that the arena exposed:
 
-Queued, in order:
+- the measured recall configuration is now the default (`--lexical/--no-lexical`,
+  `LETHE_LEXICAL_RECALL`);
+- `lethe ask` and `lethe resume` exist, and `recall`/`timeline` no longer require an
+  active conversation;
+- decision/reason/timeline cues are bilingual (Japanese and English);
+- the embedding model loads lazily instead of on every CLI invocation.
 
-1. Make the measured recall configuration the default and expose it in CLI/MCP
-   (`lexical_recall`, conflict surfacing), add `lethe ask` / `lethe resume`.
-2. English parity in the compressor and decision extractor.
-3. Merge the research and product packages; shrink the facade; delete dead stages.
+Still queued:
+
+1. Merge the research and product packages; shrink the ~96-method facade; delete
+   `compiler/stages` code that has no importer.
+2. Deduplicate near-identical memories across resolutions — the same fact currently
+   appears at RAW, EPISODE and SEMANTIC in one context.
+3. Harden the API defaults (`allow_origins=["*"]`, auth off) before any deployment.
 
 No accuracy promise is attached to any of these. Each will be accepted or rejected
 on the paired measurement described in V4_PROGRAM, not on a demo.

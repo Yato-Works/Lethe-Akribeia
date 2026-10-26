@@ -11,7 +11,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: experimental](https://img.shields.io/badge/status-experimental-orange.svg)](#ステータスとロードマップ)
-[![Unit tests: 648 passing](https://img.shields.io/badge/unit%20tests-648%20passing-brightgreen.svg)](#再現手順)
+[![Unit tests: 664 passing](https://img.shields.io/badge/unit%20tests-664%20passing-brightgreen.svg)](#再現手順)
 [![Coverage: 53%](https://img.shields.io/badge/coverage-53%25-yellow.svg)](#再現手順)
 
 > *“忘却とは削除ではない。解像度の低下である。”*
@@ -67,9 +67,10 @@ BEAM リーダーボードの結果ではありません。** 公開 BEAM 数値
 
 **5. 出荷時デフォルト設定のランタイムは、統制アリーナ（200問）で 11.5% でした。**
 IDF 重み付きレキシカル検索チャネルを有効にすると **53.0%** になります
-（Simple RAG 51.0%、Mem0 風 42.5%、Zep 風 35.0%、HippoRAG 風 26.0%）。ただしこの
-チャネルはオプトインで、読み込みトークンが約3倍になり、計測時点では CLI/MCP から
-到達できませんでした。出典: V4_PROGRAM §4.12–§4.14。
+（Simple RAG 51.0%、Mem0 風 42.5%、Zep 風 35.0%、HippoRAG 風 26.0%）。ただし
+読み込みトークンは約3倍です。このチャネルは現在**既定で有効**です
+（`--no-lexical` または `LETHE_LEXICAL_RECALL=0` で無効化）。アリーナ計測時点では
+CLI/MCP から到達できませんでした。出典: V4_PROGRAM §4.12–§4.14。
 
 **6. ホールドアウトのリークは隠さず記録しています。** `--scope` フィルタの反転により、
 provenance ゲートの1回のランがホールドアウト499問だけを計測していました。したがって
@@ -96,7 +97,7 @@ Python パッケージ2つ、CLI、MCP サーバー、そして上記の数値�
 | `src/artificial_memory/` | 製品ランタイム: SQLite/Postgres ストア、解像度階層、MSC コンテキストコンパイラ、決定論的コプロセッサ、CLI（`lethe`）、MCP サーバー、FastAPI サービス | 動作する。既定設定は保守的（制限事項を参照） |
 | `src/artificial_memory_gen/` | 研究用コンパイラ（R6/R7/V4）: クエリアナライザ、closure エンジン、オペレータ、P2 アリーナのプレイヤー | 研究コード。**製品パッケージとは未統合** |
 | `scripts/benchmarks/` | 採点器、アリーナ、レジストリ検証、再現用エントリポイント | 多くのランはローカル Ollama + Reader モデルが必要 |
-| `tests/unit/` | 652件。CI のゲート | 648 pass、2 xfail（文書化された非能力）、2 xpass（既に通る却下済み実験） |
+| `tests/unit/` | 668件。CI のゲート | 664 pass、2 xfail（文書化された非能力）、2 xpass（既に通る却下済み実験） |
 
 学習コードもモデル重みもありません。取り込みはすべて決定論的で、モデルは回答時
 （および一部の研究用検索経路）にのみ使います。
@@ -265,14 +266,17 @@ pip install -e ".[vector,llm]"
 lethe start "Project/Akribeia"
 lethe user "We decided to target 9/30 for the initial release."
 lethe assistant "Understood. The release deadline is set to September 30."
-lethe recall "When is the release scheduled?"
+lethe end
+lethe recall "When is the release scheduled?"     # 新しいプロセスでも動く
+lethe ask "When is the release scheduled?"        # エビデンス + コンパイル済みコンテキスト
+lethe resume "Project/Akribeia"                   # 同じトピックを継続
 lethe timeline
 ```
 
-動作確認済みの流れ: `start → user → assistant → end` で記憶がコンパイルされます。
-現行ビルドでは `recall` と `timeline` はアクティブな会話を必要とし、`end` でそれが
-クリアされます。`ask` / `resume` コマンドはまだなく、モデルを使った回答経路は
-CLI には含まれていません。
+`ask` はエージェントがモデルに渡す内容を返します。一致した記憶、その出所、
+コンパイル済み MSC コンテキストです。LLM は呼ばないため、生成された回答では
+ありません。`recall` / `timeline` はアクティブな会話を必要としなくなりました
+（`--topic` 指定がなければ直近のトピックにフォールバックします）。
 
 ---
 
@@ -282,15 +286,18 @@ CLI には含まれていません。
 
 - **実対話での記憶品質は中程度。** 公式 F1 54.94%。損失の大半は single-hop と
   敵対カテゴリにあります。
-- **既定の検索設定が弱い。** `RuntimeConfig.lexical_recall` と `conflict_surfacing` は
-  既定で `False` で、その状態のアリーナは 11.5% でした。レキシカルチャネルは
-  トークン約3倍のコストです。
+- **検索は合成アリーナで調整されており、トークン代は別問題。** レキシカル
+  チャネルは計測上より良い設定（11.5% → 53.0%）のため既定で有効ですが、
+  読み込みトークンは約3倍です。コストを優先する場合は `--no-lexical` または
+  `LETHE_LEXICAL_RECALL=0` で無効化してください。conflict surfacing は
+  製品経路への転移がまだ部分的なので既定オフのままです。
 - **言い換えを解決しない。** Evidence binding は節ローカルです。期間と事象が別の
   カンマ節にある場合や、質問が事象を言い換えている場合（"creating art" と "painting"）、
   エンジンは推測せずに辞退します。これは2つの明示的テスト（1つは pass、1つは厳格な
   xfail）で固定されています。
-- **圧縮器の決定抽出が日本語キーワード依存。** 英語の会話では `decisions.md` が
-  空になり得て、semantic 圧縮の削減効果が公称より小さくなります。
+- **否定をモデル化しない。** "Nothing has been chosen yet" も、日本語と同じく
+  決定の手がかりとして扱われます。マーカーは決定論的な語彙一致であり、
+  パーサではありません。
 - **テストカバレッジは 53%。** `artificial_memory_gen` や `compiler/eval` の多くの
   研究モジュールは、CI ではなくベンチマークスクリプトでしか実行されません。
 - **型検査はクリーンではない。** `mypy` は約1.4千件の指摘を出します（大半は
@@ -310,7 +317,7 @@ CLI には含まれていません。
 ## 再現手順
 
 ```bash
-# 1. ユニットテスト（652件収集; 648 pass, 2 xfail, 2 xpass）
+# 1. ユニットテスト（668件収集; 664 pass, 2 xfail, 2 xpass）
 pytest tests/unit/
 
 # 2. カバレッジ（2026-10-26 計測で 53%）
@@ -339,16 +346,23 @@ python scripts/benchmarks/three_layer_report.py
 
 ## ステータスとロードマップ
 
-**現在: v0.3.1、実験的。** V3 の三層診断標準と V4 の計測訂正は完了しています。残っている
-のは製品側の配線とエンジンのカバレッジです。V4 プログラム文書では、目標は目標として、
-マイルストーンはマイルストーンとして、却下は却下として記録されています。
+**現在: v0.3.1、実験的。** V3 の三層診断標準と V4 の計測訂正は完了しています。この
+ブランチでは、アリーナが明らかにした製品側の配線ギャップも塞ぎました:
 
-順番に対応予定:
+- 計測上より良い検索設定を既定にしました（`--lexical/--no-lexical`、
+  `LETHE_LEXICAL_RECALL`）。
+- `lethe ask` と `lethe resume` を追加し、`recall` / `timeline` はアクティブな
+  会話を必要としなくなりました。
+- 決定・理由・タイムラインの手がかりを日英両対応にしました。
+- 埋め込みモデルを毎回の CLI 起動時ではなく、初回利用時に読み込むようにしました。
 
-1. 計測済みの検索設定を既定にし、CLI/MCP から使えるようにする
-   （`lexical_recall`、conflict surfacing）。`lethe ask` / `lethe resume` の追加。
-2. 圧縮器と決定抽出の英語対応。
-3. 研究パッケージと製品パッケージの統合、facade の縮小、死んだ stage の削除。
+引き続き対応予定:
+
+1. 研究パッケージと製品パッケージの統合、約96メソッドの facade の縮小、
+   参照されていない `compiler/stages` の削除。
+2. 解像度をまたぐ重複記憶の排除（同じ事実が RAW・EPISODE・SEMANTIC に
+   同時に現れます）。
+3. 公開前の API 既定値の強化（`allow_origins=["*"]`、認証オフ）。
 
 これらに精度の約束は付けません。受け入れるか却下するかは、デモではなく
 V4_PROGRAM に書かれた対応比較の計測で決めます。
