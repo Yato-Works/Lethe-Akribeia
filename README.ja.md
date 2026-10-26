@@ -357,7 +357,7 @@ python scripts/benchmarks/three_layer_report.py
 
 ## ステータスとロードマップ
 
-**現在: v0.3.1、実験的。** V3 の三層診断標準と V4 の計測訂正は完了しています。この
+**現在: v0.3.2、実験的。** V3 の三層診断標準と V4 の計測訂正は完了しています。この
 ブランチでは、アリーナが明らかにした製品側の配線ギャップも塞ぎました:
 
 - 計測上より良い検索設定を既定にしました（`--lexical/--no-lexical`、
@@ -405,7 +405,7 @@ V4_PROGRAM に書かれた対応比較の計測で決めます。
   title = {Lethe Akribeia: An Experimental Cognitive Long-Term Memory System for AI},
   author = {Yato-Works},
   year = {2026},
-  version = {0.3.1},
+  version = {0.3.2},
   url = {https://github.com/Yato-Works/Lethe-Akribeia}
 }
 ```

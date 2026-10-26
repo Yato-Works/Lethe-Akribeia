@@ -365,7 +365,7 @@ The 21 frozen v0.3.0 metrics are in
 
 ## Status and roadmap
 
-**Current: v0.3.1, experimental.** The V3 three-layer diagnostic standard and the V4
+**Current: v0.3.2, experimental.** The V3 three-layer diagnostic standard and the V4
 measurement correction are both done. This branch also closes the product-wiring gap
 that the arena exposed:
 
@@ -417,7 +417,7 @@ I still want to find out how far this architecture can go.
   title = {Lethe Akribeia: An Experimental Cognitive Long-Term Memory System for AI},
   author = {Yato-Works},
   year = {2026},
-  version = {0.3.1},
+  version = {0.3.2},
   url = {https://github.com/Yato-Works/Lethe-Akribeia}
 }
 ```

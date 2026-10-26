@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.2] - 2026-10-26
 
 ### Documentation
 - **README honesty pass (P0).** `README.md` / `README.ja.md` rewritten so the
@@ -85,6 +85,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   modernization, dead code, undefined names, import order).
 - The failing duration test now asserts the supported path and records the two
   binding limits (clause locality, no paraphrase) as a strict `xfail`.
+- **Optional dependency resilience.** `vector_search.py` now guards `import faiss`
+  with `FAISS_AVAILABLE` and raises a clear `ImportError` on instantiation, allowing
+  lightweight environments (e.g. minimal Docker containers) to import the API server
+  and runtime safely.
+- **CI workflow consistency.** Synced optional dependency groups (`web`, `vector`,
+  `benchmarks`) between Ubuntu and Windows test runners, resolving collection
+  failures for API and benchmark eval unit tests.
 
 ### CI
 - Workflows now run on every branch, and a Windows job runs the unit suite
