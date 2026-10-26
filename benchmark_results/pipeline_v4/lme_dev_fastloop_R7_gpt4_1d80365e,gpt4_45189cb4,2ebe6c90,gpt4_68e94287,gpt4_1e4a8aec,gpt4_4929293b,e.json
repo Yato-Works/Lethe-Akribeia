@@ -1,0 +1,15 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 0,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 0.0,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 1.0999974620062858e-06,
+  "per_type_breakdown": {},
+  "results": []
+}

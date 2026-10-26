@@ -10,7 +10,7 @@ Tests:
 
 from __future__ import annotations
 
-from artificial_memory.recall.domain_associator import DomainAssociator
+from artificial_memory_gen.recall.domain_associator import DomainAssociator
 
 
 def test_music_domain_expansion() -> None:

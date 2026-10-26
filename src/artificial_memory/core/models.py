@@ -288,7 +288,9 @@ class CompressionEvent(BaseModel):
     created_at: datetime = Field(default_factory=datetime.now)
 
 
-class ContextIR(BaseModel):
+class ContextIRRecord(BaseModel):
+    """Persistent row for one extracted context-IR unit (see core.ir.ContextIR
+    for the context-package IR dispatched to the LLM)."""
     model_config = ConfigDict(from_attributes=True)
 
     id: int | None = None

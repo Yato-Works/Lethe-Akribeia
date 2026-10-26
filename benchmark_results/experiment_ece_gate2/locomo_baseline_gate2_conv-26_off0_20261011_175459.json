@@ -1,0 +1,143 @@
+{
+  "mode": "baseline",
+  "accuracy": 0.9166666666666666,
+  "correct": 11,
+  "total": 12,
+  "elapsed_seconds": 41.13,
+  "per_category": {
+    "2": {
+      "correct": 7,
+      "total": 7
+    },
+    "3": {
+      "correct": 0,
+      "total": 1
+    },
+    "1": {
+      "correct": 4,
+      "total": 4
+    }
+  },
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "7 May 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 10.56
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "context_tokens": 1393,
+      "latency_seconds": 2.621
+    },
+    {
+      "question_id": "lc_conv-26_2",
+      "category": 3,
+      "question": "What fields would Caroline be likely to pursue in her educaton?",
+      "ground_truth": "Psychology, counseling certification",
+      "predicted_answer": "counseling, mental health",
+      "is_correct": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.593
+    },
+    {
+      "question_id": "lc_conv-26_3",
+      "category": 1,
+      "question": "What did Caroline research?",
+      "ground_truth": "Adoption agencies",
+      "predicted_answer": "adoption agencies, counseling and mental health careers",
+      "is_correct": true,
+      "context_tokens": 1395,
+      "latency_seconds": 3.045
+    },
+    {
+      "question_id": "lc_conv-26_4",
+      "category": 1,
+      "question": "What is Caroline's identity?",
+      "ground_truth": "Transgender woman",
+      "predicted_answer": "transgender, artist, mental health advocate",
+      "is_correct": true,
+      "context_tokens": 1513,
+      "latency_seconds": 3.072
+    },
+    {
+      "question_id": "lc_conv-26_5",
+      "category": 2,
+      "question": "When did Melanie run a charity race?",
+      "ground_truth": "The sunday before 25 May 2023",
+      "predicted_answer": "25 May 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.808
+    },
+    {
+      "question_id": "lc_conv-26_6",
+      "category": 2,
+      "question": "When is Melanie planning on going camping?",
+      "ground_truth": "June 2023",
+      "predicted_answer": "June 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.768
+    },
+    {
+      "question_id": "lc_conv-26_7",
+      "category": 1,
+      "question": "What is Caroline's relationship status?",
+      "ground_truth": "Single",
+      "predicted_answer": "single",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.768
+    },
+    {
+      "question_id": "lc_conv-26_8",
+      "category": 2,
+      "question": "When did Caroline give a speech at a school?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "9 June 2023",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.746
+    },
+    {
+      "question_id": "lc_conv-26_9",
+      "category": 2,
+      "question": "When did Caroline meet up with her friends, family, and mentors?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "the week before 9 June 2023",
+      "is_correct": true,
+      "context_tokens": 1514,
+      "latency_seconds": 2.948
+    },
+    {
+      "question_id": "lc_conv-26_10",
+      "category": 2,
+      "question": "How long has Caroline had her current group of friends for?",
+      "ground_truth": "4 years",
+      "predicted_answer": "4 years",
+      "is_correct": true,
+      "context_tokens": 1392,
+      "latency_seconds": 2.505
+    },
+    {
+      "question_id": "lc_conv-26_11",
+      "category": 1,
+      "question": "Where did Caroline move from 4 years ago?",
+      "ground_truth": "Sweden",
+      "predicted_answer": "Sweden",
+      "is_correct": true,
+      "context_tokens": 1457,
+      "latency_seconds": 2.668
+    }
+  ]
+}

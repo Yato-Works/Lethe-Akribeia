@@ -1,0 +1,879 @@
+{
+ "contexts": "benchmark_results/frozen_ctx/locomo_r7_cat1_pool/contexts.jsonl",
+ "questions": 282,
+ "items": 707,
+ "totals": {
+  "IN_CONTEXT": 234,
+  "POOL_ONLY": 127,
+  "ABSENT": 314,
+  "CONVERSATION_ONLY": 32
+ },
+ "questions_with_pool_only": 91,
+ "questions_with_conversation_only": 29,
+ "detail": [
+  {
+   "question_id": "lc_conv-26_4",
+   "question": "What is Caroline's identity?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-26_15",
+   "question": "What activities does Melanie partake in?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-26_19",
+   "question": "What do Melanie's kids like?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-26_38",
+   "question": "What activities has Melanie done with her family?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-26_40",
+   "question": "How many times has Melanie gone to the beach in 2023?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-26_61",
+   "question": "What musical artists/bands has Melanie seen?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-26_66",
+   "question": "What does Melanie do with her family on hikes?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-26_78",
+   "question": "What items has Melanie bought?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-30_17",
+   "question": "Why did Gina decide to start her own clothing store?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-30_18",
+   "question": "Do Jon and Gina start businesses out of what they love?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-30_24",
+   "question": "Which events has Jon participated in to promote his business venture?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-30_27",
+   "question": "Did Jon and Gina both participate in dance competitions?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_2",
+   "question": "What martial arts has John done?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-41_3",
+   "question": "What type of volunteering have John and Maria both done?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_6",
+   "question": "Where has Maria made friends?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_11",
+   "question": "What people has Maria met and helped while volunteering?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_21",
+   "question": "What areas of the U.S. has John been to or is planning to go to?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_25",
+   "question": "What European countries has Maria been to?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_28",
+   "question": "What causes does John feel passionate about supporting?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_29",
+   "question": "What events is Maria planning for the homeless shelter funraiser?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_32",
+   "question": "What outdoor activities has John done with his colleagues?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-41_33",
+   "question": "What types of yoga has Maria practiced?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_35",
+   "question": "What states has Maria vacationed at?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_37",
+   "question": "What events for veterans has John participated in?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-41_44",
+   "question": "What activities has Maria done with her church friends?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-41_57",
+   "question": "What causes has John done events for?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-42_5",
+   "question": "What are Joanna's hobbies?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-42_23",
+   "question": "Which of Joanna's screenplay were rejected from production companies?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-42_30",
+   "question": "What kind of writings does Joanna do?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-42_42",
+   "question": "What movies have both Joanna and Nate seen?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-42_52",
+   "question": "How many of Joanna's writing have made it to the big screen?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-42_55",
+   "question": "What is Joanna inspired by?",
+   "IN_CONTEXT": 3,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 6
+  },
+  {
+   "question_id": "lc_conv-42_58",
+   "question": "What things has Nate reccomended to Joanna?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 3,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 5
+  },
+  {
+   "question_id": "lc_conv-42_62",
+   "question": "How many letters has Joanna recieved?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-42_63",
+   "question": "What video games does Nate play?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-42_75",
+   "question": "What are Nate's favorite desserts?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-42_79",
+   "question": "How many screenplays has Joanna written?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-42_81",
+   "question": "What recipes has Joanna made?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 3,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 5
+  },
+  {
+   "question_id": "lc_conv-42_82",
+   "question": "What recipes has Nate made?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-43_1",
+   "question": "What are John's goals for his career that are not related to his basketball skills?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-43_2",
+   "question": "What items does John collect?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-43_4",
+   "question": "What books has Tim read?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 4,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-43_7",
+   "question": "Which geographical locations has Tim been to?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-43_11",
+   "question": "What sports does John like besides basketball?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-43_21",
+   "question": "Which US cities does John mention visiting to Tim?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-43_30",
+   "question": "Which cities has John been to?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-43_35",
+   "question": "What outdoor activities does John enjoy?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-43_50",
+   "question": "Which book was John reading during his recovery from an ankle injury?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-43_52",
+   "question": "What does John do to supplement his basketball training?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-43_61",
+   "question": "What books has John read?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-43_65",
+   "question": "What fantasy movies does Tim like?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-44_9",
+   "question": "What kind of classes or groups has Audrey joined to take better care of her dogs?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-44_12",
+   "question": "What outdoor activities has Andrew done other than hiking in nature?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-44_14",
+   "question": "What is something that Andrew really misses while working in the city?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_18",
+   "question": "Where did Audrey get Pixie from?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_21",
+   "question": "What are the classes that Audrey took for her dogs to?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-44_24",
+   "question": "Did Audrey and Andrew grow up with a pet dog?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_28",
+   "question": "What is something that Audrey often dresses up her dogs with?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_36",
+   "question": "What are some foods that Audrey likes eating?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-44_39",
+   "question": "What did Audrey get wtih having so many dogs?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_48",
+   "question": "What does Andrew view his pets as?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_49",
+   "question": "What does Audrey view her pets as?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_50",
+   "question": "What is a skill that Audrey learned to take care of her dogs?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-44_51",
+   "question": "What items has Audrey bought or made for her dogs?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-44_54",
+   "question": "What activity do Audrey's dogs like to do in the dog park?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-47_2",
+   "question": "Which places or events have John and James planned to meet at?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-47_18",
+   "question": "Which books has John recommended to James?",
+   "IN_CONTEXT": 3,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-47_20",
+   "question": "How many charity tournaments has John organized till date?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-47_22",
+   "question": "Who or which organizations have been the beneficiaries of John's charity tournaments?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-47_24",
+   "question": "What kind of games has James tried to develop?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 2,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-47_40",
+   "question": "What kind of tricks do James's pets know?",
+   "IN_CONTEXT": 4,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-47_51",
+   "question": "Which new games did John start play during the course of the conversation with James?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-47_54",
+   "question": "What kind of programming-related events has John hosted?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-47_56",
+   "question": "Which of James's family members have visited him in the last year?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-47_60",
+   "question": "What games has John played with his friends at charity tournaments?",
+   "IN_CONTEXT": 3,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_6",
+   "question": "What symbolic gifts do Deborah and Jolene have from their mothers?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_8",
+   "question": "What helped Deborah find peace when grieving deaths of her loved ones?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-48_14",
+   "question": "What were Deborah's mother's hobbies?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 3,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_20",
+   "question": "Which games have Jolene and her partner played together?",
+   "IN_CONTEXT": 4,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_24",
+   "question": "What new yoga poses did Deborah try?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-48_39",
+   "question": "What time management techniques do Deborah and Jolene use?",
+   "IN_CONTEXT": 3,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-48_41",
+   "question": "What ways do Deborah and Jolene use to enhance their yoga practice?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 3,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_73",
+   "question": "Did Jolene teach herself how to play the console?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_77",
+   "question": "Where did Jolene and her partner find a cool diving spot?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_79",
+   "question": "Has Deborah tried surfing?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-48_82",
+   "question": "Which locations does Deborah practice her yoga at?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-48_84",
+   "question": "What kind of engineering projects has Jolene worked on?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-48_87",
+   "question": "Which countries has Deborah traveled to?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-48_88",
+   "question": "What activities does Deborah pursue besides practicing and teaching yoga?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-49_2",
+   "question": "Where has Evan been on roadtrips with his family?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-49_6",
+   "question": "How many roadtrips did Evan take in May 2023?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-49_11",
+   "question": "What health issue did Sam face that motivated him to change his lifestyle?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-49_18",
+   "question": "What kind of healthy food suggestions has Evan given to Sam?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 5,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-49_37",
+   "question": "What kind of healthy meals did Sam start eating after getting a health scare?",
+   "IN_CONTEXT": 3,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-49_48",
+   "question": "What new diet and lifestyle change did Sam adopt over time?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-49_50",
+   "question": "What kind of hobbies does Evan pursue?",
+   "IN_CONTEXT": 2,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 6
+  },
+  {
+   "question_id": "lc_conv-49_64",
+   "question": "Which ailment does Sam have to face due to his weight?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-49_77",
+   "question": "How does Evan spend his time with his bride after the wedding?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-49_78",
+   "question": "Who did Evan tell about his marriage?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-49_81",
+   "question": "What is a stress reliever for Evan?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-49_82",
+   "question": "What is a stress reliever for Sam?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 2,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-50_3",
+   "question": "Which bands has Dave enjoyed listening to?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-50_5",
+   "question": "What are Dave's dreams?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-50_11",
+   "question": "What mishaps has Calvin run into?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 1,
+   "ABSENT": 1
+  },
+  {
+   "question_id": "lc_conv-50_29",
+   "question": "What are Dave's hobbies other than fixing cars?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 2,
+   "ABSENT": 3
+  },
+  {
+   "question_id": "lc_conv-50_49",
+   "question": "When Dave was a child, what did he and his father do in the garage?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 2
+  },
+  {
+   "question_id": "lc_conv-50_53",
+   "question": "Who supports Calvin in tough times?",
+   "IN_CONTEXT": 1,
+   "POOL_ONLY": 1,
+   "CONVERSATION_ONLY": 0,
+   "ABSENT": 0
+  },
+  {
+   "question_id": "lc_conv-50_56",
+   "question": "Which cities did Dave travel to in 2023?",
+   "IN_CONTEXT": 0,
+   "POOL_ONLY": 0,
+   "CONVERSATION_ONLY": 2,
+   "ABSENT": 0
+  }
+ ]
+}

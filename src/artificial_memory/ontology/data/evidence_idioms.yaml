@@ -1,0 +1,24 @@
+# Evidence-type question phrasings (who-said-what / proposal-style probes).
+#
+# Usage site: StateReconstructor.classify_intent -> EVIDENCE_QUERY detection.
+# Provenance: phrase inventory collected while diagnosing LongMemEval
+# evidence-provenance questions; two entries name benchmark cast members
+# ("did alice propose", "did bob propose") and are marked by
+# origin: benchmark_tuned at *table* level. They are question *classifiers*,
+# never answer templates.
+_meta:
+  origin: benchmark_tuned
+  description: Phrasings that route a query into the EVIDENCE intent (evidence-provenance probes).
+  version: 1
+
+phrases:
+  - did alice propose
+  - did bob propose
+  - did the user propose
+  - who proposed
+  - who suggested
+  - at any point
+  - did someone suggest
+  - was there a proposal
+  - what did alice say
+  - what did bob say

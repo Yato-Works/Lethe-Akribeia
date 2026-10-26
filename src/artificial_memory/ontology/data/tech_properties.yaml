@@ -1,0 +1,38 @@
+# Engineering-domain property -> evidence indicator tokens.
+#
+# Two consumers, two sections:
+#   coverage_fallback  (context/msc_compiler CoverageChecker): if the literal
+#       property word is absent from selected evidence but an indicator token
+#       is present, the property is still considered covered.
+#   ranking            (recall/state_reconstructor): per-property evidence
+#       token boosts, decision-phrase boosts, migrated-relation boosts and
+#       miss penalties for the property-scoped relevance scorer.
+#
+# Provenance: tuned on the engineering domain questionnaire items of the
+# LongMemEval development split (database / cache / queue selection drills).
+# Values are *indicators*, never answers; adding a new indicator is a data
+# change, not a code change.
+_meta:
+  origin: benchmark_tuned
+  description: Property-specific evidence indicator tokens and boosts for coverage and ranking.
+  version: 1
+
+coverage_fallback:
+  queue: ["redis", "postgresql"]
+  cache: ["memcached", "dragonfly"]
+  database: ["clickhouse", "postgresql", "redis"]
+
+ranking:
+  queue:
+    tokens: ["redis", "postgresql", "queue"]
+    token_boost: 20.0
+    decision_phrases: ["formally decided", "final decision", "rejected"]
+    decision_boost: 15.0
+  database:
+    tokens: ["database", "clickhouse", "postgresql", "redis", "oracle", "sqlite"]
+    token_boost: 15.0
+    migrated_relation_boost: 12.0
+  cache:
+    tokens: ["cache", "memcached", "dragonfly"]
+    token_boost: 25.0
+    miss_penalty: 20.0

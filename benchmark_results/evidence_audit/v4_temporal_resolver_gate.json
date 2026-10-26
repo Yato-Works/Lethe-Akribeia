@@ -1,0 +1,581 @@
+{
+  "label": "V4 mission 24 -- resolver-only gate against gold, frozen scorer",
+  "baseline": {
+    "head": "aebbde2",
+    "production_changed": false
+  },
+  "model_calls": 0,
+  "scorer": "eval_locomo_full.score() -- frozen, not modified",
+  "n_cases": 28,
+  "n_matched": 17,
+  "match_rate_pct": 60.7,
+  "weighted_match_rate_pct": 60.6,
+  "is_a_rescue": false,
+  "rescue_reason": "resolver-only stage; no engine output was altered, so no case is rescued and no score is claimed",
+  "binding_verified": false,
+  "not_matched_reasons": {
+    "computed date does not match gold": 8
+  },
+  "rows": [
+    {
+      "question_id": "lc_conv-26_63",
+      "gold": "September 2023",
+      "anchor_turn": "D15:11",
+      "anchor_date": "2023-08-28",
+      "relative_expr": "\\bnext\\s+month\\b",
+      "expr_turn": "D15:11",
+      "expr_same_session_as_anchor": true,
+      "offset": "1 months",
+      "computed": "2023-09-28",
+      "forms_tried": [
+        "28 September 2023",
+        "September 28, 2023",
+        "September 2023",
+        "September, 2023"
+      ],
+      "matched_form": "28 September 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-26_72",
+      "gold": "2022",
+      "anchor_turn": "D17:4",
+      "anchor_date": "2023-10-13",
+      "relative_expr": "\\blast\\s+year\\b",
+      "expr_turn": "D17:4",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 years",
+      "computed": "2022-10-13",
+      "forms_tried": [
+        "13 October 2022",
+        "October 13, 2022",
+        "October 2022",
+        "October, 2022"
+      ],
+      "matched_form": "13 October 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-26_73",
+      "gold": "September 2023",
+      "anchor_turn": "D17:8",
+      "anchor_date": "2023-10-13",
+      "relative_expr": "\\blast\\s+year\\b",
+      "expr_turn": "D17:4",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 years",
+      "computed": "2022-10-13",
+      "forms_tried": [
+        "13 October 2022",
+        "October 13, 2022",
+        "October 2022",
+        "October, 2022"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-30_1",
+      "gold": "January, 2023",
+      "anchor_turn": "D1:3",
+      "anchor_date": "2023-01-20",
+      "relative_expr": "\\blast\\s+year\\b",
+      "expr_turn": "D1:16",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 years",
+      "computed": "2022-01-20",
+      "forms_tried": [
+        "20 January 2022",
+        "January 20, 2022",
+        "January 2022",
+        "January, 2022"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-30_7",
+      "gold": "29 January, 2023",
+      "anchor_turn": "D2:1",
+      "anchor_date": "2023-01-29",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D2:4",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-01-28",
+      "forms_tried": [
+        "28 January 2023",
+        "January 28, 2023",
+        "January 2023",
+        "January, 2023"
+      ],
+      "matched_form": "January 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-41_10",
+      "gold": "February 24, 2023",
+      "anchor_turn": "D7:5",
+      "anchor_date": "2023-02-25",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D7:5",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-02-24",
+      "forms_tried": [
+        "24 February 2023",
+        "February 24, 2023",
+        "February 2023",
+        "February, 2023"
+      ],
+      "matched_form": "24 February 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-41_20",
+      "gold": "2022",
+      "anchor_turn": "D11:3",
+      "anchor_date": "2023-04-10",
+      "relative_expr": "\\blast\\s+year\\b",
+      "expr_turn": "D11:3",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 years",
+      "computed": "2022-04-10",
+      "forms_tried": [
+        "10 April 2022",
+        "April 10, 2022",
+        "April 2022",
+        "April, 2022"
+      ],
+      "matched_form": "10 April 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-41_24",
+      "gold": "April.2023",
+      "anchor_turn": "D13:3",
+      "anchor_date": "2023-05-04",
+      "relative_expr": "\\blast\\s+night\\b",
+      "expr_turn": "D13:16",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-05-03",
+      "forms_tried": [
+        "3 May 2023",
+        "May 3, 2023",
+        "May 2023",
+        "May, 2023"
+      ],
+      "matched_form": "2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-42_57",
+      "gold": "5 November, 2022.",
+      "anchor_turn": "D26:21",
+      "anchor_date": "2022-11-04",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D26:16",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2022-11-03",
+      "forms_tried": [
+        "3 November 2022",
+        "November 3, 2022",
+        "November 2022",
+        "November, 2022"
+      ],
+      "matched_form": "November 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-42_73",
+      "gold": "Indiana",
+      "anchor_turn": "D28:22",
+      "anchor_date": "2022-11-09",
+      "relative_expr": "\\bthis\\s+year\\b",
+      "expr_turn": "D28:26",
+      "expr_same_session_as_anchor": true,
+      "offset": "0 years",
+      "computed": "2022-11-09",
+      "forms_tried": [
+        "9 November 2022",
+        "November 9, 2022",
+        "November 2022",
+        "November, 2022"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-44_13",
+      "gold": "June 2023",
+      "anchor_turn": "D9:1",
+      "anchor_date": "2023-06-26",
+      "relative_expr": "\\blast\\s+year\\b",
+      "expr_turn": "D11:30",
+      "expr_same_session_as_anchor": false,
+      "offset": "-1 years",
+      "computed": "2022-06-26",
+      "forms_tried": [
+        "26 June 2022",
+        "June 26, 2022",
+        "June 2022",
+        "June, 2022"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-47_43",
+      "gold": "In September, 2022",
+      "anchor_turn": "D20:17",
+      "anchor_date": "2022-08-21",
+      "relative_expr": "\\bnext\\s+month\\b",
+      "expr_turn": "D20:17",
+      "expr_same_session_as_anchor": true,
+      "offset": "1 months",
+      "computed": "2022-09-21",
+      "forms_tried": [
+        "21 September 2022",
+        "September 21, 2022",
+        "September 2022",
+        "September, 2022"
+      ],
+      "matched_form": "21 September 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-47_47",
+      "gold": "September 3, 2022",
+      "anchor_turn": "D23:1",
+      "anchor_date": "2022-09-04",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D23:1",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2022-09-03",
+      "forms_tried": [
+        "3 September 2022",
+        "September 3, 2022",
+        "September 2022",
+        "September, 2022"
+      ],
+      "matched_form": "3 September 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-47_48",
+      "gold": "September 11, 2022",
+      "anchor_turn": "D23:5",
+      "anchor_date": "2022-09-04",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D23:1",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2022-09-03",
+      "forms_tried": [
+        "3 September 2022",
+        "September 3, 2022",
+        "September 2022",
+        "September, 2022"
+      ],
+      "matched_form": "September 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-47_65",
+      "gold": "November 7, 2022",
+      "anchor_turn": "D31:1",
+      "anchor_date": "2022-11-07",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D10:2",
+      "expr_same_session_as_anchor": false,
+      "offset": "-1 days",
+      "computed": "2022-11-06",
+      "forms_tried": [
+        "6 November 2022",
+        "November 6, 2022",
+        "November 2022",
+        "November, 2022"
+      ],
+      "matched_form": "November 2022",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-48_12",
+      "gold": "January 26, 2023",
+      "anchor_turn": "D2:7",
+      "anchor_date": "2023-01-27",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D2:7",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-01-26",
+      "forms_tried": [
+        "26 January 2023",
+        "January 26, 2023",
+        "January 2023",
+        "January, 2023"
+      ],
+      "matched_form": "26 January 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-48_32",
+      "gold": "in 2022",
+      "anchor_turn": "D6:10",
+      "anchor_date": "2023-02-22",
+      "relative_expr": "\\blast\\s+night\\b",
+      "expr_turn": "D6:1",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-02-21",
+      "forms_tried": [
+        "21 February 2023",
+        "February 21, 2023",
+        "February 2023",
+        "February, 2023"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-48_50",
+      "gold": "2020",
+      "anchor_turn": "D13:17",
+      "anchor_date": "2023-06-06",
+      "relative_expr": "\\blast\\s+month\\b",
+      "expr_turn": "D13:1",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 months",
+      "computed": "2023-05-06",
+      "forms_tried": [
+        "6 May 2023",
+        "May 6, 2023",
+        "May 2023",
+        "May, 2023"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-49_47",
+      "gold": "July 2023",
+      "anchor_turn": "D8:28",
+      "anchor_date": "2023-08-19",
+      "relative_expr": "\\blast\\s+month\\b",
+      "expr_turn": "D8:26",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 months",
+      "computed": "2023-07-19",
+      "forms_tried": [
+        "19 July 2023",
+        "July 19, 2023",
+        "July 2023",
+        "July, 2023"
+      ],
+      "matched_form": "19 July 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-49_58",
+      "gold": "October 2022",
+      "anchor_turn": "D12:2",
+      "anchor_date": "2023-10-08",
+      "relative_expr": "\\blast\\s+month\\b",
+      "expr_turn": "D11:10",
+      "expr_same_session_as_anchor": false,
+      "offset": "-1 months",
+      "computed": "2023-09-08",
+      "forms_tried": [
+        "8 September 2023",
+        "September 8, 2023",
+        "September 2023",
+        "September, 2023"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-49_59",
+      "gold": "October 14, 2023",
+      "anchor_turn": "D13:10",
+      "anchor_date": "2023-10-14",
+      "relative_expr": "\\blast\\s+month\\b",
+      "expr_turn": "D11:10",
+      "expr_same_session_as_anchor": false,
+      "offset": "-1 months",
+      "computed": "2023-09-14",
+      "forms_tried": [
+        "14 September 2023",
+        "September 14, 2023",
+        "September 2023",
+        "September, 2023"
+      ],
+      "matched_form": "9/14/2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-49_75",
+      "gold": "January 5, 2024",
+      "anchor_turn": "D1:1",
+      "anchor_date": "2023-05-18",
+      "relative_expr": "\\blast\\s+month\\b",
+      "expr_turn": "D11:10",
+      "expr_same_session_as_anchor": false,
+      "offset": "-1 months",
+      "computed": "2023-04-18",
+      "forms_tried": [
+        "18 April 2023",
+        "April 18, 2023",
+        "April 2023",
+        "April, 2023"
+      ],
+      "matched_form": null,
+      "matched": false,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-49_79",
+      "gold": "February 2024",
+      "anchor_turn": "D23:23",
+      "anchor_date": "2024-01-06",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D23:1",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2024-01-05",
+      "forms_tried": [
+        "5 January 2024",
+        "January 5, 2024",
+        "January 2024",
+        "January, 2024"
+      ],
+      "matched_form": "2024",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-50_36",
+      "gold": "September 11, 2023",
+      "anchor_turn": "D18:1",
+      "anchor_date": "2023-09-13",
+      "relative_expr": "\\blast\\s+night\\b",
+      "expr_turn": "D12:11",
+      "expr_same_session_as_anchor": false,
+      "offset": "-1 days",
+      "computed": "2023-09-12",
+      "forms_tried": [
+        "12 September 2023",
+        "September 12, 2023",
+        "September 2023",
+        "September, 2023"
+      ],
+      "matched_form": "September 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-50_52",
+      "gold": "November 2023",
+      "anchor_turn": "D24:17",
+      "anchor_date": "2023-10-19",
+      "relative_expr": "\\bnext\\s+month\\b",
+      "expr_turn": "D24:17",
+      "expr_same_session_as_anchor": true,
+      "offset": "1 months",
+      "computed": "2023-11-19",
+      "forms_tried": [
+        "19 November 2023",
+        "November 19, 2023",
+        "November 2023",
+        "November, 2023"
+      ],
+      "matched_form": "19 November 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-50_55",
+      "gold": "October 24, 2023",
+      "anchor_turn": "D26:1",
+      "anchor_date": "2023-10-25",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D26:1",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-10-24",
+      "forms_tried": [
+        "24 October 2023",
+        "October 24, 2023",
+        "October 2023",
+        "October, 2023"
+      ],
+      "matched_form": "24 October 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-50_65",
+      "gold": "September 2023",
+      "anchor_turn": "D27:6",
+      "anchor_date": "2023-10-29",
+      "relative_expr": "\\blast\\s+month\\b",
+      "expr_turn": "D27:6",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 months",
+      "computed": "2023-09-29",
+      "forms_tried": [
+        "29 September 2023",
+        "September 29, 2023",
+        "September 2023",
+        "September, 2023"
+      ],
+      "matched_form": "29 September 2023",
+      "matched": true,
+      "binding_verified": false
+    },
+    {
+      "question_id": "lc_conv-50_69",
+      "gold": "November 2023",
+      "anchor_turn": "D30:5",
+      "anchor_date": "2023-11-17",
+      "relative_expr": "\\byesterday\\b",
+      "expr_turn": "D30:2",
+      "expr_same_session_as_anchor": true,
+      "offset": "-1 days",
+      "computed": "2023-11-16",
+      "forms_tried": [
+        "16 November 2023",
+        "November 16, 2023",
+        "November 2023",
+        "November, 2023"
+      ],
+      "matched_form": "16 November 2023",
+      "matched": true,
+      "binding_verified": false
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "predictions_loaded": 1986,
+  "unique_question_texts": 1974,
+  "cache_rows": 1974,
+  "joined": 1974,
+  "duplicate_question_texts": 12,
+  "conflicting_duplicates": 1,
+  "gold_mismatch_vs_dataset": 0,
+  "scorer": "eval_locomo_full.score (c449aa0, date-contradiction guard)",
+  "scorer_note": "stored is_correct NOT used -- it came from the pre-fix scorer that credited a wrong DATE when month/year agreed"
+}

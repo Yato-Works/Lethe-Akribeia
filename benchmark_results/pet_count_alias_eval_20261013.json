@@ -1,0 +1,30 @@
+{
+  "ability": "speaker_scoped_pet_count_alias_and_stale_total_guard",
+  "source": "benchmark_results/failure_atlas/failure_atlas.jsonl + benchmark_results/locomo_context_cache_rules.jsonl",
+  "scorer": "scripts/benchmarks/eval_locomo_full.py (unchanged; repaired scorer from c449aa0)",
+  "full_benchmark_run": false,
+  "question_ids": ["lc_conv-44_45", "lc_conv-44_46", "lc_conv-47_8"],
+  "n": 3,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.0113,
+  "before_source": "fresh in-process execution of parent CountingEngine loaded from git HEAD",
+  "paired_conditions": "same three question IDs, question text, frozen contexts, surrounding deterministic pipeline, and scorer; only CountingEngine changed",
+  "before": {"correct": 0, "wrong": 0, "abstain": 3, "presented": 0},
+  "after": {"correct": 1, "wrong": 0, "abstain": 2, "presented": 1},
+  "categories": {
+    "1": {"n": 1, "before": {"correct": 0, "wrong": 0, "abstain": 1}, "after": {"correct": 1, "wrong": 0, "abstain": 0}},
+    "2": {"n": 2, "before": {"correct": 0, "wrong": 0, "abstain": 2}, "after": {"correct": 0, "wrong": 0, "abstain": 2}}
+  },
+  "fixed_qids": ["lc_conv-47_8"],
+  "broke_qids": [],
+  "cases": [
+    {"qid": "lc_conv-44_45", "gold": "three", "before": "abstain", "after": "abstain", "note": "latest context did not prove a total of three pets"},
+    {"qid": "lc_conv-44_46", "gold": "one", "before": "abstain", "after": "abstain", "note": "time-bounded total; no reliable dated state reconstruction"},
+    {"qid": "lc_conv-47_8", "gold": "Three dogs.", "before": "abstain", "after": "correct", "answer": "three, 3", "evidence_turn": "D19:12"}
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true,
+    "fixed_and_broke_are_disjoint": true
+  }
+}

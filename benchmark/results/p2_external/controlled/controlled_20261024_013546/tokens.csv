@@ -1,0 +1,5 @@
+player,write_llm_calls,write_prompt_tokens,write_completion_tokens,retrieval_calls,context_calls,answer_llm_calls,answer_prompt_tokens,answer_completion_tokens,total_tokens,context_budget,context_used,budget_violations
+Simple RAG,0,0,0,50,50,50,0,0,0,2000,19430,0
+Zep-style,0,0,0,50,50,50,0,0,0,2000,25695,0
+HippoRAG-style,0,0,0,50,50,50,0,0,0,2000,28965,0
+AM v0.2.0,0,0,0,50,50,50,0,0,0,2000,26008,0

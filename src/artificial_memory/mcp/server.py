@@ -78,7 +78,7 @@ def create_mcp_server(
             "Install it with: pip install -e '.[mcp]'"
         )
 
-    am = runtime or ArtificialMemoryRuntime(config)
+    am = runtime or ArtificialMemoryRuntime(config or RuntimeConfig.from_env())
     mcp = FastMCP(
         "artificial-memory",
         instructions=(

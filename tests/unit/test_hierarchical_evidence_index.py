@@ -1,6 +1,6 @@
 """Scale and locality regressions for bounded evidence retrieval."""
 
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.structured import StructuredIR
 from artificial_memory.recall.hierarchical_evidence_index import HierarchicalEvidenceIndex
 

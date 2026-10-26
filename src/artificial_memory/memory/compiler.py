@@ -4,6 +4,11 @@ from datetime import datetime
 
 from artificial_memory.compiler import create_compiler_pipeline
 from artificial_memory.compression.compressor import RuleBasedCompressor
+from artificial_memory.compression.markers import (
+    has_decision,
+    has_important,
+    labels_for,
+)
 from artificial_memory.core.adapters import create_memory_ir_adapter
 from artificial_memory.core.interfaces import MemoryCompiler, MemoryStore
 from artificial_memory.core.ir import MemoryIR
@@ -66,29 +71,17 @@ class IncrementalMemoryCompiler:
         return new_memories
 
     def _contains_decision(self, content: str) -> bool:
-        """Check if content contains a decision."""
-        decision_markers = [
-            '決めた', '決定', '採用', '却下', '選択', '選んだ', '決断',
-            'decided', 'adopted', 'rejected', 'selected', 'chose'
-        ]
-        content_lower = content.lower()
-        return any(marker in content_lower for marker in decision_markers)
+        """Check if content contains a decision (Japanese or English)."""
+        return has_decision(content)
 
     def _contains_important_info(self, content: str) -> bool:
-        """Check if content contains important information."""
-        important_markers = [
-            '重要', '大事', 'クリティカル', '必須', 'マスト',
-            '理由', 'なぜなら', 'なぜ', '懸念', 'リスク',
-            'アーキテクチャ', '設計', '方針',
-            'important', 'critical', 'must', 'reason', 'architecture', 'design'
-        ]
-        content_lower = content.lower()
-        return any(marker in content_lower for marker in important_markers)
+        """Check if content contains important information (Japanese or English)."""
+        return has_important(content)
 
     def _create_decision_memory(self, message: Message, conversation: Conversation) -> Memory | None:
         """Create a decision memory from message."""
         lines = message.content.split('\n')
-        decision_lines = [line for line in lines if any(m in line.lower() for m in ['決めた', '決定', '採用', '却下', '選択'])]
+        decision_lines = [line for line in lines if has_decision(line)]
         decision_text = '\n'.join(decision_lines) if decision_lines else message.content[:500]
 
         return Memory(
@@ -272,16 +265,19 @@ class IncrementalMemoryCompiler:
         assistant_messages = [m for m in messages if m.role.value == "assistant"]
 
         first_user = user_messages[0].content[:200] if user_messages else ""
+        labels = labels_for(
+            " ".join([m.content for m in messages]) + " " + first_user
+        )
 
         events = []
         for msg in assistant_messages:
             if self._contains_decision(msg.content):
-                events.append(f"決定: {msg.content[:100]}")
+                events.append(f"{labels['decision_event']}: {msg.content[:100]}")
             elif self._contains_important_info(msg.content):
-                events.append(f"重要: {msg.content[:100]}")
+                events.append(f"{labels['important_event']}: {msg.content[:100]}")
 
         timeline_content = f"**{conversation.started_at.strftime('%Y-%m-%d')}**\n"
-        timeline_content += f"トピック: {first_user}\n"
+        timeline_content += f"{labels['topic']}: {first_user}\n"
         if events:
             timeline_content += "\n".join(f"- {e}" for e in events[:5])
 

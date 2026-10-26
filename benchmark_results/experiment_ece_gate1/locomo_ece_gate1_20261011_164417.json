@@ -1,0 +1,39 @@
+{
+  "timestamp": "20261011_164417",
+  "model": "qwen2.5:7b-instruct",
+  "accuracy": 1.0,
+  "correct": 1,
+  "total": 1,
+  "per_category": {
+    "2": {
+      "correct": 1,
+      "total": 1
+    }
+  },
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "8 May, 2023",
+      "is_correct": true,
+      "gold_evidence": [
+        "D1:3"
+      ],
+      "evidence_recall": 0.0,
+      "closure_completeness": 1.0,
+      "satisfied_requirements": [
+        "req_anchor_event",
+        "req_temporal_anchor"
+      ],
+      "unmet_requirements": [],
+      "conflicting_requirements": [],
+      "termination_reason": "all_requirements_satisfied",
+      "iterations_run": 1,
+      "admitted_turn_count": 23,
+      "context_tokens": 1392,
+      "latency_seconds": 9.426
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "label": "activity-discovery-before",
+  "n": 8,
+  "correct": 0,
+  "wrong": 7,
+  "abstain": 1,
+  "presented": 7,
+  "llm_calls": 0,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-26_15",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What activities does Melanie partake in?",
+      "gold": "pottery, camping, painting, swimming",
+      "status": "wrong",
+      "answer": "camping, painting, pottery",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'camping', 'painting', 'pottery'}",
+      "evidence_turn": "[D5:4 on 1:36 pm on 3 July, 2023] (In reply to Caroline: \"Thanks, Mel! It really motivated me for su"
+    },
+    {
+      "question_id": "lc_conv-26_38",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What activities has Melanie done with her family?",
+      "gold": "Pottery, painting, camping, museum, swimming, hiking",
+      "status": "wrong",
+      "answer": "camping, hiking, painting, pottery",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'painting', 'camping', 'hiking', 'pottery'}",
+      "evidence_turn": "[D5:4 on 1:36 pm on 3 July, 2023] (In reply to Caroline: \"Thanks, Mel! It really motivated me for su"
+    },
+    {
+      "question_id": "lc_conv-41_32",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What outdoor activities has John done with his colleagues?",
+      "gold": "Hiking, mountaineering",
+      "status": "wrong",
+      "answer": "camping, hiking, writing",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'writing', 'camping', 'hiking'}",
+      "evidence_turn": "[D31:20 on 3:14 pm on 13 August, 2023] (In reply to John: \"Thanks, Maria! We love being outdoors - g"
+    },
+    {
+      "question_id": "lc_conv-41_44",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What activities has Maria done with her church friends?",
+      "gold": "Hiking, picnic, volunteer work",
+      "status": "wrong",
+      "answer": "camping, hiking, volunteering",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'camping', 'volunteering', 'hiking'}",
+      "evidence_turn": "[D18:2 on 2:47 pm on 12 June, 2023] (In reply to Maria: \"Hey John, how're you doing? I'm sorry about"
+    },
+    {
+      "question_id": "lc_conv-48_88",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What activities does Deborah pursue besides practicing and teaching yoga?",
+      "gold": "biking, going to art shows, running, organizing workshops to practice mindfulness and self-care, surfing, gardening",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-49_7",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What new hobbies did Sam consider trying?",
+      "gold": "Painting, kayaking, hiking, cooking, running",
+      "status": "wrong",
+      "answer": "hiking, painting",
+      "engine": "autonomous_set_aggregator",
+      "detail": "aggregated activities: {'painting', 'hiking'}",
+      "evidence_turn": "[D18:12 on 8:16 pm on 5 December, 2023] (In reply to Evan: \"Your support's been invaluable. Thanks a"
+    },
+    {
+      "question_id": "lc_conv-49_50",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What kind of hobbies does Evan pursue?",
+      "gold": "painting, hiking, reading books, biking, skiing, snowboarding, ice skating, swimming, camping, kayaking",
+      "status": "wrong",
+      "answer": "recently to take your mind off it?",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Evan's turn: 'recently to take your mind off it?'",
+      "evidence_turn": "D17:4"
+    },
+    {
+      "question_id": "lc_conv-50_29",
+      "conversation": "conv",
+      "category": 1,
+      "question": "What are Dave's hobbies other than fixing cars?",
+      "gold": "take a walk, go hiking, listen to favorite albums, live concerts, photography",
+      "status": "wrong",
+      "answer": "the way the sunlight hits thi",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Dave's turn: 'the way the sunlight hits thi'",
+      "evidence_turn": "D20:3"
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

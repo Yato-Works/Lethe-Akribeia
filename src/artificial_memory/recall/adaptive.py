@@ -6,6 +6,7 @@ from typing import Any
 
 from artificial_memory.core.interfaces import MemoryStore, RecallEngine
 from artificial_memory.core.models import Memory, RecallLevel, ResolutionLevel
+from artificial_memory.core.tokens import estimate_tokens
 
 
 @dataclass
@@ -76,7 +77,8 @@ class AdaptiveRecallEngine:
         self.token_estimator = token_estimator or self._default_token_estimator
 
     def _default_token_estimator(self, text: str) -> int:
-        return max(1, len(text) // 3)
+        # Canonical char estimate (core.tokens: estimate_tokens).
+        return estimate_tokens(text)
 
     def adaptive_recall(
         self,

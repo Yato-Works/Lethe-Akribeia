@@ -1,12 +1,12 @@
 """Unit tests for AM Apex Protein Phase components."""
 
 from artificial_memory.core.ir.structured import IRStatus, StructuredIR
-from artificial_memory.protein.context_ir_compressor import ContextIRCompressor
-from artificial_memory.protein.evidence_fuser import EvidenceFuser
-from artificial_memory.protein.evidence_ranker import EvidenceRanker
-from artificial_memory.protein.protein_compiler import ProteinContextCompiler
-from artificial_memory.protein.provenance_tracker import ProvenanceTracker
-from artificial_memory.protein.temporal_supersession_protein import TemporalSupersessionProtein
+from artificial_memory_gen.protein.context_ir_compressor import ContextIRCompressor
+from artificial_memory_gen.protein.evidence_fuser import EvidenceFuser
+from artificial_memory_gen.protein.evidence_ranker import EvidenceRanker
+from artificial_memory_gen.protein.protein_compiler import ProteinContextCompiler
+from artificial_memory_gen.protein.provenance_tracker import ProvenanceTracker
+from artificial_memory_gen.protein.temporal_supersession_protein import TemporalSupersessionProtein
 
 
 def test_evidence_fuser_deduplication():
@@ -92,7 +92,7 @@ def test_protein_compiler_integration():
 
 
 def test_adaptive_context_compression():
-    from artificial_memory.protein.protein_compiler import ContextPolicy
+    from artificial_memory_gen.protein.protein_compiler import ContextPolicy
     compressor = ContextIRCompressor()
     records = [
         StructuredIR(entity="Evan", property="trip", value="Jasper", raw_content="[D1] Evan traveled to Jasper with Sam.", time_scope="2023-03-01"),
@@ -112,7 +112,7 @@ def test_adaptive_context_compression():
 
 
 def test_graph_chain_retention():
-    from artificial_memory.protein.chain_retention import GraphChainRetainer
+    from artificial_memory_gen.protein.chain_retention import GraphChainRetainer
 
     retainer = GraphChainRetainer(max_chain_reserve=2)
     # Hop 1: Caroline researched adoption agencies

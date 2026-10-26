@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 0.0,
+  "deterministic_overrides": 1,
+  "elapsed_seconds": 0.5002555999999458,
+  "per_type_breakdown": {
+    "single-session-user": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 0.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "ccb36322",
+      "question_type": "single-session-user",
+      "question": "What is the name of the music streaming service have I been using lately?",
+      "ground_truth": "Spotify",
+      "predicted_answer": "t's name to find their profiles",
+      "is_correct": false,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "r6_features": {
+        "direct_fact_demand": 0.3,
+        "temporal_demand": 0.0,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.7,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.0,
+        "dominant_mode": "state_evolution",
+        "recommended_budget": 600,
+        "requires_chronos_diff": false,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": true,
+        "requires_profile_grounding": false,
+        "total_records": 471,
+        "session_count": 46,
+        "date_count": 46,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 21,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 144,
+        "candidate_sessions": 12,
+        "conflict": true,
+        "cert_present": true,
+        "temporal_complexity": 1,
+        "evidence_coverage": 0.0,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 31.7125,
+        "budget_util": 0.0,
+        "question_type": "single-session-user",
+        "is_aggregation": false,
+        "correct": false,
+        "reader_model": "",
+        "predicted": "t's name to find their profiles"
+      }
+    }
+  ]
+}

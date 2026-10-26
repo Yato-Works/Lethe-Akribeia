@@ -13,6 +13,7 @@ from artificial_memory.core.models import (
     Project,
     Topic,
 )
+from artificial_memory.core.tokens import bpe_tokens
 
 
 class ConversationLogger:
@@ -57,7 +58,7 @@ class ConversationLogger:
         if not self._current_conversation:
             raise RuntimeError("No active conversation. Call start_conversation() first.")
 
-        tokens = len(self.encoding.encode(content))
+        tokens = bpe_tokens(content)
         self._message_sequence += 1
 
         message = Message(
@@ -111,7 +112,7 @@ class ConversationLogger:
 
     def count_tokens(self, text: str) -> int:
         """Count tokens in text."""
-        return len(self.encoding.encode(text))
+        return bpe_tokens(text)
 
     @property
     def current_conversation_id(self) -> int | None:

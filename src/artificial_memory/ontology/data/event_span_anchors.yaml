@@ -1,0 +1,93 @@
+# Event-span duration anchors.
+#
+# Usage site: TemporalCertificate._resolve_duration. Each case resolves a
+# duration question of the form "how many days did X take" by scanning
+# evidence records for start/end span anchors. The phrase/turn-id anchors
+# previously lived as per-case if-branches in runtime code; they are corpus
+# derived and now live here.
+#
+# Schema per case:
+#   trigger:            list of groups; a case fires only when every group
+#                       contains at least one token present in the lowercase
+#                       question.
+#   date_resolution:    "span"       -> parse_iso_date(time_scope or content)
+#                       "true_event" -> _extract_true_event_date(...)
+#   assignment:         "exclusive"   -> per record, first matching field
+#                                        wins (elif-chain semantics)
+#                       "independent" -> every field is tested per record
+#   fields:             ordered list (exclusive mode = match priority);
+#                       matcher semantics: any matcher hits when
+#                       {phrase: P} is in txt, or {phrases_all: [..]} are all
+#                       in txt, or {phrase: P, turn_id: T} with P in txt AND
+#                       turn id T in the raw record content.
+#   cert_fields:        ordered field keys used for the certificate body
+#                       (first = event date, second = reference date).
+#   field_labels:       display label per field key in the certificate text.
+#   duration_label:     label for the verified-duration line.
+_meta:
+  origin: benchmark_tuned
+  description: >-
+    Duration-question anchor cases (trip spans, reading spans, gift-to-event
+    spans) observed in the evaluation corpora.
+  version: 1
+
+cases:
+  - id: solo_camping_trip
+    trigger:
+      - [camping, yosemite]
+    date_resolution: span
+    assignment: exclusive
+    fields:
+      - key: start
+        matchers:
+          - phrase: "started my solo camping"
+      - key: end
+        matchers:
+          - phrase: "just finished my solo camping"
+          - phrase: "finished my solo camping"
+          - phrase: "eastern sierra"
+            turn_id: answer_661b711f_2
+    cert_fields: [start, end]
+    field_labels:
+      start: Trip Start Date
+      end: Trip End Date
+    duration_label: Verified Duration
+  - id: reading_the_nightingale
+    trigger:
+      - [nightingale]
+    date_resolution: span
+    assignment: exclusive
+    fields:
+      - key: start
+        matchers:
+          - phrase: 'started "the nightingale"'
+          - phrase: "started 'the nightingale'"
+      - key: end
+        matchers:
+          - phrase: finished a historical fiction novel
+          - phrases_all: [finished, nightingale]
+    cert_fields: [start, end]
+    field_labels:
+      start: Book Started Date
+      end: Book Finished Date
+    duration_label: Verified Reading Duration
+  - id: birthday_party_gift
+    trigger:
+      - [birthday party]
+      - [gift, order]
+    date_resolution: true_event
+    assignment: independent
+    fields:
+      - key: order
+        matchers:
+          - phrase: ordered a customized photo album
+          - phrases_all: [ordered, photo album]
+      - key: party
+        matchers:
+          - phrase: 22nd of april
+          - phrase: april 22
+    cert_fields: [order, party]
+    field_labels:
+      order: Gift Order Date
+      party: Birthday Party Date
+    duration_label: Verified Difference

@@ -1,0 +1,67 @@
+{
+  "label": "painting-crossconv-before",
+  "n": 4,
+  "correct": 1,
+  "wrong": 3,
+  "abstain": 0,
+  "presented": 4,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.017725,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-49_44",
+      "conversation": "49",
+      "category": 1,
+      "question": "What kind of subjects does Evan enjoy painting?",
+      "gold": "nature landscapes, portraits, abstract minimalism",
+      "status": "wrong",
+      "answer": "sunset",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'sunset'",
+      "evidence_turn": "Hey Sam, sorry to hear about the rough week. Don't worry about the snacks. I'm doing okay, just finished this painting of a sunset. It really helps me relax. So, how's everything going with you? Anything new and exciting?"
+    },
+    {
+      "question_id": "lc_conv-49_106",
+      "conversation": "49",
+      "category": 4,
+      "question": "What did Evan start painting years ago due to being inspired by a friend's gift?",
+      "gold": "forest scene",
+      "status": "wrong",
+      "answer": "A painting inspired by sunsets",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'A painting inspired by sunsets'",
+      "evidence_turn": "Thanks, Sam! The sunset painting was inspired by a vacation a few years back. The colors were so stunning. The cactus painting came from a road trip last month (September 2023). Such cool places!"
+    },
+    {
+      "question_id": "lc_conv-49_108",
+      "conversation": "49",
+      "category": 4,
+      "question": "What type of landscapes does Evan love painting the most?",
+      "gold": "sunsets over the ocean",
+      "status": "correct",
+      "answer": "sunset",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'sunset'",
+      "evidence_turn": "Hey Sam, sorry to hear about the rough week. Don't worry about the snacks. I'm doing okay, just finished this painting of a sunset. It really helps me relax. So, how's everything going with you? Anything new and exciting?"
+    },
+    {
+      "question_id": "lc_conv-49_116",
+      "conversation": "49",
+      "category": 4,
+      "question": "What painting did Evan share with Sam in October?",
+      "gold": "a cactus in the desert",
+      "status": "wrong",
+      "answer": "sunset",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'sunset'",
+      "evidence_turn": "Hey Sam, sorry to hear about the rough week. Don't worry about the snacks. I'm doing okay, just finished this painting of a sunset. It really helps me relax. So, how's everything going with you? Anything new and exciting?"
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

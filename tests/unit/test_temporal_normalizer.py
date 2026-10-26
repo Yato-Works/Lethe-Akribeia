@@ -6,7 +6,7 @@ expression is kept and the resolved date is appended in parentheses, so the
 reader can copy a fully-qualified answer without doing arithmetic.
 """
 
-from artificial_memory.context.temporal_normalizer import TemporalNormalizer
+from artificial_memory_gen.context.temporal_normalizer import TemporalNormalizer
 
 REF = "1:51 pm on 15 July, 2023"
 

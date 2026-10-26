@@ -1,0 +1,48 @@
+================================================================================
+  LETHE-AKRIBEIA V4: E2E BUDGETED COMPILATION PIPELINE (n=250)
+  Reader: qwen2.5:7b-instruct (num_ctx=8192)
+  Condition: R0
+================================================================================
+[001/250] 51a45a95 (single-sessi): starting
+[001/250] 51a45a95 (single-sessi): PASS | tok=1157 | pred='Target'
+[002/250] 58bf7951 (single-sessi): starting
+[002/250] 58bf7951 (single-sessi): PASS | tok=1181 | pred='The Glass Menagerie'
+[003/250] 1e043500 (single-sessi): starting
+[003/250] 1e043500 (single-sessi): PASS | tok=1124 | pred='Summer Vibes'
+[004/250] c5e8278d (single-sessi): starting
+[004/250] c5e8278d (single-sessi): PASS | tok=1236 | pred='Johnson'
+[005/250] f8c5f88b (single-sessi): starting
+[005/250] f8c5f88b (single-sessi): PASS | tok=1114 | pred='downtown sports store'
+[006/250] 5d3d2817 (single-sessi): starting
+[006/250] 5d3d2817 (single-sessi): PASS | tok=1208 | pred='marketing specialist at a small startup'
+[007/250] 7527f7e2 (single-sessi): starting
+[007/250] 7527f7e2 (single-sessi): PASS | tok=1060 | pred='$800'
+[008/250] c960da58 (single-sessi): starting
+[008/250] c960da58 (single-sessi): FAIL | tok=1098 | pred='I don't know.'
+[009/250] 726462e0 (single-sessi): starting
+[009/250] 726462e0 (single-sessi): PASS | tok=1437 | pred='10% discount'
+[010/250] 94f70d80 (single-sessi): starting
+[010/250] 94f70d80 (single-sessi): PASS | tok=1110 | pred='4 hours'
+[011/250] 66f24dbb (single-sessi): starting
+[011/250] 66f24dbb (single-sessi): PASS | tok=1334 | pred='A yellow dress and a pair of earrings.'
+[012/250] ad7109d1 (single-sessi): starting
+[012/250] ad7109d1 (single-sessi): PASS | tok=1073 | pred='500 Mbps'
+[013/250] c8c3f81d (single-sessi): starting
+[013/250] c8c3f81d (single-sessi): PASS | tok=1232 | pred='Nike'
+[014/250] 8ebdbe50 (single-sessi): starting
+[014/250] 8ebdbe50 (single-sessi): PASS | tok=1246 | pred='Data Science'
+[015/250] 6b168ec8 (single-sessi): starting
+[015/250] 6b168ec8 (single-sessi): FAIL | tok=1285 | pred='I don't know.'
+[016/250] 75499fd8 (single-sessi): starting
+[016/250] 75499fd8 (single-sessi): PASS | tok=1205 | pred='Golden Retriever'
+[017/250] 95bcc1c8 (single-sessi): starting
+[017/250] 95bcc1c8 (single-sessi): FAIL | tok=1254 | pred='I don't know.'
+[018/250] b86304ba (single-sessi): starting
+[018/250] b86304ba (single-sessi): PASS | tok=1081 | pred='The painting is worth triple what you pa'
+[019/250] caf9ead2 (single-sessi): starting
+[019/250] caf9ead2 (single-sessi): PASS | tok=1101 | pred='5 hours'
+[020/250] 60d45044 (single-sessi): starting
+[020/250] 60d45044 (single-sessi): PASS | tok=1180 | pred='Japanese short-grain rice'
+[021/250] 3f1e9474 (single-sessi): starting
+[021/250] 3f1e9474 (single-sessi): PASS | tok=1103 | pred='Sarah'
+[022/250] 15745da0 (single-sessi): starting

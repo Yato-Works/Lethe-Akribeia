@@ -17,7 +17,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from artificial_memory.recall.evidence_scorer import EvidenceScoreWeights
+from artificial_memory_gen.recall.evidence_scorer import EvidenceScoreWeights
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 
 sys.stdout.reconfigure(encoding="utf-8")

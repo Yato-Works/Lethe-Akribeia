@@ -5,6 +5,93 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Documentation
+- **README honesty pass (P0).** `README.md` / `README.ja.md` rewritten so the
+  measured limits come first:
+  - the official LoCoMo figures (37.41% as measured, 49.91% protocol-fixed,
+    54.94% with the provenance gate on and the committer off) are now the
+    headline, with the in-house binary matcher explicitly marked as not official
+    F1;
+  - the v0.3.0 artifact table is labelled as such, the arena rows state n=200 and
+    single-run, and the default-config 11.5% result is disclosed;
+  - LongMemEval / BEAM numbers are labelled as in-house-scored and not comparable
+    to LLM-judged publications;
+  - the recorded holdout leak (`--scope` inversion) and the dev-saturated
+    `v4-r8.1-perfect-score` tag are both disclosed;
+  - test claims now match the tree: 680 unit tests collected (676 pass, 2 xfail,
+    2 xpass), 1,141 total, 54% coverage; "Apex Generation" and the 100% badges
+    are gone.
+
+### Added
+- **`lethe ask`** — the read path without an LLM: matching memories, their
+  provenance, and the compiled MSC context that an agent would send to its model.
+- **`lethe resume TOPIC`** — continues an existing topic in a new conversation and
+  refuses to create one, printing the topic's recent conversations first.
+- `RuntimeConfig.from_env()`; `LETHE_LEXICAL_RECALL` and
+  `LETHE_CONFLICT_SURFACING` override the defaults for the CLI and MCP server.
+- `artificial_memory.compression.markers`: one bilingual cue table shared by the
+  compressor and the memory compiler (decisions, reasons, risks, labels).
+
+### Changed
+- **`RuntimeConfig.lexical_recall` is now `True` by default.** The arena measured
+  11.5% with it off and 53.0% with it on (Simple RAG 51.0%) at ~3x read tokens.
+  Leaving the worse configuration as the default was a wiring error. Override with
+  `--no-lexical` or `LETHE_LEXICAL_RECALL=0`. Conflict surfacing stays opt-in
+  because its product-path transfer is still partial.
+- **`recall` / `timeline` no longer require an active conversation.** They take
+  `--topic`, fall back to the active conversation, then to the most recent topic.
+  `end` used to make stored memories unreachable in a fresh process.
+- **English cue parity.** `compress_semantic` and the timeline/decision extractor
+  used Japanese-only markers (and Japanese output labels), so English
+  conversations produced an empty `decisions.md`. Both now use the language of the
+  input, and Japanese output is byte-identical to before.
+- **Lazy embedding load.** `VectorSearchEngine` used to construct SentenceTransformer
+  in `__init__`, so `start`/`user` loaded torch and MiniLM for no reason.
+- **Cross-resolution dedupe in the context builder.** The same memory id could be
+  appended once per recall level, and different resolutions could carry identical
+  text. Both are now dropped (exact id, or exact body after whitespace
+  normalization). Measured on a two-turn topic: 20 recall rows across four levels
+  contained 15 repeated ids and 1 repeated body; the compiled context is 4 parts.
+  This is not paraphrase merging — a fact re-expressed at RAW/EPISODE/SEMANTIC is
+  still repeated.
+- **API security defaults.**
+  - CORS is loopback-only by default (`LETHE_ALLOW_ORIGINS` for an explicit list);
+    `"*"` is accepted only with `allow_credentials=False`, because the previous
+    `["*"]` + credentials pair is invalid per the CORS spec.
+  - `LETHE_ENABLE_AUTH=1` now actually enforces a session token or `X-API-Key` on
+    every non-public route (health, docs, auth, static stay public). Before this
+    change, enabling auth configured the service but no route checked a credential.
+  - `python -m artificial_memory.api.server` binds `127.0.0.1` (override with
+    `LETHE_API_HOST`/`LETHE_API_PORT`) instead of `0.0.0.0`.
+- **Repository hygiene.** `.gitignore` now covers the root probe/cache directories
+  (`fc-*`, `ofn-*`, `goldctx-*`, `cache/`, `results/`, `data-gym-cache/`, ad-hoc
+  import scripts), the generated `frozen_ctx/` and `support_verifier/` caches, and
+  timestamped arena runs other than the ones cited in V4_PROGRAM. Untracked entries
+  went from ~53 to 4 (two now-committed arena runs and two new test files).
+- Both arena runs cited in V4_PROGRAM §4.21
+  (`controlled_20261025_135405`, `controlled_20261025_140731`) are now committed, so
+  the 46.5% / 54.0% end-to-end rows have their artifacts in the repository.
+- `design_docs/v4_world_class/V4_PROGRAM.md`: added §3.5 documenting why the
+  R8.1 dev-250 artifact is not citable.
+- `benchmark_results/RESULTS_REGISTRY.md`: scope note (v0.3.0 artifacts only;
+  binary ≠ official F1; R8.1 deliberately excluded).
+- `report.md`: header warning that the 99.54% smoke score is a diagnostic subset,
+  not a benchmark result.
+
+### Fixed
+- `fix/honest-product` lint pass: `ruff check src/ tests/` is clean (enum
+  modernization, dead code, undefined names, import order).
+- The failing duration test now asserts the supported path and records the two
+  binding limits (clause locality, no paraphrase) as a strict `xfail`.
+
+### CI
+- Workflows now run on every branch, and a Windows job runs the unit suite
+  (Windows is the development platform).
+- Coverage is actually produced before upload; mypy stays report-only with an
+  honest comment instead of a misleading `continue-on-error`.
+
 ## [0.3.1] - 2026-10-04
 
 ### Added
@@ -16,7 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Completely purged all dataset-specific keyword enumerations (`HIGH_SPECIFICITY`, `liberal`, `national park`, phrase lists, etc.) and dead code (`evaluate_refined_gate`).
 - **Two-Tier Holdout Isolation Protocol** (`benchmark_config/holdout.yaml`):
   - Formal division into Tier 1 (Strict Clean Holdout: `conv-48`, 191 Qs) with zero diagnostic history, and Tier 2 (Validation Split: `conv-42`, 199 Qs).
-- **Expanded Unit Test Suite**: Reached 328 unit tests (740+ total tests, 100% passing).
+- **Expanded Unit Test Suite**: Reached 328 unit tests (740+ total tests, 100% passing). *(Superseded: see Unreleased for the current counts and suite status.)*
 
 ### Changed
 - Clarified evaluation protocol taxonomy across READMEs: distinguishing official benchmark datasets and official LoCoMo Token F1 harness from deterministic in-house binary extraction matchers.

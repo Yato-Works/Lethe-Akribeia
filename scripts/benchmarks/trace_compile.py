@@ -1,5 +1,5 @@
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
-from artificial_memory.recall.proposition_graph import UnifiedPropositionGraph
+from artificial_memory_gen.recall.proposition_graph import UnifiedPropositionGraph
 
 adapter = LoCoMoAdapter()
 conv_idx = 2

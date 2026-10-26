@@ -17,7 +17,7 @@ from artificial_memory.core.models import (
     AssociationType,
     CompressionEvent,
     CompressionMethod,
-    ContextIR,
+    ContextIRRecord,
     Conversation,
     ConversationStatus,
     Decision,
@@ -40,7 +40,7 @@ __all__ = [
     # Models
     "Project", "Topic", "Conversation", "Message", "Memory",
     "MemoryVersion", "Decision", "Association", "RecallEvent",
-    "CompressionEvent", "ContextIR", "TokenUsage",
+    "CompressionEvent", "ContextIRRecord", "TokenUsage",
     # Enums
     "MemoryType", "MemoryStatus", "ResolutionLevel", "RecallLevel",
     "AssociationType", "ConversationStatus", "MessageRole", "IRType",

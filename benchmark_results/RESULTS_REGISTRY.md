@@ -2,6 +2,17 @@
 
 This registry provides a canonical, auditable mapping between every published evaluation metric and its frozen artifact file in the repository.
 
+> [!IMPORTANT]
+> **Scope of this registry.** It covers the frozen **v0.3.0** artifacts. The
+> binary `is_correct` metrics here come from an in-house matcher and are *not*
+> official token F1; both are listed separately because they are not
+> interchangeable. The current pipeline re-scored on the pinned upstream protocol
+> measures 37.41% / 49.91% / 54.94% F1 rather than the 51.89% recorded here — see
+> `design_docs/v4_world_class/V4_PROGRAM.md` §2 and §4.17.
+> `benchmark_results/pipeline_v4/lme_dev250_v4_R8.1.json` (250/250, tag
+> `v4-r8.1-perfect-score`) is a dev-saturated artifact and is **deliberately not
+> a registry entry**; see V4_PROGRAM §3.5.
+
 To verify all artifacts, metrics, and numerical claims automatically:
 ```bash
 python scripts/benchmarks/verify_registry.py

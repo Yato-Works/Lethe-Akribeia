@@ -1,0 +1,96 @@
+{
+  "label": "verification that the 7 enumeration/counting failures are not one disease",
+  "n": 7,
+  "gold_really_multi": 2,
+  "causes": {
+    "WRONG_EVENT_SCOPE": 3,
+    "SINGLE_VALUE": 3,
+    "CARDINALITY": 1
+  },
+  "rows": [
+    {
+      "question_id": "lc_conv-41_72",
+      "shape_label": "enumeration",
+      "question": "What kind of activities did John and his mates from the online group do as part of their service efforts?",
+      "gold": "gave out food and supplies at a homeless shelter, organized a toy drive for kids in need",
+      "gold_is_list": false,
+      "gold_item_count": 2,
+      "answer": "camping, hiking, running",
+      "detail": "aggregated activities: {'camping', 'running', 'hiking'}",
+      "cause": "WRONG_EVENT_SCOPE",
+      "why": "a union was produced, but from activities of a DIFFERENT event"
+    },
+    {
+      "question_id": "lc_conv-41_124",
+      "shape_label": "enumeration",
+      "question": "What kind of activities did Maria do at the picnic with her church friends?",
+      "gold": "played games like charades and a scavenger hunt",
+      "gold_is_list": false,
+      "gold_item_count": 1,
+      "answer": "camping, hiking, volunteering",
+      "detail": "aggregated activities: {'camping', 'volunteering', 'hiking'}",
+      "cause": "SINGLE_VALUE",
+      "why": "gold is ONE item; the enumeration label is wrong for this question"
+    },
+    {
+      "question_id": "lc_conv-42_133",
+      "shape_label": "counting",
+      "question": "How many people attended the gaming party hosted by Nate in June 2022?",
+      "gold": "7",
+      "gold_is_list": false,
+      "gold_item_count": 1,
+      "answer": "ten times, 10",
+      "detail": "counted 10 distinct activity sessions: ['D14:20', 'D14:23', 'D14:8', 'D14:9', 'D16:2', 'D16:6', 'D16:8', 'D23:1', 'D23:2",
+      "cause": "CARDINALITY",
+      "why": "a 'how many' question answered by counting sessions/occurrences rather than the counted thing"
+    },
+    {
+      "question_id": "lc_conv-43_96",
+      "shape_label": "enumeration",
+      "question": "Which movie's theme is Tim's favorite to play on the piano?",
+      "gold": "\"Harry Potter and the Philosopher's Stone\"",
+      "gold_is_list": true,
+      "gold_item_count": 1,
+      "answer": "and hiking or playing board games",
+      "detail": "extracted themes: 'and hiking or playing board games'",
+      "cause": "WRONG_EVENT_SCOPE",
+      "why": "a union was produced, but from activities of a DIFFERENT event"
+    },
+    {
+      "question_id": "lc_conv-43_141",
+      "shape_label": "enumeration",
+      "question": "What book did John recently finish rereading that left him feeling inspired and hopeful about following dreams?",
+      "gold": "The Alchemist",
+      "gold_is_list": false,
+      "gold_item_count": 1,
+      "answer": "",
+      "detail": "fallback to LLM reader",
+      "cause": "SINGLE_VALUE",
+      "why": "gold is ONE item; the enumeration label is wrong for this question"
+    },
+    {
+      "question_id": "lc_conv-44_120",
+      "shape_label": "enumeration",
+      "question": "What type of activities does Audrey suggest for mental stimulation of the dogs?",
+      "gold": "puzzles, training, hide-and-seek",
+      "gold_is_list": true,
+      "gold_item_count": 3,
+      "answer": "hiking, running",
+      "detail": "aggregated activities: {'running', 'hiking'}",
+      "cause": "WRONG_EVENT_SCOPE",
+      "why": "a union was produced, but from activities of a DIFFERENT event"
+    },
+    {
+      "question_id": "lc_conv-50_72",
+      "shape_label": "enumeration",
+      "question": "Which band was Dave's favorite at the music festival in April 2023?",
+      "gold": "Aerosmith",
+      "gold_is_list": false,
+      "gold_item_count": 1,
+      "answer": "music",
+      "detail": "attribute extracted from Dave's turn: 'music'",
+      "cause": "SINGLE_VALUE",
+      "why": "gold is ONE item; the enumeration label is wrong for this question"
+    }
+  ]
+}

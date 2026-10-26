@@ -133,13 +133,74 @@ class CountingEngine:
     @classmethod
     def is_aggregation_question(cls, question: str) -> bool:
         ql = question.lower().strip()
-        return bool(re.search(
-            r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+|are\s+|is\s+)?[a-z\s']*\b"
+        known_category = re.search(
+            r"\b(?:what|which)\s+(?:kind\s+of\s+|types?\s+of\s+|are\s+|is\s+)?[a-z\s']*\b"
             r"(activities|hobbies|books|movies|recipes|items|pets|symbols|places|events|classes|groups|"
             r"screenplays|(?:video\s+)?games|shows|writings|sports|instruments|songs|artists|bands|"
             r"dogs|cats|turtles|puppies|pups)\b",
             ql,
-        ))
+        )
+        # Generic relation-list shape: "Which desserts has Maria made?".
+        # The category is grammatical query data, not a corpus vocabulary list;
+        # resolve_aggregation still requires exact speaker, category and
+        # predicate evidence before it can claim.
+        relation_list = re.search(
+            r"\b(?:what|which)\s+(?P<category>[a-z][a-z '\-]{1,45}?)\s+"
+            r"(?:does|did|do|has|have)\s+[a-z][a-z'\-]*\s+[a-z][a-z'\-]*\b",
+            ql,
+        )
+        plural_category = bool(
+            relation_list
+            and any(len(w) > 3 and w.endswith("s")
+                    for w in relation_list.group("category").split())
+        )
+        return bool(known_category or plural_category)
+
+    # ---- Quantity-type vocabulary ----------------------------------------------
+    # Three incompatible kinds of number a count question can ask for.  Kept as
+    # vocabulary rather than a single 'people' check: the mission's case is one noun
+    # of a general class, and a per-noun special case would be the overfitting the
+    # mission prohibits.
+    _OCC_Q = re.compile(r"\bhow\s+many\s+times\b|\bhow\s+often\b", re.I)
+    _DUR_Q = re.compile(
+        r"\bhow\s+long\b|"
+        r"\bhow\s+(?:many|much)\s+(?:days?|weeks?|months?|years?|hours?|minutes?)\b",
+        re.I)
+    _ENT_Q = re.compile(r"\bhow\s+many\s+([a-z]+)", re.I)
+
+    #: Nouns after 'how many' that denote a DURATION or a FREQUENCY even though
+    #: they look like countable things.  Without this, 'how many times' parsed as
+    #: an entity count of the noun 'times'.
+    _DUR_NOUNS = frozenset({
+        "time", "times", "day", "days", "week", "weeks", "month", "months",
+        "year", "years", "hour", "hours", "minute", "minutes", "long",
+    })
+
+    @classmethod
+    def quantity_type(cls, question: str) -> str:
+        """Which KIND of number the question asks for.
+
+        'OCCURRENCE' -- how many times / how often: a frequency.
+        'DURATION'   -- how many days / how long: an elapsed span.
+        'ENTITY'     -- how many people / dogs / shows: a count of things.
+        'OTHER'      -- not a count question.
+
+        The distinction is structural, from the question's own form, so it holds for
+        nouns never seen before.  Order matters: 'how many times' must be read as a
+        frequency before the generic 'how many <noun>' pattern sees 'times' as a
+        countable thing.
+        """
+        if cls._OCC_Q.search(question):
+            return "OCCURRENCE"
+        if cls._DUR_Q.search(question):
+            return "DURATION"
+        m = cls._ENT_Q.search(question)
+        if m:
+            noun = m.group(1).lower().rstrip("s")
+            if noun in cls._DUR_NOUNS:
+                return "DURATION"
+            return "ENTITY"
+        return "OTHER"
 
     @classmethod
     def resolve_counting(cls, question: str, turns: list[Turn], context: str) -> CommittedAnswer:
@@ -170,31 +231,80 @@ class CountingEngine:
         explicit_freq_exists = False
         if freq_q:
             for t in turns:
-                if re.search(r"\b(once|twice|three\s+times|four\s+times|five\s+times)\b", t.text, re.I):
-                    explicit_freq_exists = True
+                for sentence in re.split(r"(?<=[.!?])\s+", t.text):
+                    if (re.search(r"\b(once|twice|three\s+times|four\s+times|five\s+times)\b", sentence, re.I)
+                            and cls._frequency_scope_matches(question, turns, sentence)):
+                        explicit_freq_exists = True
+                        break
+                if explicit_freq_exists:
                     break
-        if event_shaped or (freq_q and not explicit_freq_exists):
-            topic_kws = {k for k in q_kws if len(k) > 2}
-            if topic_kws:
-                need = min(2, len(topic_kws))
-                sessions = {
-                    t.dia_id
-                    for t in turns
-                    if not person or person in t.speaker.lower() or person in t.text.lower()
-                    for matched in [sum(1 for k in topic_kws if k in t.text.lower())]
-                    if matched >= need
-                }
-                if len(sessions) >= 2:
-                    c = len(sessions)
-                    word = INT_TO_WORD.get(c, str(c))
-                    freq_word = "twice" if c == 2 else f"{word} times"
+        # ---- QUANTITY TYPE GATE (typed cardinality) -----------------------------
+        # A count question asks for one of several incompatible kinds of number, and
+        # the engine must not answer one where another is asked.
+        #   OCCURRENCE  'how many times / how often'  -> a frequency
+        #   DURATION    'how many days / how long'     -> an elapsed span
+        #   ENTITY      'how many <countable noun>'     -> a number of things
+        # The distinct-session path below always answers a FREQUENCY ('ten times, 10'),
+        # so an ENTITY question reaching it answers occurrences for a cardinality --
+        # the measured defect ('how many people attended the party' answered
+        # 'ten times, 10', lc_conv-42_133/42_222).
+        #
+        # MEASURED, not assumed.  Every ENTITY question in the corpus whose verb is
+        # event-shaped, checked against real gold with the repaired scorer:
+        #   conv-42-qa-052  gold 'two'  -> 'nine times, 9'   wrong
+        #   conv-42-qa-133  gold '7'    -> 'ten times, 10'   wrong
+        #   conv-42-qa-222  gold '7'    -> 'twice, 2'        wrong
+        #   conv-50-qa-047  gold 'two'  -> 'eight times, 8'  wrong
+        # 4 questions, 4 wrong, 0 correct.  An earlier version of this guard was
+        # scoped to spare conv-42-qa-052 because a UNIT TEST asserted it correct --
+        # but that fixture's gold was invented for the test, and the real gold is
+        # 'two' while the engine says 'nine times, 9'.  It was never a correct
+        # answer.  So the rule is the blunt one: no ENTITY question may take the
+        # session-counting path at all.
+        #
+        # This is a ROUTING guard; it cannot invent the right number, so the honest
+        # expectation is wrong -> abstain, never wrong -> correct.
+        if cls.quantity_type(question) == "ENTITY" and event_shaped:
+            return CommittedAnswer(
+                used=False,
+                detail=("quantity-type guard: the question asks for a number of things, "
+                        "and the distinct-session path can only produce a frequency "
+                        "('ten times, 10') -- refusing rather than answering "
+                        "occurrences for a cardinality"),
+            )
+
+            if event_shaped or (freq_q and not explicit_freq_exists):
+                if (freq_q and not explicit_freq_exists
+                        and re.search(r"\b(?:plan|planned|planning|intend|intended|intending)\b", ql)):
+                    # Repeated mentions of the same planned event are not distinct
+                    # occurrences.  Without an explicit count, treating turn/session
+                    # mentions as a frequency overcounts recurring plans and
+                    # hypotheticals; leave this temporalized plan count to fallback.
                     return CommittedAnswer(
-                        used=True,
-                        answer=f"{freq_word}, {c}",
-                        source="autonomous_counting_engine",
-                        confidence=0.90,
-                        detail=f"counted {c} distinct activity sessions: {sorted(sessions)}",
+                        used=False,
+                        detail="planned-event frequency needs an explicit count; mentions are not occurrences",
                     )
+                topic_kws = {k for k in q_kws if len(k) > 2}
+                if topic_kws:
+                    need = min(2, len(topic_kws))
+                    sessions = {
+                        t.dia_id
+                        for t in turns
+                        if not person or person in t.speaker.lower() or person in t.text.lower()
+                        for matched in [sum(1 for k in topic_kws if k in t.text.lower())]
+                        if matched >= need
+                    }
+                    if len(sessions) >= 2:
+                        c = len(sessions)
+                        word = INT_TO_WORD.get(c, str(c))
+                        freq_word = "twice" if c == 2 else f"{word} times"
+                        return CommittedAnswer(
+                            used=True,
+                            answer=f"{freq_word}, {c}",
+                            source="autonomous_counting_engine",
+                            confidence=0.90,
+                            detail=f"counted {c} distinct activity sessions: {sorted(sessions)}",
+                        )
 
         # 2. Direct frequency mention in turns, most recent first - habits
         #    change over a conversation ("used to be weekly, now every other
@@ -210,6 +320,8 @@ class CountingEngine:
 
                 for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
                     if not (q_kws & set(re.findall(r"\b[a-zA-Z]{3,}\b", sentence.lower()))):
+                        continue
+                    if not cls._frequency_scope_matches(question, turns, sentence):
                         continue
                     m_freq = re.search(r"\b(once|twice|three\s+times|four\s+times|five\s+times)\b", sentence, re.I)
                     if not m_freq:
@@ -345,6 +457,14 @@ class CountingEngine:
             return CommittedAnswer(used=False)
 
         singular_target = target_noun.rstrip("s")
+        if singular_target == "pet" and re.search(r"\bas\s+of\b", ql):
+            # Pet totals can change over time.  Do not apply the latest stated
+            # count to an explicit historical/future cutoff without a dated
+            # state reconstruction.
+            return CommittedAnswer(
+                used=False,
+                detail="time-bounded pet count requires an evidence date match",
+            )
         is_measure_unit = singular_target in _MEASURE_UNITS
         if is_measure_unit and not single_session:
             return CommittedAnswer(used=False, detail="measure-unit count over multiple sessions needs a sum, not one numeral")
@@ -354,17 +474,35 @@ class CountingEngine:
             synonyms.update(["kid", "child"])
         elif singular_target in ("dog", "cat", "turtle"):
             synonyms.update(["pet", singular_target])
+        elif singular_target == "pet":
+            # "pets" is a category count; evidence commonly states the
+            # concrete animal ("my three dogs") rather than repeating the
+            # umbrella noun.  Keep this alias expansion local to pet counts.
+            synonyms.update({
+                "dog", "cat", "turtle", "bird", "fish", "rabbit", "hamster",
+                "pup", "puppy",
+            })
 
         # Most recent first: totals evolve over a conversation ("had 4, then
         # adopted one more"), and the latest stated total is the current one.
         for turn in reversed(turns):
-            if person and person not in turn.speaker.lower() and person not in turn.text.lower():
+            if singular_target == "pet":
+                # Pet totals must be attributed to the named subject's own
+                # speaker turn; a reply quoting or discussing that person is
+                # not ownership evidence.
+                if not person or turn.speaker.lower() != person.lower():
+                    continue
+            elif person and person not in turn.speaker.lower() and person not in turn.text.lower():
                 continue
 
             text = turn.text
             turn_words = set(re.findall(r"\b[a-zA-Z]{3,}\b", text.lower()))
             overlap = q_kws & turn_words
-            if not overlap and not any(syn in turn_words for syn in synonyms):
+            has_target_term = any(
+                re.search(rf"\b{re.escape(syn)}(?:s|es)?\b", text, re.I)
+                for syn in synonyms
+            )
+            if not overlap and not has_target_term:
                 continue
 
             for syn in synonyms:
@@ -376,7 +514,18 @@ class CountingEngine:
                         # frame ("I have 8", "in total 8"), not an event frame
                         # ("I bought 5", "I found 3 more").
                         window = text[max(0, m_num.start() - 60): m_num.end() + 60]
-                        if not (_STATIVE_FRAME.search(window) or re.search(r"\b(?:have|has|own|owns)\b", window, re.I)):
+                        possessive_pet_total = (
+                            singular_target == "pet"
+                            and re.search(
+                                r"\b(?:my|our|his|her|their)\s+(?:\w+\s+)?"
+                                r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+"
+                                r"(?:dogs?|cats?|pets?|turtles?|birds?|fish|rabbits?|hamsters?)\b",
+                                window,
+                                re.I,
+                            )
+                        )
+                        if not (possessive_pet_total or _STATIVE_FRAME.search(window)
+                                or re.search(r"\b(?:have|has|own|owns)\b", window, re.I)):
                             continue
                     val_str = m_num.group(1).lower()
                     val_int = int(val_str) if val_str.isdigit() else NUMBER_WORDS.get(val_str)
@@ -390,10 +539,51 @@ class CountingEngine:
                             confidence=0.95,
                             detail=f"matched '{m_num.group(0)}'"
                                    + ("" if single_session else " (stated total)"),
-                            evidence_turn=turn.text,
+                            evidence_turn=(turn.dia_id if singular_target == "pet" else turn.text),
                         )
 
+            if singular_target == "pet" and re.search(
+                r"\b(?:adopt(?:ed|ing)?|got|found|took\s+in)\b.{0,45}"
+                r"\b(?:another|new|additional)\b.{0,30}"
+                r"\b(?:dog|cat|turtle|bird|fish|rabbit|hamster|pup|puppy|pet)\b",
+                text,
+                re.I,
+            ):
+                # A newer acquisition makes an older stated total stale unless
+                # this turn also gives the updated count (handled above).
+                return CommittedAnswer(
+                    used=False,
+                    detail="pet count changed after the latest explicit total",
+                )
+
         return CommittedAnswer(used=False)
+
+    @classmethod
+    def _frequency_scope_matches(cls, question: str, turns: list[Turn], sentence: str) -> bool:
+        """Require an explicit-frequency phrase to describe the asked event.
+
+        Shared discourse words (e.g. ``together``) alone are not a relation:
+        "once a week" about meeting dog owners cannot answer how often two
+        people planned a hike.  Match all non-person event anchors so unrelated
+        frequency statements are ignored and multi-session counting may proceed.
+        """
+        ql = question.lower()
+        names_in_question = {
+            t.speaker.lower() for t in turns
+            if t.speaker and re.search(rf"\b{re.escape(t.speaker.lower())}\b", ql)
+        }
+        ignored = {"many", "times", "time", "often", "together", "much", "long"}
+        anchors = cls._extract_keywords(question) - names_in_question - ignored
+        if not anchors:
+            return True
+        for anchor in anchors:
+            forms = {anchor, f"{anchor}s", f"{anchor}ed", f"{anchor}ing"}
+            if anchor.endswith("e"):
+                forms.add(f"{anchor[:-1]}ing")
+            pattern = "|".join(re.escape(form) for form in sorted(forms, key=len, reverse=True))
+            if not re.search(rf"\b(?:{pattern})\b", sentence, re.I):
+                return False
+        return True
 
     @classmethod
     def _turn_date(cls, turn: Turn) -> datetime.date | None:
@@ -422,8 +612,16 @@ class CountingEngine:
         # quoted captures run without a per-sentence pet noun - "I named him
         # Buddy" carries none, and the question already scopes the domain.
         pet_question = bool(cat_stems & {"dog", "cat", "puppy", "pup", "turtle", "pet"})
+        other_speakers = {
+            t.speaker.lower() for t in turns
+            if not person or t.speaker.lower() != person.lower()
+        }
         for turn in turns:
-            if person and person not in turn.speaker.lower() and person not in turn.text.lower():
+            # Attribution must use the structured speaker field.  Matching a
+            # person's name inside reply text imports the other speaker's
+            # pets and, for the broad conversational-name rule below, turns
+            # names such as "Thanks, Caroline" into false pets.
+            if person and turn.speaker.lower() != person.lower():
                 continue
             for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
                 s_low = sentence.lower()
@@ -463,6 +661,43 @@ class CountingEngine:
                         name = piece.strip()
                         if name and name.lower() not in STOPWORDS and name not in items:
                             items.append(name)
+                # Common answer form after a pet-name question: "Their names
+                # are Pepper, Precious and Panda."  The question supplies the
+                # pet domain; only a target speaker's own statement is eligible.
+                if pet_question:
+                    m_names = re.search(
+                        r"\b(?:their|my|our|the)\s+names?\s+(?:are|is)\s+"
+                        r"((?:[A-Z][a-z]+)(?:\s*,\s*[A-Z][a-z]+)*"
+                        r"(?:\s+(?:and|,)\s+[A-Z][a-z]+)?)",
+                        sentence,
+                        re.IGNORECASE,
+                    )
+                    if m_names:
+                        for piece in re.split(r"\s+and\s+|\s*,\s*", m_names.group(1)):
+                            name = piece.strip()
+                            if (name and name[0].isupper()
+                                    and name.lower() not in other_speakers
+                                    and name not in items):
+                                items.append(name)
+                # Conversational answer form: "Luna and Oliver!" after a
+                # preceding question about the pets' names.  This is scoped
+                # to pet-name questions and the target speaker's own turn;
+                # otherwise ordinary proper-noun lists would be over-collected.
+                if pet_question:
+                    m_answer = re.match(
+                        r"^\s*((?:[A-Z][a-z]{1,15})(?:\s*,\s*[A-Z][a-z]{1,15})*"
+                        r"(?:\s*(?:,|and)\s*[A-Z][a-z]{1,15})+)\s*[!.?]",
+                        sentence,
+                    )
+                    if m_answer:
+                        for piece in re.split(r"\s+and\s+|\s*,\s*", m_answer.group(1)):
+                            name = piece.strip()
+                            if name.lower() in {"thanks", "hey", "wow", "yep", "sure"}:
+                                continue
+                            if (name and name.lower() not in STOPWORDS
+                                    and name.lower() not in other_speakers
+                                    and name not in items):
+                                items.append(name)
         return items
 
     @classmethod
@@ -475,40 +710,147 @@ class CountingEngine:
         #    "What are the names of Andrew's dogs?" - the category is named
         #    directly, no verb is involved.
         if person:
-            m_poss = re.search(rf"\bwhat\s+(?:is|are)\s+{re.escape(person)}'s\s+([a-z\s']+?)\??$", ql)
+            m_poss = re.search(r"\bwhat\s+(?:is|are)\s+(.+?)\??$", ql)
+            if m_poss and not m_poss.group(1).startswith(f"{person}'s "):
+                m_poss = None
+            elif m_poss:
+                # Keep only the category after the named subject.  This also
+                # handles nested possessives such as "pets' names".
+                m_poss = re.match(r"(.+?)\??$", m_poss.group(1)[len(person) + 3:])
             if not m_poss:
                 m_poss = re.search(
                     rf"\bwhat\s+(?:is|are)\s+the\s+[a-z]+\s+of\s+{re.escape(person)}'s\s+([a-z\s]+?)\??$",
                     ql,
                 )
             if m_poss:
-                cat_stems = {_word_stem(w) for w in m_poss.group(1).replace("'s", "").split()}
+                cat_stems = {
+                    _word_stem(w.strip("'"))
+                    for w in m_poss.group(1).replace("'s", "").split()
+                }
                 items = cls._collect_named_entities(turns, person, cat_stems)
+                if cat_stems & {"pet", "dog", "cat", "animal", "puppy", "pup"}:
+                    # A names answer is a set-valued claim.  If the same
+                    # speaker explicitly gives a larger pet count than the
+                    # number of names recovered, the set is incomplete; do
+                    # not turn a partial list into a committed answer.
+                    count_words = {
+                        "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+                        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+                    }
+                    known_counts = []
+                    for turn in turns:
+                        if turn.speaker.lower() != person.lower():
+                            continue
+                        for m_count in re.finditer(
+                            r"\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+"
+                            r"(?:dogs?|cats?|pets?|pupp(?:y|ies))\b",
+                            turn.text,
+                            re.I,
+                        ):
+                            raw_count = m_count.group(1).lower()
+                            known_counts.append(
+                                int(raw_count) if raw_count.isdigit() else count_words[raw_count]
+                            )
+                    if known_counts and max(known_counts) > len(items):
+                        return CommittedAnswer(
+                            used=False,
+                            detail=(f"incomplete pet-name set: evidence states at least "
+                                    f"{max(known_counts)} pets, found {len(items)} names"),
+                        )
                 if len(items) >= 2:
+                    evidence_ids = [
+                        t.dia_id for t in turns
+                        if t.speaker.lower() == person.lower()
+                        and any(re.search(rf"\b{re.escape(item)}\b", t.text) for item in items)
+                    ]
                     return CommittedAnswer(
                         used=True,
                         answer=", ".join(items[:6]),
                         source="autonomous_set_aggregator",
                         confidence=0.88,
                         detail=f"possessive set {sorted(cat_stems)}: {items[:6]}",
+                        evidence_turn=", ".join(evidence_ids),
                     )
 
         # 0b. Category collectors for evidence shapes that need more than a
         #     verb-object read: quoted titles and "play the <instrument>".
-        m_cat = re.search(r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have|is|are)\s+", ql)
+        m_cat = re.search(r"\b(?:what|which)\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have|is|are)\s+", ql)
         if m_cat:
             cat_stems = {_word_stem(w) for w in m_cat.group(1).split()}
             # Quoted titles: books, songs, movies, shows
             if cat_stems & {"book", "song", "movie", "show", "screenplay"}:
+                # Preserve attribution and evidence while accepting common
+                # typographic quote styles. The question's relation may be in
+                # the answer sentence or in its separately retained parent turn.
+                quoted: dict[str, list[str]] = {}
+                relation_match = re.search(
+                    r"\b(?:does|did|do|has|have)\s+[a-z][a-z'\-]*\s+([a-z][a-z'\-]*)\b", ql
+                )
+                relation = _word_stem(relation_match.group(1)) if relation_match else None
+                quote_re = re.compile(r'"([^"\n]{2,64})"|“([^”\n]{2,64})”|‘([^’\n]{2,64})’')
+                for turn in turns:
+                    if person and turn.speaker.lower() != person:
+                        continue
+                    for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
+                        if relation:
+                            in_answer = re.search(rf"\b{re.escape(relation)}[a-z]*\b", sentence, re.I)
+                            in_prompt = re.search(rf"\b{re.escape(relation)}[a-z]*\b", turn.reply_text, re.I)
+                            if not (in_answer or in_prompt):
+                                continue
+                            recipient = re.search(r"\bto\s+([a-z][a-z'\-]*)\b", ql)
+                            if (not in_answer and in_prompt and recipient
+                                    and turn.reply_speaker.lower() != recipient.group(1)):
+                                continue
+                        for quoted_match in quote_re.finditer(sentence):
+                            title = next((p.strip() for p in quoted_match.groups() if p), "")
+                            if title and not title.lower().startswith(("what", "hey", "wow", "thanks", "yeah")):
+                                evidence_ids = quoted.setdefault(title, [])
+                                if turn.dia_id:
+                                    evidence_ids.append(turn.dia_id)
+                                if turn.reply_speaker and turn.reply_text:
+                                    prompt_ids = [
+                                        t.dia_id for t in turns
+                                        if t.speaker.lower() == turn.reply_speaker.lower()
+                                        and (t.text.lower().startswith(turn.reply_text.lower())
+                                             or turn.reply_text.lower().startswith(t.text.lower()))
+                                        and t.dia_id
+                                    ]
+                                    evidence_ids.extend(prompt_ids)
+                quoted_titles = list(quoted)
+                cardinality_words = {
+                    "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+                    "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+                }
+                requested_count = next(
+                    (int(w) if w.isdigit() else cardinality_words[w]
+                     for w in re.findall(r"\b(?:\d+|two|three|four|five|six|seven|eight|nine|ten)\b", ql)
+                     if (w.isdigit() and 2 <= int(w) <= 10) or w in cardinality_words),
+                    None,
+                )
+                # The existence of several titles is not proof of a complete
+                # open-world list. Commit this collector only when the question
+                # provides an exact cardinality and the evidence matches it.
+                if requested_count is not None and len(quoted_titles) == requested_count:
+                    return CommittedAnswer(
+                        used=True,
+                        answer=", ".join(quoted_titles[:6]),
+                        source="autonomous_set_aggregator",
+                        confidence=0.90,
+                        detail=f"relation-aligned quoted titles: {quoted_titles[:6]}",
+                        evidence_turn=", ".join(dict.fromkeys(
+                            dia_id for title in quoted_titles[:6] for dia_id in quoted[title]
+                        )),
+                    )
                 titles: list[str] = []
                 for turn in turns:
-                    if person and person not in turn.speaker.lower() and person not in turn.text.lower():
+                    if person and turn.speaker.lower() != person:
                         continue
                     for m_t in re.finditer(r'"([^"]{2,48})"', turn.text):
                         t = m_t.group(1).strip()
                         if t and t not in titles and not t.lower().startswith(("what", "hey", "wow", "thanks", "yeah")):
                             titles.append(t)
-                if len(titles) >= 2:
+                if (requested_count is not None and len(titles) == requested_count
+                        and relation is None):
                     return CommittedAnswer(
                         used=True,
                         answer=", ".join(titles[:6]),
@@ -539,7 +881,7 @@ class CountingEngine:
         # 1. Generic verb-object enumeration: "What video games does Nate play?"
         #    Objects are read off the speaker's own verb phrases across turns,
         #    so the set grows with the conversation instead of a fixed lexicon.
-        m_cat2 = re.search(r"\bwhat\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have)\s+", ql)
+        m_cat2 = re.search(r"\b(?:what|which)\s+(?:kind\s+of\s+|types?\s+of\s+)?([a-z\s]+?)\s+(?:does|did|do|has|have)\s+", ql)
         if m_cat2:
             category = m_cat2.group(1).strip()
             m_verb = re.search(rf"\b{re.escape(person or '')}\s+([a-z]+)", ql) if person else None
@@ -637,7 +979,151 @@ class CountingEngine:
                     evidence_turn=context[:100],
                 )
 
+        # 3. Relation-aligned list union. Unlike the legacy proper-name scan,
+        #    this accepts lowercase noun phrases, but only when the query's
+        #    explicit subject, category and predicate co-occur in the SAME
+        #    target-speaker sentence. That predicate/category frame is then
+        #    unioned across turns, with a turn ID retained for each item.
+        aligned = cls._resolve_relation_list(question, turns)
+        if aligned.used:
+            return aligned
+
         return CommittedAnswer(used=False)
+
+    @classmethod
+    def _resolve_relation_list(cls, question: str, turns: list[Turn]) -> CommittedAnswer:
+        ql = question.lower().strip()
+        match = re.search(
+            r"\b(?:what|which)\s+(?P<category>[a-z][a-z '\-]{1,45}?)\s+"
+            r"(?P<aux>does|did|do|has|have)\s+(?P<person>[a-z][a-z'\-]*)\s+"
+            r"(?P<verb>[a-z][a-z'\-]*)\b",
+            ql,
+        )
+        if not match:
+            return CommittedAnswer(used=False)
+        person = match.group("person")
+        # _extract_person may resolve a name occurring elsewhere in the prompt;
+        # for this syntactic frame the explicit post-auxiliary subject wins.
+        if not any(t.speaker.lower() == person for t in turns):
+            return CommittedAnswer(used=False)
+        def category_stem(word: str) -> str:
+            word = word.lower()
+            if word.endswith("ies") and len(word) > 4:
+                return word[:-3] + "y"
+            if word.endswith(("sses", "ches", "shes", "xes", "zes")) and len(word) > 4:
+                return word[:-2]
+            if word.endswith("s") and len(word) > 3:
+                return word[:-1]
+            return word
+
+        category_words = [
+            category_stem(w) for w in match.group("category").split()
+            if w not in {"kind", "type", "sort", "of", "the", "a", "an"}
+        ]
+        category_words = [w for w in category_words if len(w) > 2]
+        if not category_words:
+            return CommittedAnswer(used=False)
+        category_head = category_words[-1]
+        raw_verb = match.group("verb")
+        verb = _word_stem(raw_verb)
+        # Auxiliaries and maximally generic predicates do not identify a
+        # relation frame ("memories X has" otherwise matches unrelated turns).
+        if verb in {"be", "do", "have", "get", "go", "make"}:
+            return CommittedAnswer(used=False)
+        # Handle regular inflection, including consonant+y (try/tried/tries),
+        # without a prefix match that can bind an unrelated word.
+        forms = {raw_verb, verb, f"{verb}s", f"{verb}es", f"{verb}ed", f"{verb}ing"}
+        if verb.endswith("y") and len(verb) > 2:
+            forms.update({f"{verb[:-1]}ies", f"{verb[:-1]}ied", f"{verb[:-1]}ying"})
+        verb_pattern = re.compile(r"\b(?:" + "|".join(re.escape(v) for v in sorted(forms, key=len, reverse=True)) + r")\b", re.I)
+        list_items: dict[str, tuple[str, str]] = {}
+        for turn in turns:
+            if turn.speaker.lower() != person:
+                continue
+            if not verb_pattern.search(turn.text):
+                continue
+            for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
+                low = sentence.lower()
+                if not re.search(rf"\b{re.escape(category_head)}(?:s|es)?\b", low):
+                    continue
+                # The relation may be stated across adjacent sentences in one
+                # turn: "a new pose that we tried. It is a tree pose." Bind
+                # only a copular category-value phrase in that case.
+                verb_matches = list(verb_pattern.finditer(sentence))
+                if not verb_matches:
+                    copular = re.search(
+                        rf"\b(?:is|are|was|were|called|named)\s+(?:a|an|the)?\s*"
+                        rf"(?P<item>[a-z][a-z' -]{{0,35}}?\b{re.escape(category_head)}(?:s|es)?)\b",
+                        sentence, re.I,
+                    )
+                    if copular:
+                        phrase = copular.group("item").strip(" -")
+                        key = re.sub(r"[^a-z0-9]+", " ", phrase.lower()).strip()
+                        if key:
+                            list_items.setdefault(key, (phrase, turn.dia_id))
+                    continue
+                for vm in verb_matches:
+                    tail = sentence[vm.end():].strip(" ,:;-\t")
+                    if not tail:
+                        continue
+                    # Prefer explicit list/apposition markers. Without one,
+                    # don't turn arbitrary words after a broad verb into list
+                    # members ("trying yoga" is not a yoga-pose item).
+                    marker = re.search(r"\b(?:like|such\s+as|including|namely)\s+", tail, re.I)
+                    if marker:
+                        tail = tail[marker.end():]
+                    else:
+                        head_match = re.search(
+                            rf"\b{re.escape(category_head)}(?:s|es)?\s*[-:—]\s*(.+)$",
+                            tail, re.I,
+                        )
+                        if not head_match:
+                            # A comma-separated appositive after the category
+                            # head is also an explicit list cue.
+                            head_match = re.search(
+                                rf"\b{re.escape(category_head)}(?:s|es)?\s*,\s*(.+)$",
+                                tail, re.I,
+                            )
+                        if not head_match:
+                            continue
+                        tail = head_match.group(1)
+                    # A coordinated clause is not another answer item:
+                    # "I made pizza and we had fun" stops before "we".
+                    tail = re.split(
+                        r"\s+(?:but|because|although|while|which|who|that)\b|"
+                        r"\s+and\s+(?=(?:i|we|he|she|they|it|you)\s+\w+\b)",
+                        tail,
+                        maxsplit=1,
+                        flags=re.I,
+                    )[0]
+                    pieces = re.split(r"\s*,\s*|\s+and\s+", tail, flags=re.I)
+                    for piece in pieces:
+                        item = re.sub(r"^(?:the|a|an|some|many|several|my|our)\s+", "", piece.strip(), flags=re.I)
+                        item = item.strip(" .!?;:")
+                        # Discard clauses and bare pronominal objects. Keep
+                        # only short, text-grounded noun-phrase candidates.
+                        words = item.split()
+                        if (not item or len(words) > 7
+                                or words[0].lower() in STOPWORDS
+                                or re.search(r"\b(?:is|are|was|were|has|have|had|will|would|can|could)\b", item, re.I)):
+                            continue
+                        key = re.sub(r"[^a-z0-9]+", " ", item.lower()).strip()
+                        if key and len(key) > 2:
+                            list_items.setdefault(key, (item, turn.dia_id))
+        if len(list_items) < 2:
+            return CommittedAnswer(used=False)
+        values = list(list_items.values())[:8]
+        evidence_ids = list(dict.fromkeys(dia_id for _, dia_id in values if dia_id))
+        if len(evidence_ids) != len({dia_id for _, dia_id in values if dia_id}):
+            return CommittedAnswer(used=False)
+        return CommittedAnswer(
+            used=True,
+            answer=", ".join(item for item, _ in values),
+            source="autonomous_set_aggregator",
+            confidence=0.86,
+            detail=f"relation-aligned union ({person}; {category_words}; {verb})",
+            evidence_turn=", ".join(evidence_ids),
+        )
 
     @classmethod
     def _extract_person(cls, question: str, turns: list[Turn]) -> str | None:

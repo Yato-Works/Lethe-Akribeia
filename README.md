@@ -4,22 +4,20 @@
 
 # Lethe Akribeia
 
-**Auditable Cognitive Long-Term Memory Runtime for Persistent AI Agents**
+**An experimental long-term memory runtime for AI agents**
 
 [ **English** | [日本語](README.ja.md) ]
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status: v0.3.0 Apex Generation](https://img.shields.io/badge/status-v0.3.0%20Apex%20Generation-brightgreen.svg)](#whats-new-in-v3-apex-generation)
-[![Tests: 328 passed](https://img.shields.io/badge/tests-328%20passed-success.svg)](#reproduction)
-[![LongMemEval: 98.2% Oracle Recall](https://img.shields.io/badge/LongMemEval-98.2%25%20Oracle%20Recall-blue.svg)](#evaluation-highlights-three-layer-architecture)
-[![BEAM: 100% End-to-End](https://img.shields.io/badge/BEAM-100%25%20End--to--End-brightgreen.svg)](#evaluation-highlights-three-layer-architecture)
+[![Status: experimental](https://img.shields.io/badge/status-experimental-orange.svg)](#status-and-roadmap)
+[![Unit tests: 676 passing](https://img.shields.io/badge/unit%20tests-676%20passing-brightgreen.svg)](#reproduction)
+[![Coverage: 54%](https://img.shields.io/badge/coverage-54%25-yellow.svg)](#reproduction)
 
-> *“Forgetting is not deletion. It is loss of resolution.”*  
-> *(忘却とは削除ではない。解像度の低下である。)*
+> *“Forgetting is not deletion. It is loss of resolution.”*
 
-An experimental long-term memory system for AI that treats forgetting as progressive resolution loss rather than deletion.  
-*Deterministic memory compilation · Temporal reasoning · Evidence provenance · MCP native*  
+A memory system that treats forgetting as progressive resolution loss rather than deletion.
+*Deterministic memory compilation · temporal reasoning · evidence provenance · MCP native*
 *(Formerly: Artificial Memory / `lethe-akribeia`)*
 
 <br />
@@ -32,144 +30,206 @@ An experimental long-term memory system for AI that treats forgetting as progres
 
 ---
 
-## What's New in V3 (Apex Generation)
+## Measurement status — read this before quoting any number
 
-Lethe Akribeia v0.3.0 marks a major architectural leap from an experimental prototype (v0.2.0) to a research-grade, highly auditable cognitive runtime:
+> [!WARNING]
+> **This project is not state of the art, and several numbers published in earlier
+> releases were re-scored and came out lower.** The paragraphs below say which
+> numbers survive, which do not, and what the difference is. Every claim links to
+> the artifact or program document that produced it.
 
-1. **Three-Layer Diagnostic Architecture**:
-   - Decoupled **Layer 1 (Oracle Recall: 98.20% on LongMemEval)** from **Layer 2 (Reader on Hits: 82.08%)** and **Layer 3 (Baseline 7B E2E: 81.60% → Final E2E: 83.40%)**, demonstrating very high evidence retrieval recall on LongMemEval while diagnosing specific reader failure modes (such as false abstention and arithmetic drift).
-2. **Subsystem H: ArithmeticDifferenceEngine (Zero-LLM Autonomous Committer)**:
-   - Built a deterministic derivation scaffold computing currency differentials ($300 − $30 = $270), savings/discounts, multi-location day sums, and chronological age offsets without a single LLM call.
-   - Rescued **+9 difficult questions** from 7B Reader false refusals on LongMemEval with **0 regression losses**, lifting End-to-End accuracy from 81.60% (408/500) to **83.40% (417/500)** (backed by [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json)).
-3. **[LoCoMo](https://github.com/snap-research/locomo) (Long-Context Conversation Benchmark; SNAP / Stanford & collaborators) Turn Selection & Proximity Density Scoring**:
-   - Refined `answer_committer` with keyword coverage weighting, speaker alignment, and explicit intent guards: autonomous committer achieves **70.64% precision (77/109 correct)** on the frozen run's claimed temporal questions (current committer revision, offline sweep over the same frozen contexts: **68.89%, 124/180**) with zero LLM calls (backed by [`committer_metrics/locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json) and [`locomo_cat2_temporal_claims_current.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims_current.json)).
-4. **Rigorous Test Suite Expanded from 82 to 328 Tests (100% Passing, 740+ collected)**:
-   - Added arithmetic difference suites, interval algebra, temporal compilation, speaker normalization, model sensitivity verification, corruption resilience, derivation scaffolding suites, and the automated Results Registry verifier.
-5. **Model Sensitivity Analysis (7B vs. 1.5B)**:
-   - Empirically demonstrated that a ~4.7× parameter reduction (from 7B to 1.5B) produces virtually zero performance divergence ($p = 1.0000$ on LoCoMo, $p = 0.4030$ on LongMemEval), supporting the hypothesis that performance is strongly influenced by structured context quality.
+**1. LoCoMo, official token F1 (pinned upstream scorer, 1,986 questions).**
+The originally published pipeline measures **37.41%** (categories 1–4: **48.24%**).
+Two measured changes move it: emitting the benchmark's canonical refusal form
+(`not mentioned`) gives **49.91%** — a format fix, not a capability gain — and the
+answer-provenance refusal gate plus turning the deterministic committer off gives
+**54.94%**. The last figure is a composition of paired deltas (53.77% with the gate,
++1.16pt from removing the committer), not a single stored run. The v0.3.0 artifact
+re-scored on the same protocol is **51.89%**. Source:
+[`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md) §2, §4.9, §4.17;
+artifacts in [`benchmark_results/official_locomo_score_v4r7_aligned.json`](benchmark_results/official_locomo_score_v4r7_aligned.json),
+[`..._v4r7_refusal_form.json`](benchmark_results/official_locomo_score_v4r7_refusal_form.json),
+[`..._v030_rules_commit.json`](benchmark_results/official_locomo_score_v030_rules_commit.json).
+
+**2. The binary `65.26%` is not an official F1 and is not comparable to one.**
+It comes from an in-house deterministic matcher, and for LoCoMo category 5 the old
+harness used `adversarial_answer` as gold. That means 126 category-5 answers were
+scored "correct" for matching the distractor; the official scorer gives that
+category **0.00%**. The 65.26% figure is categories 1–4 only. Source: V4_PROGRAM §3.1.
+
+**3. LongMemEval numbers (98.20% oracle recall, 83.40% end-to-end) are v0.3.0
+artifacts.** They come from one 500-question run with a local 7B reader and an
+in-house scorer. Published LongMemEval results in the 95%+ range use different
+answerers and LLM judges; no head-to-head under a shared harness exists here.
+
+**4. BEAM `20/20 at 500K` is a needle-in-haystack probe, not a BEAM leaderboard
+result.** Published BEAM numbers use LLM judges. This is an in-house binary
+matcher over 20 questions at 500K tokens.
+
+**5. The shipped runtime's default configuration scored 11.5% on the controlled
+200-question arena.** An IDF-weighted lexical recall channel lifts it to **53.0%**
+(Simple RAG 51.0%, Mem0-style 42.5%, Zep-style 35.0%, HippoRAG-style 26.0%) at roughly
+3× the read tokens. That channel is now **on by default** (`--no-lexical` or
+`LETHE_LEXICAL_RECALL=0` disables it); it was not reachable from the CLI/MCP path when
+the arena was measured. Source: V4_PROGRAM §4.12–§4.14.
+
+**6. A holdout leak is recorded, not hidden.** An inverted `--scope` filter caused
+one run of the provenance gate to measure only the 499 held-out questions. That
+gate's holdout is therefore no longer clean and cannot be cited as validation. The
+separate 553-question holdout has not been spent. Source: V4_PROGRAM §4.17.
+
+**7. The tag `v4-r8.1-perfect-score` is a development-set artifact, not a result.**
+It records 250/250 on LongMemEval dev-250, produced with 56 deterministic
+overrides (22.4% of answers), and it is not part of the V4 measurement log. Dev
+saturation is not held-out accuracy and must not be cited.
+
+If you only remember one thing: the honest headline is **54.94% official LoCoMo F1**
+with two non-default settings, and **53.0% vs 51.0% for Simple RAG** on one
+200-question synthetic arena — not "Apex", not "state of the art", not "100%".
 
 ---
 
+## What this repository is
+
+Two Python packages, a CLI, an MCP server, and the benchmark harnesses that produced
+the numbers above.
+
+| Path | What it is | Maturity |
+|:---|:---|:---|
+| `src/artificial_memory/` | The product runtime: SQLite/Postgres store, resolution tiers, MSC context compiler, deterministic co-processors, CLI (`lethe`), MCP server, FastAPI service. | Works; default configuration is conservative (see limitations) |
+| `src/artificial_memory_gen/` | The research compiler (R6/R7/V4): query analyzer, closure engine, operators, P2 arena players. | Research code; **not merged** with the product package |
+| `scripts/benchmarks/` | Scorers, arena, registry verifier, reproduction entry points. | Required a local Ollama + reader model for most runs |
+| `tests/unit/` | 680 tests; the CI gate. | 676 pass, 2 xfail (documented non-capabilities), 2 xpass (rejected experiments that already pass) |
+
+There is no training code and no model weights in this repository. All ingestion is
+deterministic; models are used at answer time and, in some research paths, for
+retrieval assistance.
+
 ---
 
-## What is Lethe?
+## How to read our numbers: three layers
 
-Lethe Akribeia is an open-source cognitive memory runtime designed for persistent AI agents.  
-Unlike naive vector RAG or raw context stuffing, Lethe compiles conversational history into structured, resolution-tiered memory states using **zero LLM calls on ingestion (Write LLM = 0)**. It pairs memory storage with deterministic calendar and aggregation co-processors, preserving complete evidentiary provenance back to the exact conversational turn.
+High retrieval recall does not imply high end-to-end accuracy, so we report them
+separately and never multiply them into one headline.
 
 ```
-Conversational Turns
-        │ (Zero-LLM Deterministic Ingestion)
-        ▼
-   [Memory IR] ── Level 0 (Raw) → Level 4 (Anchor)
-        │
-   [MSC Compiler] + Co-Processors (CHRONOS / Aggregation / Committer)
-        │
-   [Compiled Context] (Frozen, Auditable)
-        │
-   [Reader LLM] (1.5B ~ 7B ~ Frontier)
-        ▼
-   Evidence-Grounded Answer
-
+  Layer 1 (Oracle Recall)  ── did the pipeline retrieve/compile the gold evidence turns?
+  Layer 2 (Reader on Hits) ── given that evidence, did the Reader answer correctly?
+  Layer 3 (End-to-End)     ── final pipeline accuracy (query -> retrieval -> reader -> answer)
 ```
+
+### v0.3.0 release artifacts (as published at v0.3.0)
+
+These are the numbers that were published with v0.3.0. Read the warning above first:
+the binary column is an in-house matcher, and the official F1 for the same LoCoMo
+artifact is 51.89%, not 65.26%.
+
+| Benchmark / slice | N | Layer 1: Oracle Recall | Layer 2: Reader on Hits | Layer 3: End-to-End (binary, in-house) |
+|:---|:---:|:---:|:---:|:---:|
+| LongMemEval (6 capabilities) | 500 | 98.20% (491/500) | 82.08% (403/491) | 83.40% (417/500; baseline 81.60%) |
+| BEAM needle probe, 500K | 20 | 100% (20/20) | 100% | 100% (in-house matcher) |
+| LoCoMo single-hop (cat 4) | 841 | 83.71% (704/841) | 86.51% (609/704) | 77.76% (654/841) |
+| LoCoMo temporal (cat 2) | 321 | 81.62% (262/321) | 56.87% (149/262) | 50.16% (161/321) |
+| LoCoMo multi-hop (cat 1) | 282 | 78.37% (221/282) | 60.18% (133/221) | 53.90% (152/282) |
+| LoCoMo open-domain (cat 3) | 96 | 57.29% (55/96) | 58.18% (32/55) | 39.58% (38/96) |
+| LoCoMo full, non-adversarial (cats 1–4) | 1,540 | 80.65% (1,242/1,540) | 74.32% (923/1,242) | 65.26% (1,005/1,540) binary; **51.89% official F1** |
+
+On the temporal slice, the autonomous committer's own claims were **70.64% precise
+(77/109)** on the frozen run and **68.89% (124/180)** on a later offline sweep. It
+was subsequently A/B'd and made opt-in, because the reader scored **+10.31pt** higher
+on the same 312 claims.
+
+### Current status on the official protocol
+
+Pinned upstream LoCoMo scorer (`task_eval/evaluation.py`, `metric=f1`), 1,986 questions:
+
+| Variant | Adversarial (cat 5) | Categories 1–4 | All 1,986 |
+|:---|:---:|:---:|:---:|
+| As originally measured | 0.00% | 48.24% | **37.41%** |
+| Canonical refusal form (`not mentioned`) | 55.61% | 48.27% | **49.91%** |
+| + answer-provenance gate | — | — | **53.77%** |
+| + deterministic committer off (current best) | — | — | **54.94%** |
+
+Two caveats that matter for reproducibility: the 54.94% figure is a composition of
+paired deltas rather than one stored run, and the refusal-form gain is a format fix.
+Neither is a new reasoning capability.
+
+### Controlled arena (200 planted-fact questions)
+
+All players share one frozen answer LLM, one frozen extraction LLM, one embedding
+model, a 2,000-token budget and one scorer:
+
+| Player | Accuracy | Read tokens | Notes |
+|:---|:---:|:---:|:---|
+| **Simple RAG** | **51.0%** | 485k | The baseline that wins on cost |
+| Lethe runtime, default config | 11.5% | 431k | Candidate pool is query-independent |
+| Lethe runtime + lexical channel | 53.0% | 1,463k | +41.5pt, ~3× tokens |
+| Lethe runtime + lexical + hybrid fill | 54.0% | — | +1.0pt paired |
+| Lethe conflict surfacing (player-side) | 60.0% | — | +6pt; 12/20 contradictions, 0 losses |
+| Mem0-style | 42.5% | — | Reimplementation, same budget |
+| Zep-style | 35.0% | — | Reimplementation, same budget |
+| HippoRAG-style | 26.0% | — | Reimplementation, same budget |
+
+The arena is synthetic, plants facts, and was run once per player at n=200. The
+60.0% conflict-surfacing row is a **player-side** measurement; the same mechanism in
+the shipped product path moved 40.0% → 42.0% on a paired 50-question run with one
+contradiction conversion out of five. It is not yet a default. Source: V4_PROGRAM
+§4.12–§4.21, §4.24–§4.30.
 
 ---
 
-## Evaluation Highlights: Three-Layer Architecture
+## What is measured as *not* working
 
-We do not present Lethe Akribeia as a universal SOTA system. Rather, we empirically separate the evaluation of persistent memory into three distinct layers to diagnose where memory succeeds and where language models struggle:
+Keeping this list is the point of the project. Each row was implemented or priced
+and then rejected on measurement.
 
-```
-  Layer 1 (Oracle Recall)  ── Did Lethe retrieve and compile the necessary gold evidence turns?
-  Layer 2 (Reader on Hits) ── Given the evidence in context, did the Reader LLM answer correctly?
-  Layer 3 (End-to-End)     ── Final pipeline accuracy (Query → Lethe Retrieval → Reader LLM → Answer)
-```
-
-> [!IMPORTANT]
-> **Evaluation Protocol & Scorer Provenance**:  
-> - **Official Benchmark Datasets**: All evaluations are conducted strictly against official benchmark datasets (LoCoMo 1,540, LongMemEval 500, BEAM 500K) with zero training on evaluation targets.
-> - **Official Upstream Harness**: Token-level F1 on LoCoMo is evaluated using the official upstream Stanford/SNAP evaluation harness (`official_locomo_score_*`, F1: 51.89% overall / 52.95% strict holdout).
-> - **Deterministic In-House Matchers**: Binary extraction accuracies (`is_correct`: LoCoMo 65.26%, LongMemEval 83.40%, BEAM 100%) are evaluated using fully deterministic, auditable rule-based matchers (word/stem overlap, hyphen/number normalization) to eliminate LLM-as-a-judge non-determinism, variance, and execution cost. All scoring matchers are 100% generic across datasets with zero test-item-specific branch logic.
-> Prompts and hyperparameters were tuned strictly on separate diagnostic splits; the final evaluation sets were **held completely separate** to prevent any data leakage or overfitting.
-
-### Benchmark Summary Table (Three-Layer Decomposition)
-
-| Benchmark / Evaluation Suite | Scope (N) | **Layer 1: Oracle Recall** (Evidence Retrieval) | **Layer 2: Reader on Hits** (7B Reader Accuracy) | **Layer 3: End-to-End** (Final Accuracy) | Key Finding & Architectural Boundary |
-|:---|:---:|:---:|:---:|:---:|:---|
-| **LongMemEval (All 6 Capabilities)** | 500 Qs | **98.20% (491/500)**<br>*(95% Wilson CI: 96.6%–99.1%)* | **82.08% (403/491)**<br>*(7B alone on hits)* | **83.40% (417/500)**<br>*(Baseline 81.60% + 9 rescued)* | 7B alone scores 81.60% (408/500); Subsystem H (ArithmeticDifferenceEngine) deterministically resolves 9 false-refusal questions (0 regressions) raising E2E to 83.40%. See [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md). |
-| **BEAM (500K Horizon)** | 20 Qs | **100.0% (20/20)** | **100.0%** | **100.0%** | Evaluated at 500K tokens with 0 needle drops across 20 queries (48 queries across full 100K–10M multi-scale suite). |
-| **LoCoMo 1,540 (Single-Hop Cat 4)** | 841 Qs | **83.71% (704/841)** | **86.51% (609/704)** | **77.76% (654/841)** | Strong direct factual recall; Reader reliably extracts explicit entity facts. |
-| **LoCoMo 1,540 (Temporal Cat 2)** | 321 Qs | **81.62% (262/321)** | **56.87% (149/262)** | **50.16% (161/321)** | Multi-interval relative dates benefit from deterministic calendar normalization; on the committed subset (109/321 Qs), autonomous committer achieves **70.64% precision (77/109)** with 0 LLM calls (frozen run; current-revision offline sweep: **68.89%, 124/180** — backed by [`locomo_cat2_temporal_claims.json`](benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json)). |
-| **LoCoMo 1,540 (Multi-Hop Cat 1)** | 282 Qs | **78.37% (221/282)** | **60.18% (133/221)** | **53.90% (152/282)** | Cross-session synthesis across divergent conversations. |
-| **LoCoMo 1,540 (Open-Domain Cat 3)** | 96 Qs | **57.29% (55/96)** | **58.18% (32/55)** | **39.58% (38/96)** | Commonsense preferences and conversational inference. |
-| **LoCoMo 1,540 (Full Non-Adversarial)** | 1,540 Qs | **80.65% (1,242/1,540)** | **74.32% (923/1,242)** | **65.26% (1,005/1,540)** | Unified canonical evaluation with primary local 7B Reader (Binary extraction match: 65.26%; Official Token F1: 51.89%). Perfectly aligned across layers: 654 + 161 + 152 + 38 = 1,005 hits. |
-
-> [!NOTE]
-> **Why Separate Oracle Recall from End-to-End?**  
-> In LongMemEval (500 questions), Lethe missed the gold evidence in only 9 out of 500 questions (Oracle Recall 98.20%, 491/500). On those 491 hits, the 7B Reader answered 403 correctly (82.08% on hits), yielding a baseline End-to-End accuracy of 81.60% (408/500, with 92 initial misses, including 5 lucky guesses on retrieval misses). An error analysis of these initial misses revealed that 88 out of 92 (95.7%) had the required evidence present in the prompt, failing purely due to Reader false abstention ("I don't know" despite evidence present) or arithmetic errors in calendar math.  
-> By deploying Subsystem H (`ArithmeticDifferenceEngine`), 9 of these false refusals and arithmetic operations were deterministically resolved with 0 regression losses, increasing correct answers from 408/500 (81.60%) to 417/500 (83.40%). All numbers are verified by `python scripts/benchmarks/verify_registry.py`.
-
-### 📊 Metric & Evaluation Scope Matrix (Disambiguation Table)
-
-To eliminate ambiguity between binary extraction accuracy (`is_correct`) and official evaluation metrics (such as Stanford/SNAP token-level F1), the table below provides a unified, audited reference for all reported evaluation metrics:
-
-| Evaluation Slice | Scope ($N$) | Evaluation Purpose | Binary Extraction Accuracy (`is_correct`) | Official Metric (Token F1 / Recall) | Context & Protocol Reference |
-|:---|:---:|:---|:---:|:---:|:---|
-| **LoCoMo Full (Non-Adversarial)** | 1,540 Qs | Global end-to-end persistent memory benchmark | **65.26% (1,005/1,540)** | **51.89%** (postfix) / **40.80%** (true baseline; **41.53%** Qwen2.5-Coder-7B improved2) | Full benchmark across all 10 long-term conversations. Verified in [`RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md). |
-| **LoCoMo Independent Holdout & Validation** | 390 Qs | Generalization validation: `conv-48` (191 Qs strict clean holdout) & `conv-42` (199 Qs validation split) | **65.38% (255/390)** | **51.42%** Official Token F1<br>*(conv-48: 65.45% binary, 52.95% F1; conv-42: 65.33% binary, 49.96% F1)* | Strictly isolated per [`benchmark_config/holdout.yaml`](benchmark_config/holdout.yaml); zero conversation-specific heuristic tuning. |
-| **LoCoMo Development Set** | 1,150 Qs | Development & iterative refinement (8 conversations) | **65.22% (750/1,150)** | **52.05%** Official Token F1 | Generalizes seamlessly to Holdout (52.05% Dev vs 51.42% Holdout F1, delta: -0.63pp, verifying no overfitting). |
-| **LoCoMo Diagnostic Smoke (e2e_smoke_v9, 60 Qs)** | 60 Qs | Targeted diagnostic smoke test across 3 conversations (convs 0, 3, 5) | **73.77%** Official Token F1 (frozen snapshot: e2e_smoke_20261002_v9; historical 60-q prototype: 99.54%) | **73.77%** Official Token F1 | See [`report.md`](report.md) & [`official_score`](benchmark_results/official_locomo_score_e2e_smoke_20261002_v9.json); diagnostic suite for arithmetic & committer. |
-| **LongMemEval (All 6 Capabilities)** | 500 Qs | Long-context multi-session memory retention | **83.40% (417/500)** (Final)<br>*(Baseline: 81.60%, 408/500)* | **98.20%** Oracle Recall<br>*(491/500 Evidence Retrieved)* | Full suite; baseline 81.60% + 9 rescued by Subsystem H. Backed by [`grand_longmemeval_report_7b_rescued_834.json`](benchmark_results/longmemeval/grand_longmemeval_report_7b_rescued_834.json). |
-| **BEAM Horizon** | 20 Qs (500K) / 48 Qs (Suite) | Extreme needle retrieval at 500K token scale | **100.0% (20/20 at 500K)** | **100.0%** Needle Retrieval | 500,000 token horizon needle test; zero needle drop across evaluated scales. |
+| Direction | Measurement | Verdict |
+|:---|:---|:---|
+| Deterministic refusal/attribution string gates | −1.11 to −5.34pt | Rejected |
+| Reader-side support verifier (one extra call) | +0.45pt at scale, 77 won / 113 lost | Rejected |
+| Deterministic date binding | Ceiling 23% vs a 61% pipeline | Rejected by its own ceiling |
+| Hybrid fill from the runtime's own recall stack | 44.0% vs 54.0% | Rejected; reachability ≠ conversion |
+| Removing unrelated recency fill mass (M15.3) | 42.0% (1/5) → 40.0% (0/5) | Inverted; knob stays off |
+| R8.1 LongMemEval dev 250 | 250/250 with 56 overrides | Dev saturation, not citable |
 
 ---
 
-## Model Sensitivity: The Reader Floor (7B vs. 1.5B)
+## Core mechanics
 
-A central finding across 140+ hours of sweeps is that **Lethe's pre-compiled context significantly insulates against Reader scale downgrades**:
+### Forgetting = loss of resolution, not deletion
 
-| Benchmark Slice | 7B Reader (`qwen2.5:7b-instruct`) | 1.5B Reader (`qwen2.5:1.5b`) | Delta | 7B-only Hits | 1.5B-only Hits | McNemar Test ($p$-value) | Scientific Interpretation |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| **LoCoMo 1,540 (Full)** | **65.26% (1,005/1,540)** | **65.19% (1,004/1,540)** | +0.06pp | 136 | 135 | **$p = 1.0000$** | No statistically significant difference detected despite ~4.7× parameter reduction. |
-| **LongMemEval (500 Qs)** | **81.60% (408/500)** | **80.00% (400/500)** | +1.60pp | 39 | 31 | **$p = 0.4030$** | Multi-session reasoning scored identically (84.2% on both models). |
+The runtime defines six resolution levels; the default pipeline writes the lower
+ones and consolidates upward as memory ages and is re-used.
 
-> [!CAUTION]
-> **Statistical Rigor on Model Invariance**:  
-> A high McNemar $p$-value ($p > 0.05$) does **not** constitute mathematical proof of complete model independence; it indicates that under these frozen benchmark contexts, there is insufficient evidence to reject the null hypothesis of equal performance. Formally establishing equivalence requires two-one-sided tests (TOST) with a pre-defined equivalence margin.  
-> Nonetheless, observing that 7B and 1.5B share 869 identical correct answers and 400 identical failures (1,540Q) strongly suggests that accuracy is heavily governed by **the structured quality of the memory context**, rather than raw Reader parameters alone.
+| Level | Name | Content |
+|:---:|:---|:---|
+| 0 | `RAW` | Verbatim conversation turns |
+| 1 | `LIGHT` | Fillers removed, structure preserved |
+| 2 | `EPISODE` | What happened, in condensed form |
+| 3 | `SEMANTIC` | Key decisions and outcomes |
+| 4 | `LONG_TERM` | Highly abstract durable summary |
+| 5 | `DEEP_LONG_TERM` | Deep-archive summary for rarely used memories |
 
-### Honest Boundaries & Unverified Frontiers
-- **Frontier Reader Scaling (120B / Gemini)**: While our small 10-question probe showed 90% (9/10) with Gemini Flash, asserting that a 120B+ model will achieve 100% on the full 1,540 suite is **an unverified hypothesis** pending compute budget.
-- **Autonomous Deterministic Offloading**: To bypass Reader arithmetic and formatting failures, Lethe incorporates zero-LLM deterministic skills (CHRONOS, counting, ontology resolvers). On a hard diagnostic drill of 281 questions where 7B Reader scored 38.79% F1, the deterministic engine produced a deterministic commitment for all 281 questions, achieving **92.87% F1 with 0 regression losses**.
-- **Comparison with Contemporaneous Work**: Other systems report strong LongMemEval numbers (e.g., Sibyl Labs 95.6%, OMEGA 95.4%) and LoCoMo numbers under varying evaluation harnesses and judge models. Direct head-to-head evaluation under identical frozen judges remains ongoing.
+Decay is triggered by turn age, access recency/frequency, and a Utility/Token budget
+score. Retrieval starts at low resolution and expands only when needed.
 
+### Zero-LLM ingestion and deterministic co-processors
 
----
+- **Write LLM calls = 0.** Ingestion and indexing are regex, syntactic parsing and a
+  token inverted index.
+- **Temporal co-processor**: calendar arithmetic, relative expressions resolved
+  against message timestamps.
+- **Aggregation co-processor**: counting, lists, frequencies.
+- **Answer committer**: a strict answer contract. Measured to *cost* points on
+  LoCoMo, so it is opt-in, not default.
+- **Evidence binding**: a clause-local contract that refuses to attach a value to an
+  event it cannot see. It deliberately does not resolve paraphrase — see limitations.
 
-## Why Lethe? (Core Principles)
+### Context as an intermediate representation (MSC)
 
-### 1. Forgetting = Loss of Resolution, Not Deletion
-Human memory does not drop files into a recycle bin. Over time, memories decay in resolution:
-- **Level 0 (RAW)**: Full verbatim conversation turns.
-- **Level 1 (EPISODIC)**: Structured events tagged with speaker, timestamp, and conversational context.
-- **Level 2 (CONDENSED)**: Salient points and assertions extracted via syntactic entity-predicate parsing.
-- **Level 4 (ANCHOR)**: High-level durable life facts, user profiles, and recurring beliefs.
+Rather than dumping raw text into the prompt, memories compile into a structured
+Memory State Context:
 
-**Resolution Decay Policy & Triggers**:  
-Rather than hard deletion, Lethe decays resolution progressively under three deterministic triggers:
-1. **Turn Age Decay (Temporal)**: As conversation advances, older raw turns expire from Level 0 (RAW) and are consolidated into Level 2 (syntactic entity-predicate assertions).
-2. **Access Recency & Frequency (Utility)**: Core anchors referenced repeatedly across sessions are reinforced into Level 4 (ANCHOR), while unreferenced peripheral details decay toward minimal representation.
-3. **Token Budget Utility Pruning**: When context space is constrained (e.g., prompt budget ceiling of 2,000 tokens), low-utility details are pruned based on a deterministic Utility/Token score. Retrieval starts at minimal token cost, expanding dynamically to higher resolutions only when reasoning ambiguity is detected.
-
-### 2. Zero-LLM Ingestion & Deterministic Co-Processors
-Memory ingestion does not rely on non-deterministic, expensive LLM calls:
-- **Write LLM Calls = 0**: Ingestion and indexing are purely deterministic (regex, syntactic parsing, token inverted index).
-- **CHRONOS Temporal Co-processor**: Computes calendar arithmetic deterministically (resolving relative expressions like "last Tuesday" or "three months ago" against message timestamps).
-- **Aggregation Co-processor**: Handles counting, lists, and frequency queries deterministically.
-- **Answer Committer**: Enforces a strict answer contract to prevent hallucinated drift.
-
-### 3. Context as an Intermediate Representation (Context IR / MSC)
-Rather than dumping raw text into a prompt, Lethe compiles memories into a structured **Memory State Context (MSC)**:
 ```text
 [TEMPORAL_ANCHOR] Reference Date: 2023-05-14
 [VERIFIED_STATE] User lives in Kyoto (as of 2022-10)
@@ -180,119 +240,171 @@ Rather than dumping raw text into a prompt, Lethe compiles memories into a struc
  - [conv_3:turn_12] User: "I am taking the exam next month..."
 ```
 
+### Vocabulary governance
+
+Every knowledge table (person rosters, nickname maps, synonym expansions, query
+patterns, duration anchors) lives in `src/artificial_memory/ontology/` as versioned
+YAML with a `_meta.origin` field separating world knowledge (`generic`) from
+corpus-derived tuning (`benchmark_tuned`). A CI leak guard
+(`tests/unit/hygiene/`) scans runtime code for benchmark fingerprints; comments and
+docstrings are exempt, executable code is not, and the shrinking allowlist is itself
+tested. This is the mechanism that makes "no benchmark vocabulary in engine logic" a
+checked property rather than a claim.
+
 ---
 
-## What Lethe Can Do Today
+## What you can do today
 
-### AI Agent Integration (MCP Native)
-
-Lethe Akribeia provides a native **Model Context Protocol (MCP)** server for Claude Desktop, Cline, Hermes, and any MCP-compliant agent:
+### MCP server
 
 ```bash
 python -m artificial_memory.mcp
 ```
 
-Exposed MCP Tools:
-- `memory_remember`: Store durable facts and decisions with timestamped provenance
-- `memory_recall`: Adaptive-resolution recall with evidence chains
-- `memory_expand`: Expand a compressed memory to verbatim resolution
-- `memory_trace`: Trace any stored fact back to its exact conversation turn
-- `memory_timeline`: Retrieve chronological timeline of an entity or topic
-- `memory_explain`: Inspect why specific memories were selected or ranked
+Tools: `memory_remember`, `memory_recall`, `memory_expand`, `memory_trace`,
+`memory_timeline`, `memory_explain`, `memory_inspect`.
 
-### Quickstart CLI
+### CLI
 
 ```bash
-# Clone the repository
 git clone https://github.com/Yato-Works/Lethe-Akribeia.git
 cd Lethe-Akribeia
-
-# Install package with optional extensions
 pip install -e ".[vector,llm]"
-```
 
-> [!NOTE]
-> **Package Architecture Notice**: For full backward compatibility with reproducible benchmark harnesses and the 328 unit tests (740+ full test suite), internal Python modules remain packaged under `artificial_memory`, while the user-facing CLI binary is exposed as `lethe`.
-
-```bash
-# Start a session
 lethe start "Project/Akribeia"
-
-# Log conversation (0 LLM cost)
-lethe user "We decided to target 9/30 for the initial v0.2.0 release."
+lethe user "We decided to target 9/30 for the initial release."
 lethe assistant "Understood. The release deadline is set to September 30."
-
-# Query memories
-lethe recall "When is the release scheduled?"
-
-# Inspect timeline & provenance
+lethe end
+lethe recall "When is the release scheduled?"     # works in a new process
+lethe ask "When is the release scheduled?"        # evidence + compiled context
+lethe resume "Project/Akribeia"                   # continue the same topic
 lethe timeline
 ```
 
----
-
-## Hardware & Research Design
-
-This project was built under a **deliberately constrained research budget** using a single local GPU (NVIDIA GeForce RTX 3050 / 8GB VRAM) and local models.
-
-Evaluating 1,540 questions through commercial frontier APIs with massive contexts currently exceeds our budget.  
-**Rather than hiding this constraint, Lethe converts it into research design**: by freezing its compiled contexts (`locomo_gold_context_cache.jsonl`), the memory engine and Reader models can be evaluated independently whenever additional compute becomes available.
+`ask` returns what the agent would send to its model: the matching memories, their
+provenance, and the compiled MSC context. It does not call an LLM, so it is not a
+generated answer. `recall`/`timeline` no longer require an active conversation; they
+fall back to the most recent topic unless `--topic` is given.
 
 ---
 
-## Roadmap: Path to Frontier Expansion (V4 & V5)
+## Known limitations
 
-```
-[V3 Apex (Current)] ────────► [V4 Cognitive Expansion] ────────► [V5 Frontier Expansion]
-• 328 Unit Tests (100% Pass)   • Non-temporal Semantic Rescue     • Frontier LLM (120B/Gemini/Claude)
-• LME Oracle Recall: 98.2%     • Cross-Session Graph Traversal    • E2E Benchmark Ceilings (95%~98%+)
-• Subsystem H Arithmetic Co-P  • Target: LME E2E > 90%            • Full Multi-Agent Kubernetes Mesh
-• LME E2E: 83.40% (+9 Rescued) • LoCoMo Oracle Recall > 90%       • Production Autonomous Standard
-```
+These are current, measured, and mostly queued for the next milestones.
 
-- **V3 (Current: Apex Baseline)**: Established the three-layer diagnostic standard, reached 98.2% Oracle Recall on LongMemEval, implemented Subsystem H (`ArithmeticDifferenceEngine`) rescuing +9 false-refusal questions to reach 83.40% E2E, deployed autonomous zero-LLM committer for LoCoMo temporal queries (frozen-run claims: 70.64% precision, 77/109 correct; current-revision sweep: 68.89%, 124/180), and expanded test coverage to 328 unit tests (740+ total tests, 100% passing).
-- **V4 (Next: Cognitive Expansion & Non-Temporal Semantic Rescue)**:
-  - *Non-Temporal Semantic Rescue*: Expand autonomous pattern induction for implicit entity state questions to eliminate remaining Reader false abstentions, targeting **>90%** LME End-to-End.
-  - *Cross-Session Graph Traversal*: Upgrade `ppr_graph` and entity linking to raise LoCoMo Multi-Hop Oracle Recall from 78.37% to **90%+** (and overall from 80.65% to **90%+**).
-- **V5 (Frontier Expansion: Frontier Scale & Synthesis)**:
-  - Connect Lethe's high-recall MSC contexts to commercial frontier models (Gemini 1.5 Pro, Claude 3.5, 120B+ open models) to confirm the 95%+ E2E ceiling across all 1,540 questions.
-  - Distributed multi-agent consensus protocols across Kubernetes clusters.
+- **Memory quality on real dialogue is modest.** 54.94% official F1, with the
+  single-hop and adversarial categories carrying most of the loss.
+- **Recall is tuned on a synthetic arena, not on your token bill.** The lexical
+  channel is on by default because it is the measured-better configuration
+  (11.5% → 53.0%), but it reads roughly 3× the tokens. Disable it with
+  `--no-lexical` or `LETHE_LEXICAL_RECALL=0` when budget matters more.
+  Conflict surfacing remains off; its product-path transfer is still partial.
+- **No paraphrase resolution.** Evidence binding is clause-local: if the duration
+  and the event sit in different comma-clauses, or the question paraphrases the
+  event ("creating art" vs "painting"), the engine declines rather than guesses.
+  This is covered by two explicit tests (one pass, one strict xfail).
+- **Cue detection does not model negation.** "Nothing has been chosen yet" still
+  registers as a decision cue, in Japanese and English alike. The markers are
+  deterministic word matches, not a parser.
+- **Test coverage is 54%.** Many research modules (`artificial_memory_gen`,
+  `compiler/eval`) are exercised only by benchmark scripts, not by CI.
+- **Type checking is not clean.** `mypy` reports ~1.4k findings, dominated by
+  untyped third-party decorators and missing stubs. Ruff is clean and blocking.
+- **Two stacks, one repo.** `artificial_memory` and `artificial_memory_gen` are not
+  merged; `RuntimeFacade` carries 95 methods (89 public). All 10 `compiler/stages`
+  classes are wired into the default pipeline — measured, not dead — so the
+  remaining work is the merge itself, not deleting stage modules. Merging is
+  planned work, not done work.
+- **API defaults are loopback-only, but the service is not a production deployment
+  target.** CORS defaults to localhost origins; `LETHE_ALLOW_ORIGINS="*"` is
+  accepted only with credentials disabled. `python -m artificial_memory.api.server`
+  binds `127.0.0.1`, and `LETHE_ENABLE_AUTH=1` now actually enforces a session or
+  API key on every non-public route (before this change the flag protected
+  nothing). There is still no TLS, rate limiting, per-user isolation, or WebSocket
+  authentication.
+- **Benchmark scripts need local models** (Ollama, a reader model, optionally
+  embeddings). CI runs unit tests only; it does not reproduce the tables.
 
 ---
 
 ## Reproduction
 
-All evaluation scripts, adapters, and scoring pipelines are fully reproducible:
-
 ```bash
-# 1. Run complete unit test suite (328 unit tests, 100% passing)
+# 1. Unit tests (680 collected; 676 pass, 2 xfail, 2 xpass)
 pytest tests/unit/
 
-# 2. Automatically verify all canonical benchmark metrics and raw artifact provenance
+# 2. Coverage (measured 54% on 2026-10-26)
+pytest tests/unit/ --cov=artificial_memory --cov=artificial_memory_gen
+
+# 3. Lint
+ruff check src/ tests/
+
+# 4. Verify the 21 canonical v0.3.0 metrics and their artifacts
 python scripts/benchmarks/verify_registry.py
 
-# 3. Run LoCoMo Official Scorer on reference run (Qwen2.5-Coder:7b improved2 checkpoint)
-python scripts/benchmarks/score_locomo_run_json.py --results benchmark_results/locomo1540/locomo_1540_improved2.json
+# 5. Re-score a stored LoCoMo run with the pinned upstream scorer
+python scripts/benchmarks/score_locomo_run_json.py \
+  --results benchmark_results/locomo1540/locomo_1540_improved2.json
 
-# 4. Inspect Three-Layer Decomposition on canonical runs (Oracle Recall vs Reader on Hits)
+# 6. Three-layer decomposition
 python scripts/benchmarks/three_layer_report.py
-
-# 5. Run Model Sensitivity pairing (7B vs 1.5B exact McNemar test)
-python scripts/benchmarks/model_sensitivity.py --a benchmark_results/locomo1540/temporal321_rules_commit_7b_postfix.json --b benchmark_results/locomo1540/temporal321_rules_commit_15b.json --claims benchmark_results/committer_metrics/locomo_cat2_temporal_claims.json
-
-# 6. Run BEAM benchmark (500K scale)
-python scripts/run_coder7b_beam.py --scale 500K
 ```
+
+Frozen context caches (`benchmark_results/frozen_ctx/`) and verifier verdicts
+(`benchmark_results/support_verifier/`) are generated inputs and are gitignored;
+regenerate them with the `--freeze-contexts` / `--out` commands named in
+V4_PROGRAM before running the attribution scripts. The two arena runs cited in
+V4_PROGRAM §4.21 are committed; 13 other timestamped local runs are not.
+
+The authoritative measurement log, including the negative results, is
+[`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md).
+The 21 frozen v0.3.0 metrics are in
+[`benchmark_results/RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md).
 
 ---
 
-## Why Release Now?
+## Status and roadmap
 
-I wanted to find out how far a structured, local memory system could go when hardware and models were small.
+**Current: v0.3.1, experimental.** The V3 three-layer diagnostic standard and the V4
+measurement correction are both done. This branch also closes the product-wiring gap
+that the arena exposed:
 
-Lethe Akribeia v0.3.0 is not a finished monument. It is a working, auditable, high-precision checkpoint.  
-It has measurable strengths. It has measurable weaknesses.  
-And now, it separates memory retrieval from Reader reasoning so that both can be evaluated systematically.
+- the measured recall configuration is now the default (`--lexical/--no-lexical`,
+  `LETHE_LEXICAL_RECALL`);
+- `lethe ask` and `lethe resume` exist, and `recall`/`timeline` no longer require an
+  active conversation;
+- decision/reason/timeline cues are bilingual (Japanese and English);
+- the embedding model loads lazily instead of on every CLI invocation;
+- exact cross-resolution duplicates (same memory id, or the same body after
+  whitespace normalization) are removed from the context. Measured on a two-turn
+  topic: 20 recall rows across four levels contained 15 repeated ids and 1 repeated
+  body; the compiled context is now 4 parts;
+- the API is loopback-only by default and `LETHE_ENABLE_AUTH=1` now actually
+  enforces a session/API key (before this change the flag protected nothing).
+
+Still queued:
+
+1. Merge the research and product packages; shrink the 95-method facade. (Measured
+   note: all 10 `compiler/stages` classes are wired into the default pipeline; no
+   dead stage module was found.)
+2. Merge paraphrase-level near-duplicates. The dedupe above only removes exact ids
+   and exact normalized text; it does not merge a fact re-expressed at
+   RAW/EPISODE/SEMANTIC.
+3. Deployment hardening for the API (TLS, rate limits, per-user isolation,
+   WebSocket authentication).
+
+No accuracy promise is attached to any of these. Each will be accepted or rejected
+on the paired measurement described in V4_PROGRAM, not on a demo.
+
+---
+
+## Why release now
+
+I wanted to find out how far a structured, local memory system could go when hardware
+and models were small. This is a working, auditable checkpoint with measurable
+strengths and measurable weaknesses. The re-scoring in V4 made the weaknesses
+visible; that is why the numbers here are lower than the ones in the v0.3.0 release
+notes.
 
 I still want to find out how far this architecture can go.
 
@@ -305,7 +417,7 @@ I still want to find out how far this architecture can go.
   title = {Lethe Akribeia: An Experimental Cognitive Long-Term Memory System for AI},
   author = {Yato-Works},
   year = {2026},
-  version = {0.3.0},
+  version = {0.3.1},
   url = {https://github.com/Yato-Works/Lethe-Akribeia}
 }
 ```

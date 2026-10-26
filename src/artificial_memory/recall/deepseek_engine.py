@@ -18,6 +18,7 @@ Scorer sees identical result shapes.
 from __future__ import annotations
 
 from artificial_memory.core.models import Memory, MemoryStatus, RecallEvent, RecallLevel
+from artificial_memory.core.tokens import estimate_tokens
 from artificial_memory.recall.engine import BasicRecallEngine
 from artificial_memory.recall.retrieval_cache import (
     FULL,
@@ -194,7 +195,7 @@ class DeepSeekRecallEngine(BasicRecallEngine):
 
         # REUSE: verbatim replay of the prior selection (still ordered).
         memories = self._memories_from_ids(list(plan.candidate_ids))
-        tokens = sum(max(1, len(m.content) // 3) for m in memories)
+        tokens = sum(estimate_tokens(m.content) for m in memories)
         self._post_recall(query, topic_id, level, memories, tokens)
         return memories, tokens
 

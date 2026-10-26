@@ -1,0 +1,42 @@
+{
+ "tag": "v4r7_aligned",
+ "run_dir": "benchmark_results/_official_scoring/run_v4r7_aligned",
+ "scorer": "official locomo task_eval/evaluation.py (metric=f1)",
+ "n": 1986,
+ "official_f1": 37.4053,
+ "official_f1_no_cat5": 48.2383,
+ "holdout": {
+  "n": 499,
+  "official_f1": 34.745,
+  "conversations": [
+   "conv-42",
+   "conv-48"
+  ]
+ },
+ "dev": {
+  "n": 1487,
+  "official_f1": 38.2981
+ },
+ "per_category": {
+  "multi-hop": {
+   "n": 282,
+   "official_f1": 32.028
+  },
+  "temporal": {
+   "n": 321,
+   "official_f1": 59.8973
+  },
+  "open-domain": {
+   "n": 96,
+   "official_f1": 22.1229
+  },
+  "single-hop": {
+   "n": 841,
+   "official_f1": 52.2048
+  },
+  "adversarial": {
+   "n": 446,
+   "official_f1": 0.0
+  }
+ }
+}

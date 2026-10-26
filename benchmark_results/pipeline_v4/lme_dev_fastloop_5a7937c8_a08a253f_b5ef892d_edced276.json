@@ -1,0 +1,66 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 4,
+  "correct_answers": 1,
+  "accuracy": 0.25,
+  "mean_prompt_tokens": 1846.75,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 8.84003649999795,
+  "per_type_breakdown": {
+    "multi-session": {
+      "accuracy": 0.25,
+      "correct": 1,
+      "total": 4,
+      "mean_tokens": 1846.75
+    }
+  },
+  "results": [
+    {
+      "question_id": "b5ef892d",
+      "question_type": "multi-session",
+      "question": "How many days did I spend on camping trips in the United States this year?",
+      "ground_truth": "8 days.",
+      "predicted_answer": "7 + 5 = 12 days",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1836,
+      "latency_ms": 3463.2213000004413
+    },
+    {
+      "question_id": "5a7937c8",
+      "question_type": "multi-session",
+      "question": "How many days did I spend participating in faith-related activities in December?",
+      "ground_truth": "3 days.",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1782,
+      "latency_ms": 1025.755599999684
+    },
+    {
+      "question_id": "edced276",
+      "question_type": "multi-session",
+      "question": "How many days did I spend in total traveling in Hawaii and in New York City?",
+      "ground_truth": "15 days",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1953,
+      "latency_ms": 1171.5981000015745
+    },
+    {
+      "question_id": "a08a253f",
+      "question_type": "multi-session",
+      "question": "How many days a week do I attend fitness classes?",
+      "ground_truth": "4 days.",
+      "predicted_answer": "3",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1816,
+      "latency_ms": 1008.0932999990182
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+====================================================================================================
+36b9f61e [aggregation] gt='$2,500' | sampler picked 7/102 turns budget=1350
+  [LOST@compile(budget)      ] rank=17   score=19.37   sid=answer_ef74281f_1 | 'Setting a "treat yourself" budget can be a great way to indu'
+====================================================================================================
+9ee3ecd6 [aggregation] gt='100' | sampler picked 12/106 turns budget=1350
+  [LOST@compile(budget)      ] rank=6    score=53.43   sid=answer_66c23110_1 | 'Congratulations on earning points in the Sephora loyalty pro'
+====================================================================================================
+gpt4_b5700ca0 [assistant_recall] gt='the Episcopal Church' | 28 bundles budget=750
+  budget=750 cert_tokens=0 effective=750 bundles=28
+  BEARING-BUNDLE B_answer_a17423e8_1:t74: tokens=77 max_anchor=29.8 valid=True SELECTED=False rationale='Anchored bundle for answer_a17423e8_1:t74'
+  [LOST@compile(budget)      ] rank=12   score=29.78   sid=answer_a17423e8_1 | "Yes, I'd like to take the next step. Please provide me with "
+  [LOST@retrieval(top_k)     ] rank=None score=15.41   sid=answer_a17423e8_1 | "I'm so glad to hear that! Here's the contact information and"
+====================================================================================================
+gpt4_5dcc0aab [temporal] gt='white Adidas sneakers' | 31 bundles budget=550
+  budget=550 cert_tokens=62 effective=488 bundles=31
+  BEARING-BUNDLE B_answer_099c1b6c_1:t64: tokens=141 max_anchor=14.6 valid=True SELECTED=False rationale='Anchored bundle for answer_099c1b6c_1:t64'
+  BEARING-BUNDLE B_answer_099c1b6c_3:t38: tokens=88 max_anchor=14.6 valid=True SELECTED=False rationale='Anchored bundle for answer_099c1b6c_3:t38'
+  [LOST@compile(budget)      ] rank=24   score=14.56   sid=answer_099c1b6c_3 | 'I remember I cleaned my white Adidas sneakers last month, wh'
+  [LOST@compile(budget)      ] rank=23   score=14.62   sid=answer_099c1b6c_1 | "I'm glad I finally got around to cleaning my white Adidas sn"
+  [LOST@compile(budget)      ] rank=28   score=13.67   sid=answer_099c1b6c_1 | "It's great that you finally got around to cleaning your whit"
+====================================================================================================
+gpt4_2f56ae70 [temporal] gt='Disney+' | 28 bundles budget=550
+  budget=550 cert_tokens=56 effective=494 bundles=28
+  [LOST@candidates           ] rank=None score=0.00    sid=answer_7a36e820_3 | "I'm having trouble finding a specific documentary I saw on D"
+  [LOST@candidates           ] rank=None score=1.58    sid=answer_7a36e820_3 | "That's a great start! With Disney+ having a vast library of "
+  [LOST@candidates           ] rank=None score=0.00    sid=answer_7a36e820_3 | 'With that information, I can try to narrow down the search.\n'
+  [LOST@candidates           ] rank=None score=0.00    sid=answer_7a36e820_3 | 'With that information, I can try to make some educated guess'
+  [LOST@candidates           ] rank=30   score=3.57    sid=answer_7a36e820_3 | 'Wait, I just thought of something. Since I started a free tr'
+  [LOST@candidates           ] rank=None score=1.62    sid=answer_7a36e820_3 | "Since you started a free trial last month, it's highly likel"
+====================================================================================================
+eace081b [state_evolution] gt='Oahu' | 27 bundles budget=600
+  budget=600 cert_tokens=0 effective=600 bundles=27
+  BEARING-BUNDLE B_answer_8a791264_2:t49: tokens=438 max_anchor=49.5 valid=True SELECTED=False rationale='Anchored bundle for answer_8a791264_2:t49'
+  BEARING-BUNDLE B_answer_8a791264_2:t55: tokens=370 max_anchor=48.0 valid=True SELECTED=False rationale='Anchored bundle for answer_8a791264_2:t55'
+  BEARING-BUNDLE B_answer_8a791264_2:t45: tokens=494 max_anchor=42.3 valid=True SELECTED=False rationale='Anchored bundle for answer_8a791264_2:t45'
+  BEARING-BUNDLE B_answer_8a791264_2:t53: tokens=400 max_anchor=35.5 valid=True SELECTED=False rationale='Anchored bundle for answer_8a791264_2:t53'
+  BEARING-BUNDLE B_answer_8a791264_2:t54: tokens=33 max_anchor=22.4 valid=True SELECTED=False rationale='Anchored bundle for answer_8a791264_2:t54'
+  [LOST@compile(budget)      ] rank=6    score=42.34   sid=answer_8a791264_2 | 'Hawaii in October sounds like an amazing birthday celebratio'
+  [LOST@retrieval(top_k)     ] rank=None score=4.02    sid=answer_8a791264_2 | "I'm actually planning to stay on Oahu, so the Hanauma Bay Na"
+  [LOST@retrieval(top_k)     ] rank=None score=9.40    sid=answer_8a791264_2 | "Oahu is a fantastic island, and Hanauma Bay and Shark's Cove"
+  [LOST@compile(budget)      ] rank=4    score=49.51   sid=answer_8a791264_2 | 'Oahu has some amazing hiking trails that offer stunning view'
+  [LOST@compile(budget)      ] rank=8    score=35.47   sid=answer_8a791264_2 | 'Morning Glass Coffee + Cafe is a wonderful spot to start you'
+  [LOST@compile(budget)      ] rank=10   score=22.39   sid=answer_8a791264_2 | "I'm thinking of spending the rest of my birthday relaxing on"
+  [LOST@compile(budget)      ] rank=5    score=47.97   sid=answer_8a791264_2 | 'What a wonderful way to spend your birthday! Oahu has many b'
+====================================================================================================
+3249768e [assistant_recall] gt='Absinthe' | 23 bundles budget=750
+  budget=750 cert_tokens=290 effective=460 bundles=23
+  BEARING-BUNDLE B_answer_sharegpt_CaxTGYP_0:t27: tokens=288 max_anchor=77.7 valid=True SELECTED=False rationale='Anchored bundle for answer_sharegpt_CaxTGYP_0:t27'
+  [LOST@compile(budget)      ] rank=1    score=77.68   sid=answer_sharegpt_CaxTGYP_0 | 'To make the widest variety of gin-based cocktails, I would r'
+====================================================================================================
+eaca4986 [assistant_recall] gt='C D E F G A B A G F E D C' | 26 bundles budget=750
+  budget=750 cert_tokens=0 effective=750 bundles=26
+  BEARING-BUNDLE B_answer_sharegpt_SS141vi_0:t97: tokens=776 max_anchor=24.8 valid=False SELECTED=False rationale='Anchored bundle for answer_sharegpt_SS141vi_0:t97'
+  [LOST@compile(budget)      ] rank=6    score=24.85   sid=answer_sharegpt_SS141vi_0 | "Sure, here's a more romantic and heart-felt song for you:\n\nV"

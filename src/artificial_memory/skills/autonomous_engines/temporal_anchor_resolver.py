@@ -19,6 +19,10 @@ import datetime
 import re
 
 from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.autonomous_engines.temporal_algebra_engine import (
+    TemporalAlgebraEngine,
+    _date_event_matches,
+)
 
 MONTH_MAP: dict[str, int] = {
     "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
@@ -66,9 +70,10 @@ class TemporalAnchorResolver:
     def resolve_temporal_anchor(cls, question: str, turns: list[Turn], context: str) -> CommittedAnswer:
         """Resolve "yesterday/last night/tomorrow" style anchors to calendar dates."""
         q_kws = cls._extract_keywords(question)
+        person = TemporalAlgebraEngine._extract_person(question, turns)
         best: tuple[float, Turn, str] | None = None  # (score, turn, phrase)
 
-        for turn in turns:
+        for idx, turn in enumerate(turns):
             if not turn.header_date:
                 continue
             m_hd = _HEADER_DATE.search(turn.header_date)
@@ -85,8 +90,16 @@ class TemporalAnchorResolver:
             for phrase, delta in _RELATIVE_DAYS.items():
                 if phrase not in turn.text.lower():
                     continue
-                turn_words = set(re.findall(r"\b[a-zA-Z]{2,}\b", turn.text.lower()))
-                score = sum(1.0 for k in q_kws if k in turn_words)
+                if not _date_event_matches(question, turns, idx, person):
+                    continue
+                # A relative word and the event description are often split
+                # across adjacent turns (e.g. "something happened yesterday"
+                # followed by "a car ran a red light").  Score a small local
+                # evidence window, but keep the anchor turn's own date.
+                window = turns[max(0, idx - 2):idx + 3]
+                window_words = set(re.findall(
+                    r"\b[a-zA-Z]{2,}\b", " ".join(t.text for t in window).lower()))
+                score = sum(1.0 for k in q_kws if k in window_words)
                 if score <= 0:
                     continue
                 if best is None or score > best[0]:
@@ -107,7 +120,7 @@ class TemporalAnchorResolver:
             source="autonomous_temporal_anchor",
             confidence=0.90,
             detail=f"'{phrase}' in turn dated {anchor_date.isoformat()} -> {resolved.isoformat()}",
-            evidence_turn=turn.text,
+            evidence_turn=turn.dia_id,
         )
 
     @classmethod

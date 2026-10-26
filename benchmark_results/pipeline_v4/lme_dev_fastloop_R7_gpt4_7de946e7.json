@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 1,
+  "accuracy": 1.0,
+  "mean_prompt_tokens": 1177.0,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 8.954811699997663,
+  "per_type_breakdown": {
+    "temporal-reasoning": {
+      "accuracy": 1.0,
+      "correct": 1,
+      "total": 1,
+      "mean_tokens": 1177.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "gpt4_7de946e7",
+      "question_type": "temporal-reasoning",
+      "question": "Which health issue did I deal with first, the persistent cough or the skin tag removal?",
+      "ground_truth": "Persistent cough",
+      "predicted_answer": "the persistent cough",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1177,
+      "latency_ms": 8192.997199999809,
+      "r6_features": {
+        "direct_fact_demand": 0.1,
+        "temporal_demand": 0.98,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.7,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.0,
+        "dominant_mode": "temporal",
+        "recommended_budget": 550,
+        "requires_chronos_diff": true,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": true,
+        "requires_profile_grounding": false,
+        "total_records": 533,
+        "session_count": 49,
+        "date_count": 49,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 27,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 119,
+        "candidate_sessions": 12,
+        "conflict": true,
+        "cert_present": false,
+        "temporal_complexity": 3,
+        "evidence_coverage": 0.4667,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 31.4759,
+        "budget_util": 0.9982,
+        "question_type": "temporal-reasoning",
+        "is_aggregation": false,
+        "correct": true,
+        "reader_model": "",
+        "predicted": "the persistent cough"
+      }
+    }
+  ]
+}

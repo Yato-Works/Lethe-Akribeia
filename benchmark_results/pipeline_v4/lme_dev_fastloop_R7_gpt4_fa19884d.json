@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 0.0,
+  "deterministic_overrides": 1,
+  "elapsed_seconds": 0.5859036000001652,
+  "per_type_breakdown": {
+    "temporal-reasoning": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 0.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "gpt4_fa19884d",
+      "question_type": "temporal-reasoning",
+      "question": "What is the artist that I started to listen to last Friday?",
+      "ground_truth": "a bluegrass band that features a banjo player",
+      "predicted_answer": "**Burial**: A British producer who creates dark, atmospheric electronic music with a strong emphasis on texture and mood.",
+      "is_correct": false,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "r6_features": {
+        "direct_fact_demand": 0.1,
+        "temporal_demand": 0.0,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.7,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.95,
+        "dominant_mode": "assistant_recall",
+        "recommended_budget": 750,
+        "requires_chronos_diff": false,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": true,
+        "requires_profile_grounding": false,
+        "total_records": 556,
+        "session_count": 50,
+        "date_count": 50,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 25,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 130,
+        "candidate_sessions": 11,
+        "conflict": true,
+        "cert_present": true,
+        "temporal_complexity": 1,
+        "evidence_coverage": 0.0,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 56.0045,
+        "budget_util": 0.0,
+        "question_type": "temporal-reasoning",
+        "is_aggregation": false,
+        "correct": false,
+        "reader_model": "",
+        "predicted": "**Burial**: A British producer who creates dark, atmospheric electronic music with a strong emphasis on texture and mood."
+      }
+    }
+  ]
+}

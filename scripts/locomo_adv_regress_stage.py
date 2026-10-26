@@ -13,7 +13,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from artificial_memory.recall.answer_verifier import AnswerVerifier
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
 
 sys.path.insert(0, str(Path(__file__).parent))
 from rescore_locomo_run import score  # noqa: E402

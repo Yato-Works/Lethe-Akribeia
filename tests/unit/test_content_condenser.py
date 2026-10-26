@@ -5,7 +5,7 @@ speaker name must survive condensation, because the Layer-1 oracle predicate is
 a substring test for that label inside ``context_text``.
 """
 
-from artificial_memory.context.content_condenser import (
+from artificial_memory_gen.context.content_condenser import (
     CondenseOptions,
     compact_header,
     condense_turn,

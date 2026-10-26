@@ -1,19 +1,22 @@
 from __future__ import annotations
 
+import logging
 import os
 from contextlib import asynccontextmanager
 from datetime import datetime
+from typing import Any
 
 import uvicorn
 from fastapi import (
     Depends,
     FastAPI,
     HTTPException,
+    Request,
     WebSocket,
     WebSocketDisconnect,
 )
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from pydantic import BaseModel, Field
 
 from artificial_memory.auth.models import UserRole
@@ -28,6 +31,74 @@ from artificial_memory.runtime.facade import (
     RuntimeConfig,
 )
 
+logger = logging.getLogger(__name__)
+
+DEFAULT_CORS_ORIGINS = (
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+)
+
+
+def cors_configuration(raw: str | None = None) -> tuple[list[str], bool]:
+    """Return ``(allow_origins, allow_credentials)`` for the CORS middleware.
+
+    The previous defaults were ``allow_origins=["*"]`` **and**
+    ``allow_credentials=True``. That combination is invalid per the CORS spec
+    (browsers reject it), and the wildcard means any website can read a locally
+    running instance. The default is now loopback-only.
+
+    ``LETHE_ALLOW_ORIGINS`` accepts a comma-separated list. Setting it to ``*``
+    is still possible, but then credentials are disabled so the pair is coherent.
+    """
+    if raw is None:
+        raw = os.environ.get("LETHE_ALLOW_ORIGINS", "")
+    raw = raw.strip()
+    if not raw:
+        return list(DEFAULT_CORS_ORIGINS), True
+
+    origins = [origin.strip() for origin in raw.split(",") if origin.strip()]
+    if "*" in origins:
+        return ["*"], False
+    return origins, True
+
+
+#: Routes that keep working without credentials even when auth is enabled.
+PUBLIC_PATHS = frozenset({"/", "/health", "/ui", "/docs", "/redoc", "/openapi.json"})
+
+
+def is_public_path(path: str) -> bool:
+    """True for health, docs, login and static assets."""
+    return path in PUBLIC_PATHS or path.startswith(("/auth/", "/static/"))
+
+
+def credentials_valid(
+    auth_service: Any,
+    authorization: str | None,
+    api_key: str | None,
+) -> bool:
+    """Validate a session bearer token or an ``X-API-Key`` header.
+
+    ``enable_auth`` used to only configure the auth service; no route actually
+    checked a credential, so setting ``ENABLE_AUTH=1`` protected nothing. This
+    is the check the middleware now applies when the flag is on.
+    """
+    if api_key and auth_service.validate_api_key(api_key) is not None:
+        return True
+
+    if authorization and authorization.lower().startswith("bearer "):
+        token = authorization[7:].strip()
+        if not token:
+            return False
+        if auth_service.validate_session(token) is not None:
+            return True
+        # API keys are also accepted as bearer tokens, as before in /auth/me.
+        if auth_service.validate_api_key(token) is not None:
+            return True
+
+    return False
+
 
 class AppState:
     def __init__(
@@ -38,7 +109,10 @@ class AppState:
     ):
         if config is None:
             use_postgres = os.environ.get("USE_POSTGRES", "").lower() in ("true", "1", "yes")
-            config = RuntimeConfig(
+            enable_auth = os.environ.get(
+                "LETHE_ENABLE_AUTH", os.environ.get("ENABLE_AUTH", "")
+            ).lower() in ("true", "1", "yes")
+            config = RuntimeConfig.from_env(
                 database_path=os.environ.get("DATABASE_PATH", db_path),
                 use_postgres=use_postgres,
                 database_url=os.environ.get("DATABASE_URL"),
@@ -47,7 +121,7 @@ class AppState:
                 ollama_base_url=os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434"),
                 openai_api_key=os.environ.get("OPENAI_API_KEY"),
                 jwt_secret=os.environ.get("JWT_SECRET"),
-                enable_auth=os.environ.get("ENABLE_AUTH", "").lower() in ("true", "1", "yes"),
+                enable_auth=enable_auth,
             )
         self.runtime = ArtificialMemoryRuntime(config)
 
@@ -84,6 +158,12 @@ app_state: AppState | None = None
 async def lifespan(app: FastAPI):
     global app_state
     app_state = AppState()
+    if not app_state.runtime.config.enable_auth:
+        logger.warning(
+            "API authentication is disabled (LETHE_ENABLE_AUTH=1 enables it). "
+            "Requests are unauthenticated; bind to loopback unless you are "
+            "behind your own gateway."
+        )
     yield
     app_state.close()
 
@@ -95,13 +175,46 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+_cors_origins, _cors_allow_credentials = cors_configuration()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_cors_origins,
+    allow_credentials=_cors_allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def enforce_auth(request: Request, call_next):
+    """Require a credential on every non-public route when auth is enabled.
+
+    Off by default (``enable_auth=False``), in which case this is a pass-through;
+    the startup warning in ``lifespan`` says so. OPTIONS is always allowed so
+    CORS preflight keeps working.
+    """
+    state = app_state
+    if (
+        state is None
+        or not state.runtime.config.enable_auth
+        or request.method == "OPTIONS"
+        or is_public_path(request.url.path)
+    ):
+        return await call_next(request)
+
+    if credentials_valid(
+        state.auth_service,
+        request.headers.get("authorization"),
+        request.headers.get("x-api-key"),
+    ):
+        return await call_next(request)
+
+    return JSONResponse(
+        {"detail": "Missing or invalid credentials"},
+        status_code=401,
+        headers={"WWW-Authenticate": "Bearer"},
+    )
 
 
 # Pydantic models for API
@@ -1101,4 +1214,19 @@ async def execute_cli(req: CLICommandRequest, state: AppState = Depends(get_app_
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Loopback by default: the service has no request authentication unless
+    # LETHE_ENABLE_AUTH=1, so binding 0.0.0.0 by default would expose an
+    # unauthenticated memory store to the local network.
+    host = os.environ.get("LETHE_API_HOST", "127.0.0.1")
+    port = int(os.environ.get("LETHE_API_PORT", "8000"))
+    if host not in ("127.0.0.1", "localhost", "::1"):
+        auth_enabled = os.environ.get(
+            "LETHE_ENABLE_AUTH", os.environ.get("ENABLE_AUTH", "")
+        ).lower() in ("true", "1", "yes")
+        logger.warning(
+            "Binding the API to %s while authentication is %s. Set "
+            "LETHE_ENABLE_AUTH=1 or put the service behind a gateway.",
+            host,
+            "enabled" if auth_enabled else "disabled",
+        )
+    uvicorn.run(app, host=host, port=port)

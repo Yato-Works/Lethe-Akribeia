@@ -9,7 +9,29 @@ from typing import Any
 import httpx
 
 from artificial_memory.core.interfaces import MemoryStore, RecallEngine
-from artificial_memory.metrics.collector import get_metrics_collector
+from artificial_memory.core.tokens import estimate_tokens_en
+from artificial_memory.metrics.collector import ContextMetrics, get_metrics_collector
+from artificial_memory.skills.deterministic_memory_engine import DeterministicMemoryEngine
+
+_QUESTION_START = (
+    "who", "what", "when", "where", "why", "how", "which", "whose",
+    "is", "are", "was", "were", "do", "does", "did", "can", "did",
+    "will", "would", "should", "has", "have", "had", "am",
+)
+
+
+def _is_question_like(text: str) -> bool:
+    """Only route question-shaped messages through the deterministic gate.
+
+    The co-processor is benchmark-tuned for Q&A; routing free-form chat
+    through it would risk false-positive commits.
+    """
+    stripped = text.strip()
+    if not stripped:
+        return False
+    if stripped.endswith("?"):
+        return True
+    return stripped.lower().startswith(_QUESTION_START)
 
 
 class LLMProvider(ABC):
@@ -119,8 +141,8 @@ class OllamaProvider(LLMProvider):
             yield chunk
 
     async def count_tokens(self, text: str) -> int:
-        # Approximate: 1 token ≈ 4 characters for English
-        return len(text) // 4
+        # Approximation: 1 token ≈ 4 characters (canonical: core.tokens.estimate_tokens_en)
+        return estimate_tokens_en(text)
 
 
 class OpenAIProvider(LLMProvider):
@@ -224,12 +246,14 @@ class LLMManager:
         recall_engine: RecallEngine,
         context_builder,
         default_provider: str = "ollama",
+        enable_deterministic: bool = True,
     ):
         self.store = store
         self.recall_engine = recall_engine
         self.context_builder = context_builder
         self.providers: dict[str, LLMProvider] = {}
         self.default_provider = default_provider
+        self.enable_deterministic = enable_deterministic
         self.collector = get_metrics_collector()
 
     def add_provider(self, name: str, provider: LLMProvider):
@@ -285,6 +309,21 @@ class LLMManager:
                 )
                 context = self.context_builder.build_context(
                     user_message, topic_id, max_tokens=4000, current_memories=current_memories
+                )
+
+        # Deterministic co-processor pre-pass: commit the answer directly from
+        # the context when a dedicated engine is confident, bypassing the LLM.
+        committed = None
+        if (
+            self.enable_deterministic
+            and use_context
+            and context
+            and _is_question_like(user_message)
+        ):
+            committed = DeterministicMemoryEngine.resolve(user_message, context)
+            if committed.used and committed.answer:
+                return self._deterministic_result(
+                    committed, conversation_id, topic_id
                 )
 
         # Build messages
@@ -345,12 +384,15 @@ class LLMManager:
         self.store.log_token_usage(usage)
 
         # Log to metrics
-        self.collector.record_context(type("ContextMetrics", (), {
-            "raw_tokens": input_tokens,
-            "effective_tokens": input_tokens + output_tokens,
-            "parts_count": len(messages),
-            "timestamp": datetime.now(),
-        })())
+        self.collector.record_context(ContextMetrics(
+            raw_tokens=input_tokens,
+            effective_tokens=input_tokens + output_tokens,
+            compression_ratio=(output_tokens / input_tokens) if input_tokens else 0.0,
+            parts_count=len(messages),
+            timestamp=datetime.now(),
+            conversation_id=conversation_id,
+            topic_id=topic_id,
+        ))
 
         return {
             "response": response_text,
@@ -360,6 +402,39 @@ class LLMManager:
             "model": getattr(provider, "model", "unknown"),
             "context_used": use_context,
             "topic_id": topic_id,
+        }
+
+    def _deterministic_result(
+        self,
+        committed,
+        conversation_id: int | None,
+        topic_id: int | None,
+    ) -> dict[str, Any]:
+        """Build the chat() result dict for a co-processor-committed answer."""
+        answer_tokens = estimate_tokens_en(committed.answer)
+        from artificial_memory.core.models import TokenUsage
+        usage = TokenUsage(
+            conversation_id=conversation_id,
+            operation="chat-deterministic",
+            input_tokens=0,
+            output_tokens=answer_tokens,
+            total_tokens=answer_tokens,
+            model="deterministic-coprocessor",
+        )
+        self.store.log_token_usage(usage)
+
+        return {
+            "response": committed.answer,
+            "input_tokens": 0,
+            "output_tokens": answer_tokens,
+            "total_tokens": answer_tokens,
+            "model": "deterministic-coprocessor",
+            "context_used": True,
+            "topic_id": topic_id,
+            "deterministic": True,
+            "deterministic_detail": committed.detail,
+            "deterministic_source": committed.source,
+            "deterministic_confidence": committed.confidence,
         }
 
     async def chat_stream(
@@ -401,6 +476,18 @@ class LLMManager:
                 )
 
         messages = []
+        # Deterministic co-processor pre-pass (same gate as chat()).
+        if (
+            self.enable_deterministic
+            and use_context
+            and context
+            and _is_question_like(user_message)
+        ):
+            committed = DeterministicMemoryEngine.resolve(user_message, context)
+            if committed.used and committed.answer:
+                yield committed.answer
+                return
+
         if use_context and context:
             system_prompt = self.context_builder.build_system_prompt(
                 topic_path or "General"

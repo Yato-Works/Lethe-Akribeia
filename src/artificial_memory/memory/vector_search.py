@@ -6,6 +6,7 @@ import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import faiss
 import numpy as np
@@ -36,7 +37,8 @@ class VectorSearchEngine:
         dimension: int = 384,
     ):
         self.store = store
-        self.model = get_sentence_transformer(model_name)
+        self._model_name = model_name
+        self._model: Any = None
         self.dimension = dimension
         self.index_path = index_path or Path("vector_index")
         self.index_path.mkdir(parents=True, exist_ok=True)
@@ -52,6 +54,19 @@ class VectorSearchEngine:
 
         self._load_or_create_index()
         self.collector = get_metrics_collector()
+
+    @property
+    def model(self):
+        """Load the embedding model on first use, not at construction.
+
+        The runtime is constructed by every CLI command, including `start` and
+        `user`, which never encode text. Eagerly loading MiniLM (and torch)
+        added seconds and a "Loading weights" banner to commands that do no
+        vector work.
+        """
+        if self._model is None:
+            self._model = get_sentence_transformer(self._model_name)
+        return self._model
 
     def _load_or_create_index(self):
         """Load existing index or create new one.

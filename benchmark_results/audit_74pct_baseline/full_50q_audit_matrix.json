@@ -1,0 +1,1608 @@
+[
+  {
+    "question_id": "lc_conv-26_0",
+    "category": 2,
+    "question": "When did Caroline go to the LGBTQ support group?",
+    "gold_answer": "7 May 2023",
+    "gold_evidence": [
+      "D1:3"
+    ],
+    "old_pred": "7 May 2023",
+    "new_pred": "7 May 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D1:3"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D1:3"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's grandma, caroline's dad\n  * Direct Claims: caroline went to a LGBTQ support group yesterday and it was so powerful.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVID..."
+  },
+  {
+    "question_id": "lc_conv-26_1",
+    "category": 2,
+    "question": "When did Melanie paint a sunrise?",
+    "gold_answer": "2022",
+    "gold_evidence": [
+      "D1:12"
+    ],
+    "old_pred": "2022",
+    "new_pred": "2022",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [
+      "D1:12"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D1:12"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1393,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Agreed, Caroline. Life's tough but it's worth it when we have things that make us happy.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n..."
+  },
+  {
+    "question_id": "lc_conv-26_2",
+    "category": 3,
+    "question": "What fields would Caroline be likely to pursue in her educaton?",
+    "gold_answer": "Psychology, counseling certification",
+    "gold_evidence": [
+      "D1:11",
+      "D1:9"
+    ],
+    "old_pred": "counseling, mental health",
+    "new_pred": "counseling, mental health",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D1:11"
+    ],
+    "missing_retrieval": [
+      "D1:9"
+    ],
+    "context_evidence": [
+      "D1:11"
+    ],
+    "missing_context": [
+      "D1:9"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's dad\n  * Direct Claims: Yeah, Mel! Life's all about creating memories. Can't wait for the trip!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on ..."
+  },
+  {
+    "question_id": "lc_conv-26_3",
+    "category": 1,
+    "question": "What did Caroline research?",
+    "gold_answer": "Adoption agencies",
+    "gold_evidence": [
+      "D2:8"
+    ],
+    "old_pred": "adoption agencies, counseling and mental health as a career",
+    "new_pred": "adoption agencies, counseling and mental health careers",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D2:8"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D2:8"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1395,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on ..."
+  },
+  {
+    "question_id": "lc_conv-26_4",
+    "category": 1,
+    "question": "What is Caroline's identity?",
+    "gold_answer": "Transgender woman",
+    "gold_evidence": [
+      "D1:5"
+    ],
+    "old_pred": "transgender",
+    "new_pred": "transgender, artist, mental health advocate",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [
+      "D1:5"
+    ],
+    "context_evidence": [
+      "D1:5"
+    ],
+    "missing_context": [],
+    "retrieval_complete": false,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1514,
+    "compiled_tokens": 1513,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Yep, Melanie! Being ourselves is such a great feeling. It's an ongoing adventure of learning and growing.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 ..."
+  },
+  {
+    "question_id": "lc_conv-26_5",
+    "category": 2,
+    "question": "When did Melanie run a charity race?",
+    "gold_answer": "The sunday before 25 May 2023",
+    "gold_evidence": [
+      "D2:1"
+    ],
+    "old_pred": "20 May 2023",
+    "new_pred": "25 May 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D2:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D2:1"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Hey, Caroline! Nice to hear from you! Love the necklace, any special meaning to it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[sess..."
+  },
+  {
+    "question_id": "lc_conv-26_6",
+    "category": 2,
+    "question": "When is Melanie planning on going camping?",
+    "gold_answer": "June 2023",
+    "gold_evidence": [
+      "D2:7"
+    ],
+    "old_pred": "June 2023",
+    "new_pred": "June 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D2:7"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D2:7"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Agreed, Caroline. Life's tough but it's worth it when we have things that make us happy.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10:37 am on 27 June, 2023..."
+  },
+  {
+    "question_id": "lc_conv-26_7",
+    "category": 1,
+    "question": "What is Caroline's relationship status?",
+    "gold_answer": "Single",
+    "gold_evidence": [
+      "D3:13",
+      "D2:14"
+    ],
+    "old_pred": "single",
+    "new_pred": "single",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D2:14"
+    ],
+    "missing_retrieval": [
+      "D3:13"
+    ],
+    "context_evidence": [
+      "D2:14"
+    ],
+    "missing_context": [
+      "D3:13"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: That's awesome, Melanie! Family moments like that are so special. Glad y'all had such a great time.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on ..."
+  },
+  {
+    "question_id": "lc_conv-26_8",
+    "category": 2,
+    "question": "When did Caroline give a speech at a school?",
+    "gold_answer": "The week before 9 June 2023",
+    "gold_evidence": [
+      "D3:1"
+    ],
+    "old_pred": "the week before 9 June 2023",
+    "new_pred": "9 June 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D3:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D3:1"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1394,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's grandma, caroline's dad\n  * Direct Claims: Thanks, Melanie! That plate is awesome! Did you make it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4..."
+  },
+  {
+    "question_id": "lc_conv-26_9",
+    "category": 2,
+    "question": "When did Caroline meet up with her friends, family, and mentors?",
+    "gold_answer": "The week before 9 June 2023",
+    "gold_evidence": [
+      "D3:11"
+    ],
+    "old_pred": "the week before 9 June 2023",
+    "new_pred": "the week before 9 June 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D3:11"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D3:11"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1516,
+    "compiled_tokens": 1516,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: No worries, Mel! Your friendship means so much to caroline. Enjoy your day!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10:37 am on 27 June, 2023] Caroline: ..."
+  },
+  {
+    "question_id": "lc_conv-26_10",
+    "category": 2,
+    "question": "How long has Caroline had her current group of friends for?",
+    "gold_answer": "4 years",
+    "gold_evidence": [
+      "D3:13"
+    ],
+    "old_pred": "I don't know.",
+    "new_pred": "4 years",
+    "old_ok": false,
+    "new_ok": true,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": true,
+    "status": "NEW_CORRECT",
+    "retrieved_evidence": [
+      "D3:13"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D3:13"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Thanks, Melanie! It means a lot having you in caroline's corner. Appreciate our friendship!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_16 on 12:09 am on 13 Septe..."
+  },
+  {
+    "question_id": "lc_conv-26_11",
+    "category": 1,
+    "question": "Where did Caroline move from 4 years ago?",
+    "gold_answer": "Sweden",
+    "gold_evidence": [
+      "D3:13",
+      "D4:3"
+    ],
+    "old_pred": "Caroline's home country",
+    "new_pred": "Sweden",
+    "old_ok": false,
+    "new_ok": true,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": true,
+    "status": "NEW_CORRECT",
+    "retrieved_evidence": [
+      "D3:13",
+      "D4:3"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D3:13",
+      "D4:3"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1460,
+    "compiled_tokens": 1457,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's grandma\n  * Direct Claims: Cool that you have creative outlets. Got any paintings to show? caroline would love to check them out.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CON..."
+  },
+  {
+    "question_id": "lc_conv-26_12",
+    "category": 2,
+    "question": "How long ago was Caroline's 18th birthday?",
+    "gold_answer": "10 years ago",
+    "gold_evidence": [
+      "D4:5"
+    ],
+    "old_pred": "10 years ago",
+    "new_pred": "10 years ago",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D4:5"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D4:5"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1393,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Cool that you have creative outlets. Got any paintings to show? caroline would love to check them out.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am ..."
+  },
+  {
+    "question_id": "lc_conv-26_13",
+    "category": 1,
+    "question": "What career path has Caroline decided to persue?",
+    "gold_answer": "counseling or mental health for Transgender people",
+    "gold_evidence": [
+      "D1:11",
+      "D4:13"
+    ],
+    "old_pred": "counseling, mental health",
+    "new_pred": "counseling, mental health",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D1:11",
+      "D4:13"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D1:11",
+      "D4:13"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Yeah, Mel! Life's all about creating memories. Can't wait for the trip!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10:37 am on 27 June, 2023] Caroline: Late..."
+  },
+  {
+    "question_id": "lc_conv-26_14",
+    "category": 3,
+    "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+    "gold_answer": "Likely no",
+    "gold_evidence": [
+      "D3:5",
+      "D4:15"
+    ],
+    "old_pred": "No",
+    "new_pred": "No",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D3:5",
+      "D4:15"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D4:15"
+    ],
+    "missing_context": [
+      "D3:5"
+    ],
+    "retrieval_complete": true,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1393,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Yep, Melanie! Being ourselves is such a great feeling. It's an ongoing adventure of learning and growing.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 ..."
+  },
+  {
+    "question_id": "lc_conv-26_15",
+    "category": 1,
+    "question": "What activities does Melanie partake in?",
+    "gold_answer": "pottery, camping, painting, swimming",
+    "gold_evidence": [
+      "D9:1",
+      "D1:12",
+      "D5:4",
+      "D1:18"
+    ],
+    "old_pred": "painting, running, playing violin, pottery",
+    "new_pred": "painting, hiking, exploring forests, playing clarinet, camping, swimming",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D9:1",
+      "D5:4",
+      "D1:18"
+    ],
+    "missing_retrieval": [
+      "D1:12"
+    ],
+    "context_evidence": [
+      "D9:1",
+      "D5:4",
+      "D1:18"
+    ],
+    "missing_context": [
+      "D1:12"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1391,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: You're doing something amazing! Creating a family for those kids is so lovely. You'll be an awesome mom! Good luck!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_16 ..."
+  },
+  {
+    "question_id": "lc_conv-26_16",
+    "category": 2,
+    "question": "When did Melanie sign up for a pottery class?",
+    "gold_answer": "2 July 2023",
+    "gold_evidence": [
+      "D5:4"
+    ],
+    "old_pred": "2 July 2023",
+    "new_pred": "2 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D5:4"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D5:4"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1397,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: The sign was just a precaution, melanie had a great time. But thank you for your concern, you're so thoughtful!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED ..."
+  },
+  {
+    "question_id": "lc_conv-26_17",
+    "category": 2,
+    "question": "When is Caroline going to the transgender conference?",
+    "gold_answer": "July 2023",
+    "gold_evidence": [
+      "D5:13"
+    ],
+    "old_pred": "10 July 2023",
+    "new_pred": "10 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D5:13"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D5:13"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1405,
+    "compiled_tokens": 1403,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Thanks, Melanie! That plate is awesome! Did you make it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] Melanie: Thanks for the t..."
+  },
+  {
+    "question_id": "lc_conv-26_18",
+    "category": 1,
+    "question": "Where has Melanie camped?",
+    "gold_answer": "beach, mountains, forest",
+    "gold_evidence": [
+      "D6:16",
+      "D4:6",
+      "D8:32"
+    ],
+    "old_pred": "The week before 27 June 2023",
+    "new_pred": "beach, mountains",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": true,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D6:16",
+      "D4:6",
+      "D8:32"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D6:16",
+      "D4:6",
+      "D8:32"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "READER_FAILURE",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Nope, never been to something like that. What was it about? What made it so special?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023..."
+  },
+  {
+    "question_id": "lc_conv-26_19",
+    "category": 1,
+    "question": "What do Melanie's kids like?",
+    "gold_answer": "dinosaurs, nature",
+    "gold_evidence": [
+      "D4:8",
+      "D6:6"
+    ],
+    "old_pred": "nature, music, camping, concerts",
+    "new_pred": "camping, hiking",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D4:8"
+    ],
+    "missing_retrieval": [
+      "D6:6"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D4:8",
+      "D6:6"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1393,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Hey Caroline! Great to hear from you! Wow, what an amazing journey. Congrats!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17..."
+  },
+  {
+    "question_id": "lc_conv-26_20",
+    "category": 2,
+    "question": "When did Melanie go to the museum?",
+    "gold_answer": "5 July 2023",
+    "gold_evidence": [
+      "D6:4"
+    ],
+    "old_pred": "5 July 2023",
+    "new_pred": "5 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D6:4"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D6:4"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Hey, Caroline! Nice to hear from you! Love the necklace, any special meaning to it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[sess..."
+  },
+  {
+    "question_id": "lc_conv-26_21",
+    "category": 2,
+    "question": "When did Caroline have a picnic?",
+    "gold_answer": "The week before 6 July 2023",
+    "gold_evidence": [
+      "D6:11"
+    ],
+    "old_pred": "the week before 6 July 2023",
+    "new_pred": "the week before 6 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D6:11"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D6:11"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's grandma, caroline's dad\n  * Direct Claims: Thanks, Melanie! Your kind words mean a lot.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10:37 am..."
+  },
+  {
+    "question_id": "lc_conv-26_22",
+    "category": 3,
+    "question": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+    "gold_answer": "Yes, since she collects classic children's books",
+    "gold_evidence": [
+      "D6:9"
+    ],
+    "old_pred": "No",
+    "new_pred": "No",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D6:9"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D6:9"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "READER_FAILURE",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Cool that you have creative outlets. Got any paintings to show? caroline would love to check them out.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am ..."
+  },
+  {
+    "question_id": "lc_conv-26_23",
+    "category": 1,
+    "question": "What books has Melanie read?",
+    "gold_answer": "\"Nothing is Impossible\", \"Charlotte's Web\"",
+    "gold_evidence": [
+      "D7:8",
+      "D6:10"
+    ],
+    "old_pred": "I don't know.",
+    "new_pred": "I don't know.",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D7:8",
+      "D6:10"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D7:8",
+      "D6:10"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "READER_FAILURE",
+    "token_budget": 1400,
+    "compiled_tokens": 1397,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Nope, never been to something like that. What was it about? What made it so special?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023..."
+  },
+  {
+    "question_id": "lc_conv-26_24",
+    "category": 1,
+    "question": "What does Melanie do to destress?",
+    "gold_answer": "Running, pottery",
+    "gold_evidence": [
+      "D5:4",
+      "D7:22"
+    ],
+    "old_pred": "running, playing clarinet, painting",
+    "new_pred": "running, painting, pottery",
+    "old_ok": false,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "NEW_CORRECT",
+    "retrieved_evidence": [
+      "D5:4",
+      "D7:22"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D5:4",
+      "D7:22"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: melanie is a big fan of pottery - the creativity and skill is awesome. Plus, making it is so calming. Look at this!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 ..."
+  },
+  {
+    "question_id": "lc_conv-26_25",
+    "category": 2,
+    "question": "When did Caroline go to the LGBTQ conference?",
+    "gold_answer": "10 July 2023",
+    "gold_evidence": [
+      "D7:1"
+    ],
+    "old_pred": "10 July 2023",
+    "new_pred": "10 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D7:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D7:1"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1405,
+    "compiled_tokens": 1402,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's dad\n  * Direct Claims: Hey Mel, what's up? Been a busy week since we talked.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 Oct..."
+  },
+  {
+    "question_id": "lc_conv-26_26",
+    "category": 2,
+    "question": "When did Melanie read the book \"nothing is impossible\"?",
+    "gold_answer": "2022",
+    "gold_evidence": [
+      "D7:8"
+    ],
+    "old_pred": "2022",
+    "new_pred": "2022",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D7:8"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D7:8"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Nope, never been to something like that. What was it about? What made it so special?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[ses..."
+  },
+  {
+    "question_id": "lc_conv-26_27",
+    "category": 3,
+    "question": "Would Caroline pursue writing as a career option?",
+    "gold_answer": "LIkely no; though she likes reading, she wants to be a counselor",
+    "gold_evidence": [
+      "D7:5",
+      "D7:9"
+    ],
+    "old_pred": "No",
+    "new_pred": "I don't know.",
+    "old_ok": true,
+    "new_ok": false,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": false,
+    "status": "REGRESSION",
+    "retrieved_evidence": [
+      "D7:5"
+    ],
+    "missing_retrieval": [
+      "D7:9"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D7:5",
+      "D7:9"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Thanks, Melanie! Your kind words mean a lot.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] Melanie: melanie wanted a peaceful bl..."
+  },
+  {
+    "question_id": "lc_conv-26_28",
+    "category": 2,
+    "question": "When did Caroline go to the adoption meeting?",
+    "gold_answer": "The friday before 15 July 2023",
+    "gold_evidence": [
+      "D8:9"
+    ],
+    "old_pred": "last Friday (the Friday before 15 July, 2023)",
+    "new_pred": "last Friday (the Friday before 15 July 2023)",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D8:9"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D8:9"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's dad\n  * Direct Claims: Seeing caroline's mentee's face light up when they saw the support was the best! Such a special moment.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVER..."
+  },
+  {
+    "question_id": "lc_conv-26_29",
+    "category": 2,
+    "question": "When did Melanie go to the pottery workshop?",
+    "gold_answer": "The Friday before 15 July 2023",
+    "gold_evidence": [
+      "D8:2"
+    ],
+    "old_pred": "23 August 2023",
+    "new_pred": "last Friday (the Friday before 15 July 2023)",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D8:2"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D8:2"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Sounds great! What kind of counseling and mental health services do you want to persue?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[..."
+  },
+  {
+    "question_id": "lc_conv-26_30",
+    "category": 3,
+    "question": "Would Melanie be considered a member of the LGBTQ community?",
+    "gold_answer": "Likely no, she does not refer to herself as part of it",
+    "gold_evidence": [],
+    "old_pred": "No",
+    "new_pred": "No",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [],
+    "context_evidence": [],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1394,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Wow, Caroline, that's awesome! Can't wait to see your show - the LGBTQ community needs more platforms like this!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_16 on ..."
+  },
+  {
+    "question_id": "lc_conv-26_31",
+    "category": 2,
+    "question": "When did Melanie go camping in June?",
+    "gold_answer": "The week before 27 June 2023",
+    "gold_evidence": [
+      "D4:8"
+    ],
+    "old_pred": "June 22, 2023",
+    "new_pred": "June 22, 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [
+      "D4:8"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D4:8"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Wow, Caroline, that looks amazing! What inspired it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10:37 am on 27 June, 2..."
+  },
+  {
+    "question_id": "lc_conv-26_32",
+    "category": 1,
+    "question": "What LGBTQ+ events has Caroline participated in?",
+    "gold_answer": "Pride parade, school speech, support group",
+    "gold_evidence": [
+      "D1:3",
+      "D8:17",
+      "D5:1",
+      "D3:1"
+    ],
+    "old_pred": "pride parade, transgender poetry reading",
+    "new_pred": "pride parade, support group, counseling workshop, mentorship program, conference, activist group",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": true,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D1:3",
+      "D5:1",
+      "D8:17",
+      "D3:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D1:3",
+      "D5:1",
+      "D8:17"
+    ],
+    "missing_context": [
+      "D3:1"
+    ],
+    "retrieval_complete": true,
+    "context_complete": false,
+    "attribution": "KNAPSACK_DROP",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: caroline went to a LGBTQ support group yesterday and it was so powerful.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] Melanie: ..."
+  },
+  {
+    "question_id": "lc_conv-26_33",
+    "category": 2,
+    "question": "When did Caroline go to a pride parade during the summer?",
+    "gold_answer": "The week before 3 July 2023",
+    "gold_evidence": [
+      "D5:1"
+    ],
+    "old_pred": "The weekend before 20 July 2023",
+    "new_pred": "last weekend (the weekend before 20 July 2023)",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D5:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D5:1"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1394,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's dad\n  * Direct Claims: That's awesome, Melanie! How have your family been supportive during your move?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[sessio..."
+  },
+  {
+    "question_id": "lc_conv-26_34",
+    "category": 1,
+    "question": "What events has Caroline participated in to help children?",
+    "gold_answer": "Mentoring program, school speech",
+    "gold_evidence": [
+      "D9:2",
+      "D3:3"
+    ],
+    "old_pred": "I don't know.",
+    "new_pred": "I don't know.",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D9:2"
+    ],
+    "missing_retrieval": [
+      "D3:3"
+    ],
+    "context_evidence": [
+      "D9:2"
+    ],
+    "missing_context": [
+      "D3:3"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Sounds great, Mel. Glad you made some new family mems. How was it? Anything fun?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] M..."
+  },
+  {
+    "question_id": "lc_conv-26_35",
+    "category": 2,
+    "question": "When did Melanie go camping in July?",
+    "gold_answer": "two weekends before 17 July 2023",
+    "gold_evidence": [
+      "D9:1"
+    ],
+    "old_pred": "15 July 2023",
+    "new_pred": "15 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D9:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D9:1"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's son\n  * Direct Claims: Wow, Caroline, that looks amazing! What inspired it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10:37 am on 27 June, 2..."
+  },
+  {
+    "question_id": "lc_conv-26_36",
+    "category": 2,
+    "question": "When did Caroline join a mentorship program?",
+    "gold_answer": "The weekend before 17 July 2023",
+    "gold_evidence": [
+      "D9:2"
+    ],
+    "old_pred": "the weekend before 17 July 2023",
+    "new_pred": "the weekend before 17 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D9:2"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D9:2"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1396,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's grandma, caroline's dad\n  * Direct Claims: Seeing caroline's mentee's face light up when they saw the support was the best! Such a special moment.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICAT..."
+  },
+  {
+    "question_id": "lc_conv-26_37",
+    "category": 1,
+    "question": "What did Melanie paint recently?",
+    "gold_answer": "sunset",
+    "gold_evidence": [
+      "D8:6; D9:17"
+    ],
+    "old_pred": "horse painting",
+    "new_pred": "landscape and still life paintings",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [
+      "D8:6; D9:17"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D8:6; D9:17"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Wow, Caroline! This painting is awesome. Love the red and blue. What gave you the idea?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2..."
+  },
+  {
+    "question_id": "lc_conv-26_38",
+    "category": 1,
+    "question": "What activities has Melanie done with her family?",
+    "gold_answer": "Pottery, painting, camping, museum, swimming, hiking",
+    "gold_evidence": [
+      "D8:6",
+      "D1:18",
+      "D6:4",
+      "D8:4",
+      "D3:14",
+      "D9:1"
+    ],
+    "old_pred": "I don't know.",
+    "new_pred": "painting, hiking, exploring forests, camping, going to the beach",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": true,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [
+      "D1:18",
+      "D9:1",
+      "D8:6"
+    ],
+    "missing_retrieval": [
+      "D8:4",
+      "D6:4",
+      "D3:14"
+    ],
+    "context_evidence": [
+      "D9:1",
+      "D8:6",
+      "D1:18"
+    ],
+    "missing_context": [
+      "D8:4",
+      "D6:4",
+      "D3:14"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1393,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: You're doing something amazing! Creating a family for those kids is so lovely. You'll be an awesome mom! Good luck!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_16 ..."
+  },
+  {
+    "question_id": "lc_conv-26_39",
+    "category": 1,
+    "question": "In what ways is Caroline participating in the LGBTQ community?",
+    "gold_answer": "Joining activist group, going to pride parades, participating in an art show, mentoring program",
+    "gold_evidence": [
+      "D5:1",
+      "D9:2",
+      "D10:3",
+      "D9:12"
+    ],
+    "old_pred": "creating art, organizing art show, volunteering, joining activist group",
+    "new_pred": "poetry reading, counseling workshop, art show, pride parade, support group, mentorship program, conference, school event, activist group",
+    "old_ok": false,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "NEW_CORRECT",
+    "retrieved_evidence": [
+      "D10:3",
+      "D9:2",
+      "D5:1"
+    ],
+    "missing_retrieval": [
+      "D9:12"
+    ],
+    "context_evidence": [
+      "D10:3",
+      "D9:2",
+      "D5:1"
+    ],
+    "missing_context": [
+      "D9:12"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1396,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Yeah, Mel! Life's all about creating memories. Can't wait for the trip!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] Caroline: ..."
+  },
+  {
+    "question_id": "lc_conv-26_40",
+    "category": 1,
+    "question": "How many times has Melanie gone to the beach in 2023?",
+    "gold_answer": "2",
+    "gold_evidence": [
+      "D6:16",
+      "D10:8"
+    ],
+    "old_pred": "2",
+    "new_pred": "2",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D6:16",
+      "D10:8"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D6:16",
+      "D10:8"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Hey Caroline! Great to hear from you! Wow, what an amazing journey. Congrats!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] Melan..."
+  },
+  {
+    "question_id": "lc_conv-26_41",
+    "category": 2,
+    "question": "When did Caroline join a new activist group?",
+    "gold_answer": "The Tuesday before 20 July 2023",
+    "gold_evidence": [
+      "D10:3"
+    ],
+    "old_pred": "the Tuesday before 20 July 2023",
+    "new_pred": "the Tuesday before 20 July 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D10:3"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D10:3"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Wow, Mel, you're amazing! Volunteering and making a difference- it's so heartwarming. You're an inspiration to us all!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session..."
+  },
+  {
+    "question_id": "lc_conv-26_42",
+    "category": 3,
+    "question": "Would Melanie be more interested in going to a national park or a theme park?",
+    "gold_answer": "National park; she likes the outdoors",
+    "gold_evidence": [
+      "D10:12",
+      "D10:14"
+    ],
+    "old_pred": "national park",
+    "new_pred": "national park",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D10:12",
+      "D10:14"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D10:12",
+      "D10:14"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: The sign was just a precaution, melanie had a great time. But thank you for your concern, you're so thoughtful!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_4 on 10..."
+  },
+  {
+    "question_id": "lc_conv-26_43",
+    "category": 1,
+    "question": "What kind of art does Caroline make?",
+    "gold_answer": "abstract art",
+    "gold_evidence": [
+      "D9:14",
+      "D11:8",
+      "D11:12"
+    ],
+    "old_pred": "abstract art, drawing flowers",
+    "new_pred": "abstract, painting",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D9:14",
+      "D11:8"
+    ],
+    "missing_retrieval": [
+      "D11:12"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D11:12",
+      "D9:14",
+      "D11:8"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: Wow, that looks great! The blue adds so much to it. What feelings were you hoping to portray?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 Oct..."
+  },
+  {
+    "question_id": "lc_conv-26_44",
+    "category": 2,
+    "question": "When is Melanie's daughter's birthday?",
+    "gold_answer": "13 August",
+    "gold_evidence": [
+      "D11:1"
+    ],
+    "old_pred": "14 August 2023",
+    "new_pred": "14 August 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D11:1"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D11:1"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1393,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's daughter, melanie's son\n  * Direct Claims: Hey, Caroline! Nice to hear from you! Love the necklace, any special meaning to it?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSA..."
+  },
+  {
+    "question_id": "lc_conv-26_45",
+    "category": 2,
+    "question": "When did Caroline attend a pride parade in August?",
+    "gold_answer": "The Friday before 14 August 2023",
+    "gold_evidence": [
+      "D11:4"
+    ],
+    "old_pred": "25 August 2023",
+    "new_pred": "14 August 2023",
+    "old_ok": true,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "STABLE_CORRECT",
+    "retrieved_evidence": [
+      "D11:4"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D11:4"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Direct Claims: caroline went to a LGBTQ support group yesterday and it was so powerful.\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023] Caroline:..."
+  },
+  {
+    "question_id": "lc_conv-26_46",
+    "category": 3,
+    "question": "Would Melanie be considered an ally to the transgender community?",
+    "gold_answer": "Yes, she is supportive",
+    "gold_evidence": [],
+    "old_pred": "No",
+    "new_pred": "No",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [],
+    "context_evidence": [],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "READER_FAILURE",
+    "token_budget": 1410,
+    "compiled_tokens": 1401,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Direct Claims: Nope, never been to something like that. What was it about? What made it so special?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 October, 2023..."
+  },
+  {
+    "question_id": "lc_conv-26_47",
+    "category": 1,
+    "question": "Who supports Caroline when she has a negative experience?",
+    "gold_answer": "Her mentors, family, and friends",
+    "gold_evidence": [
+      "D12:1",
+      "D3:11"
+    ],
+    "old_pred": "Caroline's grandma",
+    "new_pred": "Caroline's family, friends and mentors",
+    "old_ok": false,
+    "new_ok": true,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": true,
+    "status": "NEW_CORRECT",
+    "retrieved_evidence": [
+      "D12:1",
+      "D3:11"
+    ],
+    "missing_retrieval": [],
+    "context_evidence": [
+      "D12:1",
+      "D3:11"
+    ],
+    "missing_context": [],
+    "retrieval_complete": true,
+    "context_complete": true,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1400,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's grandma\n  * Direct Claims: Wow, Mel, family love and support is the best!\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]\n[session_17 on 10:31 am on 13 Octobe..."
+  },
+  {
+    "question_id": "lc_conv-26_48",
+    "category": 1,
+    "question": "What types of pottery have Melanie and her kids made?",
+    "gold_answer": "bowls, cup",
+    "gold_evidence": [
+      "D5:6",
+      "D8:4",
+      "D12:14"
+    ],
+    "old_pred": "pottery bowls, pottery plates",
+    "new_pred": "bowls, cups",
+    "old_ok": false,
+    "new_ok": true,
+    "old_under_old_scorer": true,
+    "new_under_old_scorer": true,
+    "status": "NEW_CORRECT",
+    "retrieved_evidence": [
+      "D8:4",
+      "D5:6"
+    ],
+    "missing_retrieval": [
+      "D12:14"
+    ],
+    "context_evidence": [
+      "D8:4"
+    ],
+    "missing_context": [
+      "D12:14",
+      "D5:6"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "SUCCESS",
+    "token_budget": 1400,
+    "compiled_tokens": 1399,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: melanie\n  * Relational Entities: melanie's daughter\n  * Direct Claims: Nope, never been to something like that. What was it about? What made it so special?\n[/SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n\n[VERIFIED CONVERSATION EVIDENCE]..."
+  },
+  {
+    "question_id": "lc_conv-26_49",
+    "category": 2,
+    "question": "When did Caroline and Melanie go to a pride fesetival together?",
+    "gold_answer": "2022",
+    "gold_evidence": [
+      "D12:15"
+    ],
+    "old_pred": "I don't know.",
+    "new_pred": "I don't know.",
+    "old_ok": false,
+    "new_ok": false,
+    "old_under_old_scorer": false,
+    "new_under_old_scorer": false,
+    "status": "STABLE_INCORRECT",
+    "retrieved_evidence": [],
+    "missing_retrieval": [
+      "D12:15"
+    ],
+    "context_evidence": [],
+    "missing_context": [
+      "D12:15"
+    ],
+    "retrieval_complete": false,
+    "context_complete": false,
+    "attribution": "RETRIEVAL_MISS",
+    "token_budget": 1400,
+    "compiled_tokens": 1398,
+    "context_preview": "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]\n- Verified Actor: caroline\n  * Relational Entities: caroline's dad\n  * Direct Claims: Sounds great, Mel. Glad you made some new family mems. How was it? Anything fun?\n- Verified Actor: melanie\n  * Relational Entities: melanie's daughter, melanie's son\n  ..."
+  }
+]

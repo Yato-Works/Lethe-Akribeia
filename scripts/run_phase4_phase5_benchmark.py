@@ -9,7 +9,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, "src")
 
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
-from artificial_memory.protein.protein_compiler import ProteinContextCompiler, ContextPolicy
+from artificial_memory_gen.protein.protein_compiler import ProteinContextCompiler, ContextPolicy
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 
 def main():

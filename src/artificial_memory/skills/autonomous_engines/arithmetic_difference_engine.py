@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import re
 
+from artificial_memory.ontology import ontology as _ontology
 from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
 
 #: Word to number conversion for duration and counts
@@ -26,15 +27,10 @@ _WORD_TO_NUM = {
     "thirty": 30, "forty": 40, "fifty": 50,
 }
 
-#: Common geographic region-to-subdivision ontology
+# Geographic region -> member subdivisions (data plane: geography.yaml).
 _GEOGRAPHIC_SUBSUMPTIONS: dict[str, set[str]] = {
-    "hawaii": {"maui", "honolulu", "oahu", "kauai", "kona", "hilo", "waikiki"},
-    "japan": {"tokyo", "kyoto", "osaka", "hokkaido", "okinawa", "shibuya", "shinjuku"},
-    "california": {"los angeles", "san francisco", "san diego", "san jose"},
-    "united states": {"us", "usa", "america", "chicago", "new york", "seattle", "boston"},
-    "uk": {"united kingdom", "london", "england", "scotland", "wales"},
-    "france": {"paris", "nice", "lyon", "marseille"},
-    "italy": {"rome", "milan", "florence", "venice"},
+    region: set(members)
+    for region, members in _ontology.section("geography", "subsumptions").items()
 }
 
 

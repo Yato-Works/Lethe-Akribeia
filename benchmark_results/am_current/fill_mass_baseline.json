@@ -1,0 +1,291 @@
+{
+  "n_questions": 20,
+  "mean_ctx_tokens_est": 1270.7,
+  "mean_fill_tokens_est": 1167.6,
+  "mean_note_tokens_est": 48.5,
+  "fill_share": 0.919,
+  "mean_note_position_frac": 0.926,
+  "note_reaches_end_in": 0,
+  "rows": [
+    {
+      "question_id": "contradiction_handling-00",
+      "ctx_tokens_est": 1283,
+      "fill_tok": 1180,
+      "note_tok": 47,
+      "note_pos_frac": 0.928,
+      "note_line_idx": 220,
+      "lines_total": 223,
+      "around": [
+        "",
+        "- For project atlas, a teammate reported the cache layer actually runs on Redis. (2026-10-"
+      ],
+      "note_text": "NOTE: conflicting reports for project atlas (cache layer): Redis (2026-10-25) vs SQLite (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-01",
+      "ctx_tokens_est": 1271,
+      "fill_tok": 1167,
+      "note_tok": 49,
+      "note_pos_frac": 0.925,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project beacon, a teammate reported the cache layer actually runs on Cassandra. (202"
+      ],
+      "note_text": "NOTE: conflicting reports for project beacon (cache layer): Cassandra (2026-10-25) vs DuckDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-02",
+      "ctx_tokens_est": 1271,
+      "fill_tok": 1167,
+      "note_tok": 49,
+      "note_pos_frac": 0.925,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project cinder, a teammate reported the cache layer actually runs on MongoDB. (2026-"
+      ],
+      "note_text": "NOTE: conflicting reports for project cinder (cache layer): MongoDB (2026-10-25) vs Postgres (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-03",
+      "ctx_tokens_est": 1269,
+      "fill_tok": 1166,
+      "note_tok": 48,
+      "note_pos_frac": 0.927,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project delta, a teammate reported the cache layer actually runs on Neo4j. (2026-10-"
+      ],
+      "note_text": "NOTE: conflicting reports for project delta (cache layer): Neo4j (2026-10-25) vs RocksDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-04",
+      "ctx_tokens_est": 1268,
+      "fill_tok": 1167,
+      "note_tok": 47,
+      "note_pos_frac": 0.927,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project ember, a teammate reported the cache layer actually runs on QuestDB. (2026-1"
+      ],
+      "note_text": "NOTE: conflicting reports for project ember (cache layer): QuestDB (2026-10-25) vs LMDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-05",
+      "ctx_tokens_est": 1273,
+      "fill_tok": 1169,
+      "note_tok": 50,
+      "note_pos_frac": 0.923,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project fjord, a teammate reported the cache layer actually runs on TimescaleDB. (20"
+      ],
+      "note_text": "NOTE: conflicting reports for project fjord (cache layer): TimescaleDB (2026-10-25) vs ClickHouse (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-06",
+      "ctx_tokens_est": 1270,
+      "fill_tok": 1168,
+      "note_tok": 48,
+      "note_pos_frac": 0.926,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project glacier, a teammate reported the cache layer actually runs on ArangoDB. (202"
+      ],
+      "note_text": "NOTE: conflicting reports for project glacier (cache layer): ArangoDB (2026-10-25) vs TiDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-07",
+      "ctx_tokens_est": 1273,
+      "fill_tok": 1169,
+      "note_tok": 50,
+      "note_pos_frac": 0.923,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project harbor, a teammate reported the cache layer actually runs on RethinkDB. (202"
+      ],
+      "note_text": "NOTE: conflicting reports for project harbor (cache layer): RethinkDB (2026-10-25) vs CockroachDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-08",
+      "ctx_tokens_est": 1271,
+      "fill_tok": 1167,
+      "note_tok": 49,
+      "note_pos_frac": 0.925,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project ivory, a teammate reported the cache layer actually runs on CouchDB. (2026-1"
+      ],
+      "note_text": "NOTE: conflicting reports for project ivory (cache layer): CouchDB (2026-10-25) vs SurrealDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-09",
+      "ctx_tokens_est": 1270,
+      "fill_tok": 1168,
+      "note_tok": 48,
+      "note_pos_frac": 0.926,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project juniper, a teammate reported the cache layer actually runs on RavenDB. (2026"
+      ],
+      "note_text": "NOTE: conflicting reports for project juniper (cache layer): RavenDB (2026-10-25) vs Redis (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-10",
+      "ctx_tokens_est": 1270,
+      "fill_tok": 1167,
+      "note_tok": 49,
+      "note_pos_frac": 0.925,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project kelp, a teammate reported the cache layer actually runs on ScyllaDB. (2026-1"
+      ],
+      "note_text": "NOTE: conflicting reports for project kelp (cache layer): ScyllaDB (2026-10-25) vs Cassandra (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-11",
+      "ctx_tokens_est": 1269,
+      "fill_tok": 1167,
+      "note_tok": 48,
+      "note_pos_frac": 0.926,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project lumen, a teammate reported the cache layer actually runs on SQLite. (2026-10"
+      ],
+      "note_text": "NOTE: conflicting reports for project lumen (cache layer): SQLite (2026-10-25) vs MongoDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-12",
+      "ctx_tokens_est": 1267,
+      "fill_tok": 1166,
+      "note_tok": 47,
+      "note_pos_frac": 0.928,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project moss, a teammate reported the cache layer actually runs on DuckDB. (2026-10-"
+      ],
+      "note_text": "NOTE: conflicting reports for project moss (cache layer): DuckDB (2026-10-25) vs Neo4j (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-13",
+      "ctx_tokens_est": 1271,
+      "fill_tok": 1167,
+      "note_tok": 49,
+      "note_pos_frac": 0.925,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project nectar, a teammate reported the cache layer actually runs on Postgres. (2026"
+      ],
+      "note_text": "NOTE: conflicting reports for project nectar (cache layer): Postgres (2026-10-25) vs QuestDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-14",
+      "ctx_tokens_est": 1271,
+      "fill_tok": 1167,
+      "note_tok": 49,
+      "note_pos_frac": 0.925,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project onyx, a teammate reported the cache layer actually runs on RocksDB. (2026-10"
+      ],
+      "note_text": "NOTE: conflicting reports for project onyx (cache layer): RocksDB (2026-10-25) vs TimescaleDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-15",
+      "ctx_tokens_est": 1269,
+      "fill_tok": 1166,
+      "note_tok": 48,
+      "note_pos_frac": 0.927,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project prism, a teammate reported the cache layer actually runs on LMDB. (2026-10-2"
+      ],
+      "note_text": "NOTE: conflicting reports for project prism (cache layer): LMDB (2026-10-25) vs ArangoDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-16",
+      "ctx_tokens_est": 1273,
+      "fill_tok": 1168,
+      "note_tok": 50,
+      "note_pos_frac": 0.924,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project quartz, a teammate reported the cache layer actually runs on ClickHouse. (20"
+      ],
+      "note_text": "NOTE: conflicting reports for project quartz (cache layer): ClickHouse (2026-10-25) vs RethinkDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-17",
+      "ctx_tokens_est": 1267,
+      "fill_tok": 1166,
+      "note_tok": 47,
+      "note_pos_frac": 0.928,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project reef, a teammate reported the cache layer actually runs on TiDB. (2026-10-25"
+      ],
+      "note_text": "NOTE: conflicting reports for project reef (cache layer): TiDB (2026-10-25) vs CouchDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-18",
+      "ctx_tokens_est": 1272,
+      "fill_tok": 1169,
+      "note_tok": 49,
+      "note_pos_frac": 0.924,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project summit, a teammate reported the cache layer actually runs on CockroachDB. (2"
+      ],
+      "note_text": "NOTE: conflicting reports for project summit (cache layer): CockroachDB (2026-10-25) vs RavenDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    },
+    {
+      "question_id": "contradiction_handling-19",
+      "ctx_tokens_est": 1265,
+      "fill_tok": 1161,
+      "note_tok": 49,
+      "note_pos_frac": 0.924,
+      "note_line_idx": 216,
+      "lines_total": 219,
+      "around": [
+        "",
+        "- For project tundra, a teammate reported the cache layer actually runs on SurrealDB. (202"
+      ],
+      "note_text": "NOTE: conflicting reports for project tundra (cache layer): SurrealDB (2026-10-25) vs ScyllaDB (2026-10-25). Both are on record and neither is confirmed; report both values rather than choosing one."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "ability": "plural_entity_union",
+  "source": "failure_atlas/failure_atlas.jsonl + locomo_context_cache_rules.jsonl",
+  "scorer": "scripts/benchmarks/eval_locomo_full.py (unchanged)",
+  "llm_calls": 0,
+  "runtime_seconds": 2.5,
+  "cases": [
+    {
+      "qid": "lc_conv-26_52",
+      "question": "What are Melanie's pets' names?",
+      "gold": "Oliver, Luna, Bailey",
+      "before": {"engine_claims": false, "status": "abstain"},
+      "after": {
+        "status": "correct",
+        "answer": "Luna, Oliver, Bailey",
+        "evidence_turns": ["D7:18", "D13:4", "D13:6"]
+      }
+    }
+  ],
+  "summary": {
+    "evaluation_count": 1,
+    "before": {"correct": 0, "wrong": 0, "abstain": 1},
+    "after": {"correct": 1, "wrong": 0, "abstain": 0},
+    "fixed_qids": ["lc_conv-26_52"],
+    "broke_qids": [],
+    "invariants": {
+      "evaluation_eq_correct_plus_wrong_plus_abstain": true,
+      "presented_eq_correct_plus_wrong": true,
+      "fixed_and_broke_are_disjoint": true
+    },
+    "note": "The before status is the current-engine claim recorded by the atlas, not the stored reader verdict. The after status was rerun with the same frozen context and unchanged scorer."
+  }
+}

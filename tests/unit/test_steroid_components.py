@@ -1,9 +1,9 @@
 """Unit tests for AM Apex Steroid Phase components."""
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.steroid.adaptive_graph_expander import AdaptiveGraphExpander
-from artificial_memory.steroid.steroid_compiler import SteroidContextCompiler
-from artificial_memory.steroid.wide_slicer import WideSlicer
+from artificial_memory_gen.steroid.adaptive_graph_expander import AdaptiveGraphExpander
+from artificial_memory_gen.steroid.steroid_compiler import SteroidContextCompiler
+from artificial_memory_gen.steroid.wide_slicer import WideSlicer
 
 
 def test_wide_slicer_multi_channel():

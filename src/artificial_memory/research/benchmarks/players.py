@@ -19,10 +19,12 @@ from __future__ import annotations
 
 import asyncio
 import atexit
+import os
 import re
 import shutil
 import tempfile
 import time
+import uuid
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -73,7 +75,33 @@ def _isolated_index_dir(player_name: str) -> Path:
     bleed memories between players and across runs.
     """
     slug = player_name.lower().replace(" ", "-")
-    path = Path(tempfile.mkdtemp(prefix=f"am-arena-{slug}-"))
+    # AM_ARENA_TMP: some sandboxes deny writes to the platform temp area, and
+    # tempfile.mkdtemp() then yields a directory the process cannot write into,
+    # which kills every player's ingest (observed: all four players failed at
+    # 'faiss.index.tmp: Permission denied').  Set this to a writable directory to
+    # keep the index ephemeral but inside the workspace.
+    base = os.environ.get("AM_ARENA_TMP")
+    if base:
+        root = Path(base)
+        root.mkdir(parents=True, exist_ok=True)
+        path = root / f"{slug}-{uuid.uuid4().hex[:8]}"
+        path.mkdir(parents=True, exist_ok=False)
+    else:
+        path = Path(tempfile.mkdtemp(prefix=f"am-arena-{slug}-"))
+        # A confined process can be handed a temp directory it cannot write into
+        # (observed: mkdtemp returns, then every player fails with
+        # 'faiss.index.tmp: Permission denied').  Probe once and fall back to a
+        # repo-local scratch dir rather than failing the whole arena.
+        try:
+            probe = path / ".write_probe"
+            probe.write_text("x", encoding="utf-8")
+            probe.unlink()
+        except OSError:
+            shutil.rmtree(path, ignore_errors=True)
+            fallback = Path(__file__).resolve().parents[4] / ".arena_tmp"
+            fallback.mkdir(parents=True, exist_ok=True)
+            path = fallback / f"{slug}-{uuid.uuid4().hex[:8]}"
+            path.mkdir(parents=True, exist_ok=False)
     _ISOLATED_INDEX_DIRS.append(path)
     return path
 
@@ -711,6 +739,395 @@ class Mem0StylePlayer(ControlledPlayer, _SharedAnswerGeneration):
         return Answer(text="Not initialized", question_id=question.question_id, player_name=self.name, run_index=0)
 
 
+# ==================== Zep-style Player ====================
+
+class ZepStylePlayer(ControlledPlayer, _SharedAnswerGeneration):
+    """S5: Zep-style (Graphiti-inspired temporal knowledge graph).
+
+    Core observed Zep behaviors kept faithful in this harness:
+
+    - Write: facts are stored as temporal edges with bi-temporal stamps
+      (``valid_at`` = the arena day the event happened, ``recorded_at`` =
+      the same for a single-stream corpus). Extraction reuses the frozen
+      shared adapter where configured (same fairness rules as Mem0).
+    - Read: hybrid retrieval — term matching (BM25-like overlap) fused with
+      one-hop entity graph expansion over co-occurring entities, plus a
+      small recency tiebreak. Facts are rendered with their temporal edge
+      stamps so the reader can reason over time.
+    """
+
+    def __init__(self, config: dict[str, Any] | None = None, answerer: OllamaAnswerer | None = None):
+        super().__init__("Zep-style", config)
+        self._answerer = answerer
+        self._store: MemoryStore | None = None
+        self._vector_engine: VectorSearchEngine | None = None
+        self._recall_engine: BasicRecallEngine | None = None
+        self._allocator: ContextAllocator | None = None
+        self._scenarios: list[ArenaScenario] = []
+        # facts: list of dicts {fact, day, speaker, entities}
+        self._facts: list[dict[str, Any]] = []
+        self._entity_index: dict[str, set[int]] = {}
+
+    def ingest(self, scenarios: list[ArenaScenario]) -> None:
+        self._scenarios = scenarios
+        self._store = SQLiteMemoryStore(":memory:")
+        self._init_store()
+        self._vector_engine = create_vector_search_engine(
+            self._store, index_path=_isolated_index_dir(self.name)
+        )
+        self._recall_engine = BasicRecallEngine(self._store)
+        self._allocator = ContextAllocator(self._store)
+
+        start = time.perf_counter()
+        for scenario in scenarios:
+            self._ingest_scenario(scenario)
+        write_latency = (time.perf_counter() - start) * 1000
+        self._update_costs(self.costs.add_write_cost(calls=0, latency_ms=write_latency))
+
+    def _init_store(self) -> None:
+        from artificial_memory.core.models import Conversation, Project, Topic
+        project = self._store.create_project(Project(name="arena"))
+        topic = self._store.create_topic(Topic(project_id=project.id, name="Arena", path="Arena"))
+        self._topic_id = topic.id
+        self._conv_id = self._store.create_conversation(Conversation(topic_id=topic.id, title="Arena")).id
+
+    def _extract_entities(self, text: str) -> list[str]:
+        # Proper-noun-ish entities, deterministic (shared with Mem0 player).
+        return re.findall(r"\b[A-Z][a-zA-Z0-9_]{2,}\b", text)
+
+    def _ingest_scenario(self, scenario: ArenaScenario) -> None:
+        from artificial_memory.core.models import Memory, MemoryType
+        for turn in scenario.turns:
+            exchange = f"[{turn.speaker}] {turn.content}"
+            if self._answerer is not None:
+                llm = self._answerer.extract(exchange)
+                lines = [
+                    line.strip().lstrip("-•* ").strip()
+                    for line in llm.text.splitlines()
+                    if line.strip()
+                ]
+                self._update_costs(self.costs.add_write_cost(
+                    calls=1,
+                    prompt_tokens=llm.prompt_tokens,
+                    completion_tokens=llm.completion_tokens,
+                ))
+                if not lines:
+                    lines = [exchange]
+            else:
+                lines = [exchange]
+            for line in lines:
+                # Temporal edge: the fact inherits the turn's arena day.
+                fact_index = len(self._facts)
+                entities = {e.lower() for e in self._extract_entities(line)}
+                self._facts.append({
+                    "fact": line,
+                    "day": turn.day,
+                    "speaker": turn.speaker,
+                    "entities": entities,
+                })
+                for entity in entities:
+                    self._entity_index.setdefault(entity, set()).add(fact_index)
+                # Vector index for the semantic channel of hybrid retrieval.
+                mem = Memory(
+                    topic_id=self._topic_id,
+                    memory_type=MemoryType.SEMANTIC,
+                    content=line,
+                    source_conversation_id=self._conv_id,
+                )
+                created = self._store.create_memory(mem)
+                if self._vector_engine:
+                    self._vector_engine.add_memory(created)
+
+    # Frozen fusion weights (deterministic).
+    W_TERM = 1.0
+    W_ENTITY = 0.5
+    W_RECENCY = 0.2
+
+    def _term_score(self, query_norm: str, fact_norm: str) -> float:
+        q_terms = set(query_norm.split())
+        f_terms = set(fact_norm.split())
+        if not f_terms:
+            return 0.0
+        return len(q_terms & f_terms) / max(1, min(len(q_terms), len(f_terms)))
+
+    def _retrieve(self, query: str, k: int = 25) -> list[dict[str, Any]]:
+        query_norm = re.sub(r"[^\w\s]", " ", query.lower())
+        query_terms = set(query_norm.split())
+        query_entities = {e.lower() for e in self._extract_entities(query)}
+
+        scored: list[tuple[float, int]] = []
+        matched_ids: set[int] = set()
+        for idx, fact in enumerate(self._facts):
+            fact_norm = re.sub(r"[^\w\s]", " ", fact["fact"].lower())
+            t = self._term_score(query_norm, fact_norm)
+            entity_hit = len(query_terms & fact["entities"])
+            if t <= 0 and entity_hit == 0:
+                continue
+            matched_ids.add(idx)
+            scored.append((
+                self.W_TERM * t
+                + self.W_ENTITY * (1.0 if entity_hit else 0.0)
+                + self.W_RECENCY * (fact["day"] / 100.0),
+                idx,
+            ))
+
+        # One-hop entity expansion: facts sharing an entity with matched facts.
+        matched_entities: set[str] = set()
+        for idx in matched_ids:
+            matched_entities |= self._facts[idx]["entities"]
+        expanded: set[int] = set()
+        for entity in matched_entities:
+            expanded |= self._entity_index.get(entity, set())
+        for idx in expanded - matched_ids:
+            scored.append((0.3, idx))
+
+        scored.sort(key=lambda kv: (-kv[0], kv[1]))
+        return [self._facts[idx] for _score, idx in scored[:k]]
+
+    def _answer_with_budget(self, question: ArenaQuestion, budget: int) -> Answer:
+        retrieval_start = time.perf_counter()
+        facts = self._retrieve(question.question)
+        retrieval_ms = (time.perf_counter() - retrieval_start) * 1000
+
+        context_start = time.perf_counter()
+        # Zep renders facts with their temporal edge stamps.
+        lines = [f"[day {f['day']}] {f['fact']}" for f in facts]
+        context, context_tokens = self._budgeted_context([lines], budget)
+        context_ms = (time.perf_counter() - context_start) * 1000
+
+        llm = self._generate_answer(question.question, context)
+        answer_text = llm.text
+
+        self._update_costs(self.costs.add_read_cost(
+            retrieval_calls=1, retrieval_latency_ms=retrieval_ms,
+            context_calls=1, context_latency_ms=context_ms,
+            answer_calls=1,
+            answer_prompt_tokens=llm.prompt_tokens,
+            answer_completion_tokens=llm.completion_tokens,
+            answer_latency_ms=llm.latency_ms,
+            context_tokens_used=context_tokens,
+        ))
+
+        return Answer(
+            text=answer_text,
+            question_id=question.question_id,
+            player_name=self.name,
+            run_index=0,
+            context_tokens_used=context_tokens,
+            retrieval_latency_ms=retrieval_ms,
+            context_build_latency_ms=context_ms,
+            answer_latency_ms=llm.latency_ms,
+            metadata={
+                "retrieved": len(facts),
+                "answer_tokens": llm.total_tokens,
+            },
+        )
+
+    def _empty_answer(self, question: ArenaQuestion) -> Answer:
+        return Answer(text="Not initialized", question_id=question.question_id, player_name=self.name, run_index=0)
+
+
+# ==================== HippoRAG-style Player ====================
+
+class HippoRAGStylePlayer(ControlledPlayer, _SharedAnswerGeneration):
+    """S6: HippoRAG-style (offline KG + Personalized PageRank multi-hop).
+
+    Core observed HippoRAG behaviors kept faithful in this harness:
+
+    - Write: passages (turns) plus entities form a bipartite offline
+      knowledge graph. Entities come from frozen extraction (same fairness
+      rules as Mem0); deterministically, every proper-noun mention links
+      the passage to its entity nodes.
+    - Read: query entities seed a Personalized PageRank over the KG;
+      passages are ranked by the PPR mass they accumulate through their
+      entity neighbors — the multi-hop Ellen-Island signature of HippoRAG.
+
+    PPR is a fixed-point power iteration (restart 0.15, 30 iterations),
+    fully deterministic.
+    """
+
+    PPR_DAMPING = 0.85
+    PPR_ITERS = 30
+
+    def __init__(self, config: dict[str, Any] | None = None, answerer: OllamaAnswerer | None = None):
+        super().__init__("HippoRAG-style", config)
+        self._answerer = answerer
+        self._store: MemoryStore | None = None
+        self._vector_engine: VectorSearchEngine | None = None
+        self._recall_engine: BasicRecallEngine | None = None
+        self._allocator: ContextAllocator | None = None
+        self._scenarios: list[ArenaScenario] = []
+        # Bipartite KG: passage nodes ("p:<idx>") + entity nodes ("e:<name>").
+        self._passages: list[dict[str, Any]] = []
+        self._edges: dict[str, dict[str, float]] = {}
+
+    def ingest(self, scenarios: list[ArenaScenario]) -> None:
+        self._scenarios = scenarios
+        self._store = SQLiteMemoryStore(":memory:")
+        self._init_store()
+        self._vector_engine = create_vector_search_engine(
+            self._store, index_path=_isolated_index_dir(self.name)
+        )
+        self._recall_engine = BasicRecallEngine(self._store)
+        self._allocator = ContextAllocator(self._store)
+
+        start = time.perf_counter()
+        for scenario in scenarios:
+            self._ingest_scenario(scenario)
+        write_latency = (time.perf_counter() - start) * 1000
+        self._update_costs(self.costs.add_write_cost(calls=0, latency_ms=write_latency))
+
+    def _init_store(self) -> None:
+        from artificial_memory.core.models import Conversation, Project, Topic
+        project = self._store.create_project(Project(name="arena"))
+        topic = self._store.create_topic(Topic(project_id=project.id, name="Arena", path="Arena"))
+        self._topic_id = topic.id
+        self._conv_id = self._store.create_conversation(Conversation(topic_id=topic.id, title="Arena")).id
+
+    @staticmethod
+    def _entities_of(text: str) -> list[str]:
+        return [m.lower() for m in re.findall(r"\b[a-z][a-zA-Z0-9_]{2,}\b", text)]
+
+    def _ingest_scenario(self, scenario: ArenaScenario) -> None:
+        from artificial_memory.core.models import Memory, MemoryType
+        for turn in scenario.turns:
+            exchange = f"[{turn.speaker}] {turn.content}"
+            if self._answerer is not None:
+                llm = self._answerer.extract(exchange)
+                lines = [
+                    line.strip().lstrip("-•* ").strip()
+                    for line in llm.text.splitlines()
+                    if line.strip()
+                ]
+                self._update_costs(self.costs.add_write_cost(
+                    calls=1,
+                    prompt_tokens=llm.prompt_tokens,
+                    completion_tokens=llm.completion_tokens,
+                ))
+                if not lines:
+                    lines = [exchange]
+            else:
+                lines = [exchange]
+            for line in lines:
+                passage_node = f"p:{len(self._passages)}"
+                entities = sorted(set(self._entities_of(line)))
+                self._edges.setdefault(passage_node, {})
+                for entity in entities:
+                    entity_node = f"e:{entity}"
+                    weight = 1.0
+                    self._edges[passage_node][entity_node] = weight
+                    self._edges.setdefault(entity_node, {})[passage_node] = weight
+                self._passages.append({
+                    "node": passage_node,
+                    "passage": line,
+                    "day": turn.day,
+                    "entities": entities,
+                })
+                mem = Memory(
+                    topic_id=self._topic_id,
+                    memory_type=MemoryType.EPISODE,
+                    content=line,
+                    source_conversation_id=self._conv_id,
+                )
+                created = self._store.create_memory(mem)
+                if self._vector_engine:
+                    self._vector_engine.add_memory(created)
+
+    def _ppr(self, seeds: dict[str, float]) -> dict[str, float]:
+        """Personalized PageRank power iteration over the KG."""
+        probs = dict(seeds)
+        for _ in range(self.PPR_ITERS):
+            nxt: dict[str, float] = {}
+            for node, prob in probs.items():
+                neighbors = self._edges.get(node, {})
+                if neighbors and len(neighbors) > 0:
+                    share = prob * self.PPR_DAMPING / len(neighbors)
+                    for nb in neighbors:
+                        nxt[nb] = nxt.get(nb, 0.0) + share
+                    nxt[node] = nxt.get(node, 0.0) + prob * (1.0 - self.PPR_DAMPING)
+                else:
+                    nxt[node] = nxt.get(node, 0.0) + prob
+            # Seed mass is re-injected each iteration (personalized restart).
+            for node, mass in seeds.items():
+                nxt[node] = nxt.get(node, 0.0) + mass * (1.0 - self.PPR_DAMPING) * len(seeds)
+            probs = nxt
+        return probs
+
+    def _retrieve(self, query: str, k: int = 25) -> list[dict[str, Any]]:
+        # Seed nodes: KG entities that match query terms (case-insensitive).
+        seeds: dict[str, float] = {}
+        query_terms = set(self._entities_of(query.lower())) | {
+            t for t in re.findall(r"[a-z0-9]{3,}", query.lower())
+        }
+        for entity_node in (n for n in self._edges if n.startswith("e:")):
+            if entity_node[2:] in query_terms:
+                seeds[entity_node] = 1.0
+        if not seeds:
+            # No direct entity hit: spread seeds over term-overlapping passages.
+            for entry in self._passages:
+                passage_terms = set(self._entities_of(entry["passage"].lower()))
+                overlap = len(query_terms & passage_terms)
+                if overlap:
+                    seeds[entry["node"]] = float(overlap)
+        if not seeds:
+            return []
+
+        probs = self._ppr(seeds)
+
+        # Rank passages by direct mass + entity-neighbor mass (multi-hop).
+        ranked: list[tuple[float, int]] = []
+        for i, entry in enumerate(self._passages):
+            node = entry["node"]
+            mass = probs.get(node, 0.0)
+            for entity_node in self._edges.get(node, {}):
+                mass += 0.5 * probs.get(entity_node, 0.0)
+            if mass > 0:
+                ranked.append((mass, i))
+        ranked.sort(key=lambda kv: (-kv[0], kv[1]))
+        return [self._passages[i] for _m, i in ranked[:k]]
+
+    def _answer_with_budget(self, question: ArenaQuestion, budget: int) -> Answer:
+        retrieval_start = time.perf_counter()
+        passages = self._retrieve(question.question)
+        retrieval_ms = (time.perf_counter() - retrieval_start) * 1000
+
+        context_start = time.perf_counter()
+        lines = [f"[day {p['day']}] {p['passage']}" for p in passages]
+        context, context_tokens = self._budgeted_context([lines], budget)
+        context_ms = (time.perf_counter() - context_start) * 1000
+
+        llm = self._generate_answer(question.question, context)
+        answer_text = llm.text
+
+        self._update_costs(self.costs.add_read_cost(
+            retrieval_calls=1, retrieval_latency_ms=retrieval_ms,
+            context_calls=1, context_latency_ms=context_ms,
+            answer_calls=1,
+            answer_prompt_tokens=llm.prompt_tokens,
+            answer_completion_tokens=llm.completion_tokens,
+            answer_latency_ms=llm.latency_ms,
+            context_tokens_used=context_tokens,
+        ))
+
+        return Answer(
+            text=answer_text,
+            question_id=question.question_id,
+            player_name=self.name,
+            run_index=0,
+            context_tokens_used=context_tokens,
+            retrieval_latency_ms=retrieval_ms,
+            context_build_latency_ms=context_ms,
+            answer_latency_ms=llm.latency_ms,
+            metadata={
+                "retrieved": len(passages),
+                "answer_tokens": llm.total_tokens,
+            },
+        )
+
+    def _empty_answer(self, question: ArenaQuestion) -> Answer:
+        return Answer(text="Not initialized", question_id=question.question_id, player_name=self.name, run_index=0)
+
+
 # ==================== AM v0.2.0 Player ====================
 
 class AMv020Player(ControlledPlayer, _SharedAnswerGeneration):
@@ -747,6 +1164,16 @@ class AMv020Player(ControlledPlayer, _SharedAnswerGeneration):
             retrieval_strategy=str(
                 (self.config or {}).get("retrieval_strategy", "classic")
             ),
+            # Benchmark-only knob: the IDF-weighted lexical recall channel.
+            # Off unless the run asks for it, so the frozen baseline is unchanged.
+            lexical_recall=bool((self.config or {}).get("lexical_recall", False)),
+            # Benchmark-only knob (M14): the product conflict-surfacing flag,
+            # passed straight through to RuntimeConfig.  Off by default, so
+            # every pre-M14 reproduction stays byte-identical.
+            conflict_surfacing=bool((self.config or {}).get("conflict_surfacing", False)),
+            # Benchmark-only knob (M15.3): fill ablation arm, off by default.
+            conflict_fill_ablation=bool(
+                (self.config or {}).get("conflict_fill_ablation", False)),
         ))
 
         start = time.perf_counter()
@@ -845,6 +1272,8 @@ def create_controlled_players(
         MemoryBankStylePlayer(base_config, answerer=shared),
         MemGPTStylePlayer(base_config, answerer=shared),
         Mem0StylePlayer(base_config, answerer=shared),
+        ZepStylePlayer(base_config, answerer=shared),
+        HippoRAGStylePlayer(base_config, answerer=shared),
         AMv020Player(base_config, answerer=shared),
     ]
 
@@ -854,6 +1283,8 @@ __all__ = [
     "MemoryBankStylePlayer",
     "MemGPTStylePlayer",
     "Mem0StylePlayer",
+    "ZepStylePlayer",
+    "HippoRAGStylePlayer",
     "AMv020Player",
     "create_controlled_players",
 ]

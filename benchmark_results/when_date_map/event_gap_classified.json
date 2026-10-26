@@ -1,0 +1,610 @@
+{
+  "label": "when_date event-gap classification, phase 1",
+  "n": 23,
+  "patterns": {
+    "PHRASAL": 5,
+    "SEMANTIC": 13,
+    "INFLECTION": 4,
+    "NONE_MISSING": 1
+  },
+  "binding": {
+    "CLEAN": 8,
+    "PARTIAL": 13,
+    "NO_CARRYING_TURN": 10,
+    "UNBOUND_person_absent": 2
+  },
+  "missing_by_rule_aggregate": {
+    "PHRASAL": 5,
+    "SEMANTIC": 43,
+    "INFLECTION": 4
+  },
+  "coverable_by_general_rules": 9,
+  "total_missing": 52,
+  "cases": [
+    {
+      "question_id": "lc_conv-26_9",
+      "question": "When did Caroline meet up with her friends, family, and mentors?",
+      "gold": "The week before 9 June 2023",
+      "person": "caroline",
+      "carrying_turn_id": "D3:11",
+      "carrying_turn": "Thanks, Mel! My friends, family and mentors are my rocks – they motivate me and give me the strength to push on. Here's a pic from when we met up last week (the week before 9 June 2023)!",
+      "event_terms": [
+        "family",
+        "friends",
+        "meet",
+        "mentors"
+      ],
+      "missing": [
+        "meet"
+      ],
+      "missing_by_rule": {
+        "PHRASAL": 1
+      },
+      "rule_that_would_pass": "PHRASAL",
+      "event_term_fraction_in_turn": 0.75,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "question": "When did Melanie read the book \"nothing is impossible\"?",
+      "gold": "2022",
+      "person": "melanie",
+      "carrying_turn_id": "D7:8",
+      "carrying_turn": "Caroline, so glad you got the support! Your experience really brought you to where you need to be. You're gonna make a huge difference! This book I read last year (2022) reminds me to always pursue my",
+      "event_terms": [
+        "book",
+        "impossible",
+        "nothing",
+        "read"
+      ],
+      "missing": [
+        "impossible",
+        "nothing"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 2
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.5,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-26_45",
+      "question": "When did Caroline attend a pride parade in August?",
+      "gold": "The Friday before 14 August 2023",
+      "person": "caroline",
+      "carrying_turn_id": "D11:4",
+      "carrying_turn": "Wow, Mel, glad you had a blast at the concert. A lot's happened since we talked. I went to a pride parade last Friday (the Friday before 14 August 2023) and it was awesome - so much energy and love ev",
+      "event_terms": [
+        "attend",
+        "august",
+        "parade",
+        "pride"
+      ],
+      "missing": [
+        "attend"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.75,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-26_57",
+      "question": "When did Caroline encounter people on a hike and have a negative experience?",
+      "gold": "The week before 25 August 2023",
+      "person": "caroline",
+      "carrying_turn_id": "D14:1",
+      "carrying_turn": "Hey, Mel! How's it going? There's something I want to tell you. I went hiking last week (the week before 25 August 2023) and got into a bad spot with some people. It really bugged me, so I tried to ap",
+      "event_terms": [
+        "encounter",
+        "experience",
+        "hike",
+        "negative",
+        "people"
+      ],
+      "missing": [
+        "encounter",
+        "experience",
+        "hike",
+        "negative"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 3,
+        "INFLECTION": 1
+      },
+      "rule_that_would_pass": "INFLECTION",
+      "event_term_fraction_in_turn": 0.2,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-26_76",
+      "question": "When did Melanie go on a hike after the roadtrip?",
+      "gold": "19 October 2023",
+      "person": "melanie",
+      "carrying_turn_id": "D18:17",
+      "carrying_turn": "Thanks, Caroline! Yup, we just did it yesterday (19 October 2023)! The kids loved it and it was a nice way to relax after the road trip.",
+      "event_terms": [
+        "hike",
+        "roadtrip"
+      ],
+      "missing": [
+        "hike",
+        "roadtrip"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 2
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.0,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-26_80",
+      "question": "When did Melanie buy the figurines?",
+      "gold": "21 October 2023",
+      "person": "melanie",
+      "carrying_turn_id": "D19:2",
+      "carrying_turn": "Congrats, Caroline! Adoption sounds awesome. I'm so happy for you. These figurines I bought yesterday (21 October 2023) remind me of family love. Tell me, what's your vision for the future?",
+      "event_terms": [
+        "buy",
+        "figurines"
+      ],
+      "missing": [
+        "buy"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.5,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-30_33",
+      "question": "When did Jon visit networking events for his store?",
+      "gold": "20 June, 2023",
+      "person": "jon",
+      "carrying_turn_id": "D16:6",
+      "carrying_turn": "That's awesome, Gina! yesterday (20 June 2023) I chose to go to networking events to make things happen. It's been tough but I'm staying determined and focused.",
+      "event_terms": [
+        "events",
+        "networking",
+        "store",
+        "visit"
+      ],
+      "missing": [
+        "store",
+        "visit"
+      ],
+      "missing_by_rule": {
+        "PHRASAL": 1,
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "PHRASAL",
+      "event_term_fraction_in_turn": 0.5,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-41_5",
+      "question": "When did Maria go to the beach?",
+      "gold": "December 2022",
+      "person": "maria",
+      "carrying_turn_id": "D3:14",
+      "carrying_turn": "I took it at the beach last month (December 2022). Watching the sunset was so peaceful, it made me feel connected to nature and appreciate life's small moments.",
+      "event_terms": [
+        "beach"
+      ],
+      "missing": [],
+      "missing_by_rule": {},
+      "rule_that_would_pass": null,
+      "event_term_fraction_in_turn": 1.0,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-41_13",
+      "question": "When did Maria's grandmother pass away?",
+      "gold": "The week before 6 March 2023",
+      "person": "maria",
+      "carrying_turn_id": "D8:1",
+      "carrying_turn": "Hey John, I haven't talked to you in a while. last week (the week before 6 March 2023), my grandma passed away and it's been really hard. I'm trying to stay positive, but it's tough. How're you doing?",
+      "event_terms": [
+        "away",
+        "grandmother",
+        "pass"
+      ],
+      "missing": [
+        "grandmother",
+        "pass"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 1,
+        "INFLECTION": 1
+      },
+      "rule_that_would_pass": "INFLECTION",
+      "event_term_fraction_in_turn": 0.33,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-41_20",
+      "question": "When did John take a road trip to the Pacific Northwest?",
+      "gold": "2022",
+      "person": "john",
+      "carrying_turn_id": "D11:3",
+      "carrying_turn": "Thanks, Maria. Your kind words mean a lot. Yeah, it's been tough with car trouble and money problems, but I stay positive and find a way. This picture reminds me of a road trip we took last year (2022",
+      "event_terms": [
+        "northwest",
+        "pacific",
+        "road",
+        "trip"
+      ],
+      "missing": [
+        "northwest",
+        "pacific"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 2
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.5,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-42_2",
+      "question": "When did Joanna first watch \"Eternal Sunshine of the Spotless Mind?",
+      "gold": "2019",
+      "person": "joanna",
+      "carrying_turn_id": "D1:18",
+      "carrying_turn": "Yep, that movie is awesome. I first watched it around 3 years ago (2019). I even went out and got a physical copy!",
+      "event_terms": [
+        "eternal",
+        "mind",
+        "spotless",
+        "sunshine",
+        "watch"
+      ],
+      "missing": [
+        "eternal",
+        "mind",
+        "spotless",
+        "sunshine",
+        "watch"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 4,
+        "INFLECTION": 1
+      },
+      "rule_that_would_pass": "INFLECTION",
+      "event_term_fraction_in_turn": 0.0,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-42_72",
+      "question": "When did Joanna plan on going to Nate's to watch him play with his turtles?",
+      "gold": "10 November, 2022",
+      "person": "joanna",
+      "carrying_turn_id": "D28:32",
+      "carrying_turn": "Alright, see you tomorrow (10 November 2022)!",
+      "event_terms": [
+        "going",
+        "him",
+        "nate",
+        "play",
+        "turtles",
+        "watch"
+      ],
+      "missing": [
+        "going",
+        "him",
+        "nate",
+        "play",
+        "turtles",
+        "watch"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 6
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.0,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-42_143",
+      "question": "How did Joanna feel when someone wrote her a letter after reading her blog post?",
+      "gold": "Touched",
+      "person": "joanna",
+      "carrying_turn_id": "D18:5",
+      "carrying_turn": "Yep. last week (the week before 14 August 2022), someone wrote me a letter after reading an online blog post I made about a hard moment in my life. Their words touched me; they said my story had broug",
+      "event_terms": [
+        "blog",
+        "feel",
+        "letter",
+        "post",
+        "reading",
+        "someone",
+        "wrote"
+      ],
+      "missing": [
+        "feel"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.86,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "question": "How did Nate feel when someone wrote him a letter after reading his blog post?",
+      "gold": "Touched",
+      "person": "nate",
+      "carrying_turn_id": "D18:5",
+      "carrying_turn": "Yep. last week (the week before 14 August 2022), someone wrote me a letter after reading an online blog post I made about a hard moment in my life. Their words touched me; they said my story had broug",
+      "event_terms": [
+        "blog",
+        "feel",
+        "him",
+        "letter",
+        "post",
+        "reading",
+        "someone",
+        "wrote"
+      ],
+      "missing": [
+        "feel",
+        "him"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 2
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.75,
+      "person_in_carrying_turn": false,
+      "binding": "UNBOUND"
+    },
+    {
+      "question_id": "lc_conv-43_214",
+      "question": "What hobby is a therapy for Tim when away from the court?",
+      "gold": "Cooking",
+      "person": "tim",
+      "carrying_turn_id": "D15:31",
+      "carrying_turn": "That slow cooker meal looks yum! Cooking is a great way to chill and be creative. Do you have any favorite recipes you can show me?",
+      "event_terms": [
+        "away",
+        "court",
+        "hobby",
+        "therapy"
+      ],
+      "missing": [
+        "away",
+        "court",
+        "hobby",
+        "therapy"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 4
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.0,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-48_22",
+      "question": "When did Deborah meet Anna?",
+      "gold": "31 January, 2023",
+      "person": "deborah",
+      "carrying_turn_id": "D3:4",
+      "carrying_turn": "That's awesome, Jolene! You're enjoying the process. It must be really satisfying to see it come together. Keep up the good work! Oh, by the way, I met my new neighbor Anna yesterday (31 January 2023)",
+      "event_terms": [
+        "anna",
+        "meet"
+      ],
+      "missing": [
+        "meet"
+      ],
+      "missing_by_rule": {
+        "PHRASAL": 1
+      },
+      "rule_that_would_pass": "PHRASAL",
+      "event_term_fraction_in_turn": 0.5,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-48_51",
+      "question": "When did Jolene buy a new aquarium for Seraphim?",
+      "gold": "24 June, 2023",
+      "person": "jolene",
+      "carrying_turn_id": "D14:4",
+      "carrying_turn": "You are amazing as always! Here are new photos of Seraphim in the new aquarium that I bought the day before yesterday (25 June 2023) (24 June 2023).",
+      "event_terms": [
+        "aquarium",
+        "buy",
+        "new",
+        "seraphim"
+      ],
+      "missing": [
+        "buy"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.75,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-48_66",
+      "question": "When did Jolene and her partner return home from Rio de Janeiro?",
+      "gold": "29 August, 2023",
+      "person": "jolene",
+      "carrying_turn_id": "D23:1",
+      "carrying_turn": "Hey Deborah, how's it going? Guess what? yesterday (29 August 2023) my partner and I got back from an awesome trip to Rio de Janeiro- we checked out some cool yoga classes.",
+      "event_terms": [
+        "home",
+        "janeiro",
+        "partner",
+        "return",
+        "rio"
+      ],
+      "missing": [
+        "home",
+        "return"
+      ],
+      "missing_by_rule": {
+        "PHRASAL": 1,
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "PHRASAL",
+      "event_term_fraction_in_turn": 0.6,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-48_68",
+      "question": "When did Deborah visit Brazil?",
+      "gold": "2020",
+      "person": "deborah",
+      "carrying_turn_id": "D23:18",
+      "carrying_turn": "Wow, exploring those temples must have been incredible! Three years ago (2020) I was also in Rio de Janeiro, I took a beautiful photo on one of the excursions.",
+      "event_terms": [
+        "brazil",
+        "visit"
+      ],
+      "missing": [
+        "brazil",
+        "visit"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 2
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.0,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-49_17",
+      "question": "When did Sam's friends mock him for being overweight?",
+      "gold": "Friday before 27 July 2023",
+      "person": "sam",
+      "carrying_turn_id": "D4:1",
+      "carrying_turn": "Hey Evan, I need to talk to you. My friends were mocking my weight last Friday (the Friday before 27 July 2023) and it hurt. That made me realize I need to make changes.",
+      "event_terms": [
+        "being",
+        "friends",
+        "him",
+        "mock",
+        "overweight"
+      ],
+      "missing": [
+        "being",
+        "him",
+        "mock",
+        "overweight"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 3,
+        "INFLECTION": 1
+      },
+      "rule_that_would_pass": "INFLECTION",
+      "event_term_fraction_in_turn": 0.2,
+      "person_in_carrying_turn": true,
+      "binding": "PARTIAL"
+    },
+    {
+      "question_id": "lc_conv-49_187",
+      "question": "How did Sam feel when he painted the piece with the bird flying over it?",
+      "gold": "a sense of joy and freedom",
+      "person": "sam",
+      "carrying_turn_id": "D21:16",
+      "carrying_turn": "I painted this with a sense of joy and freedom. The spontaneous strokes and bold colors reflect a playful and liberated mood, embracing the creative process without restraint.",
+      "event_terms": [
+        "bird",
+        "feel",
+        "flying",
+        "over",
+        "painted",
+        "piece"
+      ],
+      "missing": [
+        "bird",
+        "feel",
+        "flying",
+        "over",
+        "piece"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 5
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.17,
+      "person_in_carrying_turn": false,
+      "binding": "UNBOUND"
+    },
+    {
+      "question_id": "lc_conv-50_69",
+      "question": "When did Dave buy a vintage camera?",
+      "gold": "November 2023",
+      "person": "dave",
+      "carrying_turn_id": "D30:5",
+      "carrying_turn": "That's amazing, Calvin! Music really does bring people together and foster creativity. Glad to hear you had such an inspiring conversation! Take a look at my new vintage camera that I bought this mont",
+      "event_terms": [
+        "buy",
+        "camera",
+        "vintage"
+      ],
+      "missing": [
+        "buy"
+      ],
+      "missing_by_rule": {
+        "SEMANTIC": 1
+      },
+      "rule_that_would_pass": "SEMANTIC",
+      "event_term_fraction_in_turn": 0.67,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    },
+    {
+      "question_id": "lc_conv-50_136",
+      "question": "When did Dave sell the car he restored last year?",
+      "gold": "Last year",
+      "person": "dave",
+      "carrying_turn_id": "D25:17",
+      "carrying_turn": "Thanks Calvin! It was a fun project. I restored a car last year (2022), but I sold it to a collector. Now I'm working on something new, and it's quite a challenge! Take a look at this wonderful car!",
+      "event_terms": [
+        "car",
+        "restored",
+        "sell"
+      ],
+      "missing": [
+        "sell"
+      ],
+      "missing_by_rule": {
+        "PHRASAL": 1
+      },
+      "rule_that_would_pass": "PHRASAL",
+      "event_term_fraction_in_turn": 0.67,
+      "person_in_carrying_turn": true,
+      "binding": "CLEAN"
+    }
+  ]
+}

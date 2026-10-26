@@ -1,0 +1,68 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "H1",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 3,
+  "correct_answers": 1,
+  "accuracy": 0.3333333333333333,
+  "mean_prompt_tokens": 1291.6666666666667,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 12.736076699999103,
+  "per_type_breakdown": {
+    "temporal-reasoning": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 1290.0
+    },
+    "knowledge-update": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 1131.0
+    },
+    "single-session-assistant": {
+      "accuracy": 1.0,
+      "correct": 1,
+      "total": 1,
+      "mean_tokens": 1454.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "gpt4_b5700ca0",
+      "question_type": "temporal-reasoning",
+      "question": "Where did I attend the religious activity last week?",
+      "ground_truth": "the Episcopal Church",
+      "predicted_answer": "University Art Museum",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1290,
+      "latency_ms": 9577.694100000372
+    },
+    {
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "question": "Where am I planning to stay for my birthday trip to Hawaii?",
+      "ground_truth": "Oahu",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1131,
+      "latency_ms": 723.3374000024924
+    },
+    {
+      "question_id": "3249768e",
+      "question_type": "single-session-assistant",
+      "question": "I'm looking back at our previous conversation about building a cocktail bar. You recommended five bottles to make the widest variety of gin-based cocktails. Can you remind me what the fifth bottle was?",
+      "ground_truth": "Absinthe",
+      "predicted_answer": "Absinthe",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1454,
+      "latency_ms": 887.2406000009505
+    }
+  ]
+}

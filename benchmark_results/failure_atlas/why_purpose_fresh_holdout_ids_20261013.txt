@@ -1,0 +1,3 @@
+# Blind conversation-level holdout: conversation 42 was not used for rule design
+lc_conv-42_212
+lc_conv-42_257

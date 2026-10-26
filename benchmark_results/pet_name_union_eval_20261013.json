@@ -1,0 +1,71 @@
+{
+  "ability": "speaker_scoped_pet_name_union_and_completeness_gate",
+  "source": "benchmark_results/failure_atlas/failure_atlas.jsonl + benchmark_results/locomo_context_cache_rules.jsonl",
+  "scorer": "scripts/benchmarks/eval_locomo_full.py (unchanged; repaired scorer from c449aa0)",
+  "evaluation_count": 7,
+  "llm_calls": 0,
+  "runtime_seconds": 2.7,
+  "engine_evaluation_seconds": 0.027,
+  "before_source": "fresh in-process execution of the parent CountingEngine loaded from git HEAD",
+  "after_source": "current CountingEngine on the identical frozen contexts, rescored with the unchanged scorer",
+  "paired_conditions": "same seven question IDs, question text, frozen contexts, surrounding deterministic pipeline, and scorer; only CountingEngine code differs",
+  "question_ids": [
+    "lc_conv-26_52",
+    "lc_conv-26_124",
+    "lc_conv-44_29",
+    "lc_conv-44_35",
+    "lc_conv-47_9",
+    "lc_conv-47_149",
+    "lc_conv-47_189"
+  ],
+  "before": {
+    "correct": 0,
+    "wrong": 0,
+    "abstain": 7
+  },
+  "after": {
+    "correct": 1,
+    "wrong": 0,
+    "abstain": 6
+  },
+  "categories": {
+    "1": {
+      "before": {"count": 4, "correct": 0, "wrong": 0, "abstain": 4},
+      "after": {"count": 4, "correct": 1, "wrong": 0, "abstain": 3}
+    },
+    "4": {
+      "before": {"count": 2, "correct": 0, "wrong": 0, "abstain": 2},
+      "after": {"count": 2, "correct": 0, "wrong": 0, "abstain": 2}
+    },
+    "5": {
+      "before": {"count": 1, "correct": 0, "wrong": 0, "abstain": 1},
+      "after": {"count": 1, "correct": 0, "wrong": 0, "abstain": 1}
+    }
+  },
+  "fixed_qids": [
+    "lc_conv-26_52"
+  ],
+  "broke_qids": [],
+  "fixed_case": {
+    "qid": "lc_conv-26_52",
+    "question": "What are Melanie's pets' names?",
+    "gold": "Oliver, Luna, Bailey",
+    "answer": "Luna, Oliver, Bailey",
+    "evidence_turns": [
+      "D7:18",
+      "D13:4",
+      "D13:6"
+    ]
+  },
+  "invariants": {
+    "evaluation_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true,
+    "fixed_and_broke_are_disjoint": true
+  },
+  "notes": [
+    "The 7-case slice contains six pet-name queries and one 'what pets' scope control; it is not the 1,986-question benchmark.",
+    "A larger explicit pet count than the number of recovered names causes abstention rather than partial-set commitment.",
+    "Atlas gold_in_context labels are heuristic; abstentions are not claimed as solvable without further evidence inspection.",
+    "Before/after outcomes were freshly evaluated in the same process; historical atlas claims were not used as the baseline."
+  ]
+}

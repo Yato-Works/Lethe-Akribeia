@@ -1,6 +1,6 @@
 """Unit tests for the generalized SessionFuser cross-session aggregation engine."""
 
-from artificial_memory.protein.session_fuser import SessionFuser
+from artificial_memory_gen.protein.session_fuser import SessionFuser
 
 
 def test_is_aggregation_query():

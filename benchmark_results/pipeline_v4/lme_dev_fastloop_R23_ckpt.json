@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "question": "How many items of clothing do I need to pick up or return from a store?",
+      "ground_truth": "3",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1661,
+      "latency_ms": 8819.574399996782
+    }
+  ]
+}

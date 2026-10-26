@@ -9,6 +9,20 @@
 
 ---
 
+---
+
+> [!WARNING]
+> **Read this before quoting the scorecard below.** The 60-question hard-smoke set
+> was built from questions the baseline 7B reader had already missed (12 per
+> category). It is a diagnostic drill, not a representative sample and not a
+> benchmark result. The 99.54% / 60-of-60 figures belong to that prototype suite.
+> The auditable frozen snapshot (`e2e_smoke_v9`) scores 73.77% official F1; the
+> full 1,540-question v0.3.0 artifact scores 51.89% official F1 (the 65.26% often
+> quoted alongside it is the in-house binary matcher, not F1). Re-scored on the
+> pinned upstream protocol, the current pipeline measures 37.41% as-is and 54.94%
+> with two non-default settings — see
+> [`design_docs/v4_world_class/V4_PROGRAM.md`](design_docs/v4_world_class/V4_PROGRAM.md).
+
 ## 1. Executive Summary & Purpose
 
 This diagnostic evaluation investigates the **"Reasoning-Execution Gap"** identified in long-term memory benchmarks: instances where the gold evidentiary conversational turns are successfully retrieved and present in context, yet downstream language models fail to extract or calculate the correct answer due to complex interval dates, multi-location arithmetic, or conversational distractor turns.

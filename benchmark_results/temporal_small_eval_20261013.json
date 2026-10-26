@@ -1,0 +1,41 @@
+{
+  "description": "Small deterministic date-engine evaluation; scorer unchanged.",
+  "full_benchmark_run": false,
+  "llm_calls": 0,
+  "cases": [
+    {
+      "qid": "lc_conv-30_13",
+      "question": "When did Gina open her online clothing store?",
+      "gold": "16 March, 2023",
+      "baseline": {"status": "abstain"},
+      "after": {"status": "correct", "answer": "16 March, 2023", "evidence_turn": "D6:6"}
+    },
+    {
+      "qid": "conv-41-qa-038",
+      "question": "When did Maria get in a car accident?",
+      "gold": "July 2, 2023",
+      "baseline": {"status": "wrong", "answer": "21 December, 2022"},
+      "after": {"status": "correct", "answer": "2 July, 2023", "evidence_turn": "D21:3"}
+    },
+    {
+      "qid": "conv-41-qa-059",
+      "question": "When did John go on a camping trip with Max?",
+      "gold": "The summer of 2022",
+      "baseline": {"status": "wrong", "answer": "The weekend before 12 June 2023"},
+      "after": {"status": "correct", "answer": "last summer", "evidence_turn": "D30:6"}
+    }
+  ],
+  "summary": {
+    "evaluation_count": 3,
+    "before": {"correct": 0, "wrong": 2, "abstain": 1},
+    "after": {"correct": 3, "wrong": 0, "abstain": 0},
+    "fixed_qids": ["lc_conv-30_13", "conv-41-qa-038", "conv-41-qa-059"],
+    "broke_qids": [],
+    "invariants": {
+      "evaluation_eq_correct_plus_wrong_plus_abstain": true,
+      "presented_eq_correct_plus_wrong": true,
+      "fixed_and_broke_are_disjoint": true
+    },
+    "note": "Baseline values are the recorded predictions supplied by the frozen diagnostic artifacts/mission. The after side was rerun against the same three reproduced contexts with the unchanged scorer."
+  }
+}

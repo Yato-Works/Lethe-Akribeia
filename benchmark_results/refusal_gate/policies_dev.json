@@ -1,0 +1,77 @@
+{
+ "questions": 1487,
+ "baseline_official_f1": 50.558,
+ "scope": "dev",
+ "policies": {
+  "gate": {
+   "refused": 133,
+   "official_f1": 54.889,
+   "delta_pt": 4.331,
+   "won_cat5": 87,
+   "lost_cats1_4": 31,
+   "per_category_delta": {
+    "multi-hop": -2.29,
+    "temporal": -2.5,
+    "open-domain": -1.0,
+    "single-hop": -16.81,
+    "adversarial": 87.0
+   }
+  },
+  "verifier": {
+   "refused": 290,
+   "official_f1": 51.005,
+   "delta_pt": 0.446,
+   "won_cat5": 77,
+   "lost_cats1_4": 113,
+   "per_category_delta": {
+    "multi-hop": -9.71,
+    "temporal": -31.95,
+    "open-domain": -14.22,
+    "single-hop": -14.49,
+    "adversarial": 77.0
+   }
+  },
+  "or": {
+   "refused": 377,
+   "official_f1": 53.422,
+   "delta_pt": 2.864,
+   "won_cat5": 132,
+   "lost_cats1_4": 138,
+   "per_category_delta": {
+    "multi-hop": -11.16,
+    "temporal": -32.95,
+    "open-domain": -14.22,
+    "single-hop": -31.08,
+    "adversarial": 132.0
+   }
+  },
+  "and": {
+   "refused": 46,
+   "official_f1": 52.471,
+   "delta_pt": 1.913,
+   "won_cat5": 32,
+   "lost_cats1_4": 6,
+   "per_category_delta": {
+    "multi-hop": -0.83,
+    "temporal": -1.5,
+    "open-domain": -1.0,
+    "single-hop": -0.22,
+    "adversarial": 32.0
+   }
+  },
+  "verifier_beyond_gate": {
+   "refused": 244,
+   "official_f1": 49.092,
+   "delta_pt": -1.466,
+   "won_cat5": 45,
+   "lost_cats1_4": 107,
+   "per_category_delta": {
+    "multi-hop": -8.87,
+    "temporal": -30.45,
+    "open-domain": -13.22,
+    "single-hop": -14.26,
+    "adversarial": 45.0
+   }
+  }
+ }
+}

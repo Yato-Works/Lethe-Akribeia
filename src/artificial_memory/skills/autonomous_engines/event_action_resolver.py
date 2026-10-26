@@ -81,6 +81,15 @@ class EventActionResolver:
         person = cls._extract_person(question, turns)
         q_kws = cls._extract_keywords(question)
 
+        if ql.startswith("why") or re.search(r"\b(?:inspir\w*|motivat\w*)\b", ql):
+            explicit_cause = cls._resolve_explicit_cause(question, turns, person)
+            if explicit_cause.used:
+                return explicit_cause
+            if ql.startswith("why"):
+                implicit_cause = cls._resolve_implicit_cause(question, turns, person)
+                if implicit_cause.used:
+                    return implicit_cause
+
         # 1. Themes explored: "What specific themes are explored in X's new book?"
         if "theme" in ql or "themes" in ql:
             for turn in turns:
@@ -378,7 +387,9 @@ class EventActionResolver:
         #     Never fires on "when did ..." questions - those belong to the
         #     temporal engine - nor on colour questions ("repaint my bedroom"),
         #     which the relational colour lookup owns.
-        if ("paint" in ql or "painting" in ql) and ("what" in ql or "show" in ql) and not ql.startswith("when") and not re.search(r"\bcolor\b|\brepaint", ql):
+        if (("paint" in ql or "painting" in ql) and ("what" in ql or "show" in ql)
+                and not ql.startswith("when")
+                and not re.search(r"\bcolor\b|\brepaint|\binspir\w*|\bmotivat\w*", ql)):
             q_date = re.search(r"\b(\d{1,2})\s+([A-Za-z]+),?\s+(20\d\d)\b", question)
             topic_kws = {k for k in q_kws if k not in ("paint", "painting", "painted", "paints") and len(k) > 3}
             search_turns = list(reversed(turns)) if "recent" in ql else turns
@@ -694,6 +705,333 @@ class EventActionResolver:
                             )
 
         return CommittedAnswer(used=False)
+
+    @classmethod
+    def _resolve_explicit_cause(
+        cls, question: str, turns: list[Turn], person: str | None
+    ) -> CommittedAnswer:
+        """Lift explicit cause/inspiration from a topic-bound speaker turn.
+
+        It handles overt causal markers and direct inspiration constructions.
+        Nearby turns may establish which event the cause belongs to, but the
+        causal statement itself must still be spoken by the queried person.
+        """
+        if not person:
+            return CommittedAnswer(used=False)
+
+        asking_inspiration = bool(re.search(r"\b(?:inspir\w*|motivat\w*)\b", question, re.I))
+        excluded = {
+            person.lower(), "choose", "chose", "decide", "decided", "start",
+            "started", "begin", "began", "get", "got", "sign", "signed",
+            "up", "open", "opened", "did", "does", "why", "inspired",
+            "inspiration", "motivated", "motivation", "what", "kind",
+        }
+        topic_terms = cls._extract_keywords(question) - excluded
+        if not topic_terms:
+            return CommittedAnswer(used=False)
+
+        candidates: list[tuple[int, str, Turn, list[Turn]]] = []
+        causal_cues = re.compile(
+            r"\b(?:because(?:\s+of)?|due\s+to)\s+(.+)|'cause\s+(.+)", re.I
+        )
+        inspiration_cues = (
+            re.compile(r"\binspired\s+by\s+(.+)", re.I),
+            re.compile(r"\bmotivated\s+by\s+(.+)", re.I),
+        )
+        for turn in turns:
+            if turn.speaker.lower() != person.lower():
+                continue
+            turn_session = re.match(r"(D\d+):", turn.dia_id, re.I)
+            related = [turn]
+            if turn_session:
+                session, turn_no = turn_session.group(1).lower(), int(turn.dia_id.split(":", 1)[1])
+                related = [
+                    other for other in turns
+                    if re.match(r"(D\d+):", other.dia_id, re.I)
+                    and re.match(r"(D\d+):", other.dia_id, re.I).group(1).lower() == session
+                    and abs(int(other.dia_id.split(":", 1)[1]) - turn_no) <= 3
+                ]
+            related_text = " ".join(t.text for t in related)
+            if asking_inspiration:
+                # Preserve concrete event qualifiers.  Matching only a broad
+                # noun like "painting" let a different painting in the same
+                # session hijack questions about a friend's gift or a specific
+                # event.  Header dates count as context for explicit month/year
+                # anchors, but do not by themselves supply the requested cause.
+                strong_terms = topic_terms - {
+                    "painting", "paint", "script", "video", "music", "book",
+                    "event", "show", "art", "new", "recent", "recently",
+                    "start", "started", "create", "created", "make", "making",
+                    "inspired", "inspiration", "motivation", "motivated",
+                }
+                related_text += " " + " ".join(t.header_date for t in related)
+                if strong_terms and not all(
+                    re.search(rf"\b{re.escape(term)}\w*\b", related_text, re.I)
+                    for term in strong_terms
+                ):
+                    continue
+            matched_terms = {
+                term for term in topic_terms
+                if re.search(rf"\b{re.escape(term)}\w*\b", related_text, re.I)
+            }
+            if not matched_terms:
+                continue
+            for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
+                causal = causal_cues.search(sentence)
+                if causal:
+                    answer = (causal.group(1) or causal.group(2)).strip(" .!?,;:")
+                    if len(answer) >= 4:
+                        candidates.append((len(matched_terms), answer, turn, related))
+                if asking_inspiration:
+                    for cue in inspiration_cues:
+                        match = cue.search(sentence)
+                        if match:
+                            answer = match.group(1).strip(" .!?,;:")
+                            if len(answer) >= 4:
+                                candidates.append((len(matched_terms), answer, turn, related))
+                    # Explanatory self-report often states both the trigger and
+                    # intended meaning in adjacent clauses: "I painted this
+                    # after I visited X. I wanted to capture Y." Preserve both
+                    # clauses as one evidence-backed answer, not just a nearby
+                    # artwork keyword.
+                    after = re.search(
+                        r"\b(?:painted|made|created)\s+(?:this|it|that)\s+after\s+(.+)",
+                        sentence, re.I,
+                    )
+                    if after:
+                        following = re.search(
+                            r"\bI\s+wanted\s+to\s+([^.!?]+)", turn.text[turn.text.find(sentence) + len(sentence):], re.I
+                        )
+                        answer = after.group(1).strip(" .!?,;:")
+                        if following:
+                            answer += " and wanted to " + following.group(1).strip(" .!?,;:")
+                        if len(answer) >= 4:
+                            candidates.append((len(matched_terms), answer, turn, related))
+
+        if not candidates:
+            return CommittedAnswer(used=False)
+        best_score = max(score for score, _, _, _ in candidates)
+        best = [(answer, turn, related) for score, answer, turn, related in candidates if score == best_score]
+        unique_answers = {answer.lower() for answer, _, _ in best}
+        if len(unique_answers) != 1:
+            return CommittedAnswer(
+                used=False,
+                detail="ambiguous explicit causal clauses for the requested event",
+            )
+        answer, turn, related = best[0]
+        evidence_ids = list(dict.fromkeys(t.dia_id for t in related if t.dia_id))
+        return CommittedAnswer(
+            used=True,
+            answer=answer,
+            source="autonomous_event_action_resolver",
+            confidence=0.90,
+            detail=f"extracted topic-bound cause for '{person}': '{answer}'",
+            evidence_turn=", ".join(evidence_ids),
+        )
+
+    @classmethod
+    def _resolve_implicit_cause(
+        cls, question: str, turns: list[Turn], person: str | None
+    ) -> CommittedAnswer:
+        """Extract directly stated purpose or a post-event realization for why-Qs.
+
+        This deliberately reads only the queried speaker's own turn text (the
+        parser removes quoted reply text). A candidate must also share a
+        content-bearing event/topic term with the question; general positive
+        sentiment is not enough to establish a reason.
+        """
+        if not person:
+            return CommittedAnswer(used=False)
+        named_speakers = {
+            turn.speaker.lower() for turn in turns if turn.speaker
+            and re.search(rf"\b{re.escape(turn.speaker)}\b", question, re.I)
+        }
+        multiple_named_people = bool(re.search(
+            r"\b[A-Z][a-z]+\s+(?:and|&)\s+[A-Z][a-z]+\b", question
+        ))
+        if len(named_speakers) > 1 or multiple_named_people:
+            return CommittedAnswer(
+                used=False,
+                detail="implicit cause cannot bind a question naming multiple speakers",
+            )
+
+        excluded = {
+            person.lower(), "why", "did", "does", "do", "was", "were", "is",
+            "are", "has", "have", "had", "the", "a", "an", "and", "or",
+            "to", "of", "for", "in", "on", "at", "with", "by", "from",
+            "my", "his", "her", "their", "our", "your", "again", "regularly",
+            "decide", "decided", "choose", "chose", "start", "started",
+            "begin", "began", "get", "got", "keep", "keeps", "kept",
+        }
+        topic_terms = {
+            term for term in cls._extract_keywords(question)
+            if term not in excluded and len(term) > 2
+        }
+        if not topic_terms:
+            return CommittedAnswer(used=False)
+
+        candidates: list[tuple[int, str, Turn]] = []
+        bridged_evidence: dict[str, str] = {}
+        after_realization = re.compile(
+            r"\bafter\s+(?:my|our|the)\s+(?:last\s+)?([^,.!?]{2,70}),\s*"
+            r"(?:I|we)\s+(?:saw|realized|recogni[sz]ed|noticed|understood)\s+"
+            r"([^.!?]+)", re.I,
+        )
+        # Purpose complements have a constrained verb head. Treating every
+        # "to <capitalized noun/place>" as an infinitive was shown to connect
+        # unrelated destinations (e.g. "trip to Rio") to a nearby topic.
+        purpose_clause = re.compile(
+            r"\bto\s+((?:relax|recharge|unwind|rest|escape|cope|calm|connect|bond|"
+            r"help|support|express|remember|appreciate|nurture|strengthen|improve|"
+            r"learn|contribute|volunteer|create|make|spend|feel|find|raise|share|"
+            r"serve|give|keep|stay|achieve|build|promote)\b"
+            r"[a-z -]{0,38}?)(?=\s*(?:[-—,;:]|$))",
+            re.I,
+        )
+        made_decision = re.compile(
+            r"\b(seeing|witnessing|noticing)\s+(.{4,100}?)\s+"
+            r"made\s+me\s+(?:decide|act|choose)\s+to\s+([a-z][a-z-]*)\b",
+            re.I,
+        )
+        stated_intention = re.compile(
+            r"\b(?:hoping|wanting|intending|aiming|planning)\s+to\s+([^.!?]+)", re.I
+        )
+        generic_event_terms = {
+            "class", "workshop", "thing", "something", "activity", "event",
+            "reason", "color", "colour", "way", "time",
+        }
+
+        # A stated intention may follow the action by a turn or two. Bridge
+        # only within the same speaker and dialogue session, and only when the
+        # intention turn and its neighbour each carry a distinct, specific
+        # topic term from the question. This prevents a nearby unrelated goal
+        # (or another speaker's reply) from being promoted to the answer.
+        specific_terms = topic_terms - generic_event_terms
+        for turn in turns:
+            if turn.speaker.lower() != person.lower():
+                continue
+            session_match = re.match(r"(D\d+):(\d+)", turn.dia_id, re.I)
+            if not session_match:
+                continue
+            session, turn_no = session_match.group(1).lower(), int(session_match.group(2))
+            nearby = [
+                other for other in turns
+                if other.speaker.lower() == person.lower()
+                and (other_id := re.match(r"(D\d+):(\d+)", other.dia_id, re.I))
+                and other_id.group(1).lower() == session
+                and abs(int(other_id.group(2)) - turn_no) <= 3
+            ]
+            turn_terms = {
+                term for term in specific_terms
+                if re.search(rf"\b{re.escape(term)}\w*\b", turn.text, re.I)
+            }
+            if not turn_terms:
+                continue
+            neighboring_terms = {
+                term for other in nearby if other is not turn
+                for term in specific_terms
+                if re.search(rf"\b{re.escape(term)}\w*\b", other.text, re.I)
+            }
+            if not (neighboring_terms - turn_terms):
+                continue
+            for intention in stated_intention.finditer(turn.text):
+                answer = intention.group(1).strip(" .!?,;:")
+                if len(answer) >= 6:
+                    evidence = ", ".join(dict.fromkeys(
+                        other.dia_id for other in nearby
+                        if other.dia_id and any(
+                            re.search(rf"\b{re.escape(term)}\w*\b", other.text, re.I)
+                            for term in specific_terms
+                        )
+                    ))
+                    candidates.append((
+                        len(turn_terms | neighboring_terms) + 1,
+                        answer,
+                        turn,
+                    ))
+                    # Keep the evidence ids associated with this candidate
+                    # without changing the answer-candidate tuple shape.
+                    if evidence:
+                        bridged_evidence[answer.lower()] = evidence
+
+        for turn in turns:
+            if turn.speaker.lower() != person.lower():
+                continue
+            for sentence in re.split(r"(?<=[.!?])\s+", turn.text):
+                words = set(re.findall(r"[a-z]+", sentence.lower()))
+                matched = {
+                    term for term in topic_terms
+                    if term in words or any(
+                        word.startswith(term) or term.startswith(word)
+                        for word in words if len(word) >= 4 and len(term) >= 4
+                    )
+                }
+                if not matched:
+                    continue
+
+                # A previous event followed by an explicit realization is a
+                # supported reason only when that event is named in the query.
+                m_after = after_realization.search(sentence)
+                if m_after:
+                    prior_event = m_after.group(1).lower()
+                    if any(re.search(rf"\b{re.escape(term)}\w*\b", prior_event) for term in matched):
+                        answer = m_after.group(2).strip(" .!?,;:")
+                        if len(answer) >= 8:
+                            candidates.append((len(matched) + 1, answer, turn))
+
+                # Purpose infinitives are local to the same speaker sentence
+                # and the queried event/topic, never borrowed from neighbours.
+                for m_purpose in purpose_clause.finditer(sentence):
+                    purpose = m_purpose.group(1).strip()
+                    purpose_words = set(re.findall(r"[a-z]+", purpose.lower()))
+                    # Do not mistake an infinitival complement that merely
+                    # repeats the questioned action ("decided to run again")
+                    # for its reason.
+                    if len(purpose) < 3 or purpose_words & matched:
+                        continue
+                    answer = f"to {purpose}"
+                    # When the same sentence states the effect after a dash,
+                    # preserve that explicit evidence and normalize the
+                    # purpose into a concise answer clause.
+                    effect = re.search(
+                        r"[-—,;:]\s*(?:it'?s|it\s+is)\s+(?:so\s+)?"
+                        r"(peaceful|serene|calm|relaxing)\b",
+                        sentence[m_purpose.end():], re.I,
+                    )
+                    purpose_verb = purpose_words & {"relax", "recharge", "unwind"}
+                    if effect and purpose_verb:
+                        finite = {"relax": "relaxes", "recharge": "recharges", "unwind": "unwinds"}
+                        verb = next(iter(purpose_verb))
+                        answer = f"It {finite[verb]} and feels {effect.group(1).lower()}"
+                    candidates.append((len(matched), answer, turn))
+
+                m_decision = made_decision.search(sentence)
+                if m_decision:
+                    action = m_decision.group(3).lower()
+                    if any(action.startswith(term) or term.startswith(action) for term in matched):
+                        answer = f"{m_decision.group(1)} {m_decision.group(2).strip()}"
+                        candidates.append((len(matched) + 1, answer, turn))
+
+        if not candidates:
+            return CommittedAnswer(used=False)
+        best_score = max(score for score, _, _ in candidates)
+        best = [(answer, turn) for score, answer, turn in candidates if score == best_score]
+        unique = {answer.lower() for answer, _ in best}
+        if len(unique) != 1:
+            return CommittedAnswer(
+                used=False,
+                detail="ambiguous implicit purposes for the requested event",
+            )
+        answer, turn = best[0]
+        evidence_turn = bridged_evidence.get(answer.lower(), turn.dia_id)
+        return CommittedAnswer(
+            used=True,
+            answer=answer,
+            source="autonomous_event_action_resolver",
+            confidence=0.82,
+            detail=f"extracted topic-bound implicit reason for '{person}': '{answer}'",
+            evidence_turn=evidence_turn,
+        )
 
     @classmethod
     def _extract_person(cls, question: str, turns: list[Turn]) -> str | None:

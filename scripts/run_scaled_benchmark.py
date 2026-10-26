@@ -25,9 +25,9 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "src"))
 sys.path.insert(0, str(REPO_ROOT))
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
 from artificial_memory.core.ir import StructuredIR
-from artificial_memory.recall.ir_resolver import UniversalIRResolver
+from artificial_memory_gen.recall.ir_resolver import UniversalIRResolver
 from artificial_memory.research.benchmarks.arena import (
     ArenaCategory,
     ArenaDataset,
@@ -166,8 +166,8 @@ def run_am_player(dataset: ArenaDataset, answerer: OllamaAnswerer, diagnose: boo
     return metrics, scores, retrieval_acc, traces
 
 
-from artificial_memory.context.compiler import CognitiveContextCompiler
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.context.compiler import CognitiveContextCompiler
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 
 
 def run_apex_msc_player(dataset: ArenaDataset, answerer: OllamaAnswerer):

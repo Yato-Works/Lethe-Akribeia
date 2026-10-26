@@ -1,0 +1,33 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 1131.0,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 9.571942000009585,
+  "per_type_breakdown": {
+    "knowledge-update": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 1131.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "question": "Where am I planning to stay for my birthday trip to Hawaii?",
+      "ground_truth": "Oahu",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1131,
+      "latency_ms": 9034.694900008617
+    }
+  ]
+}

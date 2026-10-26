@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import pytest
 
-from artificial_memory.recall.answer_shape import (
+from artificial_memory_gen.recall.answer_shape import (
     AnswerShape,
     classify_answer_shape,
     shape_directive,

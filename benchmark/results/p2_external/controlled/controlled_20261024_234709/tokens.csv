@@ -1,0 +1,6 @@
+player,write_llm_calls,write_prompt_tokens,write_completion_tokens,retrieval_calls,context_calls,answer_llm_calls,answer_prompt_tokens,answer_completion_tokens,total_tokens,context_budget,context_used,budget_violations
+Simple RAG,0,0,0,1000,1000,1000,485135,7716,492851,2000,386435,0
+Mem0-style,520,61643,8233,1000,1000,1000,386685,7056,463617,2000,293330,0
+Zep-style,520,61643,8232,1000,1000,1000,590645,6991,667511,2000,436965,0
+HippoRAG-style,520,61643,8232,1000,1000,1000,628435,9485,707795,2000,497640,0
+AM v0.2.0,0,0,0,1000,1000,1000,431299,6403,437702,2000,517639,0

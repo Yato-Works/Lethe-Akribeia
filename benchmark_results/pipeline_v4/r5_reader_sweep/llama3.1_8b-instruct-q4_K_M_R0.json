@@ -1,0 +1,2294 @@
+{
+  "model": "llama3.1:8b-instruct-q4_K_M",
+  "cond": "R0",
+  "n": 250,
+  "correct": 207,
+  "accuracy": 0.828,
+  "mean_prompt_tokens": 1253.712,
+  "mean_latency_ms": 1358.6747712000033,
+  "elapsed_seconds": 339.70847270000013,
+  "per_type": {
+    "knowledge-update": {
+      "correct": 35,
+      "total": 39,
+      "accuracy": 0.8974358974358975
+    },
+    "multi-session": {
+      "correct": 49,
+      "total": 67,
+      "accuracy": 0.7313432835820896
+    },
+    "single-session-assistant": {
+      "correct": 24,
+      "total": 28,
+      "accuracy": 0.8571428571428571
+    },
+    "single-session-preference": {
+      "correct": 11,
+      "total": 15,
+      "accuracy": 0.7333333333333333
+    },
+    "single-session-user": {
+      "correct": 33,
+      "total": 35,
+      "accuracy": 0.9428571428571428
+    },
+    "temporal-reasoning": {
+      "correct": 55,
+      "total": 66,
+      "accuracy": 0.8333333333333334
+    }
+  },
+  "results": [
+    {
+      "question_id": "00ca467f",
+      "question_type": "multi-session",
+      "predicted_answer": "You went to 3 doctor's appointments in March.",
+      "is_correct": false,
+      "prompt_tokens": 1149,
+      "latency_ms": 10609.458999999788,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "01493427",
+      "question_type": "knowledge-update",
+      "predicted_answer": "25.",
+      "is_correct": true,
+      "prompt_tokens": 986,
+      "latency_ms": 611.4001999999346,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "031748ae",
+      "question_type": "knowledge-update",
+      "predicted_answer": "In the first session, the user leads 6 engineers. In the second session, the user leads 5 engineers.",
+      "is_correct": true,
+      "prompt_tokens": 1598,
+      "latency_ms": 1887.2467999999571,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "031748ae_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "1. 4 engineers, \n2. 1 (the manager Rachel) \nTotal: 5 engineers.",
+      "is_correct": true,
+      "prompt_tokens": 1604,
+      "latency_ms": 1682.6013999998395,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "06878be2",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your Sony A7R IV and Godox V1 flash, I recommend a Gitzo GT3543LS tripod with a ballhead, such as the Wimberley WH-200, for smooth and precise camera movements. Additionally, a battery pack like the Anker PowerCore Fusion would be a great accessory to charge your devices on the go.",
+      "is_correct": false,
+      "prompt_tokens": 985,
+      "latency_ms": 2792.9643999996188,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "06db6396",
+      "question_type": "knowledge-update",
+      "predicted_answer": "The relevant values are: 4 (Event 1), 5 (Event 6). \nThe final answer is 9.",
+      "is_correct": true,
+      "prompt_tokens": 1547,
+      "latency_ms": 1940.4554999996435,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "06f04340",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your recent interest in using fresh basil and mint, I recommend making a Grilled Chicken and Berry Salad with a balsamic vinaigrette dressing, incorporating your homegrown basil and mint into the mix.",
+      "is_correct": true,
+      "prompt_tokens": 1050,
+      "latency_ms": 2027.3685000001933,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "07741c44",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Under my bed for storage.",
+      "is_correct": true,
+      "prompt_tokens": 1062,
+      "latency_ms": 812.4966000000313,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Under my bed for storage.",
+      "is_correct": false,
+      "prompt_tokens": 1262,
+      "latency_ms": 948.7882000003083,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "078150f1",
+      "question_type": "multi-session",
+      "predicted_answer": "You raised $250, and your initial goal was $200. The difference is $50.",
+      "is_correct": true,
+      "prompt_tokens": 1690,
+      "latency_ms": 1843.0145999996057,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "08e075c7",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I've been using my Fitbit Charge 3 for 9 months now.",
+      "is_correct": true,
+      "prompt_tokens": 1061,
+      "latency_ms": 1111.6976000002978,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "09ba9854",
+      "question_type": "multi-session",
+      "predicted_answer": "$50.",
+      "is_correct": true,
+      "prompt_tokens": 1141,
+      "latency_ms": 763.20590000023,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "09ba9854_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "The taxi fare is $60, but the train fare is $10.",
+      "is_correct": true,
+      "prompt_tokens": 1144,
+      "latency_ms": 1102.4560000000747,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "predicted_answer": "1. boots from Zara, \n2. new pair of boots from Zara, \n3. navy blue blazer from dry cleaning, \n4. green sweater from sister, \n5. black jeans from Levi's, \n6. white button-down shirt from H&M.\n\n6 items.",
+      "is_correct": true,
+      "prompt_tokens": 1599,
+      "latency_ms": 2940.266099999917,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0bc8ad92",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "5 months.",
+      "is_correct": true,
+      "prompt_tokens": 1114,
+      "latency_ms": 772.3074999998971,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0bc8ad93",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Yes.",
+      "is_correct": false,
+      "prompt_tokens": 1138,
+      "latency_ms": 750.6772000001547,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0ddfec37_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1232,
+      "latency_ms": 875.2295999997841,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0e4e4c46",
+      "question_type": "knowledge-update",
+      "predicted_answer": "My current highest score in Ticket to Ride is 132 points.",
+      "is_correct": true,
+      "prompt_tokens": 1046,
+      "latency_ms": 988.9610000000175,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0e5e2d1a",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "38 subjects.",
+      "is_correct": true,
+      "prompt_tokens": 1438,
+      "latency_ms": 1007.5689999998758,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "0f05491a",
+      "question_type": "knowledge-update",
+      "predicted_answer": "The relevant values are: 300, 120.\nThe final computed answer is: 120.",
+      "is_correct": true,
+      "prompt_tokens": 1496,
+      "latency_ms": 1724.5359999997163,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "10e09553",
+      "question_type": "knowledge-update",
+      "predicted_answer": "7 largemouth bass.",
+      "is_correct": true,
+      "prompt_tokens": 1180,
+      "latency_ms": 929.0201999997407,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "15745da0",
+      "question_type": "single-session-user",
+      "predicted_answer": "Three months.",
+      "is_correct": true,
+      "prompt_tokens": 1162,
+      "latency_ms": 825.4034999999931,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "157a136e",
+      "question_type": "multi-session",
+      "predicted_answer": "My grandma is 75 years old and I'm not mentioned, but since my grandma's 75th birthday celebration was a big deal for us, it can be inferred that I'm likely around 68 years old.",
+      "is_correct": false,
+      "prompt_tokens": 1043,
+      "latency_ms": 1855.7246999998824,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "18bc8abd",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Kansas City Masterpiece.",
+      "is_correct": true,
+      "prompt_tokens": 1175,
+      "latency_ms": 883.4104000002299,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "195a1a1b",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your recent yoga classes and improved flexibility, I recommend trying a sunset yoga session on the beach in Honolulu, followed by a relaxing evening walk along the Waikiki Beach promenade.",
+      "is_correct": true,
+      "prompt_tokens": 1055,
+      "latency_ms": 1887.626900000214,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1a1907b4",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your past conversations, I recommend making a Pimm's Cup with a Twist, incorporating muddled cucumber slices for added flavor and texture. You can also experiment with a simple syrup recipe to complement the drink.",
+      "is_correct": false,
+      "prompt_tokens": 1024,
+      "latency_ms": 1876.3017999999647,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1a8a66a6",
+      "question_type": "multi-session",
+      "predicted_answer": "You currently have 2 magazine subscriptions.",
+      "is_correct": true,
+      "prompt_tokens": 1185,
+      "latency_ms": 972.514499999761,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1b9b7252",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Mindful.org.",
+      "is_correct": true,
+      "prompt_tokens": 1216,
+      "latency_ms": 881.6540999996505,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1c0ddc50",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your preference for avoiding busy roads and steep hills, I recommend listening to Hans Zimmer's movie soundtracks, specifically his scores from films like \"Inception\" or \"Interstellar\", to create a calming atmosphere during your bike ride. You can also try listening to podcasts like \"How I Built This\" to stay entertained and inspired.",
+      "is_correct": true,
+      "prompt_tokens": 975,
+      "latency_ms": 2633.9226999998573,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1c549ce4",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: $120 (car cover) and $20 (detailing spray). The total cost is $140.",
+      "is_correct": true,
+      "prompt_tokens": 1320,
+      "latency_ms": 1784.7529000000577,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1d4da289",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Biometric authentication or one-time passwords (OTP).",
+      "is_correct": true,
+      "prompt_tokens": 1248,
+      "latency_ms": 1150.8684000000358,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1de5cff2",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Veja.",
+      "is_correct": true,
+      "prompt_tokens": 1325,
+      "latency_ms": 969.1235999998753,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1e043500",
+      "question_type": "single-session-user",
+      "predicted_answer": "Summer Vibes.",
+      "is_correct": true,
+      "prompt_tokens": 1086,
+      "latency_ms": 779.6210999999857,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "1f2b8d4f",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are $800 and $50. The difference in price is $800 - $50 = $750.",
+      "is_correct": true,
+      "prompt_tokens": 1706,
+      "latency_ms": 1867.641900000308,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2133c1b5_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I've been living in Harajuku for 3 months now.",
+      "is_correct": true,
+      "prompt_tokens": 1076,
+      "latency_ms": 1092.8209999997307,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2311e44b",
+      "question_type": "multi-session",
+      "predicted_answer": "The Nightingale has 440 pages. \n\nI don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1684,
+      "latency_ms": 1740.0594999999157,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2318644b",
+      "question_type": "multi-session",
+      "predicted_answer": "The accommodation in Maui cost over $300 per night, and the accommodation in Tokyo cost $30 per night. The difference is $270.",
+      "is_correct": true,
+      "prompt_tokens": 1664,
+      "latency_ms": 1922.6580999998077,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2698e78f_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1123,
+      "latency_ms": 909.7432999997181,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "27016adc",
+      "question_type": "multi-session",
+      "predicted_answer": "$20,000 is 10% of $200,000.",
+      "is_correct": true,
+      "prompt_tokens": 1189,
+      "latency_ms": 1147.2622000001138,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "28bcfaac",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "MusicTheory.net.",
+      "is_correct": true,
+      "prompt_tokens": 1335,
+      "latency_ms": 965.6230999999025,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "28dc39ac",
+      "question_type": "multi-session",
+      "predicted_answer": "70 hours (Odyssey) + 30 hours (The Last of Us Part II) + 10 hours (Celeste) + 5 hours (Hyper Light Drifter) + 25 hours (The Last of Us Part II) = 120 hours.",
+      "is_correct": true,
+      "prompt_tokens": 1508,
+      "latency_ms": 2753.259000000071,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "29f2956b_abs",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1046,
+      "latency_ms": 814.3058999999084,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2b8f3739",
+      "question_type": "multi-session",
+      "predicted_answer": "The total amount of money earned from selling products at the markets is $225 + $7.5 + $120 = $352.5.",
+      "is_correct": false,
+      "prompt_tokens": 1561,
+      "latency_ms": 2040.3534000001855,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2c63a862",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "It took 21 days from February 10th to March 1st.",
+      "is_correct": true,
+      "prompt_tokens": 1103,
+      "latency_ms": 1178.8578000000598,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2e6d26dc",
+      "question_type": "multi-session",
+      "predicted_answer": "At least 4 babies were born to friends and family members in the last few months.",
+      "is_correct": false,
+      "prompt_tokens": 1419,
+      "latency_ms": 1448.8814000001184,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "2ebe6c90",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1088,
+      "latency_ms": 808.0602999998518,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "311778f1",
+      "question_type": "single-session-user",
+      "predicted_answer": "You spent 10 hours watching documentaries on Netflix last month.",
+      "is_correct": true,
+      "prompt_tokens": 1393,
+      "latency_ms": 1260.432000000037,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3249768e",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Triple Sec.",
+      "is_correct": false,
+      "prompt_tokens": 1420,
+      "latency_ms": 1055.2541000001838,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "35a27287",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Based on your past conversations, I recommend checking out the cultural festival you volunteered at last month, as they often host repeat events. Additionally, you can use TripIt to track and find local events in your area, including language exchange events and cultural festivals that celebrate language diversity.",
+      "is_correct": true,
+      "prompt_tokens": 1040,
+      "latency_ms": 2366.592700000183,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "36580ce8",
+      "question_type": "single-session-user",
+      "predicted_answer": "I actually recently had a bad case of bronchitis that I initially thought was just a cold.",
+      "is_correct": true,
+      "prompt_tokens": 1063,
+      "latency_ms": 1245.6852000000254,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "36b9f61e",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: $800, $1,200, $500. The total amount spent on luxury items is $2,500.",
+      "is_correct": true,
+      "prompt_tokens": 1649,
+      "latency_ms": 2136.056499999995,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3ba21379",
+      "question_type": "knowledge-update",
+      "predicted_answer": "A Ford Mustang Shelby GT350R model.",
+      "is_correct": true,
+      "prompt_tokens": 1143,
+      "latency_ms": 1028.14619999981,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3c1045c8",
+      "question_type": "multi-session",
+      "predicted_answer": "I'm 2.5 years older than the average age of employees in my department.",
+      "is_correct": true,
+      "prompt_tokens": 1004,
+      "latency_ms": 1143.9052999999149,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "3f1e9474",
+      "question_type": "single-session-user",
+      "predicted_answer": "Sarah.",
+      "is_correct": true,
+      "prompt_tokens": 1048,
+      "latency_ms": 682.1772000002966,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "41275add",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "\"How to Sit Properly at a Desk to Avoid Back Pain\" by the Mayo Clinic: https://www.youtube.com/watch?v=UfOvNlX9Hh0.",
+      "is_correct": true,
+      "prompt_tokens": 1354,
+      "latency_ms": 1956.244400000287,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4388e9dd",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Andy was wearing an untidy, stained white shirt.",
+      "is_correct": true,
+      "prompt_tokens": 1210,
+      "latency_ms": 1104.467399999976,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "45dc21b6",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You've tried out 3 of Emma's recipes so far.",
+      "is_correct": true,
+      "prompt_tokens": 1233,
+      "latency_ms": 1138.3358999996744,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "488d3006",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The GR-90.",
+      "is_correct": true,
+      "prompt_tokens": 1302,
+      "latency_ms": 991.6548000001058,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4adc0475",
+      "question_type": "multi-session",
+      "predicted_answer": "The user has scored 3 goals in the recreational indoor soccer league, but there is no mention of assists.",
+      "is_correct": false,
+      "prompt_tokens": 1632,
+      "latency_ms": 7748.857399999906,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4dfccbf7",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "24 days.",
+      "is_correct": true,
+      "prompt_tokens": 938,
+      "latency_ms": 684.6828000002461,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "4f54b7c9",
+      "question_type": "multi-session",
+      "predicted_answer": "You inherited or acquired 5 antique items: \n1. an antique tea set from your cousin Rachel, \n2. a vintage typewriter that belonged to your dad, \n3. a vintage diamond necklace from your grandmother, \n4. an antique music box from your great-aunt, \n5. a set of depression-era glassware from your mom.",
+      "is_correct": true,
+      "prompt_tokens": 1497,
+      "latency_ms": 3163.856399999986,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "51a45a95",
+      "question_type": "single-session-user",
+      "predicted_answer": "Target.",
+      "is_correct": true,
+      "prompt_tokens": 1093,
+      "latency_ms": 764.6357999997235,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "54026fce",
+      "question_type": "single-session-preference",
+      "predicted_answer": "You can continue with virtual coffee breaks, as previously discussed, and also consider organizing a virtual team outing to a popular online escape room, such as \"The Mysterious Island\" on Escape Room Online, which Max, your dog, might enjoy watching from the sidelines.",
+      "is_correct": true,
+      "prompt_tokens": 1020,
+      "latency_ms": 2277.469999999994,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "545bd2b5",
+      "question_type": "single-session-user",
+      "predicted_answer": "I've been averaging around 2 hours of screen time on Instagram per day for the past two weeks.",
+      "is_correct": true,
+      "prompt_tokens": 1082,
+      "latency_ms": 1267.9001000001335,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "58bf7951",
+      "question_type": "single-session-user",
+      "predicted_answer": "The Glass Menagerie.",
+      "is_correct": true,
+      "prompt_tokens": 1101,
+      "latency_ms": 819.4797999999537,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "59524333",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You usually go to the gym at 6:00 pm.",
+      "is_correct": true,
+      "prompt_tokens": 1117,
+      "latency_ms": 1059.4348999998147,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "5a4f22c0",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Rachel is currently working at TechCorp.",
+      "is_correct": true,
+      "prompt_tokens": 1099,
+      "latency_ms": 886.795599999914,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "5a7937c8",
+      "question_type": "multi-session",
+      "predicted_answer": "December 24th (midnight mass) and December 17th (Bible study) are the relevant dates. \n2 days.",
+      "is_correct": true,
+      "prompt_tokens": 1686,
+      "latency_ms": 2118.3547999999064,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "5d3d2817",
+      "question_type": "single-session-user",
+      "predicted_answer": "Marketing specialist at a small startup.",
+      "is_correct": true,
+      "prompt_tokens": 1141,
+      "latency_ms": 945.0068000001011,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "603deb26",
+      "question_type": "knowledge-update",
+      "predicted_answer": "10 times.",
+      "is_correct": true,
+      "prompt_tokens": 1417,
+      "latency_ms": 1004.7386999999617,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "60472f9c",
+      "question_type": "multi-session",
+      "predicted_answer": "You have been working on 3 projects simultaneously, excluding your thesis: Data Mining project, Database Systems project, and a group project for your Database Systems course.",
+      "is_correct": false,
+      "prompt_tokens": 1610,
+      "latency_ms": 2193.9244999998664,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6071bd76",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You switched to less water per tablespoon of coffee.",
+      "is_correct": true,
+      "prompt_tokens": 1218,
+      "latency_ms": 1095.63449999996,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "60bf93ed_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1170,
+      "latency_ms": 865.1740999998765,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "60d45044",
+      "question_type": "single-session-user",
+      "predicted_answer": "Japanese short-grain rice.",
+      "is_correct": true,
+      "prompt_tokens": 1123,
+      "latency_ms": 905.6988000002093,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "61f8c8f8",
+      "question_type": "multi-session",
+      "predicted_answer": "The previous year's time was 45 minutes. The current time is not mentioned, so we can't calculate the difference.",
+      "is_correct": true,
+      "prompt_tokens": 1639,
+      "latency_ms": 2007.9177999996318,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6222b6eb",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The 6S algorithm is implemented in the SIAC_GEE tool.",
+      "is_correct": true,
+      "prompt_tokens": 1313,
+      "latency_ms": 1297.4632999998903,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6456829e",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: 5 (tomato plants) and 3 (cucumber plants).\nThe final computed answer is: 8.",
+      "is_correct": true,
+      "prompt_tokens": 1377,
+      "latency_ms": 1922.573199999988,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "65240037",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The recommended ratio is 1:10.",
+      "is_correct": true,
+      "prompt_tokens": 1259,
+      "latency_ms": 1126.390899999933,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "66f24dbb",
+      "question_type": "single-session-user",
+      "predicted_answer": "A yellow dress and a pair of earrings.",
+      "is_correct": true,
+      "prompt_tokens": 1243,
+      "latency_ms": 1024.515000000065,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "67e0d0f2",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: edX courses, Coursera courses.\nThe final computed answer is: 2.",
+      "is_correct": false,
+      "prompt_tokens": 1597,
+      "latency_ms": 1746.5522000002238,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "69fee5aa",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You have 38 coins in that collection.",
+      "is_correct": true,
+      "prompt_tokens": 1191,
+      "latency_ms": 1035.7156999998551,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6a27ffc2",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You have completed 30 videos so far.",
+      "is_correct": true,
+      "prompt_tokens": 1028,
+      "latency_ms": 878.3398000000489,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6ae235be",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Atmospheric distillation, Fluid catalytic cracking (FCC), Alkylation, and Hydrotreating.",
+      "is_correct": true,
+      "prompt_tokens": 1279,
+      "latency_ms": 1497.4701999999525,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6aeb4375",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Three different Korean restaurants in Event 6, and four different ones in Event 7. \nTotal: 7",
+      "is_correct": true,
+      "prompt_tokens": 1328,
+      "latency_ms": 1703.908400000273,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6aeb4375_abs",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1701,
+      "latency_ms": 1288.6653000000479,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6b168ec8",
+      "question_type": "single-session-user",
+      "predicted_answer": "You own 3 bikes.",
+      "is_correct": true,
+      "prompt_tokens": 1571,
+      "latency_ms": 1216.4738999999827,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6b7dfb22",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Try incorporating fresh herbs from your balcony garden into your paintings, like using basil in a floral still life. You could also revisit the flower paintings on Instagram that inspired you and analyze what specifically drew you to them, to spark new ideas.",
+      "is_correct": true,
+      "prompt_tokens": 1053,
+      "latency_ms": 2178.4794000000147,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6cb6f249",
+      "question_type": "multi-session",
+      "predicted_answer": "You took a 10-day break in mid-February and a week-long break in mid-January. \n10 + 7 = 17 days.",
+      "is_correct": true,
+      "prompt_tokens": 1694,
+      "latency_ms": 2050.8058999998866,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6d550036",
+      "question_type": "multi-session",
+      "predicted_answer": "You have led or are currently leading at least one project.",
+      "is_correct": false,
+      "prompt_tokens": 1429,
+      "latency_ms": 1302.5548000000526,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "6e984302",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1201,
+      "latency_ms": 909.3832999997176,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "70b3e69b",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Manolo García.",
+      "is_correct": true,
+      "prompt_tokens": 1289,
+      "latency_ms": 960.7006999999612,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "71017276",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4 weeks.",
+      "is_correct": true,
+      "prompt_tokens": 1665,
+      "latency_ms": 1214.978500000143,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7161e7e2",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Admon worked the 4 pm - 12 am (Evening Shift) on a Sunday.",
+      "is_correct": true,
+      "prompt_tokens": 1316,
+      "latency_ms": 1453.6788999998862,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "71a3fd6b",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "+49 (0) 62 32 / 14 23 - 0.",
+      "is_correct": true,
+      "prompt_tokens": 1345,
+      "latency_ms": 1371.901600000001,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "720133ac",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are $50 (vet visit) and $25 (flea medication). The total cost is $75.",
+      "is_correct": true,
+      "prompt_tokens": 1523,
+      "latency_ms": 1946.1374000002252,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "726462e0",
+      "question_type": "single-session-user",
+      "predicted_answer": "10% off.",
+      "is_correct": true,
+      "prompt_tokens": 1371,
+      "latency_ms": 1058.448600000247,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7401057b",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You've accumulated enough points for a single free night's stay at any Hilton property.",
+      "is_correct": false,
+      "prompt_tokens": 1075,
+      "latency_ms": 1165.5591999997341,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7405e8b1",
+      "question_type": "multi-session",
+      "predicted_answer": "Yes, 40% is higher than 20%.",
+      "is_correct": true,
+      "prompt_tokens": 1303,
+      "latency_ms": 1138.3049999999457,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7527f7e2",
+      "question_type": "single-session-user",
+      "predicted_answer": "$800.",
+      "is_correct": true,
+      "prompt_tokens": 1025,
+      "latency_ms": 744.8088000001007,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "75499fd8",
+      "question_type": "single-session-user",
+      "predicted_answer": "Golden Retriever.",
+      "is_correct": true,
+      "prompt_tokens": 1117,
+      "latency_ms": 804.267400000299,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "75832dbd",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Based on your interest in advanced topics in deep learning for medical image analysis, I recommend checking out the recent publications in the IEEE Transactions on Medical Imaging and the MICCAI conference proceedings, which often feature cutting-edge research in multi-modal image fusion, transfer learning, and domain adaptation.",
+      "is_correct": true,
+      "prompt_tokens": 1005,
+      "latency_ms": 2415.7390000000305,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "75f70248",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Yes, it might be due to the dust from your cat.",
+      "is_correct": false,
+      "prompt_tokens": 1130,
+      "latency_ms": 1104.6746000001804,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7a87bd0c",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I've been sticking to my daily tidying routine for 4 weeks.",
+      "is_correct": true,
+      "prompt_tokens": 1048,
+      "latency_ms": 1049.3289999999433,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7a8d0b71",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "$2,000.",
+      "is_correct": true,
+      "prompt_tokens": 1271,
+      "latency_ms": 979.6784999998636,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7e00a6cb",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "International Budget Hostel.",
+      "is_correct": true,
+      "prompt_tokens": 1347,
+      "latency_ms": 1007.0175000000745,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "7e974930",
+      "question_type": "knowledge-update",
+      "predicted_answer": "$420.",
+      "is_correct": true,
+      "prompt_tokens": 1224,
+      "latency_ms": 885.6424000000516,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8077ef71",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "26 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1496,
+      "latency_ms": 1161.4896999999473,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "80ec1f4f_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "There is no mention of December in the evidence.",
+      "is_correct": true,
+      "prompt_tokens": 1577,
+      "latency_ms": 1568.001699999968,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8464fc84",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Roscioli.",
+      "is_correct": true,
+      "prompt_tokens": 1400,
+      "latency_ms": 1104.0529000001698,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "86f00804",
+      "question_type": "single-session-user",
+      "predicted_answer": "The Seven Husbands of Evelyn Hugo.",
+      "is_correct": true,
+      "prompt_tokens": 1056,
+      "latency_ms": 895.4111999996712,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8752c811",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The 27th parameter on the list was Sound effects.",
+      "is_correct": true,
+      "prompt_tokens": 1632,
+      "latency_ms": 1429.0307000001121,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "87f22b4a",
+      "question_type": "multi-session",
+      "predicted_answer": "You've made $120 from selling 40 dozen eggs at $3 a dozen.",
+      "is_correct": true,
+      "prompt_tokens": 1157,
+      "latency_ms": 1237.6463999999032,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "88432d0a_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "There is no mention of baking egg tarts in the evidence.",
+      "is_correct": true,
+      "prompt_tokens": 1498,
+      "latency_ms": 1600.278999999773,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8979f9ec",
+      "question_type": "multi-session",
+      "predicted_answer": "The user got 3 meals from the chicken fajitas and 5 meals from the lentil soup. \n3 + 5 = 8.",
+      "is_correct": true,
+      "prompt_tokens": 1667,
+      "latency_ms": 2017.057399999885,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "89941a94",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Yes, I have a road bike.",
+      "is_correct": true,
+      "prompt_tokens": 1119,
+      "latency_ms": 985.8855000002222,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8a137a7f",
+      "question_type": "single-session-user",
+      "predicted_answer": "A Philips LED bulb.",
+      "is_correct": true,
+      "prompt_tokens": 1145,
+      "latency_ms": 884.182399999645,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8a2466db",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your experience with Adobe Premiere Pro, I recommend checking out the official Adobe tutorials and YouTube channels, such as Premiere Bro and Peter McKinnon, for advanced video editing techniques.",
+      "is_correct": true,
+      "prompt_tokens": 1124,
+      "latency_ms": 1924.2311999996673,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8e91e7d9",
+      "question_type": "multi-session",
+      "predicted_answer": "I have 4 siblings.",
+      "is_correct": true,
+      "prompt_tokens": 1548,
+      "latency_ms": 1407.7642000002015,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "8ebdbe50",
+      "question_type": "single-session-user",
+      "predicted_answer": "Data Science certification.",
+      "is_correct": true,
+      "prompt_tokens": 1198,
+      "latency_ms": 906.4097000000402,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "94f70d80",
+      "question_type": "single-session-user",
+      "predicted_answer": "It took me 4 hours.",
+      "is_correct": true,
+      "prompt_tokens": 1050,
+      "latency_ms": 831.2802000000374,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "95228167",
+      "question_type": "single-session-preference",
+      "predicted_answer": "When selecting a new guitar, consider the tone and playability that suits your style, just like you did when choosing between the Fender Stratocaster and Gibson Les Paul. Don't forget to ask the salesperson about the guitar's electronics and pickups, as you'll want to ensure they can produce the rich, full sound you're looking for in open D tuning.",
+      "is_correct": true,
+      "prompt_tokens": 1026,
+      "latency_ms": 2915.133099999821,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "95bcc1c8",
+      "question_type": "single-session-user",
+      "predicted_answer": "10 amateur comedians performed at the open mic night.",
+      "is_correct": true,
+      "prompt_tokens": 1658,
+      "latency_ms": 1677.8987000002417,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "982b5123",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Three months.",
+      "is_correct": true,
+      "prompt_tokens": 1547,
+      "latency_ms": 1205.315199999859,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "9d25d4e0",
+      "question_type": "multi-session",
+      "predicted_answer": "You acquired 3 pieces of jewelry in the last two months.",
+      "is_correct": true,
+      "prompt_tokens": 1544,
+      "latency_ms": 1554.453100000046,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "9ee3ecd6",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: 200 points (already earned) and 300 points (required to redeem a free skincare product). \nThe final computed answer is: 100 points.",
+      "is_correct": true,
+      "prompt_tokens": 1577,
+      "latency_ms": 2392.1367000002647,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a08a253f",
+      "question_type": "multi-session",
+      "predicted_answer": "You attend Zumba classes on Tuesdays and Thursdays, and a weightlifting class on Saturdays, which is a total of 3 days a week.",
+      "is_correct": true,
+      "prompt_tokens": 1699,
+      "latency_ms": 2045.124300000225,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a11281a2",
+      "question_type": "multi-session",
+      "predicted_answer": "Approximately 100 followers.",
+      "is_correct": true,
+      "prompt_tokens": 1155,
+      "latency_ms": 982.5903999999355,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a1cc6108",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1061,
+      "latency_ms": 780.8680999996795,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a2f3aa27",
+      "question_type": "knowledge-update",
+      "predicted_answer": "The relevant values are 1250 and 1300. The final computed answer is 1300.",
+      "is_correct": true,
+      "prompt_tokens": 1688,
+      "latency_ms": 1932.5871999999436,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a3045048",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I ordered her gift 35 days before her birthday party.",
+      "is_correct": true,
+      "prompt_tokens": 1193,
+      "latency_ms": 1128.4527999996499,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a3332713",
+      "question_type": "multi-session",
+      "predicted_answer": "The total amount spent on gifts for my coworker and brother is $100 (gift card for brother) + $75 (gift for coworker's baby shower) = $175.",
+      "is_correct": false,
+      "prompt_tokens": 1671,
+      "latency_ms": 2368.602699999883,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a346bb18",
+      "question_type": "multi-session",
+      "predicted_answer": "The target time for the marathon was 4 hours and 10 minutes, which is 250 minutes. The personal best time was 2 hours and 15 minutes, which is 135 minutes. The difference is 250 - 135 = 115 minutes.",
+      "is_correct": false,
+      "prompt_tokens": 1677,
+      "latency_ms": 2655.8454999999412,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a89d7624",
+      "question_type": "single-session-preference",
+      "predicted_answer": "You'll love the music scene in Denver, just like you did on your previous visit. Be sure to check out the Red Rocks Amphitheater, where you can catch a concert and enjoy the breathtaking views. After the show, grab some delicious BBQ at one of the nearby restaurants, a perfect way to cap off a great night out.",
+      "is_correct": true,
+      "prompt_tokens": 1015,
+      "latency_ms": 2773.944500000198,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a96c20ee",
+      "question_type": "multi-session",
+      "predicted_answer": "Harvard University.",
+      "is_correct": true,
+      "prompt_tokens": 1058,
+      "latency_ms": 767.5554000002194,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "a9f6b44c",
+      "question_type": "multi-session",
+      "predicted_answer": "1 bike (cleaned and lubricated on March 2nd) + 2 bikes (mentioned in the bike rack question) = 3 bikes.",
+      "is_correct": true,
+      "prompt_tokens": 1738,
+      "latency_ms": 2266.6736000001038,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "aae3761f",
+      "question_type": "multi-session",
+      "predicted_answer": "Four hours to Outer Banks, five hours to the mountains in Tennessee, and six hours to Washington D.C. \nTotal hours: 4 + 5 + 6 = 15 hours.",
+      "is_correct": true,
+      "prompt_tokens": 1573,
+      "latency_ms": 2208.819299999959,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ac031881",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "LIV.",
+      "is_correct": false,
+      "prompt_tokens": 1509,
+      "latency_ms": 1162.9235000000335,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ad7109d1",
+      "question_type": "single-session-user",
+      "predicted_answer": "500 Mbps.",
+      "is_correct": true,
+      "prompt_tokens": 1024,
+      "latency_ms": 731.818000000203,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "af082822",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "2 weeks ago.",
+      "is_correct": true,
+      "prompt_tokens": 1450,
+      "latency_ms": 1064.422100000229,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "affe2881",
+      "question_type": "knowledge-update",
+      "predicted_answer": "27, 32. \nThe final answer is 32.",
+      "is_correct": true,
+      "prompt_tokens": 1519,
+      "latency_ms": 1600.7932000002256,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b01defab",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Yes.",
+      "is_correct": true,
+      "prompt_tokens": 1075,
+      "latency_ms": 840.9180000003289,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b29f3365",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Six weeks.",
+      "is_correct": true,
+      "prompt_tokens": 1122,
+      "latency_ms": 839.3319000001611,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b3c15d39",
+      "question_type": "multi-session",
+      "predicted_answer": "It took 5 days to receive the new remote shutter release.",
+      "is_correct": true,
+      "prompt_tokens": 1114,
+      "latency_ms": 1032.6442000000498,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b46e15ee",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The \"Walk for Hunger\" charity event.",
+      "is_correct": true,
+      "prompt_tokens": 1084,
+      "latency_ms": 948.8514999998188,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b5ef892d",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: 5 days (Yellowstone National Park), 3 days (Big Sur). \nThe final answer is: 8 days.",
+      "is_correct": true,
+      "prompt_tokens": 1765,
+      "latency_ms": 2322.1086000003197,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b6019101",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You watched 5 MCU films in the last 3 months and 4 MCU films in the last 3 months. \n5 + 4 = 9",
+      "is_correct": true,
+      "prompt_tokens": 1595,
+      "latency_ms": 2001.0951999997815,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b759caee",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Jessica Poole (@jessica_poole_jewellery).",
+      "is_correct": true,
+      "prompt_tokens": 1196,
+      "latency_ms": 1155.5671999999504,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b86304ba",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1039,
+      "latency_ms": 763.5609999997541,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "b9cfe692",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Two and a half weeks for \"The Seven Husbands of Evelyn Hugo\" and three weeks for \"The Nightingale\".",
+      "is_correct": true,
+      "prompt_tokens": 1218,
+      "latency_ms": 1491.46490000021,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ba358f49_abs",
+      "question_type": "multi-session",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1094,
+      "latency_ms": 835.2400999997371,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "bc8a6e93_abs",
+      "question_type": "single-session-user",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1180,
+      "latency_ms": 864.4608999998127,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "bcbe585f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4 weeks ago.",
+      "is_correct": true,
+      "prompt_tokens": 1499,
+      "latency_ms": 1101.9532000000254,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c14c00dd",
+      "question_type": "single-session-user",
+      "predicted_answer": "Trader Joe's.",
+      "is_correct": true,
+      "prompt_tokens": 1010,
+      "latency_ms": 799.2889000001924,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c18a7dc8",
+      "question_type": "multi-session",
+      "predicted_answer": "I graduated from college 8 years ago.",
+      "is_correct": false,
+      "prompt_tokens": 1016,
+      "latency_ms": 856.4964000001964,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c19f7a0b",
+      "question_type": "single-session-user",
+      "predicted_answer": "I get home from work around 6:30 pm on weekdays.",
+      "is_correct": true,
+      "prompt_tokens": 1075,
+      "latency_ms": 1038.2377000000815,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c2ac3c61",
+      "question_type": "multi-session",
+      "predicted_answer": "You have completed 4 online courses in total: 2 on Coursera, 1 on edX, and 1 is not specified but implied as part of the 2 on edX.",
+      "is_correct": false,
+      "prompt_tokens": 1564,
+      "latency_ms": 2416.529499999797,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c4ea545c",
+      "question_type": "knowledge-update",
+      "predicted_answer": "Yes.",
+      "is_correct": true,
+      "prompt_tokens": 1167,
+      "latency_ms": 824.8200000002726,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c4f10528",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Miss Bee Providore.",
+      "is_correct": true,
+      "prompt_tokens": 1346,
+      "latency_ms": 1012.5330999999278,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c5e8278d",
+      "question_type": "single-session-user",
+      "predicted_answer": "My last name was Johnson.",
+      "is_correct": true,
+      "prompt_tokens": 1192,
+      "latency_ms": 924.8394000001099,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c6853660",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You increased the limit to two cups.",
+      "is_correct": true,
+      "prompt_tokens": 1118,
+      "latency_ms": 941.2772000000587,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c8090214",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "A week.",
+      "is_correct": false,
+      "prompt_tokens": 1159,
+      "latency_ms": 802.9660000001968,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c8c3f81d",
+      "question_type": "single-session-user",
+      "predicted_answer": "Nike.",
+      "is_correct": true,
+      "prompt_tokens": 1145,
+      "latency_ms": 777.3566000000756,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "c960da58",
+      "question_type": "single-session-user",
+      "predicted_answer": "1. 20 playlists on Spotify (Event 1).\n \nThe final answer is: 20.",
+      "is_correct": true,
+      "prompt_tokens": 1187,
+      "latency_ms": 1525.4605000000083,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "caf9ead2",
+      "question_type": "single-session-user",
+      "predicted_answer": "It took them around 5 hours to move everything into the new apartment.",
+      "is_correct": true,
+      "prompt_tokens": 1037,
+      "latency_ms": 1108.0238999998073,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ccb36322",
+      "question_type": "single-session-user",
+      "predicted_answer": "Netflix.",
+      "is_correct": false,
+      "prompt_tokens": 1157,
+      "latency_ms": 807.5951999999234,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ce6d2d27",
+      "question_type": "knowledge-update",
+      "predicted_answer": "You take a cocktail-making class on Thursday.",
+      "is_correct": false,
+      "prompt_tokens": 1055,
+      "latency_ms": 908.2898000001478,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ceb54acb",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The other four options were: 1. Sexual fixations, 2. Problematic sexual behaviors, 3. Sexual impulsivity, and 4. Compulsive sexuality.",
+      "is_correct": true,
+      "prompt_tokens": 1234,
+      "latency_ms": 1984.334800000397,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "cf22b7bf",
+      "question_type": "knowledge-update",
+      "predicted_answer": "10 pounds.",
+      "is_correct": true,
+      "prompt_tokens": 1030,
+      "latency_ms": 771.8384999998307,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "d23cf73b",
+      "question_type": "multi-session",
+      "predicted_answer": "Italian, Indian, Ethiopian, Korean, and vegan cuisine. \n5 different cuisines.",
+      "is_correct": false,
+      "prompt_tokens": 1694,
+      "latency_ms": 1673.3158000001822,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "d24813b1",
+      "question_type": "single-session-preference",
+      "predicted_answer": "Considering your previous interest in experimenting with healthier cookie options, I recommend trying a lemon lavender shortbread recipe, which combines the brightness of lemon with the subtle sweetness of lavender.",
+      "is_correct": true,
+      "prompt_tokens": 1068,
+      "latency_ms": 1823.2488000003286,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "d6233ab6",
+      "question_type": "single-session-preference",
+      "predicted_answer": "No.",
+      "is_correct": false,
+      "prompt_tokens": 1043,
+      "latency_ms": 720.8995999999388,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "dd2973ad",
+      "question_type": "multi-session",
+      "predicted_answer": "I didn't get to bed until 2 AM last Wednesday.",
+      "is_correct": true,
+      "prompt_tokens": 1051,
+      "latency_ms": 1019.3403000002945,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e01b8e2f",
+      "question_type": "single-session-user",
+      "predicted_answer": "The Big Island in Hawaii.",
+      "is_correct": true,
+      "prompt_tokens": 1119,
+      "latency_ms": 844.6564000000762,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e3038f8c",
+      "question_type": "multi-session",
+      "predicted_answer": "You have 12 rare figurines, 5 rare books, and 57 rare records. \nTotal: 74 rare items.",
+      "is_correct": false,
+      "prompt_tokens": 1463,
+      "latency_ms": 1964.067299999897,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e56a43b9",
+      "question_type": "multi-session",
+      "predicted_answer": "You will get a $5 discount.",
+      "is_correct": true,
+      "prompt_tokens": 1127,
+      "latency_ms": 979.6296000004077,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e831120c",
+      "question_type": "multi-session",
+      "predicted_answer": "Two weeks for the MCU movies and one and a half weeks for the main Star Wars films.",
+      "is_correct": true,
+      "prompt_tokens": 1208,
+      "latency_ms": 1283.6652000000868,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e8a79c70",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Three eggs.",
+      "is_correct": true,
+      "prompt_tokens": 1420,
+      "latency_ms": 1008.5113000000092,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "e982271f",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The Liquor Store.",
+      "is_correct": false,
+      "prompt_tokens": 1331,
+      "latency_ms": 1008.0819999998312,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eac54adc",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "24 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1474,
+      "latency_ms": 1121.3456999998925,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eac54add",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I recently collaborated with an influencer who promoted my product to her 10,000 followers, and it was a great success.",
+      "is_correct": true,
+      "prompt_tokens": 1114,
+      "latency_ms": 1392.611599999782,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eaca4986",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "G G G G A G F.",
+      "is_correct": false,
+      "prompt_tokens": 1212,
+      "latency_ms": 1005.2453999996942,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "eace081b",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1093,
+      "latency_ms": 821.5627000004133,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ed4ddc30",
+      "question_type": "knowledge-update",
+      "predicted_answer": "We currently have 20 dozen eggs stocked up in the fridge.",
+      "is_correct": true,
+      "prompt_tokens": 1132,
+      "latency_ms": 1059.6638000001803,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "edced276",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are: 7-10 days, 10 days. \nThe final computed answer is: 17 days.",
+      "is_correct": true,
+      "prompt_tokens": 1663,
+      "latency_ms": 2071.072799999911,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "ef66a6e5",
+      "question_type": "multi-session",
+      "predicted_answer": "You played competitively in college in the sport of swimming, and in high school in the sport of tennis. \n2 sports.",
+      "is_correct": true,
+      "prompt_tokens": 1503,
+      "latency_ms": 1784.338200000093,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f35224e0",
+      "question_type": "multi-session",
+      "predicted_answer": "The relevant values are:\n- 15 episodes from 'How I Built This'\n- 12 episodes from 'My Favorite Murder'\n\nThe final computed answer is: 27.",
+      "is_correct": true,
+      "prompt_tokens": 1633,
+      "latency_ms": 2077.0512999997663,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f4f1d8a4_abs",
+      "question_type": "single-session-user",
+      "predicted_answer": "A new stand mixer.",
+      "is_correct": true,
+      "prompt_tokens": 1043,
+      "latency_ms": 842.3788000000059,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f523d9fe",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "Doc Martin.",
+      "is_correct": true,
+      "prompt_tokens": 1351,
+      "latency_ms": 937.1987999998055,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f8c5f88b",
+      "question_type": "single-session-user",
+      "predicted_answer": "A sports store downtown.",
+      "is_correct": true,
+      "prompt_tokens": 1060,
+      "latency_ms": 835.6801999998424,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "f9e8c073",
+      "question_type": "knowledge-update",
+      "predicted_answer": "I attended five sessions.",
+      "is_correct": true,
+      "prompt_tokens": 1049,
+      "latency_ms": 756.5328000000591,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "faba32e5",
+      "question_type": "single-session-user",
+      "predicted_answer": "24 hours.",
+      "is_correct": true,
+      "prompt_tokens": 1094,
+      "latency_ms": 779.8463999997693,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "fea54f57",
+      "question_type": "single-session-assistant",
+      "predicted_answer": "The song that best exemplifies the band's growth and development as artists is \"Evolution\".",
+      "is_correct": true,
+      "prompt_tokens": 1416,
+      "latency_ms": 1441.3878000000295,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_15e38248",
+      "question_type": "multi-session",
+      "predicted_answer": "1. coffee table, 2. guitar, 3. kitchen table, 4. coffee table (again), \nThere are 4 pieces of furniture.",
+      "is_correct": true,
+      "prompt_tokens": 1677,
+      "latency_ms": 2279.4434000002184,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_18c2b244",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I signed up for the rewards program at ShopRite on 2023/04/15, I used a Buy One Get One Free coupon on Luvs diapers at Walmart on 2023/04/01, and I redeemed $12 cashback for a $10 Amazon gift card from Ibotta on 2023/04/10.",
+      "is_correct": true,
+      "prompt_tokens": 1140,
+      "latency_ms": 2787.9609999999957,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_194be4b3",
+      "question_type": "multi-session",
+      "predicted_answer": "You own at least 3 musical instruments: a black Fender Stratocaster electric guitar, a Korg B1 piano, and a ukulele.",
+      "is_correct": true,
+      "prompt_tokens": 1417,
+      "latency_ms": 1866.0251999999673,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_1d4ab0c9",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "54 days",
+      "is_correct": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "deterministic_override": true
+    },
+    {
+      "question_id": "gpt4_1d80365e",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "You spent 3 days camping at Yosemite National Park in Event 3 and then mentioned getting back from the trip in Event 6.",
+      "is_correct": true,
+      "prompt_tokens": 1561,
+      "latency_ms": 2031.855099999575,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_1e4a8aec",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1198,
+      "latency_ms": 941.9514000001072,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_213fd887",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The volleyball league.",
+      "is_correct": true,
+      "prompt_tokens": 1074,
+      "latency_ms": 754.7929000002114,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_2f56ae70",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "HBO Max.",
+      "is_correct": false,
+      "prompt_tokens": 1005,
+      "latency_ms": 710.1874999998472,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_2f8be40d",
+      "question_type": "multi-session",
+      "predicted_answer": "1. 1 (my cousin's wedding in the city)\n2. 1 (my friend Emily's wedding in the city)\n3. 1 (my sister's wedding)\n4. 1 (my friend Jen's wedding last weekend)\n5. 1 (my college roommate's wedding in the city)\n\n5 weddings.",
+      "is_correct": true,
+      "prompt_tokens": 1597,
+      "latency_ms": 3103.736700000354,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_2f91af09",
+      "question_type": "multi-session",
+      "predicted_answer": "You have completed 22 pieces of writing since you started writing again three weeks ago.",
+      "is_correct": false,
+      "prompt_tokens": 1482,
+      "latency_ms": 1461.5484999999353,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_31ff4165",
+      "question_type": "multi-session",
+      "predicted_answer": "You use 1 wearable device.",
+      "is_correct": false,
+      "prompt_tokens": 999,
+      "latency_ms": 826.9376000002922,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_372c3eed",
+      "question_type": "multi-session",
+      "predicted_answer": "I attended Arcadia High School from 2010 to 2014, which is 4 years, and then I attended UCLA for 4 years to complete my Bachelor's degree. \nTotal years in formal education: 8 years.",
+      "is_correct": true,
+      "prompt_tokens": 1602,
+      "latency_ms": 2568.1531999998697,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_385a5000",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The tomatoes.",
+      "is_correct": true,
+      "prompt_tokens": 1110,
+      "latency_ms": 781.8510000001879,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_45189cb4",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The College Football National Championship game was first, then I watched The Witcher and The Mandalorian.",
+      "is_correct": true,
+      "prompt_tokens": 1016,
+      "latency_ms": 1146.2268000000222,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_468eb063",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "39 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1469,
+      "latency_ms": 1052.7424000001702,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_4929293a",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Michael's engagement party happened first.",
+      "is_correct": true,
+      "prompt_tokens": 1111,
+      "latency_ms": 857.6754999999139,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_4929293b",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "My niece's kindergarten graduation ceremony.",
+      "is_correct": false,
+      "prompt_tokens": 1128,
+      "latency_ms": 911.6727000000537,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_4edbafa2",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The 3rd of June.",
+      "is_correct": true,
+      "prompt_tokens": 1121,
+      "latency_ms": 898.464100000183,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_59149c77",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "27 days",
+      "is_correct": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "deterministic_override": true
+    },
+    {
+      "question_id": "gpt4_59149c78",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The Natural History Museum.",
+      "is_correct": true,
+      "prompt_tokens": 1152,
+      "latency_ms": 837.8034000002117,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "predicted_answer": "You have worked on or bought 4 model kits: 1/72 scale B-29 bomber, 1/24 scale '69 Camaro, Revell F-15 Eagle, and Tamiya 1/48 scale Spitfire Mk.V.",
+      "is_correct": true,
+      "prompt_tokens": 1740,
+      "latency_ms": 2802.983100000347,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_5dcc0aab",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 979,
+      "latency_ms": 742.9928999999902,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_65aabe59",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The smart thermostat.",
+      "is_correct": true,
+      "prompt_tokens": 1095,
+      "latency_ms": 753.985300000295,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_68e94287",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "My participation in the #PlankChallenge happened first.",
+      "is_correct": true,
+      "prompt_tokens": 1111,
+      "latency_ms": 985.5064999997012,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_68e94288",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The #PlankChallenge.",
+      "is_correct": true,
+      "prompt_tokens": 1189,
+      "latency_ms": 893.4644999999364,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_6ed717ea",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The training pads for Luna.",
+      "is_correct": true,
+      "prompt_tokens": 1227,
+      "latency_ms": 932.0662000000084,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_70e84552",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Fixing the fence.",
+      "is_correct": true,
+      "prompt_tokens": 1101,
+      "latency_ms": 804.2675000001509,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_70e84552_abs",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Purchasing three cows from Peter.",
+      "is_correct": true,
+      "prompt_tokens": 1060,
+      "latency_ms": 843.7902000000577,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_78cf46a3",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The narrator receiving their new phone case happened first.",
+      "is_correct": true,
+      "prompt_tokens": 1092,
+      "latency_ms": 939.5445000000109,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7ca326fa",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Emma graduated first, Rachel second, and Alex third.",
+      "is_correct": true,
+      "prompt_tokens": 1088,
+      "latency_ms": 949.6361000001343,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7ddcf75f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "3 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1524,
+      "latency_ms": 1138.1105000000389,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7de946e7",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The persistent cough.",
+      "is_correct": true,
+      "prompt_tokens": 1079,
+      "latency_ms": 776.9686999999976,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7f6b06db",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "You spent two nights at the Yosemite Valley Lodge during your road trip to Yosemite National Park, then went on a solo camping trip to Yosemite National Park, and finally a solo camping trip to the Eastern Sierra.",
+      "is_correct": true,
+      "prompt_tokens": 1172,
+      "latency_ms": 1839.23569999979,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_7fce9456",
+      "question_type": "multi-session",
+      "predicted_answer": "1 property viewed in Cedar Creek on February 1st, and 1 townhouse in the Brookside neighborhood.\n1",
+      "is_correct": true,
+      "prompt_tokens": 1624,
+      "latency_ms": 1916.2449999998898,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_85da3956",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "3 weeks.",
+      "is_correct": true,
+      "prompt_tokens": 1419,
+      "latency_ms": 1034.455699999853,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_88806d6e",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Mark and Sarah.",
+      "is_correct": false,
+      "prompt_tokens": 1126,
+      "latency_ms": 822.5215000002208,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_93159ced",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I've been working for about 4 years and 3 months before I started my current job at NovaTech.",
+      "is_correct": true,
+      "prompt_tokens": 1148,
+      "latency_ms": 1336.9283999995787,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_93159ced_abs",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": true,
+      "prompt_tokens": 1135,
+      "latency_ms": 849.5725000002494,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_93f6379c",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Page Turners.",
+      "is_correct": true,
+      "prompt_tokens": 1060,
+      "latency_ms": 747.8225999998358,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The charity bake sale.",
+      "is_correct": true,
+      "prompt_tokens": 1197,
+      "latency_ms": 852.5600000002669,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_a56e767c",
+      "question_type": "multi-session",
+      "predicted_answer": "I attended 2 movie festivals: Portland Film Festival and AFI Fest.",
+      "is_correct": true,
+      "prompt_tokens": 1074,
+      "latency_ms": 1073.0458000002727,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_af6db32f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "17 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1446,
+      "latency_ms": 1026.1728999998923,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b0863698",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "14 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1524,
+      "latency_ms": 1116.3402000001952,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b4a80587",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The arrival of the new prime lens happened first.",
+      "is_correct": true,
+      "prompt_tokens": 1112,
+      "latency_ms": 963.2627999999386,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b5700ca0",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1232,
+      "latency_ms": 891.536300000098,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_b5700ca9",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "4 days ago.",
+      "is_correct": true,
+      "prompt_tokens": 1519,
+      "latency_ms": 1093.7200000003031,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_c27434e8",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The Japanese Zero fighter plane model.",
+      "is_correct": true,
+      "prompt_tokens": 1111,
+      "latency_ms": 875.8766000000833,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_cd90e484",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I used my new binoculars for 3 weeks before I saw the American goldfinches returning to the area.",
+      "is_correct": true,
+      "prompt_tokens": 1039,
+      "latency_ms": 1283.8400999999067,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_d31cdae3",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The solo trip to Europe.",
+      "is_correct": true,
+      "prompt_tokens": 1072,
+      "latency_ms": 800.9237000001121,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_d6585ce8",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "You attended a charity gala for the Children's Hospital in February, then a free outdoor concert series in the park, then a Billie Eilish show in Philly, then a jazz night at a local bar, then a music festival in Brooklyn.",
+      "is_correct": true,
+      "prompt_tokens": 1109,
+      "latency_ms": 2037.971799999923,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_d9af6064",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The new router.",
+      "is_correct": true,
+      "prompt_tokens": 1120,
+      "latency_ms": 783.7899999999536,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_e061b84g",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The charity soccer tournament.",
+      "is_correct": true,
+      "prompt_tokens": 1162,
+      "latency_ms": 861.6948999997476,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_e414231f",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "My mountain bike.",
+      "is_correct": true,
+      "prompt_tokens": 1174,
+      "latency_ms": 834.0763000001061,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_f2262a51",
+      "question_type": "multi-session",
+      "predicted_answer": "Dr. Patel, Dr. Lee, Dr. Smith. \n3 different doctors.",
+      "is_correct": true,
+      "prompt_tokens": 1644,
+      "latency_ms": 1758.7156999998115,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_f49edff3",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "The day I helped my friend prepare the nursery, then I helped my cousin pick out stuff for her baby shower, and lastly, I ordered a customized phone case for my friend's birthday.",
+      "is_correct": true,
+      "prompt_tokens": 1122,
+      "latency_ms": 1802.4138999999195,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_fa19884c",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "35 days",
+      "is_correct": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "deterministic_override": true
+    },
+    {
+      "question_id": "gpt4_fa19884d",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "prompt_tokens": 1361,
+      "latency_ms": 1007.0065999998405,
+      "deterministic_override": false
+    },
+    {
+      "question_id": "gpt4_fe651585",
+      "question_type": "temporal-reasoning",
+      "predicted_answer": "Alex became a parent first.",
+      "is_correct": true,
+      "prompt_tokens": 1101,
+      "latency_ms": 848.677299999963,
+      "deterministic_override": false
+    }
+  ]
+}

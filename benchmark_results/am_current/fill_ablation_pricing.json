@@ -1,0 +1,139 @@
+{
+  "conflict": {
+    "per_cat": {
+      "factual_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "multi_session_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "temporal_reasoning": {
+        "n": 20,
+        "note": 0
+      },
+      "knowledge_updates": {
+        "n": 20,
+        "note": 0
+      },
+      "contradiction_handling": {
+        "n": 20,
+        "note": 20
+      },
+      "indirect_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "distractor_resistance": {
+        "n": 20,
+        "note": 0
+      },
+      "abstention": {
+        "n": 20,
+        "note": 0
+      },
+      "compression_recovery": {
+        "n": 20,
+        "note": 0
+      },
+      "reflection_reinterpretation": {
+        "n": 20,
+        "note": 0
+      }
+    },
+    "mean_ctx_tokens_est": 1299,
+    "max_ctx_tokens_est": 1303,
+    "contradiction_tokens": [
+      1283,
+      1271,
+      1271,
+      1269,
+      1268,
+      1273,
+      1270,
+      1273,
+      1271,
+      1270,
+      1270,
+      1269,
+      1267,
+      1271,
+      1271,
+      1269,
+      1273,
+      1267,
+      1272,
+      1265
+    ]
+  },
+  "bare": {
+    "per_cat": {
+      "factual_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "multi_session_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "temporal_reasoning": {
+        "n": 20,
+        "note": 0
+      },
+      "knowledge_updates": {
+        "n": 20,
+        "note": 0
+      },
+      "contradiction_handling": {
+        "n": 20,
+        "note": 20
+      },
+      "indirect_recall": {
+        "n": 20,
+        "note": 0
+      },
+      "distractor_resistance": {
+        "n": 20,
+        "note": 0
+      },
+      "abstention": {
+        "n": 20,
+        "note": 0
+      },
+      "compression_recovery": {
+        "n": 20,
+        "note": 0
+      },
+      "reflection_reinterpretation": {
+        "n": 20,
+        "note": 0
+      }
+    },
+    "mean_ctx_tokens_est": 1182,
+    "max_ctx_tokens_est": 1303,
+    "contradiction_tokens": [
+      92,
+      95,
+      95,
+      92,
+      92,
+      97,
+      94,
+      97,
+      94,
+      94,
+      94,
+      93,
+      91,
+      95,
+      95,
+      92,
+      97,
+      91,
+      96,
+      96
+    ]
+  },
+  "non_fired_byte_identical": 180
+}

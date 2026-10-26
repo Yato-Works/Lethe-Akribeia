@@ -1,10 +1,10 @@
 """Unit tests for Apex Memory Runtime: MSC & State Reconstruction (Apex Phase A & B)."""
 
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.memory_types import QueryIntent
-from artificial_memory.recall.state_reconstructor import StateReconstructor
+from artificial_memory_gen.recall.state_reconstructor import StateReconstructor
 
 
 def test_state_reconstruction_intent_slicing() -> None:

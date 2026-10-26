@@ -14,9 +14,9 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any
 
-from artificial_memory.recall.ir_resolver import ResolvedContext
 from artificial_memory.research.benchmarks.arena import ArenaQuestion
 from artificial_memory.research.benchmarks.scorer import QuestionScore, term_present
+from artificial_memory_gen.recall.ir_resolver import ResolvedContext
 
 
 class FailureOrigin(StrEnum):

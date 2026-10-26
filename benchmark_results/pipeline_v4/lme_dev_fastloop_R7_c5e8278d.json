@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 1,
+  "accuracy": 1.0,
+  "mean_prompt_tokens": 1351.0,
+  "deterministic_overrides": 0,
+  "elapsed_seconds": 3.672093799999857,
+  "per_type_breakdown": {
+    "single-session-user": {
+      "accuracy": 1.0,
+      "correct": 1,
+      "total": 1,
+      "mean_tokens": 1351.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "c5e8278d",
+      "question_type": "single-session-user",
+      "question": "What was my last name before I changed it?",
+      "ground_truth": "Johnson",
+      "predicted_answer": "Johnson",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1351,
+      "latency_ms": 3109.79899999802,
+      "r6_features": {
+        "direct_fact_demand": 0.1,
+        "temporal_demand": 0.0,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.7,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.95,
+        "dominant_mode": "assistant_recall",
+        "recommended_budget": 750,
+        "requires_chronos_diff": false,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": true,
+        "requires_profile_grounding": false,
+        "total_records": 469,
+        "session_count": 44,
+        "date_count": 44,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 23,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 149,
+        "candidate_sessions": 13,
+        "conflict": true,
+        "cert_present": false,
+        "temporal_complexity": 1,
+        "evidence_coverage": 0.4444,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 35.852,
+        "budget_util": 0.992,
+        "question_type": "single-session-user",
+        "is_aggregation": false,
+        "correct": true,
+        "reader_model": "",
+        "predicted": "Johnson"
+      }
+    }
+  ]
+}

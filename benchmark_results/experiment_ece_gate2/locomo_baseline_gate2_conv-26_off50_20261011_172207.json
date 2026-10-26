@@ -1,0 +1,527 @@
+{
+  "mode": "baseline",
+  "accuracy": 0.58,
+  "correct": 29,
+  "total": 50,
+  "elapsed_seconds": 138.29,
+  "per_category": {
+    "3": {
+      "correct": 5,
+      "total": 6
+    },
+    "1": {
+      "correct": 3,
+      "total": 13
+    },
+    "2": {
+      "correct": 12,
+      "total": 13
+    },
+    "4": {
+      "correct": 9,
+      "total": 18
+    }
+  },
+  "results": [
+    {
+      "question_id": "lc_conv-26_50",
+      "category": 3,
+      "question": "What would Caroline's political leaning likely be?",
+      "ground_truth": "Liberal",
+      "predicted_answer": "Liberal",
+      "is_correct": true,
+      "context_tokens": 1393,
+      "latency_seconds": 4.607
+    },
+    {
+      "question_id": "lc_conv-26_51",
+      "category": 1,
+      "question": "What has Melanie painted?",
+      "ground_truth": "Horse, sunset, sunrise",
+      "predicted_answer": "landscapes, still life, nature-inspired paintings, horse paintings",
+      "is_correct": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.773
+    },
+    {
+      "question_id": "lc_conv-26_52",
+      "category": 1,
+      "question": "What are Melanie's pets' names?",
+      "ground_truth": "Oliver, Luna, Bailey",
+      "predicted_answer": "Luna, Oliver",
+      "is_correct": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.641
+    },
+    {
+      "question_id": "lc_conv-26_53",
+      "category": 2,
+      "question": "When did Caroline apply to adoption agencies?",
+      "ground_truth": "The week of 23 August 2023",
+      "predicted_answer": "23 August 2023",
+      "is_correct": true,
+      "context_tokens": 1398,
+      "latency_seconds": 2.622
+    },
+    {
+      "question_id": "lc_conv-26_54",
+      "category": 2,
+      "question": "When did Caroline draw a self-portrait?",
+      "ground_truth": "The week before 23 August 2023",
+      "predicted_answer": "last week (the week before 23 August 2023)",
+      "is_correct": true,
+      "context_tokens": 1397,
+      "latency_seconds": 2.946
+    },
+    {
+      "question_id": "lc_conv-26_55",
+      "category": 1,
+      "question": "What subject have Caroline and Melanie both painted?",
+      "ground_truth": "Sunsets",
+      "predicted_answer": "lake sunrise, beach sunset",
+      "is_correct": true,
+      "context_tokens": 1394,
+      "latency_seconds": 2.478
+    },
+    {
+      "question_id": "lc_conv-26_56",
+      "category": 1,
+      "question": "What symbols are important to Caroline?",
+      "ground_truth": "Rainbow flag, transgender symbol",
+      "predicted_answer": "rainbow flag, eagle, necklace, hand-painted bowl",
+      "is_correct": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.739
+    },
+    {
+      "question_id": "lc_conv-26_57",
+      "category": 2,
+      "question": "When did Caroline encounter people on a hike and have a negative experience?",
+      "ground_truth": "The week before 25 August 2023",
+      "predicted_answer": "17 August, 2023",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.706
+    },
+    {
+      "question_id": "lc_conv-26_58",
+      "category": 2,
+      "question": "When did Melanie make a plate in pottery class?",
+      "ground_truth": "24 August 2023",
+      "predicted_answer": "24 August 2023",
+      "is_correct": true,
+      "context_tokens": 1397,
+      "latency_seconds": 2.674
+    },
+    {
+      "question_id": "lc_conv-26_59",
+      "category": 3,
+      "question": "Would Caroline be considered religious?",
+      "ground_truth": "Somewhat, but not extremely religious",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "context_tokens": 1394,
+      "latency_seconds": 2.769
+    },
+    {
+      "question_id": "lc_conv-26_60",
+      "category": 1,
+      "question": "What instruments does Melanie play?",
+      "ground_truth": "clarinet and violin",
+      "predicted_answer": "clarinet",
+      "is_correct": false,
+      "context_tokens": 1394,
+      "latency_seconds": 2.808
+    },
+    {
+      "question_id": "lc_conv-26_61",
+      "category": 1,
+      "question": "What musical artists/bands has Melanie seen?",
+      "ground_truth": "Summer Sounds, Matt Patterson",
+      "predicted_answer": "Summer Sounds",
+      "is_correct": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.863
+    },
+    {
+      "question_id": "lc_conv-26_62",
+      "category": 2,
+      "question": "When did Melanie go to the park?",
+      "ground_truth": "27 August 2023",
+      "predicted_answer": "27 August 2023",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.618
+    },
+    {
+      "question_id": "lc_conv-26_63",
+      "category": 2,
+      "question": "When is Caroline's youth center putting on a talent show?",
+      "ground_truth": "September 2023",
+      "predicted_answer": "September 2023",
+      "is_correct": true,
+      "context_tokens": 1395,
+      "latency_seconds": 2.611
+    },
+    {
+      "question_id": "lc_conv-26_64",
+      "category": 3,
+      "question": "Would Melanie likely enjoy the song \"The Four Seasons\" by Vivaldi?",
+      "ground_truth": "Yes; it's classical music",
+      "predicted_answer": "Yes, Likely",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.514
+    },
+    {
+      "question_id": "lc_conv-26_65",
+      "category": 1,
+      "question": "What are some changes Caroline has faced during her transition journey?",
+      "ground_truth": "Changes to her body, losing unsupportive friends",
+      "predicted_answer": "supportive friends and family, art as a coping method, changes in relationships",
+      "is_correct": true,
+      "context_tokens": 1401,
+      "latency_seconds": 2.857
+    },
+    {
+      "question_id": "lc_conv-26_66",
+      "category": 1,
+      "question": "What does Melanie do with her family on hikes?",
+      "ground_truth": "Roast marshmallows, tell stories",
+      "predicted_answer": "enjoy hiking in the mountains and exploring forests",
+      "is_correct": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.745
+    },
+    {
+      "question_id": "lc_conv-26_67",
+      "category": 2,
+      "question": "When did Caroline go biking with friends?",
+      "ground_truth": "The weekend before 13 September 2023",
+      "predicted_answer": "the weekend before 13 September 2023",
+      "is_correct": true,
+      "context_tokens": 1398,
+      "latency_seconds": 2.75
+    },
+    {
+      "question_id": "lc_conv-26_68",
+      "category": 2,
+      "question": "How long has Melanie been practicing art?",
+      "ground_truth": "Since 2016",
+      "predicted_answer": "seven years",
+      "is_correct": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.503
+    },
+    {
+      "question_id": "lc_conv-26_69",
+      "category": 3,
+      "question": "What personality traits might Melanie say Caroline has?",
+      "ground_truth": "Thoughtful, authentic, driven",
+      "predicted_answer": "passionate, creative, supportive, resilient",
+      "is_correct": false,
+      "context_tokens": 1393,
+      "latency_seconds": 3.087
+    },
+    {
+      "question_id": "lc_conv-26_70",
+      "category": 1,
+      "question": "What transgender-specific events has Caroline attended?",
+      "ground_truth": "Poetry reading, conference",
+      "predicted_answer": "transgender poetry reading, pride parade, mentorship program for LGBTQ youth",
+      "is_correct": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.837
+    },
+    {
+      "question_id": "lc_conv-26_71",
+      "category": 1,
+      "question": "What book did Melanie read from Caroline's suggestion?",
+      "ground_truth": "\"Becoming Nicole\"",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.791
+    },
+    {
+      "question_id": "lc_conv-26_72",
+      "category": 2,
+      "question": "When did Melanie's friend adopt a child?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true,
+      "context_tokens": 1398,
+      "latency_seconds": 2.611
+    },
+    {
+      "question_id": "lc_conv-26_73",
+      "category": 2,
+      "question": "When did Melanie get hurt?",
+      "ground_truth": "September 2023",
+      "predicted_answer": "September 2023",
+      "is_correct": true,
+      "context_tokens": 1397,
+      "latency_seconds": 2.699
+    },
+    {
+      "question_id": "lc_conv-26_74",
+      "category": 2,
+      "question": "When did Melanie's family go on a roadtrip?",
+      "ground_truth": "The weekend before 20 October 2023",
+      "predicted_answer": "20 October 2023",
+      "is_correct": true,
+      "context_tokens": 1393,
+      "latency_seconds": 2.735
+    },
+    {
+      "question_id": "lc_conv-26_75",
+      "category": 1,
+      "question": "How many children does Melanie have?",
+      "ground_truth": "3",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.452
+    },
+    {
+      "question_id": "lc_conv-26_76",
+      "category": 1,
+      "question": "When did Melanie go on a hike after the roadtrip?",
+      "ground_truth": "19 October 2023",
+      "predicted_answer": "19 October 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.72
+    },
+    {
+      "question_id": "lc_conv-26_77",
+      "category": 3,
+      "question": "Would Melanie go on another roadtrip soon?",
+      "ground_truth": "Likely no; since this one went badly",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.503
+    },
+    {
+      "question_id": "lc_conv-26_78",
+      "category": 1,
+      "question": "What items has Melanie bought?",
+      "ground_truth": "Figurines, shoes",
+      "predicted_answer": "figurines",
+      "is_correct": false,
+      "context_tokens": 1392,
+      "latency_seconds": 2.7
+    },
+    {
+      "question_id": "lc_conv-26_79",
+      "category": 2,
+      "question": "When did Caroline pass the adoption interview?",
+      "ground_truth": "The Friday before 22 October 2023",
+      "predicted_answer": "the Friday before 22 October 2023",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.766
+    },
+    {
+      "question_id": "lc_conv-26_80",
+      "category": 2,
+      "question": "When did Melanie buy the figurines?",
+      "ground_truth": "21 October 2023",
+      "predicted_answer": "21 October 2023",
+      "is_correct": true,
+      "context_tokens": 1398,
+      "latency_seconds": 2.702
+    },
+    {
+      "question_id": "lc_conv-26_81",
+      "category": 3,
+      "question": "Would Caroline want to move back to her home country soon?",
+      "ground_truth": "No; she's in the process of adopting children.",
+      "predicted_answer": "No",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.533
+    },
+    {
+      "question_id": "lc_conv-26_82",
+      "category": 4,
+      "question": "What did the charity race raise awareness for?",
+      "ground_truth": "mental health",
+      "predicted_answer": "mental health",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.039
+    },
+    {
+      "question_id": "lc_conv-26_83",
+      "category": 4,
+      "question": "What did Melanie realize after the charity race?",
+      "ground_truth": "self-care is important",
+      "predicted_answer": "self-care is really important",
+      "is_correct": true,
+      "context_tokens": 1391,
+      "latency_seconds": 2.661
+    },
+    {
+      "question_id": "lc_conv-26_84",
+      "category": 4,
+      "question": "How does Melanie prioritize self-care?",
+      "ground_truth": "by carving out some me-time each day for activities like running, reading, or playing the violin",
+      "predicted_answer": "running, reading, playing violin",
+      "is_correct": true,
+      "context_tokens": 1479,
+      "latency_seconds": 3.191
+    },
+    {
+      "question_id": "lc_conv-26_85",
+      "category": 4,
+      "question": "What are Caroline's plans for the summer?",
+      "ground_truth": "researching adoption agencies",
+      "predicted_answer": "attending a mentorship program for LGBTQ youth, putting together an LGBTQ art show",
+      "is_correct": false,
+      "context_tokens": 1410,
+      "latency_seconds": 3.341
+    },
+    {
+      "question_id": "lc_conv-26_86",
+      "category": 4,
+      "question": "What type of individuals does the adoption agency Caroline is considering support?",
+      "ground_truth": "LGBTQ+ individuals",
+      "predicted_answer": "LGBTQ+ folks",
+      "is_correct": true,
+      "context_tokens": 1399,
+      "latency_seconds": 2.672
+    },
+    {
+      "question_id": "lc_conv-26_87",
+      "category": 4,
+      "question": "Why did Caroline choose the adoption agency?",
+      "ground_truth": "because of their inclusivity and support for LGBTQ+ individuals",
+      "predicted_answer": "Because they help LGBTQ+ folks with adoption.",
+      "is_correct": true,
+      "context_tokens": 1395,
+      "latency_seconds": 2.647
+    },
+    {
+      "question_id": "lc_conv-26_88",
+      "category": 4,
+      "question": "What is Caroline excited about in the adoption process?",
+      "ground_truth": "creating a family for kids who need one",
+      "predicted_answer": "passing the adoption agency interviews",
+      "is_correct": false,
+      "context_tokens": 1400,
+      "latency_seconds": 2.594
+    },
+    {
+      "question_id": "lc_conv-26_89",
+      "category": 4,
+      "question": "What does Melanie think about Caroline's decision to adopt?",
+      "ground_truth": "she thinks Caroline is doing something amazing and will be an awesome mom",
+      "predicted_answer": "Melanie thinks it's great and congrats to Caroline.",
+      "is_correct": false,
+      "context_tokens": 1395,
+      "latency_seconds": 2.856
+    },
+    {
+      "question_id": "lc_conv-26_90",
+      "category": 4,
+      "question": "How long have Mel and her husband been married?",
+      "ground_truth": "Mel and her husband have been married for 5 years.",
+      "predicted_answer": "5 years",
+      "is_correct": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.654
+    },
+    {
+      "question_id": "lc_conv-26_91",
+      "category": 4,
+      "question": "What does Caroline's necklace symbolize?",
+      "ground_truth": "love, faith, and strength",
+      "predicted_answer": "love, faith and strength",
+      "is_correct": true,
+      "context_tokens": 1409,
+      "latency_seconds": 2.946
+    },
+    {
+      "question_id": "lc_conv-26_92",
+      "category": 4,
+      "question": "What country is Caroline's grandma from?",
+      "ground_truth": "Sweden",
+      "predicted_answer": "Sweden",
+      "is_correct": true,
+      "context_tokens": 1402,
+      "latency_seconds": 2.821
+    },
+    {
+      "question_id": "lc_conv-26_93",
+      "category": 4,
+      "question": "What was grandma's gift to Caroline?",
+      "ground_truth": "necklace",
+      "predicted_answer": "necklace",
+      "is_correct": true,
+      "context_tokens": 1403,
+      "latency_seconds": 2.857
+    },
+    {
+      "question_id": "lc_conv-26_94",
+      "category": 4,
+      "question": "What is Melanie's hand-painted bowl a reminder of?",
+      "ground_truth": "art and self-expression",
+      "predicted_answer": "creativity and family",
+      "is_correct": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.823
+    },
+    {
+      "question_id": "lc_conv-26_95",
+      "category": 4,
+      "question": "What did Melanie and her family do while camping?",
+      "ground_truth": "explored nature, roasted marshmallows, and went on a hike",
+      "predicted_answer": "roast marshmallows, tell stories around the campfire",
+      "is_correct": false,
+      "context_tokens": 1398,
+      "latency_seconds": 3.068
+    },
+    {
+      "question_id": "lc_conv-26_96",
+      "category": 4,
+      "question": "What kind of counseling and mental health services is Caroline interested in pursuing?",
+      "ground_truth": "working with trans people, helping them accept themselves and supporting their mental health",
+      "predicted_answer": "working with trans people",
+      "is_correct": false,
+      "context_tokens": 1398,
+      "latency_seconds": 2.611
+    },
+    {
+      "question_id": "lc_conv-26_97",
+      "category": 4,
+      "question": "What workshop did Caroline attend recently?",
+      "ground_truth": "LGBTQ+ counseling workshop",
+      "predicted_answer": "adoption advice/assistance group",
+      "is_correct": false,
+      "context_tokens": 1391,
+      "latency_seconds": 2.542
+    },
+    {
+      "question_id": "lc_conv-26_98",
+      "category": 4,
+      "question": "What was discussed in the LGBTQ+ counseling workshop?",
+      "ground_truth": "therapeutic methods and how to best work with trans people",
+      "predicted_answer": "different therapeutic methods and how to best work with trans people",
+      "is_correct": true,
+      "context_tokens": 1400,
+      "latency_seconds": 2.804
+    },
+    {
+      "question_id": "lc_conv-26_99",
+      "category": 4,
+      "question": "What motivated Caroline to pursue counseling?",
+      "ground_truth": "her own journey and the support she received, and how counseling improved her life",
+      "predicted_answer": "support from friends and family, own journey with mental health",
+      "is_correct": false,
+      "context_tokens": 1399,
+      "latency_seconds": 2.781
+    }
+  ]
+}

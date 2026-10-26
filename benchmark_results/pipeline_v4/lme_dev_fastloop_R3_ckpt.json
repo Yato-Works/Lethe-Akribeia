@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "question": "How many items of clothing do I need to pick up or return from a store?",
+      "ground_truth": "3",
+      "predicted_answer": "2",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1763,
+      "latency_ms": 3265.871399984462
+    },
+    {
+      "question_id": "6cb6f249",
+      "question_type": "multi-session",
+      "question": "How many days did I take social media breaks in total?",
+      "ground_truth": "17 days",
+      "predicted_answer": "17 days",
+      "is_correct": true,
+      "deterministic_override": false,
+      "prompt_tokens": 1844,
+      "latency_ms": 1020.999899978051
+    },
+    {
+      "question_id": "87f22b4a",
+      "question_type": "multi-session",
+      "question": "How much have I made from selling eggs this month?",
+      "ground_truth": "$120",
+      "predicted_answer": "I don't know.",
+      "is_correct": false,
+      "deterministic_override": false,
+      "prompt_tokens": 1231,
+      "latency_ms": 230.99169999477454
+    }
+  ]
+}

@@ -176,6 +176,7 @@ class RuntimeConfig:
     default_provider: str = "ollama"
     max_context_tokens: int = 8000
     enable_auth: bool = False
+    enable_deterministic: bool = True
 
     # Phase 7: Multi-Agent & Enterprise
     node_id: str = "local"
@@ -200,6 +201,36 @@ class RuntimeConfig:
     #                      (Phase 8.7: session-granular gate, 85% evidence
     #                      retention @ K=100 with no embedding pass)
     retrieval_strategy: str = "classic"
+    # Lexical channel for the classic recall engine (ON by default).
+    #
+    # Measured on the controlled arena: with this channel off, the runtime answers
+    # 11.5% of 200 planted-fact questions, because the candidate pool is
+    # query-independent (40 episodes + 20 semantic out of 440 facts) and ranking is
+    # unweighted word overlap.  An IDF-weighted lexical channel lifts the same
+    # runtime to 53.0% (Simple RAG 51.0%) at ~3x read tokens.  Leaving the weaker
+    # behaviour as the default was a product wiring error, not a measured choice;
+    # see V4_PROGRAM.md 4.12-4.14.  Disable with LETHE_LEXICAL_RECALL=0 or
+    # `--no-lexical` when the token budget matters more than recall.
+    lexical_recall: bool = True
+    lexical_candidate_limit: int = 1000
+    # Conflict surfacing for the classic/lexical read path (off by default).
+    #
+    # Opt-in annotation in the assembled context: when the candidate
+    # memories contain two DIFFERENT values asserted for the same
+    # (entity, property) and the query names that key, a single NOTE line
+    # surfaces both values with their provenance (V4_PROGRAM.md 4.24:
+    # contradiction conversions 0/20 -> 12/20 in the arena, zero exclusive
+    # losses; priced at 0 LLM before being built).  Purely additive: no
+    # merge, no overwrite, no change to ranking or supersession.  It stays off
+    # because the product-path transfer is still partial (4.27: 40.0 -> 42.0 on
+    # a paired 50-question run, one contradiction converted out of five).
+    conflict_surfacing: bool = False
+    # M15.3 (V4_PROGRAM.md 4.30): when a conflict annotation fires, the
+    # query-unrelated recency fill -- measured 92% of a contradiction
+    # context -- is removed outside the reserved conflict part.  Fires
+    # only where the note fires (0/180 elsewhere), so other categories
+    # are structurally untouched.  Default off: frozen semantics.
+    conflict_fill_ablation: bool = False
     # deepseek_session tuning (only used when retrieval_strategy="deepseek_session")
     session_gate_pool: int = 100     # post-gate candidate pool size (K=100 winner)
     candidate_window: int = 450      # pre-gate fetch window (450 >= S4 store size)
@@ -229,6 +260,25 @@ class RuntimeConfig:
             self.private_key = self.private_key or _secrets.token_urlsafe(32)
             self.public_key = self.public_key or _secrets.token_urlsafe(32)
 
+    @classmethod
+    def from_env(cls, **overrides: object) -> RuntimeConfig:
+        """Build a config from environment variables.
+
+        ``LETHE_LEXICAL_RECALL`` and ``LETHE_CONFLICT_SURFACING`` accept
+        ``0/1``, ``true/false``, ``on/off``. Unset (or empty) values keep the
+        dataclass defaults, so the flags stay auditable in one place.
+        """
+        config = cls(**overrides)  # type: ignore[arg-type]
+        for env_name, field_name in (
+            ("LETHE_LEXICAL_RECALL", "lexical_recall"),
+            ("LETHE_CONFLICT_SURFACING", "conflict_surfacing"),
+        ):
+            raw = os.environ.get(env_name)
+            if raw is None or not raw.strip():
+                continue
+            setattr(config, field_name, raw.strip().lower() not in {"0", "false", "no", "off"})
+        return config
+
 
 @dataclass
 class ChatResult:
@@ -240,6 +290,10 @@ class ChatResult:
     context_used: bool
     topic_id: int | None
     context_ir: ContextIR | None = None
+    deterministic: bool = False
+    deterministic_detail: str | None = None
+    deterministic_source: str | None = None
+    deterministic_confidence: float | None = None
 
 
 @dataclass
@@ -373,14 +427,20 @@ class ArtificialMemoryRuntime:
                 candidate_window=self.config.candidate_window,
             )
         else:
-            self.recall_engine = BasicRecallEngine(self.store)
+            self.recall_engine = BasicRecallEngine(
+                self.store,
+                lexical=self.config.lexical_recall,
+                lexical_candidate_limit=self.config.lexical_candidate_limit,
+            )
         self.context_builder = EnhancedContextBuilder(
             self.store, self.recall_engine,
             budget_ratios={
                 PriorityTier.HIGH: 0.50,
                 PriorityTier.MEDIUM: 0.35,
                 PriorityTier.LOW: 0.15,
-            }
+            },
+            conflict_surfacing=self.config.conflict_surfacing,
+            conflict_fill_ablation=self.config.conflict_fill_ablation,
         )
         self.memory_compiler = IncrementalMemoryCompiler(
             self.store, self.compressor, self.topic_classifier
@@ -527,7 +587,8 @@ class ArtificialMemoryRuntime:
         )
 
         # LLM Manager
-        self.llm_manager = LLMManager(self.store, self.recall_engine, self.context_builder)
+        self.llm_manager = LLMManager(self.store, self.recall_engine, self.context_builder,
+                                      enable_deterministic=self.config.enable_deterministic)
         self.llm_manager.add_provider("ollama", OllamaProvider(
             base_url=self.config.ollama_base_url,
             model=self.config.ollama_model
@@ -601,6 +662,10 @@ class ArtificialMemoryRuntime:
             context_used=result["context_used"],
             topic_id=result.get("topic_id"),
             context_ir=context_ir,
+            deterministic=result.get("deterministic", False),
+            deterministic_detail=result.get("deterministic_detail"),
+            deterministic_source=result.get("deterministic_source"),
+            deterministic_confidence=result.get("deterministic_confidence"),
         )
 
     async def remember(
@@ -611,8 +676,17 @@ class ArtificialMemoryRuntime:
         resolution: ResolutionLevel = ResolutionLevel.SEMANTIC,
         importance: float = 0.7,
         confidence: float = 0.8,
+        occurred_at: datetime | None = None,
     ) -> MemoryIR:
-        """Explicitly store a memory."""
+        """Explicitly store a memory.
+
+        ``occurred_at`` (M15.2): when the caller knows when the content
+        actually happened, it can state it, and ``valid_from`` carries it
+        through -- the builder's provenance label then reflects the real
+        time point instead of collapsing everything to the ingest date.
+        Default ``None`` keeps every pre-existing call byte-identical
+        (wall-clock ``now()``).
+        """
         topic_obj = self.conversation_manager.get_or_create_topic(topic)
 
         memory = Memory(
@@ -623,7 +697,8 @@ class ArtificialMemoryRuntime:
             importance=importance,
             confidence=confidence,
             status=MemoryStatus.ACTIVE,
-            valid_from=__import__('datetime').datetime.now(),
+            valid_from=occurred_at
+            or __import__('datetime').datetime.now(),
             is_current=True,
         )
         memory = self.store.create_memory(memory)

@@ -1,0 +1,401 @@
+player,question_id,category,repeat_index,is_official,outcome,score,correct,ground_truth_coverage,covered_groups,must_total,forbidden_violation,forbidden_hits,abstention_detected,answer_empty,score_consistency,answer_text
+AM v0.2.0,factual_recall-00,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ripgrep.
+AM v0.2.0,factual_recall-00,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ripgrep.
+AM v0.2.0,factual_recall-01,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bat
+AM v0.2.0,factual_recall-01,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bat
+AM v0.2.0,factual_recall-02,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,fd.
+AM v0.2.0,factual_recall-02,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,fd.
+AM v0.2.0,factual_recall-03,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,delta.
+AM v0.2.0,factual_recall-03,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,delta.
+AM v0.2.0,factual_recall-04,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,zoxide.
+AM v0.2.0,factual_recall-04,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,zoxide.
+AM v0.2.0,factual_recall-05,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,starship.
+AM v0.2.0,factual_recall-05,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,starship.
+AM v0.2.0,factual_recall-06,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,just.
+AM v0.2.0,factual_recall-06,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,just.
+AM v0.2.0,factual_recall-07,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,watchexec
+AM v0.2.0,factual_recall-07,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,watchexec
+AM v0.2.0,factual_recall-08,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,helix.
+AM v0.2.0,factual_recall-08,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,helix.
+AM v0.2.0,factual_recall-09,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,hyperfine.
+AM v0.2.0,factual_recall-09,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,hyperfine.
+AM v0.2.0,factual_recall-10,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,dust.
+AM v0.2.0,factual_recall-10,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,dust.
+AM v0.2.0,factual_recall-11,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,procs.
+AM v0.2.0,factual_recall-11,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,procs.
+AM v0.2.0,factual_recall-12,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd.
+AM v0.2.0,factual_recall-12,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd.
+AM v0.2.0,factual_recall-13,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei
+AM v0.2.0,factual_recall-13,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei
+AM v0.2.0,factual_recall-14,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,xh.
+AM v0.2.0,factual_recall-14,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,xh.
+AM v0.2.0,factual_recall-15,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM v0.2.0,factual_recall-15,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM v0.2.0,factual_recall-16,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,typos.
+AM v0.2.0,factual_recall-16,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,typos.
+AM v0.2.0,factual_recall-17,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bacon.
+AM v0.2.0,factual_recall-17,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,bacon.
+AM v0.2.0,factual_recall-18,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,cargo-nextest.
+AM v0.2.0,factual_recall-18,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,cargo-nextest.
+AM v0.2.0,factual_recall-19,factual_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sccache.
+AM v0.2.0,factual_recall-19,factual_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sccache.
+AM v0.2.0,multi_session_recall-00,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Rust
+AM v0.2.0,multi_session_recall-00,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Rust
+AM v0.2.0,multi_session_recall-01,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Go
+AM v0.2.0,multi_session_recall-01,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Go
+AM v0.2.0,multi_session_recall-02,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Elixir
+AM v0.2.0,multi_session_recall-02,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Elixir
+AM v0.2.0,multi_session_recall-03,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Zig
+AM v0.2.0,multi_session_recall-03,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Zig
+AM v0.2.0,multi_session_recall-04,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Kotlin
+AM v0.2.0,multi_session_recall-04,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Kotlin
+AM v0.2.0,multi_session_recall-05,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Swift
+AM v0.2.0,multi_session_recall-05,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Swift
+AM v0.2.0,multi_session_recall-06,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Julia
+AM v0.2.0,multi_session_recall-06,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Julia
+AM v0.2.0,multi_session_recall-07,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Nim
+AM v0.2.0,multi_session_recall-07,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Nim
+AM v0.2.0,multi_session_recall-08,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Crystal
+AM v0.2.0,multi_session_recall-08,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Crystal
+AM v0.2.0,multi_session_recall-09,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,OCaml
+AM v0.2.0,multi_session_recall-09,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,OCaml
+AM v0.2.0,multi_session_recall-10,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Haskell
+AM v0.2.0,multi_session_recall-10,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Haskell
+AM v0.2.0,multi_session_recall-11,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Clojure
+AM v0.2.0,multi_session_recall-11,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Clojure
+AM v0.2.0,multi_session_recall-12,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,F#
+AM v0.2.0,multi_session_recall-12,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,F#
+AM v0.2.0,multi_session_recall-13,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,D
+AM v0.2.0,multi_session_recall-13,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,D
+AM v0.2.0,multi_session_recall-14,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,V
+AM v0.2.0,multi_session_recall-14,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,V
+AM v0.2.0,multi_session_recall-15,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Pony
+AM v0.2.0,multi_session_recall-15,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Pony
+AM v0.2.0,multi_session_recall-16,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Gleam
+AM v0.2.0,multi_session_recall-16,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Gleam
+AM v0.2.0,multi_session_recall-17,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Roc
+AM v0.2.0,multi_session_recall-17,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Roc
+AM v0.2.0,multi_session_recall-18,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Haxe
+AM v0.2.0,multi_session_recall-18,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Haxe
+AM v0.2.0,multi_session_recall-19,multi_session_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Red
+AM v0.2.0,multi_session_recall-19,multi_session_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Red
+AM v0.2.0,temporal_reasoning-00,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-00,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-01,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-01,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-02,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-02,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-03,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-03,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-04,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-04,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-05,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-05,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-06,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-06,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-07,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-07,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-08,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-08,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-09,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-09,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-10,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-10,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-11,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-11,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-12,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-12,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-13,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-13,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-14,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-14,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-15,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-15,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-16,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-16,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-17,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-17,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-18,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-18,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-19,temporal_reasoning,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,temporal_reasoning-19,temporal_reasoning,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,knowledge_updates-00,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ClickHouse.
+AM v0.2.0,knowledge_updates-00,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ClickHouse.
+AM v0.2.0,knowledge_updates-01,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,TiDB.
+AM v0.2.0,knowledge_updates-01,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,TiDB.
+AM v0.2.0,knowledge_updates-02,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CockroachDB.
+AM v0.2.0,knowledge_updates-02,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CockroachDB.
+AM v0.2.0,knowledge_updates-03,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SurrealDB.
+AM v0.2.0,knowledge_updates-03,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SurrealDB.
+AM v0.2.0,knowledge_updates-04,knowledge_updates,majority,1,fail,0.0,0,1.0,1,1,1,LMDB,0,0,1.0,The user migrated the primary database from LMDB to Redis for project ember.
+AM v0.2.0,knowledge_updates-04,knowledge_updates,0,0,fail,0.0,0,1.0,1,1,1,LMDB,0,0,1.0,The user migrated the primary database from LMDB to Redis for project ember.
+AM v0.2.0,knowledge_updates-05,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Cassandra.
+AM v0.2.0,knowledge_updates-05,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Cassandra.
+AM v0.2.0,knowledge_updates-06,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,MongoDB.
+AM v0.2.0,knowledge_updates-06,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,MongoDB.
+AM v0.2.0,knowledge_updates-07,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Neo4j.
+AM v0.2.0,knowledge_updates-07,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Neo4j.
+AM v0.2.0,knowledge_updates-08,knowledge_updates,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,knowledge_updates-08,knowledge_updates,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,knowledge_updates-09,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,TimescaleDB.
+AM v0.2.0,knowledge_updates-09,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,TimescaleDB.
+AM v0.2.0,knowledge_updates-10,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ArangoDB.
+AM v0.2.0,knowledge_updates-10,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ArangoDB.
+AM v0.2.0,knowledge_updates-11,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RethinkDB
+AM v0.2.0,knowledge_updates-11,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,RethinkDB
+AM v0.2.0,knowledge_updates-12,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CouchDB.
+AM v0.2.0,knowledge_updates-12,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,CouchDB.
+AM v0.2.0,knowledge_updates-13,knowledge_updates,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,knowledge_updates-13,knowledge_updates,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,knowledge_updates-14,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ScyllaDB.
+AM v0.2.0,knowledge_updates-14,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ScyllaDB.
+AM v0.2.0,knowledge_updates-15,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SQLite.
+AM v0.2.0,knowledge_updates-15,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,SQLite.
+AM v0.2.0,knowledge_updates-16,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,DuckDB.
+AM v0.2.0,knowledge_updates-16,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,DuckDB.
+AM v0.2.0,knowledge_updates-17,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Postgres.
+AM v0.2.0,knowledge_updates-17,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Postgres.
+AM v0.2.0,knowledge_updates-18,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The primary database for project summit is RocksDB.
+AM v0.2.0,knowledge_updates-18,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The primary database for project summit is RocksDB.
+AM v0.2.0,knowledge_updates-19,knowledge_updates,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,LMDB.
+AM v0.2.0,knowledge_updates-19,knowledge_updates,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,LMDB.
+AM v0.2.0,contradiction_handling-00,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-00,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-01,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-01,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-02,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-02,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-03,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-03,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-04,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-04,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-05,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-05,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-06,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-06,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-07,contradiction_handling,majority,1,partial,0.5,0,0.5,1,2,0,,0,0,1.0,CockroachDB.
+AM v0.2.0,contradiction_handling-07,contradiction_handling,0,0,partial,0.5,0,0.5,1,2,0,,0,0,1.0,CockroachDB.
+AM v0.2.0,contradiction_handling-08,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-08,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-09,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-09,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-10,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-10,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-11,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-11,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-12,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-12,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-13,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-13,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-14,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,0,0,1.0,ScyllaDB.
+AM v0.2.0,contradiction_handling-14,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,0,0,1.0,ScyllaDB.
+AM v0.2.0,contradiction_handling-15,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-15,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-16,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-16,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-17,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-17,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-18,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,0,0,1.0,RocksDB.
+AM v0.2.0,contradiction_handling-18,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,0,0,1.0,RocksDB.
+AM v0.2.0,contradiction_handling-19,contradiction_handling,majority,1,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,contradiction_handling-19,contradiction_handling,0,0,fail,0.0,0,0.0,0,2,0,,1,0,1.0,I don't know.
+AM v0.2.0,indirect_recall-00,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Porto
+AM v0.2.0,indirect_recall-00,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Porto
+AM v0.2.0,indirect_recall-01,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Lund
+AM v0.2.0,indirect_recall-01,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Lund
+AM v0.2.0,indirect_recall-02,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Bergen
+AM v0.2.0,indirect_recall-02,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Bergen
+AM v0.2.0,indirect_recall-03,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Ghent
+AM v0.2.0,indirect_recall-03,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Ghent
+AM v0.2.0,indirect_recall-04,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Tartu
+AM v0.2.0,indirect_recall-04,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,Tartu
+AM v0.2.0,indirect_recall-05,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Aarhus
+AM v0.2.0,indirect_recall-05,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Aarhus
+AM v0.2.0,indirect_recall-06,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Bologna
+AM v0.2.0,indirect_recall-06,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Bologna
+AM v0.2.0,indirect_recall-07,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Galway
+AM v0.2.0,indirect_recall-07,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Galway
+AM v0.2.0,indirect_recall-08,indirect_recall,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,"SurrealDB is mentioned as running the cache layer for project ivory, but the location of the machine running the daily driver toolchain is not specified in the context. I don't know."
+AM v0.2.0,indirect_recall-08,indirect_recall,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,"SurrealDB is mentioned as running the cache layer for project ivory, but the location of the machine running the daily driver toolchain is not specified in the context. I don't know."
+AM v0.2.0,indirect_recall-09,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Lund
+AM v0.2.0,indirect_recall-09,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Lund
+AM v0.2.0,indirect_recall-10,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Coimbra
+AM v0.2.0,indirect_recall-10,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Coimbra
+AM v0.2.0,indirect_recall-11,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Utrecht
+AM v0.2.0,indirect_recall-11,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Utrecht
+AM v0.2.0,indirect_recall-12,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Graz
+AM v0.2.0,indirect_recall-12,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Graz
+AM v0.2.0,indirect_recall-13,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Tartu
+AM v0.2.0,indirect_recall-13,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Tartu
+AM v0.2.0,indirect_recall-14,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Bratislava
+AM v0.2.0,indirect_recall-14,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Bratislava
+AM v0.2.0,indirect_recall-15,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Trieste
+AM v0.2.0,indirect_recall-15,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Trieste
+AM v0.2.0,indirect_recall-16,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Nantes
+AM v0.2.0,indirect_recall-16,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Nantes
+AM v0.2.0,indirect_recall-17,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Kyoto
+AM v0.2.0,indirect_recall-17,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Kyoto
+AM v0.2.0,indirect_recall-18,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Lisbon
+AM v0.2.0,indirect_recall-18,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Lisbon
+AM v0.2.0,indirect_recall-19,indirect_recall,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Tallinn
+AM v0.2.0,indirect_recall-19,indirect_recall,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,Tallinn
+AM v0.2.0,distractor_resistance-00,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ripgrep
+AM v0.2.0,distractor_resistance-00,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,ripgrep
+AM v0.2.0,distractor_resistance-01,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project beacon, the user pinned the file search tool to bat."
+AM v0.2.0,distractor_resistance-01,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project beacon, the user pinned the file search tool to bat."
+AM v0.2.0,distractor_resistance-02,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,fd.
+AM v0.2.0,distractor_resistance-02,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,fd.
+AM v0.2.0,distractor_resistance-03,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The file search tool pinned for project delta is delta.
+AM v0.2.0,distractor_resistance-03,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The file search tool pinned for project delta is delta.
+AM v0.2.0,distractor_resistance-04,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,zoxide
+AM v0.2.0,distractor_resistance-04,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,zoxide
+AM v0.2.0,distractor_resistance-05,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The file search tool pinned for project fjord is starship.
+AM v0.2.0,distractor_resistance-05,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,The file search tool pinned for project fjord is starship.
+AM v0.2.0,distractor_resistance-06,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,just
+AM v0.2.0,distractor_resistance-06,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,just
+AM v0.2.0,distractor_resistance-07,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,watchexec
+AM v0.2.0,distractor_resistance-07,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,watchexec
+AM v0.2.0,distractor_resistance-08,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,helix
+AM v0.2.0,distractor_resistance-08,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,helix
+AM v0.2.0,distractor_resistance-09,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,hyperfine
+AM v0.2.0,distractor_resistance-09,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,hyperfine
+AM v0.2.0,distractor_resistance-10,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project kelp, the user pinned the file search tool to dust."
+AM v0.2.0,distractor_resistance-10,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,"For project kelp, the user pinned the file search tool to dust."
+AM v0.2.0,distractor_resistance-11,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,fzf
+AM v0.2.0,distractor_resistance-11,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,fzf
+AM v0.2.0,distractor_resistance-12,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd.
+AM v0.2.0,distractor_resistance-12,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,sd.
+AM v0.2.0,distractor_resistance-13,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei.
+AM v0.2.0,distractor_resistance-13,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,tokei.
+AM v0.2.0,distractor_resistance-14,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,delta-lake
+AM v0.2.0,distractor_resistance-14,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,delta-lake
+AM v0.2.0,distractor_resistance-15,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM v0.2.0,distractor_resistance-15,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,mise.
+AM v0.2.0,distractor_resistance-16,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,typos
+AM v0.2.0,distractor_resistance-16,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,typos
+AM v0.2.0,distractor_resistance-17,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,oil.
+AM v0.2.0,distractor_resistance-17,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,oil.
+AM v0.2.0,distractor_resistance-18,distractor_resistance,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,cargo-nextest.
+AM v0.2.0,distractor_resistance-18,distractor_resistance,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,cargo-nextest.
+AM v0.2.0,distractor_resistance-19,distractor_resistance,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,xsv
+AM v0.2.0,distractor_resistance-19,distractor_resistance,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,xsv
+AM v0.2.0,abstention-00,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM v0.2.0,abstention-00,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM v0.2.0,abstention-01,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,bat,0,0,1.0,bat.
+AM v0.2.0,abstention-01,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,bat,0,0,1.0,bat.
+AM v0.2.0,abstention-02,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,fd,0,0,1.0,fd.
+AM v0.2.0,abstention-02,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,fd,0,0,1.0,fd.
+AM v0.2.0,abstention-03,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,delta,0,0,1.0,The user configured the debugger to delta for project delta.
+AM v0.2.0,abstention-03,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,delta,0,0,1.0,The user configured the debugger to delta for project delta.
+AM v0.2.0,abstention-04,abstention,majority,1,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM v0.2.0,abstention-04,abstention,0,0,pass,1.0,1,1.0,0,0,0,,1,0,1.0,I don't know.
+AM v0.2.0,abstention-05,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,starship,1,0,1.0,"The user pinned the file search tool to starship for project fjord, and settled on starship as the daily driver. I don't know which debugger was configured for project fjord."
+AM v0.2.0,abstention-05,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,starship,1,0,1.0,"The user pinned the file search tool to starship for project fjord, and settled on starship as the daily driver. I don't know which debugger was configured for project fjord."
+AM v0.2.0,abstention-06,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,just,0,0,1.0,just.
+AM v0.2.0,abstention-06,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,just,0,0,1.0,just.
+AM v0.2.0,abstention-07,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,watchexec,0,0,1.0,watchexec.
+AM v0.2.0,abstention-07,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,watchexec,0,0,1.0,watchexec.
+AM v0.2.0,abstention-08,abstention,majority,1,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project ivory.
+AM v0.2.0,abstention-08,abstention,0,0,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project ivory.
+AM v0.2.0,abstention-09,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,hyperfine,0,0,1.0,hyperfine.
+AM v0.2.0,abstention-09,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,hyperfine,0,0,1.0,hyperfine.
+AM v0.2.0,abstention-10,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,dust,0,0,1.0,dust.
+AM v0.2.0,abstention-10,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,dust,0,0,1.0,dust.
+AM v0.2.0,abstention-11,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,procs,0,0,1.0,procs.
+AM v0.2.0,abstention-11,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,procs,0,0,1.0,procs.
+AM v0.2.0,abstention-12,abstention,majority,1,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project moss.
+AM v0.2.0,abstention-12,abstention,0,0,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project moss.
+AM v0.2.0,abstention-13,abstention,majority,1,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project nectar.
+AM v0.2.0,abstention-13,abstention,0,0,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project nectar.
+AM v0.2.0,abstention-14,abstention,majority,1,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,delta-lake.
+AM v0.2.0,abstention-14,abstention,0,0,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,delta-lake.
+AM v0.2.0,abstention-15,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,mise,0,0,1.0,The user configured the debugger to mise for project prism.
+AM v0.2.0,abstention-15,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,mise,0,0,1.0,The user configured the debugger to mise for project prism.
+AM v0.2.0,abstention-16,abstention,majority,1,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project quartz.
+AM v0.2.0,abstention-16,abstention,0,0,false_positive,0.0,0,1.0,0,0,0,,0,0,1.0,The user did not configure a debugger for project quartz.
+AM v0.2.0,abstention-17,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,bacon,0,0,1.0,bacon.
+AM v0.2.0,abstention-17,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,bacon,0,0,1.0,bacon.
+AM v0.2.0,abstention-18,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,cargo-nextest,0,0,1.0,cargo-nextest.
+AM v0.2.0,abstention-18,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,cargo-nextest,0,0,1.0,cargo-nextest.
+AM v0.2.0,abstention-19,abstention,majority,1,false_positive,0.0,0,1.0,0,0,1,sccache,0,0,1.0,sccache
+AM v0.2.0,abstention-19,abstention,0,0,false_positive,0.0,0,1.0,0,0,1,sccache,0,0,1.0,sccache
+AM v0.2.0,compression_recovery-00,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1160
+AM v0.2.0,compression_recovery-00,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1160
+AM v0.2.0,compression_recovery-01,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1161
+AM v0.2.0,compression_recovery-01,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1161
+AM v0.2.0,compression_recovery-02,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1162
+AM v0.2.0,compression_recovery-02,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1162
+AM v0.2.0,compression_recovery-03,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1163
+AM v0.2.0,compression_recovery-03,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1163
+AM v0.2.0,compression_recovery-04,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1164
+AM v0.2.0,compression_recovery-04,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1164
+AM v0.2.0,compression_recovery-05,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-05,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-06,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1166
+AM v0.2.0,compression_recovery-06,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1166
+AM v0.2.0,compression_recovery-07,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-07,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-08,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1168
+AM v0.2.0,compression_recovery-08,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1168
+AM v0.2.0,compression_recovery-09,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-09,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-10,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-10,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-11,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-11,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-12,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1172
+AM v0.2.0,compression_recovery-12,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1172
+AM v0.2.0,compression_recovery-13,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1173
+AM v0.2.0,compression_recovery-13,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1173
+AM v0.2.0,compression_recovery-14,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1174
+AM v0.2.0,compression_recovery-14,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1174
+AM v0.2.0,compression_recovery-15,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1175
+AM v0.2.0,compression_recovery-15,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1175
+AM v0.2.0,compression_recovery-16,compression_recovery,majority,1,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-16,compression_recovery,0,0,fail,0.0,0,0.0,0,1,0,,1,0,1.0,I don't know.
+AM v0.2.0,compression_recovery-17,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1177
+AM v0.2.0,compression_recovery-17,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1177
+AM v0.2.0,compression_recovery-18,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1178
+AM v0.2.0,compression_recovery-18,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1178
+AM v0.2.0,compression_recovery-19,compression_recovery,majority,1,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1179
+AM v0.2.0,compression_recovery-19,compression_recovery,0,0,pass,1.0,1,1.0,1,1,0,,0,0,1.0,AM-1179
+AM v0.2.0,reflection_reinterpretation-00,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for ripgrep.
+AM v0.2.0,reflection_reinterpretation-00,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for ripgrep.
+AM v0.2.0,reflection_reinterpretation-01,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for bat as the file search tool.
+AM v0.2.0,reflection_reinterpretation-01,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for bat as the file search tool.
+AM v0.2.0,reflection_reinterpretation-02,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently pinned the file search tool to fd.
+AM v0.2.0,reflection_reinterpretation-02,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently pinned the file search tool to fd.
+AM v0.2.0,reflection_reinterpretation-03,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain delta.
+AM v0.2.0,reflection_reinterpretation-03,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain delta.
+AM v0.2.0,reflection_reinterpretation-04,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for zoxide as the file search tool.
+AM v0.2.0,reflection_reinterpretation-04,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for zoxide as the file search tool.
+AM v0.2.0,reflection_reinterpretation-05,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for starship as the editor toolchain.
+AM v0.2.0,reflection_reinterpretation-05,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for starship as the editor toolchain.
+AM v0.2.0,reflection_reinterpretation-06,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain just.
+AM v0.2.0,reflection_reinterpretation-06,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain just.
+AM v0.2.0,reflection_reinterpretation-07,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for watchexec as the file search tool.
+AM v0.2.0,reflection_reinterpretation-07,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for watchexec as the file search tool.
+AM v0.2.0,reflection_reinterpretation-08,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for using helix as the file search tool.
+AM v0.2.0,reflection_reinterpretation-08,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for using helix as the file search tool.
+AM v0.2.0,reflection_reinterpretation-09,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for using hyperfine as the file search tool.
+AM v0.2.0,reflection_reinterpretation-09,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for using hyperfine as the file search tool.
+AM v0.2.0,reflection_reinterpretation-10,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the dust file search tool.
+AM v0.2.0,reflection_reinterpretation-10,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the dust file search tool.
+AM v0.2.0,reflection_reinterpretation-11,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain procs.
+AM v0.2.0,reflection_reinterpretation-11,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain procs.
+AM v0.2.0,reflection_reinterpretation-12,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain sd.
+AM v0.2.0,reflection_reinterpretation-12,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain sd.
+AM v0.2.0,reflection_reinterpretation-13,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain tokei.
+AM v0.2.0,reflection_reinterpretation-13,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain tokei.
+AM v0.2.0,reflection_reinterpretation-14,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain xh.
+AM v0.2.0,reflection_reinterpretation-14,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain xh.
+AM v0.2.0,reflection_reinterpretation-15,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain mise.
+AM v0.2.0,reflection_reinterpretation-15,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain mise.
+AM v0.2.0,reflection_reinterpretation-16,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain typos.
+AM v0.2.0,reflection_reinterpretation-16,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for the editor toolchain typos.
+AM v0.2.0,reflection_reinterpretation-17,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently pinned the file search tool to bacon for project reef.
+AM v0.2.0,reflection_reinterpretation-17,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently pinned the file search tool to bacon for project reef.
+AM v0.2.0,reflection_reinterpretation-18,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for cargo-nextest.
+AM v0.2.0,reflection_reinterpretation-18,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for cargo-nextest.
+AM v0.2.0,reflection_reinterpretation-19,reflection_reinterpretation,majority,1,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for sccache as the editor toolchain.
+AM v0.2.0,reflection_reinterpretation-19,reflection_reinterpretation,0,0,fail,0.0,0,0.0,0,1,0,,0,0,1.0,The user consistently shows a preference for sccache as the editor toolchain.

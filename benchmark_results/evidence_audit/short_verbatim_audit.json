@@ -1,0 +1,2980 @@
+{
+  "label": "short-verbatim pre-implementation audit (audit only)",
+  "match_rules": {
+    "normalization": "lowercase + collapse whitespace + strip; nothing else",
+    "punctuation": "KEPT as part of the match",
+    "length": "words of the RAW gold, split on whitespace",
+    "occurrences": "non-overlapping count on normalized context"
+  },
+  "n_verbatim": 658,
+  "n_short": 377,
+  "n_unique": 143,
+  "label_counts": {
+    "NUMERIC_OR_DATE": 16,
+    "MULTIPLE_CANDIDATES": 20,
+    "RELATION_EXPLICITLY_SUPPORTED": 97,
+    "ENTITY_OR_PROPER_NOUN": 88,
+    "QUOTED_OR_PUNCTUATED": 6,
+    "VALUE_PRESENT_BUT_RELATION_UNPROVEN": 46,
+    "BOOLEAN_OR_YES_NO": 5
+  },
+  "n_safe": 92,
+  "n_relation_proven": 97,
+  "safe_qids": [
+    "lc_conv-26_1",
+    "lc_conv-26_3",
+    "lc_conv-26_92",
+    "lc_conv-26_111",
+    "lc_conv-26_126",
+    "lc_conv-26_131",
+    "lc_conv-26_158",
+    "lc_conv-26_180",
+    "lc_conv-26_186",
+    "lc_conv-30_34",
+    "lc_conv-30_46",
+    "lc_conv-30_73",
+    "lc_conv-30_86",
+    "lc_conv-41_5",
+    "lc_conv-41_70",
+    "lc_conv-41_78",
+    "lc_conv-41_81",
+    "lc_conv-41_147",
+    "lc_conv-41_157",
+    "lc_conv-41_191",
+    "lc_conv-42_2",
+    "lc_conv-42_8",
+    "lc_conv-42_100",
+    "lc_conv-42_109",
+    "lc_conv-42_117",
+    "lc_conv-42_118",
+    "lc_conv-42_164",
+    "lc_conv-42_182",
+    "lc_conv-42_196",
+    "lc_conv-42_208",
+    "lc_conv-42_216",
+    "lc_conv-42_238",
+    "lc_conv-42_248",
+    "lc_conv-42_258",
+    "lc_conv-43_6",
+    "lc_conv-43_23",
+    "lc_conv-43_24",
+    "lc_conv-43_77",
+    "lc_conv-43_112",
+    "lc_conv-43_167",
+    "lc_conv-43_172",
+    "lc_conv-43_182",
+    "lc_conv-43_205",
+    "lc_conv-43_235",
+    "lc_conv-44_42",
+    "lc_conv-44_61",
+    "lc_conv-44_95",
+    "lc_conv-44_100",
+    "lc_conv-44_103",
+    "lc_conv-44_114",
+    "lc_conv-44_123",
+    "lc_conv-44_150",
+    "lc_conv-47_70",
+    "lc_conv-47_72",
+    "lc_conv-47_75",
+    "lc_conv-47_76",
+    "lc_conv-47_87",
+    "lc_conv-47_103",
+    "lc_conv-47_120",
+    "lc_conv-47_130",
+    "lc_conv-47_163",
+    "lc_conv-47_174",
+    "lc_conv-48_4",
+    "lc_conv-48_10",
+    "lc_conv-48_15",
+    "lc_conv-48_77",
+    "lc_conv-48_78",
+    "lc_conv-48_102",
+    "lc_conv-48_107",
+    "lc_conv-48_136",
+    "lc_conv-48_160",
+    "lc_conv-48_161",
+    "lc_conv-48_165",
+    "lc_conv-48_175",
+    "lc_conv-48_223",
+    "lc_conv-48_224",
+    "lc_conv-48_227",
+    "lc_conv-48_232",
+    "lc_conv-49_8",
+    "lc_conv-49_111",
+    "lc_conv-49_117",
+    "lc_conv-49_143",
+    "lc_conv-49_148",
+    "lc_conv-49_151",
+    "lc_conv-49_175",
+    "lc_conv-49_191",
+    "lc_conv-49_193",
+    "lc_conv-50_23",
+    "lc_conv-50_116",
+    "lc_conv-50_174",
+    "lc_conv-50_189",
+    "lc_conv-50_194"
+  ],
+  "rows": [
+    {
+      "question_id": "lc_conv-26_1",
+      "cache_qid": "conv-26-qa-001",
+      "conversation": "26",
+      "question": "When did Melanie paint a sunrise?",
+      "gold": "2022",
+      "gold_norm": "2022",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D1:14",
+      "relation_terms": [
+        "melanie",
+        "sunrise"
+      ],
+      "relation_sentence": "Is this your own painting?\") Melanie: Yeah, I painted that lake sunrise last year (2022)!",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-26_3",
+      "cache_qid": "conv-26-qa-003",
+      "conversation": "26",
+      "question": "What did Caroline research?",
+      "gold": "Adoption agencies",
+      "gold_norm": "adoption agencies",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:8",
+      "relation_terms": [
+        "caroline"
+      ],
+      "relation_sentence": "We're\") Caroline: Researching adoption agencies — it's been a dream to have a family and give a loving home to kids who need it.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_71",
+      "cache_qid": "conv-26-qa-071",
+      "conversation": "26",
+      "question": "What book did Melanie read from Caroline's suggestion?",
+      "gold": "\"Becoming Nicole\"",
+      "gold_norm": "\"becoming nicole\"",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D7:11",
+      "relation_terms": [
+        "caroline"
+      ],
+      "relation_sentence": "Which one has been your favorite guide?\") Caroline: I loved \"Becoming Nicole\" by Amy Ellis Nutt.",
+      "labels": [
+        "QUOTED_OR_PUNCTUATED",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_92",
+      "cache_qid": "conv-26-qa-092",
+      "conversation": "26",
+      "question": "What country is Caroline's grandma from?",
+      "gold": "Sweden",
+      "gold_norm": "sweden",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D4:3",
+      "relation_terms": [
+        "country",
+        "grandma"
+      ],
+      "relation_sentence": "This necklace is super special to me - a gift from my grandma in my home country, Sweden.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_103",
+      "cache_qid": "conv-26-qa-103",
+      "conversation": "26",
+      "question": "What was Melanie's favorite book from her childhood?",
+      "gold": "\"Charlotte's Web\"",
+      "gold_norm": "\"charlotte's web\"",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D6:10",
+      "relation_terms": [
+        "melanie"
+      ],
+      "relation_sentence": "What's a favori\") Melanie: I loved reading \"Charlotte's Web\" as a kid.",
+      "labels": [
+        "QUOTED_OR_PUNCTUATED",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_104",
+      "cache_qid": "conv-26-qa-104",
+      "conversation": "26",
+      "question": "What book did Caroline recommend to Melanie?",
+      "gold": "\"Becoming Nicole\"",
+      "gold_norm": "\"becoming nicole\"",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D7:11",
+      "relation_terms": [
+        "caroline"
+      ],
+      "relation_sentence": "Which one has been your favorite guide?\") Caroline: I loved \"Becoming Nicole\" by Amy Ellis Nutt.",
+      "labels": [
+        "QUOTED_OR_PUNCTUATED",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_106",
+      "cache_qid": "conv-26-qa-106",
+      "conversation": "26",
+      "question": "What are the new shoes that Melanie got used for?",
+      "gold": "Running",
+      "gold_norm": "running",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_111",
+      "cache_qid": "conv-26-qa-111",
+      "conversation": "26",
+      "question": "What creative project do Mel and her kids do together besides pottery?",
+      "gold": "painting",
+      "gold_norm": "painting",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D12:6",
+      "relation_terms": [
+        "creative"
+      ],
+      "relation_sentence": "Plus, painting helps me express my feelings and be creative.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-26_123",
+      "cache_qid": "conv-26-qa-123",
+      "conversation": "26",
+      "question": "What pet does Caroline have?",
+      "gold": "guinea pig",
+      "gold_norm": "guinea pig",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-26_126",
+      "cache_qid": "conv-26-qa-126",
+      "conversation": "26",
+      "question": "What activity did Caroline used to do with her dad?",
+      "gold": "Horseback riding",
+      "gold_norm": "horseback riding",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D13:7",
+      "relation_terms": [
+        "used"
+      ],
+      "relation_sentence": "I used to go horseback riding with my dad when I was a kid, we'd go through the fields, feeling the wind.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_131",
+      "cache_qid": "conv-26-qa-131",
+      "conversation": "26",
+      "question": "Who is Melanie a fan of in terms of modern music?",
+      "gold": "Ed Sheeran",
+      "gold_norm": "ed sheeran",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D15:28",
+      "relation_terms": [
+        "melanie",
+        "modern",
+        "music"
+      ],
+      "relation_sentence": "Got any fav tunes?\") Melanie: I'm a fan of both classical like Bach and Mozart, as well as modern music like Ed Sheeran's \"Perfect\".",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_158",
+      "cache_qid": "conv-26-qa-158",
+      "conversation": "26",
+      "question": "What country is Melanie's grandma from?",
+      "gold": "Sweden",
+      "gold_norm": "sweden",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D4:4",
+      "relation_terms": [
+        "country",
+        "grandma"
+      ],
+      "relation_sentence": "This necklace is super special to me - a gift from my grandma in my home country, Sweden.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_180",
+      "cache_qid": "conv-26-qa-180",
+      "conversation": "26",
+      "question": "What activity did Melanie used to do with her dad?",
+      "gold": "Horseback riding",
+      "gold_norm": "horseback riding",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D13:8",
+      "relation_terms": [
+        "melanie",
+        "used"
+      ],
+      "relation_sentence": "I used to go horseback riding with my dad when I was a kid, we'd go through the fields, feeling the win\") Melanie: Wow, that sounds great - I agree, they're awe",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-26_186",
+      "cache_qid": "conv-26-qa-186",
+      "conversation": "26",
+      "question": "Who is Caroline a fan of in terms of modern music?",
+      "gold": "Ed Sheeran",
+      "gold_norm": "ed sheeran",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D15:28",
+      "relation_terms": [
+        "modern",
+        "music"
+      ],
+      "relation_sentence": "Got any fav tunes?\") Melanie: I'm a fan of both classical like Bach and Mozart, as well as modern music like Ed Sheeran's \"Perfect\".",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-30_27",
+      "cache_qid": "conv-30-qa-027",
+      "conversation": "30",
+      "question": "Did Jon and Gina both participate in dance competitions?",
+      "gold": "Yes",
+      "gold_norm": "yes",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "BOOLEAN_OR_YES_NO",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-30_34",
+      "cache_qid": "conv-30-qa-034",
+      "conversation": "30",
+      "question": "When did Gina start being recognized by fashion editors?",
+      "gold": "July 2023",
+      "gold_norm": "july 2023",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D17:1",
+      "relation_terms": [
+        "editors",
+        "fashion"
+      ],
+      "relation_sentence": "last week (the week before 9 July 2023) was wild, I got noticed by fashion editors and it's been amazing but kinda scary.",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-30_39",
+      "cache_qid": "conv-30-qa-039",
+      "conversation": "30",
+      "question": "What is Gina's favorite style of dance?",
+      "gold": "Contemporary",
+      "gold_norm": "contemporary",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-30_46",
+      "cache_qid": "conv-30-qa-046",
+      "conversation": "30",
+      "question": "What kind of flooring is Jon looking for in his dance studio?",
+      "gold": "Marley flooring",
+      "gold_norm": "marley flooring",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:8",
+      "relation_terms": [
+        "dance",
+        "flooring"
+      ],
+      "relation_sentence": "I'm after Marley flooring, which is what dance studios usually use.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-30_72",
+      "cache_qid": "conv-30-qa-072",
+      "conversation": "30",
+      "question": "How does Jon feel about the opening night of his dance studio?",
+      "gold": "excited",
+      "gold_norm": "excited",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-30_73",
+      "cache_qid": "conv-30-qa-073",
+      "conversation": "30",
+      "question": "How does Gina describe the feeling that dance brings?",
+      "gold": "magical",
+      "gold_norm": "magical",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D15:8",
+      "relation_terms": [
+        "brings",
+        "dance"
+      ],
+      "relation_sentence": "Capture the joy and thrill that dance brings - it's magical!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-30_86",
+      "cache_qid": "conv-30-qa-086",
+      "conversation": "30",
+      "question": "What kind of flooring is Gina looking for in her dance studio?",
+      "gold": "Marley flooring",
+      "gold_norm": "marley flooring",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:9",
+      "relation_terms": [
+        "dance",
+        "flooring"
+      ],
+      "relation_sentence": "I'm after Marley flooring, which is what dance studios usually use.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-41_5",
+      "cache_qid": "conv-41-qa-005",
+      "conversation": "41",
+      "question": "When did Maria go to the beach?",
+      "gold": "December 2022",
+      "gold_norm": "december 2022",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D3:14",
+      "relation_terms": [
+        "beach",
+        "maria"
+      ],
+      "relation_sentence": "Where did you find it?\") Maria: I took it at the beach last month (December 2022).",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-41_70",
+      "cache_qid": "conv-41-qa-070",
+      "conversation": "41",
+      "question": "What kind of meal did John and his family make together in the photo shared by John?",
+      "gold": "pizza",
+      "gold_norm": "pizza",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D2:24",
+      "relation_terms": [
+        "john"
+      ],
+      "relation_sentence": "What did y\") John: We made pizza!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-41_78",
+      "cache_qid": "conv-41-qa-078",
+      "conversation": "41",
+      "question": "What is the name of John's one-year-old child?",
+      "gold": "Kyle",
+      "gold_norm": "kyle",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D8:4",
+      "relation_terms": [
+        "name",
+        "year"
+      ],
+      "relation_sentence": "Our one-year-old is so cute, his name is Kyle!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-41_81",
+      "cache_qid": "conv-41-qa-081",
+      "conversation": "41",
+      "question": "Where did Maria get the idea for the castle shadow box in her home?",
+      "gold": "England",
+      "gold_norm": "england",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D8:15",
+      "relation_terms": [
+        "idea"
+      ],
+      "relation_sentence": "I got the idea from that trip to England a few years ago - I was mesmerized by the castles.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-41_87",
+      "cache_qid": "conv-41-qa-087",
+      "conversation": "41",
+      "question": "Where did John explore on a road trip last year?",
+      "gold": "Pacific Northwest",
+      "gold_norm": "pacific northwest",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-41_100",
+      "cache_qid": "conv-41-qa-100",
+      "conversation": "41",
+      "question": "What emotions did John feel during the small party with the veterans?",
+      "gold": "heartwarming",
+      "gold_norm": "heartwarming",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-41_113",
+      "cache_qid": "conv-41-qa-113",
+      "conversation": "41",
+      "question": "What was one of the biggest challenges John faced in his journey to becoming assistant manager?",
+      "gold": "self-doubt",
+      "gold_norm": "self-doubt",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-41_147",
+      "cache_qid": "conv-41-qa-147",
+      "conversation": "41",
+      "question": "What is the name of Maria's second puppy?",
+      "gold": "Shadow",
+      "gold_norm": "shadow",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D31:4",
+      "relation_terms": [
+        "maria",
+        "name"
+      ],
+      "relation_sentence": "Do she and your other dog get along?\") Maria: Her name is Shadow!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-41_157",
+      "cache_qid": "conv-41-qa-157",
+      "conversation": "41",
+      "question": "What is the name of Maria's one-year-old child?",
+      "gold": "Kyle",
+      "gold_norm": "kyle",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D8:5",
+      "relation_terms": [
+        "maria",
+        "name",
+        "year"
+      ],
+      "relation_sentence": "Our one-year-old is so cute, his name is Kyle!\") Maria: Sounds like parenting has been a wonderful experience for you - what has it been like?",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-41_191",
+      "cache_qid": "conv-41-qa-191",
+      "conversation": "41",
+      "question": "What is the name of Maria's second kitten?",
+      "gold": "Shadow",
+      "gold_norm": "shadow",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D31:4",
+      "relation_terms": [
+        "maria",
+        "name"
+      ],
+      "relation_sentence": "Do she and your other dog get along?\") Maria: Her name is Shadow!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-42_2",
+      "cache_qid": "conv-42-qa-002",
+      "conversation": "42",
+      "question": "When did Joanna first watch \"Eternal Sunshine of the Spotless Mind?",
+      "gold": "2019",
+      "gold_norm": "2019",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D1:18",
+      "relation_terms": [
+        "first"
+      ],
+      "relation_sentence": "I first watched it around 3 years ago (2019).",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-42_8",
+      "cache_qid": "conv-42-qa-008",
+      "conversation": "42",
+      "question": "When did Nate get his first two turtles?",
+      "gold": "2019",
+      "gold_norm": "2019",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D1:19",
+      "relation_terms": [
+        "first"
+      ],
+      "relation_sentence": "I first watched it around 3 years ago (2019).",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-42_20",
+      "cache_qid": "conv-42-qa-020",
+      "conversation": "42",
+      "question": "When did Nate adopt Max?",
+      "gold": "May 2022",
+      "gold_norm": "may 2022",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-42_68",
+      "cache_qid": "conv-42-qa-068",
+      "conversation": "42",
+      "question": "How many hikes has Joanna been on?",
+      "gold": "Four",
+      "gold_norm": "four",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-42_100",
+      "cache_qid": "conv-42-qa-100",
+      "conversation": "42",
+      "question": "For how long has Nate had his turtles?",
+      "gold": "3 years",
+      "gold_norm": "3 years",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:12",
+      "relation_terms": [
+        "long",
+        "nate"
+      ],
+      "relation_sentence": "How long have you had them?\") Nate: I've had them for 3 years now and they bring me tons of joy!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_109",
+      "cache_qid": "conv-42-qa-109",
+      "conversation": "42",
+      "question": "What was Joanna's audition for?",
+      "gold": "writing gig",
+      "gold_norm": "writing gig",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D6:2",
+      "relation_terms": [
+        "audition"
+      ],
+      "relation_sentence": "Been quite a ride - in a good way - had an audition yesterday (23 March 2022) for a writing gig.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_117",
+      "cache_qid": "conv-42-qa-117",
+      "conversation": "42",
+      "question": "What filling did Joanna use in the cake she made recently in May 2022?",
+      "gold": "strawberry",
+      "gold_norm": "strawberry",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D10:11",
+      "relation_terms": [
+        "filling"
+      ],
+      "relation_sentence": "It's dairy-free vanilla with strawberry filling and coconut cream frosting.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_118",
+      "cache_qid": "conv-42-qa-118",
+      "conversation": "42",
+      "question": "What kind of frosting did Joanna use on the cake she made recently in May 2022?",
+      "gold": "coconut cream",
+      "gold_norm": "coconut cream",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D10:11",
+      "relation_terms": [
+        "frosting"
+      ],
+      "relation_sentence": "It's dairy-free vanilla with strawberry filling and coconut cream frosting.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_128",
+      "cache_qid": "conv-42-qa-128",
+      "conversation": "42",
+      "question": "What superhero is Joanna a fan of?",
+      "gold": "Spider-Man",
+      "gold_norm": "spider-man",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-42_143",
+      "cache_qid": "conv-42-qa-143",
+      "conversation": "42",
+      "question": "How did Joanna feel when someone wrote her a letter after reading her blog post?",
+      "gold": "Touched",
+      "gold_norm": "touched",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-42_164",
+      "cache_qid": "conv-42-qa-164",
+      "conversation": "42",
+      "question": "What game has Nate been playing nonstop with a futuristic setting and gameplay on October 9, 2022?",
+      "gold": "Cyberpunk 2077",
+      "gold_norm": "cyberpunk 2077",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D23:17",
+      "relation_terms": [
+        "futuristic",
+        "game",
+        "gameplay",
+        "nonstop",
+        "playing",
+        "setting"
+      ],
+      "relation_sentence": "I've also been playing a game nonstop with a great futuristic setting and gameplay called \"Cyberpunk 2077\".",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-42_182",
+      "cache_qid": "conv-42-qa-182",
+      "conversation": "42",
+      "question": "What did Joanna find in old notebooks last week that prompted her to reflect on her progress as a writer?",
+      "gold": "early writings",
+      "gold_norm": "early writings",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D26:5",
+      "relation_terms": [
+        "last",
+        "notebooks",
+        "week"
+      ],
+      "relation_sentence": "last week (the week before 4 November 2022), I found these old notebooks with my early writings - it was cool to see how far I've come.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "cache_qid": "conv-42-qa-196",
+      "conversation": "42",
+      "question": "What did Nate take to the beach in Tampa?",
+      "gold": "turtles",
+      "gold_norm": "turtles",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D29:6",
+      "relation_terms": [
+        "beach",
+        "tampa"
+      ],
+      "relation_sentence": "Anyway, I took my turtles to the beach in Tampa yesterday (10 November 2022)!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_208",
+      "cache_qid": "conv-42-qa-208",
+      "conversation": "42",
+      "question": "For how long has Nate had his snakes?",
+      "gold": "3 years",
+      "gold_norm": "3 years",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:12",
+      "relation_terms": [
+        "long",
+        "nate"
+      ],
+      "relation_sentence": "How long have you had them?\") Nate: I've had them for 3 years now and they bring me tons of joy!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_216",
+      "cache_qid": "conv-42-qa-216",
+      "conversation": "42",
+      "question": "What filling did Nate use in the cake he made recently in May 2022?",
+      "gold": "strawberry",
+      "gold_norm": "strawberry",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D10:12",
+      "relation_terms": [
+        "filling"
+      ],
+      "relation_sentence": "It's dairy-free vanilla with strawberry filling and coconut cream frosting.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "cache_qid": "conv-42-qa-226",
+      "conversation": "42",
+      "question": "How did Nate feel when someone wrote him a letter after reading his blog post?",
+      "gold": "Touched",
+      "gold_norm": "touched",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-42_238",
+      "cache_qid": "conv-42-qa-238",
+      "conversation": "42",
+      "question": "What game has Joanna been playing nonstop with a futuristic setting and gameplay on October 9, 2022?",
+      "gold": "Cyberpunk 2077",
+      "gold_norm": "cyberpunk 2077",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D23:17",
+      "relation_terms": [
+        "futuristic",
+        "game",
+        "gameplay",
+        "nonstop",
+        "playing",
+        "setting"
+      ],
+      "relation_sentence": "I've also been playing a game nonstop with a great futuristic setting and gameplay called \"Cyberpunk 2077\".",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-42_248",
+      "cache_qid": "conv-42-qa-248",
+      "conversation": "42",
+      "question": "What did Nate find in old notebooks last week that prompted him to reflect on her progress as a writer?",
+      "gold": "early writings",
+      "gold_norm": "early writings",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D26:5",
+      "relation_terms": [
+        "last",
+        "notebooks",
+        "week"
+      ],
+      "relation_sentence": "last week (the week before 4 November 2022), I found these old notebooks with my early writings - it was cool to see how far I've come.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-42_258",
+      "cache_qid": "conv-42-qa-258",
+      "conversation": "42",
+      "question": "What did Joanna take to the beach in Tampa?",
+      "gold": "turtles",
+      "gold_norm": "turtles",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D29:6",
+      "relation_terms": [
+        "beach",
+        "tampa"
+      ],
+      "relation_sentence": "Anyway, I took my turtles to the beach in Tampa yesterday (10 November 2022)!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-43_6",
+      "cache_qid": "conv-43-qa-006",
+      "conversation": "43",
+      "question": "In which month's game did John achieve a career-high score in points?",
+      "gold": "June 2023",
+      "gold_norm": "june 2023",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D3:1",
+      "relation_terms": [
+        "month"
+      ],
+      "relation_sentence": "So much has happened in the last month (June 2023) - on and off the court.",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-43_23",
+      "cache_qid": "conv-43-qa-023",
+      "conversation": "43",
+      "question": "When is Tim attending a book conference?",
+      "gold": "September 2023",
+      "gold_norm": "september 2023",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D7:6",
+      "relation_terms": [
+        "book",
+        "conference"
+      ],
+      "relation_sentence": "\") Tim: I have no big events coming up, but I'm hoping to attend a book conference next month (September 2023).",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-43_24",
+      "cache_qid": "conv-43-qa-024",
+      "conversation": "43",
+      "question": "Where was John between August 11 and August 15 2023?",
+      "gold": "Chicago",
+      "gold_norm": "chicago",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D6:3",
+      "relation_terms": [
+        "john"
+      ],
+      "relation_sentence": "Exploring new places can \") John: I was in Chicago, it was awesome!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_40",
+      "cache_qid": "conv-43-qa-040",
+      "conversation": "43",
+      "question": "Has Tim been to North Carolina and/or Tennesee states in the US?",
+      "gold": "Yes",
+      "gold_norm": "yes",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "BOOLEAN_OR_YES_NO",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-43_56",
+      "cache_qid": "conv-43-qa-056",
+      "conversation": "43",
+      "question": "When did Tim start playing the violin?",
+      "gold": "August 2023",
+      "gold_norm": "august 2023",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-43_77",
+      "cache_qid": "conv-43-qa-077",
+      "conversation": "43",
+      "question": "What was the highest number of points John scored in a game recently?",
+      "gold": "40 points",
+      "gold_norm": "40 points",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D3:1",
+      "relation_terms": [
+        "highest",
+        "points",
+        "scored"
+      ],
+      "relation_sentence": "last week (the week before 16 July 2023) I scored 40 points, my highest ever, and it feels like all my hard work's paying off.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-43_107",
+      "cache_qid": "conv-43-qa-107",
+      "conversation": "43",
+      "question": "What city did Tim suggest to John for the team trip next month?",
+      "gold": "Edinburgh, Scotland",
+      "gold_norm": "edinburgh, scotland",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_112",
+      "cache_qid": "conv-43-qa-112",
+      "conversation": "43",
+      "question": "What was the setting for John and his wife's first dance?",
+      "gold": "Cozy restaurant",
+      "gold_norm": "cozy restaurant",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D12:10",
+      "relation_terms": [
+        "dance",
+        "first"
+      ],
+      "relation_sentence": "We had our first dance at a cozy restaurant.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_119",
+      "cache_qid": "conv-43-qa-119",
+      "conversation": "43",
+      "question": "Where did Tim capture the photography of the sunset over the mountain range?",
+      "gold": "Smoky Mountains",
+      "gold_norm": "smoky mountains",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_124",
+      "cache_qid": "conv-43-qa-124",
+      "conversation": "43",
+      "question": "Who is one of Tim's sources of inspiration for writing?",
+      "gold": "J.K. Rowling",
+      "gold_norm": "j.k. rowling",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_152",
+      "cache_qid": "conv-43-qa-152",
+      "conversation": "43",
+      "question": "What kind of game did John have a career-high in assists in?",
+      "gold": "basketball",
+      "gold_norm": "basketball",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-43_167",
+      "cache_qid": "conv-43-qa-167",
+      "conversation": "43",
+      "question": "According to John, who is his favorite character from Lord of the Rings?",
+      "gold": "Aragorn",
+      "gold_norm": "aragorn",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D27:24",
+      "relation_terms": [
+        "character",
+        "favorite"
+      ],
+      "relation_sentence": "My favorite character is Aragorn, he grows so much throughout the story.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_172",
+      "cache_qid": "conv-43-qa-172",
+      "conversation": "43",
+      "question": "Where will Tim be going for a semester abroad?",
+      "gold": "Ireland",
+      "gold_norm": "ireland",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D28:1",
+      "relation_terms": [
+        "semester"
+      ],
+      "relation_sentence": "next month (February 2024), I'm off to Ireland for a semester.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_173",
+      "cache_qid": "conv-43-qa-173",
+      "conversation": "43",
+      "question": "Which city in Ireland will Tim be staying in during his semester abroad?",
+      "gold": "Galway",
+      "gold_norm": "galway",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_182",
+      "cache_qid": "conv-43-qa-182",
+      "conversation": "43",
+      "question": "What was the highest number of points Tim scored in a game recently?",
+      "gold": "40 points",
+      "gold_norm": "40 points",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D3:1",
+      "relation_terms": [
+        "highest",
+        "points",
+        "scored"
+      ],
+      "relation_sentence": "last week (the week before 16 July 2023) I scored 40 points, my highest ever, and it feels like all my hard work's paying off.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-43_205",
+      "cache_qid": "conv-43-qa-205",
+      "conversation": "43",
+      "question": "What type of venue did John and his girlfriend choose for their breakup?",
+      "gold": "Greenhouse",
+      "gold_norm": "greenhouse",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D12:4",
+      "relation_terms": [
+        "venue"
+      ],
+      "relation_sentence": "We were lucky to find a lovely greenhouse venue for a smaller, more intimate gathering.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_208",
+      "cache_qid": "conv-43-qa-208",
+      "conversation": "43",
+      "question": "Where did Tim capture the painting of the sunset over the mountain range?",
+      "gold": "Smoky Mountains",
+      "gold_norm": "smoky mountains",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_217",
+      "cache_qid": "conv-43-qa-217",
+      "conversation": "43",
+      "question": "What is one of Tim's favorite crime TV shows, as mentioned on November 11, 2023?",
+      "gold": "\"That\"",
+      "gold_norm": "\"that\"",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D17:10",
+      "relation_terms": [
+        "favorite",
+        "shows"
+      ],
+      "relation_sentence": "\"That\" is one of my favorite fantasy shows.",
+      "labels": [
+        "QUOTED_OR_PUNCTUATED",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-43_227",
+      "cache_qid": "conv-43-qa-227",
+      "conversation": "43",
+      "question": "What kind of game did Tim have a career-high in assists in?",
+      "gold": "basketball",
+      "gold_norm": "basketball",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-43_235",
+      "cache_qid": "conv-43-qa-235",
+      "conversation": "43",
+      "question": "According to John, who is his least favorite character from Lord of the Rings?",
+      "gold": "Aragorn",
+      "gold_norm": "aragorn",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D27:24",
+      "relation_terms": [
+        "character",
+        "favorite"
+      ],
+      "relation_sentence": "My favorite character is Aragorn, he grows so much throughout the story.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_42",
+      "cache_qid": "conv-44-qa-042",
+      "conversation": "44",
+      "question": "What technique is Audrey using to discipline her dogs?",
+      "gold": "Positive reinforcement",
+      "gold_norm": "positive reinforcement",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D26:5",
+      "relation_terms": [
+        "using"
+      ],
+      "relation_sentence": "I'm using positive reinforcement techniques and it's still a work in progress, but I'm hopeful it'll help.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_49",
+      "cache_qid": "conv-44-qa-049",
+      "conversation": "44",
+      "question": "What does Audrey view her pets as?",
+      "gold": "Family",
+      "gold_norm": "family",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_61",
+      "cache_qid": "conv-44-qa-061",
+      "conversation": "44",
+      "question": "Which specific type of bird mesmerizes Andrew?",
+      "gold": "Eagles",
+      "gold_norm": "eagles",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D1:16",
+      "relation_terms": [
+        "andrew"
+      ],
+      "relation_sentence": "Do you have a favorit\") Andrew: Eagles have always mesmerized me; they're so strong and graceful!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_95",
+      "cache_qid": "conv-44-qa-095",
+      "conversation": "44",
+      "question": "What kind of flowers does Audrey take care of?",
+      "gold": "Peruvian Lilies",
+      "gold_norm": "peruvian lilies",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D19:20",
+      "relation_terms": [
+        "audrey",
+        "kind"
+      ],
+      "relation_sentence": "What kind are they?\") Audrey: They're called Peruvian Lilies.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_100",
+      "cache_qid": "conv-44-qa-100",
+      "conversation": "44",
+      "question": "What was the reason Audrey couldn't walk her dogs for a period of time?",
+      "gold": "Knee injury",
+      "gold_norm": "knee injury",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D22:1",
+      "relation_terms": [
+        "couldn",
+        "dogs",
+        "walk"
+      ],
+      "relation_sentence": "It reminded me of when I couldn't walk my dogs because of a knee injury.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_103",
+      "cache_qid": "conv-44-qa-103",
+      "conversation": "44",
+      "question": "What organization does Audrey donate a portion of his profits to?",
+      "gold": "Animal shelter",
+      "gold_norm": "animal shelter",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D22:9",
+      "relation_terms": [
+        "donate"
+      ],
+      "relation_sentence": "Any hobby can have an impact when used right - I donate to an animal shelter.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_107",
+      "cache_qid": "conv-44-qa-107",
+      "conversation": "44",
+      "question": "How do Audrey's dogs react to snow?",
+      "gold": "Confused",
+      "gold_norm": "confused",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_114",
+      "cache_qid": "conv-44-qa-114",
+      "conversation": "44",
+      "question": "What type of date is Andrew going on Sunday?",
+      "gold": "picnic date",
+      "gold_norm": "picnic date",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D26:20",
+      "relation_terms": [
+        "date",
+        "going",
+        "sunday"
+      ],
+      "relation_sentence": "Because on Sunday I am going on a picnic date with my girlfriend.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-44_123",
+      "cache_qid": "conv-44-qa-123",
+      "conversation": "44",
+      "question": "Which specific type of bird mesmerizes Audrey?",
+      "gold": "Eagles",
+      "gold_norm": "eagles",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D1:17",
+      "relation_terms": [
+        "audrey"
+      ],
+      "relation_sentence": "(In reply to Andrew: \"Eagles have always mesmerized me; they're so strong and graceful!\") Audrey: Yeah they're beautiful.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-44_150",
+      "cache_qid": "conv-44-qa-150",
+      "conversation": "44",
+      "question": "What did Andrew make to thank his neighbors?",
+      "gold": "Goodies",
+      "gold_norm": "goodies",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D23:3",
+      "relation_terms": [
+        "neighbors",
+        "thank"
+      ],
+      "relation_sentence": "I made some goodies recently to thank my neighbors for their pup-friendly homes.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_15",
+      "cache_qid": "conv-47-qa-015",
+      "conversation": "47",
+      "question": "When did James start playing Civilization VI?",
+      "gold": "March 2022",
+      "gold_norm": "march 2022",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 4
+    },
+    {
+      "question_id": "lc_conv-47_33",
+      "cache_qid": "conv-47-qa-033",
+      "conversation": "47",
+      "question": "Did John and James study together?",
+      "gold": "Yes",
+      "gold_norm": "yes",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "BOOLEAN_OR_YES_NO",
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-47_70",
+      "cache_qid": "conv-47-qa-070",
+      "conversation": "47",
+      "question": "What has John mostly found with the metal detector so far?",
+      "gold": "bottle caps",
+      "gold_norm": "bottle caps",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:12",
+      "relation_terms": [
+        "found",
+        "john",
+        "mostly"
+      ],
+      "relation_sentence": "Already found something interesting?\") John: Mostly just bottle caps, but a couple of times I found coins, and once even a gold ring.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "cache_qid": "conv-47-qa-072",
+      "conversation": "47",
+      "question": "What instrument is John learning to play as of 27 March, 2022?",
+      "gold": "Drums",
+      "gold_norm": "drums",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D3:3",
+      "relation_terms": [
+        "play"
+      ],
+      "relation_sentence": "I play drums too!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_75",
+      "cache_qid": "conv-47-qa-075",
+      "conversation": "47",
+      "question": "What game was James playing in the online gaming tournament in April 2022?",
+      "gold": "Apex Legends",
+      "gold_norm": "apex legends",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D4:16",
+      "relation_terms": [
+        "game",
+        "james",
+        "playing"
+      ],
+      "relation_sentence": "What game do you like playing with your team?\") James: I've been playing my favourite game called Apex Legends with my team and it's intense!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_76",
+      "cache_qid": "conv-47-qa-076",
+      "conversation": "47",
+      "question": "How does James communicate with his gaming team?",
+      "gold": "voice chat",
+      "gold_norm": "voice chat",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D4:14",
+      "relation_terms": [
+        "communicate",
+        "james",
+        "team"
+      ],
+      "relation_sentence": "When everyone works together, it's incredible what can be accomp\") James: I usually use voice chat to communicate with my team.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-47_87",
+      "cache_qid": "conv-47-qa-087",
+      "conversation": "47",
+      "question": "What type of pizza is John's favorite?",
+      "gold": "Hawaiian",
+      "gold_norm": "hawaiian",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D9:19",
+      "relation_terms": [
+        "favorite",
+        "john",
+        "pizza"
+      ],
+      "relation_sentence": "An amazing combination of spicy salami and cheese.\") John: Cool, but my favorite thing is Hawaiian pizza.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_103",
+      "cache_qid": "conv-47-qa-103",
+      "conversation": "47",
+      "question": "What new hobby did James become interested in on 9 July, 2022?",
+      "gold": "Extreme sports",
+      "gold_norm": "extreme sports",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D16:5",
+      "relation_terms": [
+        "become",
+        "interested"
+      ],
+      "relation_sentence": "Lately I've become interested in extreme sports.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_120",
+      "cache_qid": "conv-47-qa-120",
+      "conversation": "47",
+      "question": "Which company's headphones did John choose for gaming?",
+      "gold": "Sennheiser",
+      "gold_norm": "sennheiser",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D23:10",
+      "relation_terms": [
+        "headphones",
+        "john"
+      ],
+      "relation_sentence": "And what other devices did you buy?\") John: I chose headphones from Sennheiser.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_121",
+      "cache_qid": "conv-47-qa-121",
+      "conversation": "47",
+      "question": "What did James and Samantha discover they both enjoy at McGee's bar?",
+      "gold": "Lager beer",
+      "gold_norm": "lager beer",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_130",
+      "cache_qid": "conv-47-qa-130",
+      "conversation": "47",
+      "question": "What instrument did James used to play when he was younger?",
+      "gold": "guitar",
+      "gold_norm": "guitar",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D24:14",
+      "relation_terms": [
+        "play",
+        "used",
+        "younger"
+      ],
+      "relation_sentence": "I used to play a guitar when I was younger but haven't in a while.",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_163",
+      "cache_qid": "conv-47-qa-163",
+      "conversation": "47",
+      "question": "What new hobby did John become interested in on 9 July, 2022?",
+      "gold": "Extreme sports",
+      "gold_norm": "extreme sports",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D16:5",
+      "relation_terms": [
+        "become",
+        "interested"
+      ],
+      "relation_sentence": "Lately I've become interested in extreme sports.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-47_174",
+      "cache_qid": "conv-47-qa-174",
+      "conversation": "47",
+      "question": "What did John prepare for the first time in the cooking class?",
+      "gold": "Omelette",
+      "gold_norm": "omelette",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D23:13",
+      "relation_terms": [
+        "first",
+        "time"
+      ],
+      "relation_sentence": "I got a great omelette the first time!",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_4",
+      "cache_qid": "conv-48-qa-004",
+      "conversation": "48",
+      "question": "When did Jolene's mom gift her a pendant?",
+      "gold": "in 2010",
+      "gold_norm": "in 2010",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D1:8",
+      "relation_terms": [
+        "pendant"
+      ],
+      "relation_sentence": "This pendant reminds me of my mother, she gave it to me in 2010  in Paris.",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-48_10",
+      "cache_qid": "conv-48-qa-010",
+      "conversation": "48",
+      "question": "When was Deborah's parents' wedding?",
+      "gold": "in 1993",
+      "gold_norm": "in 1993",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D2:3",
+      "relation_terms": [
+        "parents",
+        "wedding"
+      ],
+      "relation_sentence": "This is my parents' wedding in 1993.",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-48_15",
+      "cache_qid": "conv-48-qa-015",
+      "conversation": "48",
+      "question": "What pets does Jolene have?",
+      "gold": "snakes",
+      "gold_norm": "snakes",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D22:19",
+      "relation_terms": [
+        "jolene"
+      ],
+      "relation_sentence": "(In reply to Jolene: \"My snakes just like watching me chill.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-48_68",
+      "cache_qid": "conv-48-qa-068",
+      "conversation": "48",
+      "question": "When did Deborah visit Brazil?",
+      "gold": "2020",
+      "gold_norm": "2020",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "NUMERIC_OR_DATE",
+        "MULTIPLE_CANDIDATES",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 3
+    },
+    {
+      "question_id": "lc_conv-48_77",
+      "cache_qid": "conv-48-qa-077",
+      "conversation": "48",
+      "question": "Where did Jolene and her partner find a cool diving spot?",
+      "gold": "Phuket",
+      "gold_norm": "phuket",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D27:1",
+      "relation_terms": [
+        "partner"
+      ],
+      "relation_sentence": "last weekend (the weekend before 12 September 2023) my partner and I traveled to a meditation retreat for a few weeks in Phuket.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_78",
+      "cache_qid": "conv-48-qa-078",
+      "conversation": "48",
+      "question": "Where did Jolene and her partner spend most of September 2023?",
+      "gold": "Phuket",
+      "gold_norm": "phuket",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D27:1",
+      "relation_terms": [
+        "partner",
+        "september"
+      ],
+      "relation_sentence": "last weekend (the weekend before 12 September 2023) my partner and I traveled to a meditation retreat for a few weeks in Phuket.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_79",
+      "cache_qid": "conv-48-qa-079",
+      "conversation": "48",
+      "question": "Has Deborah tried surfing?",
+      "gold": "yes",
+      "gold_norm": "yes",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "BOOLEAN_OR_YES_NO",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_102",
+      "cache_qid": "conv-48-qa-102",
+      "conversation": "48",
+      "question": "What project was Jolene working on as of 1 February, 2023?",
+      "gold": "Robotics project",
+      "gold_norm": "robotics project",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D3:2",
+      "relation_terms": [
+        "project"
+      ],
+      "relation_sentence": "My engineering professor gave us a huge robotics project.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_106",
+      "cache_qid": "conv-48-qa-106",
+      "conversation": "48",
+      "question": "What is Jolene's favorite book which she mentioned on 4 February, 2023?",
+      "gold": "\"Sapiens\"",
+      "gold_norm": "\"sapiens\"",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D4:21",
+      "relation_terms": [
+        "book"
+      ],
+      "relation_sentence": "I'm really into this book called \"Sapiens\" - it's a fascinating look at human history and how technology has affected us.",
+      "labels": [
+        "QUOTED_OR_PUNCTUATED",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_107",
+      "cache_qid": "conv-48-qa-107",
+      "conversation": "48",
+      "question": "What does Deborah bring with her whenever she comes to reflect on her mom?",
+      "gold": "amulet",
+      "gold_norm": "amulet",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D4:36",
+      "relation_terms": [
+        "deborah",
+        "reflect"
+      ],
+      "relation_sentence": "Do you have any little traditions that you do when you come to reflect on your mom?\") Deborah: Do you remember this amulet from her?",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-48_136",
+      "cache_qid": "conv-48-qa-136",
+      "conversation": "48",
+      "question": "Which new yoga pose did Deborah share a photo of?",
+      "gold": "tree pose",
+      "gold_norm": "tree pose",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D14:15",
+      "relation_terms": [
+        "pose"
+      ],
+      "relation_sentence": "It is a tree pose.",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_160",
+      "cache_qid": "conv-48-qa-160",
+      "conversation": "48",
+      "question": "What kind of event did Jolene present at recently?",
+      "gold": "virtual conference",
+      "gold_norm": "virtual conference",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D21:6",
+      "relation_terms": [
+        "present",
+        "recently"
+      ],
+      "relation_sentence": "Recently, I had the opportunity to present at a virtual conference and received positive feedback.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-48_161",
+      "cache_qid": "conv-48-qa-161",
+      "conversation": "48",
+      "question": "What did Jolene's mom stress the value of, which she wants to keep in mind for her engineering projects?",
+      "gold": "Helping others",
+      "gold_norm": "helping others",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D22:6",
+      "relation_terms": [
+        "engineering",
+        "keep",
+        "mind",
+        "projects",
+        "value"
+      ],
+      "relation_sentence": "Going further, my mom stressed the value of helping others and that's something I want to keep in mind for my engineering projects.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_165",
+      "cache_qid": "conv-48-qa-165",
+      "conversation": "48",
+      "question": "What type of classes did Jolene and her partner check out during their trip to Rio de Janeiro on 30 August, 2023?",
+      "gold": "Yoga classes",
+      "gold_norm": "yoga classes",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D23:1",
+      "relation_terms": [
+        "august",
+        "classes",
+        "janeiro",
+        "partner",
+        "trip"
+      ],
+      "relation_sentence": "yesterday (29 August 2023) my partner and I got back from an awesome trip to Rio de Janeiro- we checked out some cool yoga classes.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_175",
+      "cache_qid": "conv-48-qa-175",
+      "conversation": "48",
+      "question": "Where did Jolene and her partner travel for a few weeks in September 2023?",
+      "gold": "Phuket",
+      "gold_norm": "phuket",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D27:1",
+      "relation_terms": [
+        "partner",
+        "september",
+        "weeks"
+      ],
+      "relation_sentence": "last weekend (the weekend before 12 September 2023) my partner and I traveled to a meditation retreat for a few weeks in Phuket.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_223",
+      "cache_qid": "conv-48-qa-223",
+      "conversation": "48",
+      "question": "What kind of event did Deborah present at recently?",
+      "gold": "virtual conference",
+      "gold_norm": "virtual conference",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D21:6",
+      "relation_terms": [
+        "present",
+        "recently"
+      ],
+      "relation_sentence": "Recently, I had the opportunity to present at a virtual conference and received positive feedback.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-48_224",
+      "cache_qid": "conv-48-qa-224",
+      "conversation": "48",
+      "question": "What did Deborah's mom stress the value of, which she wants to keep in mind for her engineering projects?",
+      "gold": "Helping others",
+      "gold_norm": "helping others",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D22:6",
+      "relation_terms": [
+        "engineering",
+        "keep",
+        "mind",
+        "projects",
+        "value"
+      ],
+      "relation_sentence": "Going further, my mom stressed the value of helping others and that's something I want to keep in mind for my engineering projects.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_227",
+      "cache_qid": "conv-48-qa-227",
+      "conversation": "48",
+      "question": "What type of classes did Deborah and her partner check out during their trip to Rio de Janeiro on 30 August, 2023?",
+      "gold": "Yoga classes",
+      "gold_norm": "yoga classes",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D23:1",
+      "relation_terms": [
+        "august",
+        "classes",
+        "janeiro",
+        "partner",
+        "trip"
+      ],
+      "relation_sentence": "yesterday (29 August 2023) my partner and I got back from an awesome trip to Rio de Janeiro- we checked out some cool yoga classes.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-48_232",
+      "cache_qid": "conv-48-qa-232",
+      "conversation": "48",
+      "question": "Where did Deborah and her partner travel for a few weeks in September 2023?",
+      "gold": "Phuket",
+      "gold_norm": "phuket",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D27:1",
+      "relation_terms": [
+        "partner",
+        "september",
+        "weeks"
+      ],
+      "relation_sentence": "last weekend (the weekend before 12 September 2023) my partner and I traveled to a meditation retreat for a few weeks in Phuket.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_8",
+      "cache_qid": "conv-49-qa-008",
+      "conversation": "49",
+      "question": "What hobby did Evan start practicing a few years ago that he enjoys?",
+      "gold": "Watercolor painting",
+      "gold_norm": "watercolor painting",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D11:6",
+      "relation_terms": [
+        "evan"
+      ],
+      "relation_sentence": "Taking care of yourself is key – have you explored any fun indoor activities or hobbies?\") Evan: I do my favorite watercolor painting to keep me busy.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_85",
+      "cache_qid": "conv-49-qa-085",
+      "conversation": "49",
+      "question": "What did Evan start doing a few years back as a stress-buster?",
+      "gold": "watercolor painting",
+      "gold_norm": "watercolor painting",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_111",
+      "cache_qid": "conv-49-qa-111",
+      "conversation": "49",
+      "question": "What sports activity has Evan been doing to stay active while dealing with the knee injury?",
+      "gold": "Swimming",
+      "gold_norm": "swimming",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D9:6",
+      "relation_terms": [
+        "active",
+        "stay"
+      ],
+      "relation_sentence": "Till then, just keeping it low-key and swimming to stay active.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_117",
+      "cache_qid": "conv-49-qa-117",
+      "conversation": "49",
+      "question": "What kind of writing does Sam enjoy as a form of expression?",
+      "gold": "creative writing",
+      "gold_norm": "creative writing",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D11:17",
+      "relation_terms": [
+        "writing"
+      ],
+      "relation_sentence": "Writing in my journal and doing creative writing is a good way for me to express my innermost thoughts and feelings.",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_119",
+      "cache_qid": "conv-49-qa-119",
+      "conversation": "49",
+      "question": "What activity did Evan start one year ago?",
+      "gold": "lifting weights",
+      "gold_norm": "lifting weights",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-49_124",
+      "cache_qid": "conv-49-qa-124",
+      "conversation": "49",
+      "question": "What does Evan mention about his progress at the gym to Sam?",
+      "gold": "gaining strength",
+      "gold_norm": "gaining strength",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-49_143",
+      "cache_qid": "conv-49-qa-143",
+      "conversation": "49",
+      "question": "What did Evan want to share with his work friends?",
+      "gold": "getting married",
+      "gold_norm": "getting married",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D22:4",
+      "relation_terms": [
+        "friends",
+        "work"
+      ],
+      "relation_sentence": "Just a minor accident, but it put a bit of a damper on telling my work friends about getting married.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-49_148",
+      "cache_qid": "conv-49-qa-148",
+      "conversation": "49",
+      "question": "What sports activity did Evan and his partner try in a recent weekend?",
+      "gold": "Snowshoeing",
+      "gold_norm": "snowshoeing",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D24:9",
+      "relation_terms": [
+        "partner",
+        "weekend"
+      ],
+      "relation_sentence": "Speaking of, my partner and I tried snowshoeing this weekend.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_151",
+      "cache_qid": "conv-49-qa-151",
+      "conversation": "49",
+      "question": "What movie did Sam watch that motivated him to keep up with his routine?",
+      "gold": "The Godfather",
+      "gold_norm": "the godfather",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D24:18",
+      "relation_terms": [
+        "keep",
+        "motivated",
+        "routine"
+      ],
+      "relation_sentence": "Also I watched The Godfather last night, and it motivated me to keep up with my routine.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_158",
+      "cache_qid": "conv-49-qa-158",
+      "conversation": "49",
+      "question": "What did Sam start doing a few years back as a stress-buster?",
+      "gold": "watercolor painting",
+      "gold_norm": "watercolor painting",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "cache_qid": "conv-49-qa-173",
+      "conversation": "49",
+      "question": "What sports activity has Sam been doing to stay active while dealing with the knee injury?",
+      "gold": "Swimming",
+      "gold_norm": "swimming",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_175",
+      "cache_qid": "conv-49-qa-175",
+      "conversation": "49",
+      "question": "What kind of writing does Evan enjoy as a form of expression?",
+      "gold": "creative writing",
+      "gold_norm": "creative writing",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D11:18",
+      "relation_terms": [
+        "evan",
+        "writing"
+      ],
+      "relation_sentence": "Writing in my journal and doing creative writing is a good way for me to express my innermost \") Evan: It can be super therapeutic.",
+      "labels": [
+        "MULTIPLE_CANDIDATES",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_177",
+      "cache_qid": "conv-49-qa-177",
+      "conversation": "49",
+      "question": "What activity did Evan quit one year ago?",
+      "gold": "lifting weights",
+      "gold_norm": "lifting weights",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-49_191",
+      "cache_qid": "conv-49-qa-191",
+      "conversation": "49",
+      "question": "What dance activity did Evan and his partner try in a recent weekend?",
+      "gold": "Snowshoeing",
+      "gold_norm": "snowshoeing",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D24:9",
+      "relation_terms": [
+        "partner",
+        "weekend"
+      ],
+      "relation_sentence": "Speaking of, my partner and I tried snowshoeing this weekend.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-49_193",
+      "cache_qid": "conv-49-qa-193",
+      "conversation": "49",
+      "question": "What movie did Evan watch that motivated him to keep up with his routine?",
+      "gold": "The Godfather",
+      "gold_norm": "the godfather",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D24:18",
+      "relation_terms": [
+        "keep",
+        "motivated",
+        "routine"
+      ],
+      "relation_sentence": "Also I watched The Godfather last night, and it motivated me to keep up with my routine.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_23",
+      "cache_qid": "conv-50-qa-023",
+      "conversation": "50",
+      "question": "What is Dave's main passion?",
+      "gold": "auto engineering",
+      "gold_norm": "auto engineering",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D13:5",
+      "relation_terms": [
+        "passion"
+      ],
+      "relation_sentence": "Pursuing your passion for auto engineering and making a custom car is a great experience.",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-50_32",
+      "cache_qid": "conv-50-qa-032",
+      "conversation": "50",
+      "question": "Where did Dave return from with new knowledge of different techniques of car restoration?",
+      "gold": "San Francisco",
+      "gold_norm": "san francisco",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_37",
+      "cache_qid": "conv-50-qa-037",
+      "conversation": "50",
+      "question": "Does Calvin love music tours?",
+      "gold": "yes",
+      "gold_norm": "yes",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "BOOLEAN_OR_YES_NO",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_57",
+      "cache_qid": "conv-50-qa-057",
+      "conversation": "50",
+      "question": "Which hobby did Dave pick up in October 2023?",
+      "gold": "photography",
+      "gold_norm": "photography",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-50_91",
+      "cache_qid": "conv-50-qa-091",
+      "conversation": "50",
+      "question": "What car brand does Calvin own that he is proud of?",
+      "gold": "Ferrari",
+      "gold_norm": "ferrari",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_116",
+      "cache_qid": "conv-50-qa-116",
+      "conversation": "50",
+      "question": "What car did Dave work on in the junkyard?",
+      "gold": "Ford Mustang",
+      "gold_norm": "ford mustang",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D21:4",
+      "relation_terms": [
+        "junkyard"
+      ],
+      "relation_sentence": "I've been working on that Ford Mustang I found in a junkyard - it was in bad shape, but I knew it had potential.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_121",
+      "cache_qid": "conv-50-qa-121",
+      "conversation": "50",
+      "question": "What did Calvin recently get that is a \"masterpiece on wheels\"?",
+      "gold": "Ferrari",
+      "gold_norm": "ferrari",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_156",
+      "cache_qid": "conv-50-qa-156",
+      "conversation": "50",
+      "question": "Where did Dave take a stunning photo of a waterfall?",
+      "gold": "Nearby park",
+      "gold_norm": "nearby park",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_166",
+      "cache_qid": "conv-50-qa-166",
+      "conversation": "50",
+      "question": "What sports activity is Dave planning to try after the tour with Frank Ocean?",
+      "gold": "Skiing",
+      "gold_norm": "skiing",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_168",
+      "cache_qid": "conv-50-qa-168",
+      "conversation": "50",
+      "question": "What clothing brand does Calvin own that he is proud of?",
+      "gold": "Ferrari",
+      "gold_norm": "ferrari",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_173",
+      "cache_qid": "conv-50-qa-173",
+      "conversation": "50",
+      "question": "Where did Dave start shooting a video for his new album?",
+      "gold": "Miami",
+      "gold_norm": "miami",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_174",
+      "cache_qid": "conv-50-qa-174",
+      "conversation": "50",
+      "question": "What design is featured on Dave's guitar?",
+      "gold": "octopus",
+      "gold_norm": "octopus",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D16:15",
+      "relation_terms": [
+        "dave",
+        "guitar"
+      ],
+      "relation_sentence": "It's got an octopus on it, which represents m\") Dave: That's a great guitar, Calvin!",
+      "labels": [
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 1
+    },
+    {
+      "question_id": "lc_conv-50_181",
+      "cache_qid": "conv-50-qa-181",
+      "conversation": "50",
+      "question": "Which song from the childhood of Dave brings back memories of a road trip with his dad?",
+      "gold": "\"California Love\"",
+      "gold_norm": "\"california love\"",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "QUOTED_OR_PUNCTUATED",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_186",
+      "cache_qid": "conv-50-qa-186",
+      "conversation": "50",
+      "question": "What did Calvin recently get that is a \"masterpiece on canvas\"?",
+      "gold": "Ferrari",
+      "gold_norm": "ferrari",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "",
+      "relation_terms": [],
+      "relation_sentence": "",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "VALUE_PRESENT_BUT_RELATION_UNPROVEN"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_189",
+      "cache_qid": "conv-50-qa-189",
+      "conversation": "50",
+      "question": "What specific location in Tokyo does Calvin mention being excited to avoid?",
+      "gold": "Shinjuku",
+      "gold_norm": "shinjuku",
+      "raw_words": 1,
+      "occurrences": 1,
+      "relation_turn": "D24:19",
+      "relation_terms": [
+        "excited",
+        "tokyo"
+      ],
+      "relation_sentence": "Shibuya Crossing is like Tokyo's Times Square, and I was excited to explore Shinjuku.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "cache_qid": "conv-50-qa-194",
+      "conversation": "50",
+      "question": "What did Calvin recently start a blog about?",
+      "gold": "Car mods",
+      "gold_norm": "car mods",
+      "raw_words": 2,
+      "occurrences": 1,
+      "relation_turn": "D28:8",
+      "relation_terms": [
+        "blog",
+        "recently"
+      ],
+      "relation_sentence": "By the way, I recently started a blog on car mods.",
+      "labels": [
+        "ENTITY_OR_PROPER_NOUN",
+        "RELATION_EXPLICITLY_SUPPORTED"
+      ],
+      "n_labels": 2
+    }
+  ]
+}

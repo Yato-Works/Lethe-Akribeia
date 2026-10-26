@@ -1,0 +1,206 @@
+{
+  "recommended_budget": {
+    "min": 0,
+    "max": 900,
+    "mean": 704.4,
+    "count": 250
+  },
+  "correct": {
+    "min": 0,
+    "max": true,
+    "mean": 0.74,
+    "count": 250
+  },
+  "top1_anchor_score": {
+    "min": 0,
+    "max": 276.2049,
+    "mean": 70.9489836,
+    "count": 250
+  },
+  "aggregation_demand": {
+    "min": 0,
+    "max": 0.95,
+    "mean": 0.2850000000000004,
+    "count": 250
+  },
+  "date_count": {
+    "min": 0,
+    "max": 62,
+    "mean": 47.536,
+    "count": 250
+  },
+  "state_evolution_demand": {
+    "min": 0,
+    "max": 0.95,
+    "mean": 0.5208000000000014,
+    "count": 250
+  },
+  "preference_demand": {
+    "min": 0,
+    "max": 0.95,
+    "mean": 0.05319999999999999,
+    "count": 250
+  },
+  "predicted": {
+    "min": 0,
+    "max": 1,
+    "mean": 0.0,
+    "count": 250
+  },
+  "budget_util": {
+    "min": 0,
+    "max": 1.0,
+    "mean": 0.7464992000000005,
+    "count": 250
+  },
+  "total_records": {
+    "min": 0,
+    "max": 616,
+    "mean": 493.584,
+    "count": 250
+  },
+  "is_aggregation": {
+    "min": 0,
+    "max": true,
+    "mean": 0.216,
+    "count": 250
+  },
+  "temporal_complexity": {
+    "min": 0,
+    "max": 3,
+    "mean": 1.352,
+    "count": 250
+  },
+  "requires_event_aggregation": {
+    "min": 0,
+    "max": true,
+    "mean": 0.3,
+    "count": 250
+  },
+  "requires_profile_grounding": {
+    "min": 0,
+    "max": true,
+    "mean": 0.056,
+    "count": 250
+  },
+  "requires_chronos_diff": {
+    "min": 0,
+    "max": true,
+    "mean": 0.176,
+    "count": 250
+  },
+  "has_superseded_or_migrated": {
+    "min": 0,
+    "max": true,
+    "mean": 0.972,
+    "count": 250
+  },
+  "competing_values_count": {
+    "min": 0,
+    "max": 35,
+    "mean": 24.24,
+    "count": 250
+  },
+  "dominant_mode": {
+    "min": 0,
+    "max": 1,
+    "mean": 0.0,
+    "count": 250
+  },
+  "direct_fact_demand": {
+    "min": 0,
+    "max": 0.3,
+    "mean": 0.17120000000000044,
+    "count": 250
+  },
+  "session_count": {
+    "min": 0,
+    "max": 62,
+    "mean": 47.716,
+    "count": 250
+  },
+  "candidate_sessions": {
+    "min": 0,
+    "max": 16,
+    "mean": 8.116,
+    "count": 250
+  },
+  "question_type": {
+    "min": 0,
+    "max": 1,
+    "mean": 0.0,
+    "count": 250
+  },
+  "anchor_session_count": {
+    "min": 0,
+    "max": 18,
+    "mean": 17.932,
+    "count": 250
+  },
+  "has_user_records": {
+    "min": 0,
+    "max": true,
+    "mean": 1.0,
+    "count": 250
+  },
+  "requires_state_timeline": {
+    "min": 0,
+    "max": true,
+    "mean": 0.724,
+    "count": 250
+  },
+  "conflict": {
+    "min": 0,
+    "max": true,
+    "mean": 1.0,
+    "count": 250
+  },
+  "assistant_recall_demand": {
+    "min": 0,
+    "max": 0.95,
+    "mean": 0.17100000000000007,
+    "count": 250
+  },
+  "temporal_demand": {
+    "min": 0,
+    "max": 0.98,
+    "mean": 0.1724799999999999,
+    "count": 250
+  },
+  "has_date_variance": {
+    "min": 0,
+    "max": true,
+    "mean": 1.0,
+    "count": 250
+  },
+  "evidence_coverage": {
+    "min": 0,
+    "max": 1.8,
+    "mean": 0.4584363999999999,
+    "count": 250
+  },
+  "reader_model": {
+    "min": 0,
+    "max": 1,
+    "mean": 0.0,
+    "count": 250
+  },
+  "has_assistant_records": {
+    "min": 0,
+    "max": true,
+    "mean": 1.0,
+    "count": 250
+  },
+  "cert_present": {
+    "min": 0,
+    "max": true,
+    "mean": 0.012,
+    "count": 250
+  },
+  "candidate_count": {
+    "min": 0,
+    "max": 240,
+    "mean": 91.52,
+    "count": 250
+  }
+}

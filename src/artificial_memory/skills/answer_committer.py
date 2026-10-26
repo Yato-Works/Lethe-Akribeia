@@ -12,7 +12,7 @@ where the loss sits:
   context the reader was shown - the model quoted the provenance header date
   instead of the resolved annotation inside the evidence turn;
 * 46 more need only calendar arithmetic that the runtime already performs
-  (:mod:`artificial_memory.context.temporal_normalizer`);
+  (:mod:`artificial_memory_gen.context.temporal_normalizer`);
 * 61 are multi-item enumerations that the reader truncated.
 
 None of those three failure modes requires reasoning ability.  They require the
@@ -135,6 +135,10 @@ class Turn:
     header_date: str
     speaker: str
     text: str
+    #: Prior utterance metadata is retained for dialogue-link reasoning, but
+    #: never merged into `text` (which remains attributable only to speaker).
+    reply_speaker: str = ""
+    reply_text: str = ""
 
 
 def parse_turns(context: str) -> list[Turn]:
@@ -148,10 +152,10 @@ def parse_turns(context: str) -> list[Turn]:
     LongMemEval
         ``[answer_280352e9 on 2023/05/30 (Tue) 17:27] user: I graduated ...``
 
-    In both cases the ``(In reply to ...)`` quote is dropped so words quoted from
-    another speaker never count as this turn's own content.  A line that yields no
-    turn is dropped rather than guessed at - a turn that is silently missing is
-    invisible later, so the format handling is covered by unit tests.
+    In both cases the ``(In reply to ...)`` quote is excluded from ``Turn.text``
+    so words quoted from another speaker never count as this turn's own content.
+    The parent speaker/text are retained separately as a dialogue edge. A line
+    that yields no turn is dropped rather than guessed at.
     """
     turns: list[Turn] = []
     for raw in context.splitlines():
@@ -161,6 +165,8 @@ def parse_turns(context: str) -> list[Turn]:
         line = re.sub(r"^\[SPEAKER:[^\]]+\]\s*", "", line)
         dia_id = ""
         header_date = ""
+        reply_speaker = ""
+        reply_text = ""
         header = _HEADER.match(line)
         if header is not None:
             header_date = header.group(1).strip()
@@ -174,6 +180,18 @@ def parse_turns(context: str) -> list[Turn]:
                 body = line[header_lme.end():]
             else:
                 body = line
+        # Preserve a quoted parent turn as a separate edge. Its words must not
+        # become facts spoken by the current speaker; downstream resolvers may
+        # use it only to establish which conversational prompt this turn answers.
+        reply = re.match(r'^\(In reply to\s+([^:]+):\s*"(.*)"\)\s*', body, re.I)
+        if reply:
+            reply_speaker = reply.group(1).strip()
+            reply_text = reply.group(2).strip()
+        else:
+            reply = re.match(r"^\(In reply to\s+([^:]+):\s*([^)]*)\)\s*", body, re.I)
+            if reply:
+                reply_speaker = reply.group(1).strip()
+                reply_text = reply.group(2).strip().strip('"')
         body = re.sub(r'^\(In reply to .*?"\)\s*', "", body, flags=re.IGNORECASE)
         body = re.sub(r"^\(In reply to [^)]*\)\s*", "", body, flags=re.IGNORECASE)
         speaker_match = _SPEAKER.match(body)
@@ -185,6 +203,8 @@ def parse_turns(context: str) -> list[Turn]:
             header_date=header_date,
             speaker=speaker,
             text=speaker_match.group(3).strip(),
+            reply_speaker=reply_speaker,
+            reply_text=reply_text,
         ))
     return turns
 

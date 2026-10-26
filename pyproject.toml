@@ -93,6 +93,10 @@ benchmarks = [
     # evaluation.py) computes F1 with an NLTK Porter stemmer. Kept in an
     # optional group so the runtime install stays lean.
     "nltk>=3.8",
+    # scipy backs the benchmark statistics (McNemar / bootstrap CI in
+    # compiler/eval/stat_test.py). The Phase-0 runner itself uses a stdlib
+    # implementation, but this group keeps the stats tooling reproducible.
+    "scipy>=1.11",
 ]
 nli = [
     "transformers>=4.40",
@@ -133,8 +137,9 @@ select = ["E", "F", "I", "UP", "W"]
 ignore = ["E501", "W291", "W293", "F841"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["F401", "F841", "E402", "I001"]
-"scripts/*" = ["F401", "E402", "I001"]
+  "tests/*" = ["F401", "F841", "E402", "I001"]
+  "scripts/*" = ["F401", "E402", "I001"]
+  "tools/*" = ["F401", "E402", "I001"]
 
 
 [tool.mypy]

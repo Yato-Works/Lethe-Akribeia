@@ -24,8 +24,8 @@ from pathlib import Path
 from typing import Any
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
+from artificial_memory_gen.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
 
 
 @dataclass

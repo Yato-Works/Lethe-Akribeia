@@ -2,10 +2,10 @@
 
 from artificial_memory.core.ir.proposition import UnifiedProposition
 from artificial_memory.core.ir.structured import IRStatus, StructuredIR
-from artificial_memory.protein.temporal_supersession_protein import TemporalSupersessionProtein
-from artificial_memory.recall.answer_verifier import AnswerVerifier
+from artificial_memory_gen.protein.temporal_supersession_protein import TemporalSupersessionProtein
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
-from artificial_memory.steroid.wide_slicer import WideSlicer
+from artificial_memory_gen.steroid.wide_slicer import WideSlicer
 
 
 def test_wide_slicer_stemming():

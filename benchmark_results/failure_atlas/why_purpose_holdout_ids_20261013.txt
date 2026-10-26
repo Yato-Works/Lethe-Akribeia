@@ -1,0 +1,4 @@
+# Conversation-level holdout; do not tune on these cases
+lc_conv-43_132
+lc_conv-44_126
+lc_conv-47_173

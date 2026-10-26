@@ -17,6 +17,7 @@ except ImportError:
     PostgresMemoryStore = None  # type: ignore
     _HAS_POSTGRES = False
 from artificial_memory.context.ir_compiler import IRCompressor
+from artificial_memory.core.tokens import estimate_tokens_raw
 from artificial_memory.memory.compiler import CompilerPipelineWrapper
 from artificial_memory.memory.file_writer import ConversationFileWriter, MemoryFileWriter
 
@@ -37,6 +38,7 @@ from artificial_memory.core.models import (
     MemoryType,
     RecallLevel,
     ResolutionLevel,
+    Topic,
 )
 from artificial_memory.memory.style import ConversationStyle
 from artificial_memory.runtime import ArtificialMemoryRuntime, RuntimeConfig
@@ -47,19 +49,29 @@ console = Console()
 class ArtificialMemoryCLI:
     """Main CLI application."""
 
-    def __init__(self, db_path: Path | None, memory_files_path: Path, use_postgres: bool = False):
+    def __init__(
+        self,
+        db_path: Path | None,
+        memory_files_path: Path,
+        use_postgres: bool = False,
+        lexical_recall: bool | None = None,
+    ):
         self.db_path = db_path
         self.memory_files_path = memory_files_path
         self.use_postgres = use_postgres
 
-        # Unified Runtime Facade
-        config = RuntimeConfig(
+        # Unified Runtime Facade. Env vars set the defaults; an explicit CLI flag
+        # wins over them (None means "not given").
+        config = RuntimeConfig.from_env(
             database_path=str(db_path) if db_path else "memory.db",
             use_postgres=use_postgres,
             database_url=os.environ.get("DATABASE_URL") if use_postgres else None,
             memory_files_path=str(memory_files_path),
         )
+        if lexical_recall is not None:
+            config.lexical_recall = lexical_recall
         self.runtime = ArtificialMemoryRuntime(config)
+        self.lexical_recall = config.lexical_recall
 
         # Delegate sub-components to the runtime facade
         self.store = self.runtime.store
@@ -102,6 +114,24 @@ class ArtificialMemoryCLI:
             conv.message_count = self.conversation_manager.logger._message_sequence
             self.store.update_conversation(conv)
 
+    def resolve_topic(self, topic_path: str | None = None) -> Topic | None:
+        """Topic for a query: explicit path, active conversation, else most recent.
+
+        Returns None when the database has no topic at all. The fallback exists
+        because `end` clears the active conversation, which used to make
+        `recall`/`timeline` unusable in a fresh process even though the memories
+        were still there.
+        """
+        if topic_path:
+            return self.store.get_topic_by_path(topic_path)
+        current = self.conversation_manager.current_conversation
+        if current:
+            return self.store.get_topic(current.topic_id)
+        topics = self.store.list_topics()
+        if not topics:
+            return None
+        return max(topics, key=lambda t: t.updated_at or t.created_at)
+
     def close(self):
         self._save_active_conversation()
         self.runtime.close()
@@ -111,13 +141,25 @@ class ArtificialMemoryCLI:
 @click.option('--db', default='memory.db', help='Database file path (SQLite)')
 @click.option('--memory-dir', default='memory_files', help='Memory files directory')
 @click.option('--postgres/--sqlite', default=False, help='Use PostgreSQL instead of SQLite', envvar='USE_POSTGRES')
+@click.option(
+    '--lexical/--no-lexical',
+    'lexical_recall',
+    default=None,
+    help=(
+        'IDF-weighted lexical recall channel. On by default (arena: 53.0% vs '
+        '11.5% off, ~3x read tokens). Env: LETHE_LEXICAL_RECALL=0/1.'
+    ),
+)
 @click.pass_context
-def cli(ctx, db, memory_dir, postgres):
+def cli(ctx, db, memory_dir, postgres, lexical_recall):
     """Artificial Memory / Context Runtime - Cognitive Runtime for LLMs"""
     db_path = Path(db) if not postgres else None
     memory_files_path = Path(memory_dir)
 
-    ctx.obj = ArtificialMemoryCLI(db_path, memory_files_path, use_postgres=postgres)
+    ctx.obj = ArtificialMemoryCLI(
+        db_path, memory_files_path, use_postgres=postgres,
+        lexical_recall=lexical_recall,
+    )
     ctx.call_on_close(lambda: ctx.obj.close())
 
 
@@ -134,6 +176,49 @@ def start(app: ArtificialMemoryCLI, topic_path: str, project: str, title: str | 
     console.print(f"Topic: {topic_path} (Project: {project})")
     if title:
         console.print(f"Title: {title}")
+
+
+@cli.command()
+@click.argument('topic_path')
+@click.option('--project', default='default', help='Project name')
+@click.option('--title', help='Conversation title')
+@click.pass_obj
+def resume(app: ArtificialMemoryCLI, topic_path: str, project: str, title: str | None):
+    """Continue an existing topic in a new conversation.
+
+    Unlike `start`, this refuses to create a topic: it prints the topic's recent
+    conversations first, then opens a new one so new messages append to the same
+    memory space.
+    """
+    existing = app.store.get_topic_by_path(topic_path)
+    if existing is None:
+        console.print(f"[red]Unknown topic:[/red] {topic_path}")
+        recent = sorted(
+            app.store.list_topics(), key=lambda t: t.updated_at or t.created_at,
+            reverse=True,
+        )[:5]
+        if recent:
+            console.print("[dim]Recent topics:[/dim]")
+            for t in recent:
+                console.print(f"  - {t.path}")
+        else:
+            console.print("[dim]No topics yet. Use 'start'.[/dim]")
+        return
+
+    conversations = app.store.list_conversations(topic_id=existing.id)
+    if conversations:
+        console.print(f"[dim]Last conversations on {topic_path}:[/dim]")
+        for conv in conversations[:3]:
+            when = (conv.started_at or conv.ended_at)
+            console.print(
+                f"  - #{conv.id} {when:%Y-%m-%d %H:%M} "
+                f"{conv.status.value} ({conv.message_count} msgs)"
+            )
+
+    conversation = app.conversation_manager.start_conversation(topic_path, project, title)
+    app._current_topic = topic_path
+    console.print(f"[green]Resumed topic in conversation:[/green] {conversation.id}")
+    console.print(f"Topic: {topic_path} (Project: {project})")
 
 
 @cli.command()
@@ -310,21 +395,23 @@ def context(app: ArtificialMemoryCLI):
 
 @cli.command()
 @click.argument('query')
+@click.option('--topic', help='Topic path (default: active conversation, else most recent topic)')
 @click.option('--level', type=click.Choice(['0', '1', '2', '3', '4']), default='0', help='Recall level')
 @click.option('--max-tokens', default=4000, help='Max tokens to return')
 @click.pass_obj
-def recall(app: ArtificialMemoryCLI, query: str, level: str, max_tokens: int):
+def recall(app: ArtificialMemoryCLI, query: str, topic: str | None, level: str, max_tokens: int):
     """Recall memories (/recall command)."""
-    if not app.conversation_manager.current_conversation:
-        console.print("[red]No active conversation.[/red]")
+    target = app.resolve_topic(topic)
+    if target is None:
+        console.print("[red]No topic found. Use 'start' to log a conversation first.[/red]")
         return
 
-    topic_id = app.conversation_manager.current_conversation.topic_id
     recall_level = RecallLevel(int(level))
 
-    memories, tokens = app.recall_engine.recall(query, topic_id, recall_level, max_tokens)
+    memories, tokens = app.recall_engine.recall(query, target.id, recall_level, max_tokens)
 
     console.print(f"[bold]Query:[/bold] {query}")
+    console.print(f"[bold]Topic:[/bold] {target.path}")
     console.print(f"[bold]Level:[/bold] {recall_level.name} ({recall_level.value})")
     console.print(f"[bold]Retrieved:[/bold] {len(memories)} memories, ~{tokens} tokens")
     console.print()
@@ -334,6 +421,54 @@ def recall(app: ArtificialMemoryCLI, query: str, level: str, max_tokens: int):
             mem.content,
             title=f"[{i+1}] {mem.memory_type.value} | {mem.resolution.name} | Imp: {mem.importance:.2f} | Conf: {mem.confidence:.2f}",
             border_style="blue"
+        ))
+
+
+@cli.command()
+@click.argument('query')
+@click.option('--topic', help='Topic path (default: active conversation, else most recent topic)')
+@click.option('--level', type=click.Choice(['0', '1', '2', '3', '4']), default='4',
+              help='Recall level (4 = widest candidate set)')
+@click.option('--max-tokens', default=2000, help='Token budget for evidence/context')
+@click.option('--context/--no-context', 'show_context', default=True,
+              help='Also print the compiled MSC context an LLM would receive')
+@click.pass_obj
+def ask(app: ArtificialMemoryCLI, query: str, topic: str | None, level: str,
+        max_tokens: int, show_context: bool):
+    """Retrieve the evidence for a question, without calling an LLM.
+
+    This is the read path an agent would use: the memories that matched, their
+    provenance, and (optionally) the compiled context. Lethe does not generate
+    the answer itself here; the calling agent's model does.
+    """
+    target = app.resolve_topic(topic)
+    if target is None:
+        console.print("[red]No topic found. Use 'start' to log a conversation first.[/red]")
+        return
+
+    recall_level = RecallLevel(int(level))
+    memories, tokens = app.recall_engine.recall(query, target.id, recall_level, max_tokens)
+
+    console.print(f"[bold]Question:[/bold] {query}")
+    console.print(f"[bold]Topic:[/bold] {target.path}")
+    console.print(
+        f"[bold]Evidence:[/bold] {len(memories)} memories, ~{tokens} tokens "
+        f"(level {recall_level.name})"
+    )
+    if not memories:
+        console.print("[yellow]No memories matched. Try --level 4 or check the topic.[/yellow]")
+    for i, mem in enumerate(memories[:10], 1):
+        source = f" (conv {mem.source_conversation_id})" if mem.source_conversation_id else ""
+        console.print(f"  [{i}] {mem.memory_type.value}/{mem.resolution.name}{source}: {mem.content[:160]}")
+
+    if show_context:
+        context = app.context_builder.build_context(
+            query, topic_id=target.id, max_tokens=max_tokens
+        )
+        console.print(Panel(
+            context[:4000] + ("..." if len(context) > 4000 else ""),
+            title="Compiled context (no LLM call)",
+            border_style="green",
         ))
 
 
@@ -370,20 +505,25 @@ def expand(app: ArtificialMemoryCLI, memory_id: int, target: str | None):
 
 
 @cli.command()
+@click.option('--topic', help='Topic path (default: active conversation, else most recent topic)')
 @click.pass_obj
-def timeline(app: ArtificialMemoryCLI):
+def timeline(app: ArtificialMemoryCLI, topic: str | None):
     """Show topic timeline (/timeline command)."""
-    if not app.conversation_manager.current_conversation:
-        console.print("[red]No active conversation.[/red]")
+    target = app.resolve_topic(topic)
+    if target is None:
+        console.print("[red]No topic found. Use 'start' to log a conversation first.[/red]")
         return
 
-    topic_id = app.conversation_manager.current_conversation.topic_id
+    console.print(f"[dim]Topic: {target.path}[/dim]")
     memories = app.store.get_memories(
-        topic_id=topic_id,
+        topic_id=target.id,
         memory_type=MemoryType.TIMELINE,
         status=MemoryStatus.ACTIVE
     )
     memories.sort(key=lambda m: m.valid_from or m.created_at)
+
+    if not memories:
+        console.print("[yellow]No timeline entries yet (run 'end' to compile).[/yellow]")
 
     for mem in memories:
         date_str = (mem.valid_from or mem.created_at).strftime('%Y-%m-%d')
@@ -476,8 +616,8 @@ def dump_ir(app: ArtificialMemoryCLI, compile: bool, compress: bool, decompile: 
 
         # Store IR units in database
         for unit in ir_sequence.units:
-            from artificial_memory.core.models import ContextIR
-            ir = ContextIR(
+            from artificial_memory.core.models import ContextIRRecord
+            ir = ContextIRRecord(
                 conversation_id=conv.id,
                 ir_type=unit.ir_type,
                 ir_key=unit.ir_key,
@@ -506,7 +646,7 @@ def dump_ir(app: ArtificialMemoryCLI, compile: bool, compress: bool, decompile: 
         return
 
     # Summary stats
-    total_tokens = sum(len(u.ir_key) + len(u.ir_value or "") for u in ir_units) // 3
+    total_tokens = sum(estimate_tokens_raw(u.ir_key + (u.ir_value or "")) for u in ir_units)
     by_type = {}
     for ir in ir_units:
         by_type[ir.ir_type] = by_type.get(ir.ir_type, 0) + 1

@@ -14,7 +14,7 @@ import re
 import sys
 from pathlib import Path
 
-from artificial_memory.recall.evidence_scorer import EvidenceScoreWeights
+from artificial_memory_gen.recall.evidence_scorer import EvidenceScoreWeights
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 

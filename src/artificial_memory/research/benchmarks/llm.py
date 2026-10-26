@@ -182,6 +182,7 @@ class OllamaAnswerer:
         timeout_seconds: float = 600.0,
         answer_adapter: Any | None = None,
         num_ctx: int | None = None,
+        think: bool | None = None,
     ):
         # Spec Freeze: model / temperature / seed / max tokens are constants
         # above and are NOT constructor-overridable.
@@ -196,6 +197,12 @@ class OllamaAnswerer:
         # RTX 3050) request a 32K KV cache by default and the server answers
         # HTTP 500 once VRAM is exhausted, which silently kills a full run.
         self.num_ctx = num_ctx
+        # Benchmark-only thinking knob (``num_ctx`` precedent): ``None`` keeps
+        # the frozen behaviour (``think`` omitted unless FROZEN_THINK is set);
+        # ``False`` forces non-thinking models/paths to answer within the
+        # frozen num_predict budget (qwen3-family otherwise burns it all on
+        # reasoning and returns an empty ``content``).
+        self.think = think
         self.max_tokens: int | None = None
         self.stop: list[str] | None = None
 
@@ -237,8 +244,9 @@ class OllamaAnswerer:
         }
         if stop:
             payload["options"]["stop"] = stop
-        if FROZEN_THINK is not None:
-            payload["think"] = FROZEN_THINK
+        think = self.think if self.think is not None else FROZEN_THINK
+        if think is not None:
+            payload["think"] = think
         if self.num_ctx is not None:
             payload["options"]["num_ctx"] = self.num_ctx
         start = time.perf_counter()

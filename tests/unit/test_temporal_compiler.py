@@ -1,8 +1,8 @@
 """Regression tests for deterministic Chronos calendar anchoring."""
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.recall.answer_verifier import AnswerVerifier
-from artificial_memory.temporal.temporal_compiler import TemporalCompiler
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier
+from artificial_memory.research.legacy_skills.temporal_compiler import TemporalCompiler
 
 
 def _record(text: str, date: str, turn: str = "D1:1") -> StructuredIR:

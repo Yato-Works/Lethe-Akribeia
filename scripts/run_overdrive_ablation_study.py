@@ -21,7 +21,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.external.longmemeval_adapter import LongMemEvalAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer

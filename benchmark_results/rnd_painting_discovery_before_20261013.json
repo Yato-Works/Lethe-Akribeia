@@ -1,0 +1,55 @@
+{
+  "label": "painting-discovery-before",
+  "n": 3,
+  "correct": 1,
+  "wrong": 1,
+  "abstain": 1,
+  "presented": 2,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.028304,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-26_37",
+      "conversation": "26",
+      "category": 1,
+      "question": "What did Melanie paint recently?",
+      "gold": "sunset",
+      "status": "correct",
+      "answer": "sunset",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'sunset'",
+      "evidence_turn": "Wow Caroline, that looks amazing! Those colors are so vivid, it really looks like a real sunset. What gave you the idea to paint it?"
+    },
+    {
+      "question_id": "lc_conv-26_116",
+      "conversation": "26",
+      "category": 4,
+      "question": "What inspired Caroline's painting for the art show?",
+      "gold": "visiting an LGBTQ center and wanting to capture unity and strength",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    },
+    {
+      "question_id": "lc_conv-26_138",
+      "conversation": "26",
+      "category": 4,
+      "question": "What kind of painting did Caroline share with Melanie on October 13, 2023?",
+      "gold": "An abstract painting with blue streaks on a wall.",
+      "status": "wrong",
+      "answer": "sunset",
+      "engine": "autonomous_event_action_resolver",
+      "detail": "extracted painted sunset 'sunset'",
+      "evidence_turn": "Wow Mel, that's stunning! Love the colors and the chilled-out sunset vibe. What made you paint it? I've been trying out abstract stuff recently. It's kinda freeing, just putting my feelings on the canvas without too much of a plan. It's like a cool form of self-expression."
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

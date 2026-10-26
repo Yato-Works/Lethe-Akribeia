@@ -10,9 +10,16 @@ Guarantees:
 from __future__ import annotations
 
 import datetime
+import os
 import re
 
 from artificial_memory.skills.answer_committer import CommittedAnswer, Turn
+from artificial_memory.skills.evidence_binding import (
+    BindingCandidate,
+    BindingRequest,
+    BindingVerdicts,
+    bind,
+)
 
 # Common number word mappings
 NUMBER_WORDS: dict[str, int] = {
@@ -111,6 +118,63 @@ def _turn_keyword_idf(q_kws: set[str], scored_turns: list[tuple[set[str], set[st
                 df[kw] += 1
     import math
     return {kw: math.log(1.0 + n / (1.0 + df[kw])) for kw in q_kws}
+
+
+_EVENT_TERM_ALIASES: dict[str, set[str]] = {
+    "accident": {"accident", "crash", "collision", "collided", "hit", "injured"},
+    "clothing": {"clothing", "clothes"},
+    "clothes": {"clothing", "clothes"},
+    "work": {"work", "working", "exercise", "exercising", "workout", "training"},
+    "working": {"work", "working", "exercise", "exercising", "workout", "training"},
+    "girlfriend": {"girlfriend", "gf", "partner"},
+}
+_NON_EVENT_DATE_TERMS = {"date", "time", "year", "month", "day", "plan", "planning", "planned"}
+_MONTH_WORDS = set(MONTH_MAP)
+
+
+def _date_event_matches(question: str, turns: list[Turn], anchor_index: int,
+                        person: str | None) -> bool:
+    """Require the date anchor to be locally tied to the asked event/entities."""
+    q_kws = TemporalAlgebraEngine._extract_keywords(question)
+    event_terms = q_kws - _NON_EVENT_DATE_TERMS - ({person.lower()} if person else set())
+    window = turns[max(0, anchor_index - 2):anchor_index + 3]
+    window_words = set(re.findall(r"\b[a-zA-Z]{2,}\b", " ".join(t.text for t in window).lower()))
+    window_variants: set[str] = set()
+    for word in window_words:
+        window_variants |= _word_variants(word)
+
+    for term in event_terms:
+        variants = LEMMA_MAP.get(term, {term}) | _EVENT_TERM_ALIASES.get(term, set())
+        if not (variants & window_variants):
+            return False
+
+    # A second named participant/entity in the question must occur in the
+    # date-bearing turn itself.  A nearby reply about that person is not enough
+    # to connect them to this event (e.g. another camping trip without Max).
+    named_entities = {
+        m.group(0).lower()
+        for m in re.finditer(r"\b[A-Z][a-z]{2,}\b", question)
+        if m.group(0).lower() not in _MONTH_WORDS
+        and m.group(0).lower() != (person.lower() if person else "")
+        and m.start() > 0
+    }
+    if named_entities:
+        related_sentence = False
+        for sentence in re.split(r"(?<=[.!?])\s+", turns[anchor_index].text):
+            sentence_low = sentence.lower()
+            if not all(re.search(rf"\b{re.escape(entity)}\b", sentence_low)
+                       for entity in named_entities):
+                continue
+            if all(
+                (LEMMA_MAP.get(term, {term}) | _EVENT_TERM_ALIASES.get(term, set()))
+                & set(re.findall(r"\b[a-zA-Z]{2,}\b", sentence_low))
+                for term in event_terms
+            ):
+                related_sentence = True
+                break
+        if not related_sentence:
+            return False
+    return True
 
 
 class TemporalAlgebraEngine:
@@ -231,9 +295,47 @@ class TemporalAlgebraEngine:
                 # "10 years ago", "Seven years now", "two weeks", "3.5 hours".
                 # Weeks and days are first-class units, and decimals (3.5) are
                 # preserved verbatim - the evidence said 3.5, the answer says 3.5.
+                #
+                # EVIDENCE BINDING, applied per candidate.  A duration is committed
+                # only when its own clause names the asked event.  Without this the
+                # path returned the right TYPE with the wrong SUBJECT -- 'How long has
+                # John been surfing?' answered '4 years' from 'We were teammates for
+                # four years in high school' (conv-43-qa-081), and 'How long did the
+                # Witcher book take?' answered '2 weeks' from 'a walk with my dogs two
+                # weeks ago' (conv-47-qa-053).  Both are about the right person, so an
+                # entity check cannot catch them; only the event in the value's own
+                # clause can.
+                #
+                # EVERY candidate is bound, not just the first.  An earlier version
+                # broke out of the loop on the first non-MATCH, which let conv-47-qa-053
+                # fall through this turn and commit an unrelated '1 day' from the next
+                # one -- the same defect wearing a different number.  Rejecting one
+                # candidate must not hand the question to a worse one.
+                bind_req = BindingRequest.for_question(
+                    question, entity=person, value_type="DURATION")
+                committed = None
+                #: Toggled by scripts/benchmarks/ab_evidence_binding.py so both arms of
+                #: the A/B execute byte-identical code except for this one flag.  A file
+                #: rewrite or a separate import would put the arms on different paths,
+                #: which is how an earlier A/B produced '13 new correct answers' that
+                #: were pure artifact.
+                _binding_on = os.environ.get("LETHE_EVIDENCE_BINDING", "1") != "0"
                 for m_dur in re.finditer(r"\b(?:for\s+)?(\d+(?:\.\d+)?|one|two|three|four|five|six|seven|eight|nine|ten)\s+(years?|months?|weeks?|days?|hours?)(?:\s+(?:ago|now))?\b", turn.text, re.I):
                     if present_perfect and "ago" in m_dur.group(0).lower():
                         continue
+                    if _binding_on:
+                        verdict = bind(bind_req, BindingCandidate(
+                            text=turn.text, turn_id=turn.dia_id,
+                            value=m_dur.group(0),
+                            value_start=m_dur.start(), value_end=m_dur.end()))
+                        if verdict.verdict is not BindingVerdicts.MATCH:
+                            # AMBIGUOUS or NO_MATCH: this span's owner is not proven.
+                            # Reject the CANDIDATE and keep looking, so an unrelated
+                            # span later in the same turn can still win if it is the
+                            # right one.
+                            continue
+                    else:
+                        verdict = None
                     val_str, unit = m_dur.group(1).lower(), m_dur.group(2).lower()
                     if "." in val_str:
                         val_disp = val_str  # "3.5" stays "3.5"
@@ -247,15 +349,27 @@ class TemporalAlgebraEngine:
                     singular = unit.rstrip("s")
                     unit_norm = singular if val_num == 1 else unit
                     suffix = " ago" if "ago" in ql else ""
-                    ans = f"{val_disp} {unit_norm}{suffix}"
-                    return CommittedAnswer(
+                    # Provenance differs by arm so the A/B can tell them apart in the
+                    # saved detail strings: ON records what bound the value, OFF
+                    # records that binding was disabled.
+                    if verdict is not None:
+                        _detail = (f"extracted duration '{val_disp} {unit_norm}' bound "
+                                   f"to event {sorted(verdict.overlap)} in clause "
+                                   f"'{verdict.clause[:50]}' [{turn.dia_id}]")
+                    else:
+                        _detail = (f"extracted duration '{val_disp} {unit_norm}' "
+                                   f"(evidence binding DISABLED) [{turn.dia_id}]")
+                    committed = CommittedAnswer(
                         used=True,
-                        answer=ans,
+                        answer=f"{val_disp} {unit_norm}{suffix}",
                         source="autonomous_temporal_algebra",
                         confidence=0.95,
-                        detail=f"extracted duration '{ans}'",
+                        detail=_detail,
                         evidence_turn=turn.text,
                     )
+                    break
+                if committed is not None:
+                    return committed
 
                 # "since 2016" - commit the evidence's own phrasing verbatim.
                 # Recomputing a diff (2016 -> 2023 = "7 years") fabricates a
@@ -298,6 +412,9 @@ class TemporalAlgebraEngine:
         best_score = 0.0
         second_best = 0.0
         for turn, turn_words, turn_variants in candidates:
+            anchor_index = turns.index(turn)
+            if not _date_event_matches(question, turns, anchor_index, person):
+                continue
             score = 0.0
             for kw in q_kws:
                 expanded = LEMMA_MAP.get(kw, {kw})
@@ -381,6 +498,25 @@ class TemporalAlgebraEngine:
                 evidence_turn=best_turn.text,
             )
 
+        # Broad relative seasons are intentionally returned verbatim.  The
+        # evidence does not contain enough information to manufacture a month
+        # or day, and another turn's precise date must not be substituted.
+        m_season = re.search(
+            r"\b(?:last|this|next)\s+(?:summer|winter|spring|fall|autumn)\b",
+            best_turn.text,
+            re.IGNORECASE,
+        )
+        if m_season:
+            phrase = m_season.group(0).lower()
+            return CommittedAnswer(
+                used=True,
+                answer=phrase,
+                source="autonomous_temporal_algebra",
+                confidence=0.93,
+                detail=f"extracted broad seasonal anchor '{phrase}'",
+                evidence_turn=best_turn.dia_id,
+            )
+
         # 2b. Answer-shape discipline: a question asking for a year or a month
         #     is answered with exactly that shape, never a full date.
         wants_year = bool(re.search(r"\b(?:which|what)\s+year\b", ql))
@@ -462,6 +598,39 @@ class TemporalAlgebraEngine:
                 evidence_turn=best_turn.text,
             )
 
+        # A session timestamp is not automatically an event date.  The narrow
+        # exception is an explicit state announcement such as "my store is
+        # open"; use the earliest such first-person announcement, not a later
+        # retrospective "I opened a store" turn's timestamp.
+        if re.search(r"\bopen(?:ed|ing)?\b", ql) and person:
+            state_announcements: list[tuple[datetime.date, Turn]] = []
+            for idx, turn in enumerate(turns):
+                if turn.speaker.lower() != person.lower() or not re.search(r"\bis\s+(?:now\s+)?open\b", turn.text, re.I):
+                    continue
+                if not _date_event_matches(question, turns, idx, person):
+                    continue
+                m_header = re.search(r"\b(\d{1,2})\s+([A-Za-z]+),?\s+(20\d\d)\b", turn.header_date or "")
+                if not m_header:
+                    continue
+                d, month_name, year = m_header.groups()
+                month_number = MONTH_MAP.get(month_name.lower()) or MONTH_MAP.get(month_name.lower()[:3])
+                if month_number:
+                    try:
+                        state_announcements.append((datetime.date(int(year), month_number, int(d)), turn))
+                    except ValueError:
+                        continue
+            if state_announcements:
+                event_date, event_turn = min(state_announcements, key=lambda item: item[0])
+                date_str = f"{event_date.day} {event_date.strftime('%B')}, {event_date.year}"
+                return CommittedAnswer(
+                    used=True,
+                    answer=date_str,
+                    source="autonomous_temporal_algebra",
+                    confidence=0.90,
+                    detail=f"earliest explicit open-state announcement '{date_str}'",
+                    evidence_turn=event_turn.dia_id,
+                )
+
         # 3. Explicit year in best turn: "In 2013" / "in 2022"
         if "what year" in q_kws or "which year" in q_kws or "when" in q_kws:
             m_yr = re.search(r"\b(?:in\s+)?(19\d\d|20\d\d)\b", best_turn.text)
@@ -475,6 +644,34 @@ class TemporalAlgebraEngine:
                     detail=f"extracted explicit year '{yr_str}'",
                     evidence_turn=best_turn.text,
                 )
+
+        # Relative day phrases can be separated from the event description by
+        # a short question/answer exchange.  Reuse the dated neighboring turn
+        # as the anchor, never a distant candidate turn.
+        all_turns = turns
+        best_idx = all_turns.index(best_turn)
+        for anchor_turn in all_turns[max(0, best_idx - 2):best_idx + 3]:
+            m_rel_day = re.search(r"\b(yesterday|last night|tomorrow|the other day)\b", anchor_turn.text, re.I)
+            if not m_rel_day:
+                continue
+            m_hd = re.search(r"(\d{1,2})\s+([A-Za-z]+),?\s+(20\d\d)", anchor_turn.header_date or "")
+            if not m_hd:
+                continue
+            m_idx = MONTH_MAP.get(m_hd.group(2).lower()) or MONTH_MAP.get(m_hd.group(2).lower()[:3])
+            if not m_idx:
+                continue
+            anchor = datetime.date(int(m_hd.group(3)), m_idx, int(m_hd.group(1)))
+            delta = {"yesterday": -1, "last night": -1, "tomorrow": 1, "the other day": -2}[m_rel_day.group(1).lower()]
+            resolved = anchor + datetime.timedelta(days=delta)
+            ans = f"{resolved.day} {resolved.strftime('%B')}, {resolved.year}"
+            return CommittedAnswer(
+                used=True,
+                answer=ans,
+                source="autonomous_temporal_algebra",
+                confidence=0.89,
+                detail=f"relative event anchor '{m_rel_day.group(1)}' in {anchor_turn.dia_id}",
+                evidence_turn=anchor_turn.dia_id,
+            )
 
         return CommittedAnswer(used=False)
 

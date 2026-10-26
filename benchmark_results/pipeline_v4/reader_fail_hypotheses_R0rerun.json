@@ -1,0 +1,360 @@
+{
+  "run": "C:\\Users\\smily\\Lethe-Akribeia\\benchmark_results\\pipeline_v4\\lme_dev250_v4_R0rerun.json",
+  "condition": "R0",
+  "total_failures": 65,
+  "reader_side": 44,
+  "rows": [
+    {
+      "question_id": "e01b8e2f",
+      "question_type": "single-session-user",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "Hawaii",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "0a995998",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "3",
+      "predicted_answer": "2"
+    },
+    {
+      "question_id": "6d550036",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "2",
+      "predicted_answer": "You have led one project, as mentioned in your promotion to a senior software engineer position three months ago and leading a team of five engineers."
+    },
+    {
+      "question_id": "gpt4_59c863d7",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "I have worked on or bought five model kits. The scales of the models are: Revell F-15 Eagle (scale not mentioned), Tamiya 1/48 scale Spitfire Mk.V, 1/16 scale German Tiger I tank, 1/72 scale B-29 bomber, and 1/24 scale '69 Camaro.",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "b5ef892d",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "8 days.",
+      "predicted_answer": "7"
+    },
+    {
+      "question_id": "aae3761f",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "15 hours for getting to the three destinations (or 30 hours for the round trip)",
+      "predicted_answer": "14"
+    },
+    {
+      "question_id": "gpt4_f2262a51",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "I visited three different doctors: a primary care physician, an ENT specialist, and a dermatologist.",
+      "predicted_answer": "4"
+    },
+    {
+      "question_id": "gpt4_a56e767c",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "I attended four movie festivals.",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "gpt4_2f8be40d",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "I attended three weddings. The couples were Rachel and Mike, Emily and Sarah, and Jen and Tom.",
+      "predicted_answer": "4"
+    },
+    {
+      "question_id": "2e6d26dc",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "5",
+      "predicted_answer": "4"
+    },
+    {
+      "question_id": "gpt4_15e38248",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "4",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "d23cf73b",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "4",
+      "predicted_answer": "5"
+    },
+    {
+      "question_id": "00ca467f",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "2",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "gpt4_31ff4165",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "4",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "60472f9c",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "2",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "gpt4_194be4b3",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "I currently own 4 musical instruments. I've had the Fender Stratocaster electric guitar for 5 years, the Yamaha FG800 acoustic guitar for 8 years, the 5-piece Pearl Export drum set for an unspecified amount of time, and the Korg B1 piano for 3 years.",
+      "predicted_answer": "2"
+    },
+    {
+      "question_id": "a9f6b44c",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "2",
+      "predicted_answer": "0"
+    },
+    {
+      "question_id": "edced276",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "15 days",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "1a8a66a6",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "2",
+      "predicted_answer": "1"
+    },
+    {
+      "question_id": "c2ac3c61",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "5",
+      "predicted_answer": "2"
+    },
+    {
+      "question_id": "gpt4_2f91af09",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "23",
+      "predicted_answer": "17"
+    },
+    {
+      "question_id": "195a1a1b",
+      "question_type": "single-session-preference",
+      "hypothesis": "entity",
+      "evidence": "GT entity 'The user would prefer suggestions that i' vs pred entity 'Given your interest in straight photogra'",
+      "ground_truth": "The user would prefer suggestions that involve relaxing activities that can be done in the evening, preferably before 9:30 pm. They would not prefer suggestions that involve using their phone or watching TV, as these activities have been affecting their sleep quality.",
+      "predicted_answer": "Given your interest in straight photography and your recent yoga classes, you might enjoy evening photography walks around the local parks or along the beach in Honolulu. You could capture the peacefulness of the surroundings and the changing light, just like Charles Dudley Arnold did with his nighttime photography. Additionally, you could try some gentle evening yoga sessions at a local beach or park, combining your newfound flexibility with the natural beauty of the Hawaiian sunset."
+    },
+    {
+      "question_id": "4f54b7c9",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "5",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "f35224e0",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "27",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "4adc0475",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "5",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "8979f9ec",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('total') with numeric GT",
+      "ground_truth": "8 meals",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "67e0d0f2",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "20",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "61f8c8f8",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "10 minutes",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "c18a7dc8",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "7",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "a3332713",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('total') with numeric GT",
+      "ground_truth": "$200",
+      "predicted_answer": "$130"
+    },
+    {
+      "question_id": "a08a253f",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "4 days.",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "a346bb18",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "12",
+      "predicted_answer": "22 minutes"
+    },
+    {
+      "question_id": "8e91e7d9",
+      "question_type": "multi-session",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('total') with numeric GT",
+      "ground_truth": "4",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "87f22b4a",
+      "question_type": "multi-session",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "$120",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "gpt4_1d80365e",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "2 days. 3 days (including the last day) is also acceptable.",
+      "predicted_answer": "1"
+    },
+    {
+      "question_id": "4dfccbf7",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "24 days. 25 days (including the last day) is also acceptable.",
+      "predicted_answer": "70"
+    },
+    {
+      "question_id": "2ebe6c90",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "21 days. 22 days (including the last day) is also acceptable.",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "gpt4_1e4a8aec",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "extraction",
+      "evidence": "reader refused although GT is in the context",
+      "ground_truth": "planting 12 new tomato saplings",
+      "predicted_answer": "I don't know."
+    },
+    {
+      "question_id": "gpt4_fa19884d",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "temporal",
+      "evidence": "temporal question ('last')",
+      "ground_truth": "a bluegrass band that features a banjo player",
+      "predicted_answer": "Jinsang"
+    },
+    {
+      "question_id": "982b5123",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "Five months ago",
+      "predicted_answer": "3"
+    },
+    {
+      "question_id": "a3045048",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "aggregation",
+      "evidence": "aggregation question ('how many') with numeric GT",
+      "ground_truth": "7 days. 8 days (including the last day) is also acceptable.",
+      "predicted_answer": "5"
+    },
+    {
+      "question_id": "gpt4_88806d6e",
+      "question_type": "temporal-reasoning",
+      "hypothesis": "temporal",
+      "evidence": "temporal question ('first')",
+      "ground_truth": "Tom",
+      "predicted_answer": "Mark and Sarah"
+    },
+    {
+      "question_id": "8752c811",
+      "question_type": "single-session-assistant",
+      "hypothesis": "entity",
+      "evidence": "GT entity 'The 27th parameter was 'Sound effects (e' vs pred entity 'Camera angles'",
+      "ground_truth": "The 27th parameter was 'Sound effects (e.g., ambient, diegetic, non-diegetic, etc.)'.",
+      "predicted_answer": "Camera angles"
+    },
+    {
+      "question_id": "e982271f",
+      "question_type": "single-session-assistant",
+      "hypothesis": "temporal",
+      "evidence": "temporal question ('last')",
+      "ground_truth": "Revolution Hall",
+      "predicted_answer": "The Old Church"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "benchmark": "LongMemEval",
+  "split": "dev_250",
+  "pipeline": "V4_Budgeted_Cognitive_Compilation",
+  "condition": "R7",
+  "model": "qwen2.5:7b-instruct",
+  "total_questions": 1,
+  "correct_answers": 0,
+  "accuracy": 0.0,
+  "mean_prompt_tokens": 0.0,
+  "deterministic_overrides": 1,
+  "elapsed_seconds": 0.5061671000003116,
+  "per_type_breakdown": {
+    "temporal-reasoning": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 1,
+      "mean_tokens": 0.0
+    }
+  },
+  "results": [
+    {
+      "question_id": "370a8ff4",
+      "question_type": "temporal-reasoning",
+      "question": "How many weeks had passed since I recovered from the flu when I went on my 10th jog outdoors?",
+      "ground_truth": "15",
+      "predicted_answer": "12 weeks",
+      "is_correct": false,
+      "deterministic_override": true,
+      "prompt_tokens": 0,
+      "latency_ms": 0.0,
+      "r6_features": {
+        "direct_fact_demand": 0.1,
+        "temporal_demand": 0.98,
+        "aggregation_demand": 0.0,
+        "state_evolution_demand": 0.0,
+        "preference_demand": 0.0,
+        "assistant_recall_demand": 0.95,
+        "dominant_mode": "temporal",
+        "recommended_budget": 550,
+        "requires_chronos_diff": true,
+        "requires_event_aggregation": false,
+        "requires_state_timeline": false,
+        "requires_profile_grounding": false,
+        "total_records": 498,
+        "session_count": 46,
+        "date_count": 46,
+        "has_date_variance": true,
+        "has_superseded_or_migrated": true,
+        "competing_values_count": 20,
+        "has_assistant_records": true,
+        "has_user_records": true,
+        "candidate_count": 156,
+        "candidate_sessions": 13,
+        "conflict": true,
+        "cert_present": true,
+        "temporal_complexity": 3,
+        "evidence_coverage": 0.0,
+        "anchor_session_count": 18,
+        "top1_anchor_score": 62.5472,
+        "budget_util": 0.0,
+        "question_type": "temporal-reasoning",
+        "is_aggregation": false,
+        "correct": false,
+        "reader_model": "",
+        "predicted": "12 weeks"
+      }
+    }
+  ]
+}

@@ -23,8 +23,8 @@ from collections.abc import Sequence
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-from artificial_memory.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
-from artificial_memory.recall.answer_verifier import AnswerVerifier, VerificationResult
+from artificial_memory_gen.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
+from artificial_memory_gen.recall.answer_verifier import AnswerVerifier, VerificationResult
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter, LoCoMoQuestion
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 

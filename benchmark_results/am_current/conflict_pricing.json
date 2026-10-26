@@ -1,0 +1,281 @@
+{
+  "detector": "generic relational extractor (fixed lexicon)",
+  "keys_with_distinct_values": 20,
+  "contradiction_planted_pair_captured": "20/20",
+  "annotation_fires_per_category": {
+    "abstention": {
+      "fired": 0,
+      "n": 20
+    },
+    "compression_recovery": {
+      "fired": 0,
+      "n": 20
+    },
+    "contradiction_handling": {
+      "fired": 20,
+      "n": 20
+    },
+    "distractor_resistance": {
+      "fired": 0,
+      "n": 20
+    },
+    "factual_recall": {
+      "fired": 0,
+      "n": 20
+    },
+    "indirect_recall": {
+      "fired": 0,
+      "n": 20
+    },
+    "knowledge_updates": {
+      "fired": 0,
+      "n": 20
+    },
+    "multi_session_recall": {
+      "fired": 0,
+      "n": 20
+    },
+    "reflection_reinterpretation": {
+      "fired": 0,
+      "n": 20
+    },
+    "temporal_reasoning": {
+      "fired": 0,
+      "n": 20
+    }
+  },
+  "sample_fired_contradictions": [
+    {
+      "question_id": "contradiction_handling-00",
+      "keys": [
+        "atlas"
+      ]
+    },
+    {
+      "question_id": "contradiction_handling-01",
+      "keys": [
+        "beacon"
+      ]
+    },
+    {
+      "question_id": "contradiction_handling-02",
+      "keys": [
+        "cinder"
+      ]
+    },
+    {
+      "question_id": "contradiction_handling-03",
+      "keys": [
+        "delta"
+      ]
+    },
+    {
+      "question_id": "contradiction_handling-04",
+      "keys": [
+        "ember"
+      ]
+    }
+  ],
+  "conflict_keys_sample": [
+    {
+      "key": [
+        "atlas",
+        "cache layer"
+      ],
+      "values": [
+        "Redis",
+        "SQLite"
+      ]
+    },
+    {
+      "key": [
+        "beacon",
+        "cache layer"
+      ],
+      "values": [
+        "Cassandra",
+        "DuckDB"
+      ]
+    },
+    {
+      "key": [
+        "cinder",
+        "cache layer"
+      ],
+      "values": [
+        "MongoDB",
+        "Postgres"
+      ]
+    },
+    {
+      "key": [
+        "delta",
+        "cache layer"
+      ],
+      "values": [
+        "Neo4j",
+        "RocksDB"
+      ]
+    },
+    {
+      "key": [
+        "ember",
+        "cache layer"
+      ],
+      "values": [
+        "LMDB",
+        "QuestDB"
+      ]
+    },
+    {
+      "key": [
+        "fjord",
+        "cache layer"
+      ],
+      "values": [
+        "ClickHouse",
+        "TimescaleDB"
+      ]
+    },
+    {
+      "key": [
+        "glacier",
+        "cache layer"
+      ],
+      "values": [
+        "ArangoDB",
+        "TiDB"
+      ]
+    },
+    {
+      "key": [
+        "harbor",
+        "cache layer"
+      ],
+      "values": [
+        "CockroachDB",
+        "RethinkDB"
+      ]
+    },
+    {
+      "key": [
+        "ivory",
+        "cache layer"
+      ],
+      "values": [
+        "CouchDB",
+        "SurrealDB"
+      ]
+    },
+    {
+      "key": [
+        "juniper",
+        "cache layer"
+      ],
+      "values": [
+        "RavenDB",
+        "Redis"
+      ]
+    },
+    {
+      "key": [
+        "kelp",
+        "cache layer"
+      ],
+      "values": [
+        "Cassandra",
+        "ScyllaDB"
+      ]
+    },
+    {
+      "key": [
+        "lumen",
+        "cache layer"
+      ],
+      "values": [
+        "MongoDB",
+        "SQLite"
+      ]
+    },
+    {
+      "key": [
+        "moss",
+        "cache layer"
+      ],
+      "values": [
+        "DuckDB",
+        "Neo4j"
+      ]
+    },
+    {
+      "key": [
+        "nectar",
+        "cache layer"
+      ],
+      "values": [
+        "Postgres",
+        "QuestDB"
+      ]
+    },
+    {
+      "key": [
+        "onyx",
+        "cache layer"
+      ],
+      "values": [
+        "RocksDB",
+        "TimescaleDB"
+      ]
+    },
+    {
+      "key": [
+        "prism",
+        "cache layer"
+      ],
+      "values": [
+        "ArangoDB",
+        "LMDB"
+      ]
+    },
+    {
+      "key": [
+        "quartz",
+        "cache layer"
+      ],
+      "values": [
+        "ClickHouse",
+        "RethinkDB"
+      ]
+    },
+    {
+      "key": [
+        "reef",
+        "cache layer"
+      ],
+      "values": [
+        "CouchDB",
+        "TiDB"
+      ]
+    },
+    {
+      "key": [
+        "summit",
+        "cache layer"
+      ],
+      "values": [
+        "CockroachDB",
+        "RavenDB"
+      ]
+    },
+    {
+      "key": [
+        "tundra",
+        "cache layer"
+      ],
+      "values": [
+        "ScyllaDB",
+        "SurrealDB"
+      ]
+    }
+  ]
+}

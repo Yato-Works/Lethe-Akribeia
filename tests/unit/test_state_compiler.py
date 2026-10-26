@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.protein.state_compiler import StateCompiler
+from artificial_memory_gen.protein.state_compiler import StateCompiler
 
 
 def test_state_compiler_origin():

@@ -19,10 +19,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from artificial_memory.compiler.ir_extractor import UniversalIRExtractor
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.recall.state_timeline import StateTimelineEngine
 from artificial_memory.research.benchmarks.external.lme_prompts import (
     ADOPTED as LME_PROMPT_FIXES,
 )
@@ -30,7 +27,10 @@ from artificial_memory.research.benchmarks.external.lme_prompts import (
     build_prompt as build_lme_prompt,
 )
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
-from artificial_memory.skills import get_temporal_skill
+from artificial_memory.research.legacy_skills import get_temporal_skill
+from artificial_memory_gen.compiler.ir_extractor import UniversalIRExtractor
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler
+from artificial_memory_gen.recall.state_timeline import StateTimelineEngine
 
 
 @dataclass
@@ -139,6 +139,13 @@ class LongMemEvalAdapter:
         for w, n in WORD_TO_NUM.items():
             clean_gt = re.sub(rf"\b{w}\b", n, clean_gt)
             clean_ans = re.sub(rf"\b{w}\b", n, clean_ans)
+
+        # An empty answer must NEVER score correct: the substring rules
+        # below treat "" as contained in every gold string ("" in "2" is
+        # True).  Historical runs contain zero empty answers, so this guard
+        # does not move any published number.
+        if not ans_lower:
+            return False
 
         if is_abstention_gt:
             if pcc_is_abstention or any(w in ans_lower for w in [

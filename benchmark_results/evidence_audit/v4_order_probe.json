@@ -1,0 +1,636 @@
+{
+  "label": "V4 mission 15 -- causal order probe (swap the two competing turns only)",
+  "baseline": {
+    "head": "2316642",
+    "production_changed": false,
+    "evidence_binding": "unwired, preserved"
+  },
+  "cohort_from": "v4_frozen_context_binding.json (M11), frozen",
+  "reader": {
+    "model": "qwen2.5:7b-instruct",
+    "temperature": 0.0,
+    "seed": 42,
+    "max_tokens": 256
+  },
+  "control_arm_rerun": false,
+  "control_arm_source": "v4_reader_h9.json (frozen)",
+  "invariant": "question, utterance text, speakers, timestamps, prompt, scorer",
+  "only_change": "line order of the two competing evidence turns",
+  "n_measured": 30,
+  "n_invocation_failed": 0,
+  "n_unmeasurable": 7,
+  "rows": [
+    {
+      "question_id": "lc_conv-26_111",
+      "group": "FAILURE",
+      "conversation": "conv-26",
+      "status": "MEASURED",
+      "gold": "painting",
+      "pair": [
+        "D12:6",
+        "D8:33"
+      ],
+      "control_answer": "They enjoy hiking in the mountains and exploring forests together.",
+      "swapped_answer": "They enjoy hiking in the mountains and exploring forests together.",
+      "prompt_tokens": 1229,
+      "completion_tokens": 12,
+      "latency_ms": 3354.341199999908,
+      "answer_changed": false,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-30_45",
+      "group": "FAILURE",
+      "conversation": "conv-30",
+      "status": "MEASURED",
+      "gold": "Glad",
+      "pair": [
+        "D2:12",
+        "D5:2"
+      ],
+      "control_answer": "Jon is excited and fulfilled by the performance at the festival, as it allows him to share his passion and see his students succeed.",
+      "swapped_answer": "Jon is excited and fulfilled by the dance festival performance.",
+      "prompt_tokens": 2407,
+      "completion_tokens": 12,
+      "latency_ms": 1979.7216000006301,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-30_71",
+      "group": "FAILURE",
+      "conversation": "conv-30",
+      "status": "MEASURED",
+      "gold": "amazing",
+      "pair": [
+        "D5:5",
+        "D13:6"
+      ],
+      "control_answer": "Gina describes Jon's studio as a place for dancers to grow and a creative space for self-expression.",
+      "swapped_answer": "Gina describes Jon's studio as a place for people to dance and express themselves, and she believes it will be a go-to spot for self-expression.",
+      "prompt_tokens": 2307,
+      "completion_tokens": 32,
+      "latency_ms": 2438.528699996823,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-41_128",
+      "group": "FAILURE",
+      "conversation": "conv-41",
+      "status": "MEASURED",
+      "gold": "hiking",
+      "pair": [
+        "D25:2",
+        "D24:7"
+      ],
+      "control_answer": "They had a picnic.",
+      "swapped_answer": "Maria and her church friends went hiking in July 2023.",
+      "prompt_tokens": 2249,
+      "completion_tokens": 16,
+      "latency_ms": 1957.7557999982673,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "group": "FAILURE",
+      "conversation": "conv-42",
+      "status": "MEASURED",
+      "gold": "Touched",
+      "pair": [
+        "D18:5",
+        "D18:6"
+      ],
+      "control_answer": "Nate felt surreal and thought it was nice work.",
+      "swapped_answer": "I don't know.",
+      "prompt_tokens": 2273,
+      "completion_tokens": 6,
+      "latency_ms": 1737.3556000020471,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-43_101",
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "status": "MEASURED",
+      "gold": "Amazing",
+      "pair": [
+        "D14:17",
+        "D9:6"
+      ],
+      "control_answer": "John enjoyed his trip to New York City, mentioning he loves discovering new cities and that he shared a picture from his visit.",
+      "swapped_answer": "John shared a picture from his trip to New York City but did not provide detailed information about his experience there.",
+      "prompt_tokens": 2338,
+      "completion_tokens": 23,
+      "latency_ms": 2216.6236999983084,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "group": "FAILURE",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-43_152",
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "status": "MEASURED",
+      "gold": "basketball",
+      "pair": [
+        "D22:8",
+        "D23:3"
+      ],
+      "control_answer": "A big game against their rival.",
+      "swapped_answer": "last Friday (the Friday before 11 December 2023) in our big game against our rival.",
+      "prompt_tokens": 2496,
+      "completion_tokens": 25,
+      "latency_ms": 2378.6030000010214,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-43_162",
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "status": "MEASURED",
+      "gold": "\"The Wheel of Time\"",
+      "pair": [
+        "D26:36",
+        "D26:34"
+      ],
+      "control_answer": "Tim is excited about a new fantasy TV series coming out in January 2024.",
+      "swapped_answer": "Tim is excited about the new fantasy TV series \"The Wheel of Time\" that is coming out in January 2024.",
+      "prompt_tokens": 2345,
+      "completion_tokens": 28,
+      "latency_ms": 2382.805400000507,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-43_223",
+      "group": "FAILURE",
+      "conversation": "conv-43",
+      "status": "MEASURED",
+      "gold": "an instrument",
+      "pair": [
+        "D21:9",
+        "D21:8"
+      ],
+      "control_answer": "John recently started learning how to market himself and boost his brand.",
+      "swapped_answer": "John recently started learning how to play the violin.",
+      "prompt_tokens": 2552,
+      "completion_tokens": 11,
+      "latency_ms": 2090.6723000007332,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-43_234",
+      "group": "FAILURE",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-44_50",
+      "group": "FAILURE",
+      "conversation": "conv-44",
+      "status": "MEASURED",
+      "gold": "Grooming",
+      "pair": [
+        "D16:3",
+        "D27:6"
+      ],
+      "control_answer": "Audrey joined a dog owners group to learn how to better take care of her dogs.",
+      "swapped_answer": "Audrey learned to groom her dogs herself to take better care of them.",
+      "prompt_tokens": 2482,
+      "completion_tokens": 16,
+      "latency_ms": 2191.0339999994903,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-47_162",
+      "group": "FAILURE",
+      "conversation": "conv-47",
+      "status": "MEASURED",
+      "gold": "Reading",
+      "pair": [
+        "D16:8",
+        "D16:2"
+      ],
+      "control_answer": "James mentioned that he likes to read to relax.",
+      "swapped_answer": "James relaxed by reading on 9 July, 2022.",
+      "prompt_tokens": 2270,
+      "completion_tokens": 16,
+      "latency_ms": 2029.7122000010859,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-47_163",
+      "group": "FAILURE",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-48_77",
+      "group": "FAILURE",
+      "conversation": "conv-48",
+      "status": "MEASURED",
+      "gold": "Phuket",
+      "pair": [
+        "D27:1",
+        "D29:4"
+      ],
+      "control_answer": "They found a cool dive spot during a scuba diving lesson the Friday before 17 September 2023.",
+      "swapped_answer": "Rio de Janeiro.",
+      "prompt_tokens": 2348,
+      "completion_tokens": 5,
+      "latency_ms": 1761.971200001426,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-49_109",
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "status": "MEASURED",
+      "gold": "skiing",
+      "pair": [
+        "D8:30",
+        "D4:16"
+      ],
+      "control_answer": "Evan mentioned working on a watercolor painting in July 2023.",
+      "swapped_answer": "Evan mentioned painting watercolors in July 2023.",
+      "prompt_tokens": 2161,
+      "completion_tokens": 15,
+      "latency_ms": 1914.7240999991482,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "status": "MEASURED",
+      "gold": "Swimming",
+      "pair": [
+        "D9:7",
+        "D11:2"
+      ],
+      "control_answer": "Sam has been doing painting to stay active while dealing with the knee injury.",
+      "swapped_answer": "Swimming.",
+      "prompt_tokens": 2502,
+      "completion_tokens": 4,
+      "latency_ms": 1864.6547999996983,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "status": "MEASURED",
+      "gold": "painting",
+      "pair": [
+        "D10:12",
+        "D16:24"
+      ],
+      "control_answer": "They plan to paint together next Saturday.",
+      "swapped_answer": "painting",
+      "prompt_tokens": 2337,
+      "completion_tokens": 3,
+      "latency_ms": 1754.6428999994532,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "group": "FAILURE",
+      "conversation": "conv-49",
+      "status": "MEASURED",
+      "gold": "The Great Gatsby",
+      "pair": [
+        "D4:10",
+        "D4:8"
+      ],
+      "control_answer": "Evan is reading a new mystery novel that he finds gripping.",
+      "swapped_answer": "The Great Gatsby.",
+      "prompt_tokens": 2347,
+      "completion_tokens": 6,
+      "latency_ms": 1823.22849999764,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-50_160",
+      "group": "FAILURE",
+      "conversation": "conv-50",
+      "status": "MEASURED",
+      "gold": "Car maintenance shop",
+      "pair": [
+        "D4:2",
+        "D7:1"
+      ],
+      "control_answer": "Calvin's new business venture as of 1 May, 2023 is touring with Frank Ocean.",
+      "swapped_answer": "I don't know.",
+      "prompt_tokens": 2256,
+      "completion_tokens": 6,
+      "latency_ms": 1763.8810999997077,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-50_189",
+      "group": "FAILURE",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-50_57",
+      "group": "FAILURE",
+      "conversation": "conv-50",
+      "status": "MEASURED",
+      "gold": "photography",
+      "pair": [
+        "D27:2",
+        "D22:1"
+      ],
+      "control_answer": "Restoring and modifying cars.",
+      "swapped_answer": "Photography.",
+      "prompt_tokens": 2480,
+      "completion_tokens": 4,
+      "latency_ms": 1889.7114999999758,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-50_87",
+      "group": "FAILURE",
+      "conversation": "conv-50",
+      "status": "MEASURED",
+      "gold": "get back on the road",
+      "pair": [
+        "D10:1",
+        "D10:2"
+      ],
+      "control_answer": "Cruising around.",
+      "swapped_answer": "Cruising around.",
+      "prompt_tokens": 2545,
+      "completion_tokens": 6,
+      "latency_ms": 1999.5258999988437,
+      "answer_changed": false,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "group": "CONTROL",
+      "conversation": "conv-26",
+      "status": "MEASURED",
+      "gold": "7 years",
+      "pair": [
+        "D3:16",
+        "D13:12"
+      ],
+      "control_answer": "Melanie has been creating art for about seven years.",
+      "swapped_answer": "Melanie has been creating art, specifically pottery, for about 7 years. This can be inferred from her statement: \"Since I was 17 or so. I find it so empowering and cathartic. It's amazing how art can show things that are hard to put into words.\" Assuming she was 17 when she started, and the conversation is in 2023, it would place the start of her pottery journey around 2016.",
+      "prompt_tokens": 2050,
+      "completion_tokens": 97,
+      "latency_ms": 4108.907400001044,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-26_152",
+      "group": "CONTROL",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-41_138",
+      "group": "CONTROL",
+      "conversation": "conv-41",
+      "status": "MEASURED",
+      "gold": "community work",
+      "pair": [
+        "D28:8",
+        "D30:23"
+      ],
+      "control_answer": "Maria took up community work with her friends from church.",
+      "swapped_answer": "Maria took up community work with her friends from church in August 2023.",
+      "prompt_tokens": 2320,
+      "completion_tokens": 19,
+      "latency_ms": 2222.8476999989653,
+      "answer_changed": true,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-42_134",
+      "group": "CONTROL",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "group": "CONTROL",
+      "conversation": "conv-42",
+      "status": "MEASURED",
+      "gold": "turtles",
+      "pair": [
+        "D29:6",
+        "D5:2"
+      ],
+      "control_answer": "Nate took his turtles to the beach in Tampa.",
+      "swapped_answer": "Nate took his turtles to the beach in Tampa.",
+      "prompt_tokens": 2139,
+      "completion_tokens": 12,
+      "latency_ms": 1869.267400001263,
+      "answer_changed": false,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-42_221",
+      "group": "CONTROL",
+      "conversation": "conv-42",
+      "status": "MEASURED",
+      "gold": "vegan ice cream",
+      "pair": [
+        "D16:9",
+        "D19:6"
+      ],
+      "control_answer": "Joanna made vegan ice cream and shared it with some people in her vegan diet group.",
+      "swapped_answer": "Joanna made vegan ice cream and shared it with her vegan diet group.",
+      "prompt_tokens": 2294,
+      "completion_tokens": 16,
+      "latency_ms": 2118.6401000013575,
+      "answer_changed": true,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-43_91",
+      "group": "CONTROL",
+      "conversation": "conv-43",
+      "status": "MEASURED",
+      "gold": "Aug 15th",
+      "pair": [
+        "D7:1",
+        "D6:1"
+      ],
+      "control_answer": "On the 15th of August 2023.",
+      "swapped_answer": "The 15th of August 2023.",
+      "prompt_tokens": 2373,
+      "completion_tokens": 14,
+      "latency_ms": 2111.359500002436,
+      "answer_changed": true,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-44_102",
+      "group": "CONTROL",
+      "conversation": "conv-44",
+      "status": "MEASURED",
+      "gold": "To show love for creativity and sustainability",
+      "pair": [
+        "D22:5",
+        "D22:4"
+      ],
+      "control_answer": "To show her love of creativity and sustainability, and to give recycled objects new life.",
+      "swapped_answer": "To show her love of creativity and sustainability, and to give recycled objects new life.",
+      "prompt_tokens": 2442,
+      "completion_tokens": 18,
+      "latency_ms": 2385.5125999980373,
+      "answer_changed": false,
+      "control_matches_gold": false,
+      "swapped_matches_gold": false
+    },
+    {
+      "question_id": "lc_conv-44_121",
+      "group": "CONTROL",
+      "conversation": "conv-44",
+      "status": "MEASURED",
+      "gold": "Take them to a nearby park",
+      "pair": [
+        "D28:10",
+        "D12:1"
+      ],
+      "control_answer": "Take them to a nearby park.",
+      "swapped_answer": "Take them to a nearby park.",
+      "prompt_tokens": 2191,
+      "completion_tokens": 8,
+      "latency_ms": 1867.1513999979652,
+      "answer_changed": false,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "group": "CONTROL",
+      "conversation": "conv-47",
+      "status": "MEASURED",
+      "gold": "Drums",
+      "pair": [
+        "D3:3",
+        "D3:1"
+      ],
+      "control_answer": "John is learning to play drums as of 27 March, 2022.",
+      "swapped_answer": "John is learning to play drums as of 27 March, 2022.",
+      "prompt_tokens": 2090,
+      "completion_tokens": 20,
+      "latency_ms": 2073.16770000034,
+      "answer_changed": false,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-48_173",
+      "group": "CONTROL",
+      "status": "UNMEASURABLE",
+      "why": "competing pair not locatable"
+    },
+    {
+      "question_id": "lc_conv-50_134",
+      "group": "CONTROL",
+      "conversation": "conv-50",
+      "status": "MEASURED",
+      "gold": "Paying extra attention to detail",
+      "pair": [
+        "D25:19",
+        "D17:3"
+      ],
+      "control_answer": "Paying extra attention to detail isn't easy, but it pays off.",
+      "swapped_answer": "It takes a lot of patience, but the payoff is worth it. Paying extra attention to detail isn't easy, but it pays off.",
+      "prompt_tokens": 2448,
+      "completion_tokens": 30,
+      "latency_ms": 2590.4829999999492,
+      "answer_changed": true,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "group": "CONTROL",
+      "conversation": "conv-50",
+      "status": "MEASURED",
+      "gold": "Car mods",
+      "pair": [
+        "D28:8",
+        "D2:9"
+      ],
+      "control_answer": "Calvin didn't start a blog; Dave recently started a blog on car mods.",
+      "swapped_answer": "Calvin didn't start a blog; Dave started a blog on car mods.",
+      "prompt_tokens": 2433,
+      "completion_tokens": 17,
+      "latency_ms": 2259.215599999152,
+      "answer_changed": true,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    },
+    {
+      "question_id": "lc_conv-50_99",
+      "group": "CONTROL",
+      "conversation": "conv-50",
+      "status": "MEASURED",
+      "gold": "At a music festival in Tokyo",
+      "pair": [
+        "D15:4",
+        "D23:10"
+      ],
+      "control_answer": "Calvin met Frank Ocean at a music festival in Tokyo.",
+      "swapped_answer": "At a music festival in Tokyo.",
+      "prompt_tokens": 2411,
+      "completion_tokens": 8,
+      "latency_ms": 1980.630599999131,
+      "answer_changed": true,
+      "control_matches_gold": true,
+      "swapped_matches_gold": true
+    }
+  ]
+}

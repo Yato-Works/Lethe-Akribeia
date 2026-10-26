@@ -1,0 +1,35 @@
+# Coreference planning seeds.
+#
+# Usage site: ClosureQueryPlanner.plan entity extraction. Declares the
+# entity candidates the planner probes in a question and their
+# person-bound coreference scaffolding. These pairs previously lived as the
+# `_COMMON_ENTITIES` fixture in runtime code.
+#
+# Entry order defines planner entity ordering (lists are order-preserving).
+_meta:
+  origin: benchmark_tuned
+  description: >-
+    Query-planner entity targets with coreference tokens observed in the
+    benchmark Jakarta corpora (speaker personas plus recurring side
+    characters).
+  version: 1
+
+common_entities:
+  - name: caroline
+    corefs: [she, her]
+    is_speaker: true
+  - name: melanie
+    corefs: [she, her]
+    is_speaker: true
+  - name: grandma
+    corefs: []
+    is_speaker: false
+  - name: kids
+    corefs: []
+    is_speaker: false
+  - name: students
+    corefs: []
+    is_speaker: false
+  - name: partner
+    corefs: []
+    is_speaker: false

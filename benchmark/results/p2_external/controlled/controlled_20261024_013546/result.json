@@ -1,0 +1,2181 @@
+{
+  "run_id": "controlled_20261024_013546",
+  "arena_class": "controlled",
+  "dataset_hash": "e000bf7d6f3b29c10a26d65fd0d342e6bcbab59e8da7b5dd5a02514772c5d8af",
+  "dataset_version": "v0.2.0-arena-2",
+  "question_count": 10,
+  "question_ids_sha256": "b51e0f79666f9cad3cc3c98d95020cf678d7f0efb9f355c345c3f71c8bed4d54",
+  "started_at": "2026-10-24T01:35:46.340562",
+  "finished_at": "2026-10-24T01:36:37.158792",
+  "failures": [],
+  "players": {
+    "Simple RAG": {
+      "player_name": "Simple RAG",
+      "arena_class": "controlled",
+      "started_at": "2026-10-24T01:36:34.164067",
+      "finished_at": "2026-10-24T01:36:34.626296",
+      "manifest": {},
+      "final_costs": {
+        "player_name": "Simple RAG",
+        "write_llm_calls": 0,
+        "write_llm_prompt_tokens": 0,
+        "write_llm_completion_tokens": 0,
+        "write_latency_ms": 8802.643999981228,
+        "retrieval_calls": 50,
+        "retrieval_latency_ms": 459.62509990204126,
+        "context_construction_calls": 50,
+        "context_construction_latency_ms": 0.5749999545514584,
+        "answer_llm_calls": 50,
+        "answer_llm_prompt_tokens": 0,
+        "answer_llm_completion_tokens": 0,
+        "answer_latency_ms": 0.0,
+        "total_llm_calls": 150,
+        "total_prompt_tokens": 0,
+        "total_completion_tokens": 0,
+        "total_tokens": 0,
+        "total_latency_ms": 9262.844099837821,
+        "context_budget_tokens": 2000,
+        "context_tokens_used": 19430,
+        "budget_violations": 0
+      },
+      "questions": {
+        "factual_recall-00": {
+          "question_id": "factual_recall-00",
+          "category": "factual_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "factual_recall-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.175751",
+              "context_tokens_used": 397,
+              "retrieval_latency_ms": 11.604799947235733,
+              "context_build_latency_ms": 0.017700018361210823,
+              "answer_latency_ms": 11.679799994453788,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "factual_recall-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.175751",
+            "context_tokens_used": 397,
+            "retrieval_latency_ms": 11.604799947235733,
+            "context_build_latency_ms": 0.017700018361210823,
+            "answer_latency_ms": 11.679799994453788,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 9.857660008128732,
+          "p50_latency_ms": 9.655100002419204,
+          "p95_latency_ms": 11.679799994453788
+        },
+        "multi_session_recall-00": {
+          "question_id": "multi_session_recall-00",
+          "category": "multi_session_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "multi_session_recall-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.223704",
+              "context_tokens_used": 371,
+              "retrieval_latency_ms": 10.279300040565431,
+              "context_build_latency_ms": 0.008400005754083395,
+              "answer_latency_ms": 10.32069994835183,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "multi_session_recall-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.223704",
+            "context_tokens_used": 371,
+            "retrieval_latency_ms": 10.279300040565431,
+            "context_build_latency_ms": 0.008400005754083395,
+            "answer_latency_ms": 10.32069994835183,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 10.310899978503585,
+          "p50_latency_ms": 10.32069994835183,
+          "p95_latency_ms": 10.978799953591079
+        },
+        "temporal_reasoning-00": {
+          "question_id": "temporal_reasoning-00",
+          "category": "temporal_reasoning",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "temporal_reasoning-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.275669",
+              "context_tokens_used": 381,
+              "retrieval_latency_ms": 10.659000021405518,
+              "context_build_latency_ms": 0.01360004534944892,
+              "answer_latency_ms": 10.718500008806586,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "temporal_reasoning-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.275669",
+            "context_tokens_used": 381,
+            "retrieval_latency_ms": 10.659000021405518,
+            "context_build_latency_ms": 0.01360004534944892,
+            "answer_latency_ms": 10.718500008806586,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 10.123280005063862,
+          "p50_latency_ms": 10.626199946273118,
+          "p95_latency_ms": 10.847300000023097
+        },
+        "knowledge_updates-00": {
+          "question_id": "knowledge_updates-00",
+          "category": "knowledge_updates",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "knowledge_updates-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.324694",
+              "context_tokens_used": 331,
+              "retrieval_latency_ms": 9.069400024600327,
+              "context_build_latency_ms": 0.008600007276982069,
+              "answer_latency_ms": 9.109199978411198,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "knowledge_updates-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.324694",
+            "context_tokens_used": 331,
+            "retrieval_latency_ms": 9.069400024600327,
+            "context_build_latency_ms": 0.008600007276982069,
+            "answer_latency_ms": 9.109199978411198,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 8.27641999348998,
+          "p50_latency_ms": 8.16209998447448,
+          "p95_latency_ms": 9.109199978411198
+        },
+        "contradiction_handling-00": {
+          "question_id": "contradiction_handling-00",
+          "category": "contradiction_handling",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "contradiction_handling-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.366493",
+              "context_tokens_used": 415,
+              "retrieval_latency_ms": 9.475100028794259,
+              "context_build_latency_ms": 0.0097999582067132,
+              "answer_latency_ms": 9.518299950286746,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "contradiction_handling-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.366493",
+            "context_tokens_used": 415,
+            "retrieval_latency_ms": 9.475100028794259,
+            "context_build_latency_ms": 0.0097999582067132,
+            "answer_latency_ms": 9.518299950286746,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 9.326120000332594,
+          "p50_latency_ms": 9.260599967092276,
+          "p95_latency_ms": 10.02310001058504
+        },
+        "indirect_recall-00": {
+          "question_id": "indirect_recall-00",
+          "category": "indirect_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "indirect_recall-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.412496",
+              "context_tokens_used": 381,
+              "retrieval_latency_ms": 8.837600005790591,
+              "context_build_latency_ms": 0.010699965059757233,
+              "answer_latency_ms": 8.88069998472929,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "indirect_recall-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.412496",
+            "context_tokens_used": 381,
+            "retrieval_latency_ms": 8.837600005790591,
+            "context_build_latency_ms": 0.010699965059757233,
+            "answer_latency_ms": 8.88069998472929,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 8.926340006291866,
+          "p50_latency_ms": 8.88069998472929,
+          "p95_latency_ms": 9.588100016117096
+        },
+        "distractor_resistance-00": {
+          "question_id": "distractor_resistance-00",
+          "category": "distractor_resistance",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "distractor_resistance-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.455775",
+              "context_tokens_used": 366,
+              "retrieval_latency_ms": 7.478200015611947,
+              "context_build_latency_ms": 0.009200011845678091,
+              "answer_latency_ms": 7.518900034483522,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "distractor_resistance-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.455775",
+            "context_tokens_used": 366,
+            "retrieval_latency_ms": 7.478200015611947,
+            "context_build_latency_ms": 0.009200011845678091,
+            "answer_latency_ms": 7.518900034483522,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 8.335359999909997,
+          "p50_latency_ms": 8.063299988862127,
+          "p95_latency_ms": 9.961800009477884
+        },
+        "abstention-00": {
+          "question_id": "abstention-00",
+          "category": "abstention",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "abstention-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.498872",
+              "context_tokens_used": 374,
+              "retrieval_latency_ms": 8.88799998210743,
+              "context_build_latency_ms": 0.009400013368576765,
+              "answer_latency_ms": 8.930600015446544,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "abstention-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.498872",
+            "context_tokens_used": 374,
+            "retrieval_latency_ms": 8.88799998210743,
+            "context_build_latency_ms": 0.009400013368576765,
+            "answer_latency_ms": 8.930600015446544,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 8.950140001252294,
+          "p50_latency_ms": 9.00079996790737,
+          "p95_latency_ms": 9.728000033646822
+        },
+        "compression_recovery-00": {
+          "question_id": "compression_recovery-00",
+          "category": "compression_recovery",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "compression_recovery-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.544352",
+              "context_tokens_used": 467,
+              "retrieval_latency_ms": 9.594200004357845,
+              "context_build_latency_ms": 0.013100041542202234,
+              "answer_latency_ms": 9.651299973484129,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "compression_recovery-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.544352",
+            "context_tokens_used": 467,
+            "retrieval_latency_ms": 9.594200004357845,
+            "context_build_latency_ms": 0.013100041542202234,
+            "answer_latency_ms": 9.651299973484129,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 9.216040000319481,
+          "p50_latency_ms": 9.442900016438216,
+          "p95_latency_ms": 9.651299973484129
+        },
+        "reflection_reinterpretation-00": {
+          "question_id": "reflection_reinterpretation-00",
+          "category": "reflection_reinterpretation",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "reflection_reinterpretation-00",
+              "player_name": "Simple RAG",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.590309",
+              "context_tokens_used": 403,
+              "retrieval_latency_ms": 9.468000032939017,
+              "context_build_latency_ms": 0.010100018698722124,
+              "answer_latency_ms": 9.513700031675398,
+              "metadata": {
+                "retrieved": 20,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "reflection_reinterpretation-00",
+            "player_name": "Simple RAG",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.590309",
+            "context_tokens_used": 403,
+            "retrieval_latency_ms": 9.468000032939017,
+            "context_build_latency_ms": 0.010100018698722124,
+            "answer_latency_ms": 9.513700031675398,
+            "metadata": {
+              "retrieved": 20,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 9.09620001912117,
+          "p50_latency_ms": 8.970399969257414,
+          "p95_latency_ms": 9.839800011832267
+        }
+      }
+    },
+    "Zep-style": {
+      "player_name": "Zep-style",
+      "arena_class": "controlled",
+      "started_at": "2026-10-24T01:36:34.626307",
+      "finished_at": "2026-10-24T01:36:34.801296",
+      "manifest": {},
+      "final_costs": {
+        "player_name": "Zep-style",
+        "write_llm_calls": 0,
+        "write_llm_prompt_tokens": 0,
+        "write_llm_completion_tokens": 0,
+        "write_latency_ms": 7978.658900014125,
+        "retrieval_calls": 50,
+        "retrieval_latency_ms": 172.94949979986995,
+        "context_construction_calls": 50,
+        "context_construction_latency_ms": 0.732199929188937,
+        "answer_llm_calls": 50,
+        "answer_llm_prompt_tokens": 0,
+        "answer_llm_completion_tokens": 0,
+        "answer_latency_ms": 0.0,
+        "total_llm_calls": 150,
+        "total_prompt_tokens": 0,
+        "total_completion_tokens": 0,
+        "total_tokens": 0,
+        "total_latency_ms": 8152.340599743184,
+        "context_budget_tokens": 2000,
+        "context_tokens_used": 25695,
+        "budget_violations": 0
+      },
+      "questions": {
+        "factual_recall-00": {
+          "question_id": "factual_recall-00",
+          "category": "factual_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "factual_recall-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.630783",
+              "context_tokens_used": 561,
+              "retrieval_latency_ms": 4.42099996143952,
+              "context_build_latency_ms": 0.016000005416572094,
+              "answer_latency_ms": 4.468800034373999,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "factual_recall-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.630783",
+            "context_tokens_used": 561,
+            "retrieval_latency_ms": 4.42099996143952,
+            "context_build_latency_ms": 0.016000005416572094,
+            "answer_latency_ms": 4.468800034373999,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.2914600102230906,
+          "p50_latency_ms": 2.9959999956190586,
+          "p95_latency_ms": 4.468800034373999
+        },
+        "multi_session_recall-00": {
+          "question_id": "multi_session_recall-00",
+          "category": "multi_session_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "multi_session_recall-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.646361",
+              "context_tokens_used": 495,
+              "retrieval_latency_ms": 3.5334000131115317,
+              "context_build_latency_ms": 0.01939997309818864,
+              "answer_latency_ms": 3.5828000400215387,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "multi_session_recall-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.646361",
+            "context_tokens_used": 495,
+            "retrieval_latency_ms": 3.5334000131115317,
+            "context_build_latency_ms": 0.01939997309818864,
+            "answer_latency_ms": 3.5828000400215387,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 4.190500010736287,
+          "p50_latency_ms": 4.462799988687038,
+          "p95_latency_ms": 4.5205000205896795
+        },
+        "temporal_reasoning-00": {
+          "question_id": "temporal_reasoning-00",
+          "category": "temporal_reasoning",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "temporal_reasoning-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.666762",
+              "context_tokens_used": 451,
+              "retrieval_latency_ms": 2.987199986819178,
+              "context_build_latency_ms": 0.013400043826550245,
+              "answer_latency_ms": 3.0203000060282648,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "temporal_reasoning-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.666762",
+            "context_tokens_used": 451,
+            "retrieval_latency_ms": 2.987199986819178,
+            "context_build_latency_ms": 0.013400043826550245,
+            "answer_latency_ms": 3.0203000060282648,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.5387599957175553,
+          "p50_latency_ms": 3.7299999967217445,
+          "p95_latency_ms": 4.099500016309321
+        },
+        "knowledge_updates-00": {
+          "question_id": "knowledge_updates-00",
+          "category": "knowledge_updates",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "knowledge_updates-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.684356",
+              "context_tokens_used": 459,
+              "retrieval_latency_ms": 2.8850999660789967,
+              "context_build_latency_ms": 0.012200034689158201,
+              "answer_latency_ms": 2.9151999624446034,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "knowledge_updates-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.684356",
+            "context_tokens_used": 459,
+            "retrieval_latency_ms": 2.8850999660789967,
+            "context_build_latency_ms": 0.012200034689158201,
+            "answer_latency_ms": 2.9151999624446034,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.103039995767176,
+          "p50_latency_ms": 2.9073000187054276,
+          "p95_latency_ms": 3.9853000198490918
+        },
+        "contradiction_handling-00": {
+          "question_id": "contradiction_handling-00",
+          "category": "contradiction_handling",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "contradiction_handling-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.700902",
+              "context_tokens_used": 545,
+              "retrieval_latency_ms": 3.895399975590408,
+              "context_build_latency_ms": 0.01810002140700817,
+              "answer_latency_ms": 3.938000008929521,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "contradiction_handling-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.700902",
+            "context_tokens_used": 545,
+            "retrieval_latency_ms": 3.895399975590408,
+            "context_build_latency_ms": 0.01810002140700817,
+            "answer_latency_ms": 3.938000008929521,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.6431999993510544,
+          "p50_latency_ms": 3.9012000197544694,
+          "p95_latency_ms": 3.938000008929521
+        },
+        "indirect_recall-00": {
+          "question_id": "indirect_recall-00",
+          "category": "indirect_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "indirect_recall-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.718473",
+              "context_tokens_used": 495,
+              "retrieval_latency_ms": 3.2540999818593264,
+              "context_build_latency_ms": 0.01190003240481019,
+              "answer_latency_ms": 3.285699989646673,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "indirect_recall-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.718473",
+            "context_tokens_used": 495,
+            "retrieval_latency_ms": 3.2540999818593264,
+            "context_build_latency_ms": 0.01190003240481019,
+            "answer_latency_ms": 3.285699989646673,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.537319996394217,
+          "p50_latency_ms": 3.285699989646673,
+          "p95_latency_ms": 4.145700018852949
+        },
+        "distractor_resistance-00": {
+          "question_id": "distractor_resistance-00",
+          "category": "distractor_resistance",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "distractor_resistance-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.736573",
+              "context_tokens_used": 501,
+              "retrieval_latency_ms": 3.653799998573959,
+              "context_build_latency_ms": 0.015500001609325409,
+              "answer_latency_ms": 3.6901000421494246,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "distractor_resistance-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.736573",
+            "context_tokens_used": 501,
+            "retrieval_latency_ms": 3.653799998573959,
+            "context_build_latency_ms": 0.015500001609325409,
+            "answer_latency_ms": 3.6901000421494246,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.742380009498447,
+          "p50_latency_ms": 3.7205000407993793,
+          "p95_latency_ms": 3.7911999970674515
+        },
+        "abstention-00": {
+          "question_id": "abstention-00",
+          "category": "abstention",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "abstention-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.755341",
+              "context_tokens_used": 527,
+              "retrieval_latency_ms": 3.6999000003561378,
+              "context_build_latency_ms": 0.015900004655122757,
+              "answer_latency_ms": 3.7374000530689955,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "abstention-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.755341",
+            "context_tokens_used": 527,
+            "retrieval_latency_ms": 3.6999000003561378,
+            "context_build_latency_ms": 0.015900004655122757,
+            "answer_latency_ms": 3.7374000530689955,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.8490200182422996,
+          "p50_latency_ms": 3.7585999816656113,
+          "p95_latency_ms": 4.009700031019747
+        },
+        "compression_recovery-00": {
+          "question_id": "compression_recovery-00",
+          "category": "compression_recovery",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "compression_recovery-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.774160",
+              "context_tokens_used": 610,
+              "retrieval_latency_ms": 3.2705000485293567,
+              "context_build_latency_ms": 0.011699972674250603,
+              "answer_latency_ms": 3.3010999904945493,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "compression_recovery-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.774160",
+            "context_tokens_used": 610,
+            "retrieval_latency_ms": 3.2705000485293567,
+            "context_build_latency_ms": 0.011699972674250603,
+            "answer_latency_ms": 3.3010999904945493,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.0020599951967597,
+          "p50_latency_ms": 2.9126000008545816,
+          "p95_latency_ms": 3.3010999904945493
+        },
+        "reflection_reinterpretation-00": {
+          "question_id": "reflection_reinterpretation-00",
+          "category": "reflection_reinterpretation",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "reflection_reinterpretation-00",
+              "player_name": "Zep-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.789023",
+              "context_tokens_used": 495,
+              "retrieval_latency_ms": 3.1088999821804464,
+              "context_build_latency_ms": 0.014499993994832039,
+              "answer_latency_ms": 3.149600001052022,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "reflection_reinterpretation-00",
+            "player_name": "Zep-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.789023",
+            "context_tokens_used": 495,
+            "retrieval_latency_ms": 3.1088999821804464,
+            "context_build_latency_ms": 0.014499993994832039,
+            "answer_latency_ms": 3.149600001052022,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 3.0820799991488457,
+          "p50_latency_ms": 2.9953999910503626,
+          "p95_latency_ms": 3.2836999744176865
+        }
+      }
+    },
+    "HippoRAG-style": {
+      "player_name": "HippoRAG-style",
+      "arena_class": "controlled",
+      "started_at": "2026-10-24T01:36:34.801304",
+      "finished_at": "2026-10-24T01:36:36.195505",
+      "manifest": {},
+      "final_costs": {
+        "player_name": "HippoRAG-style",
+        "write_llm_calls": 0,
+        "write_llm_prompt_tokens": 0,
+        "write_llm_completion_tokens": 0,
+        "write_latency_ms": 7971.120300004259,
+        "retrieval_calls": 50,
+        "retrieval_latency_ms": 1391.6376000270247,
+        "context_construction_calls": 50,
+        "context_construction_latency_ms": 0.8641999447718263,
+        "answer_llm_calls": 50,
+        "answer_llm_prompt_tokens": 0,
+        "answer_llm_completion_tokens": 0,
+        "answer_latency_ms": 0.0,
+        "total_llm_calls": 150,
+        "total_prompt_tokens": 0,
+        "total_completion_tokens": 0,
+        "total_tokens": 0,
+        "total_latency_ms": 9363.622099976055,
+        "context_budget_tokens": 2000,
+        "context_tokens_used": 28965,
+        "budget_violations": 0
+      },
+      "questions": {
+        "factual_recall-00": {
+          "question_id": "factual_recall-00",
+          "category": "factual_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "factual_recall-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.838388",
+              "context_tokens_used": 560,
+              "retrieval_latency_ms": 37.02859999611974,
+              "context_build_latency_ms": 0.017600017599761486,
+              "answer_latency_ms": 37.08300000289455,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "factual_recall-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.838388",
+            "context_tokens_used": 560,
+            "retrieval_latency_ms": 37.02859999611974,
+            "context_build_latency_ms": 0.017600017599761486,
+            "answer_latency_ms": 37.08300000289455,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 29.96204000664875,
+          "p50_latency_ms": 29.12700001616031,
+          "p95_latency_ms": 37.08300000289455
+        },
+        "multi_session_recall-00": {
+          "question_id": "multi_session_recall-00",
+          "category": "multi_session_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "multi_session_recall-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:34.978393",
+              "context_tokens_used": 606,
+              "retrieval_latency_ms": 27.222000004258007,
+              "context_build_latency_ms": 0.016400008462369442,
+              "answer_latency_ms": 27.26880001137033,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "multi_session_recall-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:34.978393",
+            "context_tokens_used": 606,
+            "retrieval_latency_ms": 27.222000004258007,
+            "context_build_latency_ms": 0.016400008462369442,
+            "answer_latency_ms": 27.26880001137033,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 26.013580011203885,
+          "p50_latency_ms": 25.820300041232258,
+          "p95_latency_ms": 27.26880001137033
+        },
+        "temporal_reasoning-00": {
+          "question_id": "temporal_reasoning-00",
+          "category": "temporal_reasoning",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "temporal_reasoning-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.107180",
+              "context_tokens_used": 547,
+              "retrieval_latency_ms": 25.934600038453937,
+              "context_build_latency_ms": 0.015400000847876072,
+              "answer_latency_ms": 25.978899968322366,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "temporal_reasoning-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.107180",
+            "context_tokens_used": 547,
+            "retrieval_latency_ms": 25.934600038453937,
+            "context_build_latency_ms": 0.015400000847876072,
+            "answer_latency_ms": 25.978899968322366,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 28.638439998030663,
+          "p50_latency_ms": 26.611900015268475,
+          "p95_latency_ms": 34.30210001533851
+        },
+        "knowledge_updates-00": {
+          "question_id": "knowledge_updates-00",
+          "category": "knowledge_updates",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "knowledge_updates-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.259698",
+              "context_tokens_used": 588,
+              "retrieval_latency_ms": 35.230199981015176,
+              "context_build_latency_ms": 0.026899971999228,
+              "answer_latency_ms": 35.29899998102337,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "knowledge_updates-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.259698",
+            "context_tokens_used": 588,
+            "retrieval_latency_ms": 35.230199981015176,
+            "context_build_latency_ms": 0.026899971999228,
+            "answer_latency_ms": 35.29899998102337,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 28.462559985928237,
+          "p50_latency_ms": 27.287099976092577,
+          "p95_latency_ms": 35.29899998102337
+        },
+        "contradiction_handling-00": {
+          "question_id": "contradiction_handling-00",
+          "category": "contradiction_handling",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "contradiction_handling-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.391281",
+              "context_tokens_used": 587,
+              "retrieval_latency_ms": 24.514200049452484,
+              "context_build_latency_ms": 0.013599987141788006,
+              "answer_latency_ms": 24.557199969422072,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "contradiction_handling-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.391281",
+            "context_tokens_used": 587,
+            "retrieval_latency_ms": 24.514200049452484,
+            "context_build_latency_ms": 0.013599987141788006,
+            "answer_latency_ms": 24.557199969422072,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 28.125339990947396,
+          "p50_latency_ms": 28.14910002052784,
+          "p95_latency_ms": 33.31929998239502
+        },
+        "indirect_recall-00": {
+          "question_id": "indirect_recall-00",
+          "category": "indirect_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "indirect_recall-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.540786",
+              "context_tokens_used": 606,
+              "retrieval_latency_ms": 33.36140001192689,
+              "context_build_latency_ms": 0.024699955247342587,
+              "answer_latency_ms": 33.42789999442175,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "indirect_recall-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.540786",
+            "context_tokens_used": 606,
+            "retrieval_latency_ms": 33.36140001192689,
+            "context_build_latency_ms": 0.024699955247342587,
+            "answer_latency_ms": 33.42789999442175,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 28.58312000753358,
+          "p50_latency_ms": 26.30610001506284,
+          "p95_latency_ms": 33.42789999442175
+        },
+        "distractor_resistance-00": {
+          "question_id": "distractor_resistance-00",
+          "category": "distractor_resistance",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "distractor_resistance-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.674569",
+              "context_tokens_used": 505,
+              "retrieval_latency_ms": 24.2257000063546,
+              "context_build_latency_ms": 0.020899984519928694,
+              "answer_latency_ms": 24.282400030642748,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "distractor_resistance-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.674569",
+            "context_tokens_used": 505,
+            "retrieval_latency_ms": 24.2257000063546,
+            "context_build_latency_ms": 0.020899984519928694,
+            "answer_latency_ms": 24.282400030642748,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 24.771560018416494,
+          "p50_latency_ms": 24.741100030951202,
+          "p95_latency_ms": 25.219200004357845
+        },
+        "abstention-00": {
+          "question_id": "abstention-00",
+          "category": "abstention",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "abstention-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.799132",
+              "context_tokens_used": 596,
+              "retrieval_latency_ms": 24.93529999628663,
+              "context_build_latency_ms": 0.01379998866468668,
+              "answer_latency_ms": 24.976500018965453,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "abstention-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.799132",
+            "context_tokens_used": 596,
+            "retrieval_latency_ms": 24.93529999628663,
+            "context_build_latency_ms": 0.01379998866468668,
+            "answer_latency_ms": 24.976500018965453,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 27.983939996920526,
+          "p50_latency_ms": 28.42469996539876,
+          "p95_latency_ms": 31.75660001579672
+        },
+        "compression_recovery-00": {
+          "question_id": "compression_recovery-00",
+          "category": "compression_recovery",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "compression_recovery-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:35.946500",
+              "context_tokens_used": 641,
+              "retrieval_latency_ms": 32.37040003295988,
+              "context_build_latency_ms": 0.015700003132224083,
+              "answer_latency_ms": 32.41640003398061,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "compression_recovery-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:35.946500",
+            "context_tokens_used": 641,
+            "retrieval_latency_ms": 32.37040003295988,
+            "context_build_latency_ms": 0.015700003132224083,
+            "answer_latency_ms": 32.41640003398061,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 28.88720000628382,
+          "p50_latency_ms": 28.39490002952516,
+          "p95_latency_ms": 32.41640003398061
+        },
+        "reflection_reinterpretation-00": {
+          "question_id": "reflection_reinterpretation-00",
+          "category": "reflection_reinterpretation",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "reflection_reinterpretation-00",
+              "player_name": "HippoRAG-style",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.086035",
+              "context_tokens_used": 557,
+              "retrieval_latency_ms": 27.461900026537478,
+              "context_build_latency_ms": 0.014999997802078724,
+              "answer_latency_ms": 27.50600001309067,
+              "metadata": {
+                "retrieved": 25,
+                "answer_tokens": 0
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "reflection_reinterpretation-00",
+            "player_name": "HippoRAG-style",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.086035",
+            "context_tokens_used": 557,
+            "retrieval_latency_ms": 27.461900026537478,
+            "context_build_latency_ms": 0.014999997802078724,
+            "answer_latency_ms": 27.50600001309067,
+            "metadata": {
+              "retrieved": 25,
+              "answer_tokens": 0
+            }
+          },
+          "avg_latency_ms": 27.392459998372942,
+          "p50_latency_ms": 27.31909998692572,
+          "p95_latency_ms": 29.1031000087969
+        }
+      }
+    },
+    "AM v0.2.0": {
+      "player_name": "AM v0.2.0",
+      "arena_class": "controlled",
+      "started_at": "2026-10-24T01:36:36.195513",
+      "finished_at": "2026-10-24T01:36:37.158789",
+      "manifest": {},
+      "final_costs": {
+        "player_name": "AM v0.2.0",
+        "write_llm_calls": 0,
+        "write_llm_prompt_tokens": 0,
+        "write_llm_completion_tokens": 0,
+        "write_latency_ms": 1945.564599998761,
+        "retrieval_calls": 50,
+        "retrieval_latency_ms": 958.4287000470795,
+        "context_construction_calls": 50,
+        "context_construction_latency_ms": 0.5148997297510505,
+        "answer_llm_calls": 50,
+        "answer_llm_prompt_tokens": 0,
+        "answer_llm_completion_tokens": 0,
+        "answer_latency_ms": 0.0,
+        "total_llm_calls": 150,
+        "total_prompt_tokens": 0,
+        "total_completion_tokens": 0,
+        "total_tokens": 0,
+        "total_latency_ms": 2904.5081997755915,
+        "context_budget_tokens": 2000,
+        "context_tokens_used": 26008,
+        "budget_violations": 0
+      },
+      "questions": {
+        "factual_recall-00": {
+          "question_id": "factual_recall-00",
+          "category": "factual_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "factual_recall-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.213294",
+              "context_tokens_used": 522,
+              "retrieval_latency_ms": 17.73640001192689,
+              "context_build_latency_ms": 0.010200019460171461,
+              "answer_latency_ms": 17.818299995269626,
+              "metadata": {
+                "context_preview": "For project atlas, the user keeps an untouched backup of the previous schema.\nFor project tundra, the user asked for a standard-library solution before a library.\nFor project summit, the user keeps an",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  421,
+                  440,
+                  439,
+                  438,
+                  437,
+                  436,
+                  435,
+                  434,
+                  433,
+                  432,
+                  431,
+                  430,
+                  429,
+                  428,
+                  427,
+                  426,
+                  425,
+                  424,
+                  423,
+                  422
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "factual_recall-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.213294",
+            "context_tokens_used": 522,
+            "retrieval_latency_ms": 17.73640001192689,
+            "context_build_latency_ms": 0.010200019460171461,
+            "answer_latency_ms": 17.818299995269626,
+            "metadata": {
+              "context_preview": "For project atlas, the user keeps an untouched backup of the previous schema.\nFor project tundra, the user asked for a standard-library solution before a library.\nFor project summit, the user keeps an",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                421,
+                440,
+                439,
+                438,
+                437,
+                436,
+                435,
+                434,
+                433,
+                432,
+                431,
+                430,
+                429,
+                428,
+                427,
+                426,
+                425,
+                424,
+                423,
+                422
+              ]
+            }
+          },
+          "avg_latency_ms": 17.358499998226762,
+          "p50_latency_ms": 16.456000041216612,
+          "p95_latency_ms": 21.066299988888204
+        },
+        "multi_session_recall-00": {
+          "question_id": "multi_session_recall-00",
+          "category": "multi_session_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "multi_session_recall-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.301390",
+              "context_tokens_used": 514,
+              "retrieval_latency_ms": 19.03259998653084,
+              "context_build_latency_ms": 0.01079996582120657,
+              "answer_latency_ms": 19.12000001175329,
+              "metadata": {
+                "context_preview": "For project quartz, the user rewrote a helper to drop a transitive package.\nFor project moss, the user keeps an untouched backup of the previous schema.\nFor project beacon, the user asked for a standa",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  417,
+                  433,
+                  422,
+                  423,
+                  424,
+                  425,
+                  426,
+                  427,
+                  428,
+                  403,
+                  430,
+                  429,
+                  439,
+                  440,
+                  432,
+                  431,
+                  415,
+                  416,
+                  407,
+                  406
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "multi_session_recall-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.301390",
+            "context_tokens_used": 514,
+            "retrieval_latency_ms": 19.03259998653084,
+            "context_build_latency_ms": 0.01079996582120657,
+            "answer_latency_ms": 19.12000001175329,
+            "metadata": {
+              "context_preview": "For project quartz, the user rewrote a helper to drop a transitive package.\nFor project moss, the user keeps an untouched backup of the previous schema.\nFor project beacon, the user asked for a standa",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                417,
+                433,
+                422,
+                423,
+                424,
+                425,
+                426,
+                427,
+                428,
+                403,
+                430,
+                429,
+                439,
+                440,
+                432,
+                431,
+                415,
+                416,
+                407,
+                406
+              ]
+            }
+          },
+          "avg_latency_ms": 18.199940002523363,
+          "p50_latency_ms": 17.785399977583438,
+          "p95_latency_ms": 19.12000001175329
+        },
+        "temporal_reasoning-00": {
+          "question_id": "temporal_reasoning-00",
+          "category": "temporal_reasoning",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "temporal_reasoning-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.394980",
+              "context_tokens_used": 513,
+              "retrieval_latency_ms": 21.58840000629425,
+              "context_build_latency_ms": 0.018000020645558834,
+              "answer_latency_ms": 21.733200002927333,
+              "metadata": {
+                "context_preview": "For project lumen, the user compares profiles from two consecutive releases.\nFor project tundra, the user asked for a standard-library solution before a library.\nFor project summit, the user keeps an ",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  432,
+                  440,
+                  439,
+                  429,
+                  430,
+                  403,
+                  428,
+                  427,
+                  426,
+                  425,
+                  424,
+                  423,
+                  422,
+                  433,
+                  418,
+                  431,
+                  415,
+                  416,
+                  407,
+                  406
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "temporal_reasoning-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.394980",
+            "context_tokens_used": 513,
+            "retrieval_latency_ms": 21.58840000629425,
+            "context_build_latency_ms": 0.018000020645558834,
+            "answer_latency_ms": 21.733200002927333,
+            "metadata": {
+              "context_preview": "For project lumen, the user compares profiles from two consecutive releases.\nFor project tundra, the user asked for a standard-library solution before a library.\nFor project summit, the user keeps an ",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                432,
+                440,
+                439,
+                429,
+                430,
+                403,
+                428,
+                427,
+                426,
+                425,
+                424,
+                423,
+                422,
+                433,
+                418,
+                431,
+                415,
+                416,
+                407,
+                406
+              ]
+            }
+          },
+          "avg_latency_ms": 18.168359994888306,
+          "p50_latency_ms": 16.884599986951798,
+          "p95_latency_ms": 21.733200002927333
+        },
+        "knowledge_updates-00": {
+          "question_id": "knowledge_updates-00",
+          "category": "knowledge_updates",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "knowledge_updates-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.480105",
+              "context_tokens_used": 535,
+              "retrieval_latency_ms": 15.894100011792034,
+              "context_build_latency_ms": 0.006399990525096655,
+              "answer_latency_ms": 15.963500016368926,
+              "metadata": {
+                "context_preview": "For project beacon, the user asked for a standard-library solution before a library.\nFor project cinder, the user compares profiles from two consecutive releases.\nFor project delta, the user keeps an ",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  422,
+                  423,
+                  424,
+                  425,
+                  426,
+                  427,
+                  428,
+                  403,
+                  430,
+                  429,
+                  439,
+                  440,
+                  432,
+                  395,
+                  402,
+                  393,
+                  394,
+                  391,
+                  392,
+                  434
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "knowledge_updates-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.480105",
+            "context_tokens_used": 535,
+            "retrieval_latency_ms": 15.894100011792034,
+            "context_build_latency_ms": 0.006399990525096655,
+            "answer_latency_ms": 15.963500016368926,
+            "metadata": {
+              "context_preview": "For project beacon, the user asked for a standard-library solution before a library.\nFor project cinder, the user compares profiles from two consecutive releases.\nFor project delta, the user keeps an ",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                422,
+                423,
+                424,
+                425,
+                426,
+                427,
+                428,
+                403,
+                430,
+                429,
+                439,
+                440,
+                432,
+                395,
+                402,
+                393,
+                394,
+                391,
+                392,
+                434
+              ]
+            }
+          },
+          "avg_latency_ms": 15.964339999482036,
+          "p50_latency_ms": 15.963500016368926,
+          "p95_latency_ms": 17.30959996348247
+        },
+        "contradiction_handling-00": {
+          "question_id": "contradiction_handling-00",
+          "category": "contradiction_handling",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "contradiction_handling-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.561008",
+              "context_tokens_used": 525,
+              "retrieval_latency_ms": 16.96730003459379,
+              "context_build_latency_ms": 0.007199996616691351,
+              "answer_latency_ms": 17.041800019796938,
+              "metadata": {
+                "context_preview": "For project atlas, the user copies files by hand instead of symlinking them.\nFor project atlas, the user keeps an untouched backup of the previous schema.\nFor project harbor, the user asked for a stan",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  401,
+                  421,
+                  428,
+                  427,
+                  426,
+                  425,
+                  424,
+                  423,
+                  422,
+                  439,
+                  440,
+                  420,
+                  414,
+                  405,
+                  407,
+                  392,
+                  434,
+                  416,
+                  418,
+                  431
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "contradiction_handling-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.561008",
+            "context_tokens_used": 525,
+            "retrieval_latency_ms": 16.96730003459379,
+            "context_build_latency_ms": 0.007199996616691351,
+            "answer_latency_ms": 17.041800019796938,
+            "metadata": {
+              "context_preview": "For project atlas, the user copies files by hand instead of symlinking them.\nFor project atlas, the user keeps an untouched backup of the previous schema.\nFor project harbor, the user asked for a stan",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                401,
+                421,
+                428,
+                427,
+                426,
+                425,
+                424,
+                423,
+                422,
+                439,
+                440,
+                420,
+                414,
+                405,
+                407,
+                392,
+                434,
+                416,
+                418,
+                431
+              ]
+            }
+          },
+          "avg_latency_ms": 17.432640003971756,
+          "p50_latency_ms": 17.041800019796938,
+          "p95_latency_ms": 19.04899999499321
+        },
+        "indirect_recall-00": {
+          "question_id": "indirect_recall-00",
+          "category": "indirect_recall",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "indirect_recall-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.647662",
+              "context_tokens_used": 520,
+              "retrieval_latency_ms": 16.443200001958758,
+              "context_build_latency_ms": 0.010299962013959885,
+              "answer_latency_ms": 16.528000007383525,
+              "metadata": {
+                "context_preview": "For project delta, the user keeps an untouched backup of the previous schema.\nFor project glacier, the user keeps an untouched backup of the previous schema.\nFor project prism, the user copies files b",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  424,
+                  427,
+                  416,
+                  422,
+                  423,
+                  425,
+                  426,
+                  428,
+                  406,
+                  415,
+                  440,
+                  420,
+                  414,
+                  405,
+                  408,
+                  393,
+                  434,
+                  418,
+                  431,
+                  435
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "indirect_recall-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.647662",
+            "context_tokens_used": 520,
+            "retrieval_latency_ms": 16.443200001958758,
+            "context_build_latency_ms": 0.010299962013959885,
+            "answer_latency_ms": 16.528000007383525,
+            "metadata": {
+              "context_preview": "For project delta, the user keeps an untouched backup of the previous schema.\nFor project glacier, the user keeps an untouched backup of the previous schema.\nFor project prism, the user copies files b",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                424,
+                427,
+                416,
+                422,
+                423,
+                425,
+                426,
+                428,
+                406,
+                415,
+                440,
+                420,
+                414,
+                405,
+                408,
+                393,
+                434,
+                418,
+                431,
+                435
+              ]
+            }
+          },
+          "avg_latency_ms": 19.471299997530878,
+          "p50_latency_ms": 18.07839999673888,
+          "p95_latency_ms": 23.134799965191633
+        },
+        "distractor_resistance-00": {
+          "question_id": "distractor_resistance-00",
+          "category": "distractor_resistance",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "distractor_resistance-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.745814",
+              "context_tokens_used": 525,
+              "retrieval_latency_ms": 17.197399982251227,
+              "context_build_latency_ms": 0.006999995093792677,
+              "answer_latency_ms": 17.329599999357015,
+              "metadata": {
+                "context_preview": "For project summit, the user always reverts the build configuration to the last known good state.\nFor project harbor, the user rewrote a helper to drop a transitive package.\nFor project ember, the use",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  393,
+                  408,
+                  405,
+                  414,
+                  420,
+                  440,
+                  415,
+                  406,
+                  428,
+                  426,
+                  425,
+                  423,
+                  422,
+                  394,
+                  391,
+                  434,
+                  418,
+                  431,
+                  435,
+                  400
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "distractor_resistance-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.745814",
+            "context_tokens_used": 525,
+            "retrieval_latency_ms": 17.197399982251227,
+            "context_build_latency_ms": 0.006999995093792677,
+            "answer_latency_ms": 17.329599999357015,
+            "metadata": {
+              "context_preview": "For project summit, the user always reverts the build configuration to the last known good state.\nFor project harbor, the user rewrote a helper to drop a transitive package.\nFor project ember, the use",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                393,
+                408,
+                405,
+                414,
+                420,
+                440,
+                415,
+                406,
+                428,
+                426,
+                425,
+                423,
+                422,
+                394,
+                391,
+                434,
+                418,
+                431,
+                435,
+                400
+              ]
+            }
+          },
+          "avg_latency_ms": 17.12295999750495,
+          "p50_latency_ms": 16.91989996470511,
+          "p95_latency_ms": 19.0191000001505
+        },
+        "abstention-00": {
+          "question_id": "abstention-00",
+          "category": "abstention",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "abstention-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.831337",
+              "context_tokens_used": 529,
+              "retrieval_latency_ms": 17.125300015322864,
+              "context_build_latency_ms": 0.015500001609325409,
+              "answer_latency_ms": 17.211100028362125,
+              "metadata": {
+                "context_preview": "For project onyx, the user logs every measurement under a serial number.\nFor project tundra, the user asked for a standard-library solution before a library.\nFor project tundra, the user rewrote a hel",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  415,
+                  440,
+                  420,
+                  414,
+                  405,
+                  408,
+                  393,
+                  425,
+                  423,
+                  433,
+                  413,
+                  407,
+                  399,
+                  398,
+                  436,
+                  435,
+                  400,
+                  396,
+                  397,
+                  416
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "abstention-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.831337",
+            "context_tokens_used": 529,
+            "retrieval_latency_ms": 17.125300015322864,
+            "context_build_latency_ms": 0.015500001609325409,
+            "answer_latency_ms": 17.211100028362125,
+            "metadata": {
+              "context_preview": "For project onyx, the user logs every measurement under a serial number.\nFor project tundra, the user asked for a standard-library solution before a library.\nFor project tundra, the user rewrote a hel",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                415,
+                440,
+                420,
+                414,
+                405,
+                408,
+                393,
+                425,
+                423,
+                433,
+                413,
+                407,
+                399,
+                398,
+                436,
+                435,
+                400,
+                396,
+                397,
+                416
+              ]
+            }
+          },
+          "avg_latency_ms": 19.382400019094348,
+          "p50_latency_ms": 17.211100028362125,
+          "p95_latency_ms": 27.02030004002154
+        },
+        "compression_recovery-00": {
+          "question_id": "compression_recovery-00",
+          "category": "compression_recovery",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "compression_recovery-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:36.936275",
+              "context_tokens_used": 523,
+              "retrieval_latency_ms": 25.125999993178993,
+              "context_build_latency_ms": 0.015300000086426735,
+              "answer_latency_ms": 25.260300026275218,
+              "metadata": {
+                "context_preview": "For project onyx, the user logs every measurement under a serial number.\nFor project quartz the user only remembers that a context switch rate measurement was filed.\nFor project moss, the user copies ",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  415,
+                  397,
+                  413,
+                  407,
+                  401,
+                  421,
+                  404,
+                  410,
+                  416,
+                  427,
+                  424,
+                  439,
+                  393,
+                  408,
+                  405,
+                  414,
+                  420,
+                  440,
+                  422,
+                  434
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "compression_recovery-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:36.936275",
+            "context_tokens_used": 523,
+            "retrieval_latency_ms": 25.125999993178993,
+            "context_build_latency_ms": 0.015300000086426735,
+            "answer_latency_ms": 25.260300026275218,
+            "metadata": {
+              "context_preview": "For project onyx, the user logs every measurement under a serial number.\nFor project quartz the user only remembers that a context switch rate measurement was filed.\nFor project moss, the user copies ",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                415,
+                397,
+                413,
+                407,
+                401,
+                421,
+                404,
+                410,
+                416,
+                427,
+                424,
+                439,
+                393,
+                408,
+                405,
+                414,
+                420,
+                440,
+                422,
+                434
+              ]
+            }
+          },
+          "avg_latency_ms": 27.366580010857433,
+          "p50_latency_ms": 27.74879999924451,
+          "p95_latency_ms": 28.262300009373575
+        },
+        "reflection_reinterpretation-00": {
+          "question_id": "reflection_reinterpretation-00",
+          "category": "reflection_reinterpretation",
+          "answers": [
+            {
+              "text": "I don't know.",
+              "question_id": "reflection_reinterpretation-00",
+              "player_name": "AM v0.2.0",
+              "run_index": 0,
+              "timestamp": "2026-10-24T01:36:37.075262",
+              "context_tokens_used": 521,
+              "retrieval_latency_ms": 27.27370004868135,
+              "context_build_latency_ms": 0.011499971151351929,
+              "answer_latency_ms": 27.392099960707128,
+              "metadata": {
+                "context_preview": "For project atlas, the user keeps an untouched backup of the previous schema.\nFor project atlas, the user copies files by hand instead of symlinking them.\nFor project nectar, the user asked for a stan",
+                "memories_retrieved": 20,
+                "recall_level": 2,
+                "answer_tokens": 0,
+                "memory_ids": [
+                  421,
+                  401,
+                  434,
+                  422,
+                  440,
+                  420,
+                  414,
+                  405,
+                  408,
+                  393,
+                  431,
+                  435,
+                  404,
+                  407,
+                  413,
+                  410,
+                  416,
+                  427,
+                  424,
+                  439
+                ]
+              }
+            }
+          ],
+          "majority_answer": {
+            "text": "I don't know.",
+            "question_id": "reflection_reinterpretation-00",
+            "player_name": "AM v0.2.0",
+            "run_index": 0,
+            "timestamp": "2026-10-24T01:36:37.075262",
+            "context_tokens_used": 521,
+            "retrieval_latency_ms": 27.27370004868135,
+            "context_build_latency_ms": 0.011499971151351929,
+            "answer_latency_ms": 27.392099960707128,
+            "metadata": {
+              "context_preview": "For project atlas, the user keeps an untouched backup of the previous schema.\nFor project atlas, the user copies files by hand instead of symlinking them.\nFor project nectar, the user asked for a stan",
+              "memories_retrieved": 20,
+              "recall_level": 2,
+              "answer_tokens": 0,
+              "memory_ids": [
+                421,
+                401,
+                434,
+                422,
+                440,
+                420,
+                414,
+                405,
+                408,
+                393,
+                431,
+                435,
+                404,
+                407,
+                413,
+                410,
+                416,
+                427,
+                424,
+                439
+              ]
+            }
+          },
+          "avg_latency_ms": 22.168379998765886,
+          "p50_latency_ms": 22.316800022963434,
+          "p95_latency_ms": 27.988300018478185
+        }
+      }
+    }
+  }
+}

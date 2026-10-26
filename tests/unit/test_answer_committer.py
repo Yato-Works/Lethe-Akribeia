@@ -50,6 +50,8 @@ def test_parse_turns_recovers_header_speaker_and_payload() -> None:
     # count as this turn's own content.
     assert turns[0].text.startswith("Yeah, I painted")
     assert "Is this yours?" not in turns[0].text
+    assert turns[0].reply_speaker == "Caroline"
+    assert turns[0].reply_text == "Is this yours?"
 
 
 def test_commits_the_resolved_annotation_not_the_session_header() -> None:

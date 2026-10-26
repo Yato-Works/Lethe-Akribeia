@@ -1,0 +1,171 @@
+{
+  "accuracy": 0.85,
+  "results": [
+    {
+      "question_id": "lc_conv-26_0",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ support group?",
+      "ground_truth": "7 May 2023",
+      "predicted_answer": "7 May 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_1",
+      "category": 2,
+      "question": "When did Melanie paint a sunrise?",
+      "ground_truth": "2022",
+      "predicted_answer": "2022",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_5",
+      "category": 2,
+      "question": "When did Melanie run a charity race?",
+      "ground_truth": "The sunday before 25 May 2023",
+      "predicted_answer": "The Saturday before 25 May 2023",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_6",
+      "category": 2,
+      "question": "When is Melanie planning on going camping?",
+      "ground_truth": "June 2023",
+      "predicted_answer": "June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_8",
+      "category": 2,
+      "question": "When did Caroline give a speech at a school?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "The week before 9 June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_9",
+      "category": 2,
+      "question": "When did Caroline meet up with her friends, family, and mentors?",
+      "ground_truth": "The week before 9 June 2023",
+      "predicted_answer": "The week before 9 June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_10",
+      "category": 2,
+      "question": "How long has Caroline had her current group of friends for?",
+      "ground_truth": "4 years",
+      "predicted_answer": "4 years",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_12",
+      "category": 2,
+      "question": "How long ago was Caroline's 18th birthday?",
+      "ground_truth": "10 years ago",
+      "predicted_answer": "Ten years ago",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_16",
+      "category": 2,
+      "question": "When did Melanie sign up for a pottery class?",
+      "ground_truth": "2 July 2023",
+      "predicted_answer": "2 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_17",
+      "category": 2,
+      "question": "When is Caroline going to the transgender conference?",
+      "ground_truth": "July 2023",
+      "predicted_answer": "10 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_20",
+      "category": 2,
+      "question": "When did Melanie go to the museum?",
+      "ground_truth": "5 July 2023",
+      "predicted_answer": "5 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_21",
+      "category": 2,
+      "question": "When did Caroline have a picnic?",
+      "ground_truth": "The week before 6 July 2023",
+      "predicted_answer": "The week before 6 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_25",
+      "category": 2,
+      "question": "When did Caroline go to the LGBTQ conference?",
+      "ground_truth": "10 July 2023",
+      "predicted_answer": "10 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_26",
+      "category": 2,
+      "question": "When did Melanie read the book \"nothing is impossible\"?",
+      "ground_truth": "2022",
+      "predicted_answer": "I don't know.",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_28",
+      "category": 2,
+      "question": "When did Caroline go to the adoption meeting?",
+      "ground_truth": "The friday before 15 July 2023",
+      "predicted_answer": "The Friday before 15 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_29",
+      "category": 2,
+      "question": "When did Melanie go to the pottery workshop?",
+      "ground_truth": "The Friday before 15 July 2023",
+      "predicted_answer": "The Friday before 15 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_31",
+      "category": 2,
+      "question": "When did Melanie go camping in June?",
+      "ground_truth": "The week before 27 June 2023",
+      "predicted_answer": "The week before 27 June 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_33",
+      "category": 2,
+      "question": "When did Caroline go to a pride parade during the summer?",
+      "ground_truth": "The week before 3 July 2023",
+      "predicted_answer": "The week before 3 July 2023, The Friday before 14 August 2023, The weekend before 20 July 2023",
+      "is_correct": true
+    },
+    {
+      "question_id": "lc_conv-26_35",
+      "category": 2,
+      "question": "When did Melanie go camping in July?",
+      "ground_truth": "two weekends before 17 July 2023",
+      "predicted_answer": "The week before 15 July 2023",
+      "is_correct": false
+    },
+    {
+      "question_id": "lc_conv-26_36",
+      "category": 2,
+      "question": "When did Caroline join a mentorship program?",
+      "ground_truth": "The weekend before 17 July 2023",
+      "predicted_answer": "The weekend before 17 July 2023",
+      "is_correct": true
+    }
+  ],
+  "per_category": {
+    "2": {
+      "correct": 17,
+      "total": 20
+    }
+  }
+}

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.protein.state_trigger import StateTrigger
+from artificial_memory_gen.protein.state_trigger import StateTrigger
 
 
 def test_state_trigger_multihop_positive():

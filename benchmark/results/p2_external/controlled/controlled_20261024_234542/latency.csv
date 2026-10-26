@@ -1,0 +1,101 @@
+player,question_id,category,p50_ms,p95_ms,avg_ms
+Simple RAG,factual_recall-00,factual_recall,12.9,42.1,19.3
+Simple RAG,factual_recall-01,factual_recall,12.6,13.0,12.5
+Simple RAG,multi_session_recall-00,multi_session_recall,13.9,20.6,14.7
+Simple RAG,multi_session_recall-01,multi_session_recall,14.5,15.0,13.9
+Simple RAG,temporal_reasoning-00,temporal_reasoning,12.8,13.7,12.4
+Simple RAG,temporal_reasoning-01,temporal_reasoning,11.7,12.3,11.8
+Simple RAG,knowledge_updates-00,knowledge_updates,11.2,13.8,11.3
+Simple RAG,knowledge_updates-01,knowledge_updates,10.0,12.3,10.6
+Simple RAG,contradiction_handling-00,contradiction_handling,11.8,12.8,11.9
+Simple RAG,contradiction_handling-01,contradiction_handling,12.1,12.4,11.6
+Simple RAG,indirect_recall-00,indirect_recall,10.9,11.7,11.0
+Simple RAG,indirect_recall-01,indirect_recall,10.5,12.0,10.5
+Simple RAG,distractor_resistance-00,distractor_resistance,7.6,8.4,7.8
+Simple RAG,distractor_resistance-01,distractor_resistance,8.8,9.3,8.7
+Simple RAG,abstention-00,abstention,9.6,9.9,9.5
+Simple RAG,abstention-01,abstention,9.6,10.2,9.7
+Simple RAG,compression_recovery-00,compression_recovery,10.0,11.5,10.3
+Simple RAG,compression_recovery-01,compression_recovery,10.0,11.0,10.0
+Simple RAG,reflection_reinterpretation-00,reflection_reinterpretation,9.9,10.1,9.6
+Simple RAG,reflection_reinterpretation-01,reflection_reinterpretation,9.9,10.4,10.1
+Mem0-style,factual_recall-00,factual_recall,22.9,25.2,23.0
+Mem0-style,factual_recall-01,factual_recall,24.9,30.1,25.3
+Mem0-style,multi_session_recall-00,multi_session_recall,25.5,30.2,25.6
+Mem0-style,multi_session_recall-01,multi_session_recall,27.5,29.6,27.3
+Mem0-style,temporal_reasoning-00,temporal_reasoning,22.8,24.3,22.4
+Mem0-style,temporal_reasoning-01,temporal_reasoning,25.4,28.4,25.5
+Mem0-style,knowledge_updates-00,knowledge_updates,24.6,28.4,25.0
+Mem0-style,knowledge_updates-01,knowledge_updates,25.7,27.2,26.0
+Mem0-style,contradiction_handling-00,contradiction_handling,27.4,40.0,29.3
+Mem0-style,contradiction_handling-01,contradiction_handling,28.2,31.8,28.0
+Mem0-style,indirect_recall-00,indirect_recall,24.6,26.0,24.2
+Mem0-style,indirect_recall-01,indirect_recall,21.9,26.4,22.9
+Mem0-style,distractor_resistance-00,distractor_resistance,23.8,25.2,23.1
+Mem0-style,distractor_resistance-01,distractor_resistance,27.5,27.8,27.0
+Mem0-style,abstention-00,abstention,25.5,27.4,25.8
+Mem0-style,abstention-01,abstention,28.8,83.3,38.8
+Mem0-style,compression_recovery-00,compression_recovery,25.6,49.0,30.4
+Mem0-style,compression_recovery-01,compression_recovery,23.0,24.7,23.0
+Mem0-style,reflection_reinterpretation-00,reflection_reinterpretation,26.1,27.7,25.6
+Mem0-style,reflection_reinterpretation-01,reflection_reinterpretation,22.8,24.4,22.8
+Zep-style,factual_recall-00,factual_recall,4.7,5.0,4.7
+Zep-style,factual_recall-01,factual_recall,4.5,4.6,4.3
+Zep-style,multi_session_recall-00,multi_session_recall,5.0,5.1,4.9
+Zep-style,multi_session_recall-01,multi_session_recall,5.1,5.3,5.1
+Zep-style,temporal_reasoning-00,temporal_reasoning,3.6,5.1,3.9
+Zep-style,temporal_reasoning-01,temporal_reasoning,5.0,6.2,5.3
+Zep-style,knowledge_updates-00,knowledge_updates,5.1,5.3,4.9
+Zep-style,knowledge_updates-01,knowledge_updates,4.5,4.8,4.4
+Zep-style,contradiction_handling-00,contradiction_handling,3.4,3.7,3.5
+Zep-style,contradiction_handling-01,contradiction_handling,3.2,4.2,3.4
+Zep-style,indirect_recall-00,indirect_recall,3.3,3.6,3.4
+Zep-style,indirect_recall-01,indirect_recall,3.2,3.5,3.3
+Zep-style,distractor_resistance-00,distractor_resistance,2.9,3.1,2.9
+Zep-style,distractor_resistance-01,distractor_resistance,2.8,3.2,3.0
+Zep-style,abstention-00,abstention,2.9,2.9,2.9
+Zep-style,abstention-01,abstention,2.7,3.1,2.8
+Zep-style,compression_recovery-00,compression_recovery,3.0,3.1,3.0
+Zep-style,compression_recovery-01,compression_recovery,3.0,3.6,3.1
+Zep-style,reflection_reinterpretation-00,reflection_reinterpretation,3.1,3.3,3.1
+Zep-style,reflection_reinterpretation-01,reflection_reinterpretation,3.1,3.4,3.2
+HippoRAG-style,factual_recall-00,factual_recall,30.7,30.9,30.5
+HippoRAG-style,factual_recall-01,factual_recall,29.1,30.0,29.4
+HippoRAG-style,multi_session_recall-00,multi_session_recall,29.1,29.6,29.1
+HippoRAG-style,multi_session_recall-01,multi_session_recall,28.6,28.9,28.6
+HippoRAG-style,temporal_reasoning-00,temporal_reasoning,28.6,29.1,28.4
+HippoRAG-style,temporal_reasoning-01,temporal_reasoning,28.4,29.1,28.5
+HippoRAG-style,knowledge_updates-00,knowledge_updates,32.1,34.8,32.2
+HippoRAG-style,knowledge_updates-01,knowledge_updates,27.9,29.0,28.1
+HippoRAG-style,contradiction_handling-00,contradiction_handling,30.5,31.0,30.5
+HippoRAG-style,contradiction_handling-01,contradiction_handling,29.4,35.0,31.0
+HippoRAG-style,indirect_recall-00,indirect_recall,32.4,38.6,33.6
+HippoRAG-style,indirect_recall-01,indirect_recall,28.6,37.2,30.5
+HippoRAG-style,distractor_resistance-00,distractor_resistance,27.8,28.9,27.7
+HippoRAG-style,distractor_resistance-01,distractor_resistance,26.5,26.7,26.4
+HippoRAG-style,abstention-00,abstention,26.6,27.3,26.7
+HippoRAG-style,abstention-01,abstention,26.6,28.1,26.7
+HippoRAG-style,compression_recovery-00,compression_recovery,26.7,27.1,26.6
+HippoRAG-style,compression_recovery-01,compression_recovery,28.0,34.2,29.0
+HippoRAG-style,reflection_reinterpretation-00,reflection_reinterpretation,28.3,28.3,28.1
+HippoRAG-style,reflection_reinterpretation-01,reflection_reinterpretation,28.1,28.6,28.1
+AM v0.2.0,factual_recall-00,factual_recall,19.4,20.3,19.5
+AM v0.2.0,factual_recall-01,factual_recall,20.1,21.2,19.8
+AM v0.2.0,multi_session_recall-00,multi_session_recall,20.5,21.8,20.6
+AM v0.2.0,multi_session_recall-01,multi_session_recall,20.7,27.0,22.0
+AM v0.2.0,temporal_reasoning-00,temporal_reasoning,20.8,27.6,22.5
+AM v0.2.0,temporal_reasoning-01,temporal_reasoning,24.9,27.6,25.7
+AM v0.2.0,knowledge_updates-00,knowledge_updates,23.4,34.0,26.1
+AM v0.2.0,knowledge_updates-01,knowledge_updates,21.5,22.0,21.4
+AM v0.2.0,contradiction_handling-00,contradiction_handling,21.1,21.7,21.1
+AM v0.2.0,contradiction_handling-01,contradiction_handling,23.1,25.0,23.0
+AM v0.2.0,indirect_recall-00,indirect_recall,28.5,38.9,29.8
+AM v0.2.0,indirect_recall-01,indirect_recall,30.8,35.0,30.9
+AM v0.2.0,distractor_resistance-00,distractor_resistance,29.7,34.2,29.7
+AM v0.2.0,distractor_resistance-01,distractor_resistance,24.3,28.3,24.2
+AM v0.2.0,abstention-00,abstention,21.6,24.3,22.3
+AM v0.2.0,abstention-01,abstention,24.6,30.1,25.8
+AM v0.2.0,compression_recovery-00,compression_recovery,32.4,45.2,34.4
+AM v0.2.0,compression_recovery-01,compression_recovery,28.0,32.8,29.2
+AM v0.2.0,reflection_reinterpretation-00,reflection_reinterpretation,22.8,27.2,23.8
+AM v0.2.0,reflection_reinterpretation-01,reflection_reinterpretation,19.1,27.0,20.7

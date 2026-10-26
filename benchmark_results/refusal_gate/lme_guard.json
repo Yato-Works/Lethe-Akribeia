@@ -1,0 +1,55 @@
+{
+ "verdict": "PASS in the shipped configuration (name-only: 0 fires). Enabling role mode costs the delta shown above, which is why allow_roles defaults to False.",
+ "modes": {
+  "name-only": {
+   "matched": 128,
+   "parsed": 128,
+   "fired": 0,
+   "before": 105,
+   "after": 105,
+   "by_type": {
+    "single-session-user": [
+     34,
+     34
+    ],
+    "multi-session": [
+     49,
+     49
+    ],
+    "single-session-preference": [
+     12,
+     12
+    ],
+    "temporal-reasoning": [
+     10,
+     10
+    ]
+   }
+  },
+  "roles": {
+   "matched": 128,
+   "parsed": 128,
+   "fired": 2,
+   "before": 105,
+   "after": 103,
+   "by_type": {
+    "single-session-user": [
+     34,
+     32
+    ],
+    "multi-session": [
+     49,
+     49
+    ],
+    "single-session-preference": [
+     12,
+     12
+    ],
+    "temporal-reasoning": [
+     10,
+     10
+    ]
+   }
+  }
+ }
+}

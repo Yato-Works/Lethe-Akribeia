@@ -1,0 +1,32 @@
+# Generic referent -> concrete resolution token classes.
+#
+# Usage site: recall/evidence_sufficiency_gate.py (REFERENT_PATTERNS). A
+# generic referent phrase ("my home country", "my dog") must be resolvable
+# by concrete evidence tokens (country names, dog breeds, institutions);
+# otherwise the context is flagged NOT sufficient and the reader should
+# abstain. The concrete lists below are broad English world-knowledge
+# categories, kept as data so they can be extended without touching code.
+_meta:
+  origin: generic
+  description: Generic referent phrase -> concrete resolution pattern pairs.
+  version: 1
+
+resolutions:
+  - referent: "\\bhome country\\b"
+    pattern: "\\b(sweden|canada|germany|japan|france|italy|norway|spain|brazil|mexico|usa|uk|denmark|finland)\\b"
+    category: country
+  - referent: "\\b(my dog|the dog|pet|pets)\\b"
+    pattern: "\\b(bailey|oscar|retriever|poodle|beagle|shepherd|terrier|golden|bulldog|labrador)\\b"
+    category: pet_breed
+  - referent: "\\b(university|college|campus)\\b"
+    pattern: "\\b(stanford|harvard|mit|berkeley|oxford|cambridge|ucla|columbia|yale|princeton)\\b"
+    category: institution
+  - referent: "\\b(partner|boyfriend|girlfriend|husband|wife)\\b"
+    pattern: "\\b[A-Z][a-z]+\\b"
+    category: partner_name
+  - referent: "\\b(instrument|playing|played)\\b"
+    pattern: "\\b(guitar|violin|clarinet|piano|flute|drums|cello|saxophone|trumpet)\\b"
+    category: instrument
+  - referent: "\\b(destress|de-stress|headspace)\\b"
+    pattern: "\\b(running|pottery|painting|swimming|therapy|hiking|reading|meditation)\\b"
+    category: destress_activity

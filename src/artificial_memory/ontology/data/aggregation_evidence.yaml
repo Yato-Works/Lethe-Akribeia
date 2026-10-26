@@ -1,0 +1,21 @@
+# Aggregation evidence keywords by measurement unit.
+#
+# Usage site: context/msc_compiler Phase-2 aggregation second pass
+# (agg_evidence_keywords). Maps SessionFuser unit -> lexical evidencers of
+# that unit in conversation turns. Provenance: aggregation sweeps on
+# LongMemEval aggregation items. Adding a new measurable unit is a data
+# change, not a code change.
+_meta:
+  origin: benchmark_tuned
+  description: Unit -> evidence keyword lists for the aggregation second pass.
+  version: 1
+
+evidence_keywords:
+  "$": ["spent", "cost", "paid", "price", "$", "dollar", "expense", "bought", "purchased", "sales", "earned", "fee"]
+  days: ["day", "days", "camping", "camp", "trip", "visit", "spent", "traveled"]
+  hours: ["hour", "hours", "jog", "jogging", "yoga", "run", "running", "exercise", "workout", "minutes", "commute"]
+  weeks: ["week", "weeks", "reading", "stayed"]
+  months: ["month", "months"]
+  years: ["year", "years", "age", "old"]
+  "delivery days": ["order", "ordered", "bought", "arrive", "arrived", "received", "delivered"]
+  items: ["item", "items", "count", "total", "how many", "how much"]

@@ -1,0 +1,22 @@
+{
+  "label": "M26 Evidence Coverage Census & Oracle Gap — M25 28-case development set (run m26_20261016)",
+  "note": "Production code untouched (HEAD 4ed8d4e). Reader frozen (qwen2.5:7b-instruct, temp 0.0, seed 42, max 256). Scorer frozen, never edited. 553-question holdout not touched.",
+  "bench": "M25_relative_date_dev",
+  "n_total": 28,
+  "EAR": 1.0,
+  "mean_ER": 1.0,
+  "oracle_gap": 0.0,
+  "per_layer": {
+    "L1": 0,
+    "L2": 28,
+    "L3": 28,
+    "L4": 0
+  },
+  "n_with_enough_evidence": 28,
+  "n_evidence_delivered": 28,
+  "interpretation": "EAR=1.0 and ER=1.0 mean evidence acquisition is COMPLETE for all 28 cases. L1/L2/L3 = 28/28 mean the evidence is present in the original conversation, retained in memory, and delivered to the reader. L4 = 0/28 means that even GIVEN the verified supportive evidence (oracle condition), the frozen qwen2.5:7b-instruct reader cannot solve any of the 28. So the bottleneck is the reader side (L4), not evidence acquisition (L1-L3). oracle_gap=0.0 means normal and oracle conditions are equally bad — there is no deliverable gain to extract from the evidence chain. Conclusion: the improvement target moves from 'how to fetch evidence' to 'how to present evidence + reader capability' — candidate priorities: (a) evidence presentation / context construction, (b) reader model, (c) temporal resolution.",
+  "benchmarks_tracked": ["LongMemEval", "LoCoMo", "BEAM"],
+  "holdout_not_touched": true,
+  "gold_not_in_prompt": true,
+  "scorer_frozen": true
+}

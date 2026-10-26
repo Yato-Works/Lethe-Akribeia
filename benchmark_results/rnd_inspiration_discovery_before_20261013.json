@@ -1,0 +1,31 @@
+{
+  "label": "inspiration-discovery-before",
+  "n": 1,
+  "correct": 0,
+  "wrong": 0,
+  "abstain": 1,
+  "presented": 0,
+  "llm_calls": 0,
+  "engine_evaluation_seconds": 0.010027,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-26_116",
+      "conversation": "26",
+      "category": 4,
+      "question": "What inspired Caroline's painting for the art show?",
+      "gold": "visiting an LGBTQ center and wanting to capture unity and strength",
+      "status": "abstain",
+      "answer": null,
+      "engine": null,
+      "detail": "no deterministic skill could commit an answer",
+      "evidence_turn": ""
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

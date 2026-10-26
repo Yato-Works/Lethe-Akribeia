@@ -20,9 +20,9 @@ from collections.abc import Sequence
 sys.stdout.reconfigure(encoding="utf-8")
 
 from artificial_memory.core.ir.structured import StructuredIR
-from artificial_memory.protein.chain_retention import GraphChainRetainer
-from artificial_memory.protein.evidence_ranker import EvidenceRanker
-from artificial_memory.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
+from artificial_memory_gen.protein.chain_retention import GraphChainRetainer
+from artificial_memory_gen.protein.evidence_ranker import EvidenceRanker
+from artificial_memory_gen.protein.protein_compiler import ContextPolicy, ProteinContextCompiler
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter
 from artificial_memory.research.benchmarks.llm import OllamaAnswerer
 

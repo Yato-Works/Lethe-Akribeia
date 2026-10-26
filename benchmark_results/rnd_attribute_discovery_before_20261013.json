@@ -1,0 +1,102 @@
+{
+  "label": "attribute-discovery-before",
+  "n": 7,
+  "correct": 0,
+  "wrong": 7,
+  "abstain": 0,
+  "presented": 7,
+  "llm_calls": 0,
+  "scorer": "scripts/benchmarks/eval_locomo_full.py::score (unchanged, fixed scorer)",
+  "context_source": "benchmark_results/locomo_context_cache_rules.jsonl",
+  "gold_source": "benchmark_results/failure_atlas/failure_atlas.jsonl",
+  "records": [
+    {
+      "question_id": "lc_conv-26_24",
+      "conversation": "26",
+      "category": 1,
+      "question": "What does Melanie do to destress?",
+      "gold": "Running, pottery",
+      "status": "wrong",
+      "answer": "you want to persue?",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Melanie's turn: 'you want to persue?'",
+      "evidence_turn": "D4:12"
+    },
+    {
+      "question_id": "lc_conv-26_66",
+      "conversation": "26",
+      "category": 1,
+      "question": "What does Melanie do with her family on hikes?",
+      "gold": "Roast marshmallows, tell stories",
+      "status": "wrong",
+      "answer": "ing something amazing! Creating a family for those",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Melanie's turn: 'ing something amazing! Creating a family for those'",
+      "evidence_turn": "D2:15"
+    },
+    {
+      "question_id": "lc_conv-26_105",
+      "conversation": "26",
+      "category": 4,
+      "question": "What did Caroline take away from the book \"Becoming Nicole\"?",
+      "gold": "Lessons on self-acceptance and finding support",
+      "status": "wrong",
+      "answer": "care of yourself",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Caroline's turn: 'care of yourself'",
+      "evidence_turn": "D7:25"
+    },
+    {
+      "question_id": "lc_conv-30_48",
+      "conversation": "30",
+      "category": 4,
+      "question": "What did Gina design for her store?",
+      "gold": "the space, furniture, and decor",
+      "status": "wrong",
+      "answer": "ed. Cozy",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Gina's turn: 'ed. Cozy'",
+      "evidence_turn": "D3:4"
+    },
+    {
+      "question_id": "lc_conv-30_49",
+      "conversation": "30",
+      "category": 4,
+      "question": "What did Gina want her customers to feel in her store?",
+      "gold": "cozy and comfortable",
+      "status": "wrong",
+      "answer": "ed to make the place look like my",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Gina's turn: 'ed to make the place look like my'",
+      "evidence_turn": "D3:6"
+    },
+    {
+      "question_id": "lc_conv-30_75",
+      "conversation": "30",
+      "category": 4,
+      "question": "What does Gina say to Jon about the grand opening?",
+      "gold": "Let's live it up and make some great memories",
+      "status": "wrong",
+      "answer": "about your biz?",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Gina's turn: 'about your biz?'",
+      "evidence_turn": "D4:8"
+    },
+    {
+      "question_id": "lc_conv-30_80",
+      "conversation": "30",
+      "category": 4,
+      "question": "What plans does Jon have after receiving advice at the networking event?",
+      "gold": "Sprucing up his business plan, tweaking his pitch to investors, and working on an online platform.",
+      "status": "wrong",
+      "answer": "It's been stressful",
+      "engine": "autonomous_entity_attribute_resolver",
+      "detail": "attribute extracted from Jon's turn: 'It's been stressful'",
+      "evidence_turn": "D19:1"
+    }
+  ],
+  "invariants": {
+    "n_eq_correct_plus_wrong_plus_abstain": true,
+    "presented_eq_correct_plus_wrong": true
+  }
+}

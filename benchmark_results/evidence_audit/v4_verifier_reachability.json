@@ -1,0 +1,831 @@
+{
+  "label": "V4 mission 14 -- answer_verifier reachability on the M11 cohort (a gate)",
+  "baseline": {
+    "head": "b328c9a",
+    "production_changed": false,
+    "evidence_binding": "unwired, preserved"
+  },
+  "cohort_from": "v4_frozen_context_binding.json (M11), frozen, not regenerated",
+  "engine": "AnswerVerifier.check_subject_binding(question, answer, context)",
+  "adapter_required": false,
+  "n_failure_cohort": 23,
+  "n_control_cohort": 14,
+  "input_integrity": [
+    {
+      "question_id": "lc_conv-26_111",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 12,
+      "n_speakers": 2,
+      "speakers": [
+        "caroline",
+        "melanie"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-30_45",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "jon"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-30_71",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "gina"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-41_128",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "john",
+        "maria"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "joanna",
+        "nate"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_101",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "john"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "john",
+        "tim"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_152",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "john"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_162",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "tim"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_223",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "john",
+        "tim"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_234",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "john"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-44_50",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "andrew",
+        "audrey"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-47_162",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "james",
+        "john"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-47_163",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "james",
+        "john"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-48_77",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 23,
+      "n_speakers": 1,
+      "speakers": [
+        "jolene"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-49_109",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "evan",
+        "sam"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "evan",
+        "sam"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "evan",
+        "sam"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "evan"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_160",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "calvin",
+        "dave"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_189",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "calvin",
+        "dave"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_57",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "calvin",
+        "dave"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_87",
+      "group": "FAILURE",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "calvin",
+        "dave"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 49,
+      "n_speakers": 2,
+      "speakers": [
+        "caroline",
+        "melanie"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-26_152",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "caroline"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-41_138",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "john",
+        "maria"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-42_134",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "joanna"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "nate"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-42_221",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "joanna",
+        "nate"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-43_91",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "john",
+        "tim"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-44_102",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "andrew",
+        "audrey"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-44_121",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "andrew",
+        "audrey"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "john"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-48_173",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "deborah",
+        "jolene"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_134",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 1,
+      "speakers": [
+        "dave"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "calvin",
+        "dave"
+      ],
+      "guard_would_noop": false
+    },
+    {
+      "question_id": "lc_conv-50_99",
+      "group": "CONTROL",
+      "has_context": true,
+      "n_turns_parsed": 24,
+      "n_speakers": 2,
+      "speakers": [
+        "calvin",
+        "dave"
+      ],
+      "guard_would_noop": false
+    }
+  ],
+  "input_lost_cases": 0,
+  "failures_measured": 23,
+  "controls_measured": 14,
+  "failures_fired": 2,
+  "controls_fired": 2,
+  "gap_pp": -5.5900621118012435,
+  "branch_counts": {
+    "subject-binding guard": 4
+  },
+  "rows": [
+    {
+      "question_id": "lc_conv-26_111",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "They enjoy hiking in the mountains and exploring forests together.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-30_45",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Jon is excited and fulfilled by the performance at the festival, as it allows him to share his passion and see his stude",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-30_71",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Gina describes Jon's studio as a place for dancers to grow and a creative space for self-expression.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-41_128",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "They had a picnic.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-42_226",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Nate felt surreal and thought it was nice work.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-43_101",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "John enjoyed his trip to New York City, mentioning he loves discovering new cities and that he shared a picture from his",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-43_146",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Tim recently started learning to play the violin.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-43_152",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "A big game against their rival.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-43_162",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Tim is excited about a new fantasy TV series coming out in January 2024.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-43_223",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "John recently started learning how to market himself and boost his brand.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-43_234",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "John is learning Spanish.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-44_50",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Audrey joined a dog owners group to learn how to better take care of her dogs.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-47_162",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "James mentioned that he likes to read to relax.",
+      "fired": true,
+      "verdict": "None (not mentioned in conversation).",
+      "reason": "Subject-binding guard: content attributed to a different subject only.",
+      "hallucination_detected": true,
+      "outcome_kind": "REFUSAL"
+    },
+    {
+      "question_id": "lc_conv-47_163",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "John became interested in metal detecting on 9 July, 2022.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-48_77",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "They found a cool dive spot during a scuba diving lesson the Friday before 17 September 2023.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-49_109",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Evan mentioned working on a watercolor painting in July 2023.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-49_173",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Sam has been doing painting to stay active while dealing with the knee injury.",
+      "fired": true,
+      "verdict": "None (not mentioned in conversation).",
+      "reason": "Subject-binding guard: content attributed to a different subject only.",
+      "hallucination_detected": true,
+      "outcome_kind": "REFUSAL"
+    },
+    {
+      "question_id": "lc_conv-49_52",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "They plan to paint together next Saturday.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-49_93",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Evan is reading a new mystery novel that he finds gripping.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-50_160",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Calvin's new business venture as of 1 May, 2023 is touring with Frank Ocean.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-50_189",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Shibuya Crossing",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-50_57",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Restoring and modifying cars.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-50_87",
+      "group": "FAILURE",
+      "measured": true,
+      "answer": "Cruising around.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-26_132",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Melanie has been creating art for about seven years.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-26_152",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Caroline realized how important it is for others to have a support system.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-41_138",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Maria took up community work with her friends from church.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-42_134",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Nate offered to share a coconut milk ice cream recipe with Joanna.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-42_196",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Nate took his turtles to the beach in Tampa.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-42_221",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Joanna made vegan ice cream and shared it with some people in her vegan diet group.",
+      "fired": true,
+      "verdict": "None (not mentioned in conversation).",
+      "reason": "Subject-binding guard: content attributed to a different subject only.",
+      "hallucination_detected": true,
+      "outcome_kind": "REFUSAL"
+    },
+    {
+      "question_id": "lc_conv-43_91",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "On the 15th of August 2023.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-44_102",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "To show her love of creativity and sustainability, and to give recycled objects new life.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-44_121",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Take them to a nearby park.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-47_72",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "John is learning to play drums as of 27 March, 2022.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-48_173",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Jolene signed up for a meditation course at a retreat near a lake.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-50_134",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Paying extra attention to detail isn't easy, but it pays off.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    },
+    {
+      "question_id": "lc_conv-50_194",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Calvin didn't start a blog; Dave recently started a blog on car mods.",
+      "fired": true,
+      "verdict": "None (not mentioned in conversation).",
+      "reason": "Subject-binding guard: content attributed to a different subject only.",
+      "hallucination_detected": true,
+      "outcome_kind": "REFUSAL"
+    },
+    {
+      "question_id": "lc_conv-50_99",
+      "group": "CONTROL",
+      "measured": true,
+      "answer": "Calvin met Frank Ocean at a music festival in Tokyo.",
+      "fired": false,
+      "verdict": null,
+      "reason": null,
+      "hallucination_detected": null
+    }
+  ]
+}

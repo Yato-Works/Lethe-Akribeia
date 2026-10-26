@@ -25,7 +25,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
-from artificial_memory.context.msc_compiler import MinimumSufficientContextCompiler  # noqa: E402
+from artificial_memory_gen.context.msc_compiler import MinimumSufficientContextCompiler  # noqa: E402
 from artificial_memory.research.benchmarks.external.locomo_adapter import LoCoMoAdapter  # noqa: E402
 
 

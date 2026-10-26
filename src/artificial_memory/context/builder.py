@@ -12,16 +12,20 @@ from artificial_memory.core.ir import (
     PriorityTier,
 )
 from artificial_memory.core.models import Memory, RecallLevel
+from artificial_memory.core.tokens import bpe_tokens
 from artificial_memory.recall.engine import BasicRecallEngine
 
 
 class TokenCounter:
-    """Token counter using tiktoken."""
+    """Token counter (core.tokens: bpe_tokens for cl100k_base)."""
 
     def __init__(self, encoding_name: str = "cl100k_base"):
+        self.encoding_name = encoding_name
         self.encoding = tiktoken.get_encoding(encoding_name)
 
     def count(self, text: str) -> int:
+        if self.encoding_name == "cl100k_base":
+            return bpe_tokens(text)
         return len(self.encoding.encode(text))
 
     def count_messages(self, messages: list[dict]) -> int:
@@ -92,11 +96,24 @@ class EnhancedContextBuilder:
         recall_engine: BasicRecallEngine,
         encoding_name: str = "cl100k_base",
         budget_ratios: dict[PriorityTier, float] | None = None,
+        conflict_surfacing: bool = False,
+        conflict_fill_ablation: bool = False,
     ):
         self.store = store
         self.recall_engine = recall_engine
         self.token_counter = TokenCounter(encoding_name)
         self.budget_ratios = budget_ratios
+        # Opt-in conflict surfacing (V4 4.24): one NOTE line naming both
+        # conflicting values with provenance, added only when the query names
+        # the (entity, property) key.  Purely additive; no value is merged.
+        self.conflict_surfacing = conflict_surfacing
+        # Opt-in fill ablation (M15.3): when the annotation fires, the
+        # query-unrelated recency fill (measured 92% / ~1168 tokens of a
+        # ~1270-token context, with the note at ~93% position) is REMOVED
+        # -- the conflict part already carries the planted pair.  Fires
+        # only where the annotation fires, so non-contradiction contexts
+        # are structurally untouched.
+        self.conflict_fill_ablation = conflict_fill_ablation
         self._stats = ContextStats()
 
     def _determine_tier(self, priority: float) -> PriorityTier:
@@ -123,10 +140,47 @@ class EnhancedContextBuilder:
         self._stats = ContextStats()
         self._stats.budget_allocation = budget.allocation
 
-        # 1. Current state memories (HIGH priority)
-        if current_memories:
+        # Deduplicate across the resolution ladder. The same memory record can
+        # be returned by several recall levels, and different resolutions can
+        # carry byte-identical text; both used to be appended twice and paid
+        # for twice out of the same token budget. Only exact-id and
+        # whitespace-normalized-exact-content matches are dropped, so no
+        # information is lost.
+        seen_ids: set[int] = set()
+        seen_content: set[str] = set()
+
+        def already_present(mem: Memory) -> bool:
+            if mem.id is not None and mem.id in seen_ids:
+                return True
+            return " ".join(mem.content.split()) in seen_content
+
+        def remember(mem: Memory) -> None:
+            if mem.id is not None:
+                seen_ids.add(mem.id)
+            seen_content.add(" ".join(mem.content.split()))
+
+        # 0. Conflict surfacing (opt-in, V4 4.24, measured on the product
+        # path): the NOTE is detected over the current-state memories and
+        # its tokens are reserved BEFORE the current-state and recall
+        # parts compete for the tier budget.  The first product-path
+        # pricing run measured the opposite order: with a 400+-memory
+        # candidate pool the annotation lost the budget race and fired on
+        # 0/320 contexts -- invisible to the reader even though the flag
+        # was on.  Reserving first is what makes the annotation reachable.
+        conflict_reserved = False
+        if self.conflict_surfacing and current_memories:
+            conflict_reserved = self._append_conflict_parts(budget, query, parts, [
+                mem for mem in current_memories
+                if mem.is_current and mem.status.value == "active"
+            ])
+
+        # 1. Current state memories (HIGH priority).  With the M15.3 fill
+        # ablation, a fired conflict part removes the unrelated fill:
+        # the context then carries the annotation and its evidence only.
+        fill_ablated = self.conflict_fill_ablation and conflict_reserved
+        if current_memories and not fill_ablated:
             for mem in current_memories:
-                if mem.is_current and mem.status.value == "active":
+                if mem.is_current and mem.status.value == "active" and not already_present(mem):
                     tokens = self.token_counter.count(mem.content)
                     priority = 1.0
                     tier = PriorityTier.HIGH
@@ -140,6 +194,7 @@ class EnhancedContextBuilder:
                             tier=tier,
                             memory_id=mem.id,
                         ))
+                        remember(mem)
                         self._stats.parts_count += 1
                         self._stats.tier_distribution[tier.value] = \
                             self._stats.tier_distribution.get(tier.value, 0) + 1
@@ -157,7 +212,11 @@ class EnhancedContextBuilder:
         for level, base_priority, default_tier in recall_configs:
             memories, _ = self.recall_engine.recall(query, topic_id, level, max_tokens=max_tokens // 2)
             for mem in memories:
+                # Current-state memories are owned by step 1 (including the
+                # fill-ablation case, where they must not reappear via recall).
                 if current_memories and any(m.id == mem.id for m in current_memories):
+                    continue
+                if already_present(mem):
                     continue
 
                 tokens = self.token_counter.count(mem.content)
@@ -173,6 +232,7 @@ class EnhancedContextBuilder:
                         tier=tier,
                         memory_id=mem.id,
                     ))
+                    remember(mem)
                     self._stats.parts_count += 1
                     self._stats.tier_distribution[tier.value] = \
                         self._stats.tier_distribution.get(tier.value, 0) + 1
@@ -183,6 +243,68 @@ class EnhancedContextBuilder:
         parts.sort(key=lambda p: (-p.priority, p.tier.value))
 
         return parts, budget, self._stats
+
+    def _append_conflict_parts(
+        self,
+        budget: BudgetManager,
+        query: str,
+        parts: list,
+        candidates: list[Memory],
+    ) -> bool:
+        """Append conflict-surfacing NOTE parts; True if any were reserved.
+
+        M15.1: the note part CARRIES its source assertion lines.  The
+        audit measured why note-only composition failed: the product
+        window is recency-ordered (``ORDER BY updated_at DESC``), so the
+        pair's own lines lose the tier race for every conflict planted
+        in an earlier scenario, and the builder's recall dedupe cannot
+        resurface them (they are already current-pool members).  Bounding
+        the pair lines to the annotation travels, one immutable HIGH
+        part per key -- the same composition the benchmark compile
+        surrounds its NOTE with.
+        """
+        from artificial_memory.recall.conflict_surface import (
+            conflict_entries,
+            detect_conflicts,
+            note_line,
+            query_gated_keys,
+        )
+
+        def _label(mem: Memory) -> str:
+            stamp = mem.valid_from or mem.created_at
+            return stamp.strftime("%Y-%m-%d") if stamp else "undated"
+
+        documents = [(mem.content, _label(mem)) for mem in candidates]
+        conflicts = detect_conflicts(documents)
+        entries = conflict_entries(documents)
+        fired = False
+        for proj, prop in query_gated_keys(query, conflicts):
+            note = note_line(
+                f"project {proj}", prop,
+                conflicts[(proj, prop)],
+            )
+            lines = [note]
+            for value, label, idx in entries.get((proj, prop), []):
+                content = documents[idx][0]
+                lines.append(f"- {content} ({label})")
+            combined = "\n".join(lines)
+            tokens = self.token_counter.count(combined)
+            if not budget.allocate(PriorityTier.HIGH, tokens):
+                continue
+            parts.append(ContextPart(
+                content=combined,
+                tokens=tokens,
+                priority=0.9,
+                source="conflict:note",
+                tier=PriorityTier.HIGH,
+                memory_id=None,
+            ))
+            self._stats.parts_count += 1
+            fired = True
+            self._stats.tier_distribution[PriorityTier.HIGH.value] = (
+                self._stats.tier_distribution.get(PriorityTier.HIGH.value, 0) + 1
+            )
+        return fired
 
     def _try_lower_tiers(self, budget: BudgetManager, mem: Memory, tokens: int, priority: float):
         for tier in [PriorityTier.MEDIUM, PriorityTier.LOW]:

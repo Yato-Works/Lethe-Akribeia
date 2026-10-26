@@ -1,0 +1,29 @@
+# Speaker alias tables.
+#
+# Usage sites: EvidenceFuser.NICKNAME_MAP (nickname canonicalization),
+# EvidenceGraph STOPWORDS persona filtering, TemporalCompiler._QUERY_STOP_WORDS.
+# Sections keep the exact token sets the runtime previously declared inline,
+# now declared declaratively so runtime logic stays vocabulary-free.
+_meta:
+  origin: benchmark_tuned
+  description: >-
+    Speaker alias vocabulary observed in evaluation corpora (LoCoMo /
+    LongMemEval speaker nicknames plus standard placeholder nicknames).
+    Feeds nickname canonicalization and stop-token filtering only; it never
+    manufactures user-facing assertions.
+  version: 1
+
+nickname_map:
+  mel: melanie
+  carol: caroline
+  bob: robert
+  dave: david
+
+graph_stop_aliases:
+  - mel
+  - melanie
+  - caroline
+
+query_stopwords:
+  - melanie
+  - caroline

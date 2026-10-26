@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from artificial_memory.compiler.speaker_normalizer import SpeakerAttributionNormalizer
+from artificial_memory_gen.compiler.speaker_normalizer import SpeakerAttributionNormalizer
 
 
 def test_normalize_turn_pronoun_disambiguation() -> None:
@@ -45,3 +45,30 @@ def test_extract_ownership_bindings() -> None:
 
     assert ("Caroline", "has_relation", "Caroline's sister") in bindings
     assert ("Caroline", "has_relation", "Caroline's cat") in bindings
+
+
+def test_generate_attribution_certificate() -> None:
+    normalizer = SpeakerAttributionNormalizer()
+
+    turns = [
+        ("Caroline", "My sister plays violin and I love painting."),
+        ("Melanie", "I read Charlotte's Web and my dog is energetic."),
+    ]
+
+    cert = normalizer.generate_attribution_certificate("What instrument does Caroline's sister play?", turns)
+    assert "[SPEAKER ATTRIBUTION & OWNERSHIP CERTIFICATE]" in cert
+    assert "Caroline" in cert
+    assert "Caroline's sister" in cert
+
+
+def test_annotate_turn_preserves_raw_text() -> None:
+    normalizer = SpeakerAttributionNormalizer()
+
+    raw = "I bought a luxury handbag for $1,200 yesterday."
+    annotated = normalizer.annotate_turn(raw, speaker="Rob")
+
+    # Raw text must be strictly preserved at the beginning
+    assert annotated.startswith(raw)
+    assert "[ANNOTATION:" in annotated
+    assert "actor=Rob" in annotated
+    assert "action=bought" in annotated
