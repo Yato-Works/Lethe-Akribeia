@@ -92,6 +92,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **CI workflow consistency.** Synced optional dependency groups (`web`, `vector`,
   `benchmarks`) between Ubuntu and Windows test runners, resolving collection
   failures for API and benchmark eval unit tests.
+- **Docker Compose `pgvector` fix.** `Dockerfile` now installs the `postgres`
+  extras group (`pip install -e ".[web,llm,postgres]"`), ensuring `pgvector.psycopg`
+  is present when the container starts with `USE_POSTGRES=true`.
 
 ### CI
 - Workflows now run on every branch, and a Windows job runs the unit suite
