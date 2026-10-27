@@ -327,6 +327,32 @@ These are current, measured, and mostly queued for the next milestones.
 
 ---
 
+## Smoke check (one command)
+
+Before and after any pipeline change, run the pinned smoke set. It sends real
+LoCoMo questions end to end through the same frozen path as the full benchmark
+and shows you exactly what the reader was given:
+
+```bash
+# 18 pinned cases, real 7B reader (needs a local Ollama)
+python scripts/benchmarks/locomo_smoke.py
+
+# a few cases only
+python scripts/benchmarks/locomo_smoke.py -n 4
+
+# no reader at all: 0 LLM calls, still proves retrieval + context compilation
+# run and shows how much evidence each case would receive
+python scripts/benchmarks/locomo_smoke.py --no-llm
+```
+
+Output lands in `benchmark_results/smoke/<stamp>/`: `report.md` (per-case table,
+category rollup, failures in detail, the exact reader input), `results.json`,
+`reader_inputs/`, and `run.log`. The case set is pinned in
+[`benchmark_config/smoke_manifest.json`](benchmark_config/smoke_manifest.json) and
+excludes conv-48, the strict clean holdout. **These numbers are a plumbing
+signal, not a benchmark score**; publishable numbers stay in
+[`benchmark_results/RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md).
+
 ## Reproduction
 
 ```bash

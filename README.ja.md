@@ -319,6 +319,30 @@ lethe timeline
 
 ---
 
+## スモークチェック（1コマンド）
+
+パイプラインに触る前後に、固定済みのスモークセットを1コマンドで回せます。フル
+ベンチマークと同じ凍結パイプラインを通し、LLM に何が渡ったかをそのまま確認できます。
+
+```bash
+# 固定18問 + 実際の 7B リーダー（ローカル Ollama が必要）
+python scripts/benchmarks/locomo_smoke.py
+
+# 先頭の数問だけ
+python scripts/benchmarks/locomo_smoke.py -n 4
+
+# リーダーを呼ばない: LLM 呼び出し0回でも検索とコンテキスト生成の健全性を確認
+python scripts/benchmarks/locomo_smoke.py --no-llm
+```
+
+出力は `benchmark_results/smoke/<stamp>/` に `report.md`（症例別の表、カテゴリ集計、
+失敗の詳細、リーダーに渡った実テキストそのもの）、`results.json`、
+`reader_inputs/`、`run.log` として残ります。出題は
+[`benchmark_config/smoke_manifest.json`](benchmark_config/smoke_manifest.json) に固定され、
+クリーンなホールドアウト conv-48 は構造的に除外されています。
+**この数字は配管の確認用であり、ベンチマークスコアではありません。** 公表できる数値は
+[`benchmark_results/RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にあります。
+
 ## 再現手順
 
 ```bash

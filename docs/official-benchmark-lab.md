@@ -66,6 +66,23 @@ $env:OPENAI_API_KEY = "..."
 # Configure the judge/model mapping in third_party/benchmarks/beam/src/llms_config.json
 ```
 
+## Smoke check before an experiment
+
+A full LoCoMo run is 1,986 questions and hours of reader time; a broken import or
+an empty context should not cost that. The pinned smoke set runs 18 real questions
+through the same frozen path and writes a readable report:
+
+```powershell
+python scripts/benchmarks/locomo_smoke.py            # real reader, local Ollama
+python scripts/benchmarks/locomo_smoke.py --no-llm   # 0 LLM calls
+```
+
+`benchmark_results/smoke/<stamp>/report.md` carries the per-case verdicts, the
+category rollup, the failures in full, and the exact reader input for the selected
+cases. The cases are pinned in `benchmark_config/smoke_manifest.json` and exclude
+conv-48 (the strict clean holdout). Smoke accuracy is a plumbing signal; it is
+never reported as a benchmark result.
+
 ## Frozen evaluation contract
 
 For every score that appears in a report, freeze all of the following together:

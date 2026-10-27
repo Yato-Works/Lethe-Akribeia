@@ -102,6 +102,9 @@ benchmark_results/**/*.log
 benchmark_results/**/*.err
 benchmark_results/**/*.jsonl
 benchmark_results/**/*.out
+# Smoke runs are local plumbing checks, regenerated on demand; the pinned case
+# list (benchmark_config/smoke_manifest.json) is what gets committed.
+/benchmark_results/smoke/
 benchmark_results/logs/
 benchmark_results/_scorecard_snapshot.json
 benchmark_results/*context_cache*.jsonl

@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **One-command LoCoMo smoke check.** `scripts/benchmarks/locomo_smoke.py` runs
+  the pinned set in `benchmark_config/smoke_manifest.json` (18 real questions:
+  one per conversation/category cell on three conversations, plus the three
+  questions from the 2026-10-26 reader autopsy) through the same frozen pipeline
+  as the full benchmark, then writes `benchmark_results/smoke/<stamp>/report.md`
+  with a per-case table, the category rollup, the failures in detail, and the
+  exact text the reader saw. The set excludes conv-48 (the strict clean holdout)
+  by construction, and `--no-llm` runs it with 0 LLM calls as a plumbing check.
+- `eval_locomo_full.py --dump-prompts DIR` writes the exact reader prompt of
+  every case (ground truth is never included), `--out PATH` writes the artifact
+  to a fixed location, and named manifests (`{"cases": [...]}`) are accepted
+  alongside bare lists. The run manifest now also records `prompt_style`.
+
+### Changed
+- **The reader prompt is a 4-line evidence-first instruction block by default**
+  (`--prompt-style concise`); the historic 23-rule prompt remains available as
+  `--prompt-style legacy`. The per-speaker rewrite that produced broken English
+  ("when melanie look after melanie oneself") is bypassed by default. This is a
+  prompt/plumbing change, not a measured score change: no full run has been
+  re-scored on this branch.
+
+### Removed
+- 950 obsolete one-off diagnostic scripts and legacy smoke-test outputs, which
+  made `scripts/benchmarks/` impossible to navigate. Git history retains them.
+
 ## [0.3.2] - 2026-10-26
 
 ### Documentation

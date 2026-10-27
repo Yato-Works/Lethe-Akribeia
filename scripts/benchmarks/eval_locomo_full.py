@@ -116,6 +116,24 @@ def load_questions(conv: dict) -> list[dict]:
     return out
 
 
+def manifest_cases(raw: object) -> list[dict]:
+    """Normalise a pinned sample manifest to a list of {conv_idx, q_idx} dicts.
+
+    A bare list is the historical format.  A named smoke manifest is an object
+    that carries its own provenance ("name", "selection_rule", "cases"), so
+    accepting only the list would silently mis-select every case.
+    """
+    if isinstance(raw, dict):
+        if "cases" not in raw:
+            raise SystemExit("manifest object has no 'cases' list")
+        raw = raw["cases"]
+    if not isinstance(raw, list):
+        raise SystemExit(
+            "manifest must be a list of {conv_idx,q_idx} pairs or an object "
+            "with a 'cases' list")
+    return raw
+
+
 # ------------------------------------------------------------------ scoring
 _YESNO = {"yes", "no"}
 
@@ -1027,11 +1045,14 @@ def run(args) -> None:
     # the reader wins by more than it loses.  See V4_PROGRAM.md 4.17.
     args.use_committer = bool(getattr(args, "committer", False))
     freeze_dir = Path(args.freeze_contexts) if getattr(args, "freeze_contexts", "") else None
+    dump_dir = Path(args.dump_prompts) if getattr(args, "dump_prompts", "") else None
+    if dump_dir is not None:
+        dump_dir.mkdir(parents=True, exist_ok=True)
     freeze_rows: list[dict] = []
     manifest = []
     if getattr(args, "manifest", ""):
         with open(args.manifest, encoding="utf-8") as f:
-            manifest = json.load(f)
+            manifest = manifest_cases(json.load(f))
     args.manifest = manifest
     data = load_locomo(Path(args.data))
     wanted = set(int(x) for x in args.cats.split(",")) if args.cats else None
@@ -1290,11 +1311,19 @@ def run(args) -> None:
                 if getattr(args, "speaker_first", False):
                     ctx_text = reorder_context_by_speaker(
                         ctx_text, q["question"], conv)
-                pred = answerer.answer(q["question"],
-                                       build_reader_prompt(q["question"], ctx_text,
-                                                           enum_contract=getattr(args, "enum_contract", "off"),
-                                                           no_abstain=getattr(args, "no_abstain", False),
-                                                           prompt_style=getattr(args, "prompt_style", "concise"))).text.strip()
+                reader_prompt = build_reader_prompt(
+                    q["question"], ctx_text,
+                    enum_contract=getattr(args, "enum_contract", "off"),
+                    no_abstain=getattr(args, "no_abstain", False),
+                    prompt_style=getattr(args, "prompt_style", "concise"))
+                if dump_dir is not None:
+                    # Audit surface: the exact text the reader is about to see.
+                    # Gold is deliberately NOT written here (leakage boundary);
+                    # the committed artifact carries it in the result row.
+                    (dump_dir / f"{q['question_id']}.txt").write_text(
+                        f"QUESTION: {q['question']}\n\n=== READER CONTEXT ===\n"
+                        f"{reader_prompt}\n", encoding="utf-8")
+                pred = answerer.answer(q["question"], reader_prompt).text.strip()
                 if pred.endswith(".") and len(pred.split()) <= 2:
                     pred = pred[:-1].strip()
 
@@ -1385,7 +1414,10 @@ def run(args) -> None:
         print(f"cat{cat} {CAT_NAMES.get(cat,'?'):18s} "
               f"{sum(v)/len(v)*100:7.1f}% {sum(v):8d}/{len(v):<6d}")
 
-    out = REPO / "benchmark_results" / "locomo_full.json"
+    # An explicit --out is honoured verbatim (the smoke runner pins its own run
+    # directory); otherwise default under benchmark_results/ with a stamp.
+    out = (Path(args.out).expanduser().resolve() if getattr(args, "out", "")
+           else REPO / "benchmark_results" / "locomo_full.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     # Write to a UNIQUE path per run.  Every run previously wrote to the same
     # locomo_full.json, so a stale background run finishing late would silently
@@ -1413,6 +1445,7 @@ def run(args) -> None:
     _config = {
         "cond": args.cond, "cats": args.cats, "limit": args.limit,
         "num_ctx": args.num_ctx, "second_pass": getattr(args, "second_pass", False),
+        "prompt_style": getattr(args, "prompt_style", "concise"),
         "enum_contract": getattr(args, "enum_contract", "off"),
         "speaker_first": getattr(args, "speaker_first", False),
         # Measurement knobs are recorded so no artifact can claim a default it
@@ -1445,17 +1478,22 @@ def run(args) -> None:
         "scorer": "eval_locomo_full.score_question + is_list_gold (audit_strict_grade)",
     }
 
-    out = out.with_name(f"locomo_full_{_stamp}.json")
-    # Also keep the stable 'latest' pointer for convenience.
-    latest = out.parent / "locomo_full.json"
+    if getattr(args, "out", ""):
+        latest = None
+    else:
+        out = out.with_name(f"locomo_full_{_stamp}.json")
+        # Also keep the stable 'latest' pointer for convenience.
+        latest = out.parent / "locomo_full.json"
     with open(out, "w", encoding="utf-8") as f:
         json.dump({**_manifest, "results": results},
                   f, ensure_ascii=False, indent=2)
-    with open(latest, "w", encoding="utf-8") as f:
-        json.dump({**_manifest, "source": out.name},
-                  f, ensure_ascii=False, indent=2)
+    if latest is not None:
+        with open(latest, "w", encoding="utf-8") as f:
+            json.dump({**_manifest, "source": out.name},
+                      f, ensure_ascii=False, indent=2)
     print(f"\nSaved -> {out}")
-    print(f"Latest -> {latest}")
+    if latest is not None:
+        print(f"Latest -> {latest}")
     print(f"Run manifest: revision={_rev} salt={_salt} config={_config}")
 
 
@@ -1486,7 +1524,14 @@ def main() -> None:
     ap.add_argument("--manifest", default="",
                     help="JSON file listing {conv_idx,q_idx} pairs to evaluate "
                          "(a real sample); overrides --limit, which is only a "
-                         "conversation-contiguous prefix")
+                         "conversation-contiguous prefix.  Either a bare list or "
+                         "an object with a 'cases' list (smoke manifests).")
+    ap.add_argument("--out", default="",
+                    help="write the result artifact to this exact path instead of "
+                         "benchmark_results/locomo_full_<stamp>.json")
+    ap.add_argument("--dump-prompts", default="",
+                    help="write the exact reader prompt of every question to DIR "
+                         "(audit surface; ground truth is never included)")
     ap.add_argument("--speaker-first", action="store_true",
                     help="reorder reader context so the question's target speaker's "
                          "evidence appears first (off by default)")
