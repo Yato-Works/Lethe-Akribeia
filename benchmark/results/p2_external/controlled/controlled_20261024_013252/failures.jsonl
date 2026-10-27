@@ -1,3 +1,0 @@
-{"timestamp": "2026-10-24T01:32:52.191930", "player": "Simple RAG", "stage": "ingest", "error": "No module named 'sentence_transformers'", "arena_class": "controlled"}
-{"timestamp": "2026-10-24T01:32:52.197034", "player": "Zep-style", "stage": "ingest", "error": "No module named 'sentence_transformers'", "arena_class": "controlled"}
-{"timestamp": "2026-10-24T01:32:52.201928", "player": "HippoRAG-style", "stage": "ingest", "error": "No module named 'sentence_transformers'", "arena_class": "controlled"}
