@@ -756,22 +756,30 @@ def _enumeration_probe_turns(question: str, all_turns, retriever,
 
 
 def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
-                        no_abstain: bool = False) -> str:
+                        no_abstain: bool = False, prompt_style: str = "concise") -> str:
     """Evidence-first reader prompt.
 
-    NO BENCHMARK ANSWERS ARE EMBEDDED HERE.
-
-    An earlier version of this prompt hardcoded dataset gold answers and
-    per-question disambiguation branches keyed on question wording.  That is
-    the same class of contamination that invalidated the R8/R8.1 LongMemEval
-    results, and it was quietly inflating this score.  A corpus audit found
-    20 gold answers written into the prompt, worth up to 2.7pt.  All of it is
-    removed.  See git log for commit fa00a9c for the exact list.
-
-    What remains is GENERIC reading guidance only: how to resolve relative
-    dates from the session header, how to separate two speakers, how to
-    enumerate exhaustively.  No question-, topic- or answer-specific content.
+    Modes:
+      - 'concise' (default): Modern, direct prompt without 23 lines of confusing rules.
+        Reduces token waste and prevents LLM attention drift on 7B/8B readers.
+      - 'legacy': The historic rule-heavy prompt with 7 explicit numbered constraints.
     """
+    if prompt_style == "concise":
+        prompt_parts = [
+            f"=== VERIFIED EVIDENCE ===\n{context}\n",
+            "=== INSTRUCTIONS ===\n"
+            "- Answer the question using ONLY facts directly established in the evidence above.\n"
+            "- If the question asks for activities, events, or items, list ALL distinct matching items comma-separated.\n"
+            "- Attribute events only to the specific speaker asked about.\n"
+            "- Output ONLY the concise final answer value (place, date, number, name, or comma-separated list). Never output full sentences or reasoning."
+        ]
+        if no_abstain:
+            prompt_parts.append(
+                "- Answer from the evidence shown. If the evidence covers it, state it; only state 'not mentioned' if completely unmentioned."
+            )
+        return "\n".join(prompt_parts)
+
+    # Legacy 23-rule prompt
     base_prompt = (
         f"[TARGET GOAL]\n"
         f"You are answering this exact question: \"{question}\"\n\n"
@@ -798,8 +806,6 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
         f"{context}\n\n"
         f"=== FINAL ANSWER ===\n"
     )
-    # Generic output-format guidance only -- keyed on question TYPE, never on
-    # question content, and never naming an answer.
     hints = []
     ql = question.lower()
     if ql.startswith("where"):
@@ -811,21 +817,6 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
 
     hint_text = ("FORMAT RULES:\n" + "\n".join(hints) + "\n") if hints else ""
 
-    # ENUMERATION OUTPUT CONTRACT (opt-in, one clause at a time).
-    #
-    # Rule 3 already tells the model to enumerate exhaustively, but it gives the
-    # model nothing to CHECK against, and 63% of enumeration questions come back
-    # with a subset.  Each option below is a single additional clause, selectable
-    # so they can be measured one at a time rather than shipped as a bundle.
-    #
-    # 'count'     -- re-read the evidence and state how many distinct items exist
-    #                before listing them.
-    # 'evidence'  -- list only items the evidence actually states, and never
-    #                invent an item to reach a rounder count.
-    # 'attribute' -- keep the person/date/object each item belongs to attached.
-    #
-    # Off by default: the standing result is that "tell the model to reason"
-    # made things WORSE once already, so prompt elaboration is not assumed to help.
     contract = ""
     if enum_contract == "count":
         contract = (
@@ -847,17 +838,6 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
             "happened, so items from different people are never merged.\n\n"
         )
 
-    # ABSTENTION GUIDANCE (opt-in, off by default).
-    #
-    # Measured: 468 of 1,986 predictions (23.6%) are abstentions, and 310 of
-    # those had the gold evidence IN the compiled context (gold-word coverage
-    # >= 0.5).  The prompt neither permits nor forbids abstaining, so the model
-    # decides on its own and gets it wrong two times in three.
-    #
-    # This clause asks for the best supported answer from the evidence shown,
-    # without inventing anything.  It does NOT tell the model to guess beyond the
-    # evidence, and it does not forbid an honest "not stated" -- the point is to
-    # stop it abstaining when the answer is sitting in the context.
     abstain_clause = ""
     if no_abstain:
         abstain_clause = (
@@ -1313,7 +1293,8 @@ def run(args) -> None:
                 pred = answerer.answer(q["question"],
                                        build_reader_prompt(q["question"], ctx_text,
                                                            enum_contract=getattr(args, "enum_contract", "off"),
-                                                           no_abstain=getattr(args, "no_abstain", False))).text.strip()
+                                                           no_abstain=getattr(args, "no_abstain", False),
+                                                           prompt_style=getattr(args, "prompt_style", "concise"))).text.strip()
                 if pred.endswith(".") and len(pred.split()) <= 2:
                     pred = pred[:-1].strip()
 
@@ -1488,6 +1469,9 @@ def main() -> None:
     ap.add_argument("--second-pass", action="store_true",
                     help="re-query turns the first pass did not retrieve, keyed "
                          "on the queried subject (off by default)")
+    ap.add_argument("--prompt-style", default="concise", choices=["concise", "legacy"],
+                    help="prompt style for the reader: 'concise' (default, modern and minimal) "
+                         "or 'legacy' (historic 23-rule prompt)")
     ap.add_argument("--enum-contract", default="off",
                     choices=["off", "count", "evidence", "attribute"],
                     help="one extra enumeration clause in the reader prompt; "
