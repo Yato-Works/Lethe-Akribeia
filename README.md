@@ -127,7 +127,7 @@ artifact is 51.89%, not 65.26%.
 | Benchmark / slice | N | Layer 1: Oracle Recall | Layer 2: Reader on Hits | Layer 3: End-to-End (binary, in-house) |
 |:---|:---:|:---:|:---:|:---:|
 | LongMemEval (6 capabilities) | 500 | 98.20% (491/500) | 82.08% (403/491) | 83.40% (417/500; baseline 81.60%) |
-| BEAM needle probe, 500K | 20 | 100% (20/20) | 100% | 100% (in-house matcher) |
+| BEAM needle-in-haystack **probe** (500K tokens) | 20 | 100% (20/20) | 100% | 100% (in-house binary matcher — not LLM-judged) |
 | LoCoMo single-hop (cat 4) | 841 | 83.71% (704/841) | 86.51% (609/704) | 77.76% (654/841) |
 | LoCoMo temporal (cat 2) | 321 | 81.62% (262/321) | 56.87% (149/262) | 50.16% (161/321) |
 | LoCoMo multi-hop (cat 1) | 282 | 78.37% (221/282) | 60.18% (133/221) | 53.90% (152/282) |
@@ -340,7 +340,7 @@ python scripts/benchmarks/locomo_smoke.py
 # a few cases only
 python scripts/benchmarks/locomo_smoke.py -n 4
 
-# no reader at all: 0 LLM calls, still proves retrieval + context compilation
+# no reader at all: 0 LLM calls, still verifies retrieval + context compilation
 # run and shows how much evidence each case would receive
 python scripts/benchmarks/locomo_smoke.py --no-llm
 ```
@@ -430,7 +430,7 @@ The 21 frozen v0.3.0 metrics are in
 
 ## Status and roadmap
 
-**Current: v0.3.2, experimental.** The V3 three-layer diagnostic standard and the V4
+**Current: v0.3.3, experimental.** The V3 three-layer diagnostic standard and the V4
 measurement correction are both done. This branch also closes the product-wiring gap
 that the arena exposed:
 
@@ -466,10 +466,10 @@ on the paired measurement described in V4_PROGRAM, not on a demo.
 ## Why release now
 
 I wanted to find out how far a structured, local memory system could go when hardware
-and models were small. This is a working, auditable checkpoint with measurable
-strengths and measurable weaknesses. The re-scoring in V4 made the weaknesses
-visible; that is why the numbers here are lower than the ones in the v0.3.0 release
-notes.
+and models were small: an RTX 3050 (8 GB VRAM), a 7B q4 reader, nothing else.
+This is a working, auditable checkpoint with measurable strengths and measurable
+weaknesses. The re-scoring in V4 made the weaknesses visible; that is why the numbers
+here are lower than the ones in the v0.3.0 release notes.
 
 I still want to find out how far this architecture can go.
 
@@ -482,7 +482,7 @@ I still want to find out how far this architecture can go.
   title = {Lethe Akribeia: An Experimental Cognitive Long-Term Memory System for AI},
   author = {Yato-Works},
   year = {2026},
-  version = {0.3.2},
+  version = {0.3.3},
   url = {https://github.com/Yato-Works/Lethe-Akribeia}
 }
 ```
