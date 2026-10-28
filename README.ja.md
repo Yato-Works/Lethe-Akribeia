@@ -319,6 +319,67 @@ lethe timeline
 
 ---
 
+## スモークチェック（1コマンド）
+
+パイプラインに触る前後に、固定済みのスモークセットを1コマンドで回せます。フル
+ベンチマークと同じ凍結パイプラインを通し、LLM に何が渡ったかをそのまま確認できます。
+
+```bash
+# 固定18問 + 実際の 7B リーダー（ローカル Ollama が必要）
+python scripts/benchmarks/locomo_smoke.py
+
+# 先頭の数問だけ
+python scripts/benchmarks/locomo_smoke.py -n 4
+
+# リーダーを呼ばない: LLM 呼び出し0回でも検索とコンテキスト生成の健全性を確認
+python scripts/benchmarks/locomo_smoke.py --no-llm
+```
+
+出力は `benchmark_results/smoke/<stamp>/` に `report.md`（症例別の表、カテゴリ集計、
+失敗の詳細、リーダーに渡った実テキストそのもの）、`results.json`、
+`reader_inputs/`、`run.log` として残ります。出題は
+[`benchmark_config/smoke_manifest.json`](benchmark_config/smoke_manifest.json) に固定され、
+クリーンなホールドアウト conv-48 は構造的に除外されています。
+**この数字は配管の確認用であり、ベンチマークスコアではありません。** 公表できる数値は
+[`benchmark_results/RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md) にあります。
+
+### 2つの実行を比較する
+
+`--compare` は終了済みの2つの実行フォルダを差分表示します。直った症例・壊れた症例、
+症例ごとのトークン差、平均コンテキストの変化。成果物を読むだけなので、評価したい変更の
+前後どちらの実行にも使えます。
+
+```bash
+python scripts/benchmarks/locomo_smoke.py                                  # 基準
+python scripts/benchmarks/locomo_smoke.py --rerank ollama                  # 同じ出題
+python scripts/benchmarks/locomo_smoke.py --compare \
+    benchmark_results/smoke/<基準> benchmark_results/smoke/<比較対象>
+```
+
+### リランキング（`--rerank`、既定は off）
+
+`--rerank` は、予算付きコンパイラが証拠を選ぶ前に、検索済み候補プールを学習済みの
+関連度モデルで並べ替えます。
+
+| backend | モデル | 必要なもの |
+|---|---|---|
+| `ollama` | `qwen2.5:7b-instruct`（リストワイズ、JSON スコア） | 全実行が既に使う Ollama サーバ |
+| `cross-encoder` | `cross-encoder/ms-marco-MiniLM-L-6-v2` | `[vector]` 追加依存（torch + sentence-transformers） |
+
+どちらもモデルが無ければ1問目より前に停止します。応答を解釈できなかったバッチは
+検索順のまま残り、manifest の `rerank_failures` に計上されるので、実際には並べ替えて
+いない実行が「並べ替えた」と主張することはできません。
+
+**2026-10-28 の固定18問（`ollama` backend）での実測: 正解 10 -> 9、直った1 /
+壊れた2、平均コンテキスト 1410 -> 1258 トークン。** 両アームを再実行しても
+同一結果（temperature 0 / seed 42）だったので、この -1 はサンプリングノイズではなく
+この18問に対する実際の効果です。ただし18問で手法を決めることはできず、構造的に効いたのは
+コンテキストが小さくなった点だけです。壊れた2件のうち1件はまさに話者取り違えのペアです:
+`lc_conv-43_178`（*Tim* がどのチームと契約したか、正解は「言及なし」）が John の答え
+`Minnesota Wolves` を返しました。リランキング無しの実行では正しく拒否できていました。
+cross-encoder はこの開発機では一度も計測できていません（PyPI に到達できない）。つまり
+強いはずの道具は「反証された」のではなく**未計測**です。
+
 ## 再現手順
 
 ```bash

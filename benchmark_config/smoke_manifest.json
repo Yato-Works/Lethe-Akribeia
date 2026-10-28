@@ -1,0 +1,179 @@
+{
+ "name": "locomo-smoke-v1",
+ "not_a_score": true,
+ "purpose": "Plumbing check: one command, a handful of real questions, a readable report. Never quote these numbers as a result.",
+ "built_at": "2026-10-27",
+ "reader": "qwen2.5:7b-instruct",
+ "selection_rule": "For conversations conv-26/conv-43/conv-49 (indices 0/4/8), the first question of each LoCoMo category in file order (5 x 3 = 15), plus three questions that made the 2026-10-26 reader autopsy: conv-26 q32 (LGBTQ+ events), q50 (political leaning), q99 (counseling motivation).",
+ "excluded": [
+  {
+   "conv_idx": 7,
+   "conversation": "conv-48",
+   "why": "strict clean holdout (191 unmined questions); smoke runs must never touch it"
+  }
+ ],
+ "cases": [
+  {
+   "conv_idx": 0,
+   "q_idx": 0,
+   "conversation": "conv-26",
+   "category": 2,
+   "question": "When did Caroline go to the LGBTQ support group?",
+   "gold": "7 May 2023",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 2,
+   "conversation": "conv-26",
+   "category": 3,
+   "question": "What fields would Caroline be likely to pursue in her educaton?",
+   "gold": "Psychology, counseling certification",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 3,
+   "conversation": "conv-26",
+   "category": 1,
+   "question": "What did Caroline research?",
+   "gold": "Adoption agencies",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 32,
+   "conversation": "conv-26",
+   "category": 1,
+   "question": "What LGBTQ+ events has Caroline participated in?",
+   "gold": "Pride parade, school speech, support group",
+   "why": "known-hard from the 2026-10-26 reader autopsy"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 50,
+   "conversation": "conv-26",
+   "category": 3,
+   "question": "What would Caroline's political leaning likely be?",
+   "gold": "Liberal",
+   "why": "known-hard from the 2026-10-26 reader autopsy"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 82,
+   "conversation": "conv-26",
+   "category": 4,
+   "question": "What did the charity race raise awareness for?",
+   "gold": "mental health",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 99,
+   "conversation": "conv-26",
+   "category": 4,
+   "question": "What motivated Caroline to pursue counseling?",
+   "gold": "her own journey and the support she received, and how counseling improved her life",
+   "why": "known-hard from the 2026-10-26 reader autopsy"
+  },
+  {
+   "conv_idx": 0,
+   "q_idx": 152,
+   "conversation": "conv-26",
+   "category": 5,
+   "question": "What did Caroline realize after her charity race?",
+   "gold": "",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 4,
+   "q_idx": 0,
+   "conversation": "conv-43",
+   "category": 1,
+   "question": "what are John's goals with regards to his basketball career?",
+   "gold": "improve shooting percentage, win a championship",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 4,
+   "q_idx": 3,
+   "conversation": "conv-43",
+   "category": 3,
+   "question": "Would Tim enjoy reading books by C. S. Lewis or John Greene?",
+   "gold": "C. S.Lewis",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 4,
+   "q_idx": 6,
+   "conversation": "conv-43",
+   "category": 2,
+   "question": "In which month's game did John achieve a career-high score in points?",
+   "gold": "June 2023",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 4,
+   "q_idx": 71,
+   "conversation": "conv-43",
+   "category": 4,
+   "question": "Which team did John sign with on 21 May, 2023?",
+   "gold": "The Minnesota Wolves",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 4,
+   "q_idx": 178,
+   "conversation": "conv-43",
+   "category": 5,
+   "question": "Which team did Tim sign with on 21 May, 2023?",
+   "gold": "",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 8,
+   "q_idx": 0,
+   "conversation": "conv-49",
+   "category": 1,
+   "question": "What kind of car does Evan drive?",
+   "gold": "Prius",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 8,
+   "q_idx": 4,
+   "conversation": "conv-49",
+   "category": 2,
+   "question": "Which hobby did Sam take up in May 2023?",
+   "gold": "painting",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 8,
+   "q_idx": 5,
+   "conversation": "conv-49",
+   "category": 3,
+   "question": "Which country was Evan visiting in May 2023?",
+   "gold": "Canada",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 8,
+   "q_idx": 83,
+   "conversation": "conv-49",
+   "category": 4,
+   "question": "What type of car did Evan get after his old Prius broke down?",
+   "gold": "new Prius",
+   "why": "one per category"
+  },
+  {
+   "conv_idx": 8,
+   "q_idx": 156,
+   "conversation": "conv-49",
+   "category": 5,
+   "question": "What type of car did Sam get after his old Prius broke down?",
+   "gold": "",
+   "why": "one per category"
+  }
+ ]
+}

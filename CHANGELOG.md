@@ -5,7 +5,86 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.2] - 2026-10-26
+## [Unreleased]
+
+## [0.3.3] - 2026-10-28
+
+### Added
+- **One-command LoCoMo smoke check.** `scripts/benchmarks/locomo_smoke.py` runs
+  the pinned set in `benchmark_config/smoke_manifest.json` (18 real questions:
+  one per conversation/category cell on three conversations, plus the three
+  questions from the 2026-10-26 reader autopsy) through the same frozen pipeline
+  as the full benchmark, then writes `benchmark_results/smoke/<stamp>/report.md`
+  with a per-case table, the category rollup, the failures in detail, and the
+  exact text the reader saw. The set excludes conv-48 (the strict clean holdout)
+  by construction, and `--no-llm` runs it with 0 LLM calls as a plumbing check.
+- `eval_locomo_full.py --dump-prompts DIR` writes the exact reader prompt of
+  every case (ground truth is never included), `--out PATH` writes the artifact
+  to a fixed location, and named manifests (`{"cases": [...]}`) are accepted
+  alongside bare lists. The run manifest now also records `prompt_style`.
+- **`--rerank` (opt-in) and `--compare` (run diffing).** Two backends can
+  re-order the retrieved candidate pool before the budgeted compiler selects
+  evidence: `ollama` (listwise JSON scores from a local model, no installs) and
+  `cross-encoder` (`cross-encoder/ms-marco-MiniLM-L-6-v2`, needs the `[vector]`
+  extra). Both fail before question 1 when their model is missing; a batch whose
+  reply cannot be parsed keeps its retrieval order and is counted in the run
+  manifest's `rerank_failures`, so a run cannot silently claim it re-ranked
+  anything. `locomo_smoke.py --compare BEFORE AFTER` diffs two run folders:
+  fixed / broken cases, per-case token delta, mean context change.
+- **`--speaker-first` and `--refusal-gate` pipeline guards.** `--speaker-first`
+  groups retrieved evidence by target speaker before the budgeted compiler
+  selects the final context window, ensuring cross-speaker evidence is
+  consistently deprioritised. `--refusal-gate` detects and suppresses answers
+  where the reader cites facts from the wrong speaker (attribution provenance
+  check). Both are exposed in `eval_locomo_full.py` and `locomo_smoke.py`.
+
+### Changed
+- **The reader prompt is a 4-line evidence-first instruction block by default**
+  (`--prompt-style concise`); the historic 23-rule prompt remains available as
+  `--prompt-style legacy`. The per-speaker rewrite that produced broken English
+  ("when melanie look after melanie oneself") is bypassed by default. This is a
+  prompt/plumbing change, not a measured score change: no full run has been
+  re-scored on this branch.
+- **`SpeakerAttributionNormalizer` is now opt-in (`normalize_speakers=False`
+  by default).** The normalizer was rewriting first-person dialogue into broken
+  third-person fragments (e.g. "melanie oneself") and appending attribution
+  certificates that made the context harder to read. Natural English dialogue is
+  preserved unless the caller explicitly sets `normalize_speakers=True`.
+- **Re-ranking is currently a measured null, so it stays off by default.** On the
+  pinned smoke set (18 dev cases, 2026-10-28) the `ollama` listwise re-ranker
+  moved 10 -> 9 correct (1 fixed, 2 broken) and cut mean context from 1410 to
+  1258 tokens. Both arms were re-run and reproduced byte-identically at
+  temperature 0 / seed 42, so the -1 is a real effect on these 18 cases rather
+  than sampling noise; it is still far too few cases to settle the method, and
+  the smaller context is the only structural effect. One break is the
+  attribution pair itself (`lc_conv-43_178`, "which team did *Tim* sign with"):
+  the un-reranked run refused, the re-ranked run returned John's answer
+  ("Minnesota Wolves"). The cross-encoder backend is unit-tested but
+  **unmeasured** — this machine cannot reach PyPI, so it has never produced a
+  real score.
+
+### Fixed
+- **P2 external-player tests (`test_p2_external_players.py`) now skip gracefully**
+  when the `[vector]` extra (faiss / sentence-transformers) is not installed,
+  instead of hard-failing with `ImportError`. The fix uses `pytest.importorskip`
+  at module level, matching the skip-guard pattern used throughout the rest of
+  the test suite.
+
+### Removed
+- 950 obsolete one-off diagnostic scripts and legacy smoke-test outputs, which
+  made `scripts/benchmarks/` impossible to navigate. Git history retains them.
+
+### Benchmark (smoke set, 2026-10-28)
+- **LoCoMo smoke set (18 pinned dev questions, qwen2.5:7b-instruct, frozen
+  pipeline):**
+  - Baseline (default, no flags): **10/18 correct (55.6%)**
+  - `--speaker-first --refusal-gate`: **11/18 correct (61.1%)**  ← v0.3.3 default
+  - `--rerank ollama --speaker-first --refusal-gate`: **10/18 correct (55.6%)**
+    (re-ranker is a null on this set; off by default)
+  - *Note: 18 questions is not a statistically reliable sample. The improvement
+    is directionally consistent with the known attribution-leak failure mode but
+    is not sufficient to generalise to the full 1,540-question suite.*
+
 
 ### Documentation
 - **README honesty pass (P0).** `README.md` / `README.ja.md` rewritten so the

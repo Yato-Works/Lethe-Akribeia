@@ -1,6 +1,0 @@
-player,question_count,pass_count,partial_count,fail_count,false_positive_count,answer_accuracy,partial_rate,false_positive_rate,forbidden_violation_rate,mean_ground_truth_coverage,mean_score,abstention_accuracy,abstention_question_count,mean_score_consistency
-Simple RAG,200,102,13,83,2,0.51,0.065,0.01,0.02,0.5575,0.5425,0.9,20,1.0
-Mem0-style,200,85,6,103,6,0.425,0.03,0.03,0.02,0.47,0.44,0.7,20,1.0
-Zep-style,200,70,13,117,0,0.35,0.065,0.0,0.0,0.3825,0.3825,1.0,20,1.0
-HippoRAG-style,200,52,3,144,1,0.26,0.015,0.005,0.06,0.3275,0.2675,0.95,20,1.0
-AM v0.2.0,200,23,0,177,0,0.115,0.0,0.0,0.0,0.115,0.115,1.0,20,1.0

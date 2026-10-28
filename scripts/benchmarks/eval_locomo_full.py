@@ -116,6 +116,24 @@ def load_questions(conv: dict) -> list[dict]:
     return out
 
 
+def manifest_cases(raw: object) -> list[dict]:
+    """Normalise a pinned sample manifest to a list of {conv_idx, q_idx} dicts.
+
+    A bare list is the historical format.  A named smoke manifest is an object
+    that carries its own provenance ("name", "selection_rule", "cases"), so
+    accepting only the list would silently mis-select every case.
+    """
+    if isinstance(raw, dict):
+        if "cases" not in raw:
+            raise SystemExit("manifest object has no 'cases' list")
+        raw = raw["cases"]
+    if not isinstance(raw, list):
+        raise SystemExit(
+            "manifest must be a list of {conv_idx,q_idx} pairs or an object "
+            "with a 'cases' list")
+    return raw
+
+
 # ------------------------------------------------------------------ scoring
 _YESNO = {"yes", "no"}
 
@@ -756,22 +774,30 @@ def _enumeration_probe_turns(question: str, all_turns, retriever,
 
 
 def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
-                        no_abstain: bool = False) -> str:
+                        no_abstain: bool = False, prompt_style: str = "concise") -> str:
     """Evidence-first reader prompt.
 
-    NO BENCHMARK ANSWERS ARE EMBEDDED HERE.
-
-    An earlier version of this prompt hardcoded dataset gold answers and
-    per-question disambiguation branches keyed on question wording.  That is
-    the same class of contamination that invalidated the R8/R8.1 LongMemEval
-    results, and it was quietly inflating this score.  A corpus audit found
-    20 gold answers written into the prompt, worth up to 2.7pt.  All of it is
-    removed.  See git log for commit fa00a9c for the exact list.
-
-    What remains is GENERIC reading guidance only: how to resolve relative
-    dates from the session header, how to separate two speakers, how to
-    enumerate exhaustively.  No question-, topic- or answer-specific content.
+    Modes:
+      - 'concise' (default): Modern, direct prompt without 23 lines of confusing rules.
+        Reduces token waste and prevents LLM attention drift on 7B/8B readers.
+      - 'legacy': The historic rule-heavy prompt with 7 explicit numbered constraints.
     """
+    if prompt_style == "concise":
+        prompt_parts = [
+            f"=== VERIFIED EVIDENCE ===\n{context}\n",
+            "=== INSTRUCTIONS ===\n"
+            "- Answer the question using ONLY facts directly established in the evidence above.\n"
+            "- If the question asks for activities, events, or items, list ALL distinct matching items comma-separated.\n"
+            "- Attribute events only to the specific speaker asked about.\n"
+            "- Output ONLY the concise final answer value (place, date, number, name, or comma-separated list). Never output full sentences or reasoning."
+        ]
+        if no_abstain:
+            prompt_parts.append(
+                "- Answer from the evidence shown. If the evidence covers it, state it; only state 'not mentioned' if completely unmentioned."
+            )
+        return "\n".join(prompt_parts)
+
+    # Legacy 23-rule prompt
     base_prompt = (
         f"[TARGET GOAL]\n"
         f"You are answering this exact question: \"{question}\"\n\n"
@@ -798,8 +824,6 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
         f"{context}\n\n"
         f"=== FINAL ANSWER ===\n"
     )
-    # Generic output-format guidance only -- keyed on question TYPE, never on
-    # question content, and never naming an answer.
     hints = []
     ql = question.lower()
     if ql.startswith("where"):
@@ -811,21 +835,6 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
 
     hint_text = ("FORMAT RULES:\n" + "\n".join(hints) + "\n") if hints else ""
 
-    # ENUMERATION OUTPUT CONTRACT (opt-in, one clause at a time).
-    #
-    # Rule 3 already tells the model to enumerate exhaustively, but it gives the
-    # model nothing to CHECK against, and 63% of enumeration questions come back
-    # with a subset.  Each option below is a single additional clause, selectable
-    # so they can be measured one at a time rather than shipped as a bundle.
-    #
-    # 'count'     -- re-read the evidence and state how many distinct items exist
-    #                before listing them.
-    # 'evidence'  -- list only items the evidence actually states, and never
-    #                invent an item to reach a rounder count.
-    # 'attribute' -- keep the person/date/object each item belongs to attached.
-    #
-    # Off by default: the standing result is that "tell the model to reason"
-    # made things WORSE once already, so prompt elaboration is not assumed to help.
     contract = ""
     if enum_contract == "count":
         contract = (
@@ -847,17 +856,6 @@ def build_reader_prompt(question: str, context: str, enum_contract: str = "off",
             "happened, so items from different people are never merged.\n\n"
         )
 
-    # ABSTENTION GUIDANCE (opt-in, off by default).
-    #
-    # Measured: 468 of 1,986 predictions (23.6%) are abstentions, and 310 of
-    # those had the gold evidence IN the compiled context (gold-word coverage
-    # >= 0.5).  The prompt neither permits nor forbids abstaining, so the model
-    # decides on its own and gets it wrong two times in three.
-    #
-    # This clause asks for the best supported answer from the evidence shown,
-    # without inventing anything.  It does NOT tell the model to guess beyond the
-    # evidence, and it does not forbid an honest "not stated" -- the point is to
-    # stop it abstaining when the answer is sitting in the context.
     abstain_clause = ""
     if no_abstain:
         abstain_clause = (
@@ -1047,11 +1045,14 @@ def run(args) -> None:
     # the reader wins by more than it loses.  See V4_PROGRAM.md 4.17.
     args.use_committer = bool(getattr(args, "committer", False))
     freeze_dir = Path(args.freeze_contexts) if getattr(args, "freeze_contexts", "") else None
+    dump_dir = Path(args.dump_prompts) if getattr(args, "dump_prompts", "") else None
+    if dump_dir is not None:
+        dump_dir.mkdir(parents=True, exist_ok=True)
     freeze_rows: list[dict] = []
     manifest = []
     if getattr(args, "manifest", ""):
         with open(args.manifest, encoding="utf-8") as f:
-            manifest = json.load(f)
+            manifest = manifest_cases(json.load(f))
     args.manifest = manifest
     data = load_locomo(Path(args.data))
     wanted = set(int(x) for x in args.cats.split(",")) if args.cats else None
@@ -1103,6 +1104,37 @@ def run(args) -> None:
     planner = CognitiveExecutionPlanner()
     answerer = OllamaAnswerer(num_ctx=args.num_ctx)
 
+    # CROSS-ENCODER RE-RANK (opt-in).  The lexical ranker decides which turns
+    # enter the pool; this decides their order inside it.  Loaded once per run.
+    reranker = None
+    if getattr(args, "rerank", "off") == "cross-encoder":
+        from artificial_memory_gen.compiler.rerank import (
+            DEFAULT_MODEL,
+            CrossEncoderReranker,
+            CrossEncoderUnavailable,
+        )
+        reranker = CrossEncoderReranker(
+            getattr(args, "rerank_model", "") or DEFAULT_MODEL,
+            batch_size=int(getattr(args, "rerank_batch_size", 32) or 32))
+        # Fail before question 1, not at question 1,986 (nor silently inside the
+        # per-question error handler).
+        try:
+            reranker.ensure_loaded()
+        except CrossEncoderUnavailable as exc:
+            raise SystemExit(f"error: {exc}") from exc
+        print(f"  rerank: cross-encoder {reranker.model_name}")
+    elif getattr(args, "rerank", "off") == "ollama":
+        from artificial_memory_gen.compiler.rerank import (
+            OllamaListwiseReranker,
+            model_available,
+        )
+        rerank_model = getattr(args, "rerank_model", "") or "qwen2.5:7b-instruct"
+        problem = model_available(rerank_model)
+        if problem:
+            raise SystemExit(f"error: {problem}")
+        reranker = OllamaListwiseReranker(rerank_model)
+        print(f"  rerank: ollama listwise {rerank_model}")
+
     results: list[dict] = []
     by_cat: dict[int, list[bool]] = defaultdict(list)
     t_start = time.perf_counter()
@@ -1110,6 +1142,7 @@ def run(args) -> None:
     # cache the flattened turns per sample_id (conversations are large)
     turn_cache: dict[str, list] = {}
     fact_cache: dict[str, FactIndex] = {}
+    rerank_failed_questions: list[str] = []
 
     for idx, (conv, q) in enumerate(jobs):
         t_q = time.perf_counter()
@@ -1125,6 +1158,17 @@ def run(args) -> None:
             top_turns, turn_scores, guaranteed = coverage.retrieve_convergent_evidence(
                 query=q["question"], all_turns=all_turns, retriever=retriever,
                 reference_date=None, base_top_k=45)
+
+            if reranker is not None:
+                failures_before = int(getattr(reranker, "failures", 0) or 0)
+                top_turns, turn_scores = reranker.rerank_turns(
+                    q["question"], top_turns, turn_scores,
+                    top_k=int(getattr(args, "rerank_top_k", 0) or 0))
+                if int(getattr(reranker, "failures", 0) or 0) > failures_before:
+                    # Which case kept its retrieval order matters: a case that
+                    # moved must not be blamed on the re-ranker when the re-ranker
+                    # never scored it.
+                    rerank_failed_questions.append(q["question_id"])
 
             # SECOND-PASS RECALL (opt-in).  base_top_k=45 is already ~99% full
             # of lexically-matching turns, so evidence that shares no
@@ -1310,10 +1354,19 @@ def run(args) -> None:
                 if getattr(args, "speaker_first", False):
                     ctx_text = reorder_context_by_speaker(
                         ctx_text, q["question"], conv)
-                pred = answerer.answer(q["question"],
-                                       build_reader_prompt(q["question"], ctx_text,
-                                                           enum_contract=getattr(args, "enum_contract", "off"),
-                                                           no_abstain=getattr(args, "no_abstain", False))).text.strip()
+                reader_prompt = build_reader_prompt(
+                    q["question"], ctx_text,
+                    enum_contract=getattr(args, "enum_contract", "off"),
+                    no_abstain=getattr(args, "no_abstain", False),
+                    prompt_style=getattr(args, "prompt_style", "concise"))
+                if dump_dir is not None:
+                    # Audit surface: the exact text the reader is about to see.
+                    # Gold is deliberately NOT written here (leakage boundary);
+                    # the committed artifact carries it in the result row.
+                    (dump_dir / f"{q['question_id']}.txt").write_text(
+                        f"QUESTION: {q['question']}\n\n=== READER CONTEXT ===\n"
+                        f"{reader_prompt}\n", encoding="utf-8")
+                pred = answerer.answer(q["question"], reader_prompt).text.strip()
                 if pred.endswith(".") and len(pred.split()) <= 2:
                     pred = pred[:-1].strip()
 
@@ -1384,6 +1437,15 @@ def run(args) -> None:
             print(f"[{idx+1}/{len(jobs)}] {elapsed:.0f}s elapsed, "
                   f"ETA {eta/60:.1f}min")
 
+    # A re-ranker that silently failed to parse must not be reported as if it
+    # reordered anything: the count travels with the artifact.
+    rerank_failures = int(getattr(reranker, "failures", 0) or 0)
+    if rerank_failures:
+        print(f"  rerank: {rerank_failures} batch(es) unparseable; those batches "
+              "kept their retrieval order")
+        for question_id in rerank_failed_questions:
+            print(f"    kept retrieval order: {question_id}")
+
     if freeze_dir is not None:
         _write_frozen_contexts(freeze_dir, freeze_rows, args)
         return
@@ -1404,7 +1466,10 @@ def run(args) -> None:
         print(f"cat{cat} {CAT_NAMES.get(cat,'?'):18s} "
               f"{sum(v)/len(v)*100:7.1f}% {sum(v):8d}/{len(v):<6d}")
 
-    out = REPO / "benchmark_results" / "locomo_full.json"
+    # An explicit --out is honoured verbatim (the smoke runner pins its own run
+    # directory); otherwise default under benchmark_results/ with a stamp.
+    out = (Path(args.out).expanduser().resolve() if getattr(args, "out", "")
+           else REPO / "benchmark_results" / "locomo_full.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     # Write to a UNIQUE path per run.  Every run previously wrote to the same
     # locomo_full.json, so a stale background run finishing late would silently
@@ -1432,6 +1497,7 @@ def run(args) -> None:
     _config = {
         "cond": args.cond, "cats": args.cats, "limit": args.limit,
         "num_ctx": args.num_ctx, "second_pass": getattr(args, "second_pass", False),
+        "prompt_style": getattr(args, "prompt_style", "concise"),
         "enum_contract": getattr(args, "enum_contract", "off"),
         "speaker_first": getattr(args, "speaker_first", False),
         # Measurement knobs are recorded so no artifact can claim a default it
@@ -1441,6 +1507,11 @@ def run(args) -> None:
         "subject_admit_gain": getattr(args, "subject_admit_gain", 0.0),
         "refusal_gate": getattr(args, "refusal_gate", False),
         "committer": bool(getattr(args, "use_committer", False)),
+        "rerank": getattr(args, "rerank", "off"),
+        "rerank_model": getattr(args, "rerank_model", ""),
+        "rerank_top_k": getattr(args, "rerank_top_k", 0),
+        "rerank_failures": rerank_failures,
+        "rerank_failed_questions": rerank_failed_questions,
         "manifest": args.manifest or "",
         "n_questions": len(jobs),
         "data": args.data,
@@ -1464,17 +1535,22 @@ def run(args) -> None:
         "scorer": "eval_locomo_full.score_question + is_list_gold (audit_strict_grade)",
     }
 
-    out = out.with_name(f"locomo_full_{_stamp}.json")
-    # Also keep the stable 'latest' pointer for convenience.
-    latest = out.parent / "locomo_full.json"
+    if getattr(args, "out", ""):
+        latest = None
+    else:
+        out = out.with_name(f"locomo_full_{_stamp}.json")
+        # Also keep the stable 'latest' pointer for convenience.
+        latest = out.parent / "locomo_full.json"
     with open(out, "w", encoding="utf-8") as f:
         json.dump({**_manifest, "results": results},
                   f, ensure_ascii=False, indent=2)
-    with open(latest, "w", encoding="utf-8") as f:
-        json.dump({**_manifest, "source": out.name},
-                  f, ensure_ascii=False, indent=2)
+    if latest is not None:
+        with open(latest, "w", encoding="utf-8") as f:
+            json.dump({**_manifest, "source": out.name},
+                      f, ensure_ascii=False, indent=2)
     print(f"\nSaved -> {out}")
-    print(f"Latest -> {latest}")
+    if latest is not None:
+        print(f"Latest -> {latest}")
     print(f"Run manifest: revision={_rev} salt={_salt} config={_config}")
 
 
@@ -1488,6 +1564,9 @@ def main() -> None:
     ap.add_argument("--second-pass", action="store_true",
                     help="re-query turns the first pass did not retrieve, keyed "
                          "on the queried subject (off by default)")
+    ap.add_argument("--prompt-style", default="concise", choices=["concise", "legacy"],
+                    help="prompt style for the reader: 'concise' (default, modern and minimal) "
+                         "or 'legacy' (historic 23-rule prompt)")
     ap.add_argument("--enum-contract", default="off",
                     choices=["off", "count", "evidence", "attribute"],
                     help="one extra enumeration clause in the reader prompt; "
@@ -1502,7 +1581,27 @@ def main() -> None:
     ap.add_argument("--manifest", default="",
                     help="JSON file listing {conv_idx,q_idx} pairs to evaluate "
                          "(a real sample); overrides --limit, which is only a "
-                         "conversation-contiguous prefix")
+                         "conversation-contiguous prefix.  Either a bare list or "
+                         "an object with a 'cases' list (smoke manifests).")
+    ap.add_argument("--out", default="",
+                    help="write the result artifact to this exact path instead of "
+                         "benchmark_results/locomo_full_<stamp>.json")
+    ap.add_argument("--dump-prompts", default="",
+                    help="write the exact reader prompt of every question to DIR "
+                         "(audit surface; ground truth is never included)")
+    ap.add_argument("--rerank", default="off",
+                    choices=["off", "cross-encoder", "ollama"],
+                    help="re-order the retrieved candidate pool with a learned "
+                         "relevance model before the budgeted compiler selects "
+                         "evidence (off by default). 'cross-encoder' needs the "
+                         "[vector] extra; 'ollama' uses the local server.")
+    ap.add_argument("--rerank-model", default="",
+                    help="re-ranker model name (defaults: cross-encoder/"
+                         "ms-marco-MiniLM-L-6-v2 or qwen2.5:7b-instruct)")
+    ap.add_argument("--rerank-top-k", type=int, default=0,
+                    help="only re-score the first K retrieved turns (0 = whole pool)")
+    ap.add_argument("--rerank-batch-size", type=int, default=32,
+                    help="cross-encoder batch size (default 32)")
     ap.add_argument("--speaker-first", action="store_true",
                     help="reorder reader context so the question's target speaker's "
                          "evidence appears first (off by default)")

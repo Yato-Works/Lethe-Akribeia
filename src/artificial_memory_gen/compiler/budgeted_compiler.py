@@ -119,6 +119,7 @@ class BudgetedCognitiveCompiler:
         admit_subject_names: set[str] | None = None,
         admit_enumeration: bool = False,
         admit_gain: float = 0.0,
+        normalize_speakers: bool = False,
     ) -> CompiledContext:
         """Select optimal subset of bundles under token_budget and format context."""
         # Expand question words with roots and synonyms
@@ -319,18 +320,22 @@ class BudgetedCognitiveCompiler:
         for n in ordered_nodes:
             date_str = f" on {n.session_date}" if n.session_date else ""
             spk_str = n.speaker.capitalize()
-            norm_text = self.speaker_normalizer.normalize_turn(n.raw_text, speaker=n.speaker)
+            if normalize_speakers:
+                norm_text = self.speaker_normalizer.normalize_turn(n.raw_text, speaker=n.speaker)
+            else:
+                norm_text = n.raw_text
             if n.session_date:
                 norm_text = self.temporal_normalizer.normalize(norm_text, n.session_date)
             line = f"[{n.session_id}{date_str}] {spk_str}: {norm_text}"
             body_lines.append(line)
             provenance.append(f"{n.node_id} ({n.tokens} tok)")
 
-        spk_cert = self.speaker_normalizer.generate_attribution_certificate(
-            question, [(n.speaker, n.raw_text) for n in ordered_nodes]
-        )
-        if spk_cert:
-            cert_block = f"{cert_block}\n\n{spk_cert}".strip() if cert_block else spk_cert
+        if normalize_speakers:
+            spk_cert = self.speaker_normalizer.generate_attribution_certificate(
+                question, [(n.speaker, n.raw_text) for n in ordered_nodes]
+            )
+            if spk_cert:
+                cert_block = f"{cert_block}\n\n{spk_cert}".strip() if cert_block else spk_cert
 
         context_parts = []
         if cert_block:
