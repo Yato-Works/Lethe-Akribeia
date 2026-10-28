@@ -4,10 +4,17 @@ Deterministic unit mode (no LLM): facts become the raw exchange lines;
 answers are the frozen abstention text. Checks cover protocol compliance:
 budget cap, write-side cost records, temporal edge stamps (Zep) and
 PPR seeding/ranking (HippoRAG).
+
+Requires the ``[vector]`` optional extra (faiss + sentence-transformers).
+The whole module is skipped with a clear reason when faiss is absent.
 """
 from __future__ import annotations
 
 import pytest
+
+# Both players call VectorSearchEngine which requires faiss; skip early so
+# a lean dev venv (no [vector] extra) does not produce hard ImportErrors.
+pytest.importorskip("faiss", reason="lethe-akribeia[vector] extra required")
 
 from artificial_memory.research.benchmarks.arena import build_dataset
 from artificial_memory.research.benchmarks.players import HippoRAGStylePlayer, ZepStylePlayer

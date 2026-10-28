@@ -138,7 +138,9 @@ def _display(path: Path) -> str:
 # ------------------------------------------------------------------ execution
 def run_eval(*, run_dir: Path, manifest: dict, data_path: Path,
              no_llm: bool, rerank: str = "off",
-             rerank_model: str = "") -> tuple[int, str]:
+             rerank_model: str = "",
+             speaker_first: bool = False,
+             refusal_gate: bool = False) -> tuple[int, str]:
     """Invoke the canonical harness and return (exit code, combined log)."""
     manifest_path = run_dir / "manifest.json"
     manifest_path.write_text(
@@ -153,6 +155,10 @@ def run_eval(*, run_dir: Path, manifest: dict, data_path: Path,
         cmd += ["--rerank", rerank]
         if rerank_model:
             cmd += ["--rerank-model", rerank_model]
+    if speaker_first:
+        cmd += ["--speaker-first"]
+    if refusal_gate:
+        cmd += ["--refusal-gate"]
     if no_llm:
         # 0 LLM calls: compile the contexts and stop.  Proves retrieval and the
         # compiler still run, and shows how much evidence each case would get.
@@ -514,6 +520,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--rerank-model", default="",
                     help="re-ranker model (default: ms-marco-MiniLM-L-6-v2 for "
                          "cross-encoder, qwen2.5:7b-instruct for ollama)")
+    ap.add_argument("--speaker-first", action="store_true",
+                    help="reorder reader context so the question's target speaker's "
+                         "evidence appears first")
+    ap.add_argument("--refusal-gate", action="store_true",
+                    help="apply the deterministic answer-provenance gate: an answer "
+                         "whose wording only comes from another speaker's turn "
+                         "becomes a refusal")
     ap.add_argument("--show-prompts", type=int, default=2,
                     help="how many full reader inputs to inline in report.md (default 2)")
     ap.add_argument("--list", action="store_true",
@@ -583,7 +596,9 @@ def main(argv: list[str] | None = None) -> int:
     t0 = time.perf_counter()
     code, log = run_eval(run_dir=run_dir, manifest=selected,
                          data_path=data_path, no_llm=args.no_llm,
-                         rerank=args.rerank, rerank_model=args.rerank_model)
+                         rerank=args.rerank, rerank_model=args.rerank_model,
+                         speaker_first=args.speaker_first,
+                         refusal_gate=args.refusal_gate)
     duration = time.perf_counter() - t0
 
     if args.rerank == "off":
@@ -600,6 +615,8 @@ def main(argv: list[str] | None = None) -> int:
         "model": model,
         "prompt_style": "concise",
         "rerank": rerank_label,
+        "speaker_first": args.speaker_first,
+        "refusal_gate": args.refusal_gate,
         "revision": git_revision(),
         "duration": duration,
     }
