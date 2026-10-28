@@ -20,6 +20,7 @@ Usage:
     python scripts/benchmarks/locomo_smoke.py --list      # show the pinned set
     python scripts/benchmarks/locomo_smoke.py --no-llm    # contexts only, 0 LLM calls
     python scripts/benchmarks/locomo_smoke.py --show-prompts 4
+    python scripts/benchmarks/locomo_smoke.py --rerank cross-encoder
 
 Exit codes: 0 = every case answered, 1 = a case crashed or came back empty,
 2 = preflight failed (dataset missing / Ollama unreachable).  Accuracy is
@@ -58,6 +59,12 @@ CAT_NAMES = {
 # running a different model than the published numbers used.
 FROZEN_MODEL = "qwen2.5:7b-instruct"
 OLLAMA_BASE_URL = "http://localhost:11434"
+
+#: Model used by each re-ranking backend when --rerank-model is not given.
+RERANK_DEFAULT_MODEL = {
+    "cross-encoder": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "ollama": "qwen2.5:7b-instruct",
+}
 
 
 # --------------------------------------------------------------------- inputs
@@ -130,7 +137,8 @@ def _display(path: Path) -> str:
 
 # ------------------------------------------------------------------ execution
 def run_eval(*, run_dir: Path, manifest: dict, data_path: Path,
-             no_llm: bool) -> tuple[int, str]:
+             no_llm: bool, rerank: str = "off",
+             rerank_model: str = "") -> tuple[int, str]:
     """Invoke the canonical harness and return (exit code, combined log)."""
     manifest_path = run_dir / "manifest.json"
     manifest_path.write_text(
@@ -141,6 +149,10 @@ def run_eval(*, run_dir: Path, manifest: dict, data_path: Path,
         "--data", str(data_path),
         "--manifest", str(manifest_path),
     ]
+    if rerank != "off":
+        cmd += ["--rerank", rerank]
+        if rerank_model:
+            cmd += ["--rerank-model", rerank_model]
     if no_llm:
         # 0 LLM calls: compile the contexts and stop.  Proves retrieval and the
         # compiler still run, and shows how much evidence each case would get.
@@ -243,6 +255,7 @@ def build_report(rows: list[dict], meta: dict, prompts: dict[str, str] | None = 
     lines.append(f"| prompt style | `{meta['prompt_style']}` |" if llm
                  else "| prompt style | n/a |")
     lines.append(f"| code | `{meta['revision']}` |")
+    lines.append(f"| re-rank | {meta.get('rerank', 'off')} |")
     lines.append(f"| manifest | `{meta['name']}` (`{meta['manifest']}`) |")
     lines.append(f"| dataset | `{meta['data']}` |")
     lines.append(f"| wall clock | {meta['duration']:.1f}s |")
@@ -364,6 +377,88 @@ def build_report(rows: list[dict], meta: dict, prompts: dict[str, str] | None = 
     return "\n".join(lines) + "\n"
 
 
+def load_run(run_dir: Path) -> dict:
+    """Read a finished smoke run directory into report rows."""
+    results_file = run_dir / "results.json"
+    if results_file.exists():
+        artifact = json.loads(results_file.read_text(encoding="utf-8"))
+        return {
+            "mode": "llm",
+            "rows": normalize_results(artifact.get("results", [])),
+            "config": artifact.get("config") or {},
+        }
+    ctx_file = run_dir / "frozen_ctx" / "contexts.jsonl"
+    if ctx_file.exists():
+        frozen = [
+            json.loads(line)
+            for line in ctx_file.read_text(encoding="utf-8").splitlines() if line.strip()
+        ]
+        return {"mode": "contexts", "rows": normalize_frozen(frozen), "config": {}}
+    raise SystemExit(f"no results.json or frozen_ctx/contexts.jsonl in {run_dir}")
+
+
+def build_comparison(before: dict, after: dict, labels: tuple[str, str]) -> str:
+    """Diff two smoke runs case by case.
+
+    This is the "did my change help?" surface: fixed, broken, and unchanged
+    cases are listed explicitly, so a net-zero result cannot be mistaken for a
+    win (or a loss) on the strength of a single total.
+    """
+    label_b, label_a = labels
+    a = {r["id"]: r for r in before["rows"]}
+    b = {r["id"]: r for r in after["rows"]}
+    shared = [qid for qid in a if qid in b]
+    llm = before["mode"] == "llm" and after["mode"] == "llm"
+
+    lines = ["# Smoke comparison", ""]
+    lines.append(f"- before: `{label_b}`")
+    lines.append(f"- after: `{label_a}`")
+    lines.append(f"- shared cases: {len(shared)}")
+    lines.append("")
+    if not shared:
+        lines.append("No case ids in common: the manifests differ.")
+        return "\n".join(lines) + "\n"
+
+    if llm:
+        fixed = [q for q in shared if not a[q]["ok"] and b[q]["ok"]]
+        broken = [q for q in shared if a[q]["ok"] and not b[q]["ok"]]
+        before_ok = sum(1 for q in shared if a[q]["ok"])
+        after_ok = sum(1 for q in shared if b[q]["ok"])
+        lines.append(f"- correct: {before_ok} -> {after_ok} ({after_ok - before_ok:+d})")
+        lines.append(f"- fixed: {len(fixed)} | broken: {len(broken)} | "
+                     f"unchanged: {len(shared) - len(fixed) - len(broken)}")
+        lines.append("")
+        lines.append("| case | cat | before | after | before pred | after pred |")
+        lines.append("|------|-----|--------|-------|-------------|------------|")
+        for qid in shared:
+            ra, rb = a[qid], b[qid]
+            if ra["ok"] == rb["ok"]:
+                continue
+            lines.append(
+                f"| {qid} | {ra['cat']} {CAT_NAMES.get(ra['cat'], '?')} | "
+                f"{'OK' if ra['ok'] else 'FAIL'} | {'OK' if rb['ok'] else 'FAIL'} | "
+                f"{_clip(ra['predicted'], 40)} | {_clip(rb['predicted'], 40)} |")
+        lines.append("")
+    else:
+        lines.append("| case | cat | before tok | after tok | delta |")
+        lines.append("|------|-----|-----------:|----------:|------:|")
+        for qid in shared:
+            ra, rb = a[qid], b[qid]
+            lines.append(f"| {qid} | {ra['cat']} {CAT_NAMES.get(ra['cat'], '?')} | "
+                         f"{ra['ctx_tokens']} | {rb['ctx_tokens']} | "
+                         f"{rb['ctx_tokens'] - ra['ctx_tokens']:+d} |")
+        lines.append("")
+
+    mean_a = sum(a[q]["ctx_tokens"] for q in shared) / len(shared)
+    mean_b = sum(b[q]["ctx_tokens"] for q in shared) / len(shared)
+    lines.append(f"Mean context tokens: {mean_a:.0f} -> {mean_b:.0f} "
+                 f"({mean_b - mean_a:+.0f}).")
+    lines.append("")
+    lines.append("> 18 pinned dev cases. A delta here is a lead to investigate, "
+                 "not a published result; confirm on the full run before claiming it.")
+    return "\n".join(lines) + "\n"
+
+
 def console_summary(rows: list[dict], meta: dict) -> str:
     llm = meta["mode"] == "llm"
     total = len(rows)
@@ -411,11 +506,32 @@ def main(argv: list[str] | None = None) -> int:
                     help="parent directory for the timestamped run folder")
     ap.add_argument("--no-llm", action="store_true",
                     help="compile contexts only; makes no reader calls")
+    ap.add_argument("--rerank", default="off", choices=["off", "cross-encoder", "ollama"],
+                    help="re-order retrieved evidence with a learned relevance model "
+                         "before the budgeted compiler selects it "
+                         "('cross-encoder' needs the [vector] extra; 'ollama' uses "
+                         "the local server)")
+    ap.add_argument("--rerank-model", default="",
+                    help="re-ranker model (default: ms-marco-MiniLM-L-6-v2 for "
+                         "cross-encoder, qwen2.5:7b-instruct for ollama)")
     ap.add_argument("--show-prompts", type=int, default=2,
                     help="how many full reader inputs to inline in report.md (default 2)")
     ap.add_argument("--list", action="store_true",
                     help="print the pinned cases and exit")
+    ap.add_argument("--compare", nargs=2, metavar=("BEFORE", "AFTER"), default=None,
+                    help="diff two finished run directories and exit")
     args = ap.parse_args(argv)
+
+    if args.compare:
+        before_dir = Path(args.compare[0]).expanduser().resolve()
+        after_dir = Path(args.compare[1]).expanduser().resolve()
+        report = build_comparison(load_run(before_dir), load_run(after_dir),
+                                  (before_dir.name, after_dir.name))
+        out = after_dir / "comparison.md"
+        out.write_text(report, encoding="utf-8")
+        print(report)
+        print(f"written: {out}")
+        return 0
 
     manifest_path = Path(args.manifest).expanduser().resolve()
     if not manifest_path.exists():
@@ -460,11 +576,20 @@ def main(argv: list[str] | None = None) -> int:
     if not args.no_llm:
         print(f"reader   : {model} via {OLLAMA_BASE_URL} "
               f"(roughly {len(cases) * 3}s)")
+    if args.rerank != "off":
+        print(f"rerank   : {args.rerank} "
+              f"{args.rerank_model or RERANK_DEFAULT_MODEL[args.rerank]}")
 
     t0 = time.perf_counter()
     code, log = run_eval(run_dir=run_dir, manifest=selected,
-                         data_path=data_path, no_llm=args.no_llm)
+                         data_path=data_path, no_llm=args.no_llm,
+                         rerank=args.rerank, rerank_model=args.rerank_model)
     duration = time.perf_counter() - t0
+
+    if args.rerank == "off":
+        rerank_label = "off"
+    else:
+        rerank_label = f"{args.rerank} `{args.rerank_model or RERANK_DEFAULT_MODEL[args.rerank]}`"
 
     meta = {
         "stamp": run_dir.name,
@@ -474,6 +599,7 @@ def main(argv: list[str] | None = None) -> int:
         "mode": mode,
         "model": model,
         "prompt_style": "concise",
+        "rerank": rerank_label,
         "revision": git_revision(),
         "duration": duration,
     }
@@ -483,7 +609,7 @@ def main(argv: list[str] | None = None) -> int:
         if not ctx_file.exists():
             print(log[-4000:])
             print(f"error: harness produced no contexts (exit {code}); see {run_dir / 'run.log'}")
-            return 1
+            return 2
         frozen = [
             json.loads(line) for line in ctx_file.read_text(encoding="utf-8").splitlines()
             if line.strip()
@@ -496,7 +622,7 @@ def main(argv: list[str] | None = None) -> int:
             print(log[-4000:])
             print(f"error: harness produced no results (exit {code}); "
                   f"see {run_dir / 'run.log'}")
-            return 1
+            return 2
         artifact = json.loads(results_file.read_text(encoding="utf-8"))
         rows = normalize_results(artifact.get("results", []))
         config = artifact.get("config") or {}
@@ -508,8 +634,9 @@ def main(argv: list[str] | None = None) -> int:
                 prompts[f.stem] = f.read_text(encoding="utf-8")
 
     if not rows:
+        print(log[-2000:])
         print(f"error: no cases ran; see {run_dir / 'run.log'}")
-        return 1
+        return 2 if code != 0 else 1
 
     report = build_report(rows, meta, prompts=prompts, max_prompts=args.show_prompts)
     (run_dir / "report.md").write_text(report, encoding="utf-8")

@@ -83,6 +83,14 @@ cases. The cases are pinned in `benchmark_config/smoke_manifest.json` and exclud
 conv-48 (the strict clean holdout). Smoke accuracy is a plumbing signal; it is
 never reported as a benchmark result.
 
+`--compare BEFORE AFTER` diffs two finished run folders (fixed / broken cases,
+per-case token delta, mean context change), and `--rerank {ollama,cross-encoder}`
+re-orders the candidate pool with a learned relevance model before the compiler
+picks evidence. The `ollama` backend measured 10 -> 9 correct on the 18 pinned
+cases (2026-10-28): a null at that n, with mean context 1410 -> 1258 tokens. It is
+off by default; the `cross-encoder` backend needs the `[vector]` extra and has not
+been measured on a machine without PyPI access.
+
 ## Frozen evaluation contract
 
 For every score that appears in a report, freeze all of the following together:

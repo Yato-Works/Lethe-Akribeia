@@ -27,6 +27,7 @@ sys.path.insert(0, str(REPO / "scripts" / "benchmarks"))
 
 from eval_locomo_full import manifest_cases  # noqa: E402
 from locomo_smoke import (  # noqa: E402
+    build_comparison,
     build_report,
     load_manifest,
     normalize_frozen,
@@ -153,3 +154,38 @@ class TestReport:
         assert "0 LLM calls" in report
         assert "correct" not in report.lower()
         assert "## Compiled context - lc_conv-26_0" in report
+
+
+class TestComparison:
+    def test_fixed_and_broken_are_listed_separately(self):
+        before = {"mode": "llm", "rows": normalize_results([
+            _result("c1", 1, ok=False, pred="old wrong"),
+            _result("c2", 2, ok=True, pred="right"),
+            _result("c3", 4, ok=True, pred="right"),
+        ])}
+        after = {"mode": "llm", "rows": normalize_results([
+            _result("c1", 1, ok=True, pred="now right"),
+            _result("c2", 2, ok=False, pred="now wrong"),
+            _result("c3", 4, ok=True, pred="right"),
+        ])}
+        text = build_comparison(before, after, ("before", "after"))
+        assert "correct: 2 -> 2 (+0)" in text
+        assert "fixed: 1 | broken: 1 | unchanged: 1" in text
+        assert "| c1 | 1 multi-hop | FAIL | OK |" in text
+        assert "| c2 | 2 temporal | OK | FAIL |" in text
+        assert "| c3 |" not in text, "unchanged cases stay out of the change table"
+        assert "lead to investigate" in text
+
+    def test_context_only_comparison_reports_token_delta(self):
+        before = {"mode": "contexts", "rows": normalize_frozen([
+            {"question_id": "c1", "category": 1, "question": "q", "gold": "g",
+             "context": "x", "context_tokens": 1000},
+        ])}
+        after = {"mode": "contexts", "rows": normalize_frozen([
+            {"question_id": "c1", "category": 1, "question": "q", "gold": "g",
+             "context": "x", "context_tokens": 700},
+        ])}
+        text = build_comparison(before, after, ("before", "after"))
+        assert "| c1 | 1 multi-hop | 1000 | 700 | -300 |" in text
+        assert "Mean context tokens: 1000 -> 700 (-300)." in text
+

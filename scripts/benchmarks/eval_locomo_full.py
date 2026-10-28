@@ -1104,6 +1104,37 @@ def run(args) -> None:
     planner = CognitiveExecutionPlanner()
     answerer = OllamaAnswerer(num_ctx=args.num_ctx)
 
+    # CROSS-ENCODER RE-RANK (opt-in).  The lexical ranker decides which turns
+    # enter the pool; this decides their order inside it.  Loaded once per run.
+    reranker = None
+    if getattr(args, "rerank", "off") == "cross-encoder":
+        from artificial_memory_gen.compiler.rerank import (
+            DEFAULT_MODEL,
+            CrossEncoderReranker,
+            CrossEncoderUnavailable,
+        )
+        reranker = CrossEncoderReranker(
+            getattr(args, "rerank_model", "") or DEFAULT_MODEL,
+            batch_size=int(getattr(args, "rerank_batch_size", 32) or 32))
+        # Fail before question 1, not at question 1,986 (nor silently inside the
+        # per-question error handler).
+        try:
+            reranker.ensure_loaded()
+        except CrossEncoderUnavailable as exc:
+            raise SystemExit(f"error: {exc}") from exc
+        print(f"  rerank: cross-encoder {reranker.model_name}")
+    elif getattr(args, "rerank", "off") == "ollama":
+        from artificial_memory_gen.compiler.rerank import (
+            OllamaListwiseReranker,
+            model_available,
+        )
+        rerank_model = getattr(args, "rerank_model", "") or "qwen2.5:7b-instruct"
+        problem = model_available(rerank_model)
+        if problem:
+            raise SystemExit(f"error: {problem}")
+        reranker = OllamaListwiseReranker(rerank_model)
+        print(f"  rerank: ollama listwise {rerank_model}")
+
     results: list[dict] = []
     by_cat: dict[int, list[bool]] = defaultdict(list)
     t_start = time.perf_counter()
@@ -1126,6 +1157,11 @@ def run(args) -> None:
             top_turns, turn_scores, guaranteed = coverage.retrieve_convergent_evidence(
                 query=q["question"], all_turns=all_turns, retriever=retriever,
                 reference_date=None, base_top_k=45)
+
+            if reranker is not None:
+                top_turns, turn_scores = reranker.rerank_turns(
+                    q["question"], top_turns, turn_scores,
+                    top_k=int(getattr(args, "rerank_top_k", 0) or 0))
 
             # SECOND-PASS RECALL (opt-in).  base_top_k=45 is already ~99% full
             # of lexically-matching turns, so evidence that shares no
@@ -1394,6 +1430,13 @@ def run(args) -> None:
             print(f"[{idx+1}/{len(jobs)}] {elapsed:.0f}s elapsed, "
                   f"ETA {eta/60:.1f}min")
 
+    # A re-ranker that silently failed to parse must not be reported as if it
+    # reordered anything: the count travels with the artifact.
+    rerank_failures = int(getattr(reranker, "failures", 0) or 0)
+    if rerank_failures:
+        print(f"  rerank: {rerank_failures} batch(es) unparseable; those batches "
+              "kept their retrieval order")
+
     if freeze_dir is not None:
         _write_frozen_contexts(freeze_dir, freeze_rows, args)
         return
@@ -1455,6 +1498,10 @@ def run(args) -> None:
         "subject_admit_gain": getattr(args, "subject_admit_gain", 0.0),
         "refusal_gate": getattr(args, "refusal_gate", False),
         "committer": bool(getattr(args, "use_committer", False)),
+        "rerank": getattr(args, "rerank", "off"),
+        "rerank_model": getattr(args, "rerank_model", ""),
+        "rerank_top_k": getattr(args, "rerank_top_k", 0),
+        "rerank_failures": rerank_failures,
         "manifest": args.manifest or "",
         "n_questions": len(jobs),
         "data": args.data,
@@ -1532,6 +1579,19 @@ def main() -> None:
     ap.add_argument("--dump-prompts", default="",
                     help="write the exact reader prompt of every question to DIR "
                          "(audit surface; ground truth is never included)")
+    ap.add_argument("--rerank", default="off",
+                    choices=["off", "cross-encoder", "ollama"],
+                    help="re-order the retrieved candidate pool with a learned "
+                         "relevance model before the budgeted compiler selects "
+                         "evidence (off by default). 'cross-encoder' needs the "
+                         "[vector] extra; 'ollama' uses the local server.")
+    ap.add_argument("--rerank-model", default="",
+                    help="re-ranker model name (defaults: cross-encoder/"
+                         "ms-marco-MiniLM-L-6-v2 or qwen2.5:7b-instruct)")
+    ap.add_argument("--rerank-top-k", type=int, default=0,
+                    help="only re-score the first K retrieved turns (0 = whole pool)")
+    ap.add_argument("--rerank-batch-size", type=int, default=32,
+                    help="cross-encoder batch size (default 32)")
     ap.add_argument("--speaker-first", action="store_true",
                     help="reorder reader context so the question's target speaker's "
                          "evidence appears first (off by default)")

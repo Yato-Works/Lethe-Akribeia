@@ -20,6 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   every case (ground truth is never included), `--out PATH` writes the artifact
   to a fixed location, and named manifests (`{"cases": [...]}`) are accepted
   alongside bare lists. The run manifest now also records `prompt_style`.
+- **`--rerank` (opt-in) and `--compare` (run diffing).** Two backends can
+  re-order the retrieved candidate pool before the budgeted compiler selects
+  evidence: `ollama` (listwise JSON scores from a local model, no installs) and
+  `cross-encoder` (`cross-encoder/ms-marco-MiniLM-L-6-v2`, needs the `[vector]`
+  extra). Both fail before question 1 when their model is missing; a batch whose
+  reply cannot be parsed keeps its retrieval order and is counted in the run
+  manifest's `rerank_failures`, so a run cannot silently claim it re-ranked
+  anything. `locomo_smoke.py --compare BEFORE AFTER` diffs two run folders:
+  fixed / broken cases, per-case token delta, mean context change.
 
 ### Changed
 - **The reader prompt is a 4-line evidence-first instruction block by default**
@@ -28,6 +37,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ("when melanie look after melanie oneself") is bypassed by default. This is a
   prompt/plumbing change, not a measured score change: no full run has been
   re-scored on this branch.
+- **Re-ranking is currently a measured null, so it stays off by default.** On the
+  pinned smoke set (18 dev cases, 2026-10-28) the `ollama` listwise re-ranker
+  moved 10 -> 9 correct (1 fixed, 2 broken) and cut mean context from 1410 to
+  1258 tokens. At n=18 that delta is noise, not a verdict; the smaller context is
+  the only structural effect. One break is the attribution pair itself
+  (`lc_conv-43_178`, "which team did *Tim* sign with"): the un-reranked run
+  refused, the re-ranked run returned John's answer ("Minnesota Wolves"). The
+  cross-encoder backend is unit-tested but **unmeasured** — this machine cannot
+  reach PyPI, so it has never produced a real score.
 
 ### Removed
 - 950 obsolete one-off diagnostic scripts and legacy smoke-test outputs, which

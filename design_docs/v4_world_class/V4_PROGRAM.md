@@ -1398,9 +1398,21 @@ byte-identity, frozen off-arm), 30 unit green.  Artifacts:
 | ordering rules | every rule rescues the same 6 | M17 |
 | prompt elaboration (`count`/`evidence`/`attribute`) | 3 consecutive failures | commits `6ec219f` etc. |
 | abstention prompt clause | 0 gain / 2 worse (n=40) | `6ec219f` |
+| learned listwise re-ranker (`qwen2.5:7b`, local Ollama) | 10 -> 9 correct on 18 dev cases, context -11% | 2026-10-28, `--rerank ollama` |
 
 The last row used n=40 and `p=0.48`; it is a **weak** negative, and it tested a
 *prompt* intervention. It does not test a deterministic decision.
+
+The re-ranker row is a **weak** negative too, and for a different reason: it is a
+*learned* model, which is what makes it worth recording next to the rule-based
+rows, but n=18 with 1 fixed / 2 broken cannot separate it from noise. What it
+does establish: (a) a learned relevance model over the same 45-candidate pool
+does not by itself fix attribution — one break was `lc_conv-43_178`, where the
+reader answered John's team for Tim's question after re-ranking had refused
+correctly before; (b) re-ranking shrinks the selected context by ~11%, which is a
+real mechanism if a future model orders better. The cross-encoder backend (the
+instrument that would test this properly) is implemented and unit-tested but
+**unmeasured** — the development machine could not reach PyPI for torch.
 
 ---
 

@@ -353,6 +353,43 @@ excludes conv-48, the strict clean holdout. **These numbers are a plumbing
 signal, not a benchmark score**; publishable numbers stay in
 [`benchmark_results/RESULTS_REGISTRY.md`](benchmark_results/RESULTS_REGISTRY.md).
 
+### Comparing two runs
+
+`--compare` diffs two finished run folders: which cases got fixed, which broke,
+the per-case token delta and the mean context change. It reads the artifacts, so
+it works on any two runs of the same case set, including one made before a change
+you are evaluating.
+
+```bash
+python scripts/benchmarks/locomo_smoke.py                                  # baseline
+python scripts/benchmarks/locomo_smoke.py --rerank ollama                  # same cases
+python scripts/benchmarks/locomo_smoke.py --compare \
+    benchmark_results/smoke/<baseline> benchmark_results/smoke/<second-run>
+```
+
+### Re-ranking (`--rerank`, off by default)
+
+`--rerank` re-orders the retrieved candidate pool with a learned relevance model
+before the budgeted compiler selects evidence:
+
+| backend | model | needs |
+|---|---|---|
+| `ollama` | `qwen2.5:7b-instruct`, listwise JSON scores | the Ollama server every run already needs |
+| `cross-encoder` | `cross-encoder/ms-marco-MiniLM-L-6-v2` | the `[vector]` extra (torch + sentence-transformers) |
+
+Both fail before the first question if their model is absent. A batch whose reply
+cannot be parsed keeps its retrieval order and is counted in the manifest's
+`rerank_failures`, so a run cannot silently claim it re-ranked anything.
+
+**Measured 2026-10-28 on the 18 pinned dev cases (`ollama` backend): 10 -> 9
+correct, 1 fixed / 2 broken, mean context 1410 -> 1258 tokens.** That is a null
+— at n=18 a one-case delta is noise — and the smaller context is the only
+structural effect. One of the two breaks is the attribution pair itself:
+`lc_conv-43_178` ("which team did *Tim* sign with", gold: not mentioned) returned
+`Minnesota Wolves`, i.e. John's answer, where the un-reranked run refused. The
+cross-encoder was never measured here (no PyPI access on the development
+machine), so the stronger instrument is untested, not refuted.
+
 ## Reproduction
 
 ```bash
