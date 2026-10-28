@@ -382,13 +382,15 @@ cannot be parsed keeps its retrieval order and is counted in the manifest's
 `rerank_failures`, so a run cannot silently claim it re-ranked anything.
 
 **Measured 2026-10-28 on the 18 pinned dev cases (`ollama` backend): 10 -> 9
-correct, 1 fixed / 2 broken, mean context 1410 -> 1258 tokens.** That is a null
-— at n=18 a one-case delta is noise — and the smaller context is the only
-structural effect. One of the two breaks is the attribution pair itself:
-`lc_conv-43_178` ("which team did *Tim* sign with", gold: not mentioned) returned
-`Minnesota Wolves`, i.e. John's answer, where the un-reranked run refused. The
-cross-encoder was never measured here (no PyPI access on the development
-machine), so the stronger instrument is untested, not refuted.
+correct, 1 fixed / 2 broken, mean context 1410 -> 1258 tokens.** Both arms were
+re-run and reproduced identically (temperature 0, seed 42), so the -1 is a real
+effect on these 18 cases, not sampling noise — but 18 cases cannot settle the
+method, and the smaller context is the only structural effect. One of the two
+breaks is the attribution pair itself: `lc_conv-43_178` ("which team did *Tim*
+sign with", gold: not mentioned) returned `Minnesota Wolves`, i.e. John's
+answer, where the un-reranked run refused. The cross-encoder was never measured
+here (no PyPI access on the development machine), so the stronger instrument is
+untested, not refuted.
 
 ## Reproduction
 

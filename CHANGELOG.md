@@ -40,12 +40,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Re-ranking is currently a measured null, so it stays off by default.** On the
   pinned smoke set (18 dev cases, 2026-10-28) the `ollama` listwise re-ranker
   moved 10 -> 9 correct (1 fixed, 2 broken) and cut mean context from 1410 to
-  1258 tokens. At n=18 that delta is noise, not a verdict; the smaller context is
-  the only structural effect. One break is the attribution pair itself
-  (`lc_conv-43_178`, "which team did *Tim* sign with"): the un-reranked run
-  refused, the re-ranked run returned John's answer ("Minnesota Wolves"). The
-  cross-encoder backend is unit-tested but **unmeasured** — this machine cannot
-  reach PyPI, so it has never produced a real score.
+  1258 tokens. Both arms were re-run and reproduced byte-identically at
+  temperature 0 / seed 42, so the -1 is a real effect on these 18 cases rather
+  than sampling noise; it is still far too few cases to settle the method, and
+  the smaller context is the only structural effect. One break is the
+  attribution pair itself (`lc_conv-43_178`, "which team did *Tim* sign with"):
+  the un-reranked run refused, the re-ranked run returned John's answer
+  ("Minnesota Wolves"). The cross-encoder backend is unit-tested but
+  **unmeasured** — this machine cannot reach PyPI, so it has never produced a
+  real score.
 
 ### Removed
 - 950 obsolete one-off diagnostic scripts and legacy smoke-test outputs, which

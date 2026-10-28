@@ -1142,6 +1142,7 @@ def run(args) -> None:
     # cache the flattened turns per sample_id (conversations are large)
     turn_cache: dict[str, list] = {}
     fact_cache: dict[str, FactIndex] = {}
+    rerank_failed_questions: list[str] = []
 
     for idx, (conv, q) in enumerate(jobs):
         t_q = time.perf_counter()
@@ -1159,9 +1160,15 @@ def run(args) -> None:
                 reference_date=None, base_top_k=45)
 
             if reranker is not None:
+                failures_before = int(getattr(reranker, "failures", 0) or 0)
                 top_turns, turn_scores = reranker.rerank_turns(
                     q["question"], top_turns, turn_scores,
                     top_k=int(getattr(args, "rerank_top_k", 0) or 0))
+                if int(getattr(reranker, "failures", 0) or 0) > failures_before:
+                    # Which case kept its retrieval order matters: a case that
+                    # moved must not be blamed on the re-ranker when the re-ranker
+                    # never scored it.
+                    rerank_failed_questions.append(q["question_id"])
 
             # SECOND-PASS RECALL (opt-in).  base_top_k=45 is already ~99% full
             # of lexically-matching turns, so evidence that shares no
@@ -1436,6 +1443,8 @@ def run(args) -> None:
     if rerank_failures:
         print(f"  rerank: {rerank_failures} batch(es) unparseable; those batches "
               "kept their retrieval order")
+        for question_id in rerank_failed_questions:
+            print(f"    kept retrieval order: {question_id}")
 
     if freeze_dir is not None:
         _write_frozen_contexts(freeze_dir, freeze_rows, args)
@@ -1502,6 +1511,7 @@ def run(args) -> None:
         "rerank_model": getattr(args, "rerank_model", ""),
         "rerank_top_k": getattr(args, "rerank_top_k", 0),
         "rerank_failures": rerank_failures,
+        "rerank_failed_questions": rerank_failed_questions,
         "manifest": args.manifest or "",
         "n_questions": len(jobs),
         "data": args.data,

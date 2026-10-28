@@ -87,9 +87,9 @@ never reported as a benchmark result.
 per-case token delta, mean context change), and `--rerank {ollama,cross-encoder}`
 re-orders the candidate pool with a learned relevance model before the compiler
 picks evidence. The `ollama` backend measured 10 -> 9 correct on the 18 pinned
-cases (2026-10-28): a null at that n, with mean context 1410 -> 1258 tokens. It is
-off by default; the `cross-encoder` backend needs the `[vector]` extra and has not
-been measured on a machine without PyPI access.
+cases (2026-10-28, reproduced on a rerun of both arms, mean context 1410 -> 1258
+tokens). It is off by default; the `cross-encoder` backend needs the `[vector]`
+extra and has not been measured on a machine without PyPI access.
 
 ## Frozen evaluation contract
 
